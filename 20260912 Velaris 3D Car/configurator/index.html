@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELARIS — AURION GT Configurator</title>
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="stage" aria-hidden="true"></div>
+<div id="vignette" aria-hidden="true"></div>
+<div id="fade" aria-hidden="true"></div>
+
+<header id="brandbar" class="reveal">
+  <div class="brand">
+    <span class="wordmark">VELARIS</span>
+    <span class="model">AURION&nbsp;GT</span>
+  </div>
+  <div class="tagline">Electric Grand Tourer</div>
+  <div class="brand-actions">
+    <button id="audioQuick" class="ghost-btn" type="button" aria-pressed="false" title="Ambient audio">
+      <span class="dot-ind"></span><span id="audioQuickLabel">Audio Off</span>
+    </button>
+  </div>
+</header>
+
+<aside id="panel" class="glass reveal">
+  <nav class="tabs" role="tablist" aria-label="Configurator sections">
+    <button class="tab is-active" role="tab" data-tab="exterior" type="button">Exterior</button>
+    <button class="tab" role="tab" data-tab="interior" type="button">Interior</button>
+    <button class="tab" role="tab" data-tab="equipment" type="button">Equipment</button>
+  </nav>
+
+  <div class="panel-scroll">
+    <section class="pane is-active" data-pane="exterior">
+      <div class="group">
+        <h3>Paint</h3>
+        <div id="paintGrid" class="swatches"></div>
+        <div id="paintName" class="choice-name">—</div>
+      </div>
+      <div class="group">
+        <h3>Wheels</h3>
+        <div id="wheelList" class="rows"></div>
+      </div>
+      <div class="group">
+        <h3>Brake Calipers</h3>
+        <div id="caliperRow" class="chips"></div>
+      </div>
+    </section>
+
+    <section class="pane" data-pane="interior">
+      <div class="group">
+        <h3>Upholstery</h3>
+        <div id="trimList" class="rows"></div>
+      </div>
+      <div class="group">
+        <h3>Ambient Audio</h3>
+        <p class="hint">Synthesized in-browser ambience. Starts only when you enable it.</p>
+        <button id="audioToggle" class="pill-btn" type="button" aria-pressed="false">Enable Ambient Audio</button>
+        <button id="audioStop" class="pill-btn subtle" type="button">Stop</button>
+      </div>
+      <div class="group">
+        <button id="enterInterior" class="primary-btn" type="button">Enter Interior</button>
+      </div>
+    </section>
+
+    <section class="pane" data-pane="equipment">
+      <div class="group">
+        <h3>Equipment</h3>
+        <div id="equipList" class="toggles"></div>
+      </div>
+    </section>
+
+    <section class="specs">
+      <div class="stat"><b id="specRange">612</b><span>km WLTP range</span></div>
+      <div class="stat"><b id="specPower">780</b><span>kW output</span></div>
+      <div class="stat"><b id="specAccel">2.9</b><span>s 0–100 km/h</span></div>
+      <div class="stat"><b id="specTop">295</b><span>km/h top speed</span></div>
+    </section>
+
+    <section class="summary">
+      <h3>Your Configuration</h3>
+      <dl id="summaryList"></dl>
+      <div class="total"><span>Total</span><b id="totalPrice">€ 248,000</b></div>
+    </section>
+  </div>
+</aside>
+
+<div id="toolbar" class="glass reveal">
+  <div class="tool-group" role="group" aria-label="Camera views">
+    <button class="tool is-active" data-cam="hero" type="button">3/4</button>
+    <button class="tool" data-cam="front" type="button">Front</button>
+    <button class="tool" data-cam="side" type="button">Side</button>
+    <button class="tool" data-cam="rear" type="button">Rear</button>
+  </div>
+  <div class="tool-sep"></div>
+  <div class="tool-group" role="group" aria-label="Vehicle controls">
+    <button class="tool" id="btnDoors" data-act="doors" type="button">Doors</button>
+    <button class="tool" id="btnHatch" data-act="hatch" type="button">Trunk</button>
+    <button class="tool" id="btnFrunk" data-act="frunk" type="button">Front Trunk</button>
+    <button class="tool" id="btnLights" data-act="lights" type="button">Headlights</button>
+    <button class="tool" id="btnCharge" data-act="charge" type="button">Charging</button>
+    <button class="tool" id="btnInterior" data-act="interior" type="button">Interior</button>
+  </div>
+</div>
+
+<div id="hud" class="glass" hidden>
+  <div class="hud-title">Charging</div>
+  <div class="hud-value"><b id="hudPct">18</b><span>%</span></div>
+  <div class="hud-bar"><i id="hudFill"></i></div>
+  <div class="hud-sub"><span id="hudKm">146 km</span><span id="hudKw">150 kW</span></div>
+</div>
+
+<div id="hoverTip" class="tooltip" hidden></div>
+
+<button id="exitInterior" class="primary-btn floating" type="button" hidden>Exit Interior</button>
+
+<div id="intro">
+  <div class="intro-inner">
+    <div class="intro-word">VELARIS</div>
+    <div class="intro-sub">AURION GT</div>
+    <div class="intro-bar"><i id="loadFill"></i></div>
+    <div class="intro-status" id="loadStatus">Preparing studio…</div>
+    <button id="skipIntro" class="ghost-btn intro-skip" type="button">Skip Intro</button>
+  </div>
+</div>
+
+<div id="diag" data-count="0" aria-hidden="true"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
