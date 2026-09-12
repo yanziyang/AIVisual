@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Serengeti National Park premium travel infographic poster and reusable prompt template.">
+  <title>Serengeti National Park — Poster Prompt</title>
+  <style>
+    :root {
+      --ink: #1e211d;
+      --muted: #6f746a;
+      --paper: #f4eee2;
+      --gold: #b78647;
+      --line: rgba(30, 33, 29, .15);
+      --shadow: 0 26px 70px rgba(48, 37, 22, .18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 13% 10%, rgba(183, 134, 71, .14), transparent 31rem),
+        linear-gradient(135deg, #ece4d5 0%, var(--paper) 46%, #eee6d7 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    .shell { width: min(1240px, calc(100% - 48px)); margin: 0 auto; padding: 42px 0 70px; }
+    .masthead {
+      display: flex; justify-content: space-between; gap: 30px; align-items: end;
+      padding-bottom: 28px; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 10px; color: var(--gold); font-size: .72rem; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase;
+    }
+    h1, h2, h3 {
+      margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.025em;
+    }
+    h1 { font-size: clamp(2.5rem, 7vw, 5.6rem); line-height: .98; }
+    h2 { font-size: clamp(1.65rem, 3vw, 2.5rem); }
+    h3 { font-size: 1.25rem; }
+    .lede { max-width: 410px; margin: 0; color: var(--muted); font-size: .98rem; }
+    .layout {
+      display: grid; grid-template-columns: minmax(0, 1.23fr) minmax(300px, .77fr);
+      gap: 34px; margin-top: 34px; align-items: start;
+    }
+    .poster-frame { position: relative; overflow: hidden; background: #27251e; box-shadow: var(--shadow); }
+    .poster-frame::before {
+      content: ""; position: absolute; inset: 14px; z-index: 1;
+      border: 1px solid rgba(244, 238, 226, .42); pointer-events: none;
+    }
+    .poster-frame img {
+      display: block; width: 100%; height: auto; min-height: 520px; object-fit: cover;
+      background: linear-gradient(160deg, #6f755a, #c18d4b 48%, #302d23);
+    }
+    .poster-caption {
+      display: flex; justify-content: space-between; gap: 16px; padding: 13px 2px 0;
+      color: var(--muted); font-size: .78rem;
+    }
+    .poster-caption span:last-child { text-align: right; }
+    .panel {
+      padding: 28px; background: rgba(255, 252, 245, .55);
+      border: 1px solid rgba(30, 33, 29, .1);
+      box-shadow: 0 12px 36px rgba(48, 37, 22, .06); backdrop-filter: blur(8px);
+    }
+    .panel + .panel { margin-top: 18px; }
+    .panel h2 { margin-bottom: 21px; }
+    .meta {
+      display: grid; grid-template-columns: 105px 1fr; gap: 12px 17px; margin: 0; font-size: .9rem;
+    }
+    .meta dt {
+      color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .12em;
+      line-height: 1.45; text-transform: uppercase;
+    }
+    .meta dd { margin: 0; }
+    .source { color: inherit; text-decoration-color: var(--gold); text-underline-offset: 3px; overflow-wrap: anywhere; }
+    .model {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 11px;
+      color: #5d492f; background: rgba(183, 134, 71, .12);
+      border: 1px solid rgba(183, 134, 71, .3); border-radius: 999px; font-size: .75rem; font-weight: 700;
+    }
+    .model::before { content: ""; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; }
+    .prompt-section { margin-top: 34px; }
+    .prompt-heading {
+      display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 16px;
+    }
+    .prompt-heading p { margin: 0; color: var(--muted); font-size: .9rem; }
+    button {
+      border: 1px solid rgba(30, 33, 29, .2); padding: 10px 14px; color: var(--ink);
+      background: rgba(255, 252, 245, .66); font: inherit; font-size: .78rem; font-weight: 800;
+      cursor: pointer; transition: background .2s ease, transform .2s ease;
+    }
+    button:hover { background: #fffaf0; transform: translateY(-1px); }
+    pre {
+      margin: 0; padding: 28px; overflow: auto; color: #e9dfce; background: #24271f;
+      box-shadow: var(--shadow); font: .88rem/1.7 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap; tab-size: 2;
+    }
+    .footer {
+      display: flex; justify-content: space-between; gap: 18px; margin-top: 30px; padding-top: 20px;
+      border-top: 1px solid var(--line); color: var(--muted); font-size: .76rem;
+    }
+    @media (max-width: 900px) {
+      .masthead { display: block; } .lede { margin-top: 16px; } .layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1240px); padding-top: 24px; }
+      .panel { padding: 21px; } .meta { grid-template-columns: 1fr; gap: 5px; }
+      .meta dd { margin-bottom: 10px; } .prompt-heading, .footer { display: block; }
+      .prompt-heading button { margin-top: 14px; } .poster-caption span { display: block; }
+      .poster-caption span:last-child { margin-top: 5px; text-align: left; }
+    }
+    @media print {
+      body { background: #fff; } .shell { width: 100%; padding: 0; }
+      .panel, pre, .poster-frame { box-shadow: none; } button { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Generated travel-poster artifact</p>
+        <h1>Serengeti<br>National Park</h1>
+      </div>
+      <p class="lede">A cinematic conservation poster, its provenance, and the reusable prompt template that shaped it.</p>
+    </header>
+
+    <section class="layout" aria-label="Generated poster and metadata">
+      <div>
+        <figure class="poster-frame">
+          <img
+            src="file:///C:/Users/admin/.codex/generated_images/01a095c1-1425-77d0-aa7d-b1e7284ab2cb/exec-b227f719-0f41-4377-b4f6-69fff5e374c9.png"
+            alt="Premium cinematic Serengeti National Park poster showing a lion pride at sunrise across the savanna."
+          >
+        </figure>
+        <div class="poster-caption">
+          <span>Vertical 4:5 · cinematic editorial</span>
+          <span>Protect the wild. Preserve the wonder.</span>
+        </div>
+      </div>
+
+      <aside>
+        <section class="panel">
+          <p class="eyebrow">Artifact notes</p>
+          <h2>Poster details</h2>
+          <dl class="meta">
+            <dt>Subject</dt>
+            <dd>Serengeti National Park, Tanzania</dd>
+            <dt>Style</dt>
+            <dd>Realistic nature photography, premium editorial, conservation-inspired</dd>
+            <dt>Format</dt>
+            <dd>Vertical 4:5</dd>
+            <dt>Source</dt>
+            <dd><a class="source" href="https://x.com/Naiknelofar788/status/2098662015346897131" target="_blank" rel="noopener noreferrer">Original reference on X</a></dd>
+          </dl>
+          <div class="model">GPT-5 Codex + OpenAI Image Generation</div>
+          <p style="margin: 10px 0 0; color: var(--muted); font-size: .75rem;">The image-generation tool does not expose a more specific image-model ID in this session.</p>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">Included content</p>
+          <h3>Generated image</h3>
+          <p style="margin: 10px 0 0; color: var(--muted); font-size: .9rem;">The poster image above is the generated visual used for this artifact.</p>
+        </section>
+      </aside>
+    </section>
+
+    <section class="prompt-section" aria-labelledby="prompt-title">
+      <div class="prompt-heading">
+        <div>
+          <p class="eyebrow">Reusable prompt</p>
+          <h2 id="prompt-title">Prompt template</h2>
+          <p>Swap the bracketed fields to create another national-park poster.</p>
+        </div>
+        <button type="button" id="copy-prompt">Copy template</button>
+      </div>
+
+      <pre id="prompt">Create a breathtaking, premium national park travel infographic poster for [NATIONAL PARK, COUNTRY], designed to inspire people to explore, protect, and appreciate nature.
+
+Show a cinematic natural landscape featuring the park’s most famous animal — [FAMOUS ANIMAL] — naturally integrated into the scene, surrounded by its authentic flora and fauna. Include subtle visual elements representing the park’s ecosystem, such as native trees, flowers, grasses, mountains, rivers, birds, and wildlife.
+
+Use an elegant editorial travel-poster aesthetic with realistic nature photography blended with refined graphic-design elements. Warm natural tones, soft sunlight, atmospheric depth, detailed textures, and a clean premium composition. Make the wildlife the emotional focal point while keeping the landscape expansive and majestic.
+
+Add beautifully organized, minimal information panels:
+
+[NATIONAL PARK]
+[COUNTRY]
+
+Famous Animal: [ANIMAL]
+Flora &amp; Fauna: [KEY SPECIES / VEGETATION]
+Species: [NUMBER OF SPECIES]
+Area: [AREA]
+📍 Location: [LOCATION]
+Best Time to Visit: [MONTHS / SEASON]
+Ticket Price: [PRICE]
+
+Add a short inspirational line:
+
+“Protect the wild. Preserve the wonder.”
+
+Keep the typography sophisticated, clean, and highly legible. Use small icons, fine divider lines, subtle map/topographic details, and a restrained information hierarchy. The overall design should feel like a luxury conservation magazine cover + collectible national-park poster, visually inspiring but informative.
+
+Format: Vertical 4:5
+Style: Cinematic, realistic, premium editorial, conservation-inspired, detailed, elegant, atmospheric
+Avoid: Crowds, excessive text, cartoon style, artificial-looking animals, tourist buses, logos, watermarks, and clutter.</pre>
+    </section>
+
+    <footer class="footer">
+      <span>Serengeti National Park · Tanzania</span>
+      <span>Standalone HTML artifact</span>
+    </footer>
+  </main>
+
+  <script>
+    const button = document.querySelector("#copy-prompt");
+    const prompt = document.querySelector("#prompt");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(prompt.textContent);
+        const original = button.textContent;
+        button.textContent = "Copied";
+        setTimeout(() => button.textContent = original, 1400);
+      } catch {
+        button.textContent = "Select text to copy";
+      }
+    });
+  </script>
+</body>
+</html>
+
