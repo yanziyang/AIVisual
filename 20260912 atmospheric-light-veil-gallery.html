@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atmospheric Light Veil — Image Gallery</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1014;
+      --panel: #121a20;
+      --panel-2: #172229;
+      --text: #edf4f2;
+      --muted: #a5b4b7;
+      --accent: #e6b979;
+      --line: rgba(230, 185, 121, 0.23);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(85, 115, 118, 0.22), transparent 34rem),
+        radial-gradient(circle at 90% 10%, rgba(179, 117, 70, 0.13), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    header {
+      max-width: 880px;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+
+    .prompt-source {
+      margin: 28px 0 46px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(18, 26, 32, 0.92);
+    }
+
+    .prompt-source h2 {
+      margin: 0 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+    }
+
+    .prompt-source dl {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.22fr) minmax(0, 1fr);
+      gap: 12px 20px;
+      margin: 0;
+    }
+
+    .prompt-source dt {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .prompt-source dd {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .prompt-template {
+      margin: 0;
+      padding: 14px 16px;
+      border-left: 2px solid var(--accent);
+      background: rgba(0, 0, 0, 0.16);
+      color: var(--muted);
+      font: 0.92rem/1.6 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+    .metadata {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin: 28px 0 46px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+    }
+
+    .metadata div {
+      padding: 17px 20px;
+      background: rgba(18, 26, 32, 0.92);
+    }
+
+    .metadata dt {
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .metadata dd {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    article {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(237, 244, 242, 0.1);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(23, 34, 41, 0.96), rgba(12, 18, 22, 0.96));
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    .image-wrap {
+      aspect-ratio: 4 / 3;
+      background: #080c0e;
+    }
+
+    .image-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 22px;
+    }
+
+    .number {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    h2 {
+      margin: 5px 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .label {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .prompt {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(237, 244, 242, 0.1);
+    }
+
+    .engine {
+      color: #c7d2d2;
+      font-size: 0.78rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 3px;
+    }
+
+    .open-image {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    .open-image:hover,
+    .open-image:focus-visible {
+      background: rgba(230, 185, 121, 0.12);
+    }
+
+    @media (max-width: 620px) {
+      main { width: min(100% - 22px, 1180px); padding-top: 34px; }
+  
+    .prompt-source {
+      margin: 28px 0 46px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(18, 26, 32, 0.92);
+    }
+
+    .prompt-source h2 {
+      margin: 0 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+    }
+
+    .prompt-source dl {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.22fr) minmax(0, 1fr);
+      gap: 12px 20px;
+      margin: 0;
+    }
+
+    .prompt-source dt {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .prompt-source dd {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .prompt-template {
+      margin: 0;
+      padding: 14px 16px;
+      border-left: 2px solid var(--accent);
+      background: rgba(0, 0, 0, 0.16);
+      color: var(--muted);
+      font: 0.92rem/1.6 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+    .metadata { grid-template-columns: 1fr; }
+      .card-footer { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Five cinematic variations</p>
+      <h1>Atmospheric Light Veil</h1>
+      <p class="intro">A visual study in fog, warm backlight, deep shadow, and cinematic depth. Each image applies the same prompt structure to a different subject.</p>
+    </header>
+
+
+    <section class="prompt-source" aria-labelledby="prompt-source-heading">
+      <h2 id="prompt-source-heading">Prompt reference</h2>
+      <dl>
+        <dt>Prompt share</dt>
+        <dd>Atmospheric Light Veil</dd>
+        <dt>Prompt template</dt>
+        <dd><p class="prompt-template">A cinematic rendering of the [subject] illuminated by [lighting style], with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere</p></dd>
+        <dt>Source</dt>
+        <dd><a href="https://x.com/azed_ai/status/2098365453987135892" target="_blank" rel="noopener noreferrer">https://x.com/azed_ai/status/2098365453987135892</a></dd>
+      </dl>
+    </section>
+    <dl class="metadata">
+      <div>
+        <dt>Prompt authoring engine</dt>
+        <dd>GPT-5 Codex</dd>
+      </div>
+      <div>
+        <dt>Image generation engine</dt>
+        <dd>OpenAI Image Generation via Codex imagegen (exact backend model identifier not exposed)</dd>
+      </div>
+    </dl>
+
+    <section class="gallery" aria-label="Generated images">
+      <article>
+        <div class="image-wrap">
+          <img src="./Assets/20260912 atmospheric-light-veil-gallery-03.png" alt="Majestic stag deer in a foggy ancient forest">
+        </div>
+        <div class="card-body">
+          <span class="number">01</span>
+          <h2>Stag Deer</h2>
+          <p class="label">Prompt</p>
+          <p class="prompt">A cinematic rendering of a majestic stag deer standing in a misty ancient forest, illuminated by golden rim light filtering through the trees, with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere. Atmospheric Light Veil.</p>
+          <div class="card-footer">
+            <span class="engine">OpenAI Image Generation</span>
+            <a class="open-image" href="./Assets/20260912 atmospheric-light-veil-gallery-03.png">Open image</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="image-wrap">
+          <img src="./Assets/20260912 atmospheric-light-veil-gallery-04.png" alt="Armored hero in the ruins of a forgotten cathedral">
+        </div>
+        <div class="card-body">
+          <span class="number">02</span>
+          <h2>Armored Hero</h2>
+          <p class="label">Prompt</p>
+          <p class="prompt">A cinematic rendering of a lone armored hero standing in the ruins of a forgotten cathedral, illuminated by molten sunset rim light streaming through broken arches, with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere. Atmospheric Light Veil.</p>
+          <div class="card-footer">
+            <span class="engine">OpenAI Image Generation</span>
+            <a class="open-image" href="./Assets/20260912 atmospheric-light-veil-gallery-04.png">Open image</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="image-wrap">
+          <img src="./Assets/20260912 atmospheric-light-veil-gallery-02.png" alt="Ancient sky god above a mountain summit">
+        </div>
+        <div class="card-body">
+          <span class="number">03</span>
+          <h2>Ancient Sky God</h2>
+          <p class="label">Prompt</p>
+          <p class="prompt">A cinematic rendering of an ancient sky god hovering above a mountain summit, illuminated by celestial lightning and a warm solar halo behind the figure, with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere. Atmospheric Light Veil.</p>
+          <div class="card-footer">
+            <span class="engine">OpenAI Image Generation</span>
+            <a class="open-image" href="./Assets/20260912 atmospheric-light-veil-gallery-02.png">Open image</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="image-wrap">
+          <img src="./Assets/20260912 atmospheric-light-veil-gallery-01.png" alt="Bengal tiger emerging from a shadowy jungle">
+        </div>
+        <div class="card-body">
+          <span class="number">04</span>
+          <h2>Bengal Tiger</h2>
+          <p class="label">Prompt</p>
+          <p class="prompt">A cinematic rendering of a Bengal tiger emerging from a shadowy jungle, illuminated by moonlit rim lighting with a warm amber glow behind the foliage, with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere. Atmospheric Light Veil.</p>
+          <div class="card-footer">
+            <span class="engine">OpenAI Image Generation</span>
+            <a class="open-image" href="./Assets/20260912 atmospheric-light-veil-gallery-01.png">Open image</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="image-wrap">
+          <img src="./Assets/20260912 atmospheric-light-veil-gallery-05.png" alt="Sleek midnight sports car on a rain-soaked mountain road">
+        </div>
+        <div class="card-body">
+          <span class="number">05</span>
+          <h2>Midnight Sports Car</h2>
+          <p class="label">Prompt</p>
+          <p class="prompt">A cinematic rendering of a sleek midnight sports car on a rain-soaked mountain road, illuminated by warm sunset backlight and thin neon reflections, with dense fog breaking the scene into atmospheric layers, warm backlighting, subtle glowing particles, deep shadows, cinematic depth, mysterious mood, dramatic atmosphere. Atmospheric Light Veil.</p>
+          <div class="card-footer">
+            <span class="engine">OpenAI Image Generation</span>
+            <a class="open-image" href="./Assets/20260912 atmospheric-light-veil-gallery-05.png">Open image</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
+
+
+
