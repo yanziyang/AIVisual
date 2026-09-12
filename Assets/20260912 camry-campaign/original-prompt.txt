@@ -1,0 +1,53 @@
+Act as a Senior Automotive Art Director, Automotive Commercial Photographer, Digital Collage Artist, Editorial Designer, and Campaign Creative Director specializing in conceptual automotive advertising, metaphor-driven visual storytelling, contemporary automotive photography, sophisticated image manipulation, and award-level social-media campaign design. Create ONE exceptionally art-directed 4:5 vertical SMM campaign poster for the 2026 Toyota Camry XSE. The campaign concept is: “THE ROAD BECOMES THE CAMRY.” The metaphor must communicate that Camry is not simply moving through the road — the road itself seems to have been shaped by the Camry. The visual should feel like a real automotive photograph transformed by one intelligent conceptual intervention, not a generic AI-generated car advertisement.
+
+Save each phase as phase_x.png, finally generate a standalone HTML with all intermediate images and final images, the prompt and LLM model used.
+
+⸻ PHASE 1 — THE CORE VISUAL IDEA
+Build the entire poster around one physical metaphor: A 2026 Toyota Camry XSE is driving through a contemporary urban intersection. At first glance, it appears to be an exceptionally photographed automobile. Then the viewer notices something unusual: the road beneath and behind the Camry is gradually transforming into the geometry of the car. The asphalt lane markings begin following the exact trajectory of the Camry’s shoulder line. A road divider gradually develops the same curvature as the vehicle’s side profile. Architectural lines in the surrounding environment begin aligning with the Camry’s roofline. The road surface closest to the vehicle subtly rises into a sculptural plane that echoes the Camry’s bodywork. The further the road travels toward the background, the more its geometry resembles the vehicle. Road → structure → automobile. The viewer should understand the metaphor without needing an explanatory graphic.
+
+⸻ PHASE 2 — VEHICLE
+Use an accurate 2026 Toyota Camry XSE. Wide, low stance. Sleek roofline. Chiseled body. Distinctive modern front fascia. Color-matched mesh grille. Functional front-side aerodynamic elements. 19-inch black/smoke-gray XSE wheels. Correct production proportions and realistic body surfacing. Use a sophisticated Heavy Metal metallic body with Midnight Black roof specification. The vehicle must remain completely photographic. No redesigning the Camry. No concept-car proportions. No exaggerated body kit. No fictional headlights. No melted geometry. Toyota’s current 2026 Camry XSE specification specifically features the wide/low stance, sleek roofline, aerodynamic air ducts, front-side canards, color-matched mesh grille and 19-inch black/smoke-gray wheels.
+
+⸻ PHASE 3 — CAMERA
+Use an aggressive low three-quarter front perspective. Camera approximately 25–35 cm above road level. 24–28mm full-frame equivalent lens. The Camry occupies approximately 55–65% of the visual frame. Front of vehicle slightly closer to camera. Strong perspective convergence. Foreground asphalt visible beneath the camera. The vehicle should feel physically present and heavy. Natural automotive commercial reflections. Sharp bodywork. Controlled depth of field. No excessive background blur. The road transformation must remain readable.
+
+⸻ PHASE 4 — ENVIRONMENT Create a sophisticated contemporary city intersection. Not futuristic. Not cyberpunk. Not a generic luxury-city backdrop. Think: real architecture + clean urban infrastructure + early-morning light + controlled visual geometry. Concrete, glass, asphalt, road markings, pedestrian infrastructure and architectural planes. The environment should contain strong linear structures that naturally echo the Camry’s design. Use architecture as part of the metaphor rather than decoration.
+
+⸻ PHASE 5 — THE METAMORPHOSIS
+This is the most important part. The transformation must happen through real physical surfaces, not magical effects. FOREGROUND Normal asphalt. Natural road texture. Painted lane markings. MIDGROUND Road markings begin subtly bending toward the Camry’s body lines. A lane divider follows the vehicle’s shoulder contour. A concrete road seam begins mirroring the roofline. VEHICLE ZONE The pavement immediately beneath the Camry becomes unnaturally precise. Its planes echo the car’s sculpted surfaces. The visual relationship becomes unmistakable. BACKGROUND The road geometry gradually returns to normal urban infrastructure. This creates a visual progression: ordinary road → Camry geometry → ordinary city. No visible “transformation effect.” The metaphor should look as though the world was designed around the vehicle.
+
+⸻ PHASE 6 — LIGHTING
+Early morning directional sunlight. Long architectural shadows. Soft warm sunlight interacting with cool urban surfaces. Strong but controlled highlights across the Camry’s metallic body. Natural reflections in windows and paint. The road transformation should be revealed primarily through light, shadow and geometry, not special effects. Premium automotive commercial exposure. High dynamic range. No artificial glow. No neon. No excessive lens flare.
+
+⸻ PHASE 7 — COMPOSITION
+Use a strong editorial grid. CAMRY: dominant visual anchor, positioned slightly right of center. METAPHOR: road transformation leads the eye toward the vehicle. HEADLINE: upper-left / left-center negative space. SUPPORTING COPY: beneath headline. TOYOTA LOGO: restrained upper-right or lower-right position. Create substantial negative space around the typography. The poster must feel intentionally composed rather than filled.
+
+⸻ PHASE 8 — TYPOGRAPHY
+Main headline: THE ROAD BECOMES THE CAMRY. Use a refined contemporary sans-serif inspired by Toyota’s current typographic language. Large scale. Strong hierarchy. Tight but controlled tracking. Clean alignment. No 3D extrusion. No bevel. No shadow. No decorative typography. The typography should feel like part of a real automotive campaign identity system. Small supporting copy: 2026 CAMRY XSE DESIGN WITH PURPOSE. Optional micro-information: HYBRID · XSE · AWD Keep technical information extremely restrained. Toyota’s visual guidelines emphasize bold headline hierarchy, clean grid alignment and avoiding unnecessary typographic effects.
+
+⸻ PHASE 9 — TYPOGRAPHY / IMAGE INTERACTION
+Do not simply place text over the photograph. Allow the road geometry to visually point toward the headline. One lane marking can subtly terminate near the headline. One architectural line can align with the baseline of the typography. The Camry’s roofline and headline should share a visual rhythm. This creates a relationship between: CAR → ROAD → TYPE. All three should feel like components of one composition.
+
+⸻ PHASE 10 — COLOR SYSTEM
+Primary palette: Heavy Metal metallic gray Midnight Black Concrete gray Warm morning white Muted Toyota red accent Keep the red extremely restrained. One small red detail is enough. Do not turn the poster into a red Toyota advertisement.
+
+⸻ PHASE 11 — PHOTOGRAPHIC QUALITY
+Hyper-real automotive commercial photography. Physically accurate reflections. Correct wheel geometry. Realistic tire contact. Natural suspension stance. Accurate metallic paint. Subtle environmental reflections. Fine road texture. Realistic atmospheric perspective. Premium color grading. No plastic CGI appearance. No AI-generated surface artifacts. No excessive sharpening. No surreal distortion of the vehicle.
+
+⸻ PHASE 12 — DESIGN PSYCHOLOGY
+The poster must work in three visual beats:
+
+BEAT 01 — ATTENTION Beautiful, aggressive Camry photograph.
+
+BEAT 02 — DISCOVERY Viewer notices the road geometry is behaving strangely.
+
+BEAT 03 — MEANING Viewer realizes: THE ROAD HAS BECOME THE CAMRY. The conceptual discovery is what makes the poster memorable.
+
+⸻ PHASE 13 — BRAND INTELLIGENCE
+The visual must feel unmistakably Toyota, while avoiding a conventional dealership advertisement. Use: * precise automotive photography * restrained brand presence * functional design language * contemporary urban environment * strong typography * purposeful composition * sophisticated conceptual storytelling The vehicle is the hero. The metaphor is the campaign idea. The graphic design amplifies the idea.
+
+⸻ PHASE 14 — ABSOLUTELY AVOID
+No generic luxury-car background. No mountain road. No desert. No cyberpunk city. No neon. No floating vehicle. No giant 3D typography. No holograms. No speed trails. No smoke surrounding the car. No random particles. No excessive lens flare. No futuristic buildings. No impossible road deformation. No duplicated vehicles. No distorted wheels. No warped Toyota badge. No fake body panels. No excessive red. No template-like Instagram layout. No generic “premium automotive poster” aesthetic. The metaphor must carry the visual.
+
+⸻ PHASE 15 — FINAL OUTPUT
+4:5 vertical composition 8K ultra-high resolution Photorealistic 2026 Toyota Camry XSE High-end automotive commercial photography Conceptual digital compositing Behance-level campaign art direction Sophisticated editorial typography Physical metaphor-driven storytelling Contemporary Toyota visual language Professional SMM campaign quality Global automotive advertising finish FINAL CREATIVE PRINCIPLE: Do not make the Camry look like it belongs on the road. Make the road look like it was designed by the Camry.
