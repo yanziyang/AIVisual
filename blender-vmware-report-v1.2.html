@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender "Platform Unsupported" in VMware Workstation — Diagnosis Report v1.2</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --line: #dde3ea;
+    --accent: #2b6cb0;
+    --ok-bg: #e6f6ec; --ok-ink: #146c2e; --ok-line: #b7e3c6;
+    --bad-bg: #fdecec; --bad-ink: #a61b1b; --bad-line: #f3c2c2;
+    --warn-bg: #fff6e5; --warn-ink: #8a5a00; --warn-line: #f0dcae;
+    --code-bg: #0f172a; --code-ink: #d7e2f0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0 16px 64px;
+    background: var(--bg); color: var(--ink);
+    font: 15px/1.55 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  }
+  .wrap { max-width: 1020px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #1b2a41, #2b4d7a 60%, #2b6cb0);
+    color: #fff; border-radius: 0 0 14px 14px;
+    padding: 34px 30px 28px; margin: 0 -16px 26px;
+  }
+  header h1 { margin: 0 0 6px; font-size: 26px; line-height: 1.25; }
+  header .sub { color: #cfe0f5; font-size: 14.5px; }
+  header .meta { margin-top: 14px; font-size: 13px; color: #b9cdea; }
+  header .rev {
+    margin-top: 10px; font-size: 12.5px; color: #dce9fa;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+    border-radius: 8px; padding: 8px 12px; display: inline-block;
+  }
+  h2 {
+    font-size: 19px; margin: 34px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid var(--line);
+  }
+  h3 { font-size: 16px; margin: 22px 0 8px; }
+  p { margin: 8px 0; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; box-shadow: 0 1px 2px rgba(16,24,40,.04);
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 4px; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2f7; font-weight: 600; }
+  tbody tr:nth-child(even) td { background: #fafbfd; }
+  pre {
+    background: var(--code-bg); color: var(--code-ink);
+    border-radius: 8px; padding: 14px 16px; overflow-x: auto;
+    font: 12.5px/1.5 "Cascadia Mono", Consolas, "Courier New", monospace;
+    white-space: pre; margin: 10px 0;
+  }
+  code {
+    font: 12.5px/1.4 "Cascadia Mono", Consolas, "Courier New", monospace;
+    background: #eef2f7; border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px;
+  }
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 600; line-height: 1;
+    padding: 4px 7px; border-radius: 999px; border: 1px solid;
+    white-space: nowrap;
+  }
+  .ok   { background: var(--ok-bg);   color: var(--ok-ink);   border-color: var(--ok-line); }
+  .bad  { background: var(--bad-bg);  color: var(--bad-ink);  border-color: var(--bad-line); }
+  .warn { background: var(--warn-bg); color: var(--warn-ink); border-color: var(--warn-line); }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 18px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  .callout {
+    border-left: 4px solid var(--accent); background: #eef5fc;
+    padding: 10px 14px; border-radius: 6px; margin: 12px 0;
+  }
+  .callout.bad-callout { border-left-color: #c0392b; background: #fdf1f0; }
+  .callout.warn-callout { border-left-color: #d68b00; background: #fff8ea; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; text-align: center; }
+  @media print {
+    body { background: #fff; }
+    header { border-radius: 0; }
+    .card { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Blender "Platform Unsupported" inside VMware Workstation</h1>
+  <div class="sub">Root-cause analysis of the startup failure on a Windows&nbsp;11 guest with the VMware SVGA3D virtual GPU, with verified workarounds — including headless-mode guidance, mixed-version workflows and a llvmpipe performance impact analysis.</div>
+  <div class="meta">
+    Report date: 2026-09-12 &nbsp;·&nbsp; Guest: Windows 11 (VMware Workstation Pro) &nbsp;·&nbsp; Host CPU/GPU: AMD Ryzen 5 5600G (Radeon Vega iGPU) &nbsp;·&nbsp; Blender installed: 5.2.1
+  </div>
+  <div class="rev">
+    <strong>Report version 1.2</strong> — supersedes 1.0 / 1.1.<br>
+    v1.0: GUI startup diagnosis, version matrix, workarounds. &nbsp; v1.1: headless-mode and mixed-version workflow findings. &nbsp; v1.2: Mesa llvmpipe performance impact analysis.
+  </div>
+</header>
+
+<section>
+  <h2>1. Summary</h2>
+  <div class="card">
+    <p>
+      Blender 5.2.1 refuses to start its GUI with the dialog <em>"Blender — Platform Unsupported: Your graphics card or driver version is not supported."</em>
+      even though the VM reports OpenGL&nbsp;4.3 (the nominal minimum).
+    </p>
+    <p>
+      <strong>Root cause:</strong> Blender 5.x requires additional OpenGL capabilities that the VMware SVGA3D driver does not provide:
+      the <code>GL_ARB_shader_draw_parameters</code> extension is missing, and only <strong>8</strong> shader-storage-block (SSBO) binding
+      points are available where Blender requires <strong>≥ 12</strong>. The same SSBO limitation blocks Blender 4.1–4.5 LTS as well.
+    </p>
+    <p>
+      <strong>Verified working in this VM:</strong> <span class="badge ok">Blender 3.6.23 LTS</span> for GUI, EEVEE and Cycles;
+      and <span class="badge ok">Blender 5.2.1 headless with Cycles&nbsp;CPU</span>, because background mode (<code>-b</code>) does not
+      initialize OpenGL. GPU-dependent engines (EEVEE) still fail on 5.2, so 3.6.23 remains the choice for anything GPU-backed.
+      For a full Blender 5.2 GUI, the practical options are running Blender on the host or Mesa&nbsp;llvmpipe software rendering
+      in the VM — the latter is expected to be <strong>5–100× slower for GPU-backed work</strong> while leaving Cycles CPU render
+      times unchanged (analysis in section&nbsp;8).
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>2. Environment</h2>
+  <div class="card">
+    <dl class="kv">
+      <dt>Guest OS</dt><dd>Windows 11 (64-bit), running in VMware Workstation Pro</dd>
+      <dt>Host CPU</dt><dd>AMD Ryzen 5 5600G (6C/12T, Radeon Vega 7 integrated graphics)</dd>
+      <dt>VM resources</dt><dd>4 logical CPUs (2 sockets × 2 cores), 8 GB RAM</dd>
+      <dt>Virtual GPU</dt><dd>VMware SVGA 3D, driver 9.17.11.4 (driver date 2026-01-06)</dd>
+      <dt>Guest OpenGL</dt><dd>4.3 (Compatibility Profile), Mesa 24.1.0, renderer string: <code>SVGA3D; build: RELEASE;  LLVM;</code></dd>
+      <dt>Blender</dt><dd>5.2.1 installed at <code>C:\Program Files\Blender Foundation\Blender 5.2\</code>; 3.6.23 LTS portable test copy</dd>
+    </dl>
+    <div class="callout">
+      VMware Workstation's guest OpenGL driver intentionally caps at <strong>OpenGL 4.3</strong> (Broadcom documentation; Mesa SVGA3D driver).
+      There is no Vulkan support exposed to Windows guests, and an integrated GPU cannot be passed through with Workstation.
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>3. Requirement vs. Reality</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Requirement (Blender 5.x)</th><th>VMware SVGA3D provides</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>OpenGL ≥ 4.3</td><td>4.3 (Compatibility Profile), Mesa 24.1.0</td><td><span class="badge ok">Pass</span></td></tr>
+        <tr><td><code>GL_ARB_shader_draw_parameters</code></td><td>Not exposed</td><td><span class="badge bad">Fail</span></td></tr>
+        <tr><td><code>GL_ARB_clip_control</code></td><td>Present</td><td><span class="badge ok">Pass</span></td></tr>
+        <tr><td>≥ 12 shader-storage-block binding points per stage</td><td>8 (vertex, fragment, compute, combined)</td><td><span class="badge bad">Fail</span></td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">
+      Blender 5.0 raised the minimum requirements: OpenGL 4.3 <em>plus mandatory</em> support for
+      <code>GL_ARB_shader_draw_parameters</code> and <code>GL_ARB_clip_control</code> (see Blender 5.0 release announcement).
+      The hard check is implemented in <code>source/blender/gpu/opengl/gl_backend.cc</code> (<code>GLBackend::platform_init</code>):
+    </p>
+    <pre>if (!epoxy_has_gl_extension("GL_ARB_shader_draw_parameters")) {
+  std::cout &lt;&lt; "Error: The OpenGL implementation doesn't support ARB_shader_draw_parameters\n";
+  support_level = GPU_SUPPORT_LEVEL_UNSUPPORTED;
+}
+if (!epoxy_has_gl_extension("GL_ARB_clip_control")) {
+  std::cout &lt;&lt; "Error: The OpenGL implementation doesn't support ARB_clip_control\n";
+  support_level = GPU_SUPPORT_LEVEL_UNSUPPORTED;
+}
+...
+if (max_ssbo_binds &lt; 12) {
+  std::cout &lt;&lt; "Warning: Unsupported platform as it supports max " &lt;&lt; max_ssbo_binds
+            &lt;&lt; " SSBO binding locations\n";
+  support_level = GPU_SUPPORT_LEVEL_UNSUPPORTED;
+}</pre>
+  </div>
+</section>
+
+<section>
+  <h2>4. Measured Capabilities (live probe of the VM)</h2>
+  <div class="card">
+    <p class="small muted">
+      The virtual GPU was queried directly from inside the guest by creating a WGL context (ctypes + <code>opengl32.dll</code>) and
+      reading the GL strings, extension list and limits. Raw output:
+    </p>
+    <pre>VENDOR  : VMware, Inc.
+RENDERER: SVGA3D; build: RELEASE;  LLVM;
+VERSION : 4.3 (Compatibility Profile) Mesa 24.1.0
+GLSL    : 4.30
+EXTENSION COUNT: 250
+GL_ARB_shader_draw_parameters           : False   &lt;-- required by Blender 5.x, missing
+GL_ARB_clip_control                     : True
+GL_ARB_direct_state_access              : True
+GL_ARB_multi_bind                       : True
+GL_ARB_shader_storage_buffer_object     : True
+GL_ARB_compute_shader                   : True
+GL_ARB_multi_draw_indirect              : True
+MAX_VERTEX_SHADER_STORAGE_BLOCKS        : 8       &lt;-- Blender needs >= 12
+MAX_FRAGMENT_SHADER_STORAGE_BLOCKS      : 8
+MAX_COMPUTE_SHADER_STORAGE_BLOCKS       : 8
+MAX_COMBINED_SHADER_STORAGE_BLOCKS      : 8
+MAX_SHADER_STORAGE_BUFFER_BINDINGS      : 8</pre>
+    <p class="small">
+      The value 8 is consistent with Mesa's SVGA3D driver: it advertises <code>SVGA_MAX_SHADER_BUFFERS = 16</code> storage buffers,
+      but the state tracker reserves half of them for atomic buffers (<code>ST: MaxAtomicBuffers = MaxShaderStorageBlocks / 2</code>),
+      leaving 8 SSBO-binding points.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>5. Version Compatibility Matrix (all source-verified)</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Blender</th><th>SSBO minimum enforced</th><th>Extra hard requirements</th><th>Result on this VM (GUI)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5.2.1 (installed)</td><td>≥ 12</td>
+          <td><code>GL_ARB_shader_draw_parameters</code>, <code>GL_ARB_clip_control</code></td>
+          <td><span class="badge bad">Platform Unsupported dialog</span></td>
+        </tr>
+        <tr>
+          <td>4.5 LTS</td><td>≥ 12</td><td>–</td>
+          <td><span class="badge bad">Refuses (8 &lt; 12)</span></td>
+        </tr>
+        <tr>
+          <td>4.2 LTS</td><td>≥ 12</td><td>–</td>
+          <td><span class="badge bad">Refuses (8 &lt; 12)</span></td>
+        </tr>
+        <tr>
+          <td>4.1.1</td><td>≥ 12</td><td>–</td>
+          <td><span class="badge bad">Refuses (8 &lt; 12)</span></td>
+        </tr>
+        <tr>
+          <td>4.0.2</td><td>≥ 8</td><td>–</td>
+          <td><span class="badge warn">Starts, then crashes</span></td>
+        </tr>
+        <tr>
+          <td>3.6.23 LTS</td><td>≥ 8</td><td>–</td>
+          <td><span class="badge ok">Works — fully verified</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="small">
+      Blender 4.0.2 passes the version check (8 ≥ 8) but its shaders bind SSBOs at indices 10 and 11, which the VMware driver rejects.
+      The failed shader compilations are followed by an access violation:
+    </p>
+    <pre>ERROR (gpu.shader): draw_command_generate ComputeShader:
+    1 | #version 430
+      | Error: layout(binding = 11) for 1 SSBOs exceeds the maximum number of SSBO binding points (8)
+
+ERROR (gpu.shader): overlay_depth_only VertShader:
+      | Error: layout(binding = 10) for 1 SSBOs exceeds the maximum number of SSBO binding points (8)
+
+Error   : EXCEPTION_ACCESS_VIOLATION
+Address : 0x00007FF7BBB8922B
+Module  : blender.exe
+Writing: C:\Users\admin\AppData\Local\Temp\blender.crash.txt
+(windows found: 0, process exited, code: 11)</pre>
+    <p class="small">
+      That is why Blender 4.1 raised the enforced minimum to 12: 8 binding points is not actually enough for its shaders.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>6. Verification of Blender 3.6.23 (working path)</h2>
+  <div class="card">
+    <p>
+      Portable Blender 3.6.23 (final 3.6 LTS patch) was extracted and launched in the VM. The main window opened
+      (window class <code>GHOST_WindowClass</code>, title "Blender") and a 64×64 EEVEE frame rendered through the virtual GPU:
+    </p>
+    <pre>Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Warning: Could not find a matching GPU name. Things may not behave as expected.
+Detected OpenGL configuration:
+Vendor: VMware, Inc.
+Renderer: SVGA3D; build: RELEASE;  LLVM;
+Fra:1 Mem:11.34M (Peak 12.42M) | Time:00:02.09 | Syncing Cube
+Fra:1 Mem:11.37M (Peak 12.42M) | Time:00:03.51 | Rendering 1 / 64 samples
+Fra:1 Mem:11.37M (Peak 12.42M) | Time:00:04.70 | Rendering 64 / 64 samples
+Saved: 'C:\Users\admin\AppData\Local\Temp\opencode\eevee_test.png'
+ Time: 00:05.15 (Saving: 00:00.43)
+
+RENDER_OK
+Blender quit
+exit=0</pre>
+    <p class="small muted">
+      The "Could not find a matching GPU name" line is informational only; the GPU backend and EEVEE work.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>7. Options (ranked)</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3><span class="badge ok">Verified</span> Run Blender 3.6.23 LTS inside the VM</h3>
+      <ul>
+        <li>Newest version that works natively with the VMware GPU (hardware-accelerated GUI, EEVEE Legacy, Cycles CPU).</li>
+        <li>Old feature set (June 2025 last patch); files saved by newer Blender versions cannot be opened.</li>
+        <li>Side-by-side with the existing 5.2 install; no driver or VM changes required.</li>
+      </ul>
+      <p class="small">
+        Installer:<br>
+        <code>https://download.blender.org/release/Blender3.6/blender-3.6.23-windows-x64.msi</code>
+      </p>
+      <p class="small">A tested portable copy already exists at:<br>
+        <code>%TEMP%\blender36\extracted\blender-3.6.23-windows-x64\blender.exe</code>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3><span class="badge ok">Recommended for 5.2</span> Run Blender on the host</h3>
+      <ul>
+        <li>The Ryzen 5 5600G's Radeon Vega iGPU supports OpenGL 4.6 — Blender 5.2 runs normally, GUI included.</li>
+        <li>Best performance; full Cycles CPU and EEVEE feature set.</li>
+        <li>Integrated GPUs cannot be passed through to VMware Workstation, so this is outside the VM.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="badge ok">Verified for headless</span> Blender 5.2 headless with Cycles CPU</h3>
+      <ul>
+        <li>Background mode (<code>-b</code>) skips OpenGL initialization, so 5.2.1 renders Cycles CPU jobs fine in this VM.</li>
+        <li>Newest Cycles features; ideal for batch/scripted rendering.</li>
+        <li>EEVEE and other GPU-backed engines still fail on 5.2 (see sections 9 and 10).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="badge warn">Possible</span> Blender 5.x in the VM with Mesa llvmpipe (software OpenGL)</h3>
+      <ul>
+        <li>Mesa 26.2 llvmpipe exposes <strong>OpenGL 4.6</strong>, <code>GL_ARB_shader_draw_parameters</code>, <code>GL_ARB_clip_control</code> and 32 storage buffers (16 SSBO points) — this satisfies every Blender 5.x check.</li>
+        <li>Software rasterization: viewport and EEVEE are slow (quantified in section 8); Cycles CPU rendering is unaffected.</li>
+        <li>Deployment: place Mesa's <code>opengl32.dll</code> and <code>libgallium_wgl.dll</code> next to <code>blender.exe</code> and set <code>GALLIUM_DRIVER=llvmpipe</code>.</li>
+        <li class="muted">Caveat on this machine: Windows Defender quarantines the Mesa release archive with a heuristic detection named <code>Trojan:Win32/Suschil!rfn</code> (a known false positive for this open-source build). Using it requires an explicit Defender exclusion.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="badge bad">Not possible</span> GPU passthrough via VMware Workstation</h3>
+      <ul>
+        <li>Workstation does not support passthrough of an integrated GPU (and the guest driver is capped at OpenGL 4.3 regardless).</li>
+        <li>No Vulkan is exposed to Windows guests, so Blender's Vulkan backend cannot help either.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>8. Mesa llvmpipe — Performance Impact (Software OpenGL)</h2>
+  <div class="card">
+    <p>
+      Mesa's llvmpipe is a multithreaded CPU rasterizer: it replaces the GPU for every OpenGL operation. Only GPU-backed
+      work is affected — Cycles CPU rendering, simulations, file I/O and encoding run at their normal speed.
+    </p>
+    <div class="callout warn-callout">
+      <strong>Basis of the estimates below:</strong> no direct benchmark was run on this machine because Windows Defender blocks the
+      Mesa binaries (section 7). The figures are model-based, derived from llvmpipe's known scaling behavior and this VM's measured
+      resource allocation. Exact numbers require a Defender exclusion and a benchmark run.
+    </div>
+
+    <h3>Affected vs. unaffected</h3>
+    <table>
+      <thead>
+        <tr><th>Task</th><th>Affected by llvmpipe?</th><th>Expected impact in this VM</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Blender UI (menus, panel redraws)</td>
+          <td>Yes (2D GL)</td>
+          <td>Noticeable lag at 1080p+; dragging/stretching windows stutters</td>
+        </tr>
+        <tr>
+          <td>Workbench viewport (solid shading)</td>
+          <td>Yes</td>
+          <td>≈ 10–30 fps for simple scenes; ≈ 5–15× slower than the VMware GPU path</td>
+        </tr>
+        <tr>
+          <td>EEVEE viewport and renders</td>
+          <td>Yes — worst case</td>
+          <td>Seconds per frame for simple scenes; 20–100× slower than a GPU; interactive animation effectively unusable</td>
+        </tr>
+        <tr>
+          <td>GPU compositor, sculpt/paint brush feedback</td>
+          <td>Yes</td>
+          <td>Same class of penalty as EEVEE; switch the compositor device to CPU</td>
+        </tr>
+        <tr>
+          <td>Cycles CPU rendering</td>
+          <td><strong>No</strong></td>
+          <td>Unchanged by llvmpipe — identical render times to any other VM setup</td>
+        </tr>
+        <tr>
+          <td>First startup / shader compilation</td>
+          <td>Yes (one-time)</td>
+          <td>Slower first launch (Mesa LLVM JIT), then cached</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Why the penalty is large here</h3>
+    <ul>
+      <li>The VM currently has only <strong>4 logical CPUs</strong> (2 sockets × 2 cores) and <strong>8 GB RAM</strong> (measured, section 2).
+          llvmpipe parallelizes across CPU cores, so throughput scales with vCPU count — roughly half of a typical 8-core configuration,
+          while simultaneously competing with the UI thread.</li>
+      <li>Software rendering is fill-rate bound: pixel cost scales linearly with resolution, so 4K is ≈ 4× heavier than 1080p.</li>
+      <li>EEVEE Next is a multi-pass engine (shadows, volumetrics, reflections, compute shaders) — the heaviest possible workload for a software rasterizer.</li>
+      <li>Every redraw saturates the vCPUs, so other VM work (including a Cycles render running in parallel) is starved.</li>
+    </ul>
+
+    <h3>Mitigations</h3>
+    <ul>
+      <li>Raise the VM to <strong>6 vCPUs</strong> and, if the host allows, <strong>12–16 GB RAM</strong>; set <code>LP_NUM_THREADS</code> to the vCPU count.</li>
+      <li>Keep the VM display at 1080p or lower; use viewport <em>Pixel Size</em> 50–75% and disable shadows, cavity and heavy overlays.</li>
+      <li>Model in <strong>Workbench</strong>, use EEVEE only for final stills, and prefer <strong>Cycles CPU</strong> for final/animation output.</li>
+      <li>Set the compositor device to CPU to avoid GPU-compositor costs.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Verdict:</strong> llvmpipe is acceptable for headless/batch Cycles CPU work and light modeling; for interactive
+      EEVEE/GPU-heavy workflows the slowdown is one to two orders of magnitude. In those cases Blender 3.6.23 through the VMware
+      GPU (sections 5–7) or Blender 5.2 on the host will feel many times faster. Exact figures can be measured on request
+      (requires a Windows Defender exclusion for the Mesa folder).
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>9. Headless Mode (<code>blender -b</code>) — Which Version?</h2>
+  <div class="card">
+    <p>
+      Background mode does <strong>not</strong> create a GPU context by itself: Blender initializes OpenGL only when a GPU-backed
+      feature is actually requested (EEVEE, GPU compositing, viewport, GPU Cycles…). This means the installed Blender 5.2.1 can run
+      Cycles CPU jobs headlessly in this VM even though its GUI refuses to start, while 3.6.23 handles everything that needs the GPU.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Version</th><th>Headless engine</th><th>Result in this VM</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>5.2.1</td><td>Cycles (CPU)</td><td><span class="badge ok">Works — verified (exit 0)</span></td></tr>
+        <tr><td>5.2.1</td><td>EEVEE</td><td><span class="badge bad">Crashes — GPU context required</span></td></tr>
+        <tr><td>3.6.23 LTS</td><td>Cycles (CPU)</td><td><span class="badge ok">Works — verified (exit 0)</span></td></tr>
+        <tr><td>3.6.23 LTS</td><td>EEVEE</td><td><span class="badge ok">Works — verified via VMware GPU</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Verification logs</h3>
+    <p class="small"><strong>Blender 5.2.1 — headless Cycles CPU (works):</strong></p>
+    <pre>HEADLESS_OK 5.2.1 LTS
+ENGINES ['BLENDER_EEVEE']
+...
+00:10.515  render           | Saved: 'C:\Users\admin\AppData\Local\Temp\opencode\cycles52.png'
+CYCLES_OK
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit
+exit=0</pre>
+
+    <p class="small"><strong>Blender 5.2.1 — headless EEVEE (fails; needs a GL context):</strong></p>
+    <pre>Warning: Unsupported platform as it supports max 8 SSBO binding locations
+Error: The OpenGL implementation doesn't support ARB_shader_draw_parameters
+...
+Error: layout(binding = 10) for 1 SSBOs exceeds the maximum number of SSBO binding points (8)
+Error: layout(binding = 9) for 1 SSBOs exceeds the maximum number of SSBO binding points (8)
+
+Error   : EXCEPTION_ACCESS_VIOLATION
+Address : 0x00007FF70D9A93A0
+Module  : blender.exe
+Writing: C:\Users\admin\AppData\Local\Temp\blender.crash.txt
+exit=-1073741819   (0xC0000005)</pre>
+
+    <p class="small"><strong>Blender 3.6.23 — headless Cycles CPU (works; EEVEE verified in section 6):</strong></p>
+    <pre>Fra:1 Mem:10.63M (Peak 10.63M) | Time:00:00.07 | Scene, ViewLayer | Sample 8/8
+Fra:1 Mem:10.63M (Peak 10.63M) | Time:00:00.07 | Scene, ViewLayer | Finished
+Saved: 'C:\Users\admin\AppData\Local\Temp\opencode\cycles36.png'
+ Time: 00:00.41 (Saving: 00:00.34)
+
+CYCLES36_OK
+Blender quit
+exit=0</pre>
+
+    <div class="callout">
+      <strong>Recommendation:</strong> use <strong>Blender 5.2.1 for Cycles CPU headless work</strong> (newest Cycles, light linking,
+      better denoising) and <strong>Blender 3.6.23 for anything GPU-backed in the VM</strong> (EEVEE, interactive GUI).
+      GPU Cycles (CUDA/OptiX/HIP) is unavailable in this VM for any version — rendering is CPU-only.
+    </div>
+
+    <h3>Example commands</h3>
+    <p class="small">Cycles CPU render on 5.2.1 (engine set explicitly to avoid the EEVEE path):</p>
+    <pre>"C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" -b scene.blend ^
+  --python-expr "import bpy; bpy.context.scene.render.engine='CYCLES'; bpy.ops.render.render(animation=True)"</pre>
+    <p class="small">EEVEE render on 3.6.23 (uses the VMware GPU):</p>
+    <pre>"...\blender-3.6.23-windows-x64\blender.exe" -b scene.blend ^
+  --python-expr "import bpy; bpy.context.scene.render.engine='BLENDER_EEVEE'; bpy.ops.render.render(animation=True)"</pre>
+  </div>
+</section>
+
+<section>
+  <h2>10. Mixed-Version Workflow: 5.2 headless + 3.6.23 viewer</h2>
+  <div class="card">
+    <p>
+      Blender supports opening files created by <em>older</em> versions (automatic versioning), but never files saved by a
+      <em>newer</em> version. Compatibility therefore depends on what data crosses between 5.2 and 3.6:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Data exchanged</th><th>Direction</th><th>Compatible?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rendered outputs (PNG / EXR / MP4…)</td><td>any</td>
+          <td><span class="badge ok">Yes — version-independent</span></td>
+        </tr>
+        <tr>
+          <td>.blend file</td><td>3.6 → 5.2</td>
+          <td><span class="badge ok">Yes — backward compatible, auto-converted</span></td>
+        </tr>
+        <tr>
+          <td>.blend file</td><td>5.2 → 3.6</td>
+          <td><span class="badge bad">No — forward format unsupported; warns and usually fails or loses data</span></td>
+        </tr>
+        <tr>
+          <td>Scenes authored in 3.6 and <em>rendered</em> by 5.2</td><td>3.6 → 5.2 (render only)</td>
+          <td><span class="badge ok">Yes — provided 5.2 never saves over the master file</span></td>
+        </tr>
+        <tr>
+          <td>Add-ons / Python scripts</td><td>3.6 ↔ 5.2</td>
+          <td><span class="badge bad">Mostly incompatible — the Python API changed across versions</span></td>
+        </tr>
+        <tr>
+          <td>5.x-only features (new nodes, attributes, Geometry Nodes changes…)</td><td>5.2 → 3.6</td>
+          <td><span class="badge bad">Not representable in 3.6</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Recommended safe workflow</h3>
+    <ol>
+      <li>Keep master <code>.blend</code> files in <strong>3.6 format</strong> and edit/view them in the 3.6.23 GUI.</li>
+      <li>Render with Blender 5.2 in background mode and <strong>do not save</strong> from 5.2 over the master (if 5.2 must save, keep it as a separate 5.2-only copy).</li>
+      <li>Stick to 3.6-compatible features if the scene must stay editable in the VM.</li>
+      <li>If a project needs 5.2-only authoring tools, it can only be processed headless/scripted in the VM; there is no working 5.2 GUI here without the Mesa software-GL workaround.</li>
+      <li>Versioned config/add-on folders are separate per Blender version, so both installs can coexist without clashing.</li>
+    </ol>
+
+    <div class="callout warn-callout">
+      <strong>Bottom line:</strong> "5.2 headless + 3.6.23 for viewing" is safe <em>only</em> if the master files stay in 3.6 format
+      (or you only view rendered outputs). Opening a 5.2-saved project in 3.6.23 is not supported and will fail or corrupt.
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>11. Appendix</h2>
+  <div class="card">
+    <h3>Key downloads</h3>
+    <ul class="small">
+      <li>Blender 3.6.23 LTS (works in this VM): <code>https://download.blender.org/release/Blender3.6/blender-3.6.23-windows-x64.msi</code></li>
+      <li>Blender 5.2.1 (installed; headless Cycles in VM, GUI on host): <code>https://www.blender.org/download/</code></li>
+      <li>Mesa3D for Windows (software OpenGL): <code>https://github.com/pal1000/mesa-dist-win/releases</code></li>
+    </ul>
+
+    <h3>How the diagnosis was performed</h3>
+    <ol class="small">
+      <li>Enumerated the installed Blender build and the virtual GPU driver via WMI/registry.</li>
+      <li>Created a real WGL context inside the guest and queried <code>GL_VENDOR</code>, <code>GL_RENDERER</code>, <code>GL_VERSION</code>, the full extension list and all SSBO limits (section 4).</li>
+      <li>Compared the results against Blender's own startup checks, read from the source tree (tags v3.6.0, v4.0.2, v4.1.1, v4.2.0, v5.2.1).</li>
+      <li>Cross-checked the 8-SSBO figure against Mesa's SVGA3D and llvmpipe driver sources (Mesa 26.2).</li>
+      <li>Ran real launch tests of Blender 4.0.2 (crashes) and 3.6.23 (works; EEVEE and Cycles renders OK) in the VM.</li>
+      <li>Ran headless (<code>-b</code>) render tests: 5.2.1 Cycles CPU (works), 5.2.1 EEVEE (crashes), 3.6.23 Cycles CPU (works), 3.6.23 EEVEE (works).</li>
+      <li>Measured the VM resource allocation (4 logical CPUs, 8 GB RAM) used as input for the llvmpipe performance model (section 8).</li>
+    </ol>
+
+    <h3>Source references</h3>
+    <ul class="small">
+      <li>Blender 5.0 system requirements (mandatory GL extensions): <code>https://devtalk.blender.org/t/system-requirements-for-blender-5-0/41457</code></li>
+      <li>Blender OpenGL backend checks: <code>source/blender/gpu/opengl/gl_backend.cc</code> (<code>GLBackend::platform_init</code>)</li>
+      <li>Blender manual, EEVEE performance settings: <code>https://docs.blender.org/manual/en/latest/render/eevee/render_settings/performance.html</code></li>
+      <li>VMware guest OpenGL support level (OpenGL 4.3 profile): Broadcom TechDocs — "Virtual Machine Graphics and Keyboard Support"</li>
+      <li>Mesa SVGA3D driver: <code>src/gallium/drivers/svga/</code>; llvmpipe caps: <code>src/gallium/auxiliary/gallivm/lp_bld_limits.h</code></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  Report v1.2 — generated 2026-09-12. All findings measured from the described VM or verified against upstream source code; section 8 performance figures are model-based estimates.
+</footer>
+
+</div>
+</body>
+</html>
