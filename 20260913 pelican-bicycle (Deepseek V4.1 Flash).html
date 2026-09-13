@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!--
+  Prompt:
+  Create a single-file HTML containing an SVG animation: a cartoon pelican
+  (white/light yellow with a large throat pouch) riding a spoked bicycle, with
+  rotating wheels, pedaling legs, and a background that moves backward to
+  simulate motion, all controlled purely with CSS keyframes and no external
+  libraries.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelican on a Bicycle</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 50% 12%, #eef9ff, #d9edfb 55%, #c3e0f4);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .scene { width: min(96vw, 1120px); }
+  .scene svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 22px;
+    box-shadow: 0 26px 60px -26px rgba(24, 56, 86, .5), 0 6px 18px rgba(24, 56, 86, .14);
+  }
+  .prompt {
+    margin-top: 14px;
+    padding: 12px 18px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .75);
+    box-shadow: 0 8px 20px rgba(24, 56, 86, .1);
+    color: #33526b;
+    font-size: clamp(12px, 1.15vw, 15px);
+    line-height: 1.55;
+  }
+  .prompt strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #1f7a70;
+    font-size: .78em;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .anchor { fill: none; stroke: none; }
+  .wheel, .crank-n, .crank-f, .pedal, .thigh-n, .shin-n, .foot-n,
+  .thigh-f, .shin-f, .foot-f, .pouch, .blink {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .wheel { animation: wheel-spin .5s linear infinite; }
+  .crank-n, .crank-f { animation: crank-spin 1s linear infinite; }
+  .pedal { animation: pedal-spin 1s linear infinite; }
+  .thigh-n { animation: thigh-n 1s linear infinite; }
+  .shin-n { animation: shin-n 1s linear infinite; }
+  .foot-n { animation: foot-n 1s linear infinite; }
+  .thigh-f { animation: thigh-f 1s linear infinite; }
+  .shin-f { animation: shin-f 1s linear infinite; }
+  .foot-f { animation: foot-f 1s linear infinite; }
+  .pouch { animation: pouch-sway .5s ease-in-out infinite; }
+  .blink { animation: blink 4.2s linear infinite; }
+  .bob { animation: bob .5s ease-in-out infinite; }
+  .scroll-clouds-far { animation: scroll-clouds-far 42s linear infinite; }
+  .scroll-clouds-near { animation: scroll-clouds-near 26s linear infinite; }
+  .scroll-hills-far { animation: scroll-hills-far 20s linear infinite; }
+  .scroll-hills-mid { animation: scroll-hills-mid 13s linear infinite; }
+  .scroll-streaks1 { animation: scroll-streaks1 .7s linear infinite; }
+  .scroll-streaks2 { animation: scroll-streaks2 .9s linear infinite; }
+  .scroll-trees { animation: scroll-trees 7s linear infinite; }
+  .scroll-grass { animation: scroll-grass .85s linear infinite; }
+  .scroll-road { animation: scroll-road .6s linear infinite; }
+  .scroll-road2 { animation: scroll-road2 .42s linear infinite; }
+  .scroll-fg { animation: scroll-fg .6s linear infinite; }
+
+  @keyframes wheel-spin { to { transform: rotate(360deg); } }
+  @keyframes crank-spin { to { transform: rotate(360deg); } }
+  @keyframes pedal-spin { to { transform: rotate(-360deg); } }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.4px); } }
+  @keyframes pouch-sway { 0%, 100% { transform: rotate(-0.8deg); } 50% { transform: rotate(1.1deg); } }
+  @keyframes blink { 0%, 91%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.08); } 97% { transform: scaleY(1); } }
+  @keyframes scroll-clouds-far { to { transform: translateX(-1140px); } }
+  @keyframes scroll-clouds-near { to { transform: translateX(-1200px); } }
+  @keyframes scroll-hills-far { to { transform: translateX(-960px); } }
+  @keyframes scroll-hills-mid { to { transform: translateX(-960px); } }
+  @keyframes scroll-streaks1 { to { transform: translateX(-240px); } }
+  @keyframes scroll-streaks2 { to { transform: translateX(-320px); } }
+  @keyframes scroll-trees { to { transform: translateX(-600px); } }
+  @keyframes scroll-grass { to { transform: translateX(-180px); } }
+  @keyframes scroll-road { to { transform: translateX(-160px); } }
+  @keyframes scroll-road2 { to { transform: translateX(-110px); } }
+  @keyframes scroll-fg { to { transform: translateX(-140px); } }
+
+  @keyframes thigh-n {
+    0% { transform: rotate(-41.02deg); }
+    4.1667% { transform: rotate(-42.48deg); }
+    8.3333% { transform: rotate(-44.76deg); }
+    12.5% { transform: rotate(-47.63deg); }
+    16.6667% { transform: rotate(-51.05deg); }
+    20.8333% { transform: rotate(-55.03deg); }
+    25% { transform: rotate(-59.6deg); }
+    29.1667% { transform: rotate(-64.75deg); }
+    33.3333% { transform: rotate(-70.36deg); }
+    37.5% { transform: rotate(-76.11deg); }
+    41.6667% { transform: rotate(-81.45deg); }
+    45.8333% { transform: rotate(-85.66deg); }
+    50% { transform: rotate(-88.13deg); }
+    54.1667% { transform: rotate(-88.58deg); }
+    58.3333% { transform: rotate(-87.01deg); }
+    62.5% { transform: rotate(-83.68deg); }
+    66.6667% { transform: rotate(-78.93deg); }
+    70.8333% { transform: rotate(-73.12deg); }
+    75% { transform: rotate(-66.59deg); }
+    79.1667% { transform: rotate(-59.71deg); }
+    83.3333% { transform: rotate(-52.93deg); }
+    87.5% { transform: rotate(-46.94deg); }
+    91.6667% { transform: rotate(-42.69deg); }
+    95.8333% { transform: rotate(-40.83deg); }
+    100% { transform: rotate(-41.02deg); }
+  }
+  @keyframes shin-n {
+    0% { transform: rotate(35.48deg); }
+    4.1667% { transform: rotate(43.8deg); }
+    8.3333% { transform: rotate(53.13deg); }
+    12.5% { transform: rotate(62.77deg); }
+    16.6667% { transform: rotate(72.31deg); }
+    20.8333% { transform: rotate(81.39deg); }
+    25% { transform: rotate(89.69deg); }
+    29.1667% { transform: rotate(96.85deg); }
+    33.3333% { transform: rotate(102.46deg); }
+    37.5% { transform: rotate(106.1deg); }
+    41.6667% { transform: rotate(107.46deg); }
+    45.8333% { transform: rotate(106.39deg); }
+    50% { transform: rotate(103deg); }
+    54.1667% { transform: rotate(97.61deg); }
+    58.3333% { transform: rotate(90.62deg); }
+    62.5% { transform: rotate(82.43deg); }
+    66.6667% { transform: rotate(73.42deg); }
+    70.8333% { transform: rotate(63.92deg); }
+    75% { transform: rotate(54.27deg); }
+    79.1667% { transform: rotate(44.88deg); }
+    83.3333% { transform: rotate(36.39deg); }
+    87.5% { transform: rotate(29.93deg); }
+    91.6667% { transform: rotate(27.21deg); }
+    95.8333% { transform: rotate(29.37deg); }
+    100% { transform: rotate(35.48deg); }
+  }
+  @keyframes foot-n {
+    0% { transform: rotate(5.53deg); }
+    4.1667% { transform: rotate(-1.32deg); }
+    8.3333% { transform: rotate(-8.37deg); }
+    12.5% { transform: rotate(-15.14deg); }
+    16.6667% { transform: rotate(-21.26deg); }
+    20.8333% { transform: rotate(-26.36deg); }
+    25% { transform: rotate(-30.09deg); }
+    29.1667% { transform: rotate(-32.1deg); }
+    33.3333% { transform: rotate(-32.1deg); }
+    37.5% { transform: rotate(-29.99deg); }
+    41.6667% { transform: rotate(-26.01deg); }
+    45.8333% { transform: rotate(-20.73deg); }
+    50% { transform: rotate(-14.87deg); }
+    54.1667% { transform: rotate(-9.03deg); }
+    58.3333% { transform: rotate(-3.61deg); }
+    62.5% { transform: rotate(1.25deg); }
+    66.6667% { transform: rotate(5.51deg); }
+    70.8333% { transform: rotate(9.19deg); }
+    75% { transform: rotate(12.31deg); }
+    79.1667% { transform: rotate(14.83deg); }
+    83.3333% { transform: rotate(16.54deg); }
+    87.5% { transform: rotate(17.01deg); }
+    91.6667% { transform: rotate(15.48deg); }
+    95.8333% { transform: rotate(11.46deg); }
+    100% { transform: rotate(5.53deg); }
+  }
+  @keyframes thigh-f {
+    0% { transform: rotate(-91.02deg); }
+    4.1667% { transform: rotate(-90.81deg); }
+    8.3333% { transform: rotate(-88.64deg); }
+    12.5% { transform: rotate(-84.79deg); }
+    16.6667% { transform: rotate(-79.57deg); }
+    20.8333% { transform: rotate(-73.32deg); }
+    25% { transform: rotate(-66.33deg); }
+    29.1667% { transform: rotate(-58.93deg); }
+    33.3333% { transform: rotate(-51.52deg); }
+    37.5% { transform: rotate(-44.96deg); }
+    41.6667% { transform: rotate(-40.99deg); }
+    45.8333% { transform: rotate(-40.59deg); }
+    50% { transform: rotate(-42.2deg); }
+    54.1667% { transform: rotate(-44.65deg); }
+    58.3333% { transform: rotate(-47.61deg); }
+    62.5% { transform: rotate(-50.99deg); }
+    66.6667% { transform: rotate(-54.82deg); }
+    70.8333% { transform: rotate(-59.13deg); }
+    75% { transform: rotate(-63.96deg); }
+    79.1667% { transform: rotate(-69.29deg); }
+    83.3333% { transform: rotate(-74.95deg); }
+    87.5% { transform: rotate(-80.56deg); }
+    91.6667% { transform: rotate(-85.54deg); }
+    95.8333% { transform: rotate(-89.2deg); }
+    100% { transform: rotate(-91.02deg); }
+  }
+  @keyframes shin-f {
+    0% { transform: rotate(99.23deg); }
+    4.1667% { transform: rotate(93.27deg); }
+    8.3333% { transform: rotate(85.76deg); }
+    12.5% { transform: rotate(77.08deg); }
+    16.6667% { transform: rotate(67.56deg); }
+    20.8333% { transform: rotate(57.47deg); }
+    25% { transform: rotate(47.1deg); }
+    29.1667% { transform: rotate(36.76deg); }
+    33.3333% { transform: rotate(27.04deg); }
+    37.5% { transform: rotate(19.38deg); }
+    41.6667% { transform: rotate(17.17deg); }
+    45.8333% { transform: rotate(22.16deg); }
+    50% { transform: rotate(30.96deg); }
+    54.1667% { transform: rotate(41.04deg); }
+    58.3333% { transform: rotate(51.44deg); }
+    62.5% { transform: rotate(61.73deg); }
+    66.6667% { transform: rotate(71.61deg); }
+    70.8333% { transform: rotate(80.82deg); }
+    75% { transform: rotate(89.06deg); }
+    79.1667% { transform: rotate(95.97deg); }
+    83.3333% { transform: rotate(101.16deg); }
+    87.5% { transform: rotate(104.25deg); }
+    91.6667% { transform: rotate(104.96deg); }
+    95.8333% { transform: rotate(103.23deg); }
+    100% { transform: rotate(99.23deg); }
+  }
+  @keyframes foot-f {
+    0% { transform: rotate(-8.2deg); }
+    4.1667% { transform: rotate(-2.46deg); }
+    8.3333% { transform: rotate(2.88deg); }
+    12.5% { transform: rotate(7.71deg); }
+    16.6667% { transform: rotate(12.02deg); }
+    20.8333% { transform: rotate(15.84deg); }
+    25% { transform: rotate(19.23deg); }
+    29.1667% { transform: rotate(22.17deg); }
+    33.3333% { transform: rotate(24.49deg); }
+    37.5% { transform: rotate(25.58deg); }
+    41.6667% { transform: rotate(23.82deg); }
+    45.8333% { transform: rotate(18.44deg); }
+    50% { transform: rotate(11.24deg); }
+    54.1667% { transform: rotate(3.61deg); }
+    58.3333% { transform: rotate(-3.83deg); }
+    62.5% { transform: rotate(-10.74deg); }
+    66.6667% { transform: rotate(-16.8deg); }
+    70.8333% { transform: rotate(-21.7deg); }
+    75% { transform: rotate(-25.1deg); }
+    79.1667% { transform: rotate(-26.68deg); }
+    83.3333% { transform: rotate(-26.21deg); }
+    87.5% { transform: rotate(-23.68deg); }
+    91.6667% { transform: rotate(-19.43deg); }
+    95.8333% { transform: rotate(-14.04deg); }
+    100% { transform: rotate(-8.2deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene svg * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<figure class="scene">
+<svg viewBox="0 0 960 540" role="img" aria-labelledby="pt pd">
+  <title id="pt">Cartoon pelican riding a bicycle</title>
+  <desc id="pd">A cream-colored pelican with a large orange throat pouch pedals a teal spoked bicycle. Wheel spokes and pedals turn while clouds, hills, trees, grass and road markings scroll backward.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd8ff"/>
+      <stop offset=".55" stop-color="#c9ecff"/>
+      <stop offset="1" stop-color="#eafaff"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#85909d"/>
+      <stop offset="1" stop-color="#6d7885"/>
+    </linearGradient>
+    <linearGradient id="pouchGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd97a"/>
+      <stop offset="1" stop-color="#f2a24b"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#fff3b0" stop-opacity="0"/>
+    </radialGradient>
+
+    <g id="cloudA">
+      <ellipse cx="0" cy="12" rx="52" ry="13" fill="#e8f4fb"/>
+      <ellipse cx="0" cy="0" rx="54" ry="24" fill="#fff"/>
+      <circle cx="-34" cy="-12" r="22" fill="#fff"/>
+      <circle cx="2" cy="-20" r="26" fill="#fff"/>
+      <circle cx="36" cy="-8" r="18" fill="#fff"/>
+    </g>
+    <g id="cloudB">
+      <ellipse cx="0" cy="10" rx="38" ry="10" fill="#e8f4fb"/>
+      <ellipse cx="0" cy="0" rx="40" ry="18" fill="#fff"/>
+      <circle cx="-24" cy="-10" r="16" fill="#fff"/>
+      <circle cx="10" cy="-16" r="20" fill="#fff"/>
+      <circle cx="30" cy="-6" r="13" fill="#fff"/>
+    </g>
+    <g id="bird">
+      <path d="M-8 0 Q-4 -6 0 -1 Q4 -6 8 0" fill="none" stroke="#7d8c95" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+
+    <g id="hillsFar">
+      <path d="M-120 466 L-120 392 C-60 352 40 348 110 394 C150 420 196 424 240 410 C300 390 330 352 410 356 C480 360 520 400 580 404 C640 408 690 352 770 358 C830 362 870 404 930 402 C990 400 1030 372 1080 352 L1080 466 Z" fill="#c2e3cb"/>
+    </g>
+    <g id="hillsMid">
+      <path d="M-120 466 L-120 420 C-80 392 0 388 60 412 C110 432 170 436 230 424 C290 412 320 388 390 392 C460 396 490 428 560 430 C620 432 660 396 730 400 C800 404 830 432 900 432 C960 432 1020 410 1080 396 L1080 466 Z" fill="#a8d6b6"/>
+    </g>
+
+    <g id="treeA">
+      <rect x="-5" y="-28" width="10" height="32" rx="3" fill="#8a6a52"/>
+      <circle cx="0" cy="-52" r="26" fill="#4ea87a"/>
+      <circle cx="-20" cy="-36" r="19" fill="#4ea87a"/>
+      <circle cx="20" cy="-36" r="19" fill="#4ea87a"/>
+      <circle cx="8" cy="-60" r="15" fill="#63c294"/>
+      <circle cx="-12" cy="-46" r="10" fill="#63c294"/>
+    </g>
+    <g id="treeB">
+      <rect x="-4" y="-20" width="8" height="24" rx="3" fill="#8a6a52"/>
+      <circle cx="0" cy="-40" r="20" fill="#5ab585"/>
+      <circle cx="-15" cy="-30" r="14" fill="#5ab585"/>
+      <circle cx="15" cy="-30" r="14" fill="#5ab585"/>
+      <circle cx="6" cy="-47" r="11" fill="#6fc79a"/>
+    </g>
+    <g id="bushA">
+      <circle cx="-12" cy="-12" r="13" fill="#63b98b"/>
+      <circle cx="3" cy="-15" r="16" fill="#63b98b"/>
+      <circle cx="17" cy="-11" r="12" fill="#63b98b"/>
+      <circle cx="4" cy="-19" r="9" fill="#74c9a0"/>
+    </g>
+    <g id="bushB">
+      <circle cx="-10" cy="-10" r="11" fill="#57ad80"/>
+      <circle cx="4" cy="-13" r="13" fill="#57ad80"/>
+      <circle cx="15" cy="-9" r="9" fill="#57ad80"/>
+    </g>
+
+    <g id="tuftA" fill="none" stroke="#6cab5c" stroke-width="3.5" stroke-linecap="round">
+      <path d="M0 0 C0 -9 -3 -13 -8 -17"/>
+      <path d="M3 0 C4 -11 8 -15 13 -18"/>
+      <path d="M-3 0 C-7 -8 -12 -11 -17 -12"/>
+    </g>
+    <g id="tuftB" fill="none" stroke="#7ab868" stroke-width="3.5" stroke-linecap="round">
+      <path d="M0 0 C2 -12 8 -16 14 -17"/>
+      <path d="M-2 0 C-4 -9 -9 -13 -15 -14"/>
+      <path d="M4 -1 C8 -8 13 -11 19 -11"/>
+    </g>
+
+    <rect id="dashRoad" x="0" y="-4.5" width="78" height="9" rx="4.5" fill="#eef2f6"/>
+    <rect id="dashRoad2" x="0" y="-3.5" width="46" height="7" rx="3.5" fill="#eef2f6"/>
+    <rect id="streak" x="0" y="-2.5" width="120" height="5" rx="2.5" fill="#ffffff"/>
+    <rect id="streak2" x="0" y="-2" width="72" height="4" rx="2" fill="#ffffff"/>
+    <path id="fgBlade" d="M0 0 C2 -14 8 -20 16 -22 M8 0 C10 -12 16 -18 24 -20 M-8 0 C-8 -10 -12 -16 -18 -18" fill="none" stroke="#4a7442" stroke-width="4.5" stroke-linecap="round"/>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <circle cx="812" cy="96" r="88" fill="url(#sunGlow)"/>
+  <circle cx="812" cy="96" r="42" fill="#ffe27a" stroke="#ffd44f" stroke-width="4"/>
+
+  <g class="scroll-clouds-far">
+    <use href="#cloudA" transform="translate(80,112)"/>
+    <use href="#cloudB" transform="translate(430,74) scale(.85)"/>
+    <use href="#bird" transform="translate(618,60)"/>
+    <use href="#cloudA" transform="translate(802,132) scale(.62)"/>
+    <use href="#cloudA" transform="translate(1220,112)"/>
+    <use href="#cloudB" transform="translate(1570,74) scale(.85)"/>
+    <use href="#bird" transform="translate(1758,60)"/>
+    <use href="#cloudA" transform="translate(1942,132) scale(.62)"/>
+  </g>
+  <g class="scroll-clouds-near">
+    <use href="#cloudB" transform="translate(250,196) scale(1.15)"/>
+    <use href="#cloudA" transform="translate(690,150) scale(.7)"/>
+    <use href="#cloudB" transform="translate(1450,196) scale(1.15)"/>
+    <use href="#cloudA" transform="translate(1890,150) scale(.7)"/>
+  </g>
+
+  <g class="scroll-hills-far">
+    <use href="#hillsFar"/>
+    <use href="#hillsFar" transform="translate(960,0)"/>
+  </g>
+  <g class="scroll-hills-mid">
+    <use href="#hillsMid"/>
+    <use href="#hillsMid" transform="translate(960,0)"/>
+  </g>
+
+  <g class="scroll-streaks1">
+    <use href="#streak" transform="translate(40,336)" opacity=".55"/>
+    <use href="#streak" transform="translate(280,336)" opacity=".55"/>
+    <use href="#streak" transform="translate(520,336)" opacity=".55"/>
+    <use href="#streak" transform="translate(760,336)" opacity=".55"/>
+    <use href="#streak" transform="translate(1000,336)" opacity=".55"/>
+    <use href="#streak" transform="translate(1240,336)" opacity=".55"/>
+  </g>
+  <g class="scroll-streaks2">
+    <use href="#streak2" transform="translate(100,420)" opacity=".4"/>
+    <use href="#streak2" transform="translate(420,420)" opacity=".4"/>
+    <use href="#streak2" transform="translate(740,420)" opacity=".4"/>
+    <use href="#streak2" transform="translate(1060,420)" opacity=".4"/>
+    <use href="#streak2" transform="translate(1380,420)" opacity=".4"/>
+  </g>
+
+  <g class="scroll-trees">
+    <use href="#treeA" transform="translate(70,452)"/>
+    <use href="#bushB" transform="translate(252,459)"/>
+    <use href="#treeB" transform="translate(420,455)"/>
+    <use href="#bushA" transform="translate(556,459)"/>
+    <use href="#treeA" transform="translate(670,452)"/>
+    <use href="#bushB" transform="translate(852,459)"/>
+    <use href="#treeB" transform="translate(1020,455)"/>
+    <use href="#bushA" transform="translate(1156,459)"/>
+    <use href="#treeA" transform="translate(1270,452)"/>
+    <use href="#bushB" transform="translate(1452,459)"/>
+    <use href="#treeB" transform="translate(1620,455)"/>
+    <use href="#bushA" transform="translate(1756,459)"/>
+  </g>
+
+  <rect x="0" y="438" width="960" height="24" fill="#9ccb7f"/>
+  <g class="scroll-grass">
+    <use href="#tuftA" transform="translate(20,456)"/>
+    <use href="#tuftB" transform="translate(110,457)"/>
+    <use href="#tuftA" transform="translate(200,456)"/>
+    <use href="#tuftB" transform="translate(290,457)"/>
+    <use href="#tuftA" transform="translate(380,456)"/>
+    <use href="#tuftB" transform="translate(470,457)"/>
+    <use href="#tuftA" transform="translate(560,456)"/>
+    <use href="#tuftB" transform="translate(650,457)"/>
+    <use href="#tuftA" transform="translate(740,456)"/>
+    <use href="#tuftB" transform="translate(830,457)"/>
+    <use href="#tuftA" transform="translate(920,456)"/>
+    <use href="#tuftB" transform="translate(1010,457)"/>
+    <use href="#tuftA" transform="translate(1100,456)"/>
+    <use href="#tuftB" transform="translate(1190,457)"/>
+  </g>
+
+  <rect x="0" y="462" width="960" height="78" fill="url(#road)"/>
+  <rect x="0" y="462" width="960" height="5" fill="#e7ecf1" opacity=".8"/>
+  <g class="scroll-road">
+    <use href="#dashRoad" transform="translate(20,506)"/>
+    <use href="#dashRoad" transform="translate(180,506)"/>
+    <use href="#dashRoad" transform="translate(340,506)"/>
+    <use href="#dashRoad" transform="translate(500,506)"/>
+    <use href="#dashRoad" transform="translate(660,506)"/>
+    <use href="#dashRoad" transform="translate(820,506)"/>
+    <use href="#dashRoad" transform="translate(980,506)"/>
+    <use href="#dashRoad" transform="translate(1140,506)"/>
+  </g>
+  <g class="scroll-road2">
+    <use href="#dashRoad2" transform="translate(15,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(125,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(235,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(345,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(455,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(565,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(675,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(785,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(895,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(1005,518)" opacity=".55"/>
+    <use href="#dashRoad2" transform="translate(1115,518)" opacity=".55"/>
+  </g>
+
+  <ellipse cx="490" cy="464" rx="248" ry="13" fill="#39473c" opacity=".18"/>
+
+  <g transform="translate(490,404)">
+    <g class="crank-f">
+      <rect class="anchor" x="-60" y="-60" width="120" height="120"/>
+      <path d="M0 0 V -27" fill="none" stroke="#4a5f68" stroke-width="7" stroke-linecap="round"/>
+      <g transform="translate(0,-27)">
+        <g class="pedal">
+          <rect class="anchor" x="-40" y="-40" width="80" height="80"/>
+          <rect x="-13" y="-4" width="26" height="8" rx="3" fill="#2a353a" stroke="#1c2428" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(428,298)">
+    <g class="thigh-f">
+      <rect class="anchor" x="-200" y="-200" width="400" height="400"/>
+      <rect x="-11" y="-11" width="22" height="94" rx="11" fill="#d9822b" stroke="#3a3a44" stroke-width="3.5"/>
+      <g transform="translate(0,72)">
+        <g class="shin-f">
+          <rect class="anchor" x="-150" y="-150" width="300" height="300"/>
+          <rect x="-9" y="-9" width="18" height="88" rx="9" fill="#d9822b" stroke="#3a3a44" stroke-width="3.5"/>
+          <g transform="translate(0,70)">
+            <g class="foot-f">
+              <rect class="anchor" x="-60" y="-60" width="120" height="120"/>
+              <path d="M0 -3 L32 -3 Q38 -3 38 2 Q38 7 32 7 L0 7 Z" fill="#d9822b" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(340,390)">
+    <g class="wheel">
+      <rect class="anchor" x="-80" y="-80" width="160" height="160"/>
+      <circle r="72" fill="none" stroke="#30323d" stroke-width="10"/>
+      <circle r="66" fill="none" stroke="#4a4d59" stroke-width="4" stroke-dasharray="12 18"/>
+      <circle r="60" fill="none" stroke="#cfd8dc" stroke-width="6"/>
+      <path d="M60 0 L-60 0 M51.96 30 L-51.96 -30 M30 51.96 L-30 -51.96 M0 60 L0 -60 M-30 51.96 L30 -51.96 M-51.96 30 L51.96 -30" fill="none" stroke="#9aa4ad" stroke-width="2.5"/>
+      <circle r="8.5" fill="#9aa5b1" stroke="#6b7580" stroke-width="2"/>
+      <circle cx="44" cy="28" r="6" fill="#ffcb47" stroke="#d99e2b" stroke-width="2"/>
+      <circle cx="-44" cy="-28" r="3.5" fill="#ffb703" opacity=".85"/>
+    </g>
+  </g>
+  <g transform="translate(640,390)">
+    <g class="wheel">
+      <rect class="anchor" x="-80" y="-80" width="160" height="160"/>
+      <circle r="72" fill="none" stroke="#30323d" stroke-width="10"/>
+      <circle r="66" fill="none" stroke="#4a4d59" stroke-width="4" stroke-dasharray="12 18"/>
+      <circle r="60" fill="none" stroke="#cfd8dc" stroke-width="6"/>
+      <path d="M60 0 L-60 0 M51.96 30 L-51.96 -30 M30 51.96 L-30 -51.96 M0 60 L0 -60 M-30 51.96 L30 -51.96 M-51.96 30 L51.96 -30" fill="none" stroke="#9aa4ad" stroke-width="2.5"/>
+      <circle r="8.5" fill="#9aa5b1" stroke="#6b7580" stroke-width="2"/>
+      <circle cx="44" cy="28" r="6" fill="#ffcb47" stroke="#d99e2b" stroke-width="2"/>
+      <circle cx="-44" cy="-28" r="3.5" fill="#ffb703" opacity=".85"/>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#2a9d8f" stroke-width="11" stroke-linecap="round">
+    <path d="M340 390 L490 404"/>
+    <path d="M490 404 L446 306"/>
+    <path d="M446 306 L600 296"/>
+    <path d="M490 404 L606 318"/>
+    <path d="M606 318 L600 288"/>
+    <path d="M606 318 L640 390"/>
+  </g>
+  <path d="M481 388 L342 380" fill="none" stroke="#5c6b73" stroke-width="3.5"/>
+  <path d="M481 421 L342 396" fill="none" stroke="#5c6b73" stroke-width="3.5"/>
+  <circle cx="340" cy="390" r="9" fill="#8fa0a8" stroke="#5c6b73" stroke-width="3"/>
+  <path d="M600 290 L606 276" fill="none" stroke="#37474f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M588 282 C596 270 616 270 626 282" fill="none" stroke="#37474f" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="624" cy="282" r="7" fill="#263238"/>
+  <path d="M408 300 C412 288 446 286 456 292 C458 298 450 304 434 305 C418 306 408 304 408 300 Z" fill="#7a5a41" stroke="#2f2f38" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <g transform="translate(490,404)">
+    <g class="crank-n">
+      <rect class="anchor" x="-60" y="-60" width="120" height="120"/>
+      <path d="M0 0 V 27" fill="none" stroke="#546e7a" stroke-width="7" stroke-linecap="round"/>
+      <circle r="19" fill="#5b7681" stroke="#3c545e" stroke-width="4"/>
+      <circle r="6" fill="#37474f"/>
+      <circle cx="7.78" cy="7.78" r="2.6" fill="#cfd8dc"/>
+      <circle cx="-7.78" cy="7.78" r="2.6" fill="#cfd8dc"/>
+      <circle cx="-7.78" cy="-7.78" r="2.6" fill="#cfd8dc"/>
+      <circle cx="7.78" cy="-7.78" r="2.6" fill="#cfd8dc"/>
+      <g transform="translate(0,27)">
+        <g class="pedal">
+          <rect class="anchor" x="-40" y="-40" width="80" height="80"/>
+          <rect x="-13" y="-4" width="26" height="8" rx="3" fill="#2f3b40" stroke="#20292d" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(436,296)">
+    <g class="thigh-n">
+      <rect class="anchor" x="-200" y="-200" width="400" height="400"/>
+      <rect x="-11" y="-11" width="22" height="94" rx="11" fill="#f08c2e" stroke="#3a3a44" stroke-width="3.5"/>
+      <g transform="translate(0,72)">
+        <g class="shin-n">
+          <rect class="anchor" x="-150" y="-150" width="300" height="300"/>
+          <rect x="-9" y="-9" width="18" height="88" rx="9" fill="#f08c2e" stroke="#3a3a44" stroke-width="3.5"/>
+          <g transform="translate(0,70)">
+            <g class="foot-n">
+              <rect class="anchor" x="-60" y="-60" width="120" height="120"/>
+              <path d="M0 -3 L32 -3 Q38 -3 38 2 Q38 7 32 7 L0 7 Z" fill="#f08c2e" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g class="bob">
+    <g stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M388 238 C356 242 334 230 322 210 C344 212 370 220 390 232 Z" fill="#f3ead2"/>
+      <path d="M386 224 C360 220 342 204 336 184 C356 190 376 202 390 216 Z" fill="#f3ead2"/>
+      <path d="M382 212 C364 200 354 182 352 164 C370 174 384 188 392 202 Z" fill="#f3ead2"/>
+      <path d="M384 232 C376 182 404 142 448 142 C492 142 510 190 502 236 C495 278 464 300 424 298 C392 296 388 270 384 232 Z" fill="#fff8e1"/>
+      <path d="M404 268 C404 240 428 224 452 230 C476 236 486 258 477 278 C465 296 431 300 413 287 C405 281 404 274 404 268 Z" fill="#fffdf6" stroke="#efe3c4" stroke-width="3"/>
+      <path d="M448 164 C468 130 498 106 528 96 C546 110 546 126 536 136 C512 150 492 172 482 198 Z" fill="#fff8e1"/>
+      <path d="M536 72 C540 58 552 50 566 52 C556 58 548 66 544 76 Z" fill="#fff8e1"/>
+      <ellipse cx="560" cy="100" rx="34" ry="32" fill="#fff8e1"/>
+    </g>
+    <g class="blink">
+      <rect class="anchor" x="536" y="58" width="60" height="60"/>
+      <circle cx="566" cy="88" r="7.5" fill="#2b2d42"/>
+      <circle cx="568.5" cy="85" r="2.6" fill="#ffffff"/>
+    </g>
+    <g class="pouch" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round">
+      <rect class="anchor" x="402" y="-80" width="360" height="360"/>
+      <path d="M582 100 C622 104 694 111 754 116 C744 146 716 182 676 190 C634 198 596 154 582 100 Z" fill="url(#pouchGrad)"/>
+      <path d="M600 124 C618 160 648 178 682 178" fill="none" stroke="#df8f3f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M606 114 C614 142 634 164 660 174" fill="none" stroke="#ffedb0" stroke-width="4.5" stroke-linecap="round" opacity=".9"/>
+    </g>
+    <path d="M580 84 C615 80 665 84 705 92 C730 97 750 104 758 111 C752 117 732 118 706 114 C664 107 618 102 580 100 Z" fill="#ffb84d" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round"/>
+  </g>
+
+  <g>
+    <path d="M452 192 C482 190 514 202 544 220 C572 237 598 258 616 270 C624 275 622 286 612 287 C596 288 568 276 542 260 C514 243 484 226 456 220 Z" fill="#f7eecf" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M540 228 C558 235 574 246 586 258" fill="none" stroke="#e0d4ad" stroke-width="3" stroke-linecap="round"/>
+    <path d="M566 244 C580 251 592 261 600 270" fill="none" stroke="#e0d4ad" stroke-width="3" stroke-linecap="round"/>
+    <path d="M602 266 C614 262 626 268 628 278 C629 287 620 293 610 291 C602 289 598 276 602 266 Z" fill="#fff8e1" stroke="#3a3a44" stroke-width="3.5" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="0" y="529" width="960" height="11" fill="#4f7a46"/>
+  <g class="scroll-fg">
+    <use href="#fgBlade" transform="translate(70,534)"/>
+    <use href="#fgBlade" transform="translate(210,534)"/>
+    <use href="#fgBlade" transform="translate(350,534)"/>
+    <use href="#fgBlade" transform="translate(490,534)"/>
+    <use href="#fgBlade" transform="translate(630,534)"/>
+    <use href="#fgBlade" transform="translate(770,534)"/>
+    <use href="#fgBlade" transform="translate(910,534)"/>
+    <use href="#fgBlade" transform="translate(1050,534)"/>
+    <use href="#fgBlade" transform="translate(1190,534)"/>
+  </g>
+</svg>
+<figcaption class="prompt">
+  <strong>Prompt</strong>
+  Create a single-file HTML containing an SVG animation: a cartoon pelican (white/light yellow with a large throat pouch) riding a spoked bicycle, with rotating wheels, pedaling legs, and a background that moves backward to simulate motion, all controlled purely with CSS keyframes and no external libraries.
+</figcaption>
+</figure>
+</body>
+</html>

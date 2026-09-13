@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pelican Riding a Bicycle — Pure CSS SVG Animation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: #0f172a;
+    font-family: ui-rounded, "Comic Sans MS", "Chalkboard SE", system-ui, sans-serif;
+    padding: 24px 12px;
+    color: #f8fafc;
+  }
+  h1 { font-size: clamp(1.1rem, 3vw, 1.6rem); letter-spacing: .5px; }
+  h1 span { color: #fbbf24; }
+  p.sub { opacity: .75; font-size: .9rem; }
+
+  .scene {
+    position: relative;
+    width: min(860px, 96vw);
+    aspect-ratio: 16 / 10;
+    border-radius: 22px;
+    overflow: hidden;
+    background: linear-gradient(#38bdf8 0%, #7dd3fc 45%, #bae6fd 62%, #fef9c3 62.2%, #bbf7d0 63%, #86efac 100%);
+    border: 6px solid #f8fafc;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+  .scene:hover * { animation-play-state: paused; }
+
+  /* ---------- sun ---------- */
+  .sun {
+    position: absolute; top: 7%; right: 10%;
+    width: 74px; height: 74px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fefce8, #fde047 55%, #f59e0b 100%);
+    box-shadow: 0 0 40px 12px rgba(253,224,71,.7);
+    animation: sunPulse 3s ease-in-out infinite;
+  }
+  @keyframes sunPulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.07);} }
+
+  /* ---------- clouds (move backward = drift left, loop) ---------- */
+  .cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 999px;
+    opacity: .95;
+    animation: drift linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: ""; position: absolute; background: #fff; border-radius: 50%;
+  }
+  .cloud::before { width: 55%; height: 140%; left: 12%; top: -70%; }
+  .cloud::after { width: 40%; height: 100%; right: 12%; top: -45%; }
+  .c1 { top: 9%;  width: 130px; height: 34px; animation-duration: 19s; }
+  .c2 { top: 22%; width: 90px;  height: 26px; animation-duration: 26s; animation-delay: -9s; scale: .9; opacity: .9;}
+  .c3 { top: 5%;  width: 170px; height: 40px; animation-duration: 34s; animation-delay: -20s; scale: 1.15;}
+  .c4 { top: 32%; width: 70px;  height: 20px; animation-duration: 15s; animation-delay: -6s; opacity: .85;}
+  @keyframes drift {
+    from { transform: translateX(950px); }
+    to   { transform: translateX(-320px); }
+  }
+
+  /* ---------- distant hills : seamless 2x strip scrolling left ---------- */
+  .hills-strip {
+    position: absolute; left: 0; bottom: 21%;
+    width: 200%; height: 22%;
+    display: flex;
+    animation: scrollX 9s linear infinite;
+  }
+  .hill-set { display: flex; align-items: flex-end; width: 50%; flex-shrink: 0; }
+  .hill {
+    flex: 1; height: 100%;
+    border-radius: 120px 120px 0 0;
+    margin-right: -24px;
+  }
+  .hill.a { background: #6ee7b7; height: 78%; }
+  .hill.b { background: #34d399; height: 100%; }
+  .hill.c { background: #a7f3d0; height: 62%; }
+  @keyframes scrollX {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---------- mid trees strip (faster = closer) ---------- */
+  .trees-strip {
+    position: absolute; left: 0; bottom: 19%;
+    width: 200%; height: 13%;
+    display: flex;
+    animation: scrollX 4.2s linear infinite;
+  }
+  .tree-set { display: flex; align-items: flex-end; justify-content: space-around; width: 50%; flex-shrink: 0; }
+  .tree { display: flex; flex-direction: column; align-items: center; margin: 0 26px; }
+  .tree .top {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #86efac, #16a34a);
+    margin-bottom: -10px; position: relative; z-index: 2;
+  }
+  .tree .trunk { width: 10px; height: 26px; background: #92400e; border-radius: 4px; }
+
+  /* ---------- road ---------- */
+  .road {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 22%;
+    background: #475569;
+    border-top: 8px solid #f8fafc;
+  }
+  .dashes {
+    position: absolute; top: 46%; left: 0; right: 0; height: 10px;
+    background: repeating-linear-gradient(90deg, #fde047 0 46px, transparent 46px 92px);
+    animation: roadMove .55s linear infinite;
+  }
+  @keyframes roadMove { to { background-position-x: -92px; } }
+  .grass-tufts {
+    position: absolute; top: -16px; left: 0; width: 200%; height: 20px;
+    display: flex; gap: 90px;
+    animation: scrollX 1.4s linear infinite;
+    font-size: 20px; line-height: 1;
+  }
+  .tuft-set { display: flex; gap: 90px; width: 50%; flex-shrink: 0; }
+
+  /* ---------- speed wind lines ---------- */
+  .wind { position: absolute; height: 5px; border-radius: 99px; background: rgba(255,255,255,.75); animation: windMove 1.1s linear infinite; }
+  .w1 { top: 18%; width: 120px; animation-duration: 1s; }
+  .w2 { top: 30%; width: 80px;  animation-duration: 1.4s; animation-delay: -.5s; }
+  .w3 { top: 44%; width: 150px; animation-duration: .85s; animation-delay: -.3s; }
+  @keyframes windMove { from { transform: translateX(900px); opacity: 0;} 15% {opacity: 1;} 100% { transform: translateX(-300px); opacity: 0;} }
+
+  /* ---------- rider svg ---------- */
+  svg.rider {
+    position: absolute; left: 50%; bottom: 9%;
+    width: 78%;
+    transform: translateX(-50%);
+    overflow: visible;
+  }
+  .bike-bob { animation: bob .6s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-5px);} }
+  .body-bob { animation: bodyBob 1.2s ease-in-out infinite; }
+  @keyframes bodyBob { 0%,100% { transform: translateY(0) rotate(0deg);} 25% { transform: translateY(-5px) rotate(-.6deg);} 75% { transform: translateY(2px) rotate(.6deg);} }
+  .head-bob { animation: headBob 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 20% 80%; }
+  @keyframes headBob { 0%,100% { transform: rotate(0deg) translateY(0);} 50% { transform: rotate(-3deg) translateY(-3px);} }
+
+  .wheel-spin {
+    transform-box: fill-box; transform-origin: center;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .crank-spin {
+    transform-box: fill-box; transform-origin: center;
+    animation: spin 1.2s linear infinite;
+  }
+  .leg-swing-A, .leg-swing-B {
+    transform-box: fill-box; transform-origin: 50% 5%;
+    animation: legSwing 1.2s ease-in-out infinite;
+  }
+  .leg-swing-B { animation-delay: -.6s; }
+  @keyframes legSwing {
+    0%,100% { transform: rotate(24deg); }
+    50%     { transform: rotate(-26deg); }
+  }
+  .pouch-wobble {
+    transform-box: fill-box; transform-origin: 50% 0%;
+    animation: pouch 1.2s ease-in-out infinite;
+  }
+  @keyframes pouch { 0%,100% { transform: scaleY(1) skewX(0deg);} 25% { transform: scaleY(1.06) skewX(2deg);} 75% { transform: scaleY(.95) skewX(-2deg);} }
+  .wing-flap {
+    transform-box: fill-box; transform-origin: 20% 30%;
+    animation: wingFlap 1.2s ease-in-out infinite;
+  }
+  @keyframes wingFlap { 0%,100% { transform: rotate(0deg);} 50% { transform: rotate(-5deg);} }
+  .scarf-tail {
+    transform-box: fill-box; transform-origin: 100% 50%;
+    animation: scarfWave .5s ease-in-out infinite;
+  }
+  @keyframes scarfWave { 0%,100% { transform: rotate(6deg) skewY(4deg);} 50% { transform: rotate(-8deg) skewY(-6deg);} }
+  .shadow-pulse { animation: shadowPulse .6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes shadowPulse { 0%,100% { transform: scaleX(1); opacity:.28;} 50% { transform: scaleX(.94); opacity:.2;} }
+  .tail-wag { transform-box: fill-box; transform-origin: 100% 50%; animation: tailWag 1.2s ease-in-out infinite; }
+  @keyframes tailWag { 0%,100% { transform: rotate(0deg);} 50% { transform: rotate(-9deg);} }
+  .fish-wiggle { transform-box: fill-box; transform-origin: 50% 100%; animation: fishWiggle 1s ease-in-out infinite; }
+  @keyframes fishWiggle { 0%,100% { transform: rotate(5deg);} 50% { transform: rotate(-6deg);} }
+
+  .badge {
+    background: #f8fafc; color: #0f172a;
+    font-size: .8rem; padding: 8px 14px; border-radius: 999px;
+  }
+  .badge b { background: #fbbf24; padding: 1px 8px; border-radius: 99px; }
+  .prompt {
+    width: min(860px, 96vw);
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-left: 5px solid #fbbf24;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: .85rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+  }
+  .prompt strong { color: #fbbf24; display: block; margin-bottom: 4px; font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+  .prompt blockquote { margin: 0; font-style: italic; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <h1>🦤 Pelican <span>Express</span> 🚲</h1>
+  <p class="sub">Hover the scene to pause &nbsp;•&nbsp; 100% CSS keyframes, zero JS, zero libraries</p>
+
+  <div class="scene" role="img" aria-label="Cartoon pelican with large throat pouch riding a spoked bicycle, wheels spinning and background scrolling">
+    <div class="sun"></div>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+    <div class="wind w1"></div>
+    <div class="wind w2"></div>
+    <div class="wind w3"></div>
+
+    <div class="hills-strip" aria-hidden="true">
+      <div class="hill-set"><div class="hill a"></div><div class="hill b"></div><div class="hill c"></div><div class="hill b"></div></div>
+      <div class="hill-set"><div class="hill a"></div><div class="hill b"></div><div class="hill c"></div><div class="hill b"></div></div>
+    </div>
+
+    <div class="trees-strip" aria-hidden="true">
+      <div class="tree-set">
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+      </div>
+      <div class="tree-set">
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+        <div class="tree"><div class="top"></div><div class="trunk"></div></div>
+      </div>
+    </div>
+
+    <div class="road" aria-hidden="true">
+      <div class="grass-tufts">
+        <div class="tuft-set"><span>🌾</span><span>🌼</span><span>🌾</span><span>🌼</span><span>🌾</span><span>🌼</span></div>
+        <div class="tuft-set"><span>🌾</span><span>🌼</span><span>🌾</span><span>🌼</span><span>🌾</span><span>🌼</span></div>
+      </div>
+      <div class="dashes"></div>
+    </div>
+
+    <!-- ================= PELICAN ON BICYCLE ================= -->
+    <svg class="rider" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- ground shadows -->
+      <ellipse class="shadow-pulse" cx="190" cy="368" rx="82" ry="12" fill="#0f172a"/>
+      <ellipse class="shadow-pulse" cx="450" cy="368" rx="82" ry="12" fill="#0f172a"/>
+
+      <g class="bike-bob">
+        <!-- ===== BICYCLE FRAME ===== -->
+        <!-- fenders -->
+        <path d="M 118 310 A 72 72 0 0 1 262 310" fill="none" stroke="#0d9488" stroke-width="7" stroke-linecap="round"/>
+        <path d="M 378 310 A 72 72 0 0 1 522 310" fill="none" stroke="#0d9488" stroke-width="7" stroke-linecap="round"/>
+        <!-- frame tubes -->
+        <g stroke="#14b8a6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <line x1="190" y1="310" x2="250" y2="205" />  <!-- seat stay + seat tube combined look -->
+          <line x1="190" y1="310" x2="320" y2="310" />  <!-- chain stay -->
+          <line x1="250" y1="205" x2="320" y2="310" />  <!-- seat tube -->
+          <line x1="250" y1="205" x2="430" y2="205" />  <!-- top tube -->
+          <line x1="320" y1="310" x2="430" y2="205" />  <!-- down tube -->
+          <line x1="430" y1="205" x2="450" y2="310" />  <!-- fork -->
+        </g>
+        <!-- seat post + saddle -->
+        <line x1="250" y1="205" x2="244" y2="185" stroke="#334155" stroke-width="7" stroke-linecap="round"/>
+        <ellipse cx="232" cy="178" rx="30" ry="11" fill="#1e293b"/>
+        <ellipse cx="232" cy="174" rx="30" ry="8" fill="#475569"/>
+        <!-- handlebar stem + bars -->
+        <line x1="430" y1="205" x2="418" y2="178" stroke="#334155" stroke-width="7" stroke-linecap="round"/>
+        <path d="M 418 178 Q 412 168 398 170" fill="none" stroke="#334155" stroke-width="7" stroke-linecap="round"/>
+        <rect x="382" y="162" width="20" height="12" rx="6" fill="#78350f" transform="rotate(-8 392 168)"/>
+        <!-- chain -->
+        <line x1="190" y1="296" x2="320" y2="294" stroke="#64748b" stroke-width="4"/>
+        <line x1="190" y1="324" x2="320" y2="326" stroke="#64748b" stroke-width="4"/>
+        <circle cx="320" cy="310" r="23" fill="none" stroke="#334155" stroke-width="7"/>
+        <circle cx="320" cy="310" r="6" fill="#94a3b8" stroke="#1e293b" stroke-width="3"/>
+
+        <!-- ===== REAR WHEEL (spoked, spinning) ===== -->
+        <g>
+          <circle cx="190" cy="310" r="62" fill="#f8fafc" stroke="#1e293b" stroke-width="14"/>
+          <circle cx="190" cy="310" r="52" fill="none" stroke="#cbd5e1" stroke-width="4"/>
+          <g class="wheel-spin" stroke="#94a3b8" stroke-width="3" stroke-linecap="round">
+            <line x1="138" y1="310" x2="242" y2="310"/>
+            <line x1="190" y1="258" x2="190" y2="362"/>
+            <line x1="153" y1="273" x2="227" y2="347"/>
+            <line x1="153" y1="347" x2="227" y2="273"/>
+          </g>
+          <circle cx="190" cy="310" r="10" fill="#64748b" stroke="#f8fafc" stroke-width="3"/>
+        </g>
+
+        <!-- ===== FRONT WHEEL (spoked, spinning) ===== -->
+        <g>
+          <circle cx="450" cy="310" r="62" fill="#f8fafc" stroke="#1e293b" stroke-width="14"/>
+          <circle cx="450" cy="310" r="52" fill="none" stroke="#cbd5e1" stroke-width="4"/>
+          <g class="wheel-spin" stroke="#94a3b8" stroke-width="3" stroke-linecap="round">
+            <line x1="398" y1="310" x2="502" y2="310"/>
+            <line x1="450" y1="258" x2="450" y2="362"/>
+            <line x1="413" y1="273" x2="487" y2="347"/>
+            <line x1="413" y1="347" x2="487" y2="273"/>
+          </g>
+          <circle cx="450" cy="310" r="10" fill="#64748b" stroke="#f8fafc" stroke-width="3"/>
+        </g>
+
+        <!-- ===== CRANK + PEDALS (rotating) ===== -->
+        <g class="crank-spin">
+          <line x1="294" y1="310" x2="346" y2="310" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <rect x="280" y="303" width="26" height="12" rx="4" fill="#0f172a"/>
+          <rect x="334" y="305" width="26" height="12" rx="4" fill="#0f172a"/>
+        </g>
+
+        <!-- ===== FRONT BASKET with fish ===== -->
+        <g>
+          <line x1="418" y1="178" x2="462" y2="205" stroke="#92400e" stroke-width="5" stroke-linecap="round"/>
+          <g class="fish-wiggle">
+            <ellipse cx="468" cy="185" rx="10" ry="16" fill="#e2e8f0" stroke="#64748b" stroke-width="2" transform="rotate(20 468 185)"/>
+            <path d="M 460 170 L 452 158 L 470 162 Z" fill="#64748b"/>
+            <circle cx="468" cy="182" r="2.5" fill="#0f172a"/>
+          </g>
+          <path d="M 438 205 L 492 205 L 482 252 L 448 252 Z" fill="#d97706" stroke="#92400e" stroke-width="4" stroke-linejoin="round"/>
+          <line x1="442" y1="218" x2="489" y2="218" stroke="#92400e" stroke-width="2" opacity=".6"/>
+          <line x1="444" y1="231" x2="486" y2="231" stroke="#92400e" stroke-width="2" opacity=".6"/>
+          <line x1="446" y1="244" x2="483" y2="244" stroke="#92400e" stroke-width="2" opacity=".6"/>
+        </g>
+
+        <!-- ===== PELICAN ===== -->
+        <g class="body-bob">
+          <!-- far leg (darker, behind frame) -->
+          <g>
+            <g class="leg-swing-B">
+              <path d="M 278 205 Q 300 250 296 312" fill="none" stroke="#ea580c" stroke-width="11" stroke-linecap="round"/>
+              <path d="M 284 312 L 306 308 L 300 322 L 282 322 Z" fill="#ea580c" stroke="#9a3412" stroke-width="2" stroke-linejoin="round"/>
+            </g>
+          </g>
+
+          <!-- neck (behind head) -->
+          <path d="M 350 140 Q 385 115 412 100" fill="none" stroke="#fffbeb" stroke-width="40" stroke-linecap="round"/>
+          <path d="M 350 140 Q 385 115 412 100" fill="none" stroke="#fde68a" stroke-width="40" stroke-linecap="round" stroke-dasharray="0" opacity=".35"/>
+
+          <!-- tail -->
+          <g class="tail-wag">
+            <ellipse cx="222" cy="132" rx="30" ry="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2.5" transform="rotate(-24 222 132)"/>
+            <ellipse cx="218" cy="150" rx="30" ry="12" fill="#ffffff" stroke="#f59e0b" stroke-width="2.5" transform="rotate(-8 218 150)"/>
+            <ellipse cx="226" cy="116" rx="26" ry="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2.5" transform="rotate(-38 226 116)"/>
+          </g>
+
+          <!-- body -->
+          <ellipse cx="308" cy="152" rx="82" ry="58" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+          <ellipse cx="318" cy="172" rx="52" ry="28" fill="#fef9c3"/>
+          <!-- feather texture -->
+          <path d="M 260 140 Q 275 148 290 142" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 262 158 Q 277 166 292 160" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- scarf around neck -->
+          <ellipse cx="380" cy="118" rx="26" ry="13" fill="#ef4444" stroke="#991b1b" stroke-width="3" transform="rotate(-18 380 118)"/>
+          <circle cx="364" cy="126" r="9" fill="#dc2626" stroke="#991b1b" stroke-width="2.5"/>
+          <g class="scarf-tail">
+            <path d="M 360 128 C 330 140 305 122 272 136 C 300 142 305 152 272 156 C 310 162 345 148 362 138 Z"
+                  fill="#ef4444" stroke="#991b1b" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="330" y1="136" x2="328" y2="150" stroke="#fecaca" stroke-width="3" stroke-linecap="round"/>
+          </g>
+
+          <!-- wing arm to handlebar (gripping) -->
+          <g class="wing-flap">
+            <path d="M 335 138 C 365 145 390 160 402 172 C 394 182 378 182 366 174 C 350 164 336 154 328 148 Z"
+                  fill="#fde68a" stroke="#d97706" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M 392 166 L 402 172 L 394 180 Z" fill="#fbbf24" stroke="#92400e" stroke-width="2"/>
+            <circle cx="398" cy="172" r="7" fill="#fbbf24" stroke="#92400e" stroke-width="2"/>
+          </g>
+
+          <!-- near leg (in front, pedaling) -->
+          <g>
+            <g class="leg-swing-A">
+              <path d="M 302 208 Q 322 255 340 312" fill="none" stroke="#fb923c" stroke-width="12" stroke-linecap="round"/>
+              <path d="M 328 312 L 352 308 L 346 323 L 326 323 Z" fill="#fb923c" stroke="#9a3412" stroke-width="2" stroke-linejoin="round"/>
+            </g>
+          </g>
+
+          <!-- head group -->
+          <g class="head-bob">
+            <!-- feather tuft -->
+            <path d="M 392 58 Q 380 44 366 50 Q 378 54 382 62 Z" fill="#ffffff" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 396 52 Q 390 36 376 36 Q 388 44 390 54 Z" fill="#fef9c3" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+            <!-- helmet -->
+            <path d="M 388 58 A 32 32 0 0 1 452 58 L 452 62 L 388 62 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="420" cy="40" r="5" fill="#0369a1"/>
+            <line x1="392" y1="62" x2="404" y2="96" stroke="#0369a1" stroke-width="3"/>
+            <!-- head -->
+            <circle cx="418" cy="82" r="34" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+            <!-- pouch (large throat pouch under beak) -->
+            <g class="pouch-wobble">
+              <path d="M 442 98 L 548 96 C 542 132 518 168 486 176 C 458 183 438 158 436 122 Z"
+                    fill="#fed7aa" stroke="#ea580c" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M 452 108 C 470 130 492 152 512 140 C 500 158 480 168 462 162 C 450 150 448 128 452 108 Z"
+                    fill="#fdba74" opacity=".8"/>
+            </g>
+            <!-- upper beak -->
+            <path d="M 440 72 L 552 92 L 442 100 Z" fill="#fb923c" stroke="#9a3412" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="446" y1="82" x2="534" y2="92" stroke="#9a3412" stroke-width="2" opacity=".6"/>
+            <!-- eye -->
+            <circle cx="428" cy="72" r="11" fill="#fff" stroke="#0f172a" stroke-width="2.5"/>
+            <circle cx="431" cy="73" r="5.5" fill="#0f172a"/>
+            <circle cx="433" cy="71" r="1.9" fill="#fff"/>
+            <!-- blush + smile -->
+            <circle cx="408" cy="92" r="6" fill="#fda4af" opacity=".8"/>
+            <path d="M 442 104 Q 448 108 454 106" fill="none" stroke="#9a3412" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="badge">Pure <b>CSS @keyframes</b> &nbsp;•&nbsp; spinning spokes &nbsp;•&nbsp; pedaling legs &nbsp;•&nbsp; parallax background</div>
+
+  <div class="prompt">
+    <strong>Original prompt</strong>
+    <blockquote>Create a single-file HTML containing an SVG animation: a cartoon pelican (white/light yellow with a large throat pouch) riding a spoked bicycle, with rotating wheels, pedaling legs, and a background that moves backward to simulate motion, all controlled purely with CSS keyframes and no external libraries.</blockquote>
+  </div>
+</body>
+</html>

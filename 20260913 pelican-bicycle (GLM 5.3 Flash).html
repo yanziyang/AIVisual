@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pelican on a Bicycle — Pure CSS SVG Animation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 12px;
+    background: linear-gradient(#7fbfe8, #e9f6ff 55%, #cfe9b8);
+  }
+  svg {
+    display: block;
+    width: min(96vw, 1080px);
+    max-height: 82vh;
+    filter: drop-shadow(0 14px 30px rgba(25, 60, 95, 0.18));
+  }
+  .prompt {
+    width: min(92vw, 1080px);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 14px;
+    padding: 12px 18px 14px;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #2c4a66;
+    box-shadow: 0 8px 20px rgba(25, 60, 95, 0.12);
+  }
+  .prompt h1 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1d6fa5;
+    margin-bottom: 5px;
+  }
+  .prompt p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ================= wheels / crank / pedals =================
+     Every animated group is wrapped in a plain translate(x y) group
+     so its pivot is the local (0,0) — the default CSS transform-origin for SVG. */
+  .wheel, .crank, .pedal, .thigh, .shin, .rays { transform-origin: 0 0; }
+  .wheel { animation: spin 0.6s linear infinite; }      /* wheel: 1 rev / 0.6s  */
+  .rays  { animation: spin 40s linear infinite; }
+  .crank { animation: spin 1.2s linear infinite; }      /* crank: 1 rev / 1.2s (2:1) */
+  .pedal { animation: spinRev 1.2s linear infinite; }   /* pedals stay level */
+  @keyframes spin    { to { transform: rotate(360deg);  } }
+  @keyframes spinRev { to { transform: rotate(-360deg); } }
+
+  /* ================= chain =================
+     Dash pattern period = 10; a loop of -90 (9 periods) is seamless.
+     Crank: 1 rev / 1.2s x ring r=15 -> 78.5 u/s x 1.2s ~= 94 (90 rounds nicely). */
+  .chainT, .chainB { animation: chainDash 1.2s linear infinite; }
+  @keyframes chainDash { to { stroke-dashoffset: -90; } }
+
+  /* ================= pedaling legs =================
+     Two-bone IK keyframes (12 stops = every 30 deg of crank angle).
+     Thigh pivots at the hip, shin pivots at the knee, foot rides the pedal. */
+  .thigh { animation: thigh 1.2s linear infinite; }
+  .shin  { animation: shin  1.2s linear infinite; }
+  #legFar .thigh, #legFar .shin { animation-delay: -0.6s; }  /* 180 deg crank phase */
+
+  @keyframes thigh {
+    0%      { transform: rotate(-64.2deg); }
+    8.333%  { transform: rotate(-64.9deg); }
+    16.667% { transform: rotate(-60.3deg); }
+    25%     { transform: rotate(-51.3deg); }
+    33.333% { transform: rotate(-39.9deg); }
+    41.667% { transform: rotate(-28.9deg); }
+    50%     { transform: rotate(-25.5deg); }
+    58.333% { transform: rotate(-29.4deg); }
+    66.667% { transform: rotate(-35.4deg); }
+    75%     { transform: rotate(-42.6deg); }
+    83.333% { transform: rotate(-50.7deg); }
+    91.667% { transform: rotate(-58.7deg); }
+    100%    { transform: rotate(-64.2deg); }
+  }
+  @keyframes shin {
+    0%      { transform: rotate(88.4deg); }
+    8.333%  { transform: rotate(80.8deg); }
+    16.667% { transform: rotate(67.9deg); }
+    25%     { transform: rotate(51.6deg); }
+    33.333% { transform: rotate(34.2deg); }
+    41.667% { transform: rotate(19.8deg); }
+    50%     { transform: rotate(21.4deg); }
+    58.333% { transform: rotate(36.9deg); }
+    66.667% { transform: rotate(54.3deg); }
+    75%     { transform: rotate(70.2deg); }
+    83.333% { transform: rotate(82.4deg); }
+    91.667% { transform: rotate(89.0deg); }
+    100%    { transform: rotate(88.4deg); }
+  }
+
+  /* ================= body bob + blink ================= */
+  .bob { animation: bob 0.6s ease-in-out infinite; }   /* 2 bobs per pedal rev */
+  @keyframes bob {
+    0%, 100% { transform: translateY(0);   }
+    50%      { transform: translateY(3px); }
+  }
+  .lid { transform-box: fill-box; transform-origin: 50% 0%; animation: blink 4.2s linear infinite; }
+  @keyframes blink {
+    0%, 89%, 97%, 100% { transform: scaleY(0); }
+    92%, 95%           { transform: scaleY(1); }
+  }
+
+  /* ================= parallax background =================
+     Each layer holds two identical 960-wide copies; sliding -960 loops seamlessly.
+     Ground layer speed (960u / 2s = 480 u/s) matches the wheel rim speed
+     (2 x pi x 46.5 / 0.6s = 486 u/s) so the bike doesn't skid. */
+  .clouds   { animation: scroll 22s linear infinite; }
+  .hills    { animation: scroll 9s  linear infinite; }
+  .groundD  { animation: scroll 2s  linear infinite; }
+  @keyframes scroll { to { transform: translateX(-960px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="sceneTitle">
+  <title id="sceneTitle">A cartoon pelican pedaling a spoked bicycle down a country lane</title>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd0f7"/>
+      <stop offset="1" stop-color="#eef9ff"/>
+    </linearGradient>
+
+    <g id="cloud">
+      <ellipse cx="0" cy="0" rx="34" ry="16"/>
+      <ellipse cx="-24" cy="7" rx="20" ry="12"/>
+      <ellipse cx="24" cy="7" rx="22" ry="12"/>
+      <ellipse cx="4" cy="-10" rx="20" ry="12"/>
+    </g>
+
+    <g id="cloudRow" fill="#ffffff" opacity="0.92">
+      <use href="#cloud" xlink:href="#cloud" transform="translate(120 96)"/>
+      <use href="#cloud" xlink:href="#cloud" transform="translate(430 64) scale(1.25)"/>
+      <use href="#cloud" xlink:href="#cloud" transform="translate(760 128) scale(0.85)"/>
+      <path d="M586 96 q7 -8 14 0 q7 -8 14 0" fill="none" stroke="#5b7f9e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M646 118 q5 -6 10 0 q5 -6 10 0" fill="none" stroke="#5b7f9e" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <g id="hillRow">
+      <path d="M-20 455 L40 455 C90 405 150 405 200 455 C240 425 280 425 320 455 C370 398 430 398 480 455 C520 428 560 428 600 455 C650 400 710 400 760 455 C800 426 840 426 880 455 L980 455 L980 540 L-20 540 Z" fill="#a8d98b"/>
+      <g stroke-linecap="round">
+        <path d="M150 452 L148 424" stroke="#8a5a33" stroke-width="7"/>
+        <circle cx="148" cy="414" r="17" fill="#57a84b"/>
+        <circle cx="135" cy="423" r="12" fill="#69bd5c"/>
+        <circle cx="161" cy="423" r="12" fill="#69bd5c"/>
+        <path d="M520 448 L520 428" stroke="#8a5a33" stroke-width="6"/>
+        <circle cx="520" cy="419" r="14" fill="#57a84b"/>
+        <circle cx="509" cy="426" r="10" fill="#69bd5c"/>
+        <circle cx="531" cy="426" r="10" fill="#69bd5c"/>
+        <path d="M840 448 L842 426" stroke="#8a5a33" stroke-width="6"/>
+        <circle cx="842" cy="417" r="15" fill="#57a84b"/>
+        <circle cx="830" cy="425" r="10" fill="#69bd5c"/>
+        <circle cx="854" cy="425" r="10" fill="#69bd5c"/>
+      </g>
+      <circle cx="360" cy="452" r="10" fill="#8fce6e"/>
+      <circle cx="374" cy="452" r="8" fill="#9ed97f"/>
+      <circle cx="680" cy="451" r="9" fill="#8fce6e"/>
+      <circle cx="692" cy="451" r="7" fill="#9ed97f"/>
+    </g>
+
+    <g id="tuft">
+      <path d="M0 0 Q-3 -8 -7 -10 M0 0 Q0 -10 1 -13 M0 0 Q4 -8 8 -9" fill="none" stroke="#4f9a37" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g id="flower">
+      <circle cx="0" cy="-3.4" r="2.4" fill="#ffb3d9"/>
+      <circle cx="3.2" cy="-1" r="2.4" fill="#ffb3d9"/>
+      <circle cx="-3.2" cy="-1" r="2.4" fill="#ffb3d9"/>
+      <circle cx="0" cy="2.6" r="2.4" fill="#ffb3d9"/>
+      <circle cx="0" cy="0" r="1.6" fill="#fff3b0"/>
+    </g>
+
+    <g id="groundRow">
+      <use href="#tuft" xlink:href="#tuft" transform="translate(64 471)"/>
+      <use href="#tuft" xlink:href="#tuft" transform="translate(214 471) scale(0.85)"/>
+      <use href="#tuft" xlink:href="#tuft" transform="translate(398 471)"/>
+      <use href="#tuft" xlink:href="#tuft" transform="translate(562 471) scale(0.9)"/>
+      <use href="#tuft" xlink:href="#tuft" transform="translate(708 471)"/>
+      <use href="#tuft" xlink:href="#tuft" transform="translate(866 471) scale(0.8)"/>
+      <ellipse cx="140" cy="490" rx="5.5" ry="3" fill="#5da244"/>
+      <ellipse cx="316" cy="499" rx="4.5" ry="2.6" fill="#5da244"/>
+      <ellipse cx="470" cy="492" rx="6" ry="3.2" fill="#5da244"/>
+      <ellipse cx="640" cy="503" rx="4" ry="2.4" fill="#5da244"/>
+      <ellipse cx="800" cy="494" rx="5" ry="2.8" fill="#5da244"/>
+      <ellipse cx="918" cy="486" rx="4.5" ry="2.6" fill="#5da244"/>
+      <use href="#flower" xlink:href="#flower" transform="translate(126 474)"/>
+      <use href="#flower" xlink:href="#flower" transform="translate(436 472) scale(0.9)"/>
+      <use href="#flower" xlink:href="#flower" transform="translate(654 476)"/>
+      <use href="#flower" xlink:href="#flower" transform="translate(884 473) scale(0.85)"/>
+    </g>
+
+    <g id="spokes" fill="none" stroke="#9aa4b1" stroke-width="1.8">
+      <path d="M0 0L0 -39M0 0L19.5 -33.8M0 0L33.8 -19.5M0 0L39 0M0 0L33.8 19.5M0 0L19.5 33.8M0 0L0 39M0 0L-19.5 33.8M0 0L-33.8 19.5M0 0L-39 0M0 0L-33.8 -19.5M0 0L-19.5 -33.8"/>
+      <circle cx="0" cy="-31" r="2.4" fill="#e5533d" stroke="none"/>
+    </g>
+  </defs>
+
+  <!-- sky -->
+  <rect width="960" height="540" fill="url(#sky)"/>
+
+  <!-- sun -->
+  <g transform="translate(828 84)">
+    <circle r="54" fill="#ffd76e" opacity="0.25"/>
+    <g class="rays" stroke="#ffcf54" stroke-width="4" stroke-linecap="round">
+      <path d="M0 -46 L0 -60 M0 46 L0 60 M-46 0 L-60 0 M46 0 L60 0 M-32 -32 L-42 -42 M32 32 L42 42 M-32 32 L-42 42 M32 -32 L42 -42"/>
+    </g>
+    <circle r="34" fill="#ffd76e" stroke="#ffc93d" stroke-width="3"/>
+  </g>
+
+  <!-- scrolling parallax layers (two tiled copies each) -->
+  <g class="clouds"><use href="#cloudRow" xlink:href="#cloudRow"/><use href="#cloudRow" xlink:href="#cloudRow" x="960"/></g>
+  <g class="hills"><use href="#hillRow" xlink:href="#hillRow"/><use href="#hillRow" xlink:href="#hillRow" x="960"/></g>
+
+  <!-- ground -->
+  <rect x="0" y="470" width="960" height="70" fill="#7cc25e"/>
+  <rect x="0" y="502" width="960" height="38" fill="#6db352"/>
+  <path d="M0 470 H960" stroke="#58a53c" stroke-width="3"/>
+  <g class="groundD"><use href="#groundRow" xlink:href="#groundRow"/><use href="#groundRow" xlink:href="#groundRow" x="960"/></g>
+
+  <!-- shadow -->
+  <ellipse cx="458" cy="471" rx="205" ry="8" fill="#2f6b22" opacity="0.22"/>
+
+  <!-- far leg (darker, behind everything) -->
+  <g id="legFar" transform="translate(412 306)">
+    <g class="thigh">
+      <line x1="0" y1="0" x2="0" y2="80" stroke="#b96f14" stroke-width="11" stroke-linecap="round"/>
+      <g transform="translate(0 80)">
+        <g class="shin">
+          <line x1="0" y1="0" x2="0" y2="78" stroke="#b96f14" stroke-width="8" stroke-linecap="round"/>
+          <g transform="translate(0 78)">
+            <path d="M-6 -3 Q7 -7 19 -2 Q23 0 19 3 Q5 6 -6 4 Z" fill="#b96f14"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- rear wheel -->
+  <g transform="translate(298 424)">
+    <circle r="43" fill="none" stroke="#33363c" stroke-width="7"/>
+    <circle r="39" fill="none" stroke="#98a2b0" stroke-width="2.5"/>
+    <use href="#spokes" xlink:href="#spokes" class="wheel"/>
+    <circle r="5.5" fill="#3a3f48"/>
+  </g>
+
+  <!-- front wheel -->
+  <g transform="translate(618 424)">
+    <circle r="43" fill="none" stroke="#33363c" stroke-width="7"/>
+    <circle r="39" fill="none" stroke="#98a2b0" stroke-width="2.5"/>
+    <use href="#spokes" xlink:href="#spokes" class="wheel"/>
+    <circle r="5.5" fill="#3a3f48"/>
+  </g>
+
+  <!-- far crank arm + pedal -->
+  <g transform="translate(452 434)">
+    <g class="crank">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="#2c2f36" stroke-width="7" stroke-linecap="round"/>
+      <g transform="translate(0 22)">
+        <g class="pedal"><rect x="-9" y="-4" width="18" height="8" rx="3" fill="#22252b"/></g>
+      </g>
+    </g>
+  </g>
+
+  <!-- frame -->
+  <g stroke="#c94a44" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M298 424 L452 434"/>
+    <path d="M298 424 L428 358"/>
+    <path d="M452 434 L426 358"/>
+    <path d="M452 434 L588 372"/>
+    <path d="M428 358 L594 354"/>
+    <path d="M588 372 L596 350"/>
+    <path d="M588 372 L618 424"/>
+  </g>
+  <line x1="426" y1="358" x2="404" y2="322" stroke="#2c2f36" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="400" cy="316" rx="17" ry="6" fill="#22252b" transform="rotate(-6 400 316)"/>
+  <path d="M596 350 L590 338 Q578 330 558 329" stroke="#2c2f36" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="554" cy="329" r="4.5" fill="#22252b"/>
+  <circle cx="298" cy="424" r="9" fill="none" stroke="#2c2f36" stroke-width="4"/>
+
+  <!-- chain (dashes glide along both runs) -->
+  <path class="chainT" d="M298 415 L452 419" stroke="#33363c" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+  <path class="chainB" d="M452 449 L298 433" stroke="#33363c" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+
+  <!-- pelican -->
+  <g class="bob">
+    <path d="M344 246 L302 230 L338 242 Z" fill="#e9e1ca"/>
+    <path d="M344 258 L298 248 L338 252 Z" fill="#ddd3b8"/>
+    <ellipse cx="390" cy="262" rx="64" ry="48" fill="#fdfcf6" stroke="#ddd2b0" stroke-width="1.5"/>
+    <path d="M346 276 Q396 314 448 270 Q446 296 396 304 Q360 302 346 276 Z" fill="#f6ecc9"/>
+    <path d="M354 240 Q338 284 368 304 Q398 298 394 252 Z" fill="#f2e8cc" stroke="#ddd2b0" stroke-width="1"/>
+    <path d="M368 252 Q362 280 374 298 M382 250 Q378 282 388 296" fill="none" stroke="#ddd2b0" stroke-width="1.5"/>
+    <path d="M448 252 Q506 276 552 322 L542 334 Q496 296 440 266 Z" fill="#f2e8cc" stroke="#ddd2b0" stroke-width="1"/>
+    <path d="M540 318 L556 330 L546 338 Z" fill="#e5d9b8"/>
+    <path d="M436 248 Q452 204 478 192" stroke="#fdfcf6" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <circle cx="488" cy="180" r="23" fill="#fdfcf6" stroke="#ddd2b0" stroke-width="1.5"/>
+    <path d="M476 162 Q468 150 460 148 M480 160 Q474 146 466 142" stroke="#e9e1ca" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="498" cy="172" r="5.5" fill="#23252b"/>
+    <circle cx="500" cy="170" r="1.8" fill="#ffffff"/>
+    <circle class="lid" cx="498" cy="172" r="6.5" fill="#fdfcf6"/>
+    <path d="M502 184 C514 256 580 250 618 192 C584 202 536 198 502 190 Z" fill="#ffc46b" stroke="#e8a34e" stroke-width="1.5"/>
+    <path d="M500 166 C556 168 596 176 624 186 L624 191 C592 186 548 182 500 180 Z" fill="#f29d38" stroke="#d9822b" stroke-width="1"/>
+    <path d="M508 170 L520 171" stroke="#d9822b" stroke-width="1.5"/>
+  </g>
+
+  <!-- near crank arm + chainring + pedal -->
+  <g transform="translate(452 434)">
+    <g class="crank">
+      <circle r="15" fill="#e0e4ea" stroke="#5a616c" stroke-width="2.5"/>
+      <circle cx="0" cy="-9" r="3" fill="#7d8592"/>
+      <circle cx="-7.8" cy="4.5" r="3" fill="#7d8592"/>
+      <circle cx="7.8" cy="4.5" r="3" fill="#7d8592"/>
+      <line x1="0" y1="0" x2="0" y2="-22" stroke="#2c2f36" stroke-width="7" stroke-linecap="round"/>
+      <g transform="translate(0 -22)">
+        <g class="pedal">
+          <rect x="-9" y="-4" width="18" height="8" rx="3" fill="#22252b"/>
+          <rect x="-8" y="-4" width="16" height="3" rx="1.5" fill="#3a3e46"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- near leg -->
+  <g transform="translate(412 306)">
+    <g class="thigh">
+      <line x1="0" y1="0" x2="0" y2="80" stroke="#f2a02c" stroke-width="11" stroke-linecap="round"/>
+      <g transform="translate(0 80)">
+        <g class="shin">
+          <line x1="0" y1="0" x2="0" y2="78" stroke="#f2a02c" stroke-width="8" stroke-linecap="round"/>
+          <g transform="translate(0 78)">
+            <path d="M-6 -3 Q7 -7 19 -2 Q23 0 19 3 Q5 6 -6 4 Z" fill="#f2a02c"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
+
+<section class="prompt">
+  <h1>Prompt</h1>
+  <p>Create a single-file HTML containing an SVG animation: a cartoon pelican (white/light yellow with a large throat pouch) riding a spoked bicycle, with rotating wheels, pedaling legs, and a background that moves backward to simulate motion, all controlled purely with CSS keyframes and no external libraries.</p>
+</section>
+
+</body>
+</html>
