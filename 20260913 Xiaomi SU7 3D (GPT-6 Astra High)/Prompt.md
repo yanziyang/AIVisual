@@ -6,3 +6,5 @@ Xiaomi Su7 official images:
 https://www.carmagazine.co.uk/car-news/first-official-pictures/xiaomi/su7/
 
 I have downloaded and stored in 'Xiaomi-su7-images' folder.
+
+Next, Put the 3D model in a standalone html web page with three.js.

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "front_hero",
+    "width": 1920,
+    "height": 960,
+    "bytes": 1844787
+  },
+  {
+    "name": "rear_hero",
+    "width": 1920,
+    "height": 960,
+    "bytes": 1838970
+  },
+  {
+    "name": "side",
+    "width": 1920,
+    "height": 760,
+    "bytes": 1429339
+  },
+  {
+    "name": "front",
+    "width": 1400,
+    "height": 950,
+    "bytes": 1341746
+  },
+  {
+    "name": "rear",
+    "width": 1400,
+    "height": 950,
+    "bytes": 1315267
+  },
+  {
+    "name": "wheel",
+    "width": 1400,
+    "height": 1050,
+    "bytes": 1600067
+  }
+]

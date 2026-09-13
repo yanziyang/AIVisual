@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "fileProtocol": true,
+  "networkDisabled": true,
+  "networkRequests": [],
+  "consoleErrors": [],
+  "views": [
+    "front",
+    "rear",
+    "side",
+    "top",
+    "wheel",
+    "hero"
+  ],
+  "paintPreview": true,
+  "wireframe": true,
+  "lightingSwitch": true,
+  "keyboardShortcuts": true,
+  "orbit": true,
+  "pngDownload": true,
+  "glbDownloadMatchesSource": true,
+  "mobileViewport": "390x844",
+  "stats": {
+    "ready": true,
+    "offline": true,
+    "threeRevision": "180",
+    "originalMeshes": 751,
+    "mergedMeshes": 14,
+    "error": null,
+    "softwareRenderer": true,
+    "modelBytes": 23487712,
+    "bounds": [
+      5.072399854660034,
+      1.4554998383391649,
+      2.274975061416626
+    ],
+    "view": "hero",
+    "lastFrameMs": 10,
+    "drawCalls": 15,
+    "triangles": 954434,
+    "paint": "aqua",
+    "wireframe": false,
+    "lighting": "studio",
+    "rotating": false
+  }
+}

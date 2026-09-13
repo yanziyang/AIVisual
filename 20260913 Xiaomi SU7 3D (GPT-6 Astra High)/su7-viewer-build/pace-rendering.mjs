@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+const app=new URL('./app.js',import.meta.url);let s=await fs.readFile(app,'utf8');
+s=s.replace('let lastTime=0, toastTimer, shadowLight, ground;','let lastTime=0, toastTimer, shadowLight, ground;\nlet frameBudget=1000/60;');
+s=s.replace("renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));", "const gl=renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');\n    stats.softwareRenderer=!!(debug&&/SwiftShader|llvmpipe|software/i.test(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)));\n    frameBudget=stats.softwareRenderer?1000/15:1000/60;\n    renderer.setPixelRatio(Math.min(devicePixelRatio,stats.softwareRenderer?1:1.6));");
+s=s.replace('if(document.hidden)return;','if(document.hidden||now-lastTime<frameBudget)return;');
+s=s.replace('Math.min((now-lastTime)/1000,.05)','Math.min((now-lastTime)/1000,.2)');
+s=s.replaceAll('renderer.render(scene,camera)','drawScene()');
+s=s.replace('function tick(now){',"function drawScene(){const start=performance.now();renderer.render(scene,camera);if(stats.softwareRenderer)renderer.getContext().finish();stats.lastFrameMs=Math.round(performance.now()-start);}\n\nfunction tick(now){");
+await fs.writeFile(app,s);
+const file=new URL('./test-viewer.mjs',import.meta.url);let t=await fs.readFile(file,'utf8');
+t=t.replace('const page=await context.newPage();','const page=await context.newPage();page.setDefaultTimeout(90000);');
+t=t.replace("views.push(view);", "views.push(view);console.log('PASS view',view);");
+t=t.replace("const report={passed:true", "const report={passed:true");
+t=t.replace("const pngEvent=page.waitForEvent", "console.log('PASS paint, mesh, lighting, shortcuts, dialog');\n  const pngEvent=page.waitForEvent");
+t=t.replace("await page.setViewportSize({width:390", "console.log('PASS PNG and GLB downloads');\n  await page.setViewportSize({width:390");
+t=t.replace("await page.setViewportSize({width:1440", "console.log('PASS mobile layout');\n  await page.setViewportSize({width:1440");
+await fs.writeFile(file,t);

@@ -581,8 +581,8 @@ cams={
  'front_hero':camera('01 | Front three-quarter',(-6.9,-8.0,2.55),(0,0,.73),68),
  'rear_hero':camera('02 | Rear three-quarter',(7.7,-6.2,2.45),(.1,0,.74),66),
  'side':camera('03 | Side orthographic',(0,-10,1.44),(0,0,.85),ortho=5.6),
- 'front':camera('04 | Front orthographic',(-9,0,.83),(0,0,.83),ortho=2.7),
- 'rear':camera('05 | Rear orthographic',(9,0,.83),(0,0,.83),ortho=2.7),
+ 'front':camera('04 | Front orthographic',(-9,0,1.36),(0,0,.83),ortho=2.7),
+ 'rear':camera('05 | Rear orthographic',(9,0,1.36),(0,0,.83),ortho=2.7),
  'wheel':camera('06 | Wheel detail',(-2.4,-3.0,1.12),(-1.55,-.85,.45),68),
 }
 scene.camera=cams['front_hero']

@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';
+let s=await fs.readFile(new URL('./app.js',import.meta.url),'utf8');
+s=s.replace('material.envMapIntensity=1.15;','material.envMapIntensity=.9;');
+s=s.replace('material.roughness=Math.max(.23,material.roughness);','material.roughness=.27;material.metalness=.70;if(material.isMeshPhysicalMaterial)material.clearcoat=.25;');
+s=s.replace("    geometries.forEach(g=>g.dispose());allMaterials.push(material);","    geometries.forEach(g=>g.dispose());allMaterials.push(material);");
+s=s.replace("  }\n  gltf.scene.traverse", "    if(/tinted|automotive.*glass/i.test(material.name)){material.envMapIntensity=.42;material.metalness=.12;if(material.isMeshPhysicalMaterial)material.clearcoat=.12;}\n    material.userData.studioEnv=material.envMapIntensity;\n  }\n  gltf.scene.traverse");
+s=s.replace('renderer.toneMappingExposure=1.05','renderer.toneMappingExposure=.90');
+s=s.replace('0x243a45,1.6','0x243a45,.7').replace('0xf0f7ff,3.0','0xf0f7ff,2.0').replace('0x92cde8,2.1','0x92cde8,1.25');
+s=s.replace('shadow.mapSize.set(1024,1024)','shadow.mapSize.set(2048,2048)').replace('shadow.bias=-.0003','shadow.bias=-.00015').replace('shadow.normalBias=.025','shadow.normalBias=.004');
+s=s.replace('color:0x1c2b36,roughness:.88,metalness:.05','color:0x101b24,roughness:.9,metalness:0');
+s=s.replace("day?'#697c84':'#1c2b36'","day?'#697c84':'#101b24'").replace('day?1.15:1.05','day?1.08:.90').replace('m.envMapIntensity=day?1.55:1.15','m.envMapIntensity=m.userData.studioEnv*(day?1.3:1)');
+await fs.writeFile(new URL('./app.js',import.meta.url),s);
+let t=await fs.readFile(new URL('./test-viewer.mjs',import.meta.url),'utf8');
+t=t.replace("const target=process.argv[2];", "const target=process.argv[2];const sourceBytes=await fs.readFile(path.join(target,'Xiaomi_SU7_Max.glb'));const sourceDoc=JSON.parse(sourceBytes.subarray(20,20+sourceBytes.readUInt32LE(12)));const expectedPrimitives=sourceDoc.nodes.filter(n=>n.mesh!==undefined).reduce((sum,n)=>sum+sourceDoc.meshes[n.mesh].primitives.length,0);");
+t=t.replace('stats.originalMeshes===750','stats.originalMeshes===expectedPrimitives');
+await fs.writeFile(new URL('./test-viewer.mjs',import.meta.url),t);

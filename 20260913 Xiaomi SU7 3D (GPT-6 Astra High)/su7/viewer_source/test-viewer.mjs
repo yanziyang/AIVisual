@@ -1,0 +1,70 @@
+import {chromium} from 'playwright-core';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
+const here=path.dirname(fileURLToPath(import.meta.url));
+const target=process.argv[2];const sourceBytes=await fs.readFile(path.join(target,'Xiaomi_SU7_Max.glb'));const sourceDoc=JSON.parse(sourceBytes.subarray(20,20+sourceBytes.readUInt32LE(12)));const expectedPrimitives=sourceDoc.nodes.filter(n=>n.mesh!==undefined).reduce((sum,n)=>sum+sourceDoc.meshes[n.mesh].primitives.length,0);const out=path.join(here,'test-output');await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-sandbox']});
+const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,acceptDownloads:true});
+await context.setOffline(true);
+const page=await context.newPage();page.setDefaultTimeout(90000);const errors=[],network=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+page.on('request',r=>{if(/^https?:/.test(r.url()))network.push(r.url());});
+function assert(value,message){if(!value)throw new Error(message);}
+try{
+  await page.goto(pathToFileURL(path.join(target,'Xiaomi_SU7_Viewer.html')).href,{waitUntil:'load',timeout:120000});
+  await page.waitForFunction(()=>window.__viewerStats?.ready||window.__viewerStats?.error,null,{timeout:120000});
+  let stats=await page.evaluate(()=>window.__viewerStats);assert(stats.ready,JSON.stringify(stats));
+  assert(stats.originalMeshes===expectedPrimitives,'Missing source geometry');assert(stats.mergedMeshes<50,'Batching ineffective');
+  await page.waitForTimeout(1200);await page.screenshot({path:path.join(out,'desktop.png')});
+  const views=[];
+  for(const view of ['front','rear','side','top','wheel','hero']){
+    await page.locator(`[data-view="${view}"]`).click();await page.waitForTimeout(850);
+    assert(await page.locator(`[data-view="${view}"]`).getAttribute('aria-pressed')==='true',`Preset failed: ${view}`);
+    views.push(view);console.log('PASS view',view);
+    if(view==='wheel')await page.screenshot({path:path.join(out,'wheel.png')});
+  }
+  await page.locator('[data-paint="silver"]').click();await page.waitForTimeout(450);
+  assert(await page.locator('#finishName').textContent()==='SILVER PREVIEW','Paint preview failed');
+  await page.screenshot({path:path.join(out,'silver.png')});
+  await page.locator('[data-paint="aqua"]').click();
+  await page.locator('#wireframe').click();await page.waitForTimeout(350);
+  assert(await page.evaluate(()=>window.__viewerStats.wireframe),'Wireframe did not enable');
+  await page.screenshot({path:path.join(out,'wireframe.png')});await page.locator('#wireframe').click();
+  await page.locator('#lighting').selectOption('daylight');await page.waitForTimeout(400);
+  assert(await page.evaluate(()=>window.__viewerStats.lighting==='daylight'),'Lighting switch failed');
+  await page.locator('#lighting').selectOption('studio');
+  await page.locator('canvas').focus();await page.keyboard.press('Space');
+  assert(await page.evaluate(()=>window.__viewerStats.rotating===true),'Rotate shortcut failed');
+  await page.keyboard.press('Space');await page.keyboard.press('r');await page.waitForTimeout(850);
+  await page.locator('#about').click();assert(await page.locator('#info').evaluate(d=>d.open),'Info dialog failed');await page.keyboard.press('Escape');
+  console.log('PASS paint, mesh, lighting, shortcuts, dialog');
+  const pngEvent=page.waitForEvent('download');await page.locator('#snapshot').click();const png=await pngEvent;
+  await png.saveAs(path.join(out,'exported-view.png'));const pngData=await fs.readFile(path.join(out,'exported-view.png'));
+  assert(pngData.subarray(1,4).toString()==='PNG'&&pngData.length>10000,'Image export invalid');
+  const glbEvent=page.waitForEvent('download');await page.locator('#download').click();const glb=await glbEvent;
+  await glb.saveAs(path.join(out,'downloaded.glb'));
+  const hash=b=>createHash('sha256').update(b).digest('hex');
+  assert(hash(await fs.readFile(path.join(out,'downloaded.glb')))===hash(await fs.readFile(path.join(target,'Xiaomi_SU7_Max.glb'))),'GLB download differs from source');
+  console.log('PASS PNG and GLB downloads');
+  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(1400);
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile horizontal overflow');
+  const controls=await page.locator('.controls').boundingBox();assert(controls.y+controls.height<=844,'Mobile controls clipped');
+  await page.screenshot({path:path.join(out,'mobile.png')});
+  console.log('PASS mobile layout');
+  await page.setViewportSize({width:1440,height:900});await page.waitForTimeout(900);
+  const before=await page.screenshot();
+  await page.mouse.move(740,420);await page.mouse.down();await page.mouse.move(920,450,{steps:12});await page.mouse.up();await page.waitForTimeout(600);
+  const after=await page.screenshot();assert(hash(before)!==hash(after),'Orbit interaction had no visual effect');
+  await page.locator('[data-view="hero"]').click();await page.waitForTimeout(1100);
+  await page.screenshot({path:path.join(out,'desktop.png')});
+  assert(network.length===0,'Unexpected network dependency');assert(errors.length===0,errors.join('\n'));
+  stats=await page.evaluate(()=>window.__viewerStats);
+  const report={passed:true,fileProtocol:true,networkDisabled:true,networkRequests:network,consoleErrors:errors,views,paintPreview:true,wireframe:true,lightingSwitch:true,keyboardShortcuts:true,orbit:true,pngDownload:true,glbDownloadMatchesSource:true,mobileViewport:'390x844',stats};
+  await fs.writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+}catch(error){
+  await page.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});
+  console.error(error);console.error(JSON.stringify({errors,network,stats:await page.evaluate(()=>window.__viewerStats).catch(()=>null)}));process.exitCode=1;
+}finally{await browser.close();}
