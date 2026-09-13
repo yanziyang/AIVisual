@@ -23,22 +23,50 @@
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
+html { height: 100%; background: #121826; }
 body {
+  min-height: 100%;
+  margin: 0;
   display: grid;
   place-items: center;
+  padding: clamp(12px, 3vh, 36px) 2vw;
   background: radial-gradient(120% 90% at 50% 20%, #33476b 0%, #1a2233 60%, #121826 100%);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
+.piece {
+  margin: 0;
+  /* as large as the window allows, leaving room for the prompt underneath */
+  width: min(94vw, max(340px, calc((100vh - 230px) * 12 / 7)));
+}
 .stage {
   position: relative;
-  width: min(96vw, calc(94vh * 12 / 7));
   aspect-ratio: 12 / 7;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 28px 70px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .08);
 }
 .stage > svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- the prompt this page was made from ---------- */
+.prompt {
+  margin-top: clamp(14px, 2.4vh, 22px);
+  padding: 15px 20px 17px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .045);
+  color: #dfe6f1;
+}
+.prompt-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffd978;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.prompt blockquote { margin: 0; }
+.prompt p { margin: 0; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.6; text-wrap: pretty; }
 
 /* ---------- pause / play (CSS-only checkbox toggle) ---------- */
 .sr-only {
@@ -58,10 +86,10 @@ body {
 .toggle span { display: inline-flex; align-items: center; gap: 7px; }
 .toggle svg { width: 12px; height: 12px; fill: currentColor; }
 .toggle .when-paused { display: none; }
-#pause:checked ~ .stage .when-running { display: none; }
-#pause:checked ~ .stage .when-paused { display: inline-flex; }
-#pause:focus-visible ~ .stage .toggle { outline: 3px solid #ffd978; outline-offset: 2px; }
-#pause:checked ~ .stage * { animation-play-state: paused !important; }
+#pause:checked ~ .piece .when-running { display: none; }
+#pause:checked ~ .piece .when-paused { display: inline-flex; }
+#pause:focus-visible ~ .piece .toggle { outline: 3px solid #ffd978; outline-offset: 2px; }
+#pause:checked ~ .piece .stage * { animation-play-state: paused !important; }
 
 /* ---------- drivetrain ---------- */
 @keyframes spin      { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -192,8 +220,10 @@ body {
 </style>
 </head>
 <body>
+<main>
 <input type="checkbox" id="pause" class="sr-only">
-<main class="stage">
+<figure class="piece">
+<div class="stage">
 <svg viewBox="0 0 1200 700" role="img" aria-labelledby="scene-title scene-desc">
 <title id="scene-title">A pelican riding a bicycle</title>
 <desc id="scene-desc">A cartoon white pelican with a big yellow throat pouch pedals a red bicycle along a seaside road while the beach, sea and clouds scroll past.</desc>
@@ -244,10 +274,11 @@ body {
   <!-- pelican shapes -->
   <path id="body-shape" d="M400 334C418 302 440 268 492 258C532 250 566 256 582 276C604 300 608 340 582 362C558 382 508 388 472 376C446 368 422 352 400 334Z"/>
   <clipPath id="body-clip"><use href="#body-shape"/></clipPath>
-  <path id="thigh-shape" d="M-12 -24C28 -26 74 -19 102 -13Q118 -12 111 -4Q122 1 111 6Q117 14 102 14C74 18 28 26 -12 24Z"/>
-  <path id="thigh-marks" d="M70 7l6 -6l3 8M88 9l6 -6l3 8"/>
-  <path id="foot-shape" d="M-7 2C-3 -5 9 -5 13 2C19 8 31 10 39 12C48 14 48 23 39 23L2 23C-10 23 -13 8 -7 2Z"/>
-  <path id="foot-web" d="M18 13Q28 17 38 17M15 17Q24 20 33 20"/>
+  <path id="wing-shape" d="M444 312C470 284 540 272 588 306C604 318 612 334 608 348C590 354 566 350 548 346Q538 354 524 348Q512 356 498 348Q484 354 472 342Q454 340 444 312Z"/>
+  <path id="thigh-shape" d="M-12 -24C30 -27 76 -20 104 -13Q119 -11 112 -3Q122 2 111 7Q115 15 101 14Q92 22 84 16Q74 24 64 18Q52 27 42 20C20 26 0 26 -12 24Z"/>
+  <path id="thigh-marks" d="M72 3Q84 7 96 4M50 9Q60 13 70 10"/>
+  <path id="foot-shape" d="M-6 1C-2-5 9-5 12 1C17 7 26 9 35 9Q46 7 48 11Q49 14 45 14.5Q52 16 50 19.5Q48 21.5 45 21.5Q50 25 45 26.5Q42 27 39 24L2 24C-9 24-12 9-6 1Z"/>
+  <path id="foot-web" d="M16 11Q32 12 45 14.5M14 16Q30 18 45 21.5"/>
 
   <!-- scenery shapes -->
   <path id="cloud" d="M14 72C-2 72-4 50 12 48C8 30 28 22 42 30C48 10 78 4 92 20C104 6 132 8 138 30C156 24 176 38 170 56C184 58 186 72 172 72Z"/>
@@ -497,7 +528,7 @@ body {
   <g transform="translate(450 532)">
       <circle r="74.5" fill="none" stroke="#2b2c38" stroke-width="11"/>
       <g class="wheel-spin">
-        <circle r="74.5" fill="none" stroke="#4a4d5e" stroke-width="3" stroke-dasharray="1 3" pathLength="120"/>
+        <path d="M74.5 0A74.5 74.5 0 1 1-74.5 0A74.5 74.5 0 1 1 74.5 0" fill="none" stroke="#4a4d5e" stroke-width="3" stroke-dasharray="1 3" pathLength="120"/>
         <circle r="67" fill="none" stroke="#e1e6ec" stroke-width="5"/>
         <circle r="64.2" fill="none" stroke="#97a2ae" stroke-width="1.2"/>
         <path d="M6.5 0L59.4 26.4M6 2.5L65 -1.7M4.6 4.6L23.3 60.7M2.5 6L47.1 44.7M0 6.5L-26.4 59.4M-2.5 6L1.7 65M-4.6 4.6L-60.7 23.3M-6 2.5L-44.7 47.1M-6.5 0L-59.4 -26.4M-6 -2.5L-65 1.7M-4.6 -4.6L-23.3 -60.7M-2.5 -6L-47.1 -44.7M0 -6.5L26.4 -59.4M2.5 -6L-1.7 -65M4.6 -4.6L60.7 -23.3M6 -2.5L44.7 -47.1" stroke="#a3aebb" stroke-width="1.7" stroke-linecap="round"/>
@@ -509,7 +540,7 @@ body {
   <g transform="translate(710 532)">
       <circle r="74.5" fill="none" stroke="#2b2c38" stroke-width="11"/>
       <g class="wheel-spin">
-        <circle r="74.5" fill="none" stroke="#4a4d5e" stroke-width="3" stroke-dasharray="1 3" pathLength="120"/>
+        <path d="M74.5 0A74.5 74.5 0 1 1-74.5 0A74.5 74.5 0 1 1 74.5 0" fill="none" stroke="#4a4d5e" stroke-width="3" stroke-dasharray="1 3" pathLength="120"/>
         <circle r="67" fill="none" stroke="#e1e6ec" stroke-width="5"/>
         <circle r="64.2" fill="none" stroke="#97a2ae" stroke-width="1.2"/>
         <path d="M6.5 0L59.4 26.4M6 2.5L65 -1.7M4.6 4.6L23.3 60.7M2.5 6L47.1 44.7M0 6.5L-26.4 59.4M-2.5 6L1.7 65M-4.6 4.6L-60.7 23.3M-6 2.5L-44.7 47.1M-6.5 0L-59.4 -26.4M-6 -2.5L-65 1.7M-4.6 -4.6L-23.3 -60.7M-2.5 -6L-47.1 -44.7M0 -6.5L26.4 -59.4M2.5 -6L-1.7 -65M4.6 -4.6L60.7 -23.3M6 -2.5L44.7 -47.1" stroke="#a3aebb" stroke-width="1.7" stroke-linecap="round"/>
@@ -618,11 +649,13 @@ body {
     </g></g></g>
 
     <!-- wing reaching for the handlebar; dark primaries wrap the grip -->
+    <g clip-path="url(#body-clip)"><use href="#wing-shape" transform="translate(4 8)" fill="#e8cf8f" opacity=".5"/></g>
     <path d="M590 318C612 324 628 344 632 360C634 368 626 372 620 366C612 352 600 342 588 338Z" fill="#403b55" stroke="#2e2a3f" stroke-width="2.5" stroke-linejoin="round"/>
     <path d="M592 334C608 340 621 356 621 370C621 378 613 378 610 372C605 360 597 352 587 350Z" fill="#4a4561" stroke="#2e2a3f" stroke-width="2.5" stroke-linejoin="round"/>
     <path d="M586 344C598 350 608 364 605 376C603 382 596 380 595 374C593 364 587 358 579 354Z" fill="#403b55" stroke="#2e2a3f" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M444 312C470 284 540 272 588 306C604 318 612 334 608 348C590 354 566 350 548 346Q538 354 524 348Q512 356 498 348Q484 354 472 342Q454 340 444 312Z" fill="url(#wing-fill)" stroke="#2e2a3f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M476 318Q520 306 566 318M494 332Q530 324 574 334" fill="none" stroke="#e5d6a8" stroke-width="2.2" stroke-linecap="round"/>
+    <use href="#wing-shape" fill="url(#wing-fill)" stroke="#2e2a3f" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M480 312Q524 298 572 312" fill="none" stroke="#eadcb2" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M466 328Q477 337 488 331Q500 340 512 333Q524 342 537 335Q550 342 563 334Q578 340 592 330" fill="none" stroke="#e2d09c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- scarf tails streaming in the wind -->
     <g transform="translate(570 292)"><g class="sway"><g transform="translate(-570 -292)">
@@ -640,6 +673,15 @@ body {
   <span class="when-running"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="3" height="9" rx="1"/><rect x="7" y="1.5" width="3" height="9" rx="1"/></svg>Pause</span>
   <span class="when-paused"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5L10.5 6L3 10.5Z"/></svg>Play</span>
 </label>
+</div>
+
+<figcaption class="prompt">
+  <span class="prompt-label">Prompt</span>
+  <blockquote>
+    <p>Create a single-file HTML containing an SVG animation: a cartoon pelican (white/light yellow with a large throat pouch) riding a spoked bicycle, with rotating wheels, pedaling legs, and a background that moves backward to simulate motion, all controlled purely with CSS keyframes and no external libraries.</p>
+  </blockquote>
+</figcaption>
+</figure>
 </main>
 </body>
 </html>
