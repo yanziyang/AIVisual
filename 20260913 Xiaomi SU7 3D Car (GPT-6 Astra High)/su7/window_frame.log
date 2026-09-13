@@ -1,0 +1,738 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Read prefs: "C:\Users\admin\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+Read blend: "C:\MyProjects\TempProject (OpenAI)\su7\Xiaomi_SU7_Max.blend"
+Fra:1 Mem:180.14M (Peak 180.14M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Unified aluminum body | welded hood, quarters and bumpers
+Fra:1 Mem:180.14M (Peak 180.14M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Compound curved greenhouse | panoramic glazing
+Fra:1 Mem:184.17M (Peak 184.17M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Window perimeter | satin black surround
+Fra:1 Mem:185.95M (Peak 185.95M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim
+Fra:1 Mem:186.39M (Peak 186.39M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.001
+Fra:1 Mem:186.13M (Peak 186.39M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Smooth continuous side glass
+Fra:1 Mem:186.37M (Peak 186.39M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.002
+Fra:1 Mem:187.09M (Peak 187.09M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear quarter glass division
+Fra:1 Mem:187.12M (Peak 187.12M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted continuous A pillar and roof rail
+Fra:1 Mem:187.33M (Peak 187.33M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof drip molding
+Fra:1 Mem:187.51M (Peak 187.51M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Window perimeter | satin black surround.001
+Fra:1 Mem:195.29M (Peak 195.29M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Smooth continuous side glass.001
+Fra:1 Mem:195.29M (Peak 195.29M) | Time:00:01.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.003
+Fra:1 Mem:195.54M (Peak 195.54M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.004
+Fra:1 Mem:195.58M (Peak 195.58M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.005
+Fra:1 Mem:196.16M (Peak 196.16M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear quarter glass division.001
+Fra:1 Mem:196.34M (Peak 196.34M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted continuous A pillar and roof rail.001
+Fra:1 Mem:198.97M (Peak 198.97M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof drip molding.001
+Fra:1 Mem:199.15M (Peak 199.15M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood precision shut line
+Fra:1 Mem:199.28M (Peak 199.28M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front door leading gap
+Fra:1 Mem:199.34M (Peak 199.34M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar door gap
+Fra:1 Mem:201.83M (Peak 201.83M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear door trailing gap
+Fra:1 Mem:201.90M (Peak 201.90M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker sill
+Fra:1 Mem:201.97M (Peak 201.97M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker silver edge
+Fra:1 Mem:202.03M (Peak 202.03M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess
+Fra:1 Mem:202.05M (Peak 202.05M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut
+Fra:1 Mem:202.05M (Peak 202.05M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.001
+Fra:1 Mem:202.07M (Peak 202.07M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Charging door
+Fra:1 Mem:202.07M (Peak 202.07M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue
+Fra:1 Mem:202.08M (Peak 202.08M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess.001
+Fra:1 Mem:202.26M (Peak 202.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fender blade polished edge
+Fra:1 Mem:202.21M (Peak 202.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror stalk
+Fra:1 Mem:202.22M (Peak 202.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror LED indicator
+Fra:1 Mem:202.23M (Peak 202.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.001
+Fra:1 Mem:202.26M (Peak 202.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip
+Fra:1 Mem:202.36M (Peak 202.36M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front fender black air blade
+Fra:1 Mem:202.39M (Peak 202.39M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Side camera lens.001
+Fra:1 Mem:202.46M (Peak 202.46M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror black lower housing.001
+Fra:1 Mem:202.45M (Peak 202.46M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal
+Fra:1 Mem:202.60M (Peak 202.60M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror painted upper cap.001
+Fra:1 Mem:202.66M (Peak 202.66M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror reflective glass.001
+Fra:1 Mem:202.81M (Peak 202.81M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner
+Fra:1 Mem:202.81M (Peak 202.81M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.001
+Fra:1 Mem:202.94M (Peak 202.94M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.001
+Fra:1 Mem:203.04M (Peak 203.04M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.001
+Fra:1 Mem:203.05M (Peak 203.05M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood precision shut line.001
+Fra:1 Mem:203.19M (Peak 203.19M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front door leading gap.001
+Fra:1 Mem:203.26M (Peak 203.26M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar door gap.001
+Fra:1 Mem:203.32M (Peak 203.32M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear door trailing gap.001
+Fra:1 Mem:203.39M (Peak 203.39M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker sill.001
+Fra:1 Mem:203.45M (Peak 203.45M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker silver edge.001
+Fra:1 Mem:203.52M (Peak 203.52M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess.002
+Fra:1 Mem:203.59M (Peak 203.59M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.002
+Fra:1 Mem:203.59M (Peak 203.59M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.003
+Fra:1 Mem:203.56M (Peak 203.59M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.002
+Fra:1 Mem:203.57M (Peak 203.59M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fender blade polished edge.001
+Fra:1 Mem:203.62M (Peak 203.62M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror stalk.001
+Fra:1 Mem:203.59M (Peak 203.62M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.003
+Fra:1 Mem:203.71M (Peak 203.71M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front fender black air blade.001
+Fra:1 Mem:203.66M (Peak 203.71M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Side camera lens
+Fra:1 Mem:203.69M (Peak 203.71M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror black lower housing
+Fra:1 Mem:203.78M (Peak 203.78M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.002
+Fra:1 Mem:203.84M (Peak 203.84M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror painted upper cap
+Fra:1 Mem:204.00M (Peak 204.00M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror reflective glass
+Fra:1 Mem:204.07M (Peak 204.07M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.002
+Fra:1 Mem:204.19M (Peak 204.19M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.003
+Fra:1 Mem:204.35M (Peak 204.35M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.002
+Fra:1 Mem:204.36M (Peak 204.36M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.003
+Fra:1 Mem:204.48M (Peak 204.48M) | Time:00:01.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight rubber gasket
+Fra:1 Mem:204.52M (Peak 204.52M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight polished rim
+Fra:1 Mem:204.56M (Peak 204.56M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Signature sweeping diagonal DRL
+Fra:1 Mem:204.61M (Peak 204.61M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower segmented optical return
+Fra:1 Mem:204.66M (Peak 204.66M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Upper arrow DRL accent
+Fra:1 Mem:204.70M (Peak 204.70M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Corner intake rim
+Fra:1 Mem:204.72M (Peak 204.72M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Air curtain inner fin
+Fra:1 Mem:204.72M (Peak 204.72M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight rubber gasket.001
+Fra:1 Mem:204.76M (Peak 204.76M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight polished rim.001
+Fra:1 Mem:204.80M (Peak 204.80M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Signature sweeping diagonal DRL.001
+Fra:1 Mem:204.86M (Peak 204.86M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower segmented optical return.001
+Fra:1 Mem:204.87M (Peak 204.87M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.003
+Fra:1 Mem:204.93M (Peak 204.93M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Waterdrop headlight | dark compound-curved optical housing
+Fra:1 Mem:204.94M (Peak 204.94M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Upper arrow DRL accent.001
+Fra:1 Mem:205.06M (Peak 205.06M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround
+Fra:1 Mem:205.06M (Peak 205.06M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Corner intake rim.001
+Fra:1 Mem:205.15M (Peak 205.15M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Air curtain inner fin.001
+Fra:1 Mem:205.15M (Peak 205.15M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Satin front intake frame
+Fra:1 Mem:205.17M (Peak 205.17M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted intake ring
+Fra:1 Mem:205.16M (Peak 205.17M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted intake ring.001
+Fra:1 Mem:205.18M (Peak 205.18M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic
+Fra:1 Mem:205.18M (Peak 205.18M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver
+Fra:1 Mem:205.28M (Peak 205.28M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.001
+Fra:1 Mem:205.32M (Peak 205.32M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.002
+Fra:1 Mem:205.32M (Peak 205.32M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.003
+Fra:1 Mem:205.32M (Peak 205.32M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.001
+Fra:1 Mem:205.41M (Peak 205.41M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement
+Fra:1 Mem:205.36M (Peak 205.41M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.001
+Fra:1 Mem:205.41M (Peak 205.41M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.002
+Fra:1 Mem:205.43M (Peak 205.43M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.003
+Fra:1 Mem:205.43M (Peak 205.43M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.004
+Fra:1 Mem:205.43M (Peak 205.43M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.005
+Fra:1 Mem:207.86M (Peak 207.86M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.006
+Fra:1 Mem:207.84M (Peak 207.86M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.007
+Fra:1 Mem:207.81M (Peak 207.86M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.001
+Fra:1 Mem:207.88M (Peak 207.88M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.008
+Fra:1 Mem:207.84M (Peak 207.88M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.009
+Fra:1 Mem:207.87M (Peak 207.88M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.010
+Fra:1 Mem:207.85M (Peak 207.88M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.002
+Fra:1 Mem:207.85M (Peak 207.88M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.002
+Fra:1 Mem:208.06M (Peak 208.06M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front plate lettering
+Fra:1 Mem:208.22M (Peak 208.22M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.003
+Fra:1 Mem:208.24M (Peak 208.24M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.003
+Fra:1 Mem:208.85M (Peak 208.85M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Vertical corner air curtain
+Fra:1 Mem:209.01M (Peak 209.01M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Waterdrop headlight | dark compound-curved optical housing.001
+Fra:1 Mem:209.13M (Peak 209.13M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.004
+Fra:1 Mem:209.22M (Peak 209.22M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.004
+Fra:1 Mem:209.34M (Peak 209.34M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.005
+Fra:1 Mem:209.50M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.005
+Fra:1 Mem:206.97M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.006
+Fra:1 Mem:206.94M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood mi insignia
+Fra:1 Mem:207.04M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.007
+Fra:1 Mem:207.21M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.006
+Fra:1 Mem:207.34M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear lamp outer seal
+Fra:1 Mem:207.30M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.007
+Fra:1 Mem:207.33M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Vertical corner air curtain.001
+Fra:1 Mem:207.37M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wide trapezoidal front lower intake
+Fra:1 Mem:207.52M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower full-width LED filament
+Fra:1 Mem:207.48M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sculpted Aqua Blue intake side surround.001
+Fra:1 Mem:207.58M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front license plate bracket
+Fra:1 Mem:207.76M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front license plate
+Fra:1 Mem:207.81M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ultrasonic parking sensor
+Fra:1 Mem:207.88M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Inner taillight return
+Fra:1 Mem:207.87M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | License plate screw
+Fra:1 Mem:207.87M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ultrasonic parking sensor.001
+Fra:1 Mem:207.85M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | License plate screw.001
+Fra:1 Mem:207.89M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear vent rim
+Fra:1 Mem:207.93M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Xiaomi hood emblem
+Fra:1 Mem:207.94M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trunk panel shut line
+Fra:1 Mem:208.04M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front perception camera
+Fra:1 Mem:208.10M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Full-width smoked rear lamp housing
+Fra:1 Mem:208.18M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Inner taillight return.001
+Fra:1 Mem:208.27M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Halo rear red optical bed
+Fra:1 Mem:208.29M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear bumper side air outlet
+Fra:1 Mem:208.33M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear vent rim.001
+Fra:1 Mem:208.37M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trunk panel shut line.001
+Fra:1 Mem:208.44M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear lower reflector
+Fra:1 Mem:208.49M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear bumper side air outlet.001
+Fra:1 Mem:208.59M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear lower reflector.001
+Fra:1 Mem:208.64M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser black valance
+Fra:1 Mem:208.81M (Peak 209.50M) | Time:00:01.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser painted buttress.001
+Fra:1 Mem:208.89M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser lower lip
+Fra:1 Mem:208.95M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake
+Fra:1 Mem:208.98M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear plate SU7
+Fra:1 Mem:209.08M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.002
+Fra:1 Mem:209.39M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.003
+Fra:1 Mem:209.34M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear plate bracket
+Fra:1 Mem:209.45M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | x
+Fra:1 Mem:209.50M (Peak 209.50M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | i
+Fra:1 Mem:209.54M (Peak 209.54M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear license plate
+Fra:1 Mem:209.51M (Peak 209.54M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | a
+Fra:1 Mem:209.80M (Peak 209.80M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | o
+Fra:1 Mem:209.94M (Peak 209.94M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | m
+Fra:1 Mem:210.09M (Peak 210.09M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | i.001
+Fra:1 Mem:210.16M (Peak 210.16M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear model badge
+Fra:1 Mem:210.45M (Peak 210.45M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear Max badge
+Fra:1 Mem:210.73M (Peak 210.73M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear manufacturer badge
+Fra:1 Mem:210.93M (Peak 210.93M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated rear deck ducktail
+Fra:1 Mem:211.06M (Peak 211.06M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Retractable spoiler shut line
+Fra:1 Mem:211.14M (Peak 211.14M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear parking camera
+Fra:1 Mem:211.16M (Peak 211.16M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left | tire carcass
+Fra:1 Mem:211.18M (Peak 211.18M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring.001
+Fra:1 Mem:211.34M (Peak 211.34M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring.002
+Fra:1 Mem:211.54M (Peak 211.54M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring
+Fra:1 Mem:211.78M (Peak 211.78M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left directional tread | 792 blocks
+Fra:1 Mem:211.89M (Peak 211.89M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left cast rim barrel
+Fra:1 Mem:211.99M (Peak 211.99M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left diamond-cut outer flange
+Fra:1 Mem:212.45M (Peak 212.45M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left inner rim accent
+Fra:1 Mem:212.47M (Peak 212.47M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left brake rotor
+Fra:1 Mem:212.81M (Peak 212.81M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left rotor outer scoring
+Fra:1 Mem:212.87M (Peak 212.87M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left caliper marking
+Fra:1 Mem:213.14M (Peak 213.14M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation
+Fra:1 Mem:213.77M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.001
+Fra:1 Mem:213.67M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.002
+Fra:1 Mem:213.65M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.003
+Fra:1 Mem:213.69M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.004
+Fra:1 Mem:213.69M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.005
+Fra:1 Mem:213.70M (Peak 213.77M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.006
+Fra:1 Mem:213.80M (Peak 213.80M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.007
+Fra:1 Mem:213.91M (Peak 213.91M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.008
+Fra:1 Mem:213.82M (Peak 213.91M) | Time:00:01.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.009
+Fra:1 Mem:213.81M (Peak 213.91M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left center mi logo
+Fra:1 Mem:213.82M (Peak 213.91M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.012
+Fra:1 Mem:213.85M (Peak 213.91M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.013
+Fra:1 Mem:214.09M (Peak 214.09M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.014
+Fra:1 Mem:214.14M (Peak 214.14M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.015
+Fra:1 Mem:214.13M (Peak 214.14M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.016
+Fra:1 Mem:214.17M (Peak 214.17M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering
+Fra:1 Mem:214.15M (Peak 214.17M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.017
+Fra:1 Mem:214.18M (Peak 214.18M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.001
+Fra:1 Mem:214.19M (Peak 214.19M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.002
+Fra:1 Mem:214.19M (Peak 214.19M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.019
+Fra:1 Mem:214.29M (Peak 214.29M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.018
+Fra:1 Mem:214.34M (Peak 214.34M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.020
+Fra:1 Mem:214.34M (Peak 214.34M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.021
+Fra:1 Mem:214.38M (Peak 214.38M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.003
+Fra:1 Mem:214.38M (Peak 214.38M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.022
+Fra:1 Mem:214.38M (Peak 214.38M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.024
+Fra:1 Mem:214.44M (Peak 214.44M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.005
+Fra:1 Mem:214.44M (Peak 214.44M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.025
+Fra:1 Mem:214.46M (Peak 214.46M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.006
+Fra:1 Mem:214.50M (Peak 214.50M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.007
+Fra:1 Mem:214.47M (Peak 214.50M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.008
+Fra:1 Mem:214.48M (Peak 214.50M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.027
+Fra:1 Mem:214.62M (Peak 214.62M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.009
+Fra:1 Mem:214.64M (Peak 214.64M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.010
+Fra:1 Mem:214.61M (Peak 214.64M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.028
+Fra:1 Mem:214.63M (Peak 214.64M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.011
+Fra:1 Mem:214.64M (Peak 214.64M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.029
+Fra:1 Mem:214.77M (Peak 214.77M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.030
+Fra:1 Mem:214.82M (Peak 214.82M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.012
+Fra:1 Mem:214.83M (Peak 214.83M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.031
+Fra:1 Mem:214.84M (Peak 214.84M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.013
+Fra:1 Mem:214.83M (Peak 214.84M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.032
+Fra:1 Mem:214.83M (Peak 214.84M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.014
+Fra:1 Mem:215.00M (Peak 215.00M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.033
+Fra:1 Mem:215.02M (Peak 215.02M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.034
+Fra:1 Mem:215.04M (Peak 215.04M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.015
+Fra:1 Mem:215.12M (Peak 215.12M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.035
+Fra:1 Mem:215.11M (Peak 215.12M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.016
+Fra:1 Mem:215.12M (Peak 215.12M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.037
+Fra:1 Mem:215.29M (Peak 215.29M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.038
+Fra:1 Mem:215.30M (Peak 215.30M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.039
+Fra:1 Mem:215.30M (Peak 215.30M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.040
+Fra:1 Mem:215.49M (Peak 215.49M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.041
+Fra:1 Mem:215.44M (Peak 215.49M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.018
+Fra:1 Mem:215.48M (Peak 215.49M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.043
+Fra:1 Mem:215.48M (Peak 215.49M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.019
+Fra:1 Mem:215.55M (Peak 215.55M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.020
+Fra:1 Mem:215.58M (Peak 215.58M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.044
+Fra:1 Mem:215.56M (Peak 215.58M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.021
+Fra:1 Mem:215.55M (Peak 215.58M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.046
+Fra:1 Mem:215.60M (Peak 215.60M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.047
+Fra:1 Mem:215.63M (Peak 215.63M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.048
+Fra:1 Mem:215.63M (Peak 215.63M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.049
+Fra:1 Mem:215.63M (Peak 215.63M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.050
+Fra:1 Mem:215.67M (Peak 215.67M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.051
+Fra:1 Mem:215.63M (Peak 215.67M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.053
+Fra:1 Mem:215.68M (Peak 215.68M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.054
+Fra:1 Mem:215.67M (Peak 215.68M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.056
+Fra:1 Mem:215.74M (Peak 215.74M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.057
+Fra:1 Mem:215.72M (Peak 215.74M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.059
+Fra:1 Mem:215.78M (Peak 215.78M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.060
+Fra:1 Mem:215.76M (Peak 215.78M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.062
+Fra:1 Mem:215.84M (Peak 215.84M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right caliper marking
+Fra:1 Mem:216.01M (Peak 216.01M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.063
+Fra:1 Mem:215.95M (Peak 216.01M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.064
+Fra:1 Mem:216.49M (Peak 216.49M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.065
+Fra:1 Mem:216.50M (Peak 216.50M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.066
+Fra:1 Mem:216.55M (Peak 216.55M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.067
+Fra:1 Mem:216.50M (Peak 216.55M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.069
+Fra:1 Mem:216.61M (Peak 216.61M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.070
+Fra:1 Mem:216.61M (Peak 216.61M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.071
+Fra:1 Mem:216.74M (Peak 216.74M) | Time:00:01.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left brake disc bell
+Fra:1 Mem:216.67M (Peak 216.74M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left yellow six-piston caliper
+Fra:1 Mem:216.66M (Peak 216.74M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke
+Fra:1 Mem:216.79M (Peak 216.79M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right center mi logo
+Fra:1 Mem:216.85M (Peak 216.85M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket
+Fra:1 Mem:216.91M (Peak 216.91M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.001
+Fra:1 Mem:217.01M (Peak 217.01M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.001
+Fra:1 Mem:217.08M (Peak 217.08M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.002
+Fra:1 Mem:217.10M (Peak 217.10M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering
+Fra:1 Mem:217.12M (Peak 217.12M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.002
+Fra:1 Mem:217.12M (Peak 217.12M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.001
+Fra:1 Mem:217.16M (Peak 217.16M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.002
+Fra:1 Mem:217.13M (Peak 217.16M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.003
+Fra:1 Mem:217.31M (Peak 217.31M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.004
+Fra:1 Mem:217.36M (Peak 217.36M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.003
+Fra:1 Mem:217.36M (Peak 217.36M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.004
+Fra:1 Mem:217.42M (Peak 217.42M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.004
+Fra:1 Mem:217.45M (Peak 217.45M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.005
+Fra:1 Mem:217.41M (Peak 217.45M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.005
+Fra:1 Mem:217.45M (Peak 217.45M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.006
+Fra:1 Mem:217.51M (Peak 217.51M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.006
+Fra:1 Mem:217.58M (Peak 217.58M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.007
+Fra:1 Mem:217.51M (Peak 217.58M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.008
+Fra:1 Mem:217.59M (Peak 217.59M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.006
+Fra:1 Mem:217.57M (Peak 217.59M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.009
+Fra:1 Mem:217.60M (Peak 217.60M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.010
+Fra:1 Mem:217.69M (Peak 217.69M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.011
+Fra:1 Mem:217.64M (Peak 217.69M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.007
+Fra:1 Mem:217.63M (Peak 217.69M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.008
+Fra:1 Mem:217.87M (Peak 217.87M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.009
+Fra:1 Mem:217.89M (Peak 217.89M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.009
+Fra:1 Mem:217.93M (Peak 217.93M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.013
+Fra:1 Mem:217.97M (Peak 217.97M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.014
+Fra:1 Mem:218.17M (Peak 218.17M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left center cap ring
+Fra:1 Mem:218.21M (Peak 218.21M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut
+Fra:1 Mem:218.32M (Peak 218.32M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.001
+Fra:1 Mem:218.33M (Peak 218.33M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.002
+Fra:1 Mem:218.38M (Peak 218.38M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.016
+Fra:1 Mem:218.39M (Peak 218.39M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.003
+Fra:1 Mem:218.47M (Peak 218.47M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.004
+Fra:1 Mem:218.56M (Peak 218.56M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire valve
+Fra:1 Mem:218.55M (Peak 218.56M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.017
+Fra:1 Mem:218.57M (Peak 218.57M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right | tire carcass
+Fra:1 Mem:218.58M (Peak 218.58M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring.001
+Fra:1 Mem:218.78M (Peak 218.78M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring.002
+Fra:1 Mem:218.98M (Peak 218.98M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring
+Fra:1 Mem:219.04M (Peak 219.04M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.018
+Fra:1 Mem:219.07M (Peak 219.07M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right directional tread | 792 blocks
+Fra:1 Mem:219.11M (Peak 219.11M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right cast rim barrel
+Fra:1 Mem:219.35M (Peak 219.35M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.020
+Fra:1 Mem:219.42M (Peak 219.42M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right diamond-cut outer flange
+Fra:1 Mem:219.42M (Peak 219.42M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right inner rim accent
+Fra:1 Mem:219.69M (Peak 219.69M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right brake rotor
+Fra:1 Mem:219.72M (Peak 219.72M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right rotor outer scoring
+Fra:1 Mem:220.17M (Peak 220.17M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation
+Fra:1 Mem:220.43M (Peak 220.44M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.001
+Fra:1 Mem:220.41M (Peak 220.44M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.002
+Fra:1 Mem:220.44M (Peak 220.44M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.003
+Fra:1 Mem:220.44M (Peak 220.44M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.004
+Fra:1 Mem:220.49M (Peak 220.49M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.005
+Fra:1 Mem:220.52M (Peak 220.52M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.006
+Fra:1 Mem:220.54M (Peak 220.54M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.007
+Fra:1 Mem:220.55M (Peak 220.55M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.008
+Fra:1 Mem:220.57M (Peak 220.57M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.009
+Fra:1 Mem:220.61M (Peak 220.61M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left caliper marking
+Fra:1 Mem:220.72M (Peak 220.72M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.010
+Fra:1 Mem:220.72M (Peak 220.72M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.011
+Fra:1 Mem:221.04M (Peak 221.04M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.012
+Fra:1 Mem:221.28M (Peak 221.28M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.013
+Fra:1 Mem:221.27M (Peak 221.28M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.014
+Fra:1 Mem:221.31M (Peak 221.31M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.015
+Fra:1 Mem:221.29M (Peak 221.31M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.016
+Fra:1 Mem:221.35M (Peak 221.35M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.017
+Fra:1 Mem:221.38M (Peak 221.38M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.018
+Fra:1 Mem:221.40M (Peak 221.40M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.019
+Fra:1 Mem:221.40M (Peak 221.40M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.020
+Fra:1 Mem:221.43M (Peak 221.43M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.021
+Fra:1 Mem:221.47M (Peak 221.47M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center mi logo
+Fra:1 Mem:221.47M (Peak 221.47M) | Time:00:01.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.022
+Fra:1 Mem:221.58M (Peak 221.58M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.023
+Fra:1 Mem:221.70M (Peak 221.70M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.024
+Fra:1 Mem:221.68M (Peak 221.70M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.025
+Fra:1 Mem:221.75M (Peak 221.75M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.026
+Fra:1 Mem:221.72M (Peak 221.75M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.027
+Fra:1 Mem:221.75M (Peak 221.75M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering
+Fra:1 Mem:221.75M (Peak 221.75M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.028
+Fra:1 Mem:221.77M (Peak 221.77M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.029
+Fra:1 Mem:221.84M (Peak 221.84M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.002
+Fra:1 Mem:221.90M (Peak 221.90M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.030
+Fra:1 Mem:221.96M (Peak 221.96M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.031
+Fra:1 Mem:221.94M (Peak 221.96M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.003
+Fra:1 Mem:221.97M (Peak 221.97M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.032
+Fra:1 Mem:222.00M (Peak 222.00M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.004
+Fra:1 Mem:222.08M (Peak 222.08M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.005
+Fra:1 Mem:222.01M (Peak 222.08M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.035
+Fra:1 Mem:222.01M (Peak 222.08M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.006
+Fra:1 Mem:222.09M (Peak 222.09M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.007
+Fra:1 Mem:222.16M (Peak 222.16M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.008
+Fra:1 Mem:222.18M (Peak 222.18M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.036
+Fra:1 Mem:222.19M (Peak 222.19M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.037
+Fra:1 Mem:222.18M (Peak 222.19M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.009
+Fra:1 Mem:222.23M (Peak 222.23M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.038
+Fra:1 Mem:222.19M (Peak 222.23M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.010
+Fra:1 Mem:222.24M (Peak 222.24M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.039
+Fra:1 Mem:222.23M (Peak 222.24M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.011
+Fra:1 Mem:222.24M (Peak 222.24M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.041
+Fra:1 Mem:222.41M (Peak 222.41M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.042
+Fra:1 Mem:222.47M (Peak 222.47M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.043
+Fra:1 Mem:222.45M (Peak 222.47M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.012
+Fra:1 Mem:222.44M (Peak 222.47M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.013
+Fra:1 Mem:222.43M (Peak 222.47M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.045
+Fra:1 Mem:222.45M (Peak 222.47M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.014
+Fra:1 Mem:222.54M (Peak 222.54M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.046
+Fra:1 Mem:222.64M (Peak 222.64M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.047
+Fra:1 Mem:222.65M (Peak 222.65M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.048
+Fra:1 Mem:222.72M (Peak 222.72M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.015
+Fra:1 Mem:222.79M (Peak 222.79M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.049
+Fra:1 Mem:222.78M (Peak 222.79M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.016
+Fra:1 Mem:222.78M (Peak 222.79M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.050
+Fra:1 Mem:222.87M (Peak 222.87M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.051
+Fra:1 Mem:222.96M (Peak 222.96M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.017
+Fra:1 Mem:222.91M (Peak 222.96M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.054
+Fra:1 Mem:223.14M (Peak 223.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.055
+Fra:1 Mem:223.10M (Peak 223.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.056
+Fra:1 Mem:223.13M (Peak 223.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.057
+Fra:1 Mem:223.21M (Peak 223.21M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.019
+Fra:1 Mem:223.19M (Peak 223.21M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.058
+Fra:1 Mem:223.15M (Peak 223.21M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.059
+Fra:1 Mem:223.16M (Peak 223.21M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.020
+Fra:1 Mem:223.25M (Peak 223.25M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.021
+Fra:1 Mem:223.23M (Peak 223.25M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.061
+Fra:1 Mem:223.24M (Peak 223.25M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.062
+Fra:1 Mem:223.26M (Peak 223.26M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.063
+Fra:1 Mem:223.24M (Peak 223.26M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.065
+Fra:1 Mem:223.30M (Peak 223.30M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.066
+Fra:1 Mem:223.30M (Peak 223.30M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.068
+Fra:1 Mem:223.37M (Peak 223.38M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.069
+Fra:1 Mem:223.37M (Peak 223.38M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.070
+Fra:1 Mem:223.38M (Peak 223.38M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.071
+Fra:1 Mem:223.40M (Peak 223.40M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right brake disc bell
+Fra:1 Mem:223.42M (Peak 223.42M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right yellow six-piston caliper
+Fra:1 Mem:223.45M (Peak 223.45M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right caliper marking
+Fra:1 Mem:223.64M (Peak 223.64M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke
+Fra:1 Mem:224.05M (Peak 224.05M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket
+Fra:1 Mem:224.16M (Peak 224.16M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.001
+Fra:1 Mem:224.19M (Peak 224.19M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.001
+Fra:1 Mem:224.20M (Peak 224.20M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.002
+Fra:1 Mem:224.26M (Peak 224.26M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.003
+Fra:1 Mem:224.38M (Peak 224.38M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.003
+Fra:1 Mem:224.38M (Peak 224.38M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.004
+Fra:1 Mem:224.43M (Peak 224.43M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.005
+Fra:1 Mem:224.44M (Peak 224.44M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center mi logo
+Fra:1 Mem:224.68M (Peak 224.68M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.005
+Fra:1 Mem:224.68M (Peak 224.68M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.006
+Fra:1 Mem:224.71M (Peak 224.71M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.006
+Fra:1 Mem:224.81M (Peak 224.81M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering
+Fra:1 Mem:224.82M (Peak 224.82M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.007
+Fra:1 Mem:224.81M (Peak 224.82M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.001
+Fra:1 Mem:224.85M (Peak 224.85M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.007
+Fra:1 Mem:224.83M (Peak 224.85M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.002
+Fra:1 Mem:224.97M (Peak 224.97M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.008
+Fra:1 Mem:224.96M (Peak 224.97M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.008
+Fra:1 Mem:224.99M (Peak 224.99M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.003
+Fra:1 Mem:224.98M (Peak 224.99M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.009
+Fra:1 Mem:225.05M (Peak 225.05M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.004
+Fra:1 Mem:225.08M (Peak 225.08M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.005
+Fra:1 Mem:225.14M (Peak 225.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.009
+Fra:1 Mem:225.13M (Peak 225.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right center hub
+Fra:1 Mem:225.10M (Peak 225.14M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.006
+Fra:1 Mem:225.33M (Peak 225.33M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.007
+Fra:1 Mem:225.33M (Peak 225.33M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut
+Fra:1 Mem:225.29M (Peak 225.33M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.001
+Fra:1 Mem:225.42M (Peak 225.42M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.008
+Fra:1 Mem:225.37M (Peak 225.42M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.003
+Fra:1 Mem:225.38M (Peak 225.42M) | Time:00:01.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.004
+Fra:1 Mem:225.45M (Peak 225.45M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.009
+Fra:1 Mem:225.43M (Peak 225.45M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire valve
+Fra:1 Mem:225.44M (Peak 225.45M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left | tire carcass
+Fra:1 Mem:225.43M (Peak 225.45M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire molded sidewall ring.001
+Fra:1 Mem:225.47M (Peak 225.47M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.011
+Fra:1 Mem:225.82M (Peak 225.82M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire molded sidewall ring.002
+Fra:1 Mem:225.85M (Peak 225.85M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire molded sidewall ring
+Fra:1 Mem:226.01M (Peak 226.01M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left cast rim barrel
+Fra:1 Mem:226.28M (Peak 226.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left diamond-cut outer flange
+Fra:1 Mem:226.42M (Peak 226.42M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left inner rim accent
+Fra:1 Mem:226.77M (Peak 226.77M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.012
+Fra:1 Mem:226.91M (Peak 226.91M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.013
+Fra:1 Mem:227.02M (Peak 227.02M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.014
+Fra:1 Mem:227.24M (Peak 227.24M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left brake rotor
+Fra:1 Mem:227.48M (Peak 227.48M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.015
+Fra:1 Mem:227.46M (Peak 227.48M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left rotor outer scoring
+Fra:1 Mem:227.46M (Peak 227.48M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.016
+Fra:1 Mem:227.61M (Peak 227.61M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation
+Fra:1 Mem:227.62M (Peak 227.62M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.001
+Fra:1 Mem:227.64M (Peak 227.64M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.002
+Fra:1 Mem:227.65M (Peak 227.65M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.003
+Fra:1 Mem:227.70M (Peak 227.70M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.017
+Fra:1 Mem:227.73M (Peak 227.73M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.004
+Fra:1 Mem:227.91M (Peak 227.91M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.005
+Fra:1 Mem:227.97M (Peak 227.97M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.006
+Fra:1 Mem:227.99M (Peak 227.99M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.018
+Fra:1 Mem:227.99M (Peak 227.99M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.019
+Fra:1 Mem:227.97M (Peak 227.99M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.007
+Fra:1 Mem:227.97M (Peak 227.99M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.020
+Fra:1 Mem:227.96M (Peak 227.99M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.008
+Fra:1 Mem:228.00M (Peak 228.00M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.021
+Fra:1 Mem:228.01M (Peak 228.01M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.009
+Fra:1 Mem:228.05M (Peak 228.05M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping
+Fra:1 Mem:228.05M (Peak 228.05M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.010
+Fra:1 Mem:228.02M (Peak 228.05M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.001
+Fra:1 Mem:228.06M (Peak 228.06M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.011
+Fra:1 Mem:228.03M (Peak 228.06M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.002
+Fra:1 Mem:228.07M (Peak 228.07M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.012
+Fra:1 Mem:228.07M (Peak 228.07M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.013
+Fra:1 Mem:228.08M (Peak 228.08M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.014
+Fra:1 Mem:228.12M (Peak 228.12M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.004
+Fra:1 Mem:228.10M (Peak 228.12M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.016
+Fra:1 Mem:228.12M (Peak 228.13M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.005
+Fra:1 Mem:228.16M (Peak 228.16M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.017
+Fra:1 Mem:228.16M (Peak 228.16M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.018
+Fra:1 Mem:228.16M (Peak 228.16M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.019
+Fra:1 Mem:228.22M (Peak 228.22M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.006
+Fra:1 Mem:228.20M (Peak 228.22M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.020
+Fra:1 Mem:228.21M (Peak 228.22M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.007
+Fra:1 Mem:228.21M (Peak 228.22M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.022
+Fra:1 Mem:228.27M (Peak 228.27M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering wheel spokes
+Fra:1 Mem:228.28M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Windshield wiper arm
+Fra:1 Mem:228.25M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.023
+Fra:1 Mem:228.24M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wiper rubber blade
+Fra:1 Mem:228.25M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.025
+Fra:1 Mem:228.26M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Windshield wiper arm.001
+Fra:1 Mem:228.28M (Peak 228.28M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wiper rubber blade.001
+Fra:1 Mem:228.32M (Peak 228.32M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.026
+Fra:1 Mem:228.36M (Peak 228.36M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seamless curved studio cyclorama
+Fra:1 Mem:228.37M (Peak 228.37M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.027
+Fra:1 Mem:228.41M (Peak 228.41M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.028
+Fra:1 Mem:228.40M (Peak 228.41M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Infinite studio floor
+Fra:1 Mem:228.43M (Peak 228.43M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flat aerodynamic underfloor
+Fra:1 Mem:228.50M (Peak 228.50M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.030
+Fra:1 Mem:228.54M (Peak 228.54M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.031
+Fra:1 Mem:228.48M (Peak 228.54M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.032
+Fra:1 Mem:228.50M (Peak 228.54M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rear camera blister
+Fra:1 Mem:228.61M (Peak 228.61M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.033
+Fra:1 Mem:228.57M (Peak 228.61M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.034
+Fra:1 Mem:228.60M (Peak 228.61M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.035
+Fra:1 Mem:228.74M (Peak 228.74M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof lidar painted pod
+Fra:1 Mem:228.75M (Peak 228.75M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.036
+Fra:1 Mem:228.75M (Peak 228.75M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.037
+Fra:1 Mem:228.82M (Peak 228.82M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.038
+Fra:1 Mem:228.81M (Peak 228.82M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.039
+Fra:1 Mem:228.82M (Peak 228.82M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cup holder
+Fra:1 Mem:228.85M (Peak 228.85M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.040
+Fra:1 Mem:228.85M (Peak 228.85M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.041
+Fra:1 Mem:228.92M (Peak 228.92M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.042
+Fra:1 Mem:228.90M (Peak 228.92M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.043
+Fra:1 Mem:228.97M (Peak 228.97M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.044
+Fra:1 Mem:228.94M (Peak 228.97M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.046
+Fra:1 Mem:228.94M (Peak 228.97M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cup holder.001
+Fra:1 Mem:229.00M (Peak 229.00M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.047
+Fra:1 Mem:229.04M (Peak 229.04M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.048
+Fra:1 Mem:229.04M (Peak 229.04M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.049
+Fra:1 Mem:229.01M (Peak 229.04M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.050
+Fra:1 Mem:229.02M (Peak 229.04M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Center tunnel
+Fra:1 Mem:229.03M (Peak 229.04M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.051
+Fra:1 Mem:229.10M (Peak 229.10M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.052
+Fra:1 Mem:229.14M (Peak 229.14M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.053
+Fra:1 Mem:229.11M (Peak 229.14M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering center
+Fra:1 Mem:229.17M (Peak 229.17M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.054
+Fra:1 Mem:229.12M (Peak 229.17M) | Time:00:01.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.056
+Fra:1 Mem:229.22M (Peak 229.22M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering wheel
+Fra:1 Mem:229.20M (Peak 229.22M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.057
+Fra:1 Mem:229.25M (Peak 229.25M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.059
+Fra:1 Mem:229.35M (Peak 229.35M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.060
+Fra:1 Mem:229.37M (Peak 229.37M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Screen glass
+Fra:1 Mem:229.45M (Peak 229.45M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.061
+Fra:1 Mem:229.43M (Peak 229.45M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.062
+Fra:1 Mem:229.42M (Peak 229.45M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.063
+Fra:1 Mem:229.47M (Peak 229.47M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.064
+Fra:1 Mem:229.46M (Peak 229.47M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.066
+Fra:1 Mem:229.53M (Peak 229.53M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dashboard center screen
+Fra:1 Mem:229.47M (Peak 229.53M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.067
+Fra:1 Mem:229.53M (Peak 229.53M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.069
+Fra:1 Mem:229.60M (Peak 229.60M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.070
+Fra:1 Mem:229.59M (Peak 229.60M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.071
+Fra:1 Mem:229.58M (Peak 229.60M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left brake disc bell
+Fra:1 Mem:229.57M (Peak 229.60M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dashboard
+Fra:1 Mem:229.66M (Peak 229.66M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left yellow six-piston caliper
+Fra:1 Mem:229.67M (Peak 229.67M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke
+Fra:1 Mem:229.76M (Peak 229.76M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.003
+Fra:1 Mem:229.84M (Peak 229.84M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket
+Fra:1 Mem:229.73M (Peak 229.84M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.001
+Fra:1 Mem:229.78M (Peak 229.84M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back
+Fra:1 Mem:229.87M (Peak 229.87M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.002
+Fra:1 Mem:229.85M (Peak 229.87M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.002
+Fra:1 Mem:229.84M (Peak 229.87M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.003
+Fra:1 Mem:229.99M (Peak 229.99M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.003
+Fra:1 Mem:229.92M (Peak 229.99M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.004
+Fra:1 Mem:229.98M (Peak 229.99M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.004
+Fra:1 Mem:230.11M (Peak 230.11M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.005
+Fra:1 Mem:230.05M (Peak 230.11M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.002
+Fra:1 Mem:230.08M (Peak 230.11M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.005
+Fra:1 Mem:230.16M (Peak 230.16M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.006
+Fra:1 Mem:230.23M (Peak 230.23M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.006
+Fra:1 Mem:230.20M (Peak 230.23M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.003
+Fra:1 Mem:230.21M (Peak 230.23M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.007
+Fra:1 Mem:230.28M (Peak 230.28M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.007
+Fra:1 Mem:230.29M (Peak 230.29M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.008
+Fra:1 Mem:230.27M (Peak 230.29M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.008
+Fra:1 Mem:230.30M (Peak 230.30M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.002
+Fra:1 Mem:230.44M (Peak 230.44M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.009
+Fra:1 Mem:230.41M (Peak 230.44M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.009
+Fra:1 Mem:230.39M (Peak 230.44M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center hub
+Fra:1 Mem:230.51M (Peak 230.51M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center cap ring
+Fra:1 Mem:230.63M (Peak 230.63M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut
+Fra:1 Mem:230.65M (Peak 230.65M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.001
+Fra:1 Mem:230.63M (Peak 230.65M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.001
+Fra:1 Mem:230.57M (Peak 230.65M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.002
+Fra:1 Mem:230.68M (Peak 230.68M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.003
+Fra:1 Mem:230.67M (Peak 230.68M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.004
+Fra:1 Mem:230.62M (Peak 230.68M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire valve
+Fra:1 Mem:230.67M (Peak 230.68M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right | tire carcass
+Fra:1 Mem:230.66M (Peak 230.68M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.002
+Fra:1 Mem:230.98M (Peak 230.98M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire molded sidewall ring.002
+Fra:1 Mem:231.02M (Peak 231.02M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right directional tread | 792 blocks
+Fra:1 Mem:231.21M (Peak 231.21M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.001
+Fra:1 Mem:231.22M (Peak 231.22M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right cast rim barrel
+Fra:1 Mem:231.55M (Peak 231.55M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right diamond-cut outer flange
+Fra:1 Mem:231.52M (Peak 231.55M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right inner rim accent
+Fra:1 Mem:231.92M (Peak 231.92M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint
+Fra:1 Mem:231.94M (Peak 231.94M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right brake rotor
+Fra:1 Mem:232.37M (Peak 232.37M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right rotor outer scoring
+Fra:1 Mem:232.41M (Peak 232.41M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.001
+Fra:1 Mem:232.52M (Peak 232.52M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation
+Fra:1 Mem:232.61M (Peak 232.61M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.001
+Fra:1 Mem:232.54M (Peak 232.61M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.003
+Fra:1 Mem:232.60M (Peak 232.61M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.004
+Fra:1 Mem:232.58M (Peak 232.61M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.005
+Fra:1 Mem:232.58M (Peak 232.61M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.006
+Fra:1 Mem:232.66M (Peak 232.66M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.007
+Fra:1 Mem:232.71M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.008
+Fra:1 Mem:232.66M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.009
+Fra:1 Mem:232.70M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.010
+Fra:1 Mem:232.72M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dark cabin tub
+Fra:1 Mem:232.70M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.012
+Fra:1 Mem:232.71M (Peak 232.73M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.013
+Fra:1 Mem:232.79M (Peak 232.79M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.014
+Fra:1 Mem:232.79M (Peak 232.79M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.015
+Fra:1 Mem:232.82M (Peak 232.82M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.016
+Fra:1 Mem:232.85M (Peak 232.85M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.017
+Fra:1 Mem:232.85M (Peak 232.85M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire valve
+Fra:1 Mem:232.83M (Peak 232.85M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.018
+Fra:1 Mem:232.83M (Peak 232.85M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.019
+Fra:1 Mem:232.85M (Peak 232.85M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.020
+Fra:1 Mem:232.89M (Peak 232.89M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.004
+Fra:1 Mem:232.90M (Peak 232.90M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.021
+Fra:1 Mem:232.88M (Peak 232.90M) | Time:00:01.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.022
+Fra:1 Mem:232.96M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.003
+Fra:1 Mem:232.91M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.023
+Fra:1 Mem:232.92M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.024
+Fra:1 Mem:232.95M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.002
+Fra:1 Mem:232.95M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.025
+Fra:1 Mem:232.93M (Peak 232.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.001
+Fra:1 Mem:232.98M (Peak 232.98M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.027
+Fra:1 Mem:232.99M (Peak 232.99M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut
+Fra:1 Mem:232.99M (Peak 232.99M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.028
+Fra:1 Mem:233.03M (Peak 233.03M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center cap ring
+Fra:1 Mem:233.02M (Peak 233.03M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.029
+Fra:1 Mem:233.13M (Peak 233.13M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.030
+Fra:1 Mem:233.17M (Peak 233.17M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center hub
+Fra:1 Mem:233.19M (Peak 233.19M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.031
+Fra:1 Mem:233.28M (Peak 233.28M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.032
+Fra:1 Mem:233.27M (Peak 233.28M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.033
+Fra:1 Mem:233.28M (Peak 233.28M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.009
+Fra:1 Mem:233.25M (Peak 233.28M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.034
+Fra:1 Mem:233.24M (Peak 233.28M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.035
+Fra:1 Mem:233.36M (Peak 233.36M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.009
+Fra:1 Mem:233.34M (Peak 233.36M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.036
+Fra:1 Mem:233.36M (Peak 233.36M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.037
+Fra:1 Mem:233.39M (Peak 233.39M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.038
+Fra:1 Mem:233.43M (Peak 233.43M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.039
+Fra:1 Mem:233.37M (Peak 233.43M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.040
+Fra:1 Mem:233.37M (Peak 233.43M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.008
+Fra:1 Mem:233.51M (Peak 233.51M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.042
+Fra:1 Mem:233.49M (Peak 233.51M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.043
+Fra:1 Mem:233.52M (Peak 233.52M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.044
+Fra:1 Mem:233.45M (Peak 233.52M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.008
+Fra:1 Mem:233.62M (Peak 233.62M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.047
+Fra:1 Mem:233.59M (Peak 233.62M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.048
+Fra:1 Mem:233.58M (Peak 233.62M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.049
+Fra:1 Mem:233.57M (Peak 233.62M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.050
+Fra:1 Mem:233.65M (Peak 233.65M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.051
+Fra:1 Mem:233.65M (Peak 233.65M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.007
+Fra:1 Mem:233.66M (Peak 233.66M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.052
+Fra:1 Mem:233.74M (Peak 233.74M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.053
+Fra:1 Mem:233.70M (Peak 233.74M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.006
+Fra:1 Mem:233.71M (Peak 233.74M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.054
+Fra:1 Mem:233.78M (Peak 233.78M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.055
+Fra:1 Mem:233.78M (Peak 233.78M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.006
+Fra:1 Mem:233.78M (Peak 233.78M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.056
+Fra:1 Mem:233.82M (Peak 233.82M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.057
+Fra:1 Mem:233.83M (Peak 233.83M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.005
+Fra:1 Mem:233.87M (Peak 233.87M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.058
+Fra:1 Mem:233.85M (Peak 233.87M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.005
+Fra:1 Mem:233.86M (Peak 233.87M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.059
+Fra:1 Mem:233.90M (Peak 233.90M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.060
+Fra:1 Mem:233.95M (Peak 233.95M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.004
+Fra:1 Mem:233.96M (Peak 233.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.061
+Fra:1 Mem:233.94M (Peak 233.96M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.062
+Fra:1 Mem:233.98M (Peak 233.98M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.004
+Fra:1 Mem:234.01M (Peak 234.01M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.063
+Fra:1 Mem:234.00M (Peak 234.01M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.064
+Fra:1 Mem:233.98M (Peak 234.01M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.003
+Fra:1 Mem:234.03M (Peak 234.03M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.065
+Fra:1 Mem:234.02M (Peak 234.03M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.003
+Fra:1 Mem:234.04M (Peak 234.04M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.067
+Fra:1 Mem:234.13M (Peak 234.13M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.068
+Fra:1 Mem:234.15M (Peak 234.15M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.069
+Fra:1 Mem:234.19M (Peak 234.19M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.002
+Fra:1 Mem:234.13M (Peak 234.19M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.070
+Fra:1 Mem:234.22M (Peak 234.22M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.071
+Fra:1 Mem:234.14M (Peak 234.22M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right brake disc bell
+Fra:1 Mem:234.14M (Peak 234.22M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right yellow six-piston caliper
+Fra:1 Mem:234.38M (Peak 234.38M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke
+Fra:1 Mem:234.32M (Peak 234.38M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket
+Fra:1 Mem:234.36M (Peak 234.38M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.001
+Fra:1 Mem:234.37M (Peak 234.38M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.001
+Fra:1 Mem:234.36M (Peak 234.38M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:149.89M (Peak 234.38M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:149.89M (Peak 234.38M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:149.89M (Peak 234.38M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:149.89M (Peak 234.38M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:149.90M (Peak 234.38M) | Time:00:01.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:150.06M (Peak 234.38M) | Time:00:01.14 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:150.06M (Peak 234.38M) | Time:00:01.14 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:150.06M (Peak 234.38M) | Time:00:01.14 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:150.06M (Peak 234.38M) | Time:00:01.14 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:164.64M (Peak 234.38M) | Time:00:01.16 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:171.24M (Peak 234.38M) | Time:00:01.17 | Mem:0.21M, Peak:0.21M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:171.13M (Peak 234.38M) | Time:00:01.17 | Mem:6.65M, Peak:6.65M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:171.15M (Peak 234.38M) | Time:00:01.17 | Mem:6.65M, Peak:6.65M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:171.15M (Peak 234.38M) | Time:00:01.17 | Mem:35.82M, Peak:35.82M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:171.15M (Peak 234.38M) | Time:00:01.28 | Mem:66.65M, Peak:95.82M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:171.15M (Peak 234.38M) | Time:00:01.28 | Mem:66.65M, Peak:95.82M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:66.65M, Peak:95.82M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.63M, Peak:102.63M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Lights | Computing distribution
+Fra:1 Mem:207.12M (Peak 234.38M) | Time:00:01.30 | Mem:102.64M, Peak:102.64M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:208.77M (Peak 234.38M) | Time:00:01.33 | Mem:104.29M, Peak:104.29M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:209.77M (Peak 234.38M) | Time:00:01.33 | Mem:105.29M, Peak:105.29M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:209.78M (Peak 234.38M) | Time:00:01.33 | Mem:105.29M, Peak:105.29M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:209.78M (Peak 234.38M) | Time:00:01.33 | Mem:105.29M, Peak:105.29M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:209.78M (Peak 234.38M) | Time:00:01.33 | Mem:105.29M, Peak:105.29M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:209.79M (Peak 234.38M) | Time:00:01.33 | Mem:105.29M, Peak:105.29M | Scene, ViewLayer | Sample 0/16
+Fra:1 Mem:255.26M (Peak 255.26M) | Time:00:02.62 | Remaining:00:19.39 | Mem:150.75M, Peak:150.75M | Scene, ViewLayer | Sample 1/16
+Fra:1 Mem:274.40M (Peak 303.11M) | Time:00:22.23 | Mem:150.75M, Peak:150.75M | Scene, ViewLayer | Sample 16/16
+Fra:1 Mem:274.40M (Peak 303.11M) | Time:00:22.23 | Mem:150.75M, Peak:150.75M | Scene, ViewLayer | Finished
+Saved: 'C:\MyProjects\TempProject (OpenAI)\su7\renders\review_08_front_hero.png'
+ Time: 00:22.63 (Saving: 00:00.37)
+
+Info: Saved "Xiaomi_SU7_Max.blend"
+WINDOW_FRAME_ALIGNED
+
+Blender quit

@@ -1,0 +1,2288 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+Info: Saved "Xiaomi_SU7_Max.blend"
+NATIVE_SCENE_SAVED
+08:07:40 | INFO: Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 3.6\3.6\python\lib\site-packages\extern_draco.dll
+08:07:41 | INFO: Starting glTF 2.0 export
+08:07:41 | INFO: Extracting primitive: Unified aluminum body | welded hood, quarters and bumpers.001
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Compound curved greenhouse | panoramic glazing.001
+08:07:43 | INFO: Primitives created: 2
+08:07:43 | INFO: Extracting primitive: Window perimeter | satin black surround.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Smooth continuous side glass.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.008
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rear quarter glass division.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Painted continuous A pillar and roof rail.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Roof drip molding.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Window perimeter | satin black surround.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Smooth continuous side glass.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.009
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.010
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar black trim.011
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rear quarter glass division.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Painted continuous A pillar and roof rail.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Roof drip molding.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Hood precision shut line.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front door leading gap.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar door gap.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rear door trailing gap.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rocker sill.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rocker silver edge.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.060
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.061
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Handle finger undercut.004
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.062
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.063
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Handle finger undercut.005
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Charging door.001
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front fender black air blade.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Fender blade polished edge.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.013
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Mirror stalk.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.014
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.015
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.016
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Mirror LED indicator.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rolled painted wheel arch lip.004
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse dark reveal.004
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse liner.004
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rolled painted wheel arch lip.005
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse dark reveal.005
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse liner.005
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Hood precision shut line.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front door leading gap.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: B pillar door gap.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rear door trailing gap.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rocker sill.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rocker silver edge.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.064
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.065
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Handle finger undercut.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.066
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.067
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Handle finger undercut.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front fender black air blade.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Fender blade polished edge.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.017
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Mirror stalk.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.018
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.019
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sphere.020
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Mirror LED indicator.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rolled painted wheel arch lip.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse dark reveal.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse liner.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Rolled painted wheel arch lip.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse dark reveal.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wheelhouse liner.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Waterdrop headlight | dark compound-curved optical housing.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Headlight rubber gasket.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Headlight polished rim.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Signature sweeping diagonal DRL.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Lower segmented optical return.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Upper arrow DRL accent.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.068
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.069
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.070
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.071
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.072
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.073
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.074
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.075
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Vertical corner air curtain.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Corner intake rim.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Air curtain inner fin.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Waterdrop headlight | dark compound-curved optical housing.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Headlight rubber gasket.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Headlight polished rim.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Signature sweeping diagonal DRL.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Lower segmented optical return.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Upper arrow DRL accent.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.076
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.077
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.078
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.079
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.080
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.081
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.082
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.083
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Vertical corner air curtain.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Corner intake rim.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Air curtain inner fin.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Wide trapezoidal front lower intake.001
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Satin front intake frame.001
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sculpted Aqua Blue intake side surround.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Painted intake ring.002
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Sculpted Aqua Blue intake side surround.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Painted intake ring.003
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Horizontal grille louver.004
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Horizontal grille louver.005
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Horizontal grille louver.006
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Horizontal grille louver.007
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.011
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.012
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.013
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.014
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.015
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.016
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.017
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.018
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.019
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.020
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Grille vertical reinforcement.021
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front splitter blade.001
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.084
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Cube.085
+08:07:43 | INFO: Primitives created: 1
+08:07:43 | INFO: Extracting primitive: Front plate lettering.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.330
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.331
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.332
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.333
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Sphere.021
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Hood mi insignia.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Sphere.022
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Full-width smoked rear lamp housing.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear lamp outer seal.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Halo rear red optical bed.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Continuous halo rear LED.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Lower full-width LED filament.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Inner taillight return.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear bumper side air outlet.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear vent rim.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Trunk panel shut line.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.086
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Inner taillight return.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear bumper side air outlet.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear vent rim.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Trunk panel shut line.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.087
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear diffuser black valance.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear diffuser painted buttress.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear diffuser painted buttress.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear diffuser lower lip.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.088
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.089
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.090
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.091
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.092
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.093
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.094
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear plate SU7.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | x.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | i.002
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | a.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | o.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | m.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear spaced Xiaomi lettering | i.003
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear model badge.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear Max badge.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Rear manufacturer badge.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Integrated rear deck ducktail.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Retractable spoiler shut line.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Sphere.023
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left | tire carcass.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.029
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.030
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.031
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left directional tread | 792 blocks.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left cast rim barrel.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.032
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.033
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.334
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.034
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.335
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.336
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.337
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.338
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.339
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.340
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.341
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.342
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.343
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.344
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.345
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.346
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.347
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.348
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.349
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.350
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.351
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.352
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.353
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.354
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.355
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.356
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.357
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.358
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.359
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.360
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.361
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.362
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.363
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.364
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.365
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.366
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.367
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.368
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.369
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.370
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.371
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.372
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.373
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.374
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.375
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.376
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.377
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.378
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.379
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.380
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.381
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.382
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.383
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.384
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.385
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.386
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.387
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.388
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.389
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.390
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.391
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.392
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.393
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.394
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.395
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.396
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.397
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.398
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.399
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.400
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.401
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.402
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.403
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.404
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.405
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.406
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.407
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cube.095
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left caliper marking.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.010
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.010
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.011
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.011
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.012
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.012
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.013
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.013
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.014
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.014
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.015
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.015
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.016
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.016
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.017
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.017
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.018
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.018
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left machined split spoke.019
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left black spoke pocket.019
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.408
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Torus.035
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left center mi logo.001
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.409
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.410
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.411
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.412
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.413
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Cylinder.414
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.022
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.023
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.024
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.025
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.026
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.027
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.028
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.029
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.030
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.031
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.032
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.033
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.034
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.035
+08:07:44 | INFO: Primitives created: 0
+08:07:44 | WARNING: Mesh 'Front left sidewall lettering.035' has no primitives and will be omitted.
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.036
+08:07:44 | INFO: Primitives created: 1
+08:07:44 | INFO: Extracting primitive: Front left sidewall lettering.037
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.038
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.039
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.040
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.041
+08:07:45 | INFO: Primitives created: 0
+08:07:45 | WARNING: Mesh 'Front left sidewall lettering.041' has no primitives and will be omitted.
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.042
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front left sidewall lettering.043
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right | tire carcass.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.036
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.037
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.038
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right directional tread | 792 blocks.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right cast rim barrel.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.039
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.040
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.415
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.041
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.416
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.417
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.418
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.419
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.420
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.421
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.422
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.423
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.424
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.425
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.426
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.427
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.428
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.429
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.430
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.431
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.432
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.433
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.434
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.435
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.436
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.437
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.438
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.439
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.440
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.441
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.442
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.443
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.444
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.445
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.446
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.447
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.448
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.449
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.450
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.451
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.452
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.453
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.454
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.455
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.456
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.457
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.458
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.459
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.460
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.461
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.462
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.463
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.464
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.465
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.466
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.467
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.468
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.469
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.470
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.471
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.472
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.473
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.474
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.475
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.476
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.477
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.478
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.479
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.480
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.481
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.482
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.483
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.484
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.485
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.486
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.487
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.488
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cube.096
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right caliper marking.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.010
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.010
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.011
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.011
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.012
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.012
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.013
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.013
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.014
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.014
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.015
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.015
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.016
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.016
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.017
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.017
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.018
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.018
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right machined split spoke.019
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right black spoke pocket.019
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.489
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.042
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right center mi logo.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.490
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.491
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.492
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.493
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.494
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.495
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.022
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.023
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.024
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.025
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.026
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.027
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.028
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.029
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.030
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.031
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.032
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.033
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.034
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.035
+08:07:45 | INFO: Primitives created: 0
+08:07:45 | WARNING: Mesh 'Front right sidewall lettering.035' has no primitives and will be omitted.
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.036
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.037
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.038
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.039
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.040
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.041
+08:07:45 | INFO: Primitives created: 0
+08:07:45 | WARNING: Mesh 'Front right sidewall lettering.041' has no primitives and will be omitted.
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.042
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Front right sidewall lettering.043
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left | tire carcass.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.043
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.044
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.045
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left directional tread | 792 blocks.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left cast rim barrel.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.046
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.047
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.496
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.048
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.497
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.498
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.499
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.500
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.501
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.502
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.503
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.504
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.505
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.506
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.507
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.508
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.509
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.510
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.511
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.512
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.513
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.514
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.515
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.516
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.517
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.518
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.519
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.520
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.521
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.522
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.523
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.524
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.525
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.526
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.527
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.528
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.529
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.530
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.531
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.532
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.533
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.534
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.535
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.536
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.537
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.538
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.539
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.540
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.541
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.542
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.543
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.544
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.545
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.546
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.547
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.548
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.549
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.550
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.551
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.552
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.553
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.554
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.555
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.556
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.557
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.558
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.559
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.560
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.561
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.562
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.563
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.564
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.565
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.566
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.567
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.568
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.569
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cube.097
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left caliper marking.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.010
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.010
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.011
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.011
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.012
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.012
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.013
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.013
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.014
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.014
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.015
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.015
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.016
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.016
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.017
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.017
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.018
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.018
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left machined split spoke.019
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left black spoke pocket.019
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.570
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Torus.049
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left center mi logo.001
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.571
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.572
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.573
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.574
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.575
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Cylinder.576
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.022
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.023
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.024
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.025
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.026
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.027
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.028
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.029
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.030
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.031
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.032
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.033
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.034
+08:07:45 | INFO: Primitives created: 1
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.035
+08:07:45 | INFO: Primitives created: 0
+08:07:45 | WARNING: Mesh 'Rear left sidewall lettering.035' has no primitives and will be omitted.
+08:07:45 | INFO: Extracting primitive: Rear left sidewall lettering.036
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.037
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.038
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.039
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.040
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.041
+08:07:46 | INFO: Primitives created: 0
+08:07:46 | WARNING: Mesh 'Rear left sidewall lettering.041' has no primitives and will be omitted.
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.042
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear left sidewall lettering.043
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right | tire carcass.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.050
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.051
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.052
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right directional tread | 792 blocks.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right cast rim barrel.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.053
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.054
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.577
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.055
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.578
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.579
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.580
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.581
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.582
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.583
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.584
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.585
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.586
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.587
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.588
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.589
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.590
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.591
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.592
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.593
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.594
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.595
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.596
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.597
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.598
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.599
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.600
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.601
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.602
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.603
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.604
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.605
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.606
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.607
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.608
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.609
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.610
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.611
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.612
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.613
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.614
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.615
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.616
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.617
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.618
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.619
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.620
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.621
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.622
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.623
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.624
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.625
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.626
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.627
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.628
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.629
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.630
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.631
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.632
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.633
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.634
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.635
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.636
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.637
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.638
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.639
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.640
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.641
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.642
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.643
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.644
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.645
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.646
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.647
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.648
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.649
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.650
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.098
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right caliper marking.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.010
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.010
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.011
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.011
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.012
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.012
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.013
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.013
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.014
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.014
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.015
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.015
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.016
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.016
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.017
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.017
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.018
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.018
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right machined split spoke.019
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right black spoke pocket.019
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.651
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.056
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right center mi logo.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.652
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.653
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.654
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.655
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.656
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.657
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.022
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.023
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.024
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.025
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.026
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.027
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.028
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.029
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.030
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.031
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.032
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.033
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.034
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.035
+08:07:46 | INFO: Primitives created: 0
+08:07:46 | WARNING: Mesh 'Rear right sidewall lettering.035' has no primitives and will be omitted.
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.036
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.037
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.038
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.039
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.040
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.041
+08:07:46 | INFO: Primitives created: 0
+08:07:46 | WARNING: Mesh 'Rear right sidewall lettering.041' has no primitives and will be omitted.
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.042
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Rear right sidewall lettering.043
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.099
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.100
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.101
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.102
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.008
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.009
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.103
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.104
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.105
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.010
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.011
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.106
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.107
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.108
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.012
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.013
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.109
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.110
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.111
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.014
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Seat piping.015
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.112
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.113
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.114
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Torus.057
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Steering wheel spokes.001
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.115
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.116
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.658
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cylinder.659
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Windshield wiper arm.002
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Wiper rubber blade.002
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Windshield wiper arm.003
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Wiper rubber blade.003
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.117
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Sphere.024
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Sphere.025
+08:07:46 | INFO: Primitives created: 1
+08:07:46 | INFO: Extracting primitive: Cube.118
+08:07:46 | INFO: Primitives created: 1
+08:07:47 | INFO: Finished glTF 2.0 export in 5.926074266433716 s
+
+GLB_EXPORT_VALIDATED {'bytes': 23590008, 'meshes': 750, 'nodes': 758, 'version': 2, 'header_and_scene_valid': True}
+PRODUCTION_RENDER_START front_hero
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Read prefs: "C:\Users\admin\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+Read blend: "C:\MyProjects\TempProject (OpenAI)\su7\Xiaomi_SU7_Max.blend"
+Fra:1 Mem:283.75M (Peak 283.75M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Unified aluminum body | welded hood, quarters and bumpers
+Fra:1 Mem:283.76M (Peak 283.76M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Window perimeter | satin black surround
+Fra:1 Mem:289.56M (Peak 289.56M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim
+Fra:1 Mem:289.60M (Peak 289.60M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.001
+Fra:1 Mem:289.64M (Peak 289.64M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.002
+Fra:1 Mem:289.68M (Peak 289.68M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear quarter glass division
+Fra:1 Mem:289.71M (Peak 289.71M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted continuous A pillar and roof rail
+Fra:1 Mem:290.16M (Peak 290.16M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Smooth continuous side glass
+Fra:1 Mem:290.37M (Peak 290.37M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof drip molding
+Fra:1 Mem:291.09M (Peak 291.09M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Window perimeter | satin black surround.001
+Fra:1 Mem:291.44M (Peak 291.44M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.003
+Fra:1 Mem:291.48M (Peak 291.48M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.004
+Fra:1 Mem:291.52M (Peak 291.52M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar black trim.005
+Fra:1 Mem:291.56M (Peak 291.56M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear quarter glass division.001
+Fra:1 Mem:291.59M (Peak 291.59M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted continuous A pillar and roof rail.001
+Fra:1 Mem:291.79M (Peak 291.79M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Smooth continuous side glass.001
+Fra:1 Mem:292.11M (Peak 292.11M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof drip molding.001
+Fra:1 Mem:300.54M (Peak 300.54M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood precision shut line
+Fra:1 Mem:300.68M (Peak 300.68M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front door leading gap
+Fra:1 Mem:300.74M (Peak 300.74M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar door gap
+Fra:1 Mem:300.81M (Peak 300.81M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear door trailing gap
+Fra:1 Mem:300.87M (Peak 300.87M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker sill
+Fra:1 Mem:300.94M (Peak 300.94M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker silver edge
+Fra:1 Mem:301.01M (Peak 301.01M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess
+Fra:1 Mem:301.01M (Peak 301.01M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue
+Fra:1 Mem:301.15M (Peak 301.15M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.001
+Fra:1 Mem:301.04M (Peak 301.15M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Charging door
+Fra:1 Mem:303.64M (Peak 303.64M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fender blade polished edge
+Fra:1 Mem:303.58M (Peak 303.64M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror stalk
+Fra:1 Mem:303.56M (Peak 303.64M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess.001
+Fra:1 Mem:303.56M (Peak 303.64M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror LED indicator
+Fra:1 Mem:303.62M (Peak 303.64M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip
+Fra:1 Mem:303.69M (Peak 303.69M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.001
+Fra:1 Mem:303.80M (Peak 303.80M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal
+Fra:1 Mem:303.89M (Peak 303.89M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front fender black air blade
+Fra:1 Mem:303.87M (Peak 303.89M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Side camera lens.001
+Fra:1 Mem:303.89M (Peak 303.89M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.001
+Fra:1 Mem:304.02M (Peak 304.02M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror painted upper cap.001
+Fra:1 Mem:304.22M (Peak 304.22M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror reflective glass.001
+Fra:1 Mem:304.23M (Peak 304.23M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner
+Fra:1 Mem:304.31M (Peak 304.31M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.001
+Fra:1 Mem:304.44M (Peak 304.44M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood precision shut line.001
+Fra:1 Mem:304.44M (Peak 304.44M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.001
+Fra:1 Mem:307.01M (Peak 307.01M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front door leading gap.001
+Fra:1 Mem:307.08M (Peak 307.08M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | B pillar door gap.001
+Fra:1 Mem:307.14M (Peak 307.14M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear door trailing gap.001
+Fra:1 Mem:307.21M (Peak 307.21M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker sill.001
+Fra:1 Mem:307.28M (Peak 307.28M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rocker silver edge.001
+Fra:1 Mem:307.34M (Peak 307.34M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess.002
+Fra:1 Mem:307.41M (Peak 307.41M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.002
+Fra:1 Mem:307.38M (Peak 307.41M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Handle finger undercut.003
+Fra:1 Mem:307.38M (Peak 307.41M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.002
+Fra:1 Mem:307.40M (Peak 307.41M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fender blade polished edge.001
+Fra:1 Mem:307.45M (Peak 307.45M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror stalk.001
+Fra:1 Mem:307.46M (Peak 307.46M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror LED indicator.001
+Fra:1 Mem:307.46M (Peak 307.46M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.002
+Fra:1 Mem:307.48M (Peak 307.48M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle recess.003
+Fra:1 Mem:307.63M (Peak 307.63M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.002
+Fra:1 Mem:307.70M (Peak 307.70M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flush door handle | Aqua Blue.003
+Fra:1 Mem:307.71M (Peak 307.71M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rolled painted wheel arch lip.003
+Fra:1 Mem:307.84M (Peak 307.84M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse dark reveal.003
+Fra:1 Mem:307.89M (Peak 307.89M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front fender black air blade.001
+Fra:1 Mem:307.92M (Peak 307.92M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Side camera lens
+Fra:1 Mem:308.03M (Peak 308.03M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror black lower housing
+Fra:1 Mem:308.03M (Peak 308.03M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight rubber gasket
+Fra:1 Mem:308.15M (Peak 308.15M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror painted upper cap
+Fra:1 Mem:308.15M (Peak 308.15M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight polished rim
+Fra:1 Mem:308.28M (Peak 308.28M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror reflective glass
+Fra:1 Mem:308.33M (Peak 308.33M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Signature sweeping diagonal DRL
+Fra:1 Mem:308.41M (Peak 308.41M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower segmented optical return
+Fra:1 Mem:308.46M (Peak 308.46M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.002
+Fra:1 Mem:308.48M (Peak 308.48M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wheelhouse liner.003
+Fra:1 Mem:308.50M (Peak 308.50M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Upper arrow DRL accent
+Fra:1 Mem:308.54M (Peak 308.54M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Corner intake rim
+Fra:1 Mem:308.56M (Peak 308.56M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Air curtain inner fin
+Fra:1 Mem:308.56M (Peak 308.56M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight rubber gasket.001
+Fra:1 Mem:308.60M (Peak 308.60M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Headlight polished rim.001
+Fra:1 Mem:308.64M (Peak 308.64M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Signature sweeping diagonal DRL.001
+Fra:1 Mem:308.70M (Peak 308.70M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower segmented optical return.001
+Fra:1 Mem:308.75M (Peak 308.75M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Upper arrow DRL accent.001
+Fra:1 Mem:308.79M (Peak 308.79M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Corner intake rim.001
+Fra:1 Mem:308.81M (Peak 308.81M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Air curtain inner fin.001
+Fra:1 Mem:308.81M (Peak 308.81M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Satin front intake frame
+Fra:1 Mem:308.84M (Peak 308.84M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted intake ring
+Fra:1 Mem:308.86M (Peak 308.86M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Painted intake ring.001
+Fra:1 Mem:308.87M (Peak 308.87M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver
+Fra:1 Mem:308.91M (Peak 308.91M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.001
+Fra:1 Mem:308.94M (Peak 308.94M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.002
+Fra:1 Mem:308.97M (Peak 308.97M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Horizontal grille louver.003
+Fra:1 Mem:309.00M (Peak 309.00M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Waterdrop headlight | dark compound-curved optical housing
+Fra:1 Mem:309.01M (Peak 309.01M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement
+Fra:1 Mem:309.04M (Peak 309.04M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.001
+Fra:1 Mem:309.11M (Peak 309.11M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.002
+Fra:1 Mem:309.11M (Peak 309.11M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.003
+Fra:1 Mem:309.11M (Peak 309.11M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround
+Fra:1 Mem:309.11M (Peak 309.11M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.004
+Fra:1 Mem:309.14M (Peak 309.14M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.005
+Fra:1 Mem:309.18M (Peak 309.18M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.006
+Fra:1 Mem:309.13M (Peak 309.18M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.007
+Fra:1 Mem:309.18M (Peak 309.18M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.008
+Fra:1 Mem:309.21M (Peak 309.21M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.009
+Fra:1 Mem:309.19M (Peak 309.21M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille vertical reinforcement.010
+Fra:1 Mem:309.15M (Peak 309.21M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic
+Fra:1 Mem:309.16M (Peak 309.21M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front splitter blade
+Fra:1 Mem:309.28M (Peak 309.28M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front plate lettering
+Fra:1 Mem:309.49M (Peak 309.49M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.001
+Fra:1 Mem:310.24M (Peak 310.24M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.001
+Fra:1 Mem:310.27M (Peak 310.27M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.002
+Fra:1 Mem:310.37M (Peak 310.37M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.002
+Fra:1 Mem:310.40M (Peak 310.40M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hood mi insignia
+Fra:1 Mem:310.45M (Peak 310.45M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.003
+Fra:1 Mem:313.08M (Peak 313.10M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.003
+Fra:1 Mem:313.08M (Peak 313.10M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Vertical corner air curtain
+Fra:1 Mem:310.83M (Peak 313.10M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Waterdrop headlight | dark compound-curved optical housing.001
+Fra:1 Mem:310.84M (Peak 313.10M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Continuous halo rear LED
+Fra:1 Mem:310.88M (Peak 313.10M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.004
+Fra:1 Mem:313.37M (Peak 313.37M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.004
+Fra:1 Mem:313.44M (Peak 313.44M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lower full-width LED filament
+Fra:1 Mem:313.63M (Peak 313.63M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.005
+Fra:1 Mem:313.60M (Peak 313.63M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.005
+Fra:1 Mem:313.68M (Peak 313.68M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Inner taillight return
+Fra:1 Mem:313.71M (Peak 313.71M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear vent rim
+Fra:1 Mem:313.69M (Peak 313.71M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.006
+Fra:1 Mem:313.68M (Peak 313.71M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.006
+Fra:1 Mem:313.77M (Peak 313.77M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trunk panel shut line
+Fra:1 Mem:313.80M (Peak 313.80M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rectangular LED projector surround.007
+Fra:1 Mem:313.88M (Peak 313.88M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Inner taillight return.001
+Fra:1 Mem:313.87M (Peak 313.88M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear vent rim.001
+Fra:1 Mem:313.91M (Peak 313.91M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Deep projector optic.007
+Fra:1 Mem:313.89M (Peak 313.91M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Vertical corner air curtain.001
+Fra:1 Mem:313.96M (Peak 313.96M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trunk panel shut line.001
+Fra:1 Mem:314.06M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser painted buttress
+Fra:1 Mem:314.05M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wide trapezoidal front lower intake
+Fra:1 Mem:311.74M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser painted buttress.001
+Fra:1 Mem:311.76M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sculpted Aqua Blue intake side surround
+Fra:1 Mem:311.80M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sculpted Aqua Blue intake side surround.001
+Fra:1 Mem:311.90M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front license plate bracket
+Fra:1 Mem:311.90M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front license plate
+Fra:1 Mem:311.91M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser lower lip
+Fra:1 Mem:312.11M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ultrasonic parking sensor
+Fra:1 Mem:312.08M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | License plate screw
+Fra:1 Mem:312.10M (Peak 314.06M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear plate SU7
+Fra:1 Mem:312.21M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ultrasonic parking sensor.001
+Fra:1 Mem:312.40M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | License plate screw.001
+Fra:1 Mem:312.46M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Xiaomi hood emblem
+Fra:1 Mem:312.44M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front perception camera
+Fra:1 Mem:312.50M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | x
+Fra:1 Mem:312.63M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Halo rear red optical bed
+Fra:1 Mem:312.72M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear bumper side air outlet
+Fra:1 Mem:312.77M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear lower reflector
+Fra:1 Mem:312.90M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear bumper side air outlet.001
+Fra:1 Mem:313.07M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear lower reflector.001
+Fra:1 Mem:313.03M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear diffuser black valance
+Fra:1 Mem:313.07M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | a
+Fra:1 Mem:313.17M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake
+Fra:1 Mem:313.19M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.001
+Fra:1 Mem:313.46M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.002
+Fra:1 Mem:313.44M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.003
+Fra:1 Mem:313.72M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | m
+Fra:1 Mem:313.78M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Underfloor diffuser strake.004
+Fra:1 Mem:313.85M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear spaced Xiaomi lettering | i.001
+Fra:1 Mem:313.87M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear plate bracket
+Fra:1 Mem:313.95M (Peak 314.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear model badge
+Fra:1 Mem:314.15M (Peak 314.15M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear license plate
+Fra:1 Mem:314.35M (Peak 314.35M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear Max badge
+Fra:1 Mem:314.55M (Peak 314.55M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear manufacturer badge
+Fra:1 Mem:314.75M (Peak 314.75M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated rear deck ducktail
+Fra:1 Mem:314.88M (Peak 314.88M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Retractable spoiler shut line
+Fra:1 Mem:314.97M (Peak 314.97M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear parking camera
+Fra:1 Mem:315.03M (Peak 315.03M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left | tire carcass
+Fra:1 Mem:315.08M (Peak 315.08M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring.001
+Fra:1 Mem:315.20M (Peak 315.20M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring.002
+Fra:1 Mem:315.47M (Peak 315.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire molded sidewall ring
+Fra:1 Mem:315.50M (Peak 315.50M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left directional tread | 792 blocks
+Fra:1 Mem:315.61M (Peak 315.61M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left cast rim barrel
+Fra:1 Mem:316.21M (Peak 316.21M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left diamond-cut outer flange
+Fra:1 Mem:316.43M (Peak 316.43M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left inner rim accent
+Fra:1 Mem:316.58M (Peak 316.58M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left brake rotor
+Fra:1 Mem:316.66M (Peak 316.66M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation
+Fra:1 Mem:316.68M (Peak 316.68M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.001
+Fra:1 Mem:316.69M (Peak 316.69M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.002
+Fra:1 Mem:316.71M (Peak 316.71M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.003
+Fra:1 Mem:316.71M (Peak 316.71M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.004
+Fra:1 Mem:316.72M (Peak 316.72M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.005
+Fra:1 Mem:316.76M (Peak 316.76M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.006
+Fra:1 Mem:316.76M (Peak 316.76M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.007
+Fra:1 Mem:316.88M (Peak 316.88M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.008
+Fra:1 Mem:316.89M (Peak 316.89M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.009
+Fra:1 Mem:316.91M (Peak 316.91M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.010
+Fra:1 Mem:316.94M (Peak 316.94M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.011
+Fra:1 Mem:316.97M (Peak 316.97M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.012
+Fra:1 Mem:316.95M (Peak 316.97M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.013
+Fra:1 Mem:316.96M (Peak 316.97M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.014
+Fra:1 Mem:317.00M (Peak 317.00M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.015
+Fra:1 Mem:317.05M (Peak 317.05M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.016
+Fra:1 Mem:317.03M (Peak 317.05M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.017
+Fra:1 Mem:317.06M (Peak 317.06M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.018
+Fra:1 Mem:317.06M (Peak 317.06M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.019
+Fra:1 Mem:317.08M (Peak 317.08M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.020
+Fra:1 Mem:317.09M (Peak 317.09M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.021
+Fra:1 Mem:317.09M (Peak 317.09M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.022
+Fra:1 Mem:317.10M (Peak 317.10M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.023
+Fra:1 Mem:317.15M (Peak 317.15M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.024
+Fra:1 Mem:317.14M (Peak 317.15M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.025
+Fra:1 Mem:317.15M (Peak 317.15M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.026
+Fra:1 Mem:317.17M (Peak 317.17M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.027
+Fra:1 Mem:317.21M (Peak 317.21M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.028
+Fra:1 Mem:317.19M (Peak 317.21M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.029
+Fra:1 Mem:317.23M (Peak 317.23M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.030
+Fra:1 Mem:317.22M (Peak 317.23M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.031
+Fra:1 Mem:317.26M (Peak 317.26M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.032
+Fra:1 Mem:317.29M (Peak 317.29M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.033
+Fra:1 Mem:317.30M (Peak 317.30M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.034
+Fra:1 Mem:317.32M (Peak 317.32M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left caliper marking
+Fra:1 Mem:317.34M (Peak 317.34M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.035
+Fra:1 Mem:317.33M (Peak 317.34M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.036
+Fra:1 Mem:317.50M (Peak 317.50M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.037
+Fra:1 Mem:317.49M (Peak 317.50M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.038
+Fra:1 Mem:317.49M (Peak 317.50M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.039
+Fra:1 Mem:317.97M (Peak 317.97M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.040
+Fra:1 Mem:317.90M (Peak 317.97M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.041
+Fra:1 Mem:318.01M (Peak 318.01M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.042
+Fra:1 Mem:318.08M (Peak 318.08M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.043
+Fra:1 Mem:318.05M (Peak 318.08M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.044
+Fra:1 Mem:318.06M (Peak 318.08M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.045
+Fra:1 Mem:318.14M (Peak 318.14M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.046
+Fra:1 Mem:318.24M (Peak 318.24M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.048
+Fra:1 Mem:318.25M (Peak 318.25M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.049
+Fra:1 Mem:318.18M (Peak 318.25M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.050
+Fra:1 Mem:318.20M (Peak 318.25M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.051
+Fra:1 Mem:318.25M (Peak 318.25M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.052
+Fra:1 Mem:318.27M (Peak 318.27M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.053
+Fra:1 Mem:318.29M (Peak 318.29M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.054
+Fra:1 Mem:318.28M (Peak 318.29M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.055
+Fra:1 Mem:318.28M (Peak 318.29M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.056
+Fra:1 Mem:318.35M (Peak 318.35M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.057
+Fra:1 Mem:318.32M (Peak 318.35M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.058
+Fra:1 Mem:318.31M (Peak 318.35M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.059
+Fra:1 Mem:318.36M (Peak 318.36M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.060
+Fra:1 Mem:318.36M (Peak 318.36M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.061
+Fra:1 Mem:318.38M (Peak 318.38M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.062
+Fra:1 Mem:318.40M (Peak 318.40M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.063
+Fra:1 Mem:318.43M (Peak 318.43M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.064
+Fra:1 Mem:318.42M (Peak 318.43M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.065
+Fra:1 Mem:318.41M (Peak 318.43M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.066
+Fra:1 Mem:318.61M (Peak 318.61M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.067
+Fra:1 Mem:318.69M (Peak 318.69M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.068
+Fra:1 Mem:318.68M (Peak 318.69M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.069
+Fra:1 Mem:318.68M (Peak 318.69M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.070
+Fra:1 Mem:318.71M (Peak 318.71M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left drilled rotor perforation.071
+Fra:1 Mem:318.71M (Peak 318.71M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left brake disc bell
+Fra:1 Mem:318.74M (Peak 318.74M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left yellow six-piston caliper
+Fra:1 Mem:318.80M (Peak 318.80M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering
+Fra:1 Mem:318.87M (Peak 318.87M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke
+Fra:1 Mem:318.85M (Peak 318.87M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.001
+Fra:1 Mem:318.96M (Peak 318.96M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.002
+Fra:1 Mem:318.95M (Peak 318.96M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket
+Fra:1 Mem:319.00M (Peak 319.00M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.001
+Fra:1 Mem:319.11M (Peak 319.11M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.003
+Fra:1 Mem:319.11M (Peak 319.11M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.001
+Fra:1 Mem:319.05M (Peak 319.11M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.002
+Fra:1 Mem:319.10M (Peak 319.11M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.002
+Fra:1 Mem:319.16M (Peak 319.16M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.005
+Fra:1 Mem:319.16M (Peak 319.16M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.006
+Fra:1 Mem:319.15M (Peak 319.16M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.003
+Fra:1 Mem:319.15M (Peak 319.16M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.007
+Fra:1 Mem:319.26M (Peak 319.26M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.008
+Fra:1 Mem:319.34M (Peak 319.34M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.009
+Fra:1 Mem:319.34M (Peak 319.34M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.010
+Fra:1 Mem:319.37M (Peak 319.37M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.004
+Fra:1 Mem:319.35M (Peak 319.37M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.011
+Fra:1 Mem:319.39M (Peak 319.39M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.005
+Fra:1 Mem:319.63M (Peak 319.63M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.006
+Fra:1 Mem:319.59M (Peak 319.63M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.012
+Fra:1 Mem:319.62M (Peak 319.63M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.007
+Fra:1 Mem:319.63M (Peak 319.63M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.013
+Fra:1 Mem:319.69M (Peak 319.69M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.014
+Fra:1 Mem:319.65M (Peak 319.69M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.007
+Fra:1 Mem:319.72M (Peak 319.72M) | Time:00:01.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left machined split spoke.008
+Fra:1 Mem:319.97M (Peak 319.97M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.015
+Fra:1 Mem:319.95M (Peak 319.97M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.008
+Fra:1 Mem:319.95M (Peak 319.97M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left black spoke pocket.009
+Fra:1 Mem:319.96M (Peak 319.97M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.016
+Fra:1 Mem:320.23M (Peak 320.23M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left center hub
+Fra:1 Mem:320.18M (Peak 320.23M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.017
+Fra:1 Mem:320.29M (Peak 320.29M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left center cap ring
+Fra:1 Mem:320.41M (Peak 320.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.018
+Fra:1 Mem:320.45M (Peak 320.45M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut
+Fra:1 Mem:320.51M (Peak 320.51M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.001
+Fra:1 Mem:320.56M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.002
+Fra:1 Mem:320.54M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left titanium lug nut.003
+Fra:1 Mem:320.50M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left tire valve
+Fra:1 Mem:320.50M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.019
+Fra:1 Mem:320.54M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.020
+Fra:1 Mem:320.54M (Peak 320.56M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front left sidewall lettering.021
+Fra:1 Mem:320.57M (Peak 320.57M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right | tire carcass
+Fra:1 Mem:320.60M (Peak 320.60M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring.001
+Fra:1 Mem:320.63M (Peak 320.63M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right caliper marking
+Fra:1 Mem:320.99M (Peak 320.99M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring.002
+Fra:1 Mem:321.31M (Peak 321.31M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire molded sidewall ring
+Fra:1 Mem:321.74M (Peak 321.74M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right directional tread | 792 blocks
+Fra:1 Mem:322.23M (Peak 322.23M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right cast rim barrel
+Fra:1 Mem:322.41M (Peak 322.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right diamond-cut outer flange
+Fra:1 Mem:322.52M (Peak 322.52M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right inner rim accent
+Fra:1 Mem:322.69M (Peak 322.69M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right brake rotor
+Fra:1 Mem:322.99M (Peak 322.99M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right rotor outer scoring
+Fra:1 Mem:322.92M (Peak 322.99M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation
+Fra:1 Mem:323.08M (Peak 323.08M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right center mi logo
+Fra:1 Mem:323.12M (Peak 323.12M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.001
+Fra:1 Mem:323.15M (Peak 323.15M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.002
+Fra:1 Mem:323.19M (Peak 323.19M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.003
+Fra:1 Mem:323.26M (Peak 323.26M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.004
+Fra:1 Mem:323.27M (Peak 323.27M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.006
+Fra:1 Mem:323.34M (Peak 323.34M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering
+Fra:1 Mem:323.41M (Peak 323.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.007
+Fra:1 Mem:323.35M (Peak 323.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.008
+Fra:1 Mem:323.36M (Peak 323.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.009
+Fra:1 Mem:323.40M (Peak 323.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.010
+Fra:1 Mem:323.41M (Peak 323.41M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.002
+Fra:1 Mem:323.49M (Peak 323.49M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.011
+Fra:1 Mem:323.51M (Peak 323.51M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.013
+Fra:1 Mem:323.62M (Peak 323.62M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.014
+Fra:1 Mem:323.58M (Peak 323.62M) | Time:00:01.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.015
+Fra:1 Mem:323.59M (Peak 323.62M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.003
+Fra:1 Mem:323.61M (Peak 323.62M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.016
+Fra:1 Mem:323.63M (Peak 323.63M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.017
+Fra:1 Mem:323.70M (Peak 323.70M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.004
+Fra:1 Mem:323.71M (Peak 323.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.018
+Fra:1 Mem:323.70M (Peak 323.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.005
+Fra:1 Mem:323.70M (Peak 323.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.019
+Fra:1 Mem:323.75M (Peak 323.75M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.006
+Fra:1 Mem:323.69M (Peak 323.75M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.021
+Fra:1 Mem:323.74M (Peak 323.75M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.007
+Fra:1 Mem:323.75M (Peak 323.75M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.022
+Fra:1 Mem:323.76M (Peak 323.76M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.008
+Fra:1 Mem:323.89M (Peak 323.89M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.009
+Fra:1 Mem:323.86M (Peak 323.89M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.023
+Fra:1 Mem:323.92M (Peak 323.92M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.010
+Fra:1 Mem:323.90M (Peak 323.92M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.011
+Fra:1 Mem:323.92M (Peak 323.92M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.024
+Fra:1 Mem:323.97M (Peak 323.97M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.025
+Fra:1 Mem:324.03M (Peak 324.03M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.026
+Fra:1 Mem:324.08M (Peak 324.08M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.027
+Fra:1 Mem:324.09M (Peak 324.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.028
+Fra:1 Mem:324.08M (Peak 324.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.029
+Fra:1 Mem:324.12M (Peak 324.12M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.012
+Fra:1 Mem:324.13M (Peak 324.13M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.030
+Fra:1 Mem:324.13M (Peak 324.13M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.013
+Fra:1 Mem:324.14M (Peak 324.14M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.032
+Fra:1 Mem:324.11M (Peak 324.14M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.014
+Fra:1 Mem:324.20M (Peak 324.20M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.033
+Fra:1 Mem:324.32M (Peak 324.32M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.034
+Fra:1 Mem:324.30M (Peak 324.32M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.036
+Fra:1 Mem:324.41M (Peak 324.41M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.015
+Fra:1 Mem:324.40M (Peak 324.41M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.038
+Fra:1 Mem:324.48M (Peak 324.48M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.039
+Fra:1 Mem:324.52M (Peak 324.52M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.016
+Fra:1 Mem:324.60M (Peak 324.60M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.040
+Fra:1 Mem:324.64M (Peak 324.64M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.041
+Fra:1 Mem:324.64M (Peak 324.64M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.042
+Fra:1 Mem:324.71M (Peak 324.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.043
+Fra:1 Mem:324.71M (Peak 324.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.017
+Fra:1 Mem:324.68M (Peak 324.71M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.044
+Fra:1 Mem:324.74M (Peak 324.74M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.045
+Fra:1 Mem:324.81M (Peak 324.81M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.046
+Fra:1 Mem:324.88M (Peak 324.88M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.047
+Fra:1 Mem:324.86M (Peak 324.88M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.018
+Fra:1 Mem:324.87M (Peak 324.88M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.049
+Fra:1 Mem:324.91M (Peak 324.91M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.019
+Fra:1 Mem:324.92M (Peak 324.92M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.050
+Fra:1 Mem:324.91M (Peak 324.92M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.020
+Fra:1 Mem:324.97M (Peak 324.96M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right sidewall lettering.021
+Fra:1 Mem:324.97M (Peak 324.97M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.052
+Fra:1 Mem:324.96M (Peak 324.97M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.053
+Fra:1 Mem:325.03M (Peak 325.03M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.054
+Fra:1 Mem:324.99M (Peak 325.03M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.055
+Fra:1 Mem:325.01M (Peak 325.03M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.056
+Fra:1 Mem:325.02M (Peak 325.03M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.058
+Fra:1 Mem:325.09M (Peak 325.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.059
+Fra:1 Mem:325.06M (Peak 325.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.061
+Fra:1 Mem:325.15M (Peak 325.15M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.062
+Fra:1 Mem:325.12M (Peak 325.15M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.064
+Fra:1 Mem:325.15M (Peak 325.15M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left caliper marking
+Fra:1 Mem:325.33M (Peak 325.33M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.065
+Fra:1 Mem:325.31M (Peak 325.33M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.066
+Fra:1 Mem:325.32M (Peak 325.33M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.067
+Fra:1 Mem:325.38M (Peak 325.38M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.068
+Fra:1 Mem:325.39M (Peak 325.39M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.069
+Fra:1 Mem:325.35M (Peak 325.39M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.070
+Fra:1 Mem:325.39M (Peak 325.39M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right drilled rotor perforation.071
+Fra:1 Mem:325.68M (Peak 325.68M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right yellow six-piston caliper
+Fra:1 Mem:326.01M (Peak 326.01M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke
+Fra:1 Mem:326.05M (Peak 326.05M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket
+Fra:1 Mem:326.09M (Peak 326.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.001
+Fra:1 Mem:326.08M (Peak 326.09M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.001
+Fra:1 Mem:326.15M (Peak 326.15M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.002
+Fra:1 Mem:326.19M (Peak 326.19M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.002
+Fra:1 Mem:326.21M (Peak 326.21M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center mi logo
+Fra:1 Mem:326.17M (Peak 326.21M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.004
+Fra:1 Mem:326.47M (Peak 326.47M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.004
+Fra:1 Mem:326.44M (Peak 326.47M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.005
+Fra:1 Mem:326.55M (Peak 326.55M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.005
+Fra:1 Mem:326.57M (Peak 326.57M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.006
+Fra:1 Mem:326.61M (Peak 326.61M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.001
+Fra:1 Mem:326.61M (Peak 326.61M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.006
+Fra:1 Mem:326.61M (Peak 326.61M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.002
+Fra:1 Mem:326.64M (Peak 326.64M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.007
+Fra:1 Mem:326.72M (Peak 326.72M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.007
+Fra:1 Mem:326.72M (Peak 326.72M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.008
+Fra:1 Mem:326.82M (Peak 326.82M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right black spoke pocket.008
+Fra:1 Mem:326.83M (Peak 326.83M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right machined split spoke.009
+Fra:1 Mem:326.86M (Peak 326.86M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.003
+Fra:1 Mem:326.89M (Peak 326.89M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right center hub
+Fra:1 Mem:326.91M (Peak 326.91M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.004
+Fra:1 Mem:326.94M (Peak 326.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right center cap ring
+Fra:1 Mem:327.11M (Peak 327.11M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut
+Fra:1 Mem:327.09M (Peak 327.11M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.001
+Fra:1 Mem:327.13M (Peak 327.13M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.005
+Fra:1 Mem:327.16M (Peak 327.16M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.006
+Fra:1 Mem:327.13M (Peak 327.16M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.007
+Fra:1 Mem:327.15M (Peak 327.16M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.002
+Fra:1 Mem:327.15M (Peak 327.16M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.008
+Fra:1 Mem:327.27M (Peak 327.27M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.003
+Fra:1 Mem:327.28M (Peak 327.28M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.009
+Fra:1 Mem:327.29M (Peak 327.29M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right titanium lug nut.004
+Fra:1 Mem:327.28M (Peak 327.29M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Front right tire valve
+Fra:1 Mem:327.30M (Peak 327.30M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.010
+Fra:1 Mem:327.34M (Peak 327.34M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.011
+Fra:1 Mem:327.33M (Peak 327.34M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left | tire carcass
+Fra:1 Mem:327.33M (Peak 327.34M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire molded sidewall ring.001
+Fra:1 Mem:327.83M (Peak 327.83M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.012
+Fra:1 Mem:327.85M (Peak 327.85M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire molded sidewall ring
+Fra:1 Mem:327.88M (Peak 327.88M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.013
+Fra:1 Mem:327.88M (Peak 327.88M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left directional tread | 792 blocks
+Fra:1 Mem:327.90M (Peak 327.90M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.014
+Fra:1 Mem:328.54M (Peak 328.54M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left cast rim barrel
+Fra:1 Mem:328.60M (Peak 328.60M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left diamond-cut outer flange
+Fra:1 Mem:328.99M (Peak 328.99M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left inner rim accent
+Fra:1 Mem:329.01M (Peak 329.01M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.015
+Fra:1 Mem:329.20M (Peak 329.20M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.016
+Fra:1 Mem:329.24M (Peak 329.24M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left brake rotor
+Fra:1 Mem:329.34M (Peak 329.34M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left rotor outer scoring
+Fra:1 Mem:329.50M (Peak 329.50M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation
+Fra:1 Mem:329.53M (Peak 329.53M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.001
+Fra:1 Mem:329.58M (Peak 329.58M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.017
+Fra:1 Mem:329.64M (Peak 329.64M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.002
+Fra:1 Mem:329.69M (Peak 329.69M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.003
+Fra:1 Mem:329.80M (Peak 329.80M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.018
+Fra:1 Mem:329.78M (Peak 329.80M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.005
+Fra:1 Mem:329.89M (Peak 329.89M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.019
+Fra:1 Mem:329.89M (Peak 329.89M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.020
+Fra:1 Mem:329.88M (Peak 329.89M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.006
+Fra:1 Mem:329.89M (Peak 329.89M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left sidewall lettering.021
+Fra:1 Mem:329.94M (Peak 329.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.008
+Fra:1 Mem:329.86M (Peak 329.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.009
+Fra:1 Mem:329.85M (Peak 329.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.011
+Fra:1 Mem:329.92M (Peak 329.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.012
+Fra:1 Mem:329.93M (Peak 329.94M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.014
+Fra:1 Mem:330.01M (Peak 330.01M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.015
+Fra:1 Mem:329.97M (Peak 330.01M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.016
+Fra:1 Mem:329.97M (Peak 330.01M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.017
+Fra:1 Mem:330.01M (Peak 330.01M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.018
+Fra:1 Mem:330.02M (Peak 330.02M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.019
+Fra:1 Mem:330.01M (Peak 330.02M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.020
+Fra:1 Mem:330.04M (Peak 330.04M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right caliper marking
+Fra:1 Mem:330.18M (Peak 330.18M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.021
+Fra:1 Mem:330.18M (Peak 330.18M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.022
+Fra:1 Mem:330.60M (Peak 330.60M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.023
+Fra:1 Mem:330.60M (Peak 330.60M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.024
+Fra:1 Mem:330.76M (Peak 330.76M) | Time:00:01.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.026
+Fra:1 Mem:330.78M (Peak 330.78M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.027
+Fra:1 Mem:330.79M (Peak 330.79M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.028
+Fra:1 Mem:330.82M (Peak 330.82M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.029
+Fra:1 Mem:330.86M (Peak 330.86M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.030
+Fra:1 Mem:330.88M (Peak 330.88M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.031
+Fra:1 Mem:330.91M (Peak 330.91M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.032
+Fra:1 Mem:330.94M (Peak 330.94M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.033
+Fra:1 Mem:330.90M (Peak 330.94M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.034
+Fra:1 Mem:330.95M (Peak 330.95M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center mi logo
+Fra:1 Mem:331.00M (Peak 331.00M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.035
+Fra:1 Mem:331.16M (Peak 331.16M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.036
+Fra:1 Mem:331.17M (Peak 331.17M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.037
+Fra:1 Mem:331.20M (Peak 331.20M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.038
+Fra:1 Mem:331.25M (Peak 331.25M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering
+Fra:1 Mem:331.23M (Peak 331.25M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.039
+Fra:1 Mem:331.26M (Peak 331.26M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.040
+Fra:1 Mem:331.26M (Peak 331.26M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.001
+Fra:1 Mem:331.31M (Peak 331.31M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.002
+Fra:1 Mem:331.34M (Peak 331.34M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.041
+Fra:1 Mem:331.42M (Peak 331.42M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.042
+Fra:1 Mem:331.42M (Peak 331.42M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.043
+Fra:1 Mem:331.48M (Peak 331.48M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.044
+Fra:1 Mem:331.49M (Peak 331.49M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.045
+Fra:1 Mem:331.50M (Peak 331.50M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.003
+Fra:1 Mem:331.54M (Peak 331.54M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.046
+Fra:1 Mem:331.49M (Peak 331.54M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.004
+Fra:1 Mem:331.51M (Peak 331.54M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.048
+Fra:1 Mem:331.56M (Peak 331.56M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.005
+Fra:1 Mem:331.56M (Peak 331.58M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.049
+Fra:1 Mem:331.56M (Peak 331.58M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.006
+Fra:1 Mem:331.56M (Peak 331.58M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.051
+Fra:1 Mem:331.61M (Peak 331.61M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.007
+Fra:1 Mem:331.67M (Peak 331.67M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.008
+Fra:1 Mem:331.69M (Peak 331.69M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.053
+Fra:1 Mem:331.70M (Peak 331.70M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.054
+Fra:1 Mem:331.73M (Peak 331.73M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.009
+Fra:1 Mem:331.74M (Peak 331.74M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.055
+Fra:1 Mem:331.76M (Peak 331.76M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.056
+Fra:1 Mem:331.76M (Peak 331.76M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.057
+Fra:1 Mem:331.81M (Peak 331.81M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.058
+Fra:1 Mem:331.80M (Peak 331.81M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.059
+Fra:1 Mem:331.83M (Peak 331.83M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.060
+Fra:1 Mem:331.84M (Peak 331.84M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.061
+Fra:1 Mem:331.84M (Peak 331.84M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.063
+Fra:1 Mem:331.85M (Peak 331.85M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.064
+Fra:1 Mem:331.85M (Peak 331.85M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.065
+Fra:1 Mem:331.89M (Peak 331.89M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.066
+Fra:1 Mem:331.91M (Peak 331.91M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.067
+Fra:1 Mem:331.89M (Peak 331.91M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.068
+Fra:1 Mem:331.94M (Peak 331.94M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.069
+Fra:1 Mem:331.94M (Peak 331.94M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.070
+Fra:1 Mem:331.97M (Peak 331.97M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left drilled rotor perforation.071
+Fra:1 Mem:331.96M (Peak 331.97M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left yellow six-piston caliper
+Fra:1 Mem:332.18M (Peak 332.18M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.012
+Fra:1 Mem:332.15M (Peak 332.18M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.013
+Fra:1 Mem:332.14M (Peak 332.18M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke
+Fra:1 Mem:332.14M (Peak 332.18M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.014
+Fra:1 Mem:332.18M (Peak 332.18M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket
+Fra:1 Mem:332.25M (Peak 332.25M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.001
+Fra:1 Mem:332.22M (Peak 332.25M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.001
+Fra:1 Mem:332.28M (Peak 332.28M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.002
+Fra:1 Mem:332.29M (Peak 332.29M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.002
+Fra:1 Mem:332.35M (Peak 332.35M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.003
+Fra:1 Mem:332.41M (Peak 332.41M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.003
+Fra:1 Mem:332.52M (Peak 332.52M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.004
+Fra:1 Mem:332.59M (Peak 332.59M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.015
+Fra:1 Mem:332.64M (Peak 332.64M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.004
+Fra:1 Mem:332.65M (Peak 332.65M) | Time:00:01.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.005
+Fra:1 Mem:332.70M (Peak 332.70M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.005
+Fra:1 Mem:332.94M (Peak 332.94M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.006
+Fra:1 Mem:333.00M (Peak 333.00M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.017
+Fra:1 Mem:333.02M (Peak 333.02M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.006
+Fra:1 Mem:333.07M (Peak 333.07M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.007
+Fra:1 Mem:333.23M (Peak 333.23M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.018
+Fra:1 Mem:333.20M (Peak 333.23M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.019
+Fra:1 Mem:333.29M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.020
+Fra:1 Mem:333.26M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right sidewall lettering.021
+Fra:1 Mem:333.24M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.007
+Fra:1 Mem:333.16M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.008
+Fra:1 Mem:333.18M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping
+Fra:1 Mem:333.24M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left black spoke pocket.008
+Fra:1 Mem:333.23M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.001
+Fra:1 Mem:333.24M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left machined split spoke.009
+Fra:1 Mem:333.23M (Peak 333.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.002
+Fra:1 Mem:333.35M (Peak 333.35M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.003
+Fra:1 Mem:333.36M (Peak 333.36M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.004
+Fra:1 Mem:333.29M (Peak 333.36M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center hub
+Fra:1 Mem:333.35M (Peak 333.36M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.005
+Fra:1 Mem:333.36M (Peak 333.36M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left center cap ring
+Fra:1 Mem:333.38M (Peak 333.38M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.006
+Fra:1 Mem:333.55M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat piping.007
+Fra:1 Mem:333.49M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut
+Fra:1 Mem:333.48M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.001
+Fra:1 Mem:333.53M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering wheel spokes
+Fra:1 Mem:333.50M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.002
+Fra:1 Mem:333.52M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.003
+Fra:1 Mem:333.51M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Windshield wiper arm
+Fra:1 Mem:333.52M (Peak 333.55M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left titanium lug nut.004
+Fra:1 Mem:333.56M (Peak 333.56M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wiper rubber blade
+Fra:1 Mem:333.55M (Peak 333.56M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear left tire valve
+Fra:1 Mem:333.55M (Peak 333.56M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Windshield wiper arm.001
+Fra:1 Mem:333.55M (Peak 333.56M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right | tire carcass
+Fra:1 Mem:333.58M (Peak 333.58M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Wiper rubber blade.001
+Fra:1 Mem:333.70M (Peak 333.70M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire molded sidewall ring.001
+Fra:1 Mem:333.73M (Peak 333.73M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire molded sidewall ring.002
+Fra:1 Mem:333.84M (Peak 333.84M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seamless curved studio cyclorama
+Fra:1 Mem:333.97M (Peak 333.97M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire molded sidewall ring
+Fra:1 Mem:334.04M (Peak 334.04M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Infinite studio floor
+Fra:1 Mem:334.10M (Peak 334.10M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Flat aerodynamic underfloor
+Fra:1 Mem:334.14M (Peak 334.14M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right directional tread | 792 blocks
+Fra:1 Mem:334.17M (Peak 334.17M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right cast rim barrel
+Fra:1 Mem:334.39M (Peak 334.39M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right diamond-cut outer flange
+Fra:1 Mem:334.83M (Peak 334.83M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right inner rim accent
+Fra:1 Mem:335.02M (Peak 335.02M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right brake rotor
+Fra:1 Mem:335.21M (Peak 335.21M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rear camera blister
+Fra:1 Mem:335.34M (Peak 335.34M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right rotor outer scoring
+Fra:1 Mem:335.35M (Peak 335.35M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lidar forward optical aperture
+Fra:1 Mem:335.59M (Peak 335.59M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof lidar painted pod
+Fra:1 Mem:335.56M (Peak 335.59M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation
+Fra:1 Mem:335.58M (Peak 335.59M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.001
+Fra:1 Mem:335.65M (Peak 335.65M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.002
+Fra:1 Mem:335.63M (Peak 335.65M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.003
+Fra:1 Mem:335.69M (Peak 335.69M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.004
+Fra:1 Mem:335.76M (Peak 335.76M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.005
+Fra:1 Mem:335.72M (Peak 335.76M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.006
+Fra:1 Mem:335.82M (Peak 335.82M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.007
+Fra:1 Mem:335.76M (Peak 335.82M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cup holder.001
+Fra:1 Mem:335.79M (Peak 335.82M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.008
+Fra:1 Mem:335.82M (Peak 335.82M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.009
+Fra:1 Mem:335.82M (Peak 335.82M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.010
+Fra:1 Mem:335.85M (Peak 335.85M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.011
+Fra:1 Mem:335.88M (Peak 335.88M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.012
+Fra:1 Mem:335.85M (Peak 335.88M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Center tunnel
+Fra:1 Mem:335.96M (Peak 335.96M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.013
+Fra:1 Mem:335.94M (Peak 335.96M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.014
+Fra:1 Mem:335.95M (Peak 335.96M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.015
+Fra:1 Mem:335.95M (Peak 335.96M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.016
+Fra:1 Mem:335.99M (Peak 335.99M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering center
+Fra:1 Mem:336.03M (Peak 336.03M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.017
+Fra:1 Mem:336.00M (Peak 336.03M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.018
+Fra:1 Mem:336.02M (Peak 336.03M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Steering wheel
+Fra:1 Mem:336.16M (Peak 336.16M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.020
+Fra:1 Mem:336.17M (Peak 336.17M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Screen glass
+Fra:1 Mem:336.28M (Peak 336.28M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.021
+Fra:1 Mem:336.27M (Peak 336.28M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.022
+Fra:1 Mem:336.24M (Peak 336.28M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.023
+Fra:1 Mem:336.29M (Peak 336.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dashboard center screen
+Fra:1 Mem:336.24M (Peak 336.29M) | Time:00:01.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.025
+Fra:1 Mem:336.29M (Peak 336.29M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.026
+Fra:1 Mem:336.31M (Peak 336.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dashboard
+Fra:1 Mem:336.31M (Peak 336.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.027
+Fra:1 Mem:336.36M (Peak 336.36M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.028
+Fra:1 Mem:336.38M (Peak 336.38M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.003
+Fra:1 Mem:336.43M (Peak 336.43M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.029
+Fra:1 Mem:336.42M (Peak 336.43M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back
+Fra:1 Mem:336.45M (Peak 336.45M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.030
+Fra:1 Mem:336.49M (Peak 336.49M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.003
+Fra:1 Mem:336.49M (Peak 336.49M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.031
+Fra:1 Mem:336.51M (Peak 336.51M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.002
+Fra:1 Mem:336.57M (Peak 336.57M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.032
+Fra:1 Mem:336.60M (Peak 336.60M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.003
+Fra:1 Mem:336.63M (Peak 336.63M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.033
+Fra:1 Mem:336.60M (Peak 336.63M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.002
+Fra:1 Mem:336.61M (Peak 336.63M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.034
+Fra:1 Mem:336.67M (Peak 336.67M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.035
+Fra:1 Mem:336.67M (Peak 336.67M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint.001
+Fra:1 Mem:336.72M (Peak 336.72M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.036
+Fra:1 Mem:336.70M (Peak 336.72M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.037
+Fra:1 Mem:336.78M (Peak 336.78M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.002
+Fra:1 Mem:336.74M (Peak 336.78M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.038
+Fra:1 Mem:336.78M (Peak 336.78M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.039
+Fra:1 Mem:336.80M (Peak 336.80M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Seat cushion.001
+Fra:1 Mem:336.76M (Peak 336.80M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.040
+Fra:1 Mem:336.79M (Peak 336.80M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.041
+Fra:1 Mem:336.88M (Peak 336.88M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.042
+Fra:1 Mem:336.85M (Peak 336.88M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.043
+Fra:1 Mem:336.84M (Peak 336.88M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Integrated head restraint
+Fra:1 Mem:336.87M (Peak 336.88M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.044
+Fra:1 Mem:336.92M (Peak 336.92M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.045
+Fra:1 Mem:336.99M (Peak 336.99M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.046
+Fra:1 Mem:336.92M (Peak 336.99M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.047
+Fra:1 Mem:336.97M (Peak 336.99M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Contoured seat back.001
+Fra:1 Mem:337.00M (Peak 337.00M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.048
+Fra:1 Mem:337.01M (Peak 337.01M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.049
+Fra:1 Mem:337.04M (Peak 337.04M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.050
+Fra:1 Mem:337.06M (Peak 337.05M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.051
+Fra:1 Mem:337.04M (Peak 337.05M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.052
+Fra:1 Mem:337.04M (Peak 337.05M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.053
+Fra:1 Mem:337.08M (Peak 337.08M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.054
+Fra:1 Mem:337.12M (Peak 337.12M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.055
+Fra:1 Mem:337.12M (Peak 337.12M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Dark cabin tub
+Fra:1 Mem:337.13M (Peak 337.13M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.056
+Fra:1 Mem:337.18M (Peak 337.18M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right tire valve
+Fra:1 Mem:337.16M (Peak 337.18M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.057
+Fra:1 Mem:337.19M (Peak 337.19M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.058
+Fra:1 Mem:337.20M (Peak 337.20M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.004
+Fra:1 Mem:337.31M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.059
+Fra:1 Mem:337.27M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.003
+Fra:1 Mem:337.27M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.060
+Fra:1 Mem:337.30M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.061
+Fra:1 Mem:337.27M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.062
+Fra:1 Mem:337.28M (Peak 337.31M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.063
+Fra:1 Mem:337.40M (Peak 337.40M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.064
+Fra:1 Mem:337.36M (Peak 337.40M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.065
+Fra:1 Mem:337.35M (Peak 337.40M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut.001
+Fra:1 Mem:337.42M (Peak 337.42M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.066
+Fra:1 Mem:337.38M (Peak 337.42M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.067
+Fra:1 Mem:337.41M (Peak 337.42M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right titanium lug nut
+Fra:1 Mem:337.45M (Peak 337.45M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.068
+Fra:1 Mem:337.46M (Peak 337.46M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.069
+Fra:1 Mem:337.46M (Peak 337.46M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center cap ring
+Fra:1 Mem:337.46M (Peak 337.46M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.070
+Fra:1 Mem:337.47M (Peak 337.47M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right drilled rotor perforation.071
+Fra:1 Mem:337.48M (Peak 337.48M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right brake disc bell
+Fra:1 Mem:337.61M (Peak 337.61M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right yellow six-piston caliper
+Fra:1 Mem:337.59M (Peak 337.61M) | Time:00:01.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke
+Fra:1 Mem:337.71M (Peak 337.71M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right center hub
+Fra:1 Mem:337.77M (Peak 337.77M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket
+Fra:1 Mem:337.80M (Peak 337.80M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.001
+Fra:1 Mem:337.83M (Peak 337.83M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.001
+Fra:1 Mem:337.86M (Peak 337.86M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.009
+Fra:1 Mem:337.86M (Peak 337.86M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.002
+Fra:1 Mem:337.88M (Peak 337.88M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.002
+Fra:1 Mem:337.84M (Peak 337.88M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.003
+Fra:1 Mem:337.91M (Peak 337.91M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.009
+Fra:1 Mem:337.97M (Peak 337.97M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.003
+Fra:1 Mem:338.01M (Peak 338.01M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.004
+Fra:1 Mem:338.01M (Peak 338.01M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.004
+Fra:1 Mem:338.02M (Peak 338.02M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.008
+Fra:1 Mem:338.04M (Peak 338.04M) | Time:00:01.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.005
+Fra:1 Mem:338.00M (Peak 338.04M) | Time:00:01.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.008
+Fra:1 Mem:338.09M (Peak 338.09M) | Time:00:01.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.006
+Fra:1 Mem:338.09M (Peak 338.09M) | Time:00:01.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right machined split spoke.007
+Fra:1 Mem:338.14M (Peak 338.14M) | Time:00:01.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rear right black spoke pocket.007
+Fra:1 Mem:338.18M (Peak 338.18M) | Time:00:01.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:253.34M (Peak 338.18M) | Time:00:01.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:253.34M (Peak 338.18M) | Time:00:01.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:253.34M (Peak 338.18M) | Time:00:01.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:253.34M (Peak 338.18M) | Time:00:01.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:253.36M (Peak 338.18M) | Time:00:01.36 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:253.51M (Peak 338.18M) | Time:00:01.36 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:253.51M (Peak 338.18M) | Time:00:01.36 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:253.51M (Peak 338.18M) | Time:00:01.36 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:253.51M (Peak 338.18M) | Time:00:01.36 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:268.15M (Peak 338.18M) | Time:00:01.39 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:274.78M (Peak 338.18M) | Time:00:01.40 | Mem:0.21M, Peak:0.21M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:274.67M (Peak 338.18M) | Time:00:01.40 | Mem:6.68M, Peak:6.68M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:274.68M (Peak 338.18M) | Time:00:01.40 | Mem:6.68M, Peak:6.68M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:274.68M (Peak 338.18M) | Time:00:01.40 | Mem:35.96M, Peak:35.96M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:274.68M (Peak 338.18M) | Time:00:01.55 | Mem:68.68M, Peak:97.96M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:274.68M (Peak 338.18M) | Time:00:01.55 | Mem:68.68M, Peak:97.96M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:68.68M, Peak:97.96M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.78M, Peak:104.78M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Lights | Computing distribution
+Fra:1 Mem:310.79M (Peak 338.18M) | Time:00:01.58 | Mem:104.79M, Peak:104.79M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:312.44M (Peak 338.18M) | Time:00:01.61 | Mem:106.44M, Peak:106.44M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:313.44M (Peak 338.18M) | Time:00:01.61 | Mem:107.44M, Peak:107.44M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:313.44M (Peak 338.18M) | Time:00:01.61 | Mem:107.44M, Peak:107.44M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:313.44M (Peak 338.18M) | Time:00:01.61 | Mem:107.45M, Peak:107.45M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:313.44M (Peak 338.18M) | Time:00:01.61 | Mem:107.45M, Peak:107.45M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:313.45M (Peak 338.18M) | Time:00:01.61 | Mem:107.45M, Peak:107.45M | Scene, ViewLayer | Sample 0/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:00:07.51 | Remaining:09:20.68 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 1/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:00:30.79 | Remaining:08:51.03 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 5/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:00:53.93 | Remaining:08:25.69 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 9/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:01:18.52 | Remaining:08:11.01 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 13/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:01:44.85 | Remaining:07:59.76 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 17/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:02:13.76 | Remaining:07:51.94 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 21/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:02:37.40 | Remaining:07:22.44 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 25/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:02:59.79 | Remaining:06:51.64 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 29/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:03:19.49 | Remaining:06:35.76 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 32/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:03:30.35 | Remaining:05:47.90 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 36/96
+Fra:1 Mem:447.06M (Peak 447.06M) | Time:03:43.35 | Remaining:05:10.43 | Mem:241.04M, Peak:241.04M | Scene, ViewLayer | Sample 40/96

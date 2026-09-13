@@ -1,0 +1,37 @@
+{
+  "blender_version": "3.6.23",
+  "vehicle_objects": 759,
+  "native_mesh_vertices": 171672,
+  "native_mesh_faces": 160322,
+  "body_shell_evaluated_dimensions_m": {
+    "length": 4.996997117996216,
+    "width": 1.949208915233612,
+    "shell_height": 0.8294311761856079
+  },
+  "nominal_roof_height_m": 1.44,
+  "wheel_center_x_m": [
+    -1.6,
+    1.4
+  ],
+  "wheelbase_m": 3.0,
+  "packed_reference_images": 5,
+  "non_finite_meshes": [],
+  "cameras": [
+    "01 | Front three-quarter",
+    "02 | Rear three-quarter",
+    "03 | Side orthographic",
+    "04 | Front orthographic",
+    "05 | Rear orthographic",
+    "06 | Wheel detail"
+  ],
+  "visual_iterations": 8,
+  "accuracy_status": "Photo-based approximation; no objective 99% similarity claim",
+  "validation": "Native scene saved; meshes checked for finite coordinates; GLB validated separately below",
+  "glb": {
+    "bytes": 23487712,
+    "meshes": 750,
+    "nodes": 758,
+    "version": 2,
+    "header_and_scene_valid": true
+  }
+}

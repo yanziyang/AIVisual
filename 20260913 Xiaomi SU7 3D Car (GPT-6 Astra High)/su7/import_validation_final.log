@@ -1,0 +1,7 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+Data are loaded, start creating Blender stuff
+glTF import finished in 5.74s
+DELIVERY_IMPORT_VALIDATED {"fresh_blender_glb_import": "passed", "blender_version": "3.6.23", "mesh_objects": 750, "mesh_vertices": 624943, "whole_vehicle_dimensions_m": [5.072399854660034, 2.274975061416626, 1.4554998383391649], "materials": 14}
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+
+Blender quit

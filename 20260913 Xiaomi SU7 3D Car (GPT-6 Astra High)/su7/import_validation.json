@@ -1,0 +1,12 @@
+{
+  "fresh_blender_glb_import": "passed",
+  "blender_version": "3.6.23",
+  "mesh_objects": 750,
+  "mesh_vertices": 624943,
+  "whole_vehicle_dimensions_m": [
+    5.072399854660034,
+    2.274975061416626,
+    1.4554998383391649
+  ],
+  "materials": 14
+}
