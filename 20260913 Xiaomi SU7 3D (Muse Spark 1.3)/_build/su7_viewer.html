@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Xiaomi SU7 — 3D Viewer (Blender 3.6.23 → three.js)</title>
+<style>
+  html, body { margin:0; height:100%; overflow:hidden; background:#2b2e33; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+  #app { position:fixed; inset:0; }
+  #hud { position:fixed; top:14px; left:14px; z-index:10; color:#fff; background:rgba(10,12,16,.62); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:12px 14px; max-width:340px; backdrop-filter: blur(8px); }
+  #hud h1 { font-size:15px; margin:0 0 4px; letter-spacing:.3px; }
+  #hud p { font-size:12px; margin:4px 0; color:#c9ced6; line-height:1.45; }
+  #hud .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; align-items:center; }
+  button, label.btn { background:#0eb5c6; color:#04222a; border:0; border-radius:8px; padding:7px 10px; font-size:12px; font-weight:700; cursor:pointer; }
+  button.ghost { background:rgba(255,255,255,.12); color:#fff; font-weight:600; }
+  .swatch { width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,255,255,.7); cursor:pointer; padding:0; }
+  #status { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:10; color:#fff; background:rgba(0,0,0,.55); padding:8px 14px; border-radius:999px; font-size:12px; }
+  #drop { position:fixed; inset:0; display:none; z-index:20; background:rgba(0,180,200,.15); border:3px dashed #0eb5c6; }
+  a { color:#7fe3ee; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <h1>Xiaomi SU7 Max · Aqua Blue</h1>
+  <p>Procedural Blender 3.6.23 model (v7) exported to <code>su7.glb</code>. Drag to orbit · scroll to zoom · right-drag to pan.</p>
+  <div class="row">
+    <button id="spinBtn">⏸ Pause spin</button>
+    <button id="frontBtn" class="ghost">3/4 front</button>
+    <button id="sideBtn" class="ghost">Side</button>
+    <button id="rearBtn" class="ghost">Rear</button>
+  </div>
+  <div class="row" title="Car paint">
+    <span style="font-size:12px;color:#c9ced6">Paint:</span>
+    <button class="swatch" data-c="#0aa7b8" style="background:#0aa7b8" title="Aqua Blue (default)"></button>
+    <button class="swatch" data-c="#8a9099" style="background:#8a9099" title="Grey"></button>
+    <button class="swatch" data-c="#e8e9eb" style="background:#e8e9eb" title="White"></button>
+    <button class="swatch" data-c="#101216" style="background:#101216" title="Black"></button>
+    <button class="swatch" data-c="#0b3d5c" style="background:#0b3d5c" title="Deep Blue"></button>
+  </div>
+  <p style="margin-top:8px">If the model doesn't load via <code>file://</code>, run:<br/><code>python -m http.server</code> in this folder, then open <code>http://localhost:8000/su7_viewer.html</code>. You can also drag-drop <code>su7.glb</code> anywhere.</p>
+</div>
+<div id="status">Loading su7.glb…</div>
+<div id="drop"></div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const app = document.getElementById('app');
+const statusEl = document.getElementById('status');
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x3a3e45);
+scene.fog = new THREE.Fog(0x3a3e45, 18, 40);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(40, innerWidth/innerHeight, 0.1, 100);
+camera.position.set(4.8, 1.55, 3.1);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0.55, 0);
+controls.enableDamping = true;
+controls.maxPolarAngle = Math.PI * 0.495;
+controls.minDistance = 2.5;
+controls.maxDistance = 14;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.9;
+
+// Studio lights (match Blender: key/fill/rim/top + sun)
+const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(4,3.5,4.5); key.castShadow = true;
+key.shadow.mapSize.set(2048,2048); key.shadow.camera.left=-5; key.shadow.camera.right=5; key.shadow.camera.top=5; key.shadow.camera.bottom=-5;
+scene.add(key);
+scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x1a1c20, 0.55));
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-3,4,3.5); scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.9); rim.position.set(-4.5,-3.5,3.5); scene.add(rim);
+
+// Ground: light grey studio floor like reference
+const ground = new THREE.Mesh(
+  new THREE.CircleGeometry(15, 64),
+  new THREE.MeshStandardMaterial({ color:0x9a9da2, roughness:0.6, metalness:0.0 })
+);
+ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
+
+let car = null;
+let paintMats = [];
+const loader = new GLTFLoader();
+function setStatus(t){ statusEl.textContent = t; }
+
+async function loadURL(url){
+  setStatus('Loading ' + url + '…');
+  try{
+    const gltf = await loader.loadAsync(url);
+    if(car) { scene.remove(car); }
+    car = gltf.scene;
+    car.traverse(o=>{
+      if(o.isMesh){ o.castShadow = true; o.receiveShadow = false; }
+      if(o.isMesh && o.material){
+        const mats = Array.isArray(o.material)?o.material:[o.material];
+        mats.forEach(m=>{
+          if(m.isMeshStandardMaterial || m.isMeshPhysicalMaterial){
+            // collect likely paint mats (teal, high metalness/clearcoat or name match)
+            const c = m.color ? '#'+m.color.getHexString() : '';
+            if(o.name.toLowerCase().includes('body') || (m.name && m.name.toLowerCase().includes('aqua'))) paintMats.push(m);
+          }
+        });
+      }
+    });
+    // Fallback: if name matching failed, detect teal paint by color proximity
+    if(paintMats.length===0){
+      car.traverse(o=>{
+        if(o.isMesh){
+          const mats = Array.isArray(o.material)?o.material:[o.material];
+          mats.forEach(m=>{
+            if(m.color && Math.abs(m.color.r-0.0)<0.08 && m.color.g>0.15 && m.color.g<0.5 && m.color.b>0.2 && m.color.b<0.55) paintMats.push(m);
+          });
+        }
+      });
+    }
+    // De-dupe
+    paintMats = [...new Set(paintMats)];
+    // Ground the car: center XZ, sit min.y on floor (three Y-up). Old code
+    // subtracted center.y which sank half the car below the ground plane,
+    // hiding wheels/lower body so only the upper was visible.
+    const box = new THREE.Box3().setFromObject(car);
+    const center = box.getCenter(new THREE.Vector3());
+    car.position.x -= center.x;
+    car.position.z -= center.z;
+    car.position.y -= box.min.y;
+    controls.target.set(0, 0.55, 0);
+    scene.add(car);
+    setStatus('Loaded ' + url + ' · drag to orbit · ' + paintMats.length + ' paint material(s)');
+  }catch(e){
+    console.error(e);
+    setStatus('Failed to load ' + url + '. Serve over http or drag-drop su7.glb here. (' + e.message + ')');
+  }
+}
+loadURL('./su7.glb');
+
+// Drag & drop fallback for file:// CORS
+const drop = document.getElementById('drop');
+addEventListener('dragenter', e=>{ e.preventDefault(); drop.style.display='block'; });
+addEventListener('dragleave', e=>{ if(e.target===drop) drop.style.display='none'; });
+addEventListener('dragover', e=>e.preventDefault());
+addEventListener('drop', async e=>{
+  e.preventDefault(); drop.style.display='none';
+  const f = e.dataTransfer.files[0];
+  if(!f) return;
+  const url = URL.createObjectURL(f);
+  paintMats = [];
+  await loadURL(url);
+});
+
+// Eye-level views (three Y-up; car front +X, side ±Z). Matches reference photos.
+function setView(x,y,z){ camera.position.set(x, y, z); controls.target.set(0,0.55,0); }
+document.getElementById('frontBtn').onclick = ()=> setView(4.8, 1.55, 3.1);
+document.getElementById('sideBtn').onclick = ()=> setView(0.2, 1.0, 6.2);
+document.getElementById('rearBtn').onclick = ()=> setView(-4.8, 1.4, 2.4);
+const spinBtn = document.getElementById('spinBtn');
+spinBtn.onclick = ()=>{ controls.autoRotate = !controls.autoRotate; spinBtn.textContent = controls.autoRotate ? '⏸ Pause spin' : '▶ Auto-spin'; };
+document.querySelectorAll('.swatch').forEach(b=>{
+  b.onclick = ()=>{
+    const hex = b.dataset.c;
+    if(paintMats.length===0){ setStatus('Paint material not detected — model still shown with original materials.'); return; }
+    paintMats.forEach(m=>{ m.color.set(hex); m.needsUpdate = true; });
+    setStatus('Paint → ' + hex);
+  };
+});
+
+addEventListener('resize', ()=>{
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+renderer.setAnimationLoop(()=>{ controls.update(); renderer.render(scene, camera); });
+</script>
+</body>
+</html>
