@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Xiaomi SU7 · three.js viewer</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden;
+               background: radial-gradient(120% 90% at 50% 8%, #3a4048 0%, #23262b 46%, #14161a 100%); }
+  #app { width: 100%; height: 100%; display: block; }
+  #hud {
+    position: fixed; left: 16px; bottom: 14px; color: #cfd6dd; z-index: 10;
+    font: 13px/1.5 "Segoe UI", system-ui, sans-serif; opacity: .92;
+    background: rgba(12,14,17,.55); padding: 10px 14px; border-radius: 10px;
+    backdrop-filter: blur(6px); pointer-events: none;
+  }
+  #hud b { color: #35d0e0; font-weight: 600; letter-spacing: .4px; }
+  #status {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #9fb0bd; font: 15px "Segoe UI", system-ui, sans-serif; z-index: 9;
+    letter-spacing: .3px;
+  }
+</style>
+</head>
+<body>
+<canvas id="app"></canvas>
+<div id="hud"><b>XIAOMI SU7</b> &middot; drag to orbit &middot; scroll to zoom &middot; right-drag to pan</div>
+<div id="status">loading model&hellip;</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script id="glb-data" type="application/octet-stream+base64">__GLB_BASE64__</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.08;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.05, 200);
+camera.position.set(-4.9, 1.75, 4.9);
+
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 0.6, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 2.0;
+controls.maxDistance = 18;
+controls.maxPolarAngle = Math.PI * 0.53;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.8;
+
+let idleTimer = 0;
+controls.addEventListener('start', () => { controls.autoRotate = false; clearTimeout(idleTimer); });
+controls.addEventListener('end', () => {
+  idleTimer = setTimeout(() => { controls.autoRotate = true; }, 3500);
+});
+
+const ground = new THREE.Mesh(
+  new THREE.CircleGeometry(36, 96),
+  new THREE.MeshStandardMaterial({ color: 0x272b31, roughness: 0.94, metalness: 0.0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+const sun = new THREE.DirectionalLight(0xffffff, 2.4);
+sun.position.set(-6, 9, 6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.left = -7; sun.shadow.camera.right = 7;
+sun.shadow.camera.top = 7; sun.shadow.camera.bottom = -7;
+sun.shadow.radius = 6;
+sun.shadow.bias = -0.0004;
+scene.add(sun);
+const rim = new THREE.DirectionalLight(0xaad8ff, 0.85);
+rim.position.set(5.5, 4.5, -7);
+scene.add(rim);
+const fill = new THREE.DirectionalLight(0xffffff, 0.35);
+fill.position.set(3, 2.5, 6);
+scene.add(fill);
+
+{
+  const c = document.createElement('canvas');
+  c.width = c.height = 256;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(128, 128, 36, 128, 128, 128);
+  g.addColorStop(0, 'rgba(0,0,0,0.55)');
+  g.addColorStop(0.55, 'rgba(0,0,0,0.26)');
+  g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, 256, 256);
+  const blob = new THREE.Mesh(
+    new THREE.PlaneGeometry(6.6, 3.2),
+    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false })
+  );
+  blob.rotation.x = -Math.PI / 2;
+  blob.position.y = 0.012;
+  scene.add(blob);
+}
+
+const status = document.getElementById('status');
+const b64 = (document.getElementById('glb-data').textContent || '').trim();
+const loader = new GLTFLoader();
+
+function showCar(gltf) {
+  const car = gltf.scene;
+  car.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+  car.rotation.y = Math.PI;
+  const box = new THREE.Box3().setFromObject(car);
+  const center = box.getCenter(new THREE.Vector3());
+  car.position.set(car.position.x - center.x, car.position.y - box.min.y, car.position.z - center.z);
+  scene.add(car);
+  status.style.display = 'none';
+}
+
+function decodeB64(str) {
+  const bin = atob(str);
+  const buf = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+  return buf.buffer;
+}
+
+function fail(msg, err) {
+  status.textContent = msg;
+  if (err) console.error(err);
+}
+
+if (b64.length > 100) {
+  try {
+    loader.parse(decodeB64(b64), '', showCar, (e) => fail('failed to parse embedded su7.glb', e));
+  } catch (e) {
+    fail('failed to decode embedded su7.glb', e);
+  }
+} else {
+  loader.load('su7.glb', showCar, undefined,
+    (e) => fail('could not load su7.glb - keep it next to this file and serve the folder (python -m http.server)', e));
+}
+
+addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+renderer.setAnimationLoop(() => {
+  controls.update();
+  renderer.render(scene, camera);
+});
+</script>
+</body>
+</html>

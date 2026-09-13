@@ -1,0 +1,113 @@
+{
+ "f34": {
+  "file": "Xiaomi-Su7-01.png",
+  "w": 1128,
+  "h": 457,
+  "bbox_x": [
+   126,
+   316
+  ],
+  "ground_row": 382,
+  "length_px": 190,
+  "height_px": 216,
+  "paint_mean": [
+   0.239,
+   0.669,
+   0.711
+  ],
+  "paint_med": [
+   0.2,
+   0.651,
+   0.702
+  ]
+ },
+ "front": {
+  "file": "Xiaomi-Su7-02.png",
+  "w": 1158,
+  "h": 598,
+  "bbox_x": [
+   243,
+   851
+  ],
+  "ground_row": 504,
+  "length_px": 608,
+  "height_px": 436,
+  "paint_mean": [
+   0.174,
+   0.699,
+   0.75
+  ],
+  "paint_med": [
+   0.122,
+   0.706,
+   0.757
+  ]
+ },
+ "side": {
+  "file": "Xiaomi-Su7-03.png",
+  "w": 1165,
+  "h": 404,
+  "bbox_x": [
+   188,
+   319
+  ],
+  "ground_row": 325,
+  "length_px": 131,
+  "height_px": 135,
+  "paint_mean": [
+   0.731,
+   0.521,
+   0.128
+  ],
+  "paint_med": [
+   0.745,
+   0.525,
+   0.122
+  ],
+  "wheel_clusters": []
+ },
+ "rear": {
+  "file": "Xiaomi-Su7-04.png",
+  "w": 1036,
+  "h": 587,
+  "bbox_x": [
+   186,
+   772
+  ],
+  "ground_row": 316,
+  "length_px": 586,
+  "height_px": 225,
+  "paint_mean": [
+   0.203,
+   0.598,
+   0.672
+  ],
+  "paint_med": [
+   0.094,
+   0.616,
+   0.706
+  ]
+ },
+ "f34b": {
+  "file": "Xiaomi-Su7-05.png",
+  "w": 1109,
+  "h": 472,
+  "bbox_x": [
+   55,
+   245
+  ],
+  "ground_row": 370,
+  "length_px": 190,
+  "height_px": 216,
+  "paint_mean": [
+   0.239,
+   0.669,
+   0.711
+  ],
+  "paint_med": [
+   0.2,
+   0.651,
+   0.702
+  ]
+ }
+}
