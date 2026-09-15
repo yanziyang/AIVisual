@@ -1,0 +1,10 @@
+from pathlib import Path
+p=Path(r'C:\MyProjects\TempProject (OpenAI)\J36_Model\build_j36.py')
+s=p.read_text(encoding='utf-8')
+s=s.replace('sections=[(-10.65,.015,0),(-10.15,.40,.27),(-9.4,.72,.66),(-8.5,.82,.77),(-7.65,.77,.63),(-7.12,.56,.22),(-6.9,.12,0)]','sections=[(-10.15,.05,0),(-9.92,.50,.24),(-9.5,.83,.49),(-9.0,1.08,.68),(-8.35,1.13,.72),(-7.7,1.06,.60),(-7.3,.88,.36),(-7.13,.52,.05),(-7.11,.03,0)]')
+s=s.replace('y,w,h=sections[2]','y,w,h=sections[3]')
+s=s.replace('w=.82+.18*sin(pi*t)','w=1.30-.20*t')
+s=s.replace('h=.61*(1-t)**1.45','h=.57*(1-t)**1.45')
+s=s.replace("(.027,.043,.045),.63,.16","(.027,.043,.045),.53,.21")
+s=s.replace("scene.eevee.taa_render_samples=96","scene.eevee.taa_render_samples=128")
+p.write_text(s,encoding='utf-8')

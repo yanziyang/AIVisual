@@ -1,0 +1,44 @@
+{
+  "blender_version": "3.6.23",
+  "main_airframe_vertices": 64722,
+  "main_airframe_faces": 64720,
+  "main_airframe_nonmanifold_edges": 0,
+  "main_airframe_zero_area_faces": 0,
+  "packed_reference_images": [
+    "J-36 Stealth Bomber 01.jpg",
+    "J-36 Stealth Bomber 02.png"
+  ],
+  "scene_objects": 447,
+  "cameras": [
+    "01 | Front three-quarter",
+    "02 | Top plan",
+    "03 | Rear three-quarter",
+    "04 | Underside reference",
+    "05 | Front elevation"
+  ],
+  "render_outputs": {
+    "01_beauty.png": {
+      "width": 1440,
+      "height": 1120,
+      "bytes": 1631462
+    },
+    "02_top.png": {
+      "width": 1440,
+      "height": 1120,
+      "bytes": 1653077
+    },
+    "03_rear.png": {
+      "width": 1440,
+      "height": 1120,
+      "bytes": 1618142
+    },
+    "04_underside.png": {
+      "width": 1440,
+      "height": 1120,
+      "bytes": 1655210
+    }
+  },
+  "accuracy_note": "Reference-based exterior study; no verified percentage of likeness.",
+  "main_airframe_mirror_mismatches": 0,
+  "validation": "PASS"
+}

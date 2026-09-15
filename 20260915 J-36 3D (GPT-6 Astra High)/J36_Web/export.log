@@ -1,0 +1,878 @@
+13:34:31 | INFO: Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 3.6\3.6\python\lib\site-packages\extern_draco.dll
+13:34:36 | INFO: Starting glTF 2.0 export
+13:34:36 | INFO: Extracting primitive: J-36 | continuous blended delta airframe
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Smoked cockpit canopy
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Canopy perimeter seal
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Canopy perimeter frame
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Canopy perimeter seal.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Canopy perimeter frame.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Forward canopy bow
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Dorsal intake | blended curved shroud
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Dorsal intake | rolled leading lip
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Dorsal intake | recessed arch walls
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Dorsal intake | shadowed throat
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake fairing -1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake tunnel -1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake dark recess -1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake rim -1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.044
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake fairing 1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake tunnel 1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake dark recess 1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Side intake rim 1
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.045
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | nozzle casing
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | nozzle inside
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine core darkness
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 01
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 02
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 03
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 04
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 05
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 06
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 07
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 08
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 09
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 10
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 11
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 12
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 13
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 14
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 15
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 16
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 17
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 18
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 19
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 20
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 21
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 22
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 23
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 1 | petal 24
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | nozzle casing
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | nozzle inside
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine core darkness.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 01
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 02
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 03
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 04
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 05
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 06
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 07
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 08
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 09
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 10
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 11
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 12
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 13
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 14
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 15
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 16
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 17
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 18
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 19
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 20
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 21
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 22
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 23
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 2 | petal 24
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield.002
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield.003
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | nozzle casing
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | nozzle inside
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine core darkness.002
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 01
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 02
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 03
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 04
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 05
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 06
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 07
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 08
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 09
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 10
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 11
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 12
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 13
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 14
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 15
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 16
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 17
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 18
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 19
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 20
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 21
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 22
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 23
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Engine 3 | petal 24
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield.004
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Exhaust trough heat shield.005
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Leading edge coating (-1, True)
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Leading-edge panel boundary
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 0 -1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 1 -1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.002
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.003
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 2 -1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap.002
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.004
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.005
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Wing structural panel
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Wing aft spar
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Wing outer panel
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Outer nacelle boundary
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Nacelle cross seam
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Nacelle cross seam.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Leading edge coating (1, True)
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Leading-edge panel boundary.001
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 0 1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap.003
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.006
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.007
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 1 1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap.004
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.008
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.009
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon 2 1 True
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Elevon gap.005
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.010
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Sphere.011
+13:34:37 | INFO: Primitives created: 1
+13:34:37 | INFO: Extracting primitive: Wing structural panel.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing aft spar.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing outer panel.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Outer nacelle boundary.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Radome seam
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Forebody equipment seam
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Leading edge coating (-1, False)
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Leading-edge panel boundary.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 0 -1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.006
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 1 -1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.007
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 2 -1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.008
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing structural panel.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing aft spar.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing outer panel.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Outer nacelle boundary.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.004
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.005
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Leading edge coating (1, False)
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Leading-edge panel boundary.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 0 1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.009
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 1 1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.010
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon 2 1 False
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Elevon gap.011
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing structural panel.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing aft spar.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing outer panel.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Outer nacelle boundary.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.006
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Nacelle cross seam.007
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Radome seam.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Forebody equipment seam.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.012
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.013
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.014
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.015
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.016
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.017
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.018
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.019
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.020
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.021
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.022
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.023
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.024
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.025
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.026
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.027
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral antenna
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral antenna.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.004
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.028
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.029
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.030
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.031
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.005
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.032
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.033
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.034
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.035
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.006
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.036
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.037
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.038
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.039
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Flush service hatch.007
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.040
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.041
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.042
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.043
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral antenna.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral antenna.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Conformal optical aperture
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Chine optical aperture
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Conformal optical aperture.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Chine optical aperture.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral main bay door -1
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main bay sawtooth seal
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Outboard ventral door seal
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Ventral main bay door 1
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main bay sawtooth seal.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Outboard ventral door seal.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge.004
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Recessed door hinge.005
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Prototype serial
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Low visibility wing star
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing insignia bar
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing insignia bar.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Service stencil
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Service stencil.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.046
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Prototype serial.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Low visibility wing star.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing insignia bar.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Wing insignia bar.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Service stencil.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Service stencil.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Sphere.047
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main gear well shadow -1
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.004
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main gear hydraulic hose
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, -0.36) | tire
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.005
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.006
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.007
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.008
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.009
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.010
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.011
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.012
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.013
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.014
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.015
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.016
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.017
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.018
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.019
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.020
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.021
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.022
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.023
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.024
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.025
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, -0.36) | tread groove
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, -0.36) | tread groove.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, -0.36) | tread groove.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, 1.32) | tire
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.026
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.027
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.028
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.029
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.030
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.031
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.032
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.033
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.034
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.035
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.036
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.037
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.038
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.039
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.040
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.041
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.042
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.043
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.044
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.045
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.046
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, 1.32) | tread groove
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, 1.32) | tread groove.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (-1, 1.32) | tread groove.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cube.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cube.002
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cube.003
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cube.004
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main gear well shadow 1
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.047
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.048
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.049
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.050
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.051
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main gear hydraulic hose.001
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Main wheel (1, -0.36) | tire
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.052
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.053
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.054
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.055
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.056
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.057
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.058
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.059
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.060
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.061
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.062
+13:34:38 | INFO: Primitives created: 1
+13:34:38 | INFO: Extracting primitive: Cylinder.063
+13:34:38 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.064
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.065
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.066
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.067
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.068
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.069
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.070
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.071
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.072
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, -0.36) | tread groove
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, -0.36) | tread groove.001
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, -0.36) | tread groove.002
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, 1.32) | tire
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.073
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.074
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.075
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.076
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.077
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.078
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.079
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.080
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.081
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.082
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.083
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.084
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.085
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.086
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.087
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.088
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.089
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.090
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.091
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.092
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.093
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, 1.32) | tread groove
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, 1.32) | tread groove.001
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Main wheel (1, 1.32) | tread groove.002
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.005
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.006
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.007
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.008
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose well
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.094
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.095
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.096
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.097
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel -1 | tire
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.098
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.099
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.100
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.101
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.102
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.103
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.104
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.105
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.106
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.107
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.108
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.109
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.110
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.111
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.112
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.113
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.114
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.115
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.116
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.117
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.118
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel -1 | tread groove
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel -1 | tread groove.001
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel -1 | tread groove.002
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.009
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel 1 | tire
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.119
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.120
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.121
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.122
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.123
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.124
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.125
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.126
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.127
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.128
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.129
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.130
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.131
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.132
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.133
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.134
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.135
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.136
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.137
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.138
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cylinder.139
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel 1 | tread groove
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel 1 | tread groove.001
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose wheel 1 | tread groove.002
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Cube.010
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Extracting primitive: Nose gear torque link
+13:34:39 | INFO: Primitives created: 1
+13:34:39 | INFO: Finished glTF 2.0 export in 2.8252124786376953 s
+
+EXPORT_COMPLETE {'objects': 434, 'vertices': 195398, 'polygons': 193457, 'bytes': 7554992}
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Read prefs: "C:\Users\admin\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+Read blend: "C:\MyProjects\TempProject (OpenAI)\J36_Model\J36_Reference_Model.blend"
+
+Blender quit

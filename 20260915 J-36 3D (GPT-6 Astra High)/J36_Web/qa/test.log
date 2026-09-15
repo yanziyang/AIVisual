@@ -1,0 +1,47 @@
+{
+  "initial": {
+    "ready": true,
+    "view": "01 / PERSPECTIVE",
+    "meshCount": 434,
+    "gearCount": 180,
+    "gearVisible": true,
+    "wireframe": false,
+    "groundVisible": true,
+    "autoRotate": false,
+    "exposure": 1,
+    "triangles": 765588
+  },
+  "reset": {
+    "ready": true,
+    "view": "01 / PERSPECTIVE",
+    "meshCount": 434,
+    "gearCount": 180,
+    "gearVisible": true,
+    "wireframe": false,
+    "groundVisible": true,
+    "autoRotate": false,
+    "exposure": 1,
+    "triangles": 765588
+  },
+  "externalRequests": [],
+  "result": "PASS",
+  "checks": [
+    "Offline file:// load",
+    "434 model meshes",
+    "Five camera presets",
+    "Underside ground handling",
+    "Wireframe",
+    "Gear visibility",
+    "Ground grid",
+    "Lighting",
+    "Auto rotate camera movement",
+    "Reset",
+    "GLB download",
+    "PNG snapshot",
+    "Mobile layout",
+    "Mobile controls",
+    "Zero external network requests",
+    "Zero JavaScript errors"
+  ],
+  "errors": []
+}

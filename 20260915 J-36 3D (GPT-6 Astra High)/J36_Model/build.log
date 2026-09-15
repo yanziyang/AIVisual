@@ -1,0 +1,1831 @@
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Read prefs: "C:\Users\admin\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+Info: Total files 2 | Changed 2 | Failed 0
+Warning: Could not find a matching GPU name. Things may not behave as expected.
+Detected OpenGL configuration:
+Vendor: VMware, Inc.
+Renderer: SVGA3D; build: RELEASE;  LLVM;
+Fra:1 Mem:104.87M (Peak 105.95M) | Time:00:02.62 | Syncing J-36 | continuous blended delta a
+Fra:1 Mem:113.30M (Peak 113.79M) | Time:00:06.23 | Syncing Smoked cockpit canopy
+Fra:1 Mem:113.35M (Peak 113.79M) | Time:00:07.55 | Syncing Canopy perimeter seal
+Fra:1 Mem:113.37M (Peak 113.79M) | Time:00:08.71 | Syncing Canopy perimeter frame
+Fra:1 Mem:113.37M (Peak 113.79M) | Time:00:08.71 | Syncing Canopy perimeter seal.001
+Fra:1 Mem:113.38M (Peak 113.79M) | Time:00:08.72 | Syncing Canopy perimeter frame.001
+Fra:1 Mem:113.38M (Peak 113.79M) | Time:00:08.72 | Syncing Forward canopy bow
+Fra:1 Mem:113.39M (Peak 113.79M) | Time:00:08.72 | Syncing Dorsal intake | blended curved sh
+Fra:1 Mem:113.89M (Peak 113.89M) | Time:00:08.72 | Syncing Dorsal intake | rolled leading li
+Fra:1 Mem:113.91M (Peak 113.91M) | Time:00:08.72 | Syncing Dorsal intake | recessed arch wal
+Fra:1 Mem:113.92M (Peak 113.92M) | Time:00:08.72 | Syncing Dorsal intake | shadowed throat
+Fra:1 Mem:113.94M (Peak 113.94M) | Time:00:08.72 | Syncing Side intake fairing -1
+Fra:1 Mem:113.94M (Peak 113.94M) | Time:00:08.73 | Syncing Side intake tunnel -1
+Fra:1 Mem:113.95M (Peak 113.95M) | Time:00:08.73 | Syncing Side intake dark recess -1
+Fra:1 Mem:113.95M (Peak 113.95M) | Time:00:08.73 | Syncing Side intake rim -1
+Fra:1 Mem:113.97M (Peak 113.97M) | Time:00:08.73 | Syncing Diverterless intake shoulder -1
+Fra:1 Mem:114.04M (Peak 114.04M) | Time:00:08.73 | Syncing Side intake fairing 1
+Fra:1 Mem:114.04M (Peak 114.04M) | Time:00:08.73 | Syncing Side intake tunnel 1
+Fra:1 Mem:114.05M (Peak 114.05M) | Time:00:08.73 | Syncing Side intake dark recess 1
+Fra:1 Mem:114.06M (Peak 114.06M) | Time:00:08.73 | Syncing Side intake rim 1
+Fra:1 Mem:114.07M (Peak 114.07M) | Time:00:08.73 | Syncing Diverterless intake shoulder 1
+Fra:1 Mem:114.14M (Peak 114.14M) | Time:00:08.73 | Syncing Engine 1 | nozzle casing
+Fra:1 Mem:114.16M (Peak 114.16M) | Time:00:08.74 | Syncing Engine 1 | nozzle inside
+Fra:1 Mem:114.18M (Peak 114.18M) | Time:00:08.74 | Syncing Engine core darkness
+Fra:1 Mem:114.19M (Peak 114.19M) | Time:00:08.74 | Syncing Engine 1 | petal 01
+Fra:1 Mem:114.19M (Peak 114.19M) | Time:00:08.74 | Syncing Engine 1 | petal 02
+Fra:1 Mem:114.20M (Peak 114.20M) | Time:00:08.74 | Syncing Engine 1 | petal 03
+Fra:1 Mem:114.21M (Peak 114.21M) | Time:00:08.74 | Syncing Engine 1 | petal 04
+Fra:1 Mem:114.22M (Peak 114.22M) | Time:00:08.74 | Syncing Engine 1 | petal 05
+Fra:1 Mem:114.23M (Peak 114.23M) | Time:00:08.74 | Syncing Engine 1 | petal 06
+Fra:1 Mem:114.23M (Peak 114.23M) | Time:00:08.74 | Syncing Engine 1 | petal 07
+Fra:1 Mem:114.24M (Peak 114.24M) | Time:00:08.74 | Syncing Engine 1 | petal 08
+Fra:1 Mem:114.25M (Peak 114.25M) | Time:00:08.75 | Syncing Engine 1 | petal 09
+Fra:1 Mem:114.26M (Peak 114.26M) | Time:00:08.75 | Syncing Engine 1 | petal 10
+Fra:1 Mem:114.26M (Peak 114.26M) | Time:00:08.75 | Syncing Engine 1 | petal 11
+Fra:1 Mem:114.27M (Peak 114.27M) | Time:00:08.75 | Syncing Engine 1 | petal 12
+Fra:1 Mem:114.28M (Peak 114.28M) | Time:00:08.75 | Syncing Engine 1 | petal 13
+Fra:1 Mem:114.29M (Peak 114.29M) | Time:00:08.75 | Syncing Engine 1 | petal 14
+Fra:1 Mem:114.29M (Peak 114.29M) | Time:00:08.75 | Syncing Engine 1 | petal 15
+Fra:1 Mem:114.30M (Peak 114.30M) | Time:00:08.75 | Syncing Engine 1 | petal 16
+Fra:1 Mem:114.31M (Peak 114.31M) | Time:00:08.75 | Syncing Engine 1 | petal 17
+Fra:1 Mem:114.32M (Peak 114.32M) | Time:00:08.76 | Syncing Engine 1 | petal 18
+Fra:1 Mem:114.32M (Peak 114.32M) | Time:00:08.76 | Syncing Engine 1 | petal 19
+Fra:1 Mem:114.33M (Peak 114.33M) | Time:00:08.76 | Syncing Engine 1 | petal 20
+Fra:1 Mem:114.34M (Peak 114.34M) | Time:00:08.76 | Syncing Engine 1 | petal 21
+Fra:1 Mem:114.35M (Peak 114.35M) | Time:00:08.76 | Syncing Engine 1 | petal 22
+Fra:1 Mem:114.35M (Peak 114.35M) | Time:00:08.77 | Syncing Engine 1 | petal 23
+Fra:1 Mem:114.36M (Peak 114.36M) | Time:00:08.77 | Syncing Engine 1 | petal 24
+Fra:1 Mem:114.37M (Peak 114.37M) | Time:00:08.77 | Syncing Exhaust trough heat shield
+Fra:1 Mem:114.37M (Peak 114.37M) | Time:00:08.77 | Syncing Exhaust trough heat shield.001
+Fra:1 Mem:114.38M (Peak 114.38M) | Time:00:08.77 | Syncing Engine 2 | nozzle casing
+Fra:1 Mem:114.41M (Peak 114.41M) | Time:00:08.77 | Syncing Engine 2 | nozzle inside
+Fra:1 Mem:114.42M (Peak 114.42M) | Time:00:08.78 | Syncing Engine core darkness.001
+Fra:1 Mem:114.43M (Peak 114.43M) | Time:00:08.78 | Syncing Engine 2 | petal 01
+Fra:1 Mem:114.44M (Peak 114.44M) | Time:00:08.78 | Syncing Engine 2 | petal 02
+Fra:1 Mem:114.45M (Peak 114.45M) | Time:00:08.78 | Syncing Engine 2 | petal 03
+Fra:1 Mem:114.45M (Peak 114.45M) | Time:00:08.78 | Syncing Engine 2 | petal 04
+Fra:1 Mem:114.46M (Peak 114.46M) | Time:00:08.78 | Syncing Engine 2 | petal 05
+Fra:1 Mem:114.47M (Peak 114.47M) | Time:00:08.78 | Syncing Engine 2 | petal 06
+Fra:1 Mem:114.48M (Peak 114.48M) | Time:00:08.78 | Syncing Engine 2 | petal 07
+Fra:1 Mem:114.48M (Peak 114.48M) | Time:00:08.78 | Syncing Engine 2 | petal 08
+Fra:1 Mem:114.49M (Peak 114.49M) | Time:00:08.79 | Syncing Engine 2 | petal 09
+Fra:1 Mem:114.50M (Peak 114.50M) | Time:00:08.79 | Syncing Engine 2 | petal 10
+Fra:1 Mem:114.51M (Peak 114.51M) | Time:00:08.79 | Syncing Engine 2 | petal 11
+Fra:1 Mem:114.51M (Peak 114.51M) | Time:00:08.79 | Syncing Engine 2 | petal 12
+Fra:1 Mem:114.52M (Peak 114.52M) | Time:00:08.79 | Syncing Engine 2 | petal 13
+Fra:1 Mem:114.53M (Peak 114.53M) | Time:00:08.79 | Syncing Engine 2 | petal 14
+Fra:1 Mem:114.54M (Peak 114.54M) | Time:00:08.79 | Syncing Engine 2 | petal 15
+Fra:1 Mem:114.55M (Peak 114.55M) | Time:00:08.79 | Syncing Engine 2 | petal 16
+Fra:1 Mem:114.55M (Peak 114.55M) | Time:00:08.79 | Syncing Engine 2 | petal 17
+Fra:1 Mem:114.56M (Peak 114.56M) | Time:00:08.79 | Syncing Engine 2 | petal 18
+Fra:1 Mem:114.57M (Peak 114.57M) | Time:00:08.79 | Syncing Engine 2 | petal 19
+Fra:1 Mem:114.57M (Peak 114.57M) | Time:00:08.80 | Syncing Engine 2 | petal 20
+Fra:1 Mem:114.58M (Peak 114.58M) | Time:00:08.80 | Syncing Engine 2 | petal 21
+Fra:1 Mem:114.59M (Peak 114.59M) | Time:00:08.80 | Syncing Engine 2 | petal 22
+Fra:1 Mem:114.60M (Peak 114.60M) | Time:00:08.80 | Syncing Engine 2 | petal 23
+Fra:1 Mem:114.60M (Peak 114.60M) | Time:00:08.80 | Syncing Engine 2 | petal 24
+Fra:1 Mem:114.61M (Peak 114.61M) | Time:00:08.80 | Syncing Exhaust trough heat shield.002
+Fra:1 Mem:114.62M (Peak 114.62M) | Time:00:08.80 | Syncing Exhaust trough heat shield.003
+Fra:1 Mem:114.63M (Peak 114.63M) | Time:00:08.80 | Syncing Engine 3 | nozzle casing
+Fra:1 Mem:114.65M (Peak 114.65M) | Time:00:08.80 | Syncing Engine 3 | nozzle inside
+Fra:1 Mem:114.67M (Peak 114.67M) | Time:00:08.81 | Syncing Engine core darkness.002
+Fra:1 Mem:114.68M (Peak 114.68M) | Time:00:08.81 | Syncing Engine 3 | petal 01
+Fra:1 Mem:114.68M (Peak 114.68M) | Time:00:08.81 | Syncing Engine 3 | petal 02
+Fra:1 Mem:114.69M (Peak 114.69M) | Time:00:08.81 | Syncing Engine 3 | petal 03
+Fra:1 Mem:114.70M (Peak 114.70M) | Time:00:08.81 | Syncing Engine 3 | petal 04
+Fra:1 Mem:114.71M (Peak 114.71M) | Time:00:08.81 | Syncing Engine 3 | petal 05
+Fra:1 Mem:114.71M (Peak 114.71M) | Time:00:08.81 | Syncing Engine 3 | petal 06
+Fra:1 Mem:114.72M (Peak 114.72M) | Time:00:08.81 | Syncing Engine 3 | petal 07
+Fra:1 Mem:114.73M (Peak 114.73M) | Time:00:08.81 | Syncing Engine 3 | petal 08
+Fra:1 Mem:114.74M (Peak 114.74M) | Time:00:08.81 | Syncing Engine 3 | petal 09
+Fra:1 Mem:114.74M (Peak 114.74M) | Time:00:08.81 | Syncing Engine 3 | petal 10
+Fra:1 Mem:114.75M (Peak 114.75M) | Time:00:08.82 | Syncing Engine 3 | petal 11
+Fra:1 Mem:114.76M (Peak 114.76M) | Time:00:08.82 | Syncing Engine 3 | petal 12
+Fra:1 Mem:114.77M (Peak 114.77M) | Time:00:08.82 | Syncing Engine 3 | petal 13
+Fra:1 Mem:114.77M (Peak 114.77M) | Time:00:08.82 | Syncing Engine 3 | petal 14
+Fra:1 Mem:114.78M (Peak 114.78M) | Time:00:08.82 | Syncing Engine 3 | petal 15
+Fra:1 Mem:114.79M (Peak 114.79M) | Time:00:08.82 | Syncing Engine 3 | petal 16
+Fra:1 Mem:114.80M (Peak 114.80M) | Time:00:08.82 | Syncing Engine 3 | petal 17
+Fra:1 Mem:114.80M (Peak 114.80M) | Time:00:08.82 | Syncing Engine 3 | petal 18
+Fra:1 Mem:114.81M (Peak 114.81M) | Time:00:08.82 | Syncing Engine 3 | petal 19
+Fra:1 Mem:114.82M (Peak 114.82M) | Time:00:08.83 | Syncing Engine 3 | petal 20
+Fra:1 Mem:114.83M (Peak 114.83M) | Time:00:08.83 | Syncing Engine 3 | petal 21
+Fra:1 Mem:114.83M (Peak 114.83M) | Time:00:08.83 | Syncing Engine 3 | petal 22
+Fra:1 Mem:114.84M (Peak 114.84M) | Time:00:08.83 | Syncing Engine 3 | petal 23
+Fra:1 Mem:114.85M (Peak 114.85M) | Time:00:08.83 | Syncing Engine 3 | petal 24
+Fra:1 Mem:114.86M (Peak 114.86M) | Time:00:08.83 | Syncing Exhaust trough heat shield.004
+Fra:1 Mem:114.86M (Peak 114.86M) | Time:00:08.83 | Syncing Exhaust trough heat shield.005
+Fra:1 Mem:114.87M (Peak 114.87M) | Time:00:08.83 | Syncing Leading edge coating (-1, True)
+Fra:1 Mem:115.02M (Peak 115.02M) | Time:00:08.83 | Syncing Leading-edge panel boundary
+Fra:1 Mem:115.03M (Peak 115.03M) | Time:00:08.84 | Syncing Elevon 0 -1 True
+Fra:1 Mem:115.13M (Peak 115.13M) | Time:00:08.84 | Syncing Elevon gap
+Fra:1 Mem:115.14M (Peak 115.14M) | Time:00:08.84 | Syncing Control actuator fairing.001
+Fra:1 Mem:115.22M (Peak 115.22M) | Time:00:08.84 | Syncing Control actuator fairing.002
+Fra:1 Mem:115.29M (Peak 115.29M) | Time:00:08.84 | Syncing Elevon 1 -1 True
+Fra:1 Mem:115.39M (Peak 115.39M) | Time:00:08.84 | Syncing Elevon gap.001
+Fra:1 Mem:115.40M (Peak 115.40M) | Time:00:08.84 | Syncing Control actuator fairing.003
+Fra:1 Mem:115.47M (Peak 115.47M) | Time:00:08.84 | Syncing Control actuator fairing.004
+Fra:1 Mem:115.54M (Peak 115.54M) | Time:00:08.84 | Syncing Elevon 2 -1 True
+Fra:1 Mem:115.64M (Peak 115.64M) | Time:00:08.85 | Syncing Elevon gap.002
+Fra:1 Mem:115.65M (Peak 115.65M) | Time:00:08.85 | Syncing Control actuator fairing.005
+Fra:1 Mem:115.72M (Peak 115.72M) | Time:00:08.85 | Syncing Control actuator fairing.006
+Fra:1 Mem:115.79M (Peak 115.79M) | Time:00:08.85 | Syncing Wing structural panel
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:08.85 | Syncing Wing aft spar
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:08.85 | Syncing Wing outer panel
+Fra:1 Mem:115.84M (Peak 115.84M) | Time:00:08.85 | Syncing Outer nacelle boundary
+Fra:1 Mem:115.84M (Peak 115.84M) | Time:00:08.85 | Syncing Nacelle cross seam
+Fra:1 Mem:115.85M (Peak 115.85M) | Time:00:08.85 | Syncing Nacelle cross seam.001
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:08.86 | Syncing Leading edge coating (1, True)
+Fra:1 Mem:116.01M (Peak 116.01M) | Time:00:08.86 | Syncing Leading-edge panel boundary.001
+Fra:1 Mem:116.02M (Peak 116.02M) | Time:00:08.86 | Syncing Elevon 0 1 True
+Fra:1 Mem:116.12M (Peak 116.12M) | Time:00:08.86 | Syncing Elevon gap.003
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:08.86 | Syncing Control actuator fairing.007
+Fra:1 Mem:116.21M (Peak 116.21M) | Time:00:08.86 | Syncing Control actuator fairing.008
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:08.86 | Syncing Elevon 1 1 True
+Fra:1 Mem:116.38M (Peak 116.38M) | Time:00:08.86 | Syncing Elevon gap.004
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:08.86 | Syncing Control actuator fairing.009
+Fra:1 Mem:116.46M (Peak 116.46M) | Time:00:08.86 | Syncing Control actuator fairing.010
+Fra:1 Mem:116.53M (Peak 116.53M) | Time:00:08.86 | Syncing Elevon 2 1 True
+Fra:1 Mem:116.63M (Peak 116.63M) | Time:00:08.87 | Syncing Elevon gap.005
+Fra:1 Mem:116.64M (Peak 116.64M) | Time:00:08.87 | Syncing Control actuator fairing.011
+Fra:1 Mem:116.71M (Peak 116.71M) | Time:00:08.87 | Syncing Control actuator fairing
+Fra:1 Mem:116.78M (Peak 116.78M) | Time:00:08.87 | Syncing Wing structural panel.001
+Fra:1 Mem:116.78M (Peak 116.78M) | Time:00:08.87 | Syncing Wing aft spar.001
+Fra:1 Mem:116.79M (Peak 116.79M) | Time:00:08.87 | Syncing Wing outer panel.001
+Fra:1 Mem:116.80M (Peak 116.80M) | Time:00:08.87 | Syncing Outer nacelle boundary.001
+Fra:1 Mem:116.80M (Peak 116.80M) | Time:00:08.87 | Syncing Nacelle cross seam.002
+Fra:1 Mem:116.81M (Peak 116.81M) | Time:00:08.87 | Syncing Nacelle cross seam.003
+Fra:1 Mem:116.81M (Peak 116.81M) | Time:00:08.88 | Syncing Radome seam
+Fra:1 Mem:116.82M (Peak 116.82M) | Time:00:08.88 | Syncing Forebody equipment seam
+Fra:1 Mem:116.83M (Peak 116.83M) | Time:00:08.88 | Syncing Leading edge coating (-1, False)
+Fra:1 Mem:116.98M (Peak 116.98M) | Time:00:08.88 | Syncing Leading-edge panel boundary.002
+Fra:1 Mem:116.99M (Peak 116.99M) | Time:00:08.88 | Syncing Elevon 0 -1 False
+Fra:1 Mem:117.09M (Peak 117.09M) | Time:00:08.88 | Syncing Elevon gap.006
+Fra:1 Mem:117.10M (Peak 117.10M) | Time:00:08.88 | Syncing Elevon 1 -1 False
+Fra:1 Mem:117.20M (Peak 117.20M) | Time:00:08.88 | Syncing Elevon gap.007
+Fra:1 Mem:117.21M (Peak 117.21M) | Time:00:08.88 | Syncing Elevon 2 -1 False
+Fra:1 Mem:117.31M (Peak 117.31M) | Time:00:08.89 | Syncing Elevon gap.008
+Fra:1 Mem:117.32M (Peak 117.32M) | Time:00:08.89 | Syncing Wing structural panel.002
+Fra:1 Mem:117.33M (Peak 117.33M) | Time:00:08.89 | Syncing Wing aft spar.002
+Fra:1 Mem:117.33M (Peak 117.33M) | Time:00:08.89 | Syncing Wing outer panel.002
+Fra:1 Mem:117.34M (Peak 117.34M) | Time:00:08.89 | Syncing Outer nacelle boundary.002
+Fra:1 Mem:117.34M (Peak 117.34M) | Time:00:08.89 | Syncing Nacelle cross seam.004
+Fra:1 Mem:117.35M (Peak 117.35M) | Time:00:08.89 | Syncing Nacelle cross seam.005
+Fra:1 Mem:117.36M (Peak 117.36M) | Time:00:08.89 | Syncing Leading edge coating (1, False)
+Fra:1 Mem:117.51M (Peak 117.51M) | Time:00:08.89 | Syncing Leading-edge panel boundary.003
+Fra:1 Mem:117.52M (Peak 117.52M) | Time:00:08.90 | Syncing Elevon 0 1 False
+Fra:1 Mem:117.62M (Peak 117.62M) | Time:00:08.90 | Syncing Elevon gap.009
+Fra:1 Mem:117.63M (Peak 117.63M) | Time:00:08.90 | Syncing Elevon 1 1 False
+Fra:1 Mem:117.73M (Peak 117.73M) | Time:00:08.90 | Syncing Elevon gap.010
+Fra:1 Mem:117.74M (Peak 117.74M) | Time:00:08.90 | Syncing Elevon 2 1 False
+Fra:1 Mem:117.85M (Peak 117.85M) | Time:00:08.90 | Syncing Elevon gap.011
+Fra:1 Mem:117.85M (Peak 117.85M) | Time:00:08.90 | Syncing Wing structural panel.003
+Fra:1 Mem:117.86M (Peak 117.86M) | Time:00:08.90 | Syncing Wing aft spar.003
+Fra:1 Mem:117.86M (Peak 117.86M) | Time:00:08.91 | Syncing Wing outer panel.003
+Fra:1 Mem:117.87M (Peak 117.87M) | Time:00:08.91 | Syncing Outer nacelle boundary.003
+Fra:1 Mem:117.87M (Peak 117.87M) | Time:00:08.91 | Syncing Nacelle cross seam.006
+Fra:1 Mem:117.88M (Peak 117.88M) | Time:00:08.91 | Syncing Nacelle cross seam.007
+Fra:1 Mem:117.89M (Peak 117.89M) | Time:00:08.91 | Syncing Radome seam.001
+Fra:1 Mem:117.89M (Peak 117.89M) | Time:00:08.91 | Syncing Forebody equipment seam.001
+Fra:1 Mem:117.90M (Peak 117.90M) | Time:00:08.91 | Syncing Flush service hatch
+Fra:1 Mem:117.91M (Peak 117.91M) | Time:00:08.91 | Syncing Captive panel fastener.001
+Fra:1 Mem:117.98M (Peak 117.98M) | Time:00:08.91 | Syncing Captive panel fastener.002
+Fra:1 Mem:118.05M (Peak 118.05M) | Time:00:08.91 | Syncing Captive panel fastener.003
+Fra:1 Mem:118.12M (Peak 118.12M) | Time:00:08.91 | Syncing Captive panel fastener.004
+Fra:1 Mem:118.19M (Peak 118.19M) | Time:00:08.92 | Syncing Flush service hatch.001
+Fra:1 Mem:118.20M (Peak 118.20M) | Time:00:08.92 | Syncing Captive panel fastener.005
+Fra:1 Mem:118.27M (Peak 118.27M) | Time:00:08.92 | Syncing Captive panel fastener.006
+Fra:1 Mem:118.34M (Peak 118.34M) | Time:00:08.92 | Syncing Captive panel fastener.007
+Fra:1 Mem:118.41M (Peak 118.41M) | Time:00:08.92 | Syncing Captive panel fastener.008
+Fra:1 Mem:118.48M (Peak 118.48M) | Time:00:08.92 | Syncing Flush service hatch.002
+Fra:1 Mem:118.49M (Peak 118.49M) | Time:00:08.92 | Syncing Captive panel fastener.009
+Fra:1 Mem:118.56M (Peak 118.56M) | Time:00:08.92 | Syncing Captive panel fastener.010
+Fra:1 Mem:118.63M (Peak 118.63M) | Time:00:08.92 | Syncing Captive panel fastener.011
+Fra:1 Mem:118.70M (Peak 118.70M) | Time:00:08.92 | Syncing Captive panel fastener.012
+Fra:1 Mem:118.77M (Peak 118.77M) | Time:00:08.93 | Syncing Flush service hatch.003
+Fra:1 Mem:118.78M (Peak 118.78M) | Time:00:08.93 | Syncing Captive panel fastener.013
+Fra:1 Mem:118.85M (Peak 118.85M) | Time:00:08.93 | Syncing Captive panel fastener.014
+Fra:1 Mem:118.92M (Peak 118.92M) | Time:00:08.93 | Syncing Captive panel fastener.015
+Fra:1 Mem:118.99M (Peak 118.99M) | Time:00:08.93 | Syncing Captive panel fastener.016
+Fra:1 Mem:119.06M (Peak 119.06M) | Time:00:08.93 | Syncing Ventral antenna
+Fra:1 Mem:119.17M (Peak 119.17M) | Time:00:08.93 | Syncing Ventral antenna.001
+Fra:1 Mem:119.27M (Peak 119.27M) | Time:00:08.93 | Syncing Flush service hatch.004
+Fra:1 Mem:119.28M (Peak 119.28M) | Time:00:08.93 | Syncing Captive panel fastener.017
+Fra:1 Mem:119.35M (Peak 119.35M) | Time:00:08.93 | Syncing Captive panel fastener.018
+Fra:1 Mem:119.42M (Peak 119.42M) | Time:00:08.94 | Syncing Captive panel fastener.019
+Fra:1 Mem:119.49M (Peak 119.49M) | Time:00:08.94 | Syncing Captive panel fastener.020
+Fra:1 Mem:119.56M (Peak 119.56M) | Time:00:08.94 | Syncing Flush service hatch.005
+Fra:1 Mem:119.57M (Peak 119.57M) | Time:00:08.94 | Syncing Captive panel fastener.021
+Fra:1 Mem:119.64M (Peak 119.64M) | Time:00:08.94 | Syncing Captive panel fastener.022
+Fra:1 Mem:119.71M (Peak 119.71M) | Time:00:08.94 | Syncing Captive panel fastener.023
+Fra:1 Mem:119.78M (Peak 119.78M) | Time:00:08.94 | Syncing Captive panel fastener.024
+Fra:1 Mem:119.85M (Peak 119.85M) | Time:00:08.94 | Syncing Flush service hatch.006
+Fra:1 Mem:119.86M (Peak 119.86M) | Time:00:08.95 | Syncing Captive panel fastener.025
+Fra:1 Mem:119.93M (Peak 119.93M) | Time:00:08.95 | Syncing Captive panel fastener.026
+Fra:1 Mem:120.00M (Peak 120.00M) | Time:00:08.95 | Syncing Captive panel fastener.027
+Fra:1 Mem:120.07M (Peak 120.07M) | Time:00:08.95 | Syncing Captive panel fastener.028
+Fra:1 Mem:120.13M (Peak 120.13M) | Time:00:08.95 | Syncing Flush service hatch.007
+Fra:1 Mem:120.14M (Peak 120.14M) | Time:00:08.95 | Syncing Captive panel fastener.029
+Fra:1 Mem:120.22M (Peak 120.22M) | Time:00:08.95 | Syncing Captive panel fastener.030
+Fra:1 Mem:120.29M (Peak 120.29M) | Time:00:08.95 | Syncing Captive panel fastener.031
+Fra:1 Mem:120.36M (Peak 120.36M) | Time:00:08.95 | Syncing Captive panel fastener
+Fra:1 Mem:120.43M (Peak 120.43M) | Time:00:08.96 | Syncing Ventral antenna.002
+Fra:1 Mem:120.53M (Peak 120.53M) | Time:00:08.96 | Syncing Ventral antenna.003
+Fra:1 Mem:120.64M (Peak 120.64M) | Time:00:08.96 | Syncing Conformal optical aperture
+Fra:1 Mem:120.75M (Peak 120.75M) | Time:00:08.96 | Syncing Chine optical aperture
+Fra:1 Mem:120.85M (Peak 120.85M) | Time:00:08.96 | Syncing Conformal optical aperture.001
+Fra:1 Mem:120.96M (Peak 120.96M) | Time:00:08.96 | Syncing Chine optical aperture.001
+Fra:1 Mem:121.06M (Peak 121.06M) | Time:00:08.97 | Syncing Ventral main bay door -1
+Fra:1 Mem:121.21M (Peak 121.21M) | Time:00:08.97 | Syncing Main bay sawtooth seal
+Fra:1 Mem:121.22M (Peak 121.22M) | Time:00:08.97 | Syncing Outboard ventral door seal
+Fra:1 Mem:121.23M (Peak 121.23M) | Time:00:08.97 | Syncing Recessed door hinge
+Fra:1 Mem:121.23M (Peak 121.23M) | Time:00:08.97 | Syncing Recessed door hinge.001
+Fra:1 Mem:121.24M (Peak 121.24M) | Time:00:08.97 | Syncing Recessed door hinge.002
+Fra:1 Mem:121.25M (Peak 121.25M) | Time:00:08.97 | Syncing Ventral main bay door 1
+Fra:1 Mem:121.40M (Peak 121.40M) | Time:00:08.97 | Syncing Main bay sawtooth seal.001
+Fra:1 Mem:121.40M (Peak 121.40M) | Time:00:08.97 | Syncing Outboard ventral door seal.001
+Fra:1 Mem:121.41M (Peak 121.41M) | Time:00:08.97 | Syncing Recessed door hinge.003
+Fra:1 Mem:121.42M (Peak 121.42M) | Time:00:08.98 | Syncing Recessed door hinge.004
+Fra:1 Mem:121.42M (Peak 121.42M) | Time:00:08.98 | Syncing Recessed door hinge.005
+Fra:1 Mem:121.43M (Peak 121.43M) | Time:00:08.98 | Syncing Prototype serial
+Fra:1 Mem:121.44M (Peak 121.44M) | Time:00:08.98 | Syncing Low visibility wing star
+Fra:1 Mem:121.44M (Peak 121.44M) | Time:00:08.98 | Syncing Wing insignia bar
+Fra:1 Mem:121.45M (Peak 121.45M) | Time:00:08.98 | Syncing Wing insignia bar.001
+Fra:1 Mem:121.45M (Peak 121.45M) | Time:00:08.98 | Syncing Service stencil
+Fra:1 Mem:121.46M (Peak 121.46M) | Time:00:08.98 | Syncing Service stencil.001
+Fra:1 Mem:121.47M (Peak 121.47M) | Time:00:08.98 | Syncing Navigation aperture.001
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:08.98 | Syncing Prototype serial.001
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:08.99 | Syncing Low visibility wing star.001
+Fra:1 Mem:121.55M (Peak 121.55M) | Time:00:08.99 | Syncing Wing insignia bar.002
+Fra:1 Mem:121.55M (Peak 121.55M) | Time:00:08.99 | Syncing Wing insignia bar.003
+Fra:1 Mem:121.56M (Peak 121.56M) | Time:00:08.99 | Syncing Service stencil.002
+Fra:1 Mem:121.57M (Peak 121.57M) | Time:00:08.99 | Syncing Service stencil.003
+Fra:1 Mem:121.58M (Peak 121.58M) | Time:00:08.99 | Syncing Navigation aperture
+Fra:1 Mem:121.65M (Peak 121.65M) | Time:00:08.99 | Syncing Main gear well shadow -1
+Fra:1 Mem:121.76M (Peak 121.76M) | Time:00:08.99 | Syncing Main gear shock upper
+Fra:1 Mem:121.77M (Peak 121.77M) | Time:00:09.00 | Syncing Main gear polished piston
+Fra:1 Mem:121.79M (Peak 121.79M) | Time:00:09.00 | Syncing Main gear tandem bogie
+Fra:1 Mem:121.80M (Peak 121.80M) | Time:00:09.00 | Syncing Main gear drag brace
+Fra:1 Mem:121.81M (Peak 121.81M) | Time:00:09.00 | Syncing Main gear diagonal stay
+Fra:1 Mem:121.81M (Peak 121.81M) | Time:00:09.00 | Syncing Main gear hydraulic hose
+Fra:1 Mem:121.82M (Peak 121.82M) | Time:00:09.00 | Syncing Main wheel (-1, -0.36) | tire
+Fra:1 Mem:121.87M (Peak 121.87M) | Time:00:09.00 | Syncing Main wheel (-1, -0.36) | wheel ri
+Fra:1 Mem:121.89M (Peak 121.89M) | Time:00:09.00 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:121.90M (Peak 121.90M) | Time:00:09.00 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:121.91M (Peak 121.91M) | Time:00:09.00 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:121.92M (Peak 121.92M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:121.93M (Peak 121.93M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:121.94M (Peak 121.94M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:121.98M (Peak 121.98M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:121.99M (Peak 121.99M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.00M (Peak 122.00M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.01M (Peak 122.01M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.02M (Peak 122.02M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:09.01 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.04M (Peak 122.04M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.05M (Peak 122.05M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.06M (Peak 122.06M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.07M (Peak 122.07M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.08M (Peak 122.08M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.09M (Peak 122.09M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.10M (Peak 122.10M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:09.02 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.12M (Peak 122.12M) | Time:00:09.03 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.12M (Peak 122.12M) | Time:00:09.03 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | tire
+Fra:1 Mem:122.18M (Peak 122.18M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | wheel rim
+Fra:1 Mem:122.19M (Peak 122.19M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.21M (Peak 122.21M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | axle cap
+Fra:1 Mem:122.22M (Peak 122.22M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | hub bolt
+Fra:1 Mem:122.23M (Peak 122.23M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.24M (Peak 122.24M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.25M (Peak 122.25M) | Time:00:09.03 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.26M (Peak 122.26M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.27M (Peak 122.27M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.29M (Peak 122.29M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | axle cap.
+Fra:1 Mem:122.32M (Peak 122.32M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.33M (Peak 122.33M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.34M (Peak 122.34M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.35M (Peak 122.35M) | Time:00:09.04 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.36M (Peak 122.36M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.37M (Peak 122.37M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.37M (Peak 122.37M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.38M (Peak 122.38M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.39M (Peak 122.39M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.39M (Peak 122.39M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.40M (Peak 122.40M) | Time:00:09.05 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.41M (Peak 122.41M) | Time:00:09.05 | Syncing Main gear hanging door
+Fra:1 Mem:122.43M (Peak 122.43M) | Time:00:09.05 | Syncing Gear door inner stiffener
+Fra:1 Mem:122.46M (Peak 122.46M) | Time:00:09.05 | Syncing Gear door inner stiffener.001
+Fra:1 Mem:122.48M (Peak 122.48M) | Time:00:09.06 | Syncing Gear door inner stiffener.002
+Fra:1 Mem:122.51M (Peak 122.51M) | Time:00:09.06 | Syncing Main gear well shadow 1
+Fra:1 Mem:122.61M (Peak 122.61M) | Time:00:09.06 | Syncing Main gear shock upper.001
+Fra:1 Mem:122.62M (Peak 122.62M) | Time:00:09.06 | Syncing Main gear polished piston.001
+Fra:1 Mem:122.63M (Peak 122.63M) | Time:00:09.06 | Syncing Main gear tandem bogie.001
+Fra:1 Mem:122.64M (Peak 122.64M) | Time:00:09.06 | Syncing Main gear drag brace.001
+Fra:1 Mem:122.66M (Peak 122.66M) | Time:00:09.06 | Syncing Main gear diagonal stay.001
+Fra:1 Mem:122.66M (Peak 122.66M) | Time:00:09.06 | Syncing Main gear hydraulic hose.001
+Fra:1 Mem:122.67M (Peak 122.67M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | tire
+Fra:1 Mem:122.72M (Peak 122.72M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | wheel rim
+Fra:1 Mem:122.73M (Peak 122.73M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.75M (Peak 122.75M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | axle cap
+Fra:1 Mem:122.76M (Peak 122.76M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | hub bolt
+Fra:1 Mem:122.77M (Peak 122.77M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.78M (Peak 122.78M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.79M (Peak 122.79M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.79M (Peak 122.79M) | Time:00:09.07 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.81M (Peak 122.81M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.82M (Peak 122.82M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.83M (Peak 122.83M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.85M (Peak 122.85M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | axle cap.
+Fra:1 Mem:122.86M (Peak 122.86M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.87M (Peak 122.87M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.88M (Peak 122.88M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.88M (Peak 122.88M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.89M (Peak 122.89M) | Time:00:09.08 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.91M (Peak 122.91M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.92M (Peak 122.92M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.93M (Peak 122.93M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:122.93M (Peak 122.93M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:122.94M (Peak 122.94M) | Time:00:09.09 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:122.95M (Peak 122.95M) | Time:00:09.09 | Syncing Main wheel (1, 1.32) | tire
+Fra:1 Mem:122.99M (Peak 122.99M) | Time:00:09.09 | Syncing Main wheel (1, 1.32) | wheel rim
+Fra:1 Mem:123.01M (Peak 123.01M) | Time:00:09.09 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.02M (Peak 123.02M) | Time:00:09.09 | Syncing Main wheel (1, 1.32) | axle cap
+Fra:1 Mem:123.03M (Peak 123.03M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.05M (Peak 123.05M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.06M (Peak 123.06M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.07M (Peak 123.07M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.08M (Peak 123.08M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.09M (Peak 123.09M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.10M (Peak 123.10M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.11M (Peak 123.11M) | Time:00:09.10 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.12M (Peak 123.12M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | axle cap.0
+Fra:1 Mem:123.13M (Peak 123.13M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.14M (Peak 123.14M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.15M (Peak 123.15M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.17M (Peak 123.17M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.18M (Peak 123.18M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.19M (Peak 123.19M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.20M (Peak 123.20M) | Time:00:09.11 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.20M (Peak 123.20M) | Time:00:09.12 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.21M (Peak 123.21M) | Time:00:09.12 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.21M (Peak 123.21M) | Time:00:09.12 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.22M (Peak 123.22M) | Time:00:09.12 | Syncing Main gear hanging door.001
+Fra:1 Mem:123.25M (Peak 123.25M) | Time:00:09.12 | Syncing Gear door inner stiffener.003
+Fra:1 Mem:123.27M (Peak 123.27M) | Time:00:09.12 | Syncing Gear door inner stiffener.004
+Fra:1 Mem:123.29M (Peak 123.29M) | Time:00:09.12 | Syncing Gear door inner stiffener.005
+Fra:1 Mem:123.32M (Peak 123.32M) | Time:00:09.12 | Syncing Nose well
+Fra:1 Mem:123.42M (Peak 123.42M) | Time:00:09.13 | Syncing Nose gear upper
+Fra:1 Mem:123.44M (Peak 123.44M) | Time:00:09.13 | Syncing Nose gear piston
+Fra:1 Mem:123.45M (Peak 123.45M) | Time:00:09.13 | Syncing Nose gear brace
+Fra:1 Mem:123.46M (Peak 123.46M) | Time:00:09.13 | Syncing Nose wheel axle
+Fra:1 Mem:123.47M (Peak 123.47M) | Time:00:09.13 | Syncing Nose wheel -1 | tire
+Fra:1 Mem:123.51M (Peak 123.51M) | Time:00:09.13 | Syncing Nose wheel -1 | wheel rim
+Fra:1 Mem:123.53M (Peak 123.53M) | Time:00:09.13 | Syncing Nose wheel -1 | recessed hub
+Fra:1 Mem:123.54M (Peak 123.54M) | Time:00:09.13 | Syncing Nose wheel -1 | axle cap
+Fra:1 Mem:123.55M (Peak 123.55M) | Time:00:09.13 | Syncing Nose wheel -1 | hub bolt
+Fra:1 Mem:123.56M (Peak 123.56M) | Time:00:09.13 | Syncing Nose wheel -1 | hub bolt.001
+Fra:1 Mem:123.57M (Peak 123.57M) | Time:00:09.13 | Syncing Nose wheel -1 | hub bolt.002
+Fra:1 Mem:123.58M (Peak 123.58M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.003
+Fra:1 Mem:123.59M (Peak 123.59M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.004
+Fra:1 Mem:123.60M (Peak 123.60M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.005
+Fra:1 Mem:123.61M (Peak 123.61M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.006
+Fra:1 Mem:123.62M (Peak 123.62M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.007
+Fra:1 Mem:123.63M (Peak 123.63M) | Time:00:09.14 | Syncing Nose wheel -1 | recessed hub.001
+Fra:1 Mem:123.64M (Peak 123.64M) | Time:00:09.14 | Syncing Nose wheel -1 | axle cap.001
+Fra:1 Mem:123.65M (Peak 123.65M) | Time:00:09.14 | Syncing Nose wheel -1 | hub bolt.008
+Fra:1 Mem:123.66M (Peak 123.66M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.009
+Fra:1 Mem:123.67M (Peak 123.67M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.010
+Fra:1 Mem:123.68M (Peak 123.68M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.011
+Fra:1 Mem:123.69M (Peak 123.69M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.012
+Fra:1 Mem:123.70M (Peak 123.70M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.013
+Fra:1 Mem:123.71M (Peak 123.71M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.014
+Fra:1 Mem:123.72M (Peak 123.72M) | Time:00:09.15 | Syncing Nose wheel -1 | hub bolt.015
+Fra:1 Mem:123.72M (Peak 123.72M) | Time:00:09.15 | Syncing Nose wheel -1 | tread groove
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:09.15 | Syncing Nose wheel -1 | tread groove.001
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:09.15 | Syncing Nose wheel -1 | tread groove.002
+Fra:1 Mem:123.74M (Peak 123.74M) | Time:00:09.16 | Syncing Nose gear door
+Fra:1 Mem:123.77M (Peak 123.77M) | Time:00:09.16 | Syncing Nose wheel 1 | tire
+Fra:1 Mem:123.81M (Peak 123.81M) | Time:00:09.16 | Syncing Nose wheel 1 | wheel rim
+Fra:1 Mem:123.83M (Peak 123.83M) | Time:00:09.16 | Syncing Nose wheel 1 | recessed hub
+Fra:1 Mem:123.84M (Peak 123.84M) | Time:00:09.16 | Syncing Nose wheel 1 | axle cap
+Fra:1 Mem:123.86M (Peak 123.86M) | Time:00:09.16 | Syncing Nose wheel 1 | hub bolt
+Fra:1 Mem:123.86M (Peak 123.86M) | Time:00:09.16 | Syncing Nose wheel 1 | hub bolt.001
+Fra:1 Mem:123.87M (Peak 123.87M) | Time:00:09.16 | Syncing Nose wheel 1 | hub bolt.002
+Fra:1 Mem:123.88M (Peak 123.88M) | Time:00:09.16 | Syncing Nose wheel 1 | hub bolt.003
+Fra:1 Mem:123.89M (Peak 123.89M) | Time:00:09.16 | Syncing Nose wheel 1 | hub bolt.004
+Fra:1 Mem:123.90M (Peak 123.90M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.005
+Fra:1 Mem:123.91M (Peak 123.91M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.006
+Fra:1 Mem:123.92M (Peak 123.92M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.007
+Fra:1 Mem:123.93M (Peak 123.93M) | Time:00:09.17 | Syncing Nose wheel 1 | recessed hub.001
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:09.17 | Syncing Nose wheel 1 | axle cap.001
+Fra:1 Mem:123.95M (Peak 123.95M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.008
+Fra:1 Mem:123.96M (Peak 123.96M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.009
+Fra:1 Mem:123.97M (Peak 123.97M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.010
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:09.17 | Syncing Nose wheel 1 | hub bolt.011
+Fra:1 Mem:123.99M (Peak 123.99M) | Time:00:09.18 | Syncing Nose wheel 1 | hub bolt.012
+Fra:1 Mem:124.00M (Peak 124.00M) | Time:00:09.18 | Syncing Nose wheel 1 | hub bolt.013
+Fra:1 Mem:124.01M (Peak 124.01M) | Time:00:09.18 | Syncing Nose wheel 1 | hub bolt.014
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:09.18 | Syncing Nose wheel 1 | hub bolt.015
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:09.18 | Syncing Nose wheel 1 | tread groove
+Fra:1 Mem:124.03M (Peak 124.03M) | Time:00:09.18 | Syncing Nose wheel 1 | tread groove.001
+Fra:1 Mem:124.03M (Peak 124.03M) | Time:00:09.18 | Syncing Nose wheel 1 | tread groove.002
+Fra:1 Mem:124.04M (Peak 124.04M) | Time:00:09.18 | Syncing Nose gear door.001
+Fra:1 Mem:124.06M (Peak 124.06M) | Time:00:09.18 | Syncing Nose gear torque link
+Fra:1 Mem:124.07M (Peak 124.07M) | Time:00:09.18 | Syncing Studio floor
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing Key | broad softbox
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing Fill | warm
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing Rim | aft
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing Nose fill
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing Underside fill
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing 01 | Front three-quarter
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing 02 | Top plan
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing 03 | Rear three-quarter
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing 04 | Underside reference
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:09.19 | Syncing 05 | Front elevation
+Fra:1 Mem:132.87M (Peak 132.87M) | Time:00:09.22 | Rendering 1 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:11.87 | Rendering 26 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:13.85 | Rendering 51 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:15.77 | Rendering 76 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:17.70 | Rendering 101 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:19.90 | Rendering 126 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.87M) | Time:00:20.07 | Rendering 128 / 128 samples
+Saved: 'C:\MyProjects\TempProject (OpenAI)\J36_Model\renders\01_beauty.png'
+ Time: 00:21.21 (Saving: 00:00.77)
+
+Fra:1 Mem:108.65M (Peak 108.65M) | Time:00:00.16 | Syncing J-36 | continuous blended delta a
+Fra:1 Mem:115.07M (Peak 115.56M) | Time:00:00.16 | Syncing Smoked cockpit canopy
+Fra:1 Mem:115.10M (Peak 115.56M) | Time:00:00.17 | Syncing Canopy perimeter seal
+Fra:1 Mem:115.11M (Peak 115.56M) | Time:00:00.17 | Syncing Canopy perimeter frame
+Fra:1 Mem:115.12M (Peak 115.56M) | Time:00:00.17 | Syncing Canopy perimeter seal.001
+Fra:1 Mem:115.13M (Peak 115.56M) | Time:00:00.17 | Syncing Canopy perimeter frame.001
+Fra:1 Mem:115.13M (Peak 115.56M) | Time:00:00.17 | Syncing Forward canopy bow
+Fra:1 Mem:115.14M (Peak 115.56M) | Time:00:00.17 | Syncing Dorsal intake | blended curved sh
+Fra:1 Mem:115.53M (Peak 115.56M) | Time:00:00.17 | Syncing Dorsal intake | rolled leading li
+Fra:1 Mem:115.54M (Peak 115.56M) | Time:00:00.17 | Syncing Dorsal intake | recessed arch wal
+Fra:1 Mem:115.55M (Peak 115.56M) | Time:00:00.17 | Syncing Dorsal intake | shadowed throat
+Fra:1 Mem:115.56M (Peak 115.56M) | Time:00:00.18 | Syncing Side intake fairing -1
+Fra:1 Mem:115.57M (Peak 115.57M) | Time:00:00.18 | Syncing Side intake tunnel -1
+Fra:1 Mem:115.58M (Peak 115.58M) | Time:00:00.18 | Syncing Side intake dark recess -1
+Fra:1 Mem:115.58M (Peak 115.58M) | Time:00:00.18 | Syncing Side intake rim -1
+Fra:1 Mem:115.59M (Peak 115.59M) | Time:00:00.18 | Syncing Diverterless intake shoulder -1
+Fra:1 Mem:115.65M (Peak 115.65M) | Time:00:00.18 | Syncing Side intake fairing 1
+Fra:1 Mem:115.66M (Peak 115.66M) | Time:00:00.18 | Syncing Side intake tunnel 1
+Fra:1 Mem:115.67M (Peak 115.67M) | Time:00:00.18 | Syncing Side intake dark recess 1
+Fra:1 Mem:115.67M (Peak 115.67M) | Time:00:00.18 | Syncing Side intake rim 1
+Fra:1 Mem:115.68M (Peak 115.68M) | Time:00:00.19 | Syncing Diverterless intake shoulder 1
+Fra:1 Mem:115.74M (Peak 115.74M) | Time:00:00.19 | Syncing Engine 1 | nozzle casing
+Fra:1 Mem:115.76M (Peak 115.76M) | Time:00:00.19 | Syncing Engine 1 | nozzle inside
+Fra:1 Mem:115.77M (Peak 115.77M) | Time:00:00.19 | Syncing Engine core darkness
+Fra:1 Mem:115.78M (Peak 115.78M) | Time:00:00.19 | Syncing Engine 1 | petal 01
+Fra:1 Mem:115.79M (Peak 115.79M) | Time:00:00.19 | Syncing Engine 1 | petal 02
+Fra:1 Mem:115.80M (Peak 115.80M) | Time:00:00.19 | Syncing Engine 1 | petal 03
+Fra:1 Mem:115.80M (Peak 115.80M) | Time:00:00.20 | Syncing Engine 1 | petal 04
+Fra:1 Mem:115.81M (Peak 115.81M) | Time:00:00.20 | Syncing Engine 1 | petal 05
+Fra:1 Mem:115.82M (Peak 115.82M) | Time:00:00.20 | Syncing Engine 1 | petal 06
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:00.20 | Syncing Engine 1 | petal 07
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:00.20 | Syncing Engine 1 | petal 08
+Fra:1 Mem:115.84M (Peak 115.84M) | Time:00:00.20 | Syncing Engine 1 | petal 09
+Fra:1 Mem:115.85M (Peak 115.85M) | Time:00:00.20 | Syncing Engine 1 | petal 10
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:00.20 | Syncing Engine 1 | petal 11
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:00.20 | Syncing Engine 1 | petal 12
+Fra:1 Mem:115.87M (Peak 115.87M) | Time:00:00.20 | Syncing Engine 1 | petal 13
+Fra:1 Mem:115.88M (Peak 115.88M) | Time:00:00.20 | Syncing Engine 1 | petal 14
+Fra:1 Mem:115.89M (Peak 115.89M) | Time:00:00.21 | Syncing Engine 1 | petal 15
+Fra:1 Mem:115.89M (Peak 115.89M) | Time:00:00.21 | Syncing Engine 1 | petal 16
+Fra:1 Mem:115.90M (Peak 115.90M) | Time:00:00.21 | Syncing Engine 1 | petal 17
+Fra:1 Mem:115.91M (Peak 115.91M) | Time:00:00.21 | Syncing Engine 1 | petal 18
+Fra:1 Mem:115.92M (Peak 115.92M) | Time:00:00.21 | Syncing Engine 1 | petal 19
+Fra:1 Mem:115.92M (Peak 115.92M) | Time:00:00.21 | Syncing Engine 1 | petal 20
+Fra:1 Mem:115.93M (Peak 115.93M) | Time:00:00.21 | Syncing Engine 1 | petal 21
+Fra:1 Mem:115.94M (Peak 115.94M) | Time:00:00.21 | Syncing Engine 1 | petal 22
+Fra:1 Mem:115.95M (Peak 115.95M) | Time:00:00.21 | Syncing Engine 1 | petal 23
+Fra:1 Mem:115.95M (Peak 115.95M) | Time:00:00.22 | Syncing Engine 1 | petal 24
+Fra:1 Mem:115.96M (Peak 115.96M) | Time:00:00.22 | Syncing Exhaust trough heat shield
+Fra:1 Mem:115.97M (Peak 115.97M) | Time:00:00.22 | Syncing Exhaust trough heat shield.001
+Fra:1 Mem:115.98M (Peak 115.98M) | Time:00:00.22 | Syncing Engine 2 | nozzle casing
+Fra:1 Mem:116.00M (Peak 116.00M) | Time:00:00.22 | Syncing Engine 2 | nozzle inside
+Fra:1 Mem:116.01M (Peak 116.01M) | Time:00:00.22 | Syncing Engine core darkness.001
+Fra:1 Mem:116.02M (Peak 116.02M) | Time:00:00.22 | Syncing Engine 2 | petal 01
+Fra:1 Mem:116.03M (Peak 116.03M) | Time:00:00.22 | Syncing Engine 2 | petal 02
+Fra:1 Mem:116.04M (Peak 116.04M) | Time:00:00.22 | Syncing Engine 2 | petal 03
+Fra:1 Mem:116.04M (Peak 116.04M) | Time:00:00.22 | Syncing Engine 2 | petal 04
+Fra:1 Mem:116.05M (Peak 116.05M) | Time:00:00.23 | Syncing Engine 2 | petal 05
+Fra:1 Mem:116.06M (Peak 116.06M) | Time:00:00.23 | Syncing Engine 2 | petal 06
+Fra:1 Mem:116.07M (Peak 116.07M) | Time:00:00.23 | Syncing Engine 2 | petal 07
+Fra:1 Mem:116.07M (Peak 116.07M) | Time:00:00.23 | Syncing Engine 2 | petal 08
+Fra:1 Mem:116.08M (Peak 116.08M) | Time:00:00.23 | Syncing Engine 2 | petal 09
+Fra:1 Mem:116.09M (Peak 116.09M) | Time:00:00.23 | Syncing Engine 2 | petal 10
+Fra:1 Mem:116.10M (Peak 116.10M) | Time:00:00.23 | Syncing Engine 2 | petal 11
+Fra:1 Mem:116.10M (Peak 116.10M) | Time:00:00.23 | Syncing Engine 2 | petal 12
+Fra:1 Mem:116.11M (Peak 116.11M) | Time:00:00.23 | Syncing Engine 2 | petal 13
+Fra:1 Mem:116.12M (Peak 116.12M) | Time:00:00.24 | Syncing Engine 2 | petal 14
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:00.24 | Syncing Engine 2 | petal 15
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:00.24 | Syncing Engine 2 | petal 16
+Fra:1 Mem:116.14M (Peak 116.14M) | Time:00:00.24 | Syncing Engine 2 | petal 17
+Fra:1 Mem:116.15M (Peak 116.15M) | Time:00:00.24 | Syncing Engine 2 | petal 18
+Fra:1 Mem:116.16M (Peak 116.16M) | Time:00:00.24 | Syncing Engine 2 | petal 19
+Fra:1 Mem:116.16M (Peak 116.16M) | Time:00:00.24 | Syncing Engine 2 | petal 20
+Fra:1 Mem:116.17M (Peak 116.17M) | Time:00:00.24 | Syncing Engine 2 | petal 21
+Fra:1 Mem:116.18M (Peak 116.18M) | Time:00:00.24 | Syncing Engine 2 | petal 22
+Fra:1 Mem:116.19M (Peak 116.19M) | Time:00:00.24 | Syncing Engine 2 | petal 23
+Fra:1 Mem:116.19M (Peak 116.19M) | Time:00:00.24 | Syncing Engine 2 | petal 24
+Fra:1 Mem:116.20M (Peak 116.20M) | Time:00:00.25 | Syncing Exhaust trough heat shield.002
+Fra:1 Mem:116.21M (Peak 116.21M) | Time:00:00.25 | Syncing Exhaust trough heat shield.003
+Fra:1 Mem:116.22M (Peak 116.22M) | Time:00:00.25 | Syncing Engine 3 | nozzle casing
+Fra:1 Mem:116.24M (Peak 116.24M) | Time:00:00.25 | Syncing Engine 3 | nozzle inside
+Fra:1 Mem:116.25M (Peak 116.25M) | Time:00:00.25 | Syncing Engine core darkness.002
+Fra:1 Mem:116.26M (Peak 116.26M) | Time:00:00.25 | Syncing Engine 3 | petal 01
+Fra:1 Mem:116.27M (Peak 116.27M) | Time:00:00.25 | Syncing Engine 3 | petal 02
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:00.25 | Syncing Engine 3 | petal 03
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:00.25 | Syncing Engine 3 | petal 04
+Fra:1 Mem:116.29M (Peak 116.29M) | Time:00:00.25 | Syncing Engine 3 | petal 05
+Fra:1 Mem:116.30M (Peak 116.30M) | Time:00:00.26 | Syncing Engine 3 | petal 06
+Fra:1 Mem:116.31M (Peak 116.31M) | Time:00:00.26 | Syncing Engine 3 | petal 07
+Fra:1 Mem:116.31M (Peak 116.31M) | Time:00:00.26 | Syncing Engine 3 | petal 08
+Fra:1 Mem:116.32M (Peak 116.32M) | Time:00:00.26 | Syncing Engine 3 | petal 09
+Fra:1 Mem:116.33M (Peak 116.33M) | Time:00:00.26 | Syncing Engine 3 | petal 10
+Fra:1 Mem:116.34M (Peak 116.34M) | Time:00:00.26 | Syncing Engine 3 | petal 11
+Fra:1 Mem:116.34M (Peak 116.34M) | Time:00:00.26 | Syncing Engine 3 | petal 12
+Fra:1 Mem:116.35M (Peak 116.35M) | Time:00:00.26 | Syncing Engine 3 | petal 13
+Fra:1 Mem:116.36M (Peak 116.36M) | Time:00:00.26 | Syncing Engine 3 | petal 14
+Fra:1 Mem:116.36M (Peak 116.36M) | Time:00:00.26 | Syncing Engine 3 | petal 15
+Fra:1 Mem:116.37M (Peak 116.37M) | Time:00:00.26 | Syncing Engine 3 | petal 16
+Fra:1 Mem:116.38M (Peak 116.38M) | Time:00:00.27 | Syncing Engine 3 | petal 17
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:00.27 | Syncing Engine 3 | petal 18
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:00.27 | Syncing Engine 3 | petal 19
+Fra:1 Mem:116.40M (Peak 116.40M) | Time:00:00.27 | Syncing Engine 3 | petal 20
+Fra:1 Mem:116.41M (Peak 116.41M) | Time:00:00.27 | Syncing Engine 3 | petal 21
+Fra:1 Mem:116.42M (Peak 116.42M) | Time:00:00.27 | Syncing Engine 3 | petal 22
+Fra:1 Mem:116.42M (Peak 116.42M) | Time:00:00.27 | Syncing Engine 3 | petal 23
+Fra:1 Mem:116.43M (Peak 116.43M) | Time:00:00.27 | Syncing Engine 3 | petal 24
+Fra:1 Mem:116.44M (Peak 116.44M) | Time:00:00.27 | Syncing Exhaust trough heat shield.004
+Fra:1 Mem:116.45M (Peak 116.45M) | Time:00:00.27 | Syncing Exhaust trough heat shield.005
+Fra:1 Mem:116.45M (Peak 116.45M) | Time:00:00.28 | Syncing Leading edge coating (-1, True)
+Fra:1 Mem:116.57M (Peak 116.57M) | Time:00:00.28 | Syncing Leading-edge panel boundary
+Fra:1 Mem:116.58M (Peak 116.58M) | Time:00:00.28 | Syncing Elevon 0 -1 True
+Fra:1 Mem:116.66M (Peak 116.66M) | Time:00:00.28 | Syncing Elevon gap
+Fra:1 Mem:116.67M (Peak 116.67M) | Time:00:00.28 | Syncing Control actuator fairing.001
+Fra:1 Mem:116.73M (Peak 116.73M) | Time:00:00.28 | Syncing Control actuator fairing.002
+Fra:1 Mem:116.78M (Peak 116.78M) | Time:00:00.28 | Syncing Elevon 1 -1 True
+Fra:1 Mem:116.86M (Peak 116.86M) | Time:00:00.28 | Syncing Elevon gap.001
+Fra:1 Mem:116.87M (Peak 116.87M) | Time:00:00.28 | Syncing Control actuator fairing.003
+Fra:1 Mem:116.93M (Peak 116.93M) | Time:00:00.28 | Syncing Control actuator fairing.004
+Fra:1 Mem:116.98M (Peak 116.98M) | Time:00:00.29 | Syncing Elevon 2 -1 True
+Fra:1 Mem:117.06M (Peak 117.06M) | Time:00:00.29 | Syncing Elevon gap.002
+Fra:1 Mem:117.07M (Peak 117.07M) | Time:00:00.29 | Syncing Control actuator fairing.005
+Fra:1 Mem:117.13M (Peak 117.13M) | Time:00:00.29 | Syncing Control actuator fairing.006
+Fra:1 Mem:117.18M (Peak 117.18M) | Time:00:00.29 | Syncing Wing structural panel
+Fra:1 Mem:117.22M (Peak 117.22M) | Time:00:00.29 | Syncing Wing aft spar
+Fra:1 Mem:117.22M (Peak 117.22M) | Time:00:00.29 | Syncing Wing outer panel
+Fra:1 Mem:117.23M (Peak 117.23M) | Time:00:00.29 | Syncing Outer nacelle boundary
+Fra:1 Mem:117.24M (Peak 117.24M) | Time:00:00.29 | Syncing Nacelle cross seam
+Fra:1 Mem:117.24M (Peak 117.24M) | Time:00:00.29 | Syncing Nacelle cross seam.001
+Fra:1 Mem:117.25M (Peak 117.25M) | Time:00:00.30 | Syncing Leading edge coating (1, True)
+Fra:1 Mem:117.37M (Peak 117.37M) | Time:00:00.30 | Syncing Leading-edge panel boundary.001
+Fra:1 Mem:117.38M (Peak 117.38M) | Time:00:00.30 | Syncing Elevon 0 1 True
+Fra:1 Mem:117.46M (Peak 117.46M) | Time:00:00.30 | Syncing Elevon gap.003
+Fra:1 Mem:117.47M (Peak 117.47M) | Time:00:00.30 | Syncing Control actuator fairing.007
+Fra:1 Mem:117.53M (Peak 117.53M) | Time:00:00.30 | Syncing Control actuator fairing.008
+Fra:1 Mem:117.58M (Peak 117.58M) | Time:00:00.30 | Syncing Elevon 1 1 True
+Fra:1 Mem:117.66M (Peak 117.66M) | Time:00:00.30 | Syncing Elevon gap.004
+Fra:1 Mem:117.67M (Peak 117.67M) | Time:00:00.30 | Syncing Control actuator fairing.009
+Fra:1 Mem:117.73M (Peak 117.73M) | Time:00:00.30 | Syncing Control actuator fairing.010
+Fra:1 Mem:117.78M (Peak 117.78M) | Time:00:00.31 | Syncing Elevon 2 1 True
+Fra:1 Mem:117.86M (Peak 117.86M) | Time:00:00.31 | Syncing Elevon gap.005
+Fra:1 Mem:117.87M (Peak 117.87M) | Time:00:00.31 | Syncing Control actuator fairing.011
+Fra:1 Mem:117.93M (Peak 117.93M) | Time:00:00.31 | Syncing Control actuator fairing
+Fra:1 Mem:117.98M (Peak 117.98M) | Time:00:00.31 | Syncing Wing structural panel.001
+Fra:1 Mem:117.99M (Peak 117.99M) | Time:00:00.31 | Syncing Wing aft spar.001
+Fra:1 Mem:117.99M (Peak 117.99M) | Time:00:00.31 | Syncing Wing outer panel.001
+Fra:1 Mem:118.00M (Peak 118.00M) | Time:00:00.31 | Syncing Outer nacelle boundary.001
+Fra:1 Mem:118.00M (Peak 118.00M) | Time:00:00.31 | Syncing Nacelle cross seam.002
+Fra:1 Mem:118.01M (Peak 118.01M) | Time:00:00.31 | Syncing Nacelle cross seam.003
+Fra:1 Mem:118.02M (Peak 118.02M) | Time:00:00.31 | Syncing Radome seam
+Fra:1 Mem:118.02M (Peak 118.02M) | Time:00:00.32 | Syncing Forebody equipment seam
+Fra:1 Mem:118.03M (Peak 118.03M) | Time:00:00.32 | Syncing Leading edge coating (-1, False)
+Fra:1 Mem:118.15M (Peak 118.15M) | Time:00:00.32 | Syncing Leading-edge panel boundary.002
+Fra:1 Mem:118.16M (Peak 118.16M) | Time:00:00.32 | Syncing Elevon 0 -1 False
+Fra:1 Mem:118.24M (Peak 118.24M) | Time:00:00.32 | Syncing Elevon gap.006
+Fra:1 Mem:118.25M (Peak 118.25M) | Time:00:00.32 | Syncing Elevon 1 -1 False
+Fra:1 Mem:118.33M (Peak 118.33M) | Time:00:00.32 | Syncing Elevon gap.007
+Fra:1 Mem:118.34M (Peak 118.34M) | Time:00:00.32 | Syncing Elevon 2 -1 False
+Fra:1 Mem:118.41M (Peak 118.41M) | Time:00:00.32 | Syncing Elevon gap.008
+Fra:1 Mem:118.42M (Peak 118.42M) | Time:00:00.32 | Syncing Wing structural panel.002
+Fra:1 Mem:118.43M (Peak 118.43M) | Time:00:00.33 | Syncing Wing aft spar.002
+Fra:1 Mem:118.43M (Peak 118.43M) | Time:00:00.33 | Syncing Wing outer panel.002
+Fra:1 Mem:118.44M (Peak 118.44M) | Time:00:00.33 | Syncing Outer nacelle boundary.002
+Fra:1 Mem:118.44M (Peak 118.44M) | Time:00:00.33 | Syncing Nacelle cross seam.004
+Fra:1 Mem:118.45M (Peak 118.45M) | Time:00:00.33 | Syncing Nacelle cross seam.005
+Fra:1 Mem:118.46M (Peak 118.46M) | Time:00:00.33 | Syncing Leading edge coating (1, False)
+Fra:1 Mem:118.58M (Peak 118.58M) | Time:00:00.33 | Syncing Leading-edge panel boundary.003
+Fra:1 Mem:118.59M (Peak 118.59M) | Time:00:00.33 | Syncing Elevon 0 1 False
+Fra:1 Mem:118.66M (Peak 118.66M) | Time:00:00.33 | Syncing Elevon gap.009
+Fra:1 Mem:118.67M (Peak 118.67M) | Time:00:00.33 | Syncing Elevon 1 1 False
+Fra:1 Mem:118.75M (Peak 118.75M) | Time:00:00.33 | Syncing Elevon gap.010
+Fra:1 Mem:118.76M (Peak 118.76M) | Time:00:00.34 | Syncing Elevon 2 1 False
+Fra:1 Mem:118.84M (Peak 118.84M) | Time:00:00.34 | Syncing Elevon gap.011
+Fra:1 Mem:118.85M (Peak 118.85M) | Time:00:00.34 | Syncing Wing structural panel.003
+Fra:1 Mem:118.85M (Peak 118.85M) | Time:00:00.34 | Syncing Wing aft spar.003
+Fra:1 Mem:118.86M (Peak 118.86M) | Time:00:00.34 | Syncing Wing outer panel.003
+Fra:1 Mem:118.87M (Peak 118.87M) | Time:00:00.34 | Syncing Outer nacelle boundary.003
+Fra:1 Mem:118.87M (Peak 118.87M) | Time:00:00.34 | Syncing Nacelle cross seam.006
+Fra:1 Mem:118.88M (Peak 118.88M) | Time:00:00.34 | Syncing Nacelle cross seam.007
+Fra:1 Mem:118.88M (Peak 118.88M) | Time:00:00.34 | Syncing Radome seam.001
+Fra:1 Mem:118.89M (Peak 118.89M) | Time:00:00.34 | Syncing Forebody equipment seam.001
+Fra:1 Mem:118.89M (Peak 118.89M) | Time:00:00.34 | Syncing Flush service hatch
+Fra:1 Mem:118.91M (Peak 118.91M) | Time:00:00.35 | Syncing Captive panel fastener.001
+Fra:1 Mem:118.96M (Peak 118.96M) | Time:00:00.35 | Syncing Captive panel fastener.002
+Fra:1 Mem:119.02M (Peak 119.02M) | Time:00:00.35 | Syncing Captive panel fastener.003
+Fra:1 Mem:119.07M (Peak 119.07M) | Time:00:00.35 | Syncing Captive panel fastener.004
+Fra:1 Mem:119.13M (Peak 119.13M) | Time:00:00.35 | Syncing Flush service hatch.001
+Fra:1 Mem:119.14M (Peak 119.14M) | Time:00:00.35 | Syncing Captive panel fastener.005
+Fra:1 Mem:119.19M (Peak 119.19M) | Time:00:00.35 | Syncing Captive panel fastener.006
+Fra:1 Mem:119.25M (Peak 119.25M) | Time:00:00.35 | Syncing Captive panel fastener.007
+Fra:1 Mem:119.30M (Peak 119.30M) | Time:00:00.35 | Syncing Captive panel fastener.008
+Fra:1 Mem:119.36M (Peak 119.36M) | Time:00:00.36 | Syncing Flush service hatch.002
+Fra:1 Mem:119.37M (Peak 119.37M) | Time:00:00.36 | Syncing Captive panel fastener.009
+Fra:1 Mem:119.42M (Peak 119.42M) | Time:00:00.36 | Syncing Captive panel fastener.010
+Fra:1 Mem:119.48M (Peak 119.48M) | Time:00:00.36 | Syncing Captive panel fastener.011
+Fra:1 Mem:119.54M (Peak 119.54M) | Time:00:00.36 | Syncing Captive panel fastener.012
+Fra:1 Mem:119.59M (Peak 119.59M) | Time:00:00.36 | Syncing Flush service hatch.003
+Fra:1 Mem:119.60M (Peak 119.60M) | Time:00:00.36 | Syncing Captive panel fastener.013
+Fra:1 Mem:119.65M (Peak 119.65M) | Time:00:00.36 | Syncing Captive panel fastener.014
+Fra:1 Mem:119.71M (Peak 119.71M) | Time:00:00.36 | Syncing Captive panel fastener.015
+Fra:1 Mem:119.77M (Peak 119.77M) | Time:00:00.36 | Syncing Captive panel fastener.016
+Fra:1 Mem:119.82M (Peak 119.82M) | Time:00:00.36 | Syncing Ventral antenna
+Fra:1 Mem:119.90M (Peak 119.90M) | Time:00:00.37 | Syncing Ventral antenna.001
+Fra:1 Mem:119.98M (Peak 119.98M) | Time:00:00.37 | Syncing Flush service hatch.004
+Fra:1 Mem:119.99M (Peak 119.99M) | Time:00:00.37 | Syncing Captive panel fastener.017
+Fra:1 Mem:120.05M (Peak 120.05M) | Time:00:00.37 | Syncing Captive panel fastener.018
+Fra:1 Mem:120.11M (Peak 120.11M) | Time:00:00.37 | Syncing Captive panel fastener.019
+Fra:1 Mem:120.16M (Peak 120.16M) | Time:00:00.37 | Syncing Captive panel fastener.020
+Fra:1 Mem:120.21M (Peak 120.21M) | Time:00:00.37 | Syncing Flush service hatch.005
+Fra:1 Mem:120.22M (Peak 120.22M) | Time:00:00.37 | Syncing Captive panel fastener.021
+Fra:1 Mem:120.28M (Peak 120.28M) | Time:00:00.37 | Syncing Captive panel fastener.022
+Fra:1 Mem:120.34M (Peak 120.34M) | Time:00:00.38 | Syncing Captive panel fastener.023
+Fra:1 Mem:120.39M (Peak 120.39M) | Time:00:00.38 | Syncing Captive panel fastener.024
+Fra:1 Mem:120.44M (Peak 120.44M) | Time:00:00.38 | Syncing Flush service hatch.006
+Fra:1 Mem:120.45M (Peak 120.45M) | Time:00:00.38 | Syncing Captive panel fastener.025
+Fra:1 Mem:120.51M (Peak 120.51M) | Time:00:00.38 | Syncing Captive panel fastener.026
+Fra:1 Mem:120.57M (Peak 120.57M) | Time:00:00.38 | Syncing Captive panel fastener.027
+Fra:1 Mem:120.62M (Peak 120.62M) | Time:00:00.38 | Syncing Captive panel fastener.028
+Fra:1 Mem:120.67M (Peak 120.67M) | Time:00:00.38 | Syncing Flush service hatch.007
+Fra:1 Mem:120.69M (Peak 120.69M) | Time:00:00.38 | Syncing Captive panel fastener.029
+Fra:1 Mem:120.74M (Peak 120.74M) | Time:00:00.38 | Syncing Captive panel fastener.030
+Fra:1 Mem:120.80M (Peak 120.80M) | Time:00:00.39 | Syncing Captive panel fastener.031
+Fra:1 Mem:120.85M (Peak 120.85M) | Time:00:00.39 | Syncing Captive panel fastener
+Fra:1 Mem:120.91M (Peak 120.91M) | Time:00:00.39 | Syncing Ventral antenna.002
+Fra:1 Mem:120.99M (Peak 120.99M) | Time:00:00.39 | Syncing Ventral antenna.003
+Fra:1 Mem:121.08M (Peak 121.08M) | Time:00:00.39 | Syncing Conformal optical aperture
+Fra:1 Mem:121.16M (Peak 121.16M) | Time:00:00.39 | Syncing Chine optical aperture
+Fra:1 Mem:121.24M (Peak 121.24M) | Time:00:00.39 | Syncing Conformal optical aperture.001
+Fra:1 Mem:121.33M (Peak 121.33M) | Time:00:00.39 | Syncing Chine optical aperture.001
+Fra:1 Mem:121.41M (Peak 121.41M) | Time:00:00.39 | Syncing Ventral main bay door -1
+Fra:1 Mem:121.52M (Peak 121.52M) | Time:00:00.39 | Syncing Main bay sawtooth seal
+Fra:1 Mem:121.53M (Peak 121.53M) | Time:00:00.40 | Syncing Outboard ventral door seal
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:00.40 | Syncing Recessed door hinge
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:00.40 | Syncing Recessed door hinge.001
+Fra:1 Mem:121.55M (Peak 121.55M) | Time:00:00.40 | Syncing Recessed door hinge.002
+Fra:1 Mem:121.56M (Peak 121.56M) | Time:00:00.40 | Syncing Ventral main bay door 1
+Fra:1 Mem:121.67M (Peak 121.67M) | Time:00:00.40 | Syncing Main bay sawtooth seal.001
+Fra:1 Mem:121.68M (Peak 121.68M) | Time:00:00.40 | Syncing Outboard ventral door seal.001
+Fra:1 Mem:121.69M (Peak 121.69M) | Time:00:00.40 | Syncing Recessed door hinge.003
+Fra:1 Mem:121.69M (Peak 121.69M) | Time:00:00.40 | Syncing Recessed door hinge.004
+Fra:1 Mem:121.70M (Peak 121.70M) | Time:00:00.40 | Syncing Recessed door hinge.005
+Fra:1 Mem:121.70M (Peak 121.70M) | Time:00:00.41 | Syncing Prototype serial
+Fra:1 Mem:121.71M (Peak 121.71M) | Time:00:00.41 | Syncing Low visibility wing star
+Fra:1 Mem:121.72M (Peak 121.72M) | Time:00:00.41 | Syncing Wing insignia bar
+Fra:1 Mem:121.72M (Peak 121.72M) | Time:00:00.41 | Syncing Wing insignia bar.001
+Fra:1 Mem:121.73M (Peak 121.73M) | Time:00:00.41 | Syncing Service stencil
+Fra:1 Mem:121.73M (Peak 121.73M) | Time:00:00.41 | Syncing Service stencil.001
+Fra:1 Mem:121.75M (Peak 121.75M) | Time:00:00.41 | Syncing Navigation aperture.001
+Fra:1 Mem:121.80M (Peak 121.80M) | Time:00:00.41 | Syncing Prototype serial.001
+Fra:1 Mem:121.80M (Peak 121.80M) | Time:00:00.41 | Syncing Low visibility wing star.001
+Fra:1 Mem:121.81M (Peak 121.81M) | Time:00:00.41 | Syncing Wing insignia bar.002
+Fra:1 Mem:121.82M (Peak 121.82M) | Time:00:00.41 | Syncing Wing insignia bar.003
+Fra:1 Mem:121.82M (Peak 121.82M) | Time:00:00.42 | Syncing Service stencil.002
+Fra:1 Mem:121.83M (Peak 121.83M) | Time:00:00.42 | Syncing Service stencil.003
+Fra:1 Mem:121.84M (Peak 121.84M) | Time:00:00.42 | Syncing Navigation aperture
+Fra:1 Mem:121.90M (Peak 121.90M) | Time:00:00.42 | Syncing Main gear well shadow -1
+Fra:1 Mem:121.98M (Peak 121.98M) | Time:00:00.42 | Syncing Main gear shock upper
+Fra:1 Mem:121.99M (Peak 121.99M) | Time:00:00.42 | Syncing Main gear polished piston
+Fra:1 Mem:122.01M (Peak 122.01M) | Time:00:00.42 | Syncing Main gear tandem bogie
+Fra:1 Mem:122.02M (Peak 122.02M) | Time:00:00.42 | Syncing Main gear drag brace
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:00.42 | Syncing Main gear diagonal stay
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:00.43 | Syncing Main gear hydraulic hose
+Fra:1 Mem:122.04M (Peak 122.04M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | tire
+Fra:1 Mem:122.08M (Peak 122.08M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | wheel ri
+Fra:1 Mem:122.09M (Peak 122.09M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.12M (Peak 122.12M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.14M (Peak 122.14M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.18M (Peak 122.18M) | Time:00:00.43 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.19M (Peak 122.19M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.20M (Peak 122.20M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.21M (Peak 122.21M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.22M (Peak 122.22M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.23M (Peak 122.23M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.24M (Peak 122.24M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.25M (Peak 122.25M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.26M (Peak 122.26M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.27M (Peak 122.27M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:00.44 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.29M (Peak 122.29M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.30M (Peak 122.30M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.32M (Peak 122.32M) | Time:00:00.45 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.33M (Peak 122.33M) | Time:00:00.45 | Syncing Main wheel (-1, 1.32) | tire
+Fra:1 Mem:122.36M (Peak 122.36M) | Time:00:00.45 | Syncing Main wheel (-1, 1.32) | wheel rim
+Fra:1 Mem:122.38M (Peak 122.38M) | Time:00:00.45 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.39M (Peak 122.39M) | Time:00:00.45 | Syncing Main wheel (-1, 1.32) | axle cap
+Fra:1 Mem:122.40M (Peak 122.40M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt
+Fra:1 Mem:122.41M (Peak 122.41M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.42M (Peak 122.42M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.43M (Peak 122.43M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.44M (Peak 122.44M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.44M (Peak 122.44M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.45M (Peak 122.45M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.46M (Peak 122.46M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.47M (Peak 122.47M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.48M (Peak 122.48M) | Time:00:00.46 | Syncing Main wheel (-1, 1.32) | axle cap.
+Fra:1 Mem:122.49M (Peak 122.49M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.50M (Peak 122.50M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.51M (Peak 122.51M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.52M (Peak 122.52M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.53M (Peak 122.53M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.54M (Peak 122.54M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.55M (Peak 122.55M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.55M (Peak 122.55M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.56M (Peak 122.56M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.56M (Peak 122.56M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.57M (Peak 122.57M) | Time:00:00.47 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.58M (Peak 122.58M) | Time:00:00.48 | Syncing Main gear hanging door
+Fra:1 Mem:122.60M (Peak 122.60M) | Time:00:00.48 | Syncing Gear door inner stiffener
+Fra:1 Mem:122.63M (Peak 122.63M) | Time:00:00.48 | Syncing Gear door inner stiffener.001
+Fra:1 Mem:122.65M (Peak 122.65M) | Time:00:00.48 | Syncing Gear door inner stiffener.002
+Fra:1 Mem:122.68M (Peak 122.68M) | Time:00:00.48 | Syncing Main gear well shadow 1
+Fra:1 Mem:122.76M (Peak 122.76M) | Time:00:00.48 | Syncing Main gear shock upper.001
+Fra:1 Mem:122.77M (Peak 122.77M) | Time:00:00.48 | Syncing Main gear polished piston.001
+Fra:1 Mem:122.78M (Peak 122.78M) | Time:00:00.48 | Syncing Main gear tandem bogie.001
+Fra:1 Mem:122.79M (Peak 122.79M) | Time:00:00.48 | Syncing Main gear drag brace.001
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:00.49 | Syncing Main gear diagonal stay.001
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:00.49 | Syncing Main gear hydraulic hose.001
+Fra:1 Mem:122.81M (Peak 122.81M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | tire
+Fra:1 Mem:122.85M (Peak 122.85M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | wheel rim
+Fra:1 Mem:122.86M (Peak 122.86M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.88M (Peak 122.88M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | axle cap
+Fra:1 Mem:122.89M (Peak 122.89M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | hub bolt
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:00.49 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.91M (Peak 122.91M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.92M (Peak 122.92M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.93M (Peak 122.93M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.94M (Peak 122.94M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.95M (Peak 122.95M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.96M (Peak 122.96M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.97M (Peak 122.97M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | axle cap.
+Fra:1 Mem:122.98M (Peak 122.98M) | Time:00:00.50 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.99M (Peak 122.99M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.00M (Peak 123.00M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.01M (Peak 123.01M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.01M (Peak 123.01M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.02M (Peak 123.02M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.03M (Peak 123.03M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.05M (Peak 123.05M) | Time:00:00.51 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.06M (Peak 123.06M) | Time:00:00.52 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.07M (Peak 123.07M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | tire
+Fra:1 Mem:123.10M (Peak 123.10M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | wheel rim
+Fra:1 Mem:123.11M (Peak 123.11M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.13M (Peak 123.13M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | axle cap
+Fra:1 Mem:123.14M (Peak 123.14M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | hub bolt
+Fra:1 Mem:123.15M (Peak 123.15M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:00.52 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.17M (Peak 123.17M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.18M (Peak 123.18M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.19M (Peak 123.19M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.20M (Peak 123.20M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.21M (Peak 123.21M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.22M (Peak 123.22M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | axle cap.0
+Fra:1 Mem:123.23M (Peak 123.23M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.24M (Peak 123.24M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.25M (Peak 123.25M) | Time:00:00.53 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.26M (Peak 123.26M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.26M (Peak 123.26M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.27M (Peak 123.27M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.28M (Peak 123.28M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.29M (Peak 123.29M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.29M (Peak 123.29M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.30M (Peak 123.30M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.31M (Peak 123.31M) | Time:00:00.54 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.32M (Peak 123.32M) | Time:00:00.55 | Syncing Main gear hanging door.001
+Fra:1 Mem:123.34M (Peak 123.34M) | Time:00:00.55 | Syncing Gear door inner stiffener.003
+Fra:1 Mem:123.36M (Peak 123.36M) | Time:00:00.55 | Syncing Gear door inner stiffener.004
+Fra:1 Mem:123.39M (Peak 123.39M) | Time:00:00.55 | Syncing Gear door inner stiffener.005
+Fra:1 Mem:123.41M (Peak 123.41M) | Time:00:00.55 | Syncing Nose well
+Fra:1 Mem:123.50M (Peak 123.50M) | Time:00:00.55 | Syncing Nose gear upper
+Fra:1 Mem:123.51M (Peak 123.51M) | Time:00:00.55 | Syncing Nose gear piston
+Fra:1 Mem:123.52M (Peak 123.52M) | Time:00:00.55 | Syncing Nose gear brace
+Fra:1 Mem:123.53M (Peak 123.53M) | Time:00:00.55 | Syncing Nose wheel axle
+Fra:1 Mem:123.54M (Peak 123.54M) | Time:00:00.56 | Syncing Nose wheel -1 | tire
+Fra:1 Mem:123.57M (Peak 123.57M) | Time:00:00.56 | Syncing Nose wheel -1 | wheel rim
+Fra:1 Mem:123.58M (Peak 123.58M) | Time:00:00.56 | Syncing Nose wheel -1 | recessed hub
+Fra:1 Mem:123.60M (Peak 123.60M) | Time:00:00.56 | Syncing Nose wheel -1 | axle cap
+Fra:1 Mem:123.61M (Peak 123.61M) | Time:00:00.56 | Syncing Nose wheel -1 | hub bolt
+Fra:1 Mem:123.62M (Peak 123.62M) | Time:00:00.56 | Syncing Nose wheel -1 | hub bolt.001
+Fra:1 Mem:123.63M (Peak 123.63M) | Time:00:00.56 | Syncing Nose wheel -1 | hub bolt.002
+Fra:1 Mem:123.63M (Peak 123.63M) | Time:00:00.56 | Syncing Nose wheel -1 | hub bolt.003
+Fra:1 Mem:123.64M (Peak 123.64M) | Time:00:00.57 | Syncing Nose wheel -1 | hub bolt.004
+Fra:1 Mem:123.65M (Peak 123.65M) | Time:00:00.57 | Syncing Nose wheel -1 | hub bolt.005
+Fra:1 Mem:123.66M (Peak 123.66M) | Time:00:00.57 | Syncing Nose wheel -1 | hub bolt.006
+Fra:1 Mem:123.67M (Peak 123.67M) | Time:00:00.57 | Syncing Nose wheel -1 | hub bolt.007
+Fra:1 Mem:123.68M (Peak 123.68M) | Time:00:00.58 | Syncing Nose wheel -1 | recessed hub.001
+Fra:1 Mem:123.69M (Peak 123.69M) | Time:00:00.58 | Syncing Nose wheel -1 | axle cap.001
+Fra:1 Mem:123.70M (Peak 123.70M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.008
+Fra:1 Mem:123.71M (Peak 123.71M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.009
+Fra:1 Mem:123.72M (Peak 123.72M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.010
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.011
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.012
+Fra:1 Mem:123.74M (Peak 123.74M) | Time:00:00.58 | Syncing Nose wheel -1 | hub bolt.013
+Fra:1 Mem:123.75M (Peak 123.75M) | Time:00:00.59 | Syncing Nose wheel -1 | hub bolt.014
+Fra:1 Mem:123.76M (Peak 123.76M) | Time:00:00.59 | Syncing Nose wheel -1 | hub bolt.015
+Fra:1 Mem:123.76M (Peak 123.76M) | Time:00:00.59 | Syncing Nose wheel -1 | tread groove
+Fra:1 Mem:123.77M (Peak 123.77M) | Time:00:00.59 | Syncing Nose wheel -1 | tread groove.001
+Fra:1 Mem:123.78M (Peak 123.78M) | Time:00:00.60 | Syncing Nose wheel -1 | tread groove.002
+Fra:1 Mem:123.79M (Peak 123.79M) | Time:00:00.60 | Syncing Nose gear door
+Fra:1 Mem:123.81M (Peak 123.81M) | Time:00:00.60 | Syncing Nose wheel 1 | tire
+Fra:1 Mem:123.85M (Peak 123.85M) | Time:00:00.60 | Syncing Nose wheel 1 | wheel rim
+Fra:1 Mem:123.86M (Peak 123.86M) | Time:00:00.60 | Syncing Nose wheel 1 | recessed hub
+Fra:1 Mem:123.87M (Peak 123.87M) | Time:00:00.60 | Syncing Nose wheel 1 | axle cap
+Fra:1 Mem:123.88M (Peak 123.88M) | Time:00:00.60 | Syncing Nose wheel 1 | hub bolt
+Fra:1 Mem:123.89M (Peak 123.89M) | Time:00:00.60 | Syncing Nose wheel 1 | hub bolt.001
+Fra:1 Mem:123.90M (Peak 123.90M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.002
+Fra:1 Mem:123.91M (Peak 123.91M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.003
+Fra:1 Mem:123.92M (Peak 123.92M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.004
+Fra:1 Mem:123.93M (Peak 123.93M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.005
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.006
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.007
+Fra:1 Mem:123.95M (Peak 123.95M) | Time:00:00.61 | Syncing Nose wheel 1 | recessed hub.001
+Fra:1 Mem:123.97M (Peak 123.97M) | Time:00:00.61 | Syncing Nose wheel 1 | axle cap.001
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.61 | Syncing Nose wheel 1 | hub bolt.008
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.009
+Fra:1 Mem:123.99M (Peak 123.99M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.010
+Fra:1 Mem:124.00M (Peak 124.00M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.011
+Fra:1 Mem:124.01M (Peak 124.01M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.012
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.013
+Fra:1 Mem:124.03M (Peak 124.03M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.014
+Fra:1 Mem:124.04M (Peak 124.04M) | Time:00:00.62 | Syncing Nose wheel 1 | hub bolt.015
+Fra:1 Mem:124.04M (Peak 124.04M) | Time:00:00.62 | Syncing Nose wheel 1 | tread groove
+Fra:1 Mem:124.05M (Peak 124.05M) | Time:00:00.63 | Syncing Nose wheel 1 | tread groove.001
+Fra:1 Mem:124.05M (Peak 124.05M) | Time:00:00.63 | Syncing Nose wheel 1 | tread groove.002
+Fra:1 Mem:124.06M (Peak 124.06M) | Time:00:00.63 | Syncing Nose gear door.001
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:00.63 | Syncing Nose gear torque link
+Fra:1 Mem:124.09M (Peak 124.09M) | Time:00:00.63 | Syncing Studio floor
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing Key | broad softbox
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing Fill | warm
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing Rim | aft
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing Nose fill
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing Underside fill
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.64 | Syncing 01 | Front three-quarter
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.65 | Syncing 02 | Top plan
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.65 | Syncing 03 | Rear three-quarter
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.65 | Syncing 04 | Underside reference
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.65 | Syncing 05 | Front elevation
+Fra:1 Mem:132.89M (Peak 132.89M) | Time:00:00.68 | Rendering 1 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:02.94 | Rendering 26 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:04.75 | Rendering 51 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:06.61 | Rendering 76 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:08.37 | Rendering 101 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:10.56 | Rendering 126 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:10.74 | Rendering 128 / 128 samples
+Saved: 'C:\MyProjects\TempProject (OpenAI)\J36_Model\renders\02_top.png'
+ Time: 00:11.43 (Saving: 00:00.35)
+
+Fra:1 Mem:108.65M (Peak 108.65M) | Time:00:00.11 | Syncing J-36 | continuous blended delta a
+Fra:1 Mem:115.07M (Peak 115.56M) | Time:00:00.12 | Syncing Smoked cockpit canopy
+Fra:1 Mem:115.10M (Peak 115.56M) | Time:00:00.12 | Syncing Canopy perimeter seal
+Fra:1 Mem:115.11M (Peak 115.56M) | Time:00:00.12 | Syncing Canopy perimeter frame
+Fra:1 Mem:115.12M (Peak 115.56M) | Time:00:00.12 | Syncing Canopy perimeter seal.001
+Fra:1 Mem:115.13M (Peak 115.56M) | Time:00:00.12 | Syncing Canopy perimeter frame.001
+Fra:1 Mem:115.13M (Peak 115.56M) | Time:00:00.13 | Syncing Forward canopy bow
+Fra:1 Mem:115.14M (Peak 115.56M) | Time:00:00.13 | Syncing Dorsal intake | blended curved sh
+Fra:1 Mem:115.53M (Peak 115.56M) | Time:00:00.13 | Syncing Dorsal intake | rolled leading li
+Fra:1 Mem:115.54M (Peak 115.56M) | Time:00:00.14 | Syncing Dorsal intake | recessed arch wal
+Fra:1 Mem:115.55M (Peak 115.56M) | Time:00:00.14 | Syncing Dorsal intake | shadowed throat
+Fra:1 Mem:115.56M (Peak 115.56M) | Time:00:00.14 | Syncing Side intake fairing -1
+Fra:1 Mem:115.57M (Peak 115.57M) | Time:00:00.14 | Syncing Side intake tunnel -1
+Fra:1 Mem:115.58M (Peak 115.58M) | Time:00:00.14 | Syncing Side intake dark recess -1
+Fra:1 Mem:115.58M (Peak 115.58M) | Time:00:00.14 | Syncing Side intake rim -1
+Fra:1 Mem:115.59M (Peak 115.59M) | Time:00:00.15 | Syncing Diverterless intake shoulder -1
+Fra:1 Mem:115.65M (Peak 115.65M) | Time:00:00.15 | Syncing Side intake fairing 1
+Fra:1 Mem:115.66M (Peak 115.66M) | Time:00:00.15 | Syncing Side intake tunnel 1
+Fra:1 Mem:115.67M (Peak 115.67M) | Time:00:00.15 | Syncing Side intake dark recess 1
+Fra:1 Mem:115.67M (Peak 115.67M) | Time:00:00.15 | Syncing Side intake rim 1
+Fra:1 Mem:115.68M (Peak 115.68M) | Time:00:00.15 | Syncing Diverterless intake shoulder 1
+Fra:1 Mem:115.74M (Peak 115.74M) | Time:00:00.15 | Syncing Engine 1 | nozzle casing
+Fra:1 Mem:115.76M (Peak 115.76M) | Time:00:00.16 | Syncing Engine 1 | nozzle inside
+Fra:1 Mem:115.77M (Peak 115.77M) | Time:00:00.16 | Syncing Engine core darkness
+Fra:1 Mem:115.78M (Peak 115.78M) | Time:00:00.16 | Syncing Engine 1 | petal 01
+Fra:1 Mem:115.79M (Peak 115.79M) | Time:00:00.17 | Syncing Engine 1 | petal 02
+Fra:1 Mem:115.80M (Peak 115.80M) | Time:00:00.17 | Syncing Engine 1 | petal 03
+Fra:1 Mem:115.80M (Peak 115.80M) | Time:00:00.17 | Syncing Engine 1 | petal 04
+Fra:1 Mem:115.81M (Peak 115.81M) | Time:00:00.17 | Syncing Engine 1 | petal 05
+Fra:1 Mem:115.82M (Peak 115.82M) | Time:00:00.17 | Syncing Engine 1 | petal 06
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:00.17 | Syncing Engine 1 | petal 07
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:00.17 | Syncing Engine 1 | petal 08
+Fra:1 Mem:115.84M (Peak 115.84M) | Time:00:00.18 | Syncing Engine 1 | petal 09
+Fra:1 Mem:115.85M (Peak 115.85M) | Time:00:00.18 | Syncing Engine 1 | petal 10
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:00.18 | Syncing Engine 1 | petal 11
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:00.18 | Syncing Engine 1 | petal 12
+Fra:1 Mem:115.87M (Peak 115.87M) | Time:00:00.18 | Syncing Engine 1 | petal 13
+Fra:1 Mem:115.88M (Peak 115.88M) | Time:00:00.18 | Syncing Engine 1 | petal 14
+Fra:1 Mem:115.89M (Peak 115.89M) | Time:00:00.19 | Syncing Engine 1 | petal 15
+Fra:1 Mem:115.89M (Peak 115.89M) | Time:00:00.19 | Syncing Engine 1 | petal 16
+Fra:1 Mem:115.90M (Peak 115.90M) | Time:00:00.19 | Syncing Engine 1 | petal 17
+Fra:1 Mem:115.91M (Peak 115.91M) | Time:00:00.19 | Syncing Engine 1 | petal 18
+Fra:1 Mem:115.92M (Peak 115.92M) | Time:00:00.19 | Syncing Engine 1 | petal 19
+Fra:1 Mem:115.92M (Peak 115.92M) | Time:00:00.19 | Syncing Engine 1 | petal 20
+Fra:1 Mem:115.93M (Peak 115.93M) | Time:00:00.20 | Syncing Engine 1 | petal 21
+Fra:1 Mem:115.94M (Peak 115.94M) | Time:00:00.20 | Syncing Engine 1 | petal 22
+Fra:1 Mem:115.95M (Peak 115.95M) | Time:00:00.20 | Syncing Engine 1 | petal 23
+Fra:1 Mem:115.95M (Peak 115.95M) | Time:00:00.20 | Syncing Engine 1 | petal 24
+Fra:1 Mem:115.96M (Peak 115.96M) | Time:00:00.20 | Syncing Exhaust trough heat shield
+Fra:1 Mem:115.97M (Peak 115.97M) | Time:00:00.20 | Syncing Exhaust trough heat shield.001
+Fra:1 Mem:115.98M (Peak 115.98M) | Time:00:00.20 | Syncing Engine 2 | nozzle casing
+Fra:1 Mem:116.00M (Peak 116.00M) | Time:00:00.20 | Syncing Engine 2 | nozzle inside
+Fra:1 Mem:116.01M (Peak 116.01M) | Time:00:00.21 | Syncing Engine core darkness.001
+Fra:1 Mem:116.02M (Peak 116.02M) | Time:00:00.21 | Syncing Engine 2 | petal 01
+Fra:1 Mem:116.03M (Peak 116.03M) | Time:00:00.21 | Syncing Engine 2 | petal 02
+Fra:1 Mem:116.04M (Peak 116.04M) | Time:00:00.21 | Syncing Engine 2 | petal 03
+Fra:1 Mem:116.04M (Peak 116.04M) | Time:00:00.21 | Syncing Engine 2 | petal 04
+Fra:1 Mem:116.05M (Peak 116.05M) | Time:00:00.22 | Syncing Engine 2 | petal 05
+Fra:1 Mem:116.06M (Peak 116.06M) | Time:00:00.22 | Syncing Engine 2 | petal 06
+Fra:1 Mem:116.07M (Peak 116.07M) | Time:00:00.22 | Syncing Engine 2 | petal 07
+Fra:1 Mem:116.07M (Peak 116.07M) | Time:00:00.22 | Syncing Engine 2 | petal 08
+Fra:1 Mem:116.08M (Peak 116.08M) | Time:00:00.22 | Syncing Engine 2 | petal 09
+Fra:1 Mem:116.09M (Peak 116.09M) | Time:00:00.22 | Syncing Engine 2 | petal 10
+Fra:1 Mem:116.10M (Peak 116.10M) | Time:00:00.23 | Syncing Engine 2 | petal 11
+Fra:1 Mem:116.10M (Peak 116.10M) | Time:00:00.23 | Syncing Engine 2 | petal 12
+Fra:1 Mem:116.11M (Peak 116.11M) | Time:00:00.23 | Syncing Engine 2 | petal 13
+Fra:1 Mem:116.12M (Peak 116.12M) | Time:00:00.23 | Syncing Engine 2 | petal 14
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:00.23 | Syncing Engine 2 | petal 15
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:00.23 | Syncing Engine 2 | petal 16
+Fra:1 Mem:116.14M (Peak 116.14M) | Time:00:00.24 | Syncing Engine 2 | petal 17
+Fra:1 Mem:116.15M (Peak 116.15M) | Time:00:00.24 | Syncing Engine 2 | petal 18
+Fra:1 Mem:116.16M (Peak 116.16M) | Time:00:00.24 | Syncing Engine 2 | petal 19
+Fra:1 Mem:116.16M (Peak 116.16M) | Time:00:00.24 | Syncing Engine 2 | petal 20
+Fra:1 Mem:116.17M (Peak 116.17M) | Time:00:00.24 | Syncing Engine 2 | petal 21
+Fra:1 Mem:116.18M (Peak 116.18M) | Time:00:00.24 | Syncing Engine 2 | petal 22
+Fra:1 Mem:116.19M (Peak 116.19M) | Time:00:00.25 | Syncing Engine 2 | petal 23
+Fra:1 Mem:116.19M (Peak 116.19M) | Time:00:00.25 | Syncing Engine 2 | petal 24
+Fra:1 Mem:116.20M (Peak 116.20M) | Time:00:00.25 | Syncing Exhaust trough heat shield.002
+Fra:1 Mem:116.21M (Peak 116.21M) | Time:00:00.25 | Syncing Exhaust trough heat shield.003
+Fra:1 Mem:116.22M (Peak 116.22M) | Time:00:00.25 | Syncing Engine 3 | nozzle casing
+Fra:1 Mem:116.24M (Peak 116.24M) | Time:00:00.25 | Syncing Engine 3 | nozzle inside
+Fra:1 Mem:116.25M (Peak 116.25M) | Time:00:00.25 | Syncing Engine core darkness.002
+Fra:1 Mem:116.26M (Peak 116.26M) | Time:00:00.26 | Syncing Engine 3 | petal 01
+Fra:1 Mem:116.27M (Peak 116.27M) | Time:00:00.26 | Syncing Engine 3 | petal 02
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:00.26 | Syncing Engine 3 | petal 03
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:00.26 | Syncing Engine 3 | petal 04
+Fra:1 Mem:116.29M (Peak 116.29M) | Time:00:00.26 | Syncing Engine 3 | petal 05
+Fra:1 Mem:116.30M (Peak 116.30M) | Time:00:00.27 | Syncing Engine 3 | petal 06
+Fra:1 Mem:116.31M (Peak 116.31M) | Time:00:00.27 | Syncing Engine 3 | petal 07
+Fra:1 Mem:116.31M (Peak 116.31M) | Time:00:00.27 | Syncing Engine 3 | petal 08
+Fra:1 Mem:116.32M (Peak 116.32M) | Time:00:00.27 | Syncing Engine 3 | petal 09
+Fra:1 Mem:116.33M (Peak 116.33M) | Time:00:00.27 | Syncing Engine 3 | petal 10
+Fra:1 Mem:116.34M (Peak 116.34M) | Time:00:00.27 | Syncing Engine 3 | petal 11
+Fra:1 Mem:116.34M (Peak 116.34M) | Time:00:00.27 | Syncing Engine 3 | petal 12
+Fra:1 Mem:116.35M (Peak 116.35M) | Time:00:00.27 | Syncing Engine 3 | petal 13
+Fra:1 Mem:116.36M (Peak 116.36M) | Time:00:00.28 | Syncing Engine 3 | petal 14
+Fra:1 Mem:116.36M (Peak 116.36M) | Time:00:00.28 | Syncing Engine 3 | petal 15
+Fra:1 Mem:116.37M (Peak 116.37M) | Time:00:00.28 | Syncing Engine 3 | petal 16
+Fra:1 Mem:116.38M (Peak 116.38M) | Time:00:00.28 | Syncing Engine 3 | petal 17
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:00.28 | Syncing Engine 3 | petal 18
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:00.28 | Syncing Engine 3 | petal 19
+Fra:1 Mem:116.40M (Peak 116.40M) | Time:00:00.28 | Syncing Engine 3 | petal 20
+Fra:1 Mem:116.41M (Peak 116.41M) | Time:00:00.28 | Syncing Engine 3 | petal 21
+Fra:1 Mem:116.42M (Peak 116.42M) | Time:00:00.28 | Syncing Engine 3 | petal 22
+Fra:1 Mem:116.42M (Peak 116.42M) | Time:00:00.29 | Syncing Engine 3 | petal 23
+Fra:1 Mem:116.43M (Peak 116.43M) | Time:00:00.29 | Syncing Engine 3 | petal 24
+Fra:1 Mem:116.44M (Peak 116.44M) | Time:00:00.29 | Syncing Exhaust trough heat shield.004
+Fra:1 Mem:116.45M (Peak 116.45M) | Time:00:00.29 | Syncing Exhaust trough heat shield.005
+Fra:1 Mem:116.45M (Peak 116.45M) | Time:00:00.29 | Syncing Leading edge coating (-1, True)
+Fra:1 Mem:116.57M (Peak 116.57M) | Time:00:00.29 | Syncing Leading-edge panel boundary
+Fra:1 Mem:116.58M (Peak 116.58M) | Time:00:00.29 | Syncing Elevon 0 -1 True
+Fra:1 Mem:116.66M (Peak 116.66M) | Time:00:00.30 | Syncing Elevon gap
+Fra:1 Mem:116.67M (Peak 116.67M) | Time:00:00.30 | Syncing Control actuator fairing.001
+Fra:1 Mem:116.73M (Peak 116.73M) | Time:00:00.30 | Syncing Control actuator fairing.002
+Fra:1 Mem:116.78M (Peak 116.78M) | Time:00:00.30 | Syncing Elevon 1 -1 True
+Fra:1 Mem:116.86M (Peak 116.86M) | Time:00:00.30 | Syncing Elevon gap.001
+Fra:1 Mem:116.87M (Peak 116.87M) | Time:00:00.30 | Syncing Control actuator fairing.003
+Fra:1 Mem:116.93M (Peak 116.93M) | Time:00:00.30 | Syncing Control actuator fairing.004
+Fra:1 Mem:116.98M (Peak 116.98M) | Time:00:00.30 | Syncing Elevon 2 -1 True
+Fra:1 Mem:117.06M (Peak 117.06M) | Time:00:00.30 | Syncing Elevon gap.002
+Fra:1 Mem:117.07M (Peak 117.07M) | Time:00:00.31 | Syncing Control actuator fairing.005
+Fra:1 Mem:117.13M (Peak 117.13M) | Time:00:00.31 | Syncing Control actuator fairing.006
+Fra:1 Mem:117.18M (Peak 117.18M) | Time:00:00.31 | Syncing Wing structural panel
+Fra:1 Mem:117.22M (Peak 117.22M) | Time:00:00.31 | Syncing Wing aft spar
+Fra:1 Mem:117.22M (Peak 117.22M) | Time:00:00.31 | Syncing Wing outer panel
+Fra:1 Mem:117.23M (Peak 117.23M) | Time:00:00.31 | Syncing Outer nacelle boundary
+Fra:1 Mem:117.24M (Peak 117.24M) | Time:00:00.31 | Syncing Nacelle cross seam
+Fra:1 Mem:117.24M (Peak 117.24M) | Time:00:00.31 | Syncing Nacelle cross seam.001
+Fra:1 Mem:117.25M (Peak 117.25M) | Time:00:00.31 | Syncing Leading edge coating (1, True)
+Fra:1 Mem:117.37M (Peak 117.37M) | Time:00:00.32 | Syncing Leading-edge panel boundary.001
+Fra:1 Mem:117.38M (Peak 117.38M) | Time:00:00.32 | Syncing Elevon 0 1 True
+Fra:1 Mem:117.46M (Peak 117.46M) | Time:00:00.32 | Syncing Elevon gap.003
+Fra:1 Mem:117.47M (Peak 117.47M) | Time:00:00.32 | Syncing Control actuator fairing.007
+Fra:1 Mem:117.53M (Peak 117.53M) | Time:00:00.32 | Syncing Control actuator fairing.008
+Fra:1 Mem:117.58M (Peak 117.58M) | Time:00:00.32 | Syncing Elevon 1 1 True
+Fra:1 Mem:117.66M (Peak 117.66M) | Time:00:00.32 | Syncing Elevon gap.004
+Fra:1 Mem:117.67M (Peak 117.67M) | Time:00:00.32 | Syncing Control actuator fairing.009
+Fra:1 Mem:117.73M (Peak 117.73M) | Time:00:00.32 | Syncing Control actuator fairing.010
+Fra:1 Mem:117.78M (Peak 117.78M) | Time:00:00.32 | Syncing Elevon 2 1 True
+Fra:1 Mem:117.86M (Peak 117.86M) | Time:00:00.33 | Syncing Elevon gap.005
+Fra:1 Mem:117.87M (Peak 117.87M) | Time:00:00.33 | Syncing Control actuator fairing.011
+Fra:1 Mem:117.93M (Peak 117.93M) | Time:00:00.33 | Syncing Control actuator fairing
+Fra:1 Mem:117.98M (Peak 117.98M) | Time:00:00.33 | Syncing Wing structural panel.001
+Fra:1 Mem:117.99M (Peak 117.99M) | Time:00:00.33 | Syncing Wing aft spar.001
+Fra:1 Mem:117.99M (Peak 117.99M) | Time:00:00.33 | Syncing Wing outer panel.001
+Fra:1 Mem:118.00M (Peak 118.00M) | Time:00:00.33 | Syncing Outer nacelle boundary.001
+Fra:1 Mem:118.00M (Peak 118.00M) | Time:00:00.33 | Syncing Nacelle cross seam.002
+Fra:1 Mem:118.01M (Peak 118.01M) | Time:00:00.33 | Syncing Nacelle cross seam.003
+Fra:1 Mem:118.02M (Peak 118.02M) | Time:00:00.33 | Syncing Radome seam
+Fra:1 Mem:118.02M (Peak 118.02M) | Time:00:00.34 | Syncing Forebody equipment seam
+Fra:1 Mem:118.03M (Peak 118.03M) | Time:00:00.34 | Syncing Leading edge coating (-1, False)
+Fra:1 Mem:118.15M (Peak 118.15M) | Time:00:00.34 | Syncing Leading-edge panel boundary.002
+Fra:1 Mem:118.16M (Peak 118.16M) | Time:00:00.34 | Syncing Elevon 0 -1 False
+Fra:1 Mem:118.24M (Peak 118.24M) | Time:00:00.34 | Syncing Elevon gap.006
+Fra:1 Mem:118.25M (Peak 118.25M) | Time:00:00.34 | Syncing Elevon 1 -1 False
+Fra:1 Mem:118.33M (Peak 118.33M) | Time:00:00.34 | Syncing Elevon gap.007
+Fra:1 Mem:118.34M (Peak 118.34M) | Time:00:00.34 | Syncing Elevon 2 -1 False
+Fra:1 Mem:118.41M (Peak 118.41M) | Time:00:00.34 | Syncing Elevon gap.008
+Fra:1 Mem:118.42M (Peak 118.42M) | Time:00:00.35 | Syncing Wing structural panel.002
+Fra:1 Mem:118.43M (Peak 118.43M) | Time:00:00.35 | Syncing Wing aft spar.002
+Fra:1 Mem:118.43M (Peak 118.43M) | Time:00:00.35 | Syncing Wing outer panel.002
+Fra:1 Mem:118.44M (Peak 118.44M) | Time:00:00.35 | Syncing Outer nacelle boundary.002
+Fra:1 Mem:118.44M (Peak 118.44M) | Time:00:00.35 | Syncing Nacelle cross seam.004
+Fra:1 Mem:118.45M (Peak 118.45M) | Time:00:00.35 | Syncing Nacelle cross seam.005
+Fra:1 Mem:118.46M (Peak 118.46M) | Time:00:00.35 | Syncing Leading edge coating (1, False)
+Fra:1 Mem:118.58M (Peak 118.58M) | Time:00:00.35 | Syncing Leading-edge panel boundary.003
+Fra:1 Mem:118.59M (Peak 118.59M) | Time:00:00.35 | Syncing Elevon 0 1 False
+Fra:1 Mem:118.66M (Peak 118.66M) | Time:00:00.35 | Syncing Elevon gap.009
+Fra:1 Mem:118.67M (Peak 118.67M) | Time:00:00.36 | Syncing Elevon 1 1 False
+Fra:1 Mem:118.75M (Peak 118.75M) | Time:00:00.36 | Syncing Elevon gap.010
+Fra:1 Mem:118.76M (Peak 118.76M) | Time:00:00.36 | Syncing Elevon 2 1 False
+Fra:1 Mem:118.84M (Peak 118.84M) | Time:00:00.36 | Syncing Elevon gap.011
+Fra:1 Mem:118.85M (Peak 118.85M) | Time:00:00.36 | Syncing Wing structural panel.003
+Fra:1 Mem:118.85M (Peak 118.85M) | Time:00:00.36 | Syncing Wing aft spar.003
+Fra:1 Mem:118.86M (Peak 118.86M) | Time:00:00.36 | Syncing Wing outer panel.003
+Fra:1 Mem:118.87M (Peak 118.87M) | Time:00:00.36 | Syncing Outer nacelle boundary.003
+Fra:1 Mem:118.87M (Peak 118.87M) | Time:00:00.36 | Syncing Nacelle cross seam.006
+Fra:1 Mem:118.88M (Peak 118.88M) | Time:00:00.37 | Syncing Nacelle cross seam.007
+Fra:1 Mem:118.88M (Peak 118.88M) | Time:00:00.37 | Syncing Radome seam.001
+Fra:1 Mem:118.89M (Peak 118.89M) | Time:00:00.37 | Syncing Forebody equipment seam.001
+Fra:1 Mem:118.89M (Peak 118.89M) | Time:00:00.37 | Syncing Flush service hatch
+Fra:1 Mem:118.91M (Peak 118.91M) | Time:00:00.37 | Syncing Captive panel fastener.001
+Fra:1 Mem:118.96M (Peak 118.96M) | Time:00:00.37 | Syncing Captive panel fastener.002
+Fra:1 Mem:119.02M (Peak 119.02M) | Time:00:00.37 | Syncing Captive panel fastener.003
+Fra:1 Mem:119.07M (Peak 119.07M) | Time:00:00.37 | Syncing Captive panel fastener.004
+Fra:1 Mem:119.13M (Peak 119.13M) | Time:00:00.38 | Syncing Flush service hatch.001
+Fra:1 Mem:119.14M (Peak 119.14M) | Time:00:00.38 | Syncing Captive panel fastener.005
+Fra:1 Mem:119.19M (Peak 119.19M) | Time:00:00.38 | Syncing Captive panel fastener.006
+Fra:1 Mem:119.25M (Peak 119.25M) | Time:00:00.38 | Syncing Captive panel fastener.007
+Fra:1 Mem:119.30M (Peak 119.30M) | Time:00:00.38 | Syncing Captive panel fastener.008
+Fra:1 Mem:119.36M (Peak 119.36M) | Time:00:00.38 | Syncing Flush service hatch.002
+Fra:1 Mem:119.37M (Peak 119.37M) | Time:00:00.38 | Syncing Captive panel fastener.009
+Fra:1 Mem:119.42M (Peak 119.42M) | Time:00:00.38 | Syncing Captive panel fastener.010
+Fra:1 Mem:119.48M (Peak 119.48M) | Time:00:00.38 | Syncing Captive panel fastener.011
+Fra:1 Mem:119.54M (Peak 119.54M) | Time:00:00.39 | Syncing Captive panel fastener.012
+Fra:1 Mem:119.59M (Peak 119.59M) | Time:00:00.39 | Syncing Flush service hatch.003
+Fra:1 Mem:119.60M (Peak 119.60M) | Time:00:00.39 | Syncing Captive panel fastener.013
+Fra:1 Mem:119.65M (Peak 119.65M) | Time:00:00.39 | Syncing Captive panel fastener.014
+Fra:1 Mem:119.71M (Peak 119.71M) | Time:00:00.39 | Syncing Captive panel fastener.015
+Fra:1 Mem:119.77M (Peak 119.77M) | Time:00:00.39 | Syncing Captive panel fastener.016
+Fra:1 Mem:119.82M (Peak 119.82M) | Time:00:00.39 | Syncing Ventral antenna
+Fra:1 Mem:119.90M (Peak 119.90M) | Time:00:00.39 | Syncing Ventral antenna.001
+Fra:1 Mem:119.98M (Peak 119.98M) | Time:00:00.39 | Syncing Flush service hatch.004
+Fra:1 Mem:119.99M (Peak 119.99M) | Time:00:00.40 | Syncing Captive panel fastener.017
+Fra:1 Mem:120.05M (Peak 120.05M) | Time:00:00.40 | Syncing Captive panel fastener.018
+Fra:1 Mem:120.11M (Peak 120.11M) | Time:00:00.40 | Syncing Captive panel fastener.019
+Fra:1 Mem:120.16M (Peak 120.16M) | Time:00:00.40 | Syncing Captive panel fastener.020
+Fra:1 Mem:120.21M (Peak 120.21M) | Time:00:00.40 | Syncing Flush service hatch.005
+Fra:1 Mem:120.22M (Peak 120.22M) | Time:00:00.40 | Syncing Captive panel fastener.021
+Fra:1 Mem:120.28M (Peak 120.28M) | Time:00:00.40 | Syncing Captive panel fastener.022
+Fra:1 Mem:120.34M (Peak 120.34M) | Time:00:00.40 | Syncing Captive panel fastener.023
+Fra:1 Mem:120.39M (Peak 120.39M) | Time:00:00.40 | Syncing Captive panel fastener.024
+Fra:1 Mem:120.44M (Peak 120.44M) | Time:00:00.41 | Syncing Flush service hatch.006
+Fra:1 Mem:120.45M (Peak 120.45M) | Time:00:00.41 | Syncing Captive panel fastener.025
+Fra:1 Mem:120.51M (Peak 120.51M) | Time:00:00.41 | Syncing Captive panel fastener.026
+Fra:1 Mem:120.57M (Peak 120.57M) | Time:00:00.41 | Syncing Captive panel fastener.027
+Fra:1 Mem:120.62M (Peak 120.62M) | Time:00:00.41 | Syncing Captive panel fastener.028
+Fra:1 Mem:120.67M (Peak 120.67M) | Time:00:00.41 | Syncing Flush service hatch.007
+Fra:1 Mem:120.69M (Peak 120.69M) | Time:00:00.41 | Syncing Captive panel fastener.029
+Fra:1 Mem:120.74M (Peak 120.74M) | Time:00:00.41 | Syncing Captive panel fastener.030
+Fra:1 Mem:120.80M (Peak 120.80M) | Time:00:00.41 | Syncing Captive panel fastener.031
+Fra:1 Mem:120.85M (Peak 120.85M) | Time:00:00.42 | Syncing Captive panel fastener
+Fra:1 Mem:120.91M (Peak 120.91M) | Time:00:00.42 | Syncing Ventral antenna.002
+Fra:1 Mem:120.99M (Peak 120.99M) | Time:00:00.42 | Syncing Ventral antenna.003
+Fra:1 Mem:121.08M (Peak 121.08M) | Time:00:00.42 | Syncing Conformal optical aperture
+Fra:1 Mem:121.16M (Peak 121.16M) | Time:00:00.42 | Syncing Chine optical aperture
+Fra:1 Mem:121.24M (Peak 121.24M) | Time:00:00.42 | Syncing Conformal optical aperture.001
+Fra:1 Mem:121.33M (Peak 121.33M) | Time:00:00.42 | Syncing Chine optical aperture.001
+Fra:1 Mem:121.41M (Peak 121.41M) | Time:00:00.42 | Syncing Ventral main bay door -1
+Fra:1 Mem:121.52M (Peak 121.52M) | Time:00:00.43 | Syncing Main bay sawtooth seal
+Fra:1 Mem:121.53M (Peak 121.53M) | Time:00:00.43 | Syncing Outboard ventral door seal
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:00.43 | Syncing Recessed door hinge
+Fra:1 Mem:121.54M (Peak 121.54M) | Time:00:00.43 | Syncing Recessed door hinge.001
+Fra:1 Mem:121.55M (Peak 121.55M) | Time:00:00.43 | Syncing Recessed door hinge.002
+Fra:1 Mem:121.56M (Peak 121.56M) | Time:00:00.43 | Syncing Ventral main bay door 1
+Fra:1 Mem:121.67M (Peak 121.67M) | Time:00:00.43 | Syncing Main bay sawtooth seal.001
+Fra:1 Mem:121.68M (Peak 121.68M) | Time:00:00.43 | Syncing Outboard ventral door seal.001
+Fra:1 Mem:121.69M (Peak 121.69M) | Time:00:00.43 | Syncing Recessed door hinge.003
+Fra:1 Mem:121.69M (Peak 121.69M) | Time:00:00.43 | Syncing Recessed door hinge.004
+Fra:1 Mem:121.70M (Peak 121.70M) | Time:00:00.44 | Syncing Recessed door hinge.005
+Fra:1 Mem:121.70M (Peak 121.70M) | Time:00:00.44 | Syncing Prototype serial
+Fra:1 Mem:121.71M (Peak 121.71M) | Time:00:00.44 | Syncing Low visibility wing star
+Fra:1 Mem:121.72M (Peak 121.72M) | Time:00:00.44 | Syncing Wing insignia bar
+Fra:1 Mem:121.72M (Peak 121.72M) | Time:00:00.44 | Syncing Wing insignia bar.001
+Fra:1 Mem:121.73M (Peak 121.73M) | Time:00:00.44 | Syncing Service stencil
+Fra:1 Mem:121.73M (Peak 121.73M) | Time:00:00.44 | Syncing Service stencil.001
+Fra:1 Mem:121.75M (Peak 121.75M) | Time:00:00.44 | Syncing Navigation aperture.001
+Fra:1 Mem:121.80M (Peak 121.80M) | Time:00:00.44 | Syncing Prototype serial.001
+Fra:1 Mem:121.80M (Peak 121.80M) | Time:00:00.44 | Syncing Low visibility wing star.001
+Fra:1 Mem:121.81M (Peak 121.81M) | Time:00:00.45 | Syncing Wing insignia bar.002
+Fra:1 Mem:121.82M (Peak 121.82M) | Time:00:00.45 | Syncing Wing insignia bar.003
+Fra:1 Mem:121.82M (Peak 121.82M) | Time:00:00.45 | Syncing Service stencil.002
+Fra:1 Mem:121.83M (Peak 121.83M) | Time:00:00.45 | Syncing Service stencil.003
+Fra:1 Mem:121.84M (Peak 121.84M) | Time:00:00.45 | Syncing Navigation aperture
+Fra:1 Mem:121.90M (Peak 121.90M) | Time:00:00.45 | Syncing Main gear well shadow -1
+Fra:1 Mem:121.98M (Peak 121.98M) | Time:00:00.45 | Syncing Main gear shock upper
+Fra:1 Mem:121.99M (Peak 121.99M) | Time:00:00.45 | Syncing Main gear polished piston
+Fra:1 Mem:122.01M (Peak 122.01M) | Time:00:00.46 | Syncing Main gear tandem bogie
+Fra:1 Mem:122.02M (Peak 122.02M) | Time:00:00.46 | Syncing Main gear drag brace
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:00.46 | Syncing Main gear diagonal stay
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:00.46 | Syncing Main gear hydraulic hose
+Fra:1 Mem:122.04M (Peak 122.04M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | tire
+Fra:1 Mem:122.08M (Peak 122.08M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | wheel ri
+Fra:1 Mem:122.09M (Peak 122.09M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.11M (Peak 122.11M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.12M (Peak 122.12M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:00.46 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.14M (Peak 122.14M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.18M (Peak 122.18M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.19M (Peak 122.19M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.20M (Peak 122.20M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.21M (Peak 122.21M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.22M (Peak 122.22M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.23M (Peak 122.23M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.24M (Peak 122.24M) | Time:00:00.47 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.25M (Peak 122.25M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.26M (Peak 122.26M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.27M (Peak 122.27M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.28M (Peak 122.28M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.29M (Peak 122.29M) | Time:00:00.48 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.30M (Peak 122.30M) | Time:00:00.49 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:00.49 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:00.49 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.32M (Peak 122.32M) | Time:00:00.49 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.33M (Peak 122.33M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | tire
+Fra:1 Mem:122.36M (Peak 122.36M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | wheel rim
+Fra:1 Mem:122.38M (Peak 122.38M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.39M (Peak 122.39M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | axle cap
+Fra:1 Mem:122.40M (Peak 122.40M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | hub bolt
+Fra:1 Mem:122.41M (Peak 122.41M) | Time:00:00.49 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.42M (Peak 122.42M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.43M (Peak 122.43M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.44M (Peak 122.44M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.44M (Peak 122.44M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.45M (Peak 122.45M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.46M (Peak 122.46M) | Time:00:00.50 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.47M (Peak 122.47M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.48M (Peak 122.48M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | axle cap.
+Fra:1 Mem:122.49M (Peak 122.49M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.50M (Peak 122.50M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.51M (Peak 122.51M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.52M (Peak 122.52M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.53M (Peak 122.53M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.54M (Peak 122.54M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.55M (Peak 122.55M) | Time:00:00.51 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.55M (Peak 122.55M) | Time:00:00.52 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.56M (Peak 122.56M) | Time:00:00.52 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.56M (Peak 122.56M) | Time:00:00.52 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.57M (Peak 122.57M) | Time:00:00.52 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.58M (Peak 122.58M) | Time:00:00.52 | Syncing Main gear hanging door
+Fra:1 Mem:122.60M (Peak 122.60M) | Time:00:00.52 | Syncing Gear door inner stiffener
+Fra:1 Mem:122.63M (Peak 122.63M) | Time:00:00.52 | Syncing Gear door inner stiffener.001
+Fra:1 Mem:122.65M (Peak 122.65M) | Time:00:00.52 | Syncing Gear door inner stiffener.002
+Fra:1 Mem:122.68M (Peak 122.68M) | Time:00:00.52 | Syncing Main gear well shadow 1
+Fra:1 Mem:122.76M (Peak 122.76M) | Time:00:00.52 | Syncing Main gear shock upper.001
+Fra:1 Mem:122.77M (Peak 122.77M) | Time:00:00.53 | Syncing Main gear polished piston.001
+Fra:1 Mem:122.78M (Peak 122.78M) | Time:00:00.53 | Syncing Main gear tandem bogie.001
+Fra:1 Mem:122.79M (Peak 122.79M) | Time:00:00.53 | Syncing Main gear drag brace.001
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:00.53 | Syncing Main gear diagonal stay.001
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:00.53 | Syncing Main gear hydraulic hose.001
+Fra:1 Mem:122.81M (Peak 122.81M) | Time:00:00.53 | Syncing Main wheel (1, -0.36) | tire
+Fra:1 Mem:122.85M (Peak 122.85M) | Time:00:00.53 | Syncing Main wheel (1, -0.36) | wheel rim
+Fra:1 Mem:122.86M (Peak 122.86M) | Time:00:00.53 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.88M (Peak 122.88M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | axle cap
+Fra:1 Mem:122.89M (Peak 122.89M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.91M (Peak 122.91M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.92M (Peak 122.92M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.93M (Peak 122.93M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.94M (Peak 122.94M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.95M (Peak 122.95M) | Time:00:00.54 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.96M (Peak 122.96M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.97M (Peak 122.97M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | axle cap.
+Fra:1 Mem:122.98M (Peak 122.98M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.99M (Peak 122.99M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.00M (Peak 123.00M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.01M (Peak 123.01M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.01M (Peak 123.01M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.02M (Peak 123.02M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.03M (Peak 123.03M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:00.55 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:00.56 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.05M (Peak 123.05M) | Time:00:00.56 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.06M (Peak 123.06M) | Time:00:00.56 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.07M (Peak 123.07M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | tire
+Fra:1 Mem:123.10M (Peak 123.10M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | wheel rim
+Fra:1 Mem:123.11M (Peak 123.11M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.13M (Peak 123.13M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | axle cap
+Fra:1 Mem:123.14M (Peak 123.14M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | hub bolt
+Fra:1 Mem:123.15M (Peak 123.15M) | Time:00:00.56 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.17M (Peak 123.17M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.18M (Peak 123.18M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.19M (Peak 123.19M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.20M (Peak 123.20M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.21M (Peak 123.21M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.22M (Peak 123.22M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | axle cap.0
+Fra:1 Mem:123.23M (Peak 123.23M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.24M (Peak 123.24M) | Time:00:00.57 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.25M (Peak 123.25M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.26M (Peak 123.26M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.26M (Peak 123.26M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.27M (Peak 123.27M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.28M (Peak 123.28M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.29M (Peak 123.29M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.29M (Peak 123.29M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.30M (Peak 123.30M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.31M (Peak 123.31M) | Time:00:00.58 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.32M (Peak 123.32M) | Time:00:00.59 | Syncing Main gear hanging door.001
+Fra:1 Mem:123.34M (Peak 123.34M) | Time:00:00.59 | Syncing Gear door inner stiffener.003
+Fra:1 Mem:123.36M (Peak 123.36M) | Time:00:00.59 | Syncing Gear door inner stiffener.004
+Fra:1 Mem:123.39M (Peak 123.39M) | Time:00:00.59 | Syncing Gear door inner stiffener.005
+Fra:1 Mem:123.41M (Peak 123.41M) | Time:00:00.59 | Syncing Nose well
+Fra:1 Mem:123.50M (Peak 123.50M) | Time:00:00.59 | Syncing Nose gear upper
+Fra:1 Mem:123.51M (Peak 123.51M) | Time:00:00.59 | Syncing Nose gear piston
+Fra:1 Mem:123.52M (Peak 123.52M) | Time:00:00.59 | Syncing Nose gear brace
+Fra:1 Mem:123.53M (Peak 123.53M) | Time:00:00.59 | Syncing Nose wheel axle
+Fra:1 Mem:123.54M (Peak 123.54M) | Time:00:00.59 | Syncing Nose wheel -1 | tire
+Fra:1 Mem:123.57M (Peak 123.57M) | Time:00:00.60 | Syncing Nose wheel -1 | wheel rim
+Fra:1 Mem:123.58M (Peak 123.58M) | Time:00:00.60 | Syncing Nose wheel -1 | recessed hub
+Fra:1 Mem:123.60M (Peak 123.60M) | Time:00:00.60 | Syncing Nose wheel -1 | axle cap
+Fra:1 Mem:123.61M (Peak 123.61M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt
+Fra:1 Mem:123.62M (Peak 123.62M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt.001
+Fra:1 Mem:123.63M (Peak 123.63M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt.002
+Fra:1 Mem:123.63M (Peak 123.63M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt.003
+Fra:1 Mem:123.64M (Peak 123.64M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt.004
+Fra:1 Mem:123.65M (Peak 123.65M) | Time:00:00.60 | Syncing Nose wheel -1 | hub bolt.005
+Fra:1 Mem:123.66M (Peak 123.66M) | Time:00:00.61 | Syncing Nose wheel -1 | hub bolt.006
+Fra:1 Mem:123.67M (Peak 123.67M) | Time:00:00.61 | Syncing Nose wheel -1 | hub bolt.007
+Fra:1 Mem:123.68M (Peak 123.68M) | Time:00:00.61 | Syncing Nose wheel -1 | recessed hub.001
+Fra:1 Mem:123.69M (Peak 123.69M) | Time:00:00.61 | Syncing Nose wheel -1 | axle cap.001
+Fra:1 Mem:123.70M (Peak 123.70M) | Time:00:00.61 | Syncing Nose wheel -1 | hub bolt.008
+Fra:1 Mem:123.71M (Peak 123.71M) | Time:00:00.61 | Syncing Nose wheel -1 | hub bolt.009
+Fra:1 Mem:123.72M (Peak 123.72M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.010
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.011
+Fra:1 Mem:123.73M (Peak 123.73M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.012
+Fra:1 Mem:123.74M (Peak 123.74M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.013
+Fra:1 Mem:123.75M (Peak 123.75M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.014
+Fra:1 Mem:123.76M (Peak 123.76M) | Time:00:00.62 | Syncing Nose wheel -1 | hub bolt.015
+Fra:1 Mem:123.76M (Peak 123.76M) | Time:00:00.62 | Syncing Nose wheel -1 | tread groove
+Fra:1 Mem:123.77M (Peak 123.77M) | Time:00:00.62 | Syncing Nose wheel -1 | tread groove.001
+Fra:1 Mem:123.78M (Peak 123.78M) | Time:00:00.63 | Syncing Nose wheel -1 | tread groove.002
+Fra:1 Mem:123.79M (Peak 123.79M) | Time:00:00.63 | Syncing Nose gear door
+Fra:1 Mem:123.81M (Peak 123.81M) | Time:00:00.63 | Syncing Nose wheel 1 | tire
+Fra:1 Mem:123.85M (Peak 123.85M) | Time:00:00.63 | Syncing Nose wheel 1 | wheel rim
+Fra:1 Mem:123.86M (Peak 123.86M) | Time:00:00.63 | Syncing Nose wheel 1 | recessed hub
+Fra:1 Mem:123.87M (Peak 123.87M) | Time:00:00.63 | Syncing Nose wheel 1 | axle cap
+Fra:1 Mem:123.88M (Peak 123.88M) | Time:00:00.63 | Syncing Nose wheel 1 | hub bolt
+Fra:1 Mem:123.89M (Peak 123.89M) | Time:00:00.63 | Syncing Nose wheel 1 | hub bolt.001
+Fra:1 Mem:123.90M (Peak 123.90M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.002
+Fra:1 Mem:123.91M (Peak 123.91M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.003
+Fra:1 Mem:123.92M (Peak 123.92M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.004
+Fra:1 Mem:123.93M (Peak 123.93M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.005
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.006
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.007
+Fra:1 Mem:123.95M (Peak 123.95M) | Time:00:00.64 | Syncing Nose wheel 1 | recessed hub.001
+Fra:1 Mem:123.97M (Peak 123.97M) | Time:00:00.64 | Syncing Nose wheel 1 | axle cap.001
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.008
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.64 | Syncing Nose wheel 1 | hub bolt.009
+Fra:1 Mem:123.99M (Peak 123.99M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.010
+Fra:1 Mem:124.00M (Peak 124.00M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.011
+Fra:1 Mem:124.01M (Peak 124.01M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.012
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.013
+Fra:1 Mem:124.03M (Peak 124.03M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.014
+Fra:1 Mem:124.04M (Peak 124.04M) | Time:00:00.65 | Syncing Nose wheel 1 | hub bolt.015
+Fra:1 Mem:124.04M (Peak 124.04M) | Time:00:00.65 | Syncing Nose wheel 1 | tread groove
+Fra:1 Mem:124.05M (Peak 124.05M) | Time:00:00.65 | Syncing Nose wheel 1 | tread groove.001
+Fra:1 Mem:124.05M (Peak 124.05M) | Time:00:00.65 | Syncing Nose wheel 1 | tread groove.002
+Fra:1 Mem:124.06M (Peak 124.06M) | Time:00:00.65 | Syncing Nose gear door.001
+Fra:1 Mem:124.08M (Peak 124.08M) | Time:00:00.66 | Syncing Nose gear torque link
+Fra:1 Mem:124.09M (Peak 124.09M) | Time:00:00.66 | Syncing Studio floor
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing Key | broad softbox
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing Fill | warm
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing Rim | aft
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing Nose fill
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing Underside fill
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing 01 | Front three-quarter
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.66 | Syncing 02 | Top plan
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.67 | Syncing 03 | Rear three-quarter
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.67 | Syncing 04 | Underside reference
+Fra:1 Mem:124.10M (Peak 124.10M) | Time:00:00.67 | Syncing 05 | Front elevation
+Fra:1 Mem:132.89M (Peak 132.89M) | Time:00:00.68 | Rendering 1 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:03.34 | Rendering 26 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:05.29 | Rendering 51 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:08.25 | Rendering 76 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:10.59 | Rendering 101 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:12.59 | Rendering 126 / 128 samples
+Fra:1 Mem:113.82M (Peak 132.89M) | Time:00:12.76 | Rendering 128 / 128 samples
+Saved: 'C:\MyProjects\TempProject (OpenAI)\J36_Model\renders\03_rear.png'
+ Time: 00:13.50 (Saving: 00:00.40)
+
+Fra:1 Mem:108.58M (Peak 108.58M) | Time:00:00.19 | Syncing J-36 | continuous blended delta a
+Fra:1 Mem:115.01M (Peak 115.50M) | Time:00:00.20 | Syncing Smoked cockpit canopy
+Fra:1 Mem:115.04M (Peak 115.50M) | Time:00:00.21 | Syncing Canopy perimeter seal
+Fra:1 Mem:115.05M (Peak 115.50M) | Time:00:00.21 | Syncing Canopy perimeter frame
+Fra:1 Mem:115.06M (Peak 115.50M) | Time:00:00.21 | Syncing Canopy perimeter seal.001
+Fra:1 Mem:115.06M (Peak 115.50M) | Time:00:00.21 | Syncing Canopy perimeter frame.001
+Fra:1 Mem:115.07M (Peak 115.50M) | Time:00:00.21 | Syncing Forward canopy bow
+Fra:1 Mem:115.08M (Peak 115.50M) | Time:00:00.21 | Syncing Dorsal intake | blended curved sh
+Fra:1 Mem:115.46M (Peak 115.50M) | Time:00:00.22 | Syncing Dorsal intake | rolled leading li
+Fra:1 Mem:115.47M (Peak 115.50M) | Time:00:00.22 | Syncing Dorsal intake | recessed arch wal
+Fra:1 Mem:115.49M (Peak 115.50M) | Time:00:00.22 | Syncing Dorsal intake | shadowed throat
+Fra:1 Mem:115.50M (Peak 115.50M) | Time:00:00.22 | Syncing Side intake fairing -1
+Fra:1 Mem:115.51M (Peak 115.51M) | Time:00:00.23 | Syncing Side intake tunnel -1
+Fra:1 Mem:115.52M (Peak 115.52M) | Time:00:00.23 | Syncing Side intake dark recess -1
+Fra:1 Mem:115.52M (Peak 115.52M) | Time:00:00.23 | Syncing Side intake rim -1
+Fra:1 Mem:115.53M (Peak 115.53M) | Time:00:00.23 | Syncing Diverterless intake shoulder -1
+Fra:1 Mem:115.59M (Peak 115.59M) | Time:00:00.23 | Syncing Side intake fairing 1
+Fra:1 Mem:115.59M (Peak 115.59M) | Time:00:00.23 | Syncing Side intake tunnel 1
+Fra:1 Mem:115.60M (Peak 115.60M) | Time:00:00.23 | Syncing Side intake dark recess 1
+Fra:1 Mem:115.60M (Peak 115.60M) | Time:00:00.23 | Syncing Side intake rim 1
+Fra:1 Mem:115.62M (Peak 115.62M) | Time:00:00.24 | Syncing Diverterless intake shoulder 1
+Fra:1 Mem:115.67M (Peak 115.67M) | Time:00:00.24 | Syncing Engine 1 | nozzle casing
+Fra:1 Mem:115.69M (Peak 115.69M) | Time:00:00.24 | Syncing Engine 1 | nozzle inside
+Fra:1 Mem:115.71M (Peak 115.71M) | Time:00:00.24 | Syncing Engine core darkness
+Fra:1 Mem:115.72M (Peak 115.72M) | Time:00:00.24 | Syncing Engine 1 | petal 01
+Fra:1 Mem:115.72M (Peak 115.72M) | Time:00:00.25 | Syncing Engine 1 | petal 02
+Fra:1 Mem:115.73M (Peak 115.73M) | Time:00:00.25 | Syncing Engine 1 | petal 03
+Fra:1 Mem:115.74M (Peak 115.74M) | Time:00:00.25 | Syncing Engine 1 | petal 04
+Fra:1 Mem:115.75M (Peak 115.75M) | Time:00:00.25 | Syncing Engine 1 | petal 05
+Fra:1 Mem:115.75M (Peak 115.75M) | Time:00:00.26 | Syncing Engine 1 | petal 06
+Fra:1 Mem:115.76M (Peak 115.76M) | Time:00:00.26 | Syncing Engine 1 | petal 07
+Fra:1 Mem:115.77M (Peak 115.77M) | Time:00:00.26 | Syncing Engine 1 | petal 08
+Fra:1 Mem:115.78M (Peak 115.78M) | Time:00:00.26 | Syncing Engine 1 | petal 09
+Fra:1 Mem:115.79M (Peak 115.79M) | Time:00:00.26 | Syncing Engine 1 | petal 10
+Fra:1 Mem:115.79M (Peak 115.79M) | Time:00:00.26 | Syncing Engine 1 | petal 11
+Fra:1 Mem:115.80M (Peak 115.80M) | Time:00:00.26 | Syncing Engine 1 | petal 12
+Fra:1 Mem:115.81M (Peak 115.81M) | Time:00:00.26 | Syncing Engine 1 | petal 13
+Fra:1 Mem:115.82M (Peak 115.82M) | Time:00:00.27 | Syncing Engine 1 | petal 14
+Fra:1 Mem:115.82M (Peak 115.82M) | Time:00:00.27 | Syncing Engine 1 | petal 15
+Fra:1 Mem:115.83M (Peak 115.83M) | Time:00:00.27 | Syncing Engine 1 | petal 16
+Fra:1 Mem:115.84M (Peak 115.84M) | Time:00:00.27 | Syncing Engine 1 | petal 17
+Fra:1 Mem:115.85M (Peak 115.85M) | Time:00:00.28 | Syncing Engine 1 | petal 18
+Fra:1 Mem:115.85M (Peak 115.85M) | Time:00:00.28 | Syncing Engine 1 | petal 19
+Fra:1 Mem:115.86M (Peak 115.86M) | Time:00:00.28 | Syncing Engine 1 | petal 20
+Fra:1 Mem:115.87M (Peak 115.87M) | Time:00:00.28 | Syncing Engine 1 | petal 21
+Fra:1 Mem:115.87M (Peak 115.87M) | Time:00:00.28 | Syncing Engine 1 | petal 22
+Fra:1 Mem:115.88M (Peak 115.88M) | Time:00:00.28 | Syncing Engine 1 | petal 23
+Fra:1 Mem:115.89M (Peak 115.89M) | Time:00:00.28 | Syncing Engine 1 | petal 24
+Fra:1 Mem:115.90M (Peak 115.90M) | Time:00:00.28 | Syncing Exhaust trough heat shield
+Fra:1 Mem:115.90M (Peak 115.90M) | Time:00:00.29 | Syncing Exhaust trough heat shield.001
+Fra:1 Mem:115.91M (Peak 115.91M) | Time:00:00.29 | Syncing Engine 2 | nozzle casing
+Fra:1 Mem:115.93M (Peak 115.93M) | Time:00:00.29 | Syncing Engine 2 | nozzle inside
+Fra:1 Mem:115.95M (Peak 115.95M) | Time:00:00.29 | Syncing Engine core darkness.001
+Fra:1 Mem:115.96M (Peak 115.96M) | Time:00:00.30 | Syncing Engine 2 | petal 01
+Fra:1 Mem:115.96M (Peak 115.96M) | Time:00:00.30 | Syncing Engine 2 | petal 02
+Fra:1 Mem:115.97M (Peak 115.97M) | Time:00:00.30 | Syncing Engine 2 | petal 03
+Fra:1 Mem:115.98M (Peak 115.98M) | Time:00:00.30 | Syncing Engine 2 | petal 04
+Fra:1 Mem:115.99M (Peak 115.99M) | Time:00:00.31 | Syncing Engine 2 | petal 05
+Fra:1 Mem:115.99M (Peak 115.99M) | Time:00:00.31 | Syncing Engine 2 | petal 06
+Fra:1 Mem:116.00M (Peak 116.00M) | Time:00:00.31 | Syncing Engine 2 | petal 07
+Fra:1 Mem:116.01M (Peak 116.01M) | Time:00:00.31 | Syncing Engine 2 | petal 08
+Fra:1 Mem:116.02M (Peak 116.02M) | Time:00:00.31 | Syncing Engine 2 | petal 09
+Fra:1 Mem:116.02M (Peak 116.02M) | Time:00:00.31 | Syncing Engine 2 | petal 10
+Fra:1 Mem:116.03M (Peak 116.03M) | Time:00:00.31 | Syncing Engine 2 | petal 11
+Fra:1 Mem:116.04M (Peak 116.04M) | Time:00:00.31 | Syncing Engine 2 | petal 12
+Fra:1 Mem:116.05M (Peak 116.05M) | Time:00:00.31 | Syncing Engine 2 | petal 13
+Fra:1 Mem:116.05M (Peak 116.05M) | Time:00:00.31 | Syncing Engine 2 | petal 14
+Fra:1 Mem:116.06M (Peak 116.06M) | Time:00:00.32 | Syncing Engine 2 | petal 15
+Fra:1 Mem:116.07M (Peak 116.07M) | Time:00:00.32 | Syncing Engine 2 | petal 16
+Fra:1 Mem:116.08M (Peak 116.08M) | Time:00:00.32 | Syncing Engine 2 | petal 17
+Fra:1 Mem:116.08M (Peak 116.08M) | Time:00:00.32 | Syncing Engine 2 | petal 18
+Fra:1 Mem:116.09M (Peak 116.09M) | Time:00:00.32 | Syncing Engine 2 | petal 19
+Fra:1 Mem:116.10M (Peak 116.10M) | Time:00:00.33 | Syncing Engine 2 | petal 20
+Fra:1 Mem:116.11M (Peak 116.11M) | Time:00:00.33 | Syncing Engine 2 | petal 21
+Fra:1 Mem:116.11M (Peak 116.11M) | Time:00:00.33 | Syncing Engine 2 | petal 22
+Fra:1 Mem:116.12M (Peak 116.12M) | Time:00:00.33 | Syncing Engine 2 | petal 23
+Fra:1 Mem:116.13M (Peak 116.13M) | Time:00:00.33 | Syncing Engine 2 | petal 24
+Fra:1 Mem:116.14M (Peak 116.14M) | Time:00:00.34 | Syncing Exhaust trough heat shield.002
+Fra:1 Mem:116.14M (Peak 116.14M) | Time:00:00.34 | Syncing Exhaust trough heat shield.003
+Fra:1 Mem:116.15M (Peak 116.15M) | Time:00:00.34 | Syncing Engine 3 | nozzle casing
+Fra:1 Mem:116.17M (Peak 116.17M) | Time:00:00.34 | Syncing Engine 3 | nozzle inside
+Fra:1 Mem:116.19M (Peak 116.19M) | Time:00:00.34 | Syncing Engine core darkness.002
+Fra:1 Mem:116.20M (Peak 116.20M) | Time:00:00.35 | Syncing Engine 3 | petal 01
+Fra:1 Mem:116.20M (Peak 116.20M) | Time:00:00.35 | Syncing Engine 3 | petal 02
+Fra:1 Mem:116.21M (Peak 116.21M) | Time:00:00.36 | Syncing Engine 3 | petal 03
+Fra:1 Mem:116.22M (Peak 116.22M) | Time:00:00.36 | Syncing Engine 3 | petal 04
+Fra:1 Mem:116.23M (Peak 116.23M) | Time:00:00.36 | Syncing Engine 3 | petal 05
+Fra:1 Mem:116.23M (Peak 116.23M) | Time:00:00.36 | Syncing Engine 3 | petal 06
+Fra:1 Mem:116.24M (Peak 116.24M) | Time:00:00.36 | Syncing Engine 3 | petal 07
+Fra:1 Mem:116.25M (Peak 116.25M) | Time:00:00.36 | Syncing Engine 3 | petal 08
+Fra:1 Mem:116.26M (Peak 116.26M) | Time:00:00.37 | Syncing Engine 3 | petal 09
+Fra:1 Mem:116.26M (Peak 116.26M) | Time:00:00.37 | Syncing Engine 3 | petal 10
+Fra:1 Mem:116.27M (Peak 116.27M) | Time:00:00.37 | Syncing Engine 3 | petal 11
+Fra:1 Mem:116.28M (Peak 116.28M) | Time:00:00.37 | Syncing Engine 3 | petal 12
+Fra:1 Mem:116.29M (Peak 116.29M) | Time:00:00.37 | Syncing Engine 3 | petal 13
+Fra:1 Mem:116.29M (Peak 116.29M) | Time:00:00.37 | Syncing Engine 3 | petal 14
+Fra:1 Mem:116.30M (Peak 116.30M) | Time:00:00.38 | Syncing Engine 3 | petal 15
+Fra:1 Mem:116.31M (Peak 116.31M) | Time:00:00.38 | Syncing Engine 3 | petal 16
+Fra:1 Mem:116.32M (Peak 116.32M) | Time:00:00.38 | Syncing Engine 3 | petal 17
+Fra:1 Mem:116.32M (Peak 116.32M) | Time:00:00.38 | Syncing Engine 3 | petal 18
+Fra:1 Mem:116.33M (Peak 116.33M) | Time:00:00.38 | Syncing Engine 3 | petal 19
+Fra:1 Mem:116.34M (Peak 116.34M) | Time:00:00.38 | Syncing Engine 3 | petal 20
+Fra:1 Mem:116.35M (Peak 116.35M) | Time:00:00.38 | Syncing Engine 3 | petal 21
+Fra:1 Mem:116.35M (Peak 116.35M) | Time:00:00.39 | Syncing Engine 3 | petal 22
+Fra:1 Mem:116.36M (Peak 116.36M) | Time:00:00.39 | Syncing Engine 3 | petal 23
+Fra:1 Mem:116.37M (Peak 116.37M) | Time:00:00.39 | Syncing Engine 3 | petal 24
+Fra:1 Mem:116.38M (Peak 116.38M) | Time:00:00.39 | Syncing Exhaust trough heat shield.004
+Fra:1 Mem:116.38M (Peak 116.38M) | Time:00:00.39 | Syncing Exhaust trough heat shield.005
+Fra:1 Mem:116.39M (Peak 116.39M) | Time:00:00.39 | Syncing Leading edge coating (-1, True)
+Fra:1 Mem:116.51M (Peak 116.51M) | Time:00:00.40 | Syncing Leading-edge panel boundary
+Fra:1 Mem:116.52M (Peak 116.52M) | Time:00:00.40 | Syncing Elevon 0 -1 True
+Fra:1 Mem:116.60M (Peak 116.60M) | Time:00:00.41 | Syncing Elevon gap
+Fra:1 Mem:116.61M (Peak 116.61M) | Time:00:00.41 | Syncing Control actuator fairing.001
+Fra:1 Mem:116.66M (Peak 116.66M) | Time:00:00.41 | Syncing Control actuator fairing.002
+Fra:1 Mem:116.72M (Peak 116.72M) | Time:00:00.41 | Syncing Elevon 1 -1 True
+Fra:1 Mem:116.80M (Peak 116.80M) | Time:00:00.41 | Syncing Elevon gap.001
+Fra:1 Mem:116.81M (Peak 116.81M) | Time:00:00.42 | Syncing Control actuator fairing.003
+Fra:1 Mem:116.86M (Peak 116.86M) | Time:00:00.42 | Syncing Control actuator fairing.004
+Fra:1 Mem:116.92M (Peak 116.92M) | Time:00:00.42 | Syncing Elevon 2 -1 True
+Fra:1 Mem:117.00M (Peak 117.00M) | Time:00:00.42 | Syncing Elevon gap.002
+Fra:1 Mem:117.01M (Peak 117.01M) | Time:00:00.42 | Syncing Control actuator fairing.005
+Fra:1 Mem:117.07M (Peak 117.07M) | Time:00:00.42 | Syncing Control actuator fairing.006
+Fra:1 Mem:117.12M (Peak 117.12M) | Time:00:00.42 | Syncing Wing structural panel
+Fra:1 Mem:117.15M (Peak 117.15M) | Time:00:00.43 | Syncing Wing aft spar
+Fra:1 Mem:117.16M (Peak 117.16M) | Time:00:00.43 | Syncing Wing outer panel
+Fra:1 Mem:117.17M (Peak 117.17M) | Time:00:00.43 | Syncing Outer nacelle boundary
+Fra:1 Mem:117.17M (Peak 117.17M) | Time:00:00.44 | Syncing Nacelle cross seam
+Fra:1 Mem:117.18M (Peak 117.18M) | Time:00:00.44 | Syncing Nacelle cross seam.001
+Fra:1 Mem:117.19M (Peak 117.19M) | Time:00:00.44 | Syncing Leading edge coating (1, True)
+Fra:1 Mem:117.31M (Peak 117.31M) | Time:00:00.44 | Syncing Leading-edge panel boundary.001
+Fra:1 Mem:117.32M (Peak 117.32M) | Time:00:00.44 | Syncing Elevon 0 1 True
+Fra:1 Mem:117.40M (Peak 117.40M) | Time:00:00.44 | Syncing Elevon gap.003
+Fra:1 Mem:117.41M (Peak 117.41M) | Time:00:00.45 | Syncing Control actuator fairing.007
+Fra:1 Mem:117.46M (Peak 117.46M) | Time:00:00.45 | Syncing Control actuator fairing.008
+Fra:1 Mem:117.52M (Peak 117.52M) | Time:00:00.45 | Syncing Elevon 1 1 True
+Fra:1 Mem:117.60M (Peak 117.60M) | Time:00:00.45 | Syncing Elevon gap.004
+Fra:1 Mem:117.61M (Peak 117.61M) | Time:00:00.45 | Syncing Control actuator fairing.009
+Fra:1 Mem:117.66M (Peak 117.66M) | Time:00:00.46 | Syncing Control actuator fairing.010
+Fra:1 Mem:117.72M (Peak 117.72M) | Time:00:00.46 | Syncing Elevon 2 1 True
+Fra:1 Mem:117.80M (Peak 117.80M) | Time:00:00.46 | Syncing Elevon gap.005
+Fra:1 Mem:117.81M (Peak 117.81M) | Time:00:00.46 | Syncing Control actuator fairing.011
+Fra:1 Mem:117.86M (Peak 117.86M) | Time:00:00.46 | Syncing Control actuator fairing
+Fra:1 Mem:117.92M (Peak 117.92M) | Time:00:00.47 | Syncing Wing structural panel.001
+Fra:1 Mem:117.92M (Peak 117.92M) | Time:00:00.47 | Syncing Wing aft spar.001
+Fra:1 Mem:117.93M (Peak 117.93M) | Time:00:00.47 | Syncing Wing outer panel.001
+Fra:1 Mem:117.93M (Peak 117.93M) | Time:00:00.47 | Syncing Outer nacelle boundary.001
+Fra:1 Mem:117.94M (Peak 117.94M) | Time:00:00.47 | Syncing Nacelle cross seam.002
+Fra:1 Mem:117.95M (Peak 117.95M) | Time:00:00.47 | Syncing Nacelle cross seam.003
+Fra:1 Mem:117.95M (Peak 117.95M) | Time:00:00.48 | Syncing Radome seam
+Fra:1 Mem:117.96M (Peak 117.96M) | Time:00:00.48 | Syncing Forebody equipment seam
+Fra:1 Mem:117.97M (Peak 117.97M) | Time:00:00.48 | Syncing Leading edge coating (-1, False)
+Fra:1 Mem:118.08M (Peak 118.08M) | Time:00:00.48 | Syncing Leading-edge panel boundary.002
+Fra:1 Mem:118.09M (Peak 118.09M) | Time:00:00.49 | Syncing Elevon 0 -1 False
+Fra:1 Mem:118.17M (Peak 118.17M) | Time:00:00.49 | Syncing Elevon gap.006
+Fra:1 Mem:118.18M (Peak 118.18M) | Time:00:00.49 | Syncing Elevon 1 -1 False
+Fra:1 Mem:118.26M (Peak 118.26M) | Time:00:00.49 | Syncing Elevon gap.007
+Fra:1 Mem:118.27M (Peak 118.27M) | Time:00:00.49 | Syncing Elevon 2 -1 False
+Fra:1 Mem:118.35M (Peak 118.35M) | Time:00:00.49 | Syncing Elevon gap.008
+Fra:1 Mem:118.36M (Peak 118.36M) | Time:00:00.49 | Syncing Wing structural panel.002
+Fra:1 Mem:118.36M (Peak 118.36M) | Time:00:00.50 | Syncing Wing aft spar.002
+Fra:1 Mem:118.37M (Peak 118.37M) | Time:00:00.50 | Syncing Wing outer panel.002
+Fra:1 Mem:118.37M (Peak 118.37M) | Time:00:00.50 | Syncing Outer nacelle boundary.002
+Fra:1 Mem:118.38M (Peak 118.38M) | Time:00:00.50 | Syncing Nacelle cross seam.004
+Fra:1 Mem:118.38M (Peak 118.38M) | Time:00:00.50 | Syncing Nacelle cross seam.005
+Fra:1 Mem:118.40M (Peak 118.40M) | Time:00:00.50 | Syncing Leading edge coating (1, False)
+Fra:1 Mem:118.51M (Peak 118.51M) | Time:00:00.50 | Syncing Leading-edge panel boundary.003
+Fra:1 Mem:118.52M (Peak 118.52M) | Time:00:00.51 | Syncing Elevon 0 1 False
+Fra:1 Mem:118.60M (Peak 118.60M) | Time:00:00.51 | Syncing Elevon gap.009
+Fra:1 Mem:118.61M (Peak 118.61M) | Time:00:00.51 | Syncing Elevon 1 1 False
+Fra:1 Mem:118.69M (Peak 118.69M) | Time:00:00.51 | Syncing Elevon gap.010
+Fra:1 Mem:118.70M (Peak 118.70M) | Time:00:00.51 | Syncing Elevon 2 1 False
+Fra:1 Mem:118.78M (Peak 118.78M) | Time:00:00.52 | Syncing Elevon gap.011
+Fra:1 Mem:118.78M (Peak 118.78M) | Time:00:00.52 | Syncing Wing structural panel.003
+Fra:1 Mem:118.79M (Peak 118.79M) | Time:00:00.52 | Syncing Wing aft spar.003
+Fra:1 Mem:118.79M (Peak 118.79M) | Time:00:00.52 | Syncing Wing outer panel.003
+Fra:1 Mem:118.80M (Peak 118.80M) | Time:00:00.52 | Syncing Outer nacelle boundary.003
+Fra:1 Mem:118.81M (Peak 118.81M) | Time:00:00.52 | Syncing Nacelle cross seam.006
+Fra:1 Mem:118.81M (Peak 118.81M) | Time:00:00.53 | Syncing Nacelle cross seam.007
+Fra:1 Mem:118.82M (Peak 118.82M) | Time:00:00.53 | Syncing Radome seam.001
+Fra:1 Mem:118.82M (Peak 118.82M) | Time:00:00.53 | Syncing Forebody equipment seam.001
+Fra:1 Mem:118.83M (Peak 118.83M) | Time:00:00.53 | Syncing Flush service hatch
+Fra:1 Mem:118.84M (Peak 118.84M) | Time:00:00.53 | Syncing Captive panel fastener.001
+Fra:1 Mem:118.90M (Peak 118.90M) | Time:00:00.53 | Syncing Captive panel fastener.002
+Fra:1 Mem:118.95M (Peak 118.95M) | Time:00:00.53 | Syncing Captive panel fastener.003
+Fra:1 Mem:119.01M (Peak 119.01M) | Time:00:00.53 | Syncing Captive panel fastener.004
+Fra:1 Mem:119.06M (Peak 119.06M) | Time:00:00.53 | Syncing Flush service hatch.001
+Fra:1 Mem:119.07M (Peak 119.07M) | Time:00:00.54 | Syncing Captive panel fastener.005
+Fra:1 Mem:119.13M (Peak 119.13M) | Time:00:00.54 | Syncing Captive panel fastener.006
+Fra:1 Mem:119.18M (Peak 119.18M) | Time:00:00.54 | Syncing Captive panel fastener.007
+Fra:1 Mem:119.24M (Peak 119.24M) | Time:00:00.54 | Syncing Captive panel fastener.008
+Fra:1 Mem:119.29M (Peak 119.29M) | Time:00:00.55 | Syncing Flush service hatch.002
+Fra:1 Mem:119.30M (Peak 119.30M) | Time:00:00.55 | Syncing Captive panel fastener.009
+Fra:1 Mem:119.36M (Peak 119.36M) | Time:00:00.55 | Syncing Captive panel fastener.010
+Fra:1 Mem:119.41M (Peak 119.41M) | Time:00:00.55 | Syncing Captive panel fastener.011
+Fra:1 Mem:119.47M (Peak 119.47M) | Time:00:00.56 | Syncing Captive panel fastener.012
+Fra:1 Mem:119.52M (Peak 119.52M) | Time:00:00.56 | Syncing Flush service hatch.003
+Fra:1 Mem:119.53M (Peak 119.53M) | Time:00:00.56 | Syncing Captive panel fastener.013
+Fra:1 Mem:119.59M (Peak 119.59M) | Time:00:00.56 | Syncing Captive panel fastener.014
+Fra:1 Mem:119.65M (Peak 119.65M) | Time:00:00.56 | Syncing Captive panel fastener.015
+Fra:1 Mem:119.70M (Peak 119.70M) | Time:00:00.56 | Syncing Captive panel fastener.016
+Fra:1 Mem:119.76M (Peak 119.76M) | Time:00:00.56 | Syncing Ventral antenna
+Fra:1 Mem:119.84M (Peak 119.84M) | Time:00:00.56 | Syncing Ventral antenna.001
+Fra:1 Mem:119.92M (Peak 119.92M) | Time:00:00.57 | Syncing Flush service hatch.004
+Fra:1 Mem:119.93M (Peak 119.93M) | Time:00:00.57 | Syncing Captive panel fastener.017
+Fra:1 Mem:119.99M (Peak 119.99M) | Time:00:00.57 | Syncing Captive panel fastener.018
+Fra:1 Mem:120.04M (Peak 120.04M) | Time:00:00.57 | Syncing Captive panel fastener.019
+Fra:1 Mem:120.10M (Peak 120.10M) | Time:00:00.58 | Syncing Captive panel fastener.020
+Fra:1 Mem:120.15M (Peak 120.15M) | Time:00:00.58 | Syncing Flush service hatch.005
+Fra:1 Mem:120.16M (Peak 120.16M) | Time:00:00.58 | Syncing Captive panel fastener.021
+Fra:1 Mem:120.22M (Peak 120.22M) | Time:00:00.58 | Syncing Captive panel fastener.022
+Fra:1 Mem:120.27M (Peak 120.27M) | Time:00:00.59 | Syncing Captive panel fastener.023
+Fra:1 Mem:120.33M (Peak 120.33M) | Time:00:00.59 | Syncing Captive panel fastener.024
+Fra:1 Mem:120.38M (Peak 120.38M) | Time:00:00.59 | Syncing Flush service hatch.006
+Fra:1 Mem:120.39M (Peak 120.39M) | Time:00:00.59 | Syncing Captive panel fastener.025
+Fra:1 Mem:120.45M (Peak 120.45M) | Time:00:00.59 | Syncing Captive panel fastener.026
+Fra:1 Mem:120.50M (Peak 120.50M) | Time:00:00.60 | Syncing Captive panel fastener.027
+Fra:1 Mem:120.56M (Peak 120.56M) | Time:00:00.60 | Syncing Captive panel fastener.028
+Fra:1 Mem:120.61M (Peak 120.61M) | Time:00:00.60 | Syncing Flush service hatch.007
+Fra:1 Mem:120.62M (Peak 120.62M) | Time:00:00.60 | Syncing Captive panel fastener.029
+Fra:1 Mem:120.68M (Peak 120.68M) | Time:00:00.60 | Syncing Captive panel fastener.030
+Fra:1 Mem:120.73M (Peak 120.73M) | Time:00:00.60 | Syncing Captive panel fastener.031
+Fra:1 Mem:120.79M (Peak 120.79M) | Time:00:00.61 | Syncing Captive panel fastener
+Fra:1 Mem:120.85M (Peak 120.85M) | Time:00:00.61 | Syncing Ventral antenna.002
+Fra:1 Mem:120.93M (Peak 120.93M) | Time:00:00.61 | Syncing Ventral antenna.003
+Fra:1 Mem:121.01M (Peak 121.01M) | Time:00:00.61 | Syncing Conformal optical aperture
+Fra:1 Mem:121.10M (Peak 121.10M) | Time:00:00.61 | Syncing Chine optical aperture
+Fra:1 Mem:121.18M (Peak 121.18M) | Time:00:00.61 | Syncing Conformal optical aperture.001
+Fra:1 Mem:121.26M (Peak 121.26M) | Time:00:00.62 | Syncing Chine optical aperture.001
+Fra:1 Mem:121.34M (Peak 121.34M) | Time:00:00.62 | Syncing Ventral main bay door -1
+Fra:1 Mem:121.46M (Peak 121.46M) | Time:00:00.62 | Syncing Main bay sawtooth seal
+Fra:1 Mem:121.47M (Peak 121.47M) | Time:00:00.62 | Syncing Outboard ventral door seal
+Fra:1 Mem:121.47M (Peak 121.47M) | Time:00:00.62 | Syncing Recessed door hinge
+Fra:1 Mem:121.48M (Peak 121.48M) | Time:00:00.62 | Syncing Recessed door hinge.001
+Fra:1 Mem:121.48M (Peak 121.48M) | Time:00:00.63 | Syncing Recessed door hinge.002
+Fra:1 Mem:121.49M (Peak 121.49M) | Time:00:00.63 | Syncing Ventral main bay door 1
+Fra:1 Mem:121.61M (Peak 121.61M) | Time:00:00.63 | Syncing Main bay sawtooth seal.001
+Fra:1 Mem:121.62M (Peak 121.62M) | Time:00:00.63 | Syncing Outboard ventral door seal.001
+Fra:1 Mem:121.62M (Peak 121.62M) | Time:00:00.63 | Syncing Recessed door hinge.003
+Fra:1 Mem:121.63M (Peak 121.63M) | Time:00:00.63 | Syncing Recessed door hinge.004
+Fra:1 Mem:121.63M (Peak 121.63M) | Time:00:00.64 | Syncing Recessed door hinge.005
+Fra:1 Mem:121.64M (Peak 121.64M) | Time:00:00.64 | Syncing Prototype serial
+Fra:1 Mem:121.65M (Peak 121.65M) | Time:00:00.64 | Syncing Low visibility wing star
+Fra:1 Mem:121.65M (Peak 121.65M) | Time:00:00.64 | Syncing Wing insignia bar
+Fra:1 Mem:121.66M (Peak 121.66M) | Time:00:00.64 | Syncing Wing insignia bar.001
+Fra:1 Mem:121.66M (Peak 121.66M) | Time:00:00.64 | Syncing Service stencil
+Fra:1 Mem:121.67M (Peak 121.67M) | Time:00:00.64 | Syncing Service stencil.001
+Fra:1 Mem:121.68M (Peak 121.68M) | Time:00:00.65 | Syncing Navigation aperture.001
+Fra:1 Mem:121.73M (Peak 121.73M) | Time:00:00.65 | Syncing Prototype serial.001
+Fra:1 Mem:121.74M (Peak 121.74M) | Time:00:00.65 | Syncing Low visibility wing star.001
+Fra:1 Mem:121.75M (Peak 121.75M) | Time:00:00.65 | Syncing Wing insignia bar.002
+Fra:1 Mem:121.75M (Peak 121.75M) | Time:00:00.66 | Syncing Wing insignia bar.003
+Fra:1 Mem:121.76M (Peak 121.76M) | Time:00:00.66 | Syncing Service stencil.002
+Fra:1 Mem:121.76M (Peak 121.76M) | Time:00:00.66 | Syncing Service stencil.003
+Fra:1 Mem:121.77M (Peak 121.77M) | Time:00:00.66 | Syncing Navigation aperture
+Fra:1 Mem:121.83M (Peak 121.83M) | Time:00:00.67 | Syncing Main gear well shadow -1
+Fra:1 Mem:121.91M (Peak 121.91M) | Time:00:00.67 | Syncing Main gear shock upper
+Fra:1 Mem:121.93M (Peak 121.93M) | Time:00:00.67 | Syncing Main gear polished piston
+Fra:1 Mem:121.94M (Peak 121.94M) | Time:00:00.67 | Syncing Main gear tandem bogie
+Fra:1 Mem:121.95M (Peak 121.95M) | Time:00:00.67 | Syncing Main gear drag brace
+Fra:1 Mem:121.96M (Peak 121.96M) | Time:00:00.67 | Syncing Main gear diagonal stay
+Fra:1 Mem:121.97M (Peak 121.97M) | Time:00:00.68 | Syncing Main gear hydraulic hose
+Fra:1 Mem:121.98M (Peak 121.98M) | Time:00:00.68 | Syncing Main wheel (-1, -0.36) | tire
+Fra:1 Mem:122.02M (Peak 122.02M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | wheel ri
+Fra:1 Mem:122.03M (Peak 122.03M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.04M (Peak 122.04M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.05M (Peak 122.05M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.06M (Peak 122.06M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.07M (Peak 122.07M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.08M (Peak 122.08M) | Time:00:00.69 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.12M (Peak 122.12M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.13M (Peak 122.13M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.14M (Peak 122.14M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.14M (Peak 122.14M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.15M (Peak 122.15M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | recessed
+Fra:1 Mem:122.17M (Peak 122.17M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | axle cap
+Fra:1 Mem:122.18M (Peak 122.18M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.19M (Peak 122.19M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.19M (Peak 122.19M) | Time:00:00.70 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.20M (Peak 122.20M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.21M (Peak 122.21M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.22M (Peak 122.22M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.23M (Peak 122.23M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.24M (Peak 122.24M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | hub bolt
+Fra:1 Mem:122.24M (Peak 122.24M) | Time:00:00.71 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.25M (Peak 122.25M) | Time:00:00.72 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.25M (Peak 122.25M) | Time:00:00.72 | Syncing Main wheel (-1, -0.36) | tread gr
+Fra:1 Mem:122.27M (Peak 122.27M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | tire
+Fra:1 Mem:122.30M (Peak 122.30M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | wheel rim
+Fra:1 Mem:122.31M (Peak 122.31M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.33M (Peak 122.33M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | axle cap
+Fra:1 Mem:122.34M (Peak 122.34M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | hub bolt
+Fra:1 Mem:122.35M (Peak 122.35M) | Time:00:00.72 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.35M (Peak 122.35M) | Time:00:00.73 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.36M (Peak 122.36M) | Time:00:00.73 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.37M (Peak 122.37M) | Time:00:00.73 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.38M (Peak 122.38M) | Time:00:00.73 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.39M (Peak 122.39M) | Time:00:00.73 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.40M (Peak 122.40M) | Time:00:00.74 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.41M (Peak 122.41M) | Time:00:00.74 | Syncing Main wheel (-1, 1.32) | recessed 
+Fra:1 Mem:122.42M (Peak 122.42M) | Time:00:00.74 | Syncing Main wheel (-1, 1.32) | axle cap.
+Fra:1 Mem:122.43M (Peak 122.43M) | Time:00:00.74 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.44M (Peak 122.44M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.45M (Peak 122.45M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.46M (Peak 122.46M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.46M (Peak 122.46M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.47M (Peak 122.47M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.48M (Peak 122.48M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.49M (Peak 122.49M) | Time:00:00.75 | Syncing Main wheel (-1, 1.32) | hub bolt.
+Fra:1 Mem:122.49M (Peak 122.49M) | Time:00:00.76 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.50M (Peak 122.50M) | Time:00:00.76 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.51M (Peak 122.51M) | Time:00:00.76 | Syncing Main wheel (-1, 1.32) | tread gro
+Fra:1 Mem:122.52M (Peak 122.52M) | Time:00:00.76 | Syncing Main gear hanging door
+Fra:1 Mem:122.54M (Peak 122.54M) | Time:00:00.76 | Syncing Gear door inner stiffener
+Fra:1 Mem:122.56M (Peak 122.56M) | Time:00:00.77 | Syncing Gear door inner stiffener.001
+Fra:1 Mem:122.59M (Peak 122.59M) | Time:00:00.77 | Syncing Gear door inner stiffener.002
+Fra:1 Mem:122.61M (Peak 122.61M) | Time:00:00.77 | Syncing Main gear well shadow 1
+Fra:1 Mem:122.70M (Peak 122.70M) | Time:00:00.77 | Syncing Main gear shock upper.001
+Fra:1 Mem:122.71M (Peak 122.71M) | Time:00:00.77 | Syncing Main gear polished piston.001
+Fra:1 Mem:122.72M (Peak 122.72M) | Time:00:00.77 | Syncing Main gear tandem bogie.001
+Fra:1 Mem:122.72M (Peak 122.72M) | Time:00:00.77 | Syncing Main gear drag brace.001
+Fra:1 Mem:122.73M (Peak 122.73M) | Time:00:00.77 | Syncing Main gear diagonal stay.001
+Fra:1 Mem:122.74M (Peak 122.74M) | Time:00:00.78 | Syncing Main gear hydraulic hose.001
+Fra:1 Mem:122.75M (Peak 122.75M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | tire
+Fra:1 Mem:122.79M (Peak 122.79M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | wheel rim
+Fra:1 Mem:122.80M (Peak 122.80M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.81M (Peak 122.81M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | axle cap
+Fra:1 Mem:122.82M (Peak 122.82M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | hub bolt
+Fra:1 Mem:122.83M (Peak 122.83M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.84M (Peak 122.84M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.85M (Peak 122.85M) | Time:00:00.78 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.86M (Peak 122.86M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.87M (Peak 122.87M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.87M (Peak 122.87M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.88M (Peak 122.88M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.89M (Peak 122.89M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | recessed 
+Fra:1 Mem:122.90M (Peak 122.90M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | axle cap.
+Fra:1 Mem:122.92M (Peak 122.92M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.92M (Peak 122.92M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.93M (Peak 122.93M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.94M (Peak 122.94M) | Time:00:00.79 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.95M (Peak 122.95M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.96M (Peak 122.96M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.97M (Peak 122.97M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.98M (Peak 122.98M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | hub bolt.
+Fra:1 Mem:122.98M (Peak 122.98M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:122.99M (Peak 122.99M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:122.99M (Peak 122.99M) | Time:00:00.80 | Syncing Main wheel (1, -0.36) | tread gro
+Fra:1 Mem:123.00M (Peak 123.00M) | Time:00:00.80 | Syncing Main wheel (1, 1.32) | tire
+Fra:1 Mem:123.04M (Peak 123.04M) | Time:00:00.80 | Syncing Main wheel (1, 1.32) | wheel rim
+Fra:1 Mem:123.05M (Peak 123.05M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.06M (Peak 123.06M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | axle cap
+Fra:1 Mem:123.07M (Peak 123.07M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt
+Fra:1 Mem:123.08M (Peak 123.08M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.09M (Peak 123.09M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.10M (Peak 123.10M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.11M (Peak 123.11M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.12M (Peak 123.12M) | Time:00:00.81 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.13M (Peak 123.13M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.13M (Peak 123.13M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.14M (Peak 123.14M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | recessed h
+Fra:1 Mem:123.16M (Peak 123.16M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | axle cap.0
+Fra:1 Mem:123.17M (Peak 123.17M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.17M (Peak 123.17M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.18M (Peak 123.18M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.19M (Peak 123.19M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.20M (Peak 123.20M) | Time:00:00.82 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.21M (Peak 123.21M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.22M (Peak 123.22M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.23M (Peak 123.23M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | hub bolt.0
+Fra:1 Mem:123.23M (Peak 123.23M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.24M (Peak 123.24M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.24M (Peak 123.24M) | Time:00:00.83 | Syncing Main wheel (1, 1.32) | tread groo
+Fra:1 Mem:123.25M (Peak 123.25M) | Time:00:00.83 | Syncing Main gear hanging door.001
+Fra:1 Mem:123.28M (Peak 123.28M) | Time:00:00.83 | Syncing Gear door inner stiffener.003
+Fra:1 Mem:123.30M (Peak 123.30M) | Time:00:00.83 | Syncing Gear door inner stiffener.004
+Fra:1 Mem:123.32M (Peak 123.32M) | Time:00:00.84 | Syncing Gear door inner stiffener.005
+Fra:1 Mem:123.35M (Peak 123.35M) | Time:00:00.84 | Syncing Nose well
+Fra:1 Mem:123.43M (Peak 123.43M) | Time:00:00.84 | Syncing Nose gear upper
+Fra:1 Mem:123.44M (Peak 123.44M) | Time:00:00.84 | Syncing Nose gear piston
+Fra:1 Mem:123.45M (Peak 123.45M) | Time:00:00.84 | Syncing Nose gear brace
+Fra:1 Mem:123.46M (Peak 123.46M) | Time:00:00.85 | Syncing Nose wheel axle
+Fra:1 Mem:123.47M (Peak 123.47M) | Time:00:00.85 | Syncing Nose wheel -1 | tire
+Fra:1 Mem:123.51M (Peak 123.51M) | Time:00:00.85 | Syncing Nose wheel -1 | wheel rim
+Fra:1 Mem:123.52M (Peak 123.52M) | Time:00:00.85 | Syncing Nose wheel -1 | recessed hub
+Fra:1 Mem:123.53M (Peak 123.53M) | Time:00:00.85 | Syncing Nose wheel -1 | axle cap
+Fra:1 Mem:123.54M (Peak 123.54M) | Time:00:00.85 | Syncing Nose wheel -1 | hub bolt
+Fra:1 Mem:123.55M (Peak 123.55M) | Time:00:00.85 | Syncing Nose wheel -1 | hub bolt.001
+Fra:1 Mem:123.56M (Peak 123.56M) | Time:00:00.85 | Syncing Nose wheel -1 | hub bolt.002
+Fra:1 Mem:123.57M (Peak 123.57M) | Time:00:00.85 | Syncing Nose wheel -1 | hub bolt.003
+Fra:1 Mem:123.58M (Peak 123.58M) | Time:00:00.85 | Syncing Nose wheel -1 | hub bolt.004
+Fra:1 Mem:123.59M (Peak 123.59M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.005
+Fra:1 Mem:123.60M (Peak 123.60M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.006
+Fra:1 Mem:123.60M (Peak 123.60M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.007
+Fra:1 Mem:123.61M (Peak 123.61M) | Time:00:00.86 | Syncing Nose wheel -1 | recessed hub.001
+Fra:1 Mem:123.62M (Peak 123.62M) | Time:00:00.86 | Syncing Nose wheel -1 | axle cap.001
+Fra:1 Mem:123.64M (Peak 123.64M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.008
+Fra:1 Mem:123.64M (Peak 123.64M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.009
+Fra:1 Mem:123.65M (Peak 123.65M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.010
+Fra:1 Mem:123.66M (Peak 123.66M) | Time:00:00.86 | Syncing Nose wheel -1 | hub bolt.011
+Fra:1 Mem:123.67M (Peak 123.67M) | Time:00:00.87 | Syncing Nose wheel -1 | hub bolt.012
+Fra:1 Mem:123.68M (Peak 123.68M) | Time:00:00.87 | Syncing Nose wheel -1 | hub bolt.013
+Fra:1 Mem:123.69M (Peak 123.69M) | Time:00:00.87 | Syncing Nose wheel -1 | hub bolt.014
+Fra:1 Mem:123.70M (Peak 123.70M) | Time:00:00.87 | Syncing Nose wheel -1 | hub bolt.015
+Fra:1 Mem:123.70M (Peak 123.70M) | Time:00:00.87 | Syncing Nose wheel -1 | tread groove
+Fra:1 Mem:123.71M (Peak 123.71M) | Time:00:00.87 | Syncing Nose wheel -1 | tread groove.001
+Fra:1 Mem:123.71M (Peak 123.71M) | Time:00:00.87 | Syncing Nose wheel -1 | tread groove.002
+Fra:1 Mem:123.72M (Peak 123.72M) | Time:00:00.87 | Syncing Nose gear door
+Fra:1 Mem:123.75M (Peak 123.75M) | Time:00:00.88 | Syncing Nose wheel 1 | tire
+Fra:1 Mem:123.78M (Peak 123.78M) | Time:00:00.88 | Syncing Nose wheel 1 | wheel rim
+Fra:1 Mem:123.80M (Peak 123.80M) | Time:00:00.88 | Syncing Nose wheel 1 | recessed hub
+Fra:1 Mem:123.81M (Peak 123.81M) | Time:00:00.88 | Syncing Nose wheel 1 | axle cap
+Fra:1 Mem:123.82M (Peak 123.82M) | Time:00:00.88 | Syncing Nose wheel 1 | hub bolt
+Fra:1 Mem:123.83M (Peak 123.83M) | Time:00:00.88 | Syncing Nose wheel 1 | hub bolt.001
+Fra:1 Mem:123.84M (Peak 123.84M) | Time:00:00.88 | Syncing Nose wheel 1 | hub bolt.002
+Fra:1 Mem:123.85M (Peak 123.85M) | Time:00:00.88 | Syncing Nose wheel 1 | hub bolt.003
+Fra:1 Mem:123.85M (Peak 123.85M) | Time:00:00.88 | Syncing Nose wheel 1 | hub bolt.004
+Fra:1 Mem:123.86M (Peak 123.86M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.005
+Fra:1 Mem:123.87M (Peak 123.87M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.006
+Fra:1 Mem:123.88M (Peak 123.88M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.007
+Fra:1 Mem:123.89M (Peak 123.89M) | Time:00:00.89 | Syncing Nose wheel 1 | recessed hub.001
+Fra:1 Mem:123.90M (Peak 123.90M) | Time:00:00.89 | Syncing Nose wheel 1 | axle cap.001
+Fra:1 Mem:123.91M (Peak 123.91M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.008
+Fra:1 Mem:123.92M (Peak 123.92M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.009
+Fra:1 Mem:123.93M (Peak 123.93M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.010
+Fra:1 Mem:123.94M (Peak 123.94M) | Time:00:00.89 | Syncing Nose wheel 1 | hub bolt.011
+Fra:1 Mem:123.95M (Peak 123.95M) | Time:00:00.90 | Syncing Nose wheel 1 | hub bolt.012
+Fra:1 Mem:123.95M (Peak 123.95M) | Time:00:00.90 | Syncing Nose wheel 1 | hub bolt.013
+Fra:1 Mem:123.96M (Peak 123.96M) | Time:00:00.90 | Syncing Nose wheel 1 | hub bolt.014
+Fra:1 Mem:123.97M (Peak 123.97M) | Time:00:00.90 | Syncing Nose wheel 1 | hub bolt.015
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.90 | Syncing Nose wheel 1 | tread groove
+Fra:1 Mem:123.98M (Peak 123.98M) | Time:00:00.90 | Syncing Nose wheel 1 | tread groove.001
+Fra:1 Mem:123.99M (Peak 123.99M) | Time:00:00.90 | Syncing Nose wheel 1 | tread groove.002
+Fra:1 Mem:124.00M (Peak 124.00M) | Time:00:00.90 | Syncing Nose gear door.001
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.90 | Syncing Nose gear torque link
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing Key | broad softbox
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing Fill | warm
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing Rim | aft
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing Nose fill
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing Underside fill
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing 01 | Front three-quarter
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing 02 | Top plan
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing 03 | Rear three-quarter
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing 04 | Underside reference
+Fra:1 Mem:124.02M (Peak 124.02M) | Time:00:00.91 | Syncing 05 | Front elevation
+Fra:1 Mem:132.82M (Peak 132.82M) | Time:00:00.94 | Rendering 1 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:02.81 | Rendering 26 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:04.63 | Rendering 51 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:06.33 | Rendering 76 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:08.26 | Rendering 101 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:09.84 | Rendering 126 / 128 samples
+Fra:1 Mem:113.75M (Peak 132.82M) | Time:00:09.96 | Rendering 128 / 128 samples
+Saved: 'C:\MyProjects\TempProject (OpenAI)\J36_Model\renders\04_underside.png'
+ Time: 00:10.59 (Saving: 00:00.33)
+
+Info: Saved "J36_Reference_Model.blend"
+Info: Saved "J36_Reference_Model.blend"
+MODEL_COMPLETE C:\MyProjects\TempProject (OpenAI)\J36_Model\J36_Reference_Model.blend
+
+Blender quit
