@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cafe Racer — three.js</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    background: radial-gradient(140% 100% at 50% 4%, #36434f 0%, #1b222a 36%, #0a0d11 76%, #05070a 100%);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  canvas { display: block; }
+  #hud {
+    position: fixed; z-index: 2; left: 26px; bottom: 22px; pointer-events: none; user-select: none;
+    color: #93a3b4; letter-spacing: .26em; text-transform: uppercase; font-size: 10px; line-height: 2;
+  }
+  #hud h1 { margin: 0 0 9px; font-size: 19px; letter-spacing: .22em; font-weight: 600; color: #eef4fa; }
+  #hud em { display: block; font-style: normal; color: #5d6b7a; }
+  #vig {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(120% 95% at 50% 45%, rgba(0,0,0,0) 42%, rgba(0,0,0,.55) 100%);
+  }
+  #prompt {
+    position: fixed; z-index: 2; top: 24px; left: 26px; max-width: min(420px, calc(100vw - 52px));
+    user-select: text;
+    background: linear-gradient(180deg, rgba(20,26,33,.86), rgba(12,16,21,.72));
+    border: 1px solid rgba(140,170,200,.18);
+    border-left: 2px solid #b8931f;
+    border-radius: 4px;
+    padding: 13px 16px 14px;
+    box-shadow: 0 12px 34px rgba(0,0,0,.45);
+    backdrop-filter: blur(7px) saturate(1.1);
+  }
+  #prompt h2 {
+    margin: 0 0 7px; font-size: 9px; font-weight: 600;
+    letter-spacing: .3em; text-transform: uppercase; color: #b8931f;
+  }
+  #prompt p {
+    margin: 0; color: #cfdae5; font-size: 12px; line-height: 1.65; letter-spacing: .02em;
+  }
+  #prompt p::before { content: "› "; color: #5d6b7a; }
+  @media (max-width: 640px) {
+    #hud { left: 18px; bottom: 16px; }
+    #prompt { top: 16px; left: 18px; padding: 11px 13px 12px; }
+    #prompt p { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div id="hud">
+  <h1>Cafe Racer</h1>
+  <em>drag — orbit</em>
+  <em>scroll — zoom</em>
+</div>
+<div id="vig"></div>
+<div id="prompt">
+  <h2>Prompt</h2>
+  <p>3D model view of a cafe racer. One-shot, three.js, single html file, no external assets.</p>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const UP = new THREE.Vector3(0, 1, 0);
+const clamp = THREE.MathUtils.clamp;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.04;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, 0.05, 120);
+camera.position.set(2.0, 1.28, 2.05);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0.56, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.07;
+controls.minDistance = 1.1;
+controls.maxDistance = 7;
+controls.maxPolarAngle = Math.PI * 0.495;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.45;
+controls.addEventListener('start', () => { controls.autoRotate = false; });
+controls.update();
+
+function buildEnvironment() {
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const env = new THREE.Scene();
+
+  const cv = document.createElement('canvas');
+  cv.width = 8; cv.height = 256;
+  const cx = cv.getContext('2d');
+  const grad = cx.createLinearGradient(0, 0, 0, 256);
+  grad.addColorStop(0.00, '#cbd9e8');
+  grad.addColorStop(0.42, '#5e6d7e');
+  grad.addColorStop(0.52, '#232a33');
+  grad.addColorStop(1.00, '#07090c');
+  cx.fillStyle = grad;
+  cx.fillRect(0, 0, 8, 256);
+  const domeTex = new THREE.CanvasTexture(cv);
+  domeTex.colorSpace = THREE.SRGBColorSpace;
+  env.add(new THREE.Mesh(
+    new THREE.SphereGeometry(40, 32, 16),
+    new THREE.MeshBasicMaterial({ map: domeTex, side: THREE.BackSide })
+  ));
+
+  const panel = (w, h, x, y, z, rx, ry, color) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color }));
+    m.position.set(x, y, z);
+    m.rotation.set(rx, ry, 0);
+    env.add(m);
+  };
+  panel(16, 9, 0, 9, 0, Math.PI / 2, 0, 0xffffff);
+  panel(10, 6, -9, 3, 0, 0, Math.PI / 2, 0xbcc9d8);
+  panel(10, 6, 9, 3, 0, 0, -Math.PI / 2, 0x707b89);
+  panel(12, 7, 0, 3, 10, 0, Math.PI, 0xffffff);
+  panel(12, 7, 0, 3, -10, 0, 0, 0x4a545f);
+  panel(24, 24, 0, -3, 0, -Math.PI / 2, 0, 0x0f1216);
+
+  const rt = pmrem.fromScene(env, 0.02);
+  scene.environment = rt.texture;
+  pmrem.dispose();
+}
+buildEnvironment();
+
+scene.add(new THREE.HemisphereLight(0x9fb4cc, 0x1b1f24, 0.55));
+
+const key = new THREE.DirectionalLight(0xfff0dd, 2.2);
+key.position.set(2.6, 4.2, 2.2);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 0.5;
+key.shadow.camera.far = 12;
+key.shadow.camera.left = -1.9;
+key.shadow.camera.right = 1.9;
+key.shadow.camera.top = 1.9;
+key.shadow.camera.bottom = -1.9;
+key.shadow.bias = -0.0004;
+key.shadow.normalBias = 0.022;
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0x8fb0ff, 0.85);
+fill.position.set(-3, 2.2, -1.8);
+scene.add(fill);
+
+const rim = new THREE.DirectionalLight(0xffd7a8, 1.7);
+rim.position.set(-3, 1.5, 2.6);
+scene.add(rim);
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(24, 24), new THREE.ShadowMaterial({ opacity: 0.44 }));
+floor.rotation.x = -Math.PI / 2;
+floor.receiveShadow = true;
+scene.add(floor);
+
+function makePaintTexture() {
+  const s = 512;
+  const cv = document.createElement('canvas');
+  cv.width = cv.height = s;
+  const cx = cv.getContext('2d');
+  cx.fillStyle = '#10352b';
+  cx.fillRect(0, 0, s, s);
+  const sheen = cx.createLinearGradient(0, 0, s * 0.7, s);
+  sheen.addColorStop(0, 'rgba(255,255,255,0.06)');
+  sheen.addColorStop(0.5, 'rgba(0,0,0,0.05)');
+  sheen.addColorStop(1, 'rgba(255,255,255,0.04)');
+  cx.fillStyle = sheen;
+  cx.fillRect(0, 0, s, s);
+  const stripe = (yc, w, col) => { cx.fillStyle = col; cx.fillRect(0, yc - w / 2, s, w); };
+  for (const yc of [0, s / 2, s]) {
+    stripe(yc, 13, '#b8931f');
+    stripe(yc, 4, '#f2e3b4');
+  }
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return tex;
+}
+
+const MAT = {
+  paint: new THREE.MeshPhysicalMaterial({
+    color: 0x10352b, metalness: 0.5, roughness: 0.3,
+    clearcoat: 1, clearcoatRoughness: 0.07, envMapIntensity: 1.15
+  }),
+  tank: new THREE.MeshPhysicalMaterial({
+    map: makePaintTexture(), metalness: 0.5, roughness: 0.3,
+    clearcoat: 1, clearcoatRoughness: 0.07, envMapIntensity: 1.15
+  }),
+  chrome: new THREE.MeshStandardMaterial({ color: 0xf2f5f8, metalness: 1, roughness: 0.07, envMapIntensity: 1.5 }),
+  chromeShell: new THREE.MeshStandardMaterial({
+    color: 0xf2f5f8, metalness: 1, roughness: 0.07, envMapIntensity: 1.5, side: THREE.DoubleSide
+  }),
+  alu: new THREE.MeshStandardMaterial({ color: 0xc3c9cf, metalness: 0.95, roughness: 0.3, envMapIntensity: 1.15 }),
+  aluShell: new THREE.MeshStandardMaterial({
+    color: 0xc3c9cf, metalness: 0.95, roughness: 0.3, envMapIntensity: 1.15, side: THREE.DoubleSide
+  }),
+  paintShell: new THREE.MeshPhysicalMaterial({
+    color: 0x10352b, metalness: 0.5, roughness: 0.3,
+    clearcoat: 1, clearcoatRoughness: 0.07, envMapIntensity: 1.15, side: THREE.DoubleSide
+  }),
+  steel: new THREE.MeshStandardMaterial({ color: 0x191b1e, metalness: 0.72, roughness: 0.33, envMapIntensity: 1.0 }),
+  engine: new THREE.MeshStandardMaterial({ color: 0x42484f, metalness: 0.9, roughness: 0.44, envMapIntensity: 1.0 }),
+  fin: new THREE.MeshStandardMaterial({ color: 0x2a2e34, metalness: 0.85, roughness: 0.55, envMapIntensity: 0.85 }),
+  rubber: new THREE.MeshStandardMaterial({ color: 0x131315, metalness: 0.0, roughness: 0.9, envMapIntensity: 0.45 }),
+  dark: new THREE.MeshStandardMaterial({ color: 0x0a0a0c, metalness: 0.1, roughness: 0.85, envMapIntensity: 0.4 }),
+  leather: new THREE.MeshStandardMaterial({ color: 0x15161a, metalness: 0.05, roughness: 0.62, envMapIntensity: 0.6 }),
+  brass: new THREE.MeshStandardMaterial({ color: 0xc9a227, metalness: 1, roughness: 0.28, envMapIntensity: 1.5 }),
+  glass: new THREE.MeshPhysicalMaterial({
+    color: 0xe6eff7, metalness: 0.05, roughness: 0.04,
+    transmission: 0.9, thickness: 0.05, ior: 1.5, envMapIntensity: 1.6
+  }),
+  red: new THREE.MeshStandardMaterial({
+    color: 0x8e1116, metalness: 0.25, roughness: 0.22,
+    emissive: 0x3a0508, emissiveIntensity: 1, envMapIntensity: 1.2
+  })
+};
+
+function tube(a, b, r1, r2 = r1, material, radial = 16, open = false) {
+  const dir = new THREE.Vector3().subVectors(b, a);
+  const len = dir.length();
+  const mesh = new THREE.Mesh(new THREE.CylinderGeometry(r2, r1, len, radial, 1, open), material);
+  mesh.position.copy(a).addScaledVector(dir, 0.5);
+  mesh.quaternion.setFromUnitVectors(UP, dir.normalize());
+  return mesh;
+}
+
+function roundedBox(w, h, d, r, seg = 4) {
+  const g = new THREE.BoxGeometry(w, h, d, seg, seg, seg);
+  const p = g.attributes.position;
+  const n = g.attributes.normal;
+  const hx = Math.max(0, w / 2 - r), hy = Math.max(0, h / 2 - r), hz = Math.max(0, d / 2 - r);
+  const v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) {
+    v.fromBufferAttribute(p, i);
+    const qx = clamp(v.x, -hx, hx), qy = clamp(v.y, -hy, hy), qz = clamp(v.z, -hz, hz);
+    const dx = v.x - qx, dy = v.y - qy, dz = v.z - qz;
+    const l = Math.hypot(dx, dy, dz) || 1;
+    const k = r / l;
+    p.setXYZ(i, qx + dx * k, qy + dy * k, qz + dz * k);
+    n.setXYZ(i, dx / l, dy / l, dz / l);
+  }
+  return g;
+}
+
+function sweepSolid(x0, len, profile, segU = 60, segV = 40, e = 2.6, squash = 0.88) {
+  const pos = [], uv = [], idx = [];
+  const p = 2 / e;
+  for (let i = 0; i <= segU; i++) {
+    const u = i / segU;
+    const [w, h, cy] = profile(u);
+    const x = x0 + len * u;
+    for (let j = 0; j < segV; j++) {
+      const v = j / segV;
+      const a = v * Math.PI * 2;
+      const c = Math.cos(a), s = Math.sin(a);
+      const z = w * Math.sign(c) * Math.pow(Math.abs(c), p);
+      const y = h * Math.sign(s) * Math.pow(Math.abs(s), p) * (s < 0 ? squash : 1);
+      pos.push(x, cy + y, z);
+      uv.push(u, v);
+    }
+  }
+  for (let i = 0; i < segU; i++) {
+    for (let j = 0; j < segV; j++) {
+      const j2 = (j + 1) % segV;
+      const a = i * segV + j, b = (i + 1) * segV + j;
+      const a2 = i * segV + j2, b2 = (i + 1) * segV + j2;
+      idx.push(a, b, a2, b, b2, a2);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+function springBetween(a, b, t0, t1, radius, coils, tubeR) {
+  const dir = new THREE.Vector3().subVectors(b, a);
+  const len = dir.length();
+  const q = new THREE.Quaternion().setFromUnitVectors(UP, dir.clone().normalize());
+  const pts = [];
+  const N = Math.round(coils * 20);
+  for (let i = 0; i <= N; i++) {
+    const t = i / N;
+    const ang = t * coils * Math.PI * 2;
+    const local = V(Math.cos(ang) * radius, (t0 + (t1 - t0) * t) * len, Math.sin(ang) * radius);
+    local.applyQuaternion(q).add(a);
+    pts.push(local);
+  }
+  return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), N, tubeR, 8, false);
+}
+
+function buildWheel() {
+  const g = new THREE.Group();
+
+  g.add(new THREE.Mesh(new THREE.TorusGeometry(0.273, 0.052, 18, 64), MAT.rubber));
+  for (const z of [-0.028, 0.028]) {
+    const groove = new THREE.Mesh(new THREE.TorusGeometry(0.319, 0.0055, 8, 64), MAT.dark);
+    groove.position.z = z;
+    g.add(groove);
+  }
+
+  const rimGeo = new THREE.CylinderGeometry(0.216, 0.216, 0.088, 48, 1, true);
+  rimGeo.rotateX(Math.PI / 2);
+  g.add(new THREE.Mesh(rimGeo, MAT.aluShell));
+
+  for (const z of [-0.044, 0.044]) {
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(0.216, 0.009, 8, 48), MAT.alu);
+    lip.position.z = z;
+    g.add(lip);
+  }
+
+  const hubGeo = new THREE.CylinderGeometry(0.049, 0.049, 0.128, 24);
+  hubGeo.rotateX(Math.PI / 2);
+  g.add(new THREE.Mesh(hubGeo, MAT.alu));
+
+  const drumGeo = new THREE.CylinderGeometry(0.099, 0.099, 0.05, 32);
+  drumGeo.rotateX(Math.PI / 2);
+  const drum = new THREE.Mesh(drumGeo, MAT.alu);
+  drum.position.z = 0.028;
+  g.add(drum);
+  const drumFace = new THREE.Mesh(new THREE.TorusGeometry(0.072, 0.006, 6, 32), MAT.chrome);
+  drumFace.position.z = 0.054;
+  g.add(drumFace);
+
+  const spokeGeo = new THREE.CylinderGeometry(0.0026, 0.0026, 1, 6);
+  const spokes = new THREE.InstancedMesh(spokeGeo, MAT.chrome, 36);
+  spokes.frustumCulled = false;
+  const m = new THREE.Matrix4();
+  const q = new THREE.Quaternion();
+  const from = new THREE.Vector3(), to = new THREE.Vector3();
+  const dir = new THREE.Vector3(), mid = new THREE.Vector3(), sc = new THREE.Vector3();
+  for (let i = 0; i < 36; i++) {
+    const a = (i / 36) * Math.PI * 2;
+    const side = i % 2 ? 1 : -1;
+    const hubA = a + side * 0.22;
+    from.set(Math.cos(a) * 0.072, Math.sin(a) * 0.072, side * 0.05);
+    to.set(Math.cos(hubA) * 0.213, Math.sin(hubA) * 0.213, side * -0.006);
+    dir.subVectors(to, from);
+    const len = dir.length();
+    q.setFromUnitVectors(UP, dir.normalize());
+    mid.addVectors(from, to).multiplyScalar(0.5);
+    sc.set(1, len, 1);
+    m.compose(mid, q, sc);
+    spokes.setMatrixAt(i, m);
+  }
+  spokes.instanceMatrix.needsUpdate = true;
+  g.add(spokes);
+
+  const axleGeo = new THREE.CylinderGeometry(0.014, 0.014, 0.23, 12);
+  axleGeo.rotateX(Math.PI / 2);
+  g.add(new THREE.Mesh(axleGeo, MAT.chrome));
+  for (const z of [-0.112, 0.112]) {
+    const nut = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.022, 6), MAT.alu);
+    nut.geometry.rotateX(Math.PI / 2);
+    nut.position.z = z;
+    g.add(nut);
+  }
+  return g;
+}
+
+const bike = new THREE.Group();
+scene.add(bike);
+
+const FRONT_AXLE = V(0.70, 0.325, 0);
+const REAR_AXLE = V(-0.70, 0.325, 0);
+
+const frontWheel = buildWheel();
+frontWheel.position.copy(FRONT_AXLE);
+bike.add(frontWheel);
+
+const rearWheel = buildWheel();
+rearWheel.position.copy(REAR_AXLE);
+bike.add(rearWheel);
+
+const steerX = (y) => 0.50 + 0.4045 * (0.82 - y);
+
+const HEAD_TOP = V(steerX(0.885), 0.885, 0);
+const HEAD_BOT = V(steerX(0.755), 0.755, 0);
+bike.add(tube(HEAD_TOP, HEAD_BOT, 0.027, 0.027, MAT.steel, 20));
+
+for (const z of [-0.095, 0.095]) {
+  const top = 0.905, mid = 0.62, bot = 0.635;
+  const stanchion = tube(V(steerX(top), top, z), V(steerX(mid), mid, z), 0.019, 0.019, MAT.chrome);
+  bike.add(stanchion);
+  const slider = tube(V(steerX(bot), bot, z), V(FRONT_AXLE.x, FRONT_AXLE.y + 0.005, z), 0.027, 0.03, MAT.alu, 20);
+  bike.add(slider);
+  const seal = new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.007, 6, 20), MAT.rubber);
+  seal.position.set(steerX(bot), bot, z);
+  seal.rotation.x = Math.PI / 2;
+  bike.add(seal);
+}
+
+for (const y of [0.905, 0.815]) {
+  const clampMesh = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.032, 0.225), MAT.alu);
+  clampMesh.position.set(steerX(y), y, 0);
+  clampMesh.rotation.z = 0.385;
+  bike.add(clampMesh);
+}
+const riser = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.035, 12), MAT.alu);
+riser.position.set(steerX(0.905), 0.925, 0);
+riser.rotation.z = 0.385;
+bike.add(riser);
+
+for (const s of [1, -1]) {
+  const a = V(steerX(0.845), 0.845, s * 0.095);
+  const b = V(0.40, 0.795, s * 0.225);
+  bike.add(tube(a, b, 0.012, 0.012, MAT.chrome, 12));
+  const gripA = new THREE.Vector3().lerpVectors(a, b, 0.5);
+  const gripB = V(b.x - 0.012, b.y + 0.003, b.z + s * 0.012);
+  bike.add(tube(gripA, gripB, 0.017, 0.017, MAT.leather, 14));
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.017, 12, 8), MAT.chrome);
+  cap.position.copy(gripB);
+  bike.add(cap);
+}
+
+const earL = tube(V(steerX(0.86), 0.86, -0.095), V(0.545, 0.86, -0.05), 0.008, 0.008, MAT.chrome, 10);
+const earR = tube(V(steerX(0.86), 0.86, 0.095), V(0.545, 0.86, 0.05), 0.008, 0.008, MAT.chrome, 10);
+bike.add(earL, earR);
+
+const headlightBody = new THREE.Mesh(new THREE.CylinderGeometry(0.082, 0.072, 0.10, 32, 1, true), MAT.chromeShell);
+headlightBody.geometry.rotateZ(Math.PI / 2);
+headlightBody.position.set(0.565, 0.862, 0);
+bike.add(headlightBody);
+
+const headlightBack = new THREE.Mesh(new THREE.SphereGeometry(0.082, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), MAT.chrome);
+headlightBack.rotation.z = Math.PI / 2;
+headlightBack.scale.set(0.55, 1, 1);
+headlightBack.position.set(0.516, 0.862, 0);
+bike.add(headlightBack);
+
+const lensGeo = new THREE.CylinderGeometry(0.076, 0.076, 0.012, 32);
+lensGeo.rotateZ(Math.PI / 2);
+const lens = new THREE.Mesh(lensGeo, MAT.glass);
+lens.position.set(0.617, 0.862, 0);
+bike.add(lens);
+
+const bezel = new THREE.Mesh(new THREE.TorusGeometry(0.078, 0.008, 8, 36), MAT.chrome);
+bezel.position.set(0.616, 0.862, 0);
+bezel.rotation.y = Math.PI / 2;
+bike.add(bezel);
+
+const gaugeBody = new THREE.Mesh(new THREE.CylinderGeometry(0.037, 0.037, 0.034, 24), MAT.steel);
+gaugeBody.position.set(0.505, 0.955, 0);
+gaugeBody.rotation.z = -0.45;
+bike.add(gaugeBody);
+const gaugeFace = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.004, 24), MAT.dark);
+gaugeFace.position.set(0.512, 0.969, 0);
+gaugeFace.rotation.z = -0.45;
+bike.add(gaugeFace);
+const gaugeRing = new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.005, 6, 28), MAT.chrome);
+gaugeRing.position.set(0.5125, 0.9705, 0);
+gaugeRing.rotation.set(Math.PI / 2, 0, -0.45);
+bike.add(gaugeRing);
+
+const gaugeNeedle = new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.0015, 0.003), MAT.red);
+gaugeNeedle.position.set(0.513, 0.9725, 0);
+gaugeNeedle.rotation.set(0, -0.7, 0);
+bike.add(gaugeNeedle);
+
+const fenderGeo = new THREE.CylinderGeometry(0.357, 0.357, 0.112, 40, 1, true, 1.9, 2.5);
+fenderGeo.rotateX(Math.PI / 2);
+const frontFender = new THREE.Mesh(fenderGeo, MAT.paintShell);
+frontFender.position.copy(FRONT_AXLE);
+bike.add(frontFender);
+
+const strut = tube(V(0.30, 0.60, 0.095), V(0.42, 0.50, 0.06), 0.006, 0.006, MAT.chrome, 8);
+bike.add(strut);
+
+bike.add(tube(V(0.50, 0.855, 0), V(-0.30, 0.79, 0), 0.022, 0.022, MAT.steel, 18));
+bike.add(tube(V(0.492, 0.775, 0), V(0.31, 0.385, 0), 0.019, 0.019, MAT.steel, 16));
+bike.add(tube(V(-0.30, 0.79, 0), V(-0.335, 0.375, 0), 0.019, 0.019, MAT.steel, 16));
+for (const z of [-0.155, 0.155]) {
+  bike.add(tube(V(0.31, 0.385, z), V(-0.34, 0.37, z), 0.016, 0.016, MAT.steel, 14));
+  const plate = new THREE.Mesh(roundedBox(0.1, 0.11, 0.022, 0.012, 3), MAT.steel);
+  plate.position.set(-0.335, 0.372, z);
+  bike.add(plate);
+  const rail = tube(V(-0.24, 0.762, z * 0.48), V(-0.68, 0.762, z * 0.48), 0.014, 0.014, MAT.steel, 12);
+  bike.add(rail);
+}
+
+const crossTube = tube(V(-0.30, 0.60, -0.08), V(-0.30, 0.60, 0.08), 0.012, 0.012, MAT.steel, 10);
+bike.add(crossTube);
+
+for (const s of [1, -1]) {
+  const upper = V(-0.585, 0.715, s * 0.088);
+  const lower = V(-0.665, 0.352, s * 0.088);
+  bike.add(tube(lower, new THREE.Vector3().lerpVectors(lower, upper, 0.62), 0.023, 0.023, MAT.alu, 16));
+  bike.add(tube(new THREE.Vector3().lerpVectors(lower, upper, 0.05), upper, 0.009, 0.009, MAT.chrome, 12));
+  const spring = new THREE.Mesh(springBetween(lower, upper, 0.06, 0.94, 0.032, 7, 0.0055), MAT.steel);
+  bike.add(spring);
+  const eye = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.007, 6, 16), MAT.steel);
+  eye.position.copy(upper);
+  eye.rotation.y = Math.PI / 2;
+  bike.add(eye);
+  const eye2 = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.007, 6, 16), MAT.steel);
+  eye2.position.copy(lower);
+  eye2.rotation.y = Math.PI / 2;
+  bike.add(eye2);
+}
+
+for (const s of [1, -1]) {
+  const pivot = V(-0.335, 0.372, s * 0.15);
+  const axle = V(REAR_AXLE.x, REAR_AXLE.y, s * 0.086);
+  bike.add(tube(pivot, axle, 0.019, 0.016, MAT.steel, 14));
+  const brace = new THREE.Mesh(roundedBox(0.07, 0.045, 0.03, 0.012, 3), MAT.steel);
+  brace.position.set(-0.30, 0.36, s * 0.12);
+  brace.rotation.y = s * 0.25;
+  bike.add(brace);
+}
+
+const rearFenderGeo = new THREE.CylinderGeometry(0.352, 0.352, 0.112, 32, 1, true, 2.45, 1.35);
+rearFenderGeo.rotateX(Math.PI / 2);
+const rearFender = new THREE.Mesh(rearFenderGeo, MAT.paintShell);
+rearFender.position.copy(REAR_AXLE);
+bike.add(rearFender);
+
+const crank = new THREE.Mesh(roundedBox(0.37, 0.2, 0.285, 0.038, 4), MAT.engine);
+crank.position.set(0.0, 0.425, 0);
+bike.add(crank);
+
+const sump = new THREE.Mesh(roundedBox(0.3, 0.05, 0.23, 0.018, 3), MAT.engine);
+sump.position.set(-0.01, 0.315, 0);
+bike.add(sump);
+
+for (const s of [1, -1]) {
+  const coverGeo = new THREE.CylinderGeometry(0.062, 0.062, 0.022, 28);
+  coverGeo.rotateX(Math.PI / 2);
+  const cover = new THREE.Mesh(coverGeo, MAT.alu);
+  cover.position.set(0.03, 0.425, s * 0.148);
+  bike.add(cover);
+  const badgeGeo = new THREE.CylinderGeometry(0.026, 0.026, 0.008, 20);
+  badgeGeo.rotateX(Math.PI / 2);
+  const badge = new THREE.Mesh(badgeGeo, MAT.brass);
+  badge.position.set(0.03, 0.425, s * 0.161);
+  bike.add(badge);
+}
+
+for (const s of [1, -1]) {
+  const block = new THREE.Mesh(roundedBox(0.19, 0.16, 0.115, 0.016, 3), MAT.engine);
+  block.position.set(0.0, 0.605, s * 0.0625);
+  bike.add(block);
+  for (let i = 0; i < 10; i++) {
+    const fin = new THREE.Mesh(new THREE.BoxGeometry(0.216, 0.0075, 0.122), MAT.fin);
+    fin.position.set(0.0, 0.527 + i * 0.0176, s * 0.0625);
+    bike.add(fin);
+  }
+  const valve = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.09, 12), MAT.alu);
+  valve.rotation.z = Math.PI / 2;
+  valve.position.set(0.0, 0.815, s * 0.0625);
+  bike.add(valve);
+}
+
+const head = new THREE.Mesh(roundedBox(0.2, 0.062, 0.235, 0.018, 3), MAT.alu);
+head.position.set(0.0, 0.729, 0);
+bike.add(head);
+
+const valveCover = new THREE.Mesh(roundedBox(0.188, 0.048, 0.222, 0.018, 4), MAT.engine);
+valveCover.position.set(0.0, 0.784, 0);
+bike.add(valveCover);
+
+for (const s of [1, -1]) {
+  const carb = new THREE.Mesh(new THREE.CylinderGeometry(0.027, 0.027, 0.095, 16), MAT.alu);
+  carb.rotation.z = Math.PI / 2;
+  carb.position.set(-0.135, 0.63, s * 0.0625);
+  bike.add(carb);
+  const stack = tube(V(-0.185, 0.63, s * 0.0625), V(-0.245, 0.63, s * 0.0625), 0.026, 0.034, MAT.chrome, 16, true);
+  bike.add(stack);
+  const port = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.05, 0.05), MAT.steel);
+  port.position.set(0.106, 0.727, s * 0.072);
+  bike.add(port);
+}
+
+for (const s of [1, -1]) {
+  const pts = [
+    V(0.128, 0.722, s * 0.075),
+    V(0.225, 0.63, s * 0.115),
+    V(0.215, 0.47, s * 0.158),
+    V(0.05, 0.392, s * 0.176),
+    V(-0.25, 0.378, s * 0.176),
+    V(-0.56, 0.364, s * 0.178),
+    V(-0.775, 0.383, s * 0.185)
+  ];
+  const curve = new THREE.CatmullRomCurve3(pts);
+  bike.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 110, 0.0215, 14, false), MAT.chrome));
+
+  const tipA = pts[6];
+  const tipB = V(-1.015, 0.472, s * 0.196);
+  const megGeo = new THREE.CylinderGeometry(0.072, 0.026, tipA.distanceTo(tipB), 24, 1, true);
+  const meg = new THREE.Mesh(megGeo, MAT.chromeShell);
+  meg.position.copy(tipA).addScaledVector(new THREE.Vector3().subVectors(tipB, tipA), 0.5);
+  meg.quaternion.setFromUnitVectors(UP, new THREE.Vector3().subVectors(tipB, tipA).normalize());
+  bike.add(meg);
+
+  const baffle = new THREE.Mesh(new THREE.CylinderGeometry(0.056, 0.056, 0.01, 20), MAT.dark);
+  baffle.position.copy(new THREE.Vector3().lerpVectors(tipA, tipB, 0.94));
+  baffle.quaternion.copy(meg.quaternion);
+  bike.add(baffle);
+
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.006, 6, 20), MAT.steel);
+  ring.position.copy(tipA);
+  ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3().subVectors(tipB, tipA).normalize());
+  bike.add(ring);
+}
+
+const sprocketF = new THREE.Mesh(new THREE.CylinderGeometry(0.048, 0.048, 0.014, 22), MAT.steel);
+sprocketF.geometry.rotateX(Math.PI / 2);
+sprocketF.position.set(-0.19, 0.40, -0.118);
+bike.add(sprocketF);
+
+const sprocketR = new THREE.Mesh(new THREE.CylinderGeometry(0.102, 0.102, 0.012, 30), MAT.steel);
+sprocketR.geometry.rotateX(Math.PI / 2);
+sprocketR.position.set(REAR_AXLE.x, REAR_AXLE.y, -0.118);
+bike.add(sprocketR);
+
+const chainPts = [];
+for (let i = 0; i <= 12; i++) {
+  const a = Math.PI / 2 + (i / 12) * Math.PI;
+  chainPts.push(V(REAR_AXLE.x + 0.106 * Math.cos(a), REAR_AXLE.y + 0.106 * Math.sin(a), -0.118));
+}
+for (let i = 0; i <= 10; i++) {
+  const a = -Math.PI / 2 + (i / 10) * Math.PI;
+  chainPts.push(V(-0.19 + 0.052 * Math.cos(a), 0.40 + 0.052 * Math.sin(a), -0.118));
+}
+const chain = new THREE.Mesh(
+  new THREE.TubeGeometry(new THREE.CatmullRomCurve3(chainPts, true, 'catmullrom', 0), 160, 0.007, 6, true),
+  MAT.dark
+);
+bike.add(chain);
+
+for (const s of [1, -1]) {
+  const bracket = new THREE.Mesh(roundedBox(0.06, 0.09, 0.02, 0.008, 3), MAT.alu);
+  bracket.position.set(-0.44, 0.325, s * 0.135);
+  bike.add(bracket);
+  bike.add(tube(V(-0.44, 0.318, s * 0.14), V(-0.44, 0.312, s * 0.205), 0.014, 0.014, MAT.leather, 12));
+  const pegCap = new THREE.Mesh(new THREE.SphereGeometry(0.014, 10, 8), MAT.chrome);
+  pegCap.position.set(-0.44, 0.312, s * 0.205);
+  bike.add(pegCap);
+  const lever = tube(V(-0.40, 0.29, s * 0.155), V(-0.30, 0.245, s * 0.165), 0.006, 0.006, MAT.chrome, 8);
+  bike.add(lever);
+}
+
+const tankProfile = (u) => {
+  const w = 0.186 * Math.pow(Math.sin(Math.PI * Math.pow(u, 1.35)), 0.55);
+  const h = 0.112 * Math.pow(Math.sin(Math.PI * Math.pow(u, 1.05)), 0.5);
+  return [w, h, 0.842 + 0.07 * u];
+};
+const tank = new THREE.Mesh(sweepSolid(-0.27, 0.7, tankProfile, 72, 48, 2.6, 0.88), MAT.tank);
+bike.add(tank);
+
+const capGeo = new THREE.CylinderGeometry(0.036, 0.036, 0.016, 24);
+const cap = new THREE.Mesh(capGeo, MAT.chrome);
+cap.position.set(0.145, 0.995, 0);
+bike.add(cap);
+const capRing = new THREE.Mesh(new THREE.TorusGeometry(0.031, 0.004, 6, 24), MAT.brass);
+capRing.position.set(0.145, 1.001, 0);
+capRing.rotation.x = Math.PI / 2;
+bike.add(capRing);
+const capKnob = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.012, 12), MAT.brass);
+capKnob.position.set(0.145, 1.008, 0);
+bike.add(capKnob);
+
+const seatPad = new THREE.Mesh(roundedBox(0.245, 0.052, 0.25, 0.024, 5), MAT.leather);
+seatPad.position.set(-0.365, 0.797, 0);
+bike.add(seatPad);
+
+const humpProfile = (u) => {
+  const w = 0.108 * Math.pow(Math.sin(Math.PI * Math.pow(u, 0.55)), 0.5);
+  const h = 0.088 * Math.pow(Math.sin(Math.PI * Math.pow(u, 0.5)), 0.5);
+  return [w, h, 0.848 - 0.05 * u * u];
+};
+const hump = new THREE.Mesh(sweepSolid(-0.82, 0.4, humpProfile, 60, 40, 2.2, 1), MAT.paint);
+bike.add(hump);
+
+const tailBodyGeo = new THREE.CylinderGeometry(0.032, 0.032, 0.05, 20);
+tailBodyGeo.rotateZ(Math.PI / 2);
+const tailBody = new THREE.Mesh(tailBodyGeo, MAT.chrome);
+tailBody.position.set(-0.792, 0.858, 0);
+bike.add(tailBody);
+const tailLensGeo = new THREE.CylinderGeometry(0.027, 0.027, 0.016, 20);
+tailLensGeo.rotateZ(Math.PI / 2);
+const tailLens = new THREE.Mesh(tailLensGeo, MAT.red);
+tailLens.position.set(-0.818, 0.858, 0);
+bike.add(tailLens);
+
+for (const s of [1, -1]) {
+  const cover = new THREE.Mesh(roundedBox(0.17, 0.135, 0.05, 0.022, 4), MAT.paint);
+  cover.position.set(-0.45, 0.62, s * 0.108);
+  bike.add(cover);
+  const badgeGeo = new THREE.CylinderGeometry(0.019, 0.019, 0.006, 20);
+  badgeGeo.rotateX(Math.PI / 2);
+  const badge = new THREE.Mesh(badgeGeo, MAT.brass);
+  badge.position.set(-0.45, 0.62, s * 0.135);
+  bike.add(badge);
+}
+
+bike.traverse((o) => {
+  if (o.isMesh) {
+    o.castShadow = true;
+    o.receiveShadow = true;
+  }
+});
+
+function animate() {
+  controls.update();
+  renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate);
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
