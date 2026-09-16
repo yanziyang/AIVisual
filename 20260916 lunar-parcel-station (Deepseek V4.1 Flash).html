@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lunar Parcel Station &mdash; Animated SVG</title>
+<style>
+  :root{
+    --plum-900:#150b1f;
+    --plum-700:#33203f;
+    --plum-600:#4a2f5a;
+    --gold:#e8c97a;
+    --gold-soft:#f0d9a0;
+    --chalk:#f7f3e8;
+    --coral:#e2826f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1100px 520px at 50% -80px, rgba(74,47,90,.55), rgba(74,47,90,0) 70%),
+      var(--plum-900);
+    color:var(--chalk);
+    font-family:Verdana, "Segoe UI", system-ui, sans-serif;
+    line-height:1.55;
+  }
+  .page-wrap{max-width:1240px;margin:0 auto;padding:28px 20px 56px}
+  .page-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-bottom:16px}
+  .page-title{margin:0;font-size:clamp(20px,2.6vw,30px);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+  .page-sub{margin:0;font-size:12.5px;letter-spacing:.06em;color:rgba(247,243,232,.72)}
+  .stage-frame{
+    position:relative;aspect-ratio:12/7;width:100%;
+    background:var(--plum-900);
+    border:1px solid rgba(201,169,106,.5);
+    border-radius:14px;overflow:hidden;
+    box-shadow:0 18px 60px rgba(0,0,0,.45), inset 0 0 60px rgba(74,47,90,.35);
+  }
+  .stage-frame svg{display:block;width:100%;height:100%}
+  .stage-hint{margin:10px 2px 0;font-size:12px;letter-spacing:.04em;color:rgba(247,243,232,.62)}
+  .stage-hint b{color:var(--gold-soft);font-weight:600}
+  .prompt-panel{
+    margin-top:26px;padding:20px 22px 18px;
+    background:linear-gradient(180deg, rgba(74,47,90,.28), rgba(36,22,51,.35));
+    border:1px solid rgba(201,169,106,.32);
+    border-left:4px solid var(--coral);
+    border-radius:12px;
+  }
+  .prompt-title{margin:0 0 10px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .prompt-text{margin:0;font-size:13.5px;color:rgba(247,243,232,.92)}
+  .prompt-meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+  .swatch{
+    display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.05em;
+    color:rgba(247,243,232,.85);border:1px solid rgba(201,169,106,.3);border-radius:999px;
+    padding:5px 11px 5px 6px;background:rgba(21,11,31,.45);
+  }
+  .swatch i{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid rgba(21,11,31,.65)}
+  .page-foot{margin-top:26px;font-size:11.5px;color:rgba(247,243,232,.45);letter-spacing:.05em}
+  code{font-family:ui-monospace, Consolas, monospace;color:var(--gold-soft);font-size:.95em}
+  @media (max-width:640px){ .page-wrap{padding:18px 12px 40px} }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="page-head">
+    <h1 class="page-title">Lunar Parcel Station</h1>
+    <p class="page-sub">A whimsical animated SVG delivery cycle &mdash; looping and clickable.</p>
+  </header>
+
+  <section class="stage-frame" aria-label="Animated lunar parcel station">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="background:#150b1f">
+<title>Lunar Parcel Station</title>
+<desc>An animated lunar parcel station: a delivery capsule lands, unfolds a conveyor, rolls out parcels, and a rover collects and feeds them to a scanning airlock. Click a parcel to prioritize it.</desc>
+<defs>
+<linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#150b1f"/>
+<stop offset="0.42" stop-color="#241633"/>
+<stop offset="0.78" stop-color="#33203f"/>
+<stop offset="1" stop-color="#2a1b3d"/>
+</linearGradient>
+<radialGradient id="horizonG" cx="0.5" cy="0.82" r="0.62">
+<stop offset="0" stop-color="#4a2f5a" stop-opacity="0.55"/>
+<stop offset="1" stop-color="#4a2f5a" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="groundG" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f3ecd9"/>
+<stop offset="0.5" stop-color="#e6d7b4"/>
+<stop offset="1" stop-color="#cdb98d"/>
+</linearGradient>
+<linearGradient id="domeG" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#fffdf5"/>
+<stop offset="0.7" stop-color="#e9dcbd"/>
+<stop offset="1" stop-color="#d9c9a8"/>
+</linearGradient>
+<linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#fffdf5"/>
+<stop offset="0.65" stop-color="#f7f3e8"/>
+<stop offset="1" stop-color="#ded0b4"/>
+</linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#f0d9a0" stop-opacity="0"/>
+<stop offset="0.35" stop-color="#f0d9a0" stop-opacity="0.75"/>
+<stop offset="0.5" stop-color="#fffdf5" stop-opacity="1"/>
+<stop offset="0.65" stop-color="#f0d9a0" stop-opacity="0.75"/>
+<stop offset="1" stop-color="#f0d9a0" stop-opacity="0"/>
+</linearGradient>
+<radialGradient id="flameG" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#fffdf5"/>
+<stop offset="0.45" stop-color="#f0d9a0"/>
+<stop offset="1" stop-color="#e2826f" stop-opacity="0.1"/>
+</radialGradient>
+<radialGradient id="planetG" cx="0.36" cy="0.34" r="0.75">
+<stop offset="0" stop-color="#fffdf5"/>
+<stop offset="0.55" stop-color="#f0d9a0"/>
+<stop offset="1" stop-color="#c9a96a"/>
+</radialGradient>
+<radialGradient id="vigG" cx="0.5" cy="0.44" r="0.78">
+<stop offset="0.62" stop-color="#000000" stop-opacity="0"/>
+<stop offset="1" stop-color="#000000" stop-opacity="0.34"/>
+</radialGradient>
+<filter id="soft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="glow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<style>
+@keyframes tw{0%,100%{opacity:.18}50%{opacity:1}}
+@keyframes blink{0%,100%{opacity:.15}9%{opacity:1}24%{opacity:.25}36%{opacity:.9}62%{opacity:.2}}
+@keyframes halo{0%,100%{transform:scale(1);opacity:.42}50%{transform:scale(2.15);opacity:0}}
+@keyframes spin360{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes spinRev{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes motedrift{from{transform:translate(0,0)}to{transform:translate(46px,-34px)}}
+@keyframes motedrift2{from{transform:translate(0,0)}to{transform:translate(-40px,-24px)}}
+@keyframes beltSlide{from{transform:translateX(0)}to{transform:translateX(40px)}}
+@keyframes zfloat{from{transform:translateY(0);opacity:.3}to{transform:translateY(-7px);opacity:.95}}
+@keyframes bobmark{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+@keyframes winpulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes flick{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(.78) scaleX(1.08)}}
+.st{animation:tw 3.4s ease-in-out infinite}
+.beacon{animation:blink 1.7s ease-in-out infinite}
+.b2{animation-delay:.5s;animation-duration:2.1s}
+.b3{animation-delay:1.05s;animation-duration:1.9s}
+.b4{animation-delay:.25s;animation-duration:2.4s}
+.halo{transform-box:fill-box;transform-origin:center;animation:halo 1.7s ease-out infinite}
+.b2.halo{animation-delay:.5s;animation-duration:2.1s}
+.b3.halo{animation-delay:1.05s;animation-duration:1.9s}
+.wnd{animation:winpulse 3.6s ease-in-out infinite}
+.wnd.w2{animation-delay:1.4s}
+#satA{transform-box:view-box;transform-origin:560px 210px;animation:spin360 46s linear infinite}
+#satAIn{transform-box:view-box;transform-origin:760px 210px;animation:spin360 46s linear infinite reverse}
+#satB{transform-box:view-box;transform-origin:740px 160px;animation:spinRev 68s linear infinite}
+#satBIn{transform-box:view-box;transform-origin:890px 160px;animation:spin360 68s linear infinite}
+.m1{animation:motedrift 21s ease-in-out infinite alternate}
+.m2{animation:motedrift2 26s ease-in-out infinite alternate}
+.m3{animation:motedrift 15s ease-in-out infinite alternate}
+#beltRun{opacity:0;transition:opacity .45s}
+#beltRun.on{opacity:.85;animation:beltSlide .5s linear infinite}
+#zzz{animation:zfloat 1.9s ease-in-out infinite alternate}
+#pkgMarkIn{animation:bobmark .8s ease-in-out infinite alternate}
+.pkg{cursor:pointer}
+.pkg:hover{filter:brightness(1.14) saturate(1.12)}
+#engineGlow{transform-box:fill-box;transform-origin:center;animation:flick .13s linear infinite}
+</style>
+
+<g id="scene">
+<rect x="0" y="0" width="1200" height="700" fill="url(#skyG)"/>
+<rect x="0" y="0" width="1200" height="700" fill="url(#horizonG)"/>
+<g id="aurora" filter="url(#soft)" opacity="0.5">
+<ellipse cx="240" cy="200" rx="320" ry="70" fill="#4a2f5a" opacity="0.5"/>
+<ellipse cx="900" cy="120" rx="380" ry="80" fill="#3b2549" opacity="0.6"/>
+<ellipse cx="620" cy="300" rx="420" ry="60" fill="#5a3a68" opacity="0.25"/>
+</g>
+<g id="stars">
+<circle class="st" cx="60" cy="60" r="1.5" fill="#fffdf5" style="animation-delay:-.4s"/>
+<circle class="st" cx="150" cy="34" r="1" fill="#f0d9a0" style="animation-delay:-1.7s"/>
+<circle class="st" cx="232" cy="96" r="1.3" fill="#fffdf5" style="animation-delay:-2.6s"/>
+<circle class="st" cx="318" cy="40" r="1" fill="#fffdf5" style="animation-delay:-.9s"/>
+<circle class="st" cx="396" cy="130" r="1.6" fill="#f0d9a0" style="animation-delay:-2.1s"/>
+<circle class="st" cx="482" cy="58" r="1.1" fill="#fffdf5" style="animation-delay:-3.1s"/>
+<circle class="st" cx="560" cy="118" r="1.4" fill="#fffdf5" style="animation-delay:-1.2s"/>
+<circle class="st" cx="648" cy="44" r="1" fill="#f0d9a0" style="animation-delay:-2.8s"/>
+<circle class="st" cx="724" cy="98" r="1.5" fill="#fffdf5" style="animation-delay:-.2s"/>
+<circle class="st" cx="812" cy="36" r="1.2" fill="#fffdf5" style="animation-delay:-1.9s"/>
+<circle class="st" cx="884" cy="140" r="1" fill="#f0d9a0" style="animation-delay:-3.4s"/>
+<circle class="st" cx="960" cy="52" r="1.4" fill="#fffdf5" style="animation-delay:-.7s"/>
+<circle class="st" cx="1052" cy="196" r="1.2" fill="#fffdf5" style="animation-delay:-2.3s"/>
+<circle class="st" cx="1136" cy="70" r="1.5" fill="#f0d9a0" style="animation-delay:-1.5s"/>
+<circle class="st" cx="1180" cy="180" r="1" fill="#fffdf5" style="animation-delay:-2.9s"/>
+<circle class="st" cx="86" cy="240" r="1.2" fill="#fffdf5" style="animation-delay:-1.1s"/>
+<circle class="st" cx="188" cy="330" r="1" fill="#f0d9a0" style="animation-delay:-3.7s"/>
+<circle class="st" cx="300" cy="252" r="1.4" fill="#fffdf5" style="animation-delay:-2.5s"/>
+<circle class="st" cx="470" cy="320" r="1" fill="#fffdf5" style="animation-delay:-.5s"/>
+<circle class="st" cx="930" cy="300" r="1.3" fill="#f0d9a0" style="animation-delay:-1.8s"/>
+<path class="st" d="M700,250 l0,-9 M700,208 l0,9 M679,229 l9,0 M712,229 l-9,0" stroke="#fffdf5" stroke-width="1.6" style="animation-delay:-1.3s"/>
+<path class="st" d="M120,380 l0,-7 M120,345 l0,7 M102,362 l7,0 M131,362 l-7,0" stroke="#f0d9a0" stroke-width="1.4" style="animation-delay:-2.7s"/>
+<path class="st" d="M1076,330 l0,-7 M1076,295 l0,7 M1058,312 l7,0 M1087,312 l-7,0" stroke="#fffdf5" stroke-width="1.4" style="animation-delay:-.8s"/>
+</g>
+<g id="planet">
+<ellipse cx="1085" cy="104" rx="60" ry="16" fill="none" stroke="#c9a96a" stroke-width="4" opacity="0.45" transform="rotate(-16 1085 104)"/>
+<circle cx="1085" cy="100" r="36" fill="url(#planetG)"/>
+<path d="M1058,84 Q1078,96 1108,82" fill="none" stroke="#e8c97a" stroke-width="4" opacity="0.7"/>
+<path d="M1062,118 Q1084,108 1106,118" fill="none" stroke="#e8c97a" stroke-width="4" opacity="0.55"/>
+<circle cx="1085" cy="100" r="48" fill="#f0d9a0" opacity="0.14" filter="url(#soft)"/>
+</g>
+<g id="satellites">
+<g id="satA">
+<g id="satAIn">
+<rect x="742" y="203" width="36" height="13" rx="3.5" fill="#f7f3e8" stroke="#1b1026" stroke-width="1.6"/>
+<rect x="714" y="206.5" width="22" height="6" fill="#c9a96a" stroke="#1b1026" stroke-width="1"/>
+<rect x="784" y="206.5" width="22" height="6" fill="#c9a96a" stroke="#1b1026" stroke-width="1"/>
+<line x1="760" y1="203" x2="760" y2="195" stroke="#f7f3e8" stroke-width="1.6"/>
+<circle class="beacon" cx="760" cy="192" r="2.8" fill="#e2826f"/>
+<circle class="halo" cx="760" cy="192" r="4.5" fill="#e2826f" opacity="0.4"/>
+</g>
+</g>
+<g id="satB">
+<g id="satBIn">
+<rect x="876" y="154" width="26" height="11" rx="3" fill="#4a2f5a" stroke="#1b1026" stroke-width="1.5"/>
+<rect x="856" y="157" width="16" height="5" fill="#e8c97a" stroke="#1b1026" stroke-width="1"/>
+<rect x="906" y="157" width="16" height="5" fill="#e8c97a" stroke="#1b1026" stroke-width="1"/>
+<circle class="beacon b2" cx="889" cy="147" r="2.4" fill="#f0d9a0"/>
+<circle class="halo b2" cx="889" cy="147" r="4" fill="#f0d9a0" opacity="0.4"/>
+</g>
+</g>
+</g>
+<path id="hills" d="M0,474 Q140,438 290,468 T600,458 T900,470 T1200,452 L1200,700 L0,700 Z" fill="#3b2549" opacity="0.6"/>
+<path id="terrain" d="M0,452 L60,446 L120,456 L180,476 L240,480 L300,480 L360,480 L420,482 L480,478 L540,490 L600,486 L660,481 L700,477 L740,489 L780,486 L840,492 L900,490 L960,486 L1020,488 L1080,492 L1140,486 L1200,490 L1200,700 L0,700 Z" fill="url(#groundG)" stroke="#cbb98f" stroke-width="2"/>
+<g id="craters" fill="none" stroke="#cbb98f" opacity="0.55">
+<ellipse cx="150" cy="538" rx="62" ry="13" stroke-width="2"/>
+<ellipse cx="150" cy="536" rx="44" ry="8" stroke="#d8c69a" stroke-width="3"/>
+<ellipse cx="700" cy="560" rx="84" ry="17" stroke-width="2"/>
+<ellipse cx="700" cy="557" rx="58" ry="10" stroke="#d8c69a" stroke-width="3"/>
+<ellipse cx="950" cy="620" rx="104" ry="21" stroke-width="2"/>
+<ellipse cx="950" cy="616" rx="72" ry="13" stroke="#d8c69a" stroke-width="3"/>
+<ellipse cx="390" cy="600" rx="70" ry="15" stroke-width="2"/>
+<ellipse cx="1130" cy="560" rx="50" ry="11" stroke-width="2"/>
+<path d="M600,520 q10,-7 20,0" stroke-width="2"/>
+<path d="M240,560 q12,-8 24,0" stroke-width="2"/>
+</g>
+<g id="pebbles" fill="#d8c69a" stroke="#bda876" stroke-width="1.5">
+<path d="M636,484 l7,-5 l8,4 l-2,6 l-9,2 Z"/>
+<path d="M756,496 l6,-4 l7,3 l-1,6 l-8,1 Z"/>
+<path d="M862,498 l5,-3 l6,2 l-1,5 l-7,1 Z"/>
+<path d="M448,490 l8,-6 l9,5 l-2,7 l-10,1 Z"/>
+</g>
+<g id="beacons">
+<g>
+<line x1="170" y1="473" x2="170" y2="446" stroke="#3b2549" stroke-width="5"/>
+<path d="M162,446 L178,446 L170,432 Z" fill="#4a2f5a" stroke="#1b1026" stroke-width="2"/>
+<circle class="beacon b3" cx="170" cy="430" r="4.5" fill="#e2826f"/>
+<circle class="halo b3" cx="170" cy="430" r="7" fill="#e2826f" opacity="0.35"/>
+</g>
+<g>
+<line x1="1150" y1="486" x2="1150" y2="462" stroke="#3b2549" stroke-width="5"/>
+<circle class="beacon b4" cx="1150" cy="458" r="5" fill="#f0d9a0"/>
+<circle class="halo b4" cx="1150" cy="458" r="8" fill="#f0d9a0" opacity="0.35"/>
+</g>
+<g>
+<line x1="512" y1="483" x2="512" y2="464" stroke="#3b2549" stroke-width="4"/>
+<circle class="beacon" cx="512" cy="460" r="4" fill="#e2826f"/>
+<circle class="halo" cx="512" cy="460" r="6" fill="#e2826f" opacity="0.35"/>
+</g>
+</g>
+<g id="pad">
+<ellipse cx="300" cy="481" rx="82" ry="17" fill="none" stroke="#e8c97a" stroke-width="2.5" stroke-dasharray="14 10" opacity="0.6"/>
+<ellipse cx="300" cy="481" rx="58" ry="12" fill="none" stroke="#e8c97a" stroke-width="1.5" opacity="0.35"/>
+<ellipse id="capShadow" cx="300" cy="482" rx="70" ry="13" fill="#1b1026" opacity="0.2"/>
+</g>
+<g id="station">
+<ellipse cx="1030" cy="491" rx="142" ry="15" fill="#1b1026" opacity="0.2"/>
+<path d="M915,489 A115,115 0 0 1 1145,489 Z" fill="url(#domeG)" stroke="#c9a96a" stroke-width="2.5"/>
+<path d="M931,489 A99,99 0 0 1 1129,489" fill="none" stroke="#d9c8a0" stroke-width="1.6" opacity="0.75"/>
+<path d="M952,489 A78,78 0 0 1 1108,489" fill="none" stroke="#d9c8a0" stroke-width="1.6" opacity="0.75"/>
+<path d="M975,489 A55,55 0 0 1 1085,489" fill="none" stroke="#d9c8a0" stroke-width="1.6" opacity="0.75"/>
+<line x1="1030" y1="377" x2="1030" y2="489" stroke="#d9c8a0" stroke-width="1.4" opacity="0.5"/>
+<line x1="966" y1="430" x2="1094" y2="430" stroke="#d9c8a0" stroke-width="1.4" opacity="0.4"/>
+<line x1="984" y1="404" x2="1076" y2="404" stroke="#d9c8a0" stroke-width="1.4" opacity="0.4"/>
+<path d="M915,489 A115,115 0 0 1 1145,489" fill="none" stroke="#e2826f" stroke-width="3" opacity="0.9"/>
+<circle class="wnd" cx="1012" cy="434" r="9" fill="#f0d9a0" stroke="#1b1026" stroke-width="2.5"/>
+<circle class="wnd w2" cx="1064" cy="408" r="7" fill="#f0d9a0" stroke="#1b1026" stroke-width="2.5"/>
+<circle cx="1012" cy="434" r="14" fill="#f0d9a0" opacity="0.16" filter="url(#glow)"/>
+<text x="1030" y="400" text-anchor="middle" font-family="Verdana,sans-serif" font-size="13" letter-spacing="3" fill="#f7f3e8" opacity="0.72">LUNA</text>
+<text x="1030" y="416" text-anchor="middle" font-family="Verdana,sans-serif" font-size="11" letter-spacing="1.6" fill="#e8c97a" opacity="0.8">PARCEL POST</text>
+<rect x="1027" y="302" width="6" height="75" fill="#3b2549"/>
+<line x1="1030" y1="302" x2="1030" y2="284" stroke="#f7f3e8" stroke-width="2"/>
+<circle class="beacon" cx="1030" cy="280" r="5" fill="#e2826f"/>
+<circle class="halo" cx="1030" cy="280" r="9" fill="#e2826f" opacity="0.35"/>
+</g>
+<g id="airlock">
+<rect x="870" y="422" width="72" height="68" rx="10" fill="#ded0b4" stroke="#c9a96a" stroke-width="2.5"/>
+<rect x="876" y="428" width="60" height="62" rx="6" fill="#1b1026"/>
+<ellipse cx="906" cy="468" rx="42" ry="42" fill="#f0d9a0" opacity="0.1"/>
+<rect id="doorL" x="877" y="429" width="29" height="61" rx="5" fill="#4a2f5a" stroke="#c9a96a" stroke-width="2"/>
+<rect id="doorR" x="906" y="429" width="29" height="61" rx="5" fill="#4a2f5a" stroke="#c9a96a" stroke-width="2"/>
+<rect x="881" y="434" width="7" height="51" rx="3.5" fill="#c9a96a" opacity="0.8"/>
+<rect x="924" y="434" width="7" height="51" rx="3.5" fill="#c9a96a" opacity="0.8"/>
+<rect x="876" y="422" width="60" height="6" rx="3" fill="#c9a96a"/>
+<circle class="beacon" cx="884" cy="425" r="3" fill="#e2826f"/>
+<circle class="beacon b2" cx="892" cy="425" r="3" fill="#f0d9a0"/>
+<circle class="beacon b3" cx="900" cy="425" r="3" fill="#e2826f"/>
+</g>
+<g id="capsule" opacity="1" transform="translate(300,478)">
+<g id="capSquash">
+<g id="legB" transform="rotate(0 0 -26)">
+<path d="M-7,-6 L7,-6 L16,22 L-16,22 Z" fill="#2a1b3d" stroke="#1b1026" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="0" cy="26" rx="16" ry="5" fill="#3b2549" stroke="#1b1026" stroke-width="1.5"/>
+</g>
+<g id="legL" transform="rotate(0 -44 -30)">
+<path d="M5,-6 L-5,-6 L-13,24 L-1,24 Z" fill="#3b2549" stroke="#1b1026" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="-8" cy="27" rx="13" ry="5" fill="#e9dcbd" stroke="#c9a96a" stroke-width="2"/>
+</g>
+<g id="legR" transform="rotate(0 44 -30)">
+<path d="M-5,-6 L5,-6 L13,24 L1,24 Z" fill="#3b2549" stroke="#1b1026" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="8" cy="27" rx="13" ry="5" fill="#e9dcbd" stroke="#c9a96a" stroke-width="2"/>
+</g>
+<ellipse id="engineGlow" cx="0" cy="-4" rx="24" ry="15" fill="url(#flameG)" opacity="0"/>
+<path d="M-48,-12 L-48,-88 Q-48,-128 0,-138 Q48,-128 48,-88 L48,-12 Q48,-4 40,-4 L-40,-4 Q-48,-4 -48,-12 Z" fill="url(#bodyG)" stroke="#1b1026" stroke-width="2.6"/>
+<path d="M-48,-52 Q0,-44 48,-52" fill="none" stroke="#e0cd9f" stroke-width="3"/>
+<path d="M-48,-14 L48,-14 L48,-6 Q48,-4 40,-4 L-40,-4 Q-48,-4 -48,-6 Z" fill="#3b2549"/>
+<path d="M-30,-116 Q-34,-150 0,-158 Q34,-150 30,-116 Q16,-108 0,-108 Q-16,-108 -30,-116 Z" fill="#e2826f" stroke="#1b1026" stroke-width="2.4"/>
+<path d="M-24,-118 Q0,-126 24,-118" fill="none" stroke="#f0d9a0" stroke-width="2.4"/>
+<circle cx="0" cy="-84" r="15" fill="#f0d9a0" stroke="#c9a96a" stroke-width="3"/>
+<circle cx="-4" cy="-88" r="4" fill="#fffdf5" opacity="0.85"/>
+<circle cx="5" cy="-79" r="2.2" fill="#fffdf5" opacity="0.7"/>
+<g transform="translate(54,-96)"><path d="M-6,-6 L6,-6 L10,5 L-10,5 Z" fill="#e2826f" stroke="#1b1026" stroke-width="2"/><rect x="-3" y="-8" width="6" height="3" fill="#f0d9a0"/></g>
+<g transform="translate(-54,-96)"><path d="M6,-6 L-6,-6 L-10,5 L10,5 Z" fill="#e2826f" stroke="#1b1026" stroke-width="2"/><rect x="-3" y="-8" width="6" height="3" fill="#f0d9a0"/></g>
+<g transform="translate(22,-8)"><path d="M-8,-6 L8,-6 L11,3 L-11,3 Z" fill="#4a2f5a" stroke="#1b1026" stroke-width="2"/></g>
+<g transform="translate(-22,-8)"><path d="M8,-6 L-8,-6 L-11,3 L11,3 Z" fill="#4a2f5a" stroke="#1b1026" stroke-width="2"/></g>
+<rect id="bay" x="22" y="-102" width="34" height="72" rx="6" fill="#1b1026" opacity="0"/>
+<g id="doorBot" transform="rotate(0 46 -8)">
+<rect x="32" y="-32" width="26" height="24" rx="6" fill="#4a2f5a" stroke="#c9a96a" stroke-width="2"/>
+<circle cx="55" cy="-20" r="2.5" fill="#e2826f"/>
+</g>
+<g id="conveyor" opacity="0">
+<g transform="rotate(10.3 46 -30)">
+<g id="conveyorScale" transform="translate(46,-30) scale(0.03,1) translate(-46,30)">
+<rect x="46" y="-38" width="190" height="8" rx="3" fill="#4a2f5a" stroke="#c9a96a" stroke-width="1.6"/>
+<rect x="52" y="-37" width="182" height="3" rx="1.5" fill="#8a6a3a" opacity="0.8"/>
+</g>
+<g id="rollerG" opacity="0">
+<circle cx="70" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="92" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="114" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="136" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="158" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="180" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="202" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+<circle cx="224" cy="-30" r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+</g>
+<g id="beltRun">
+<rect x="62" y="-36" width="14" height="4" rx="2" fill="#f0d9a0"/>
+<rect x="102" y="-36" width="14" height="4" rx="2" fill="#f0d9a0"/>
+<rect x="142" y="-36" width="14" height="4" rx="2" fill="#f0d9a0"/>
+<rect x="182" y="-36" width="14" height="4" rx="2" fill="#f0d9a0"/>
+</g>
+<g id="strut" opacity="0">
+<line x1="193" y1="-6" x2="193" y2="10" stroke="#3b2549" stroke-width="5"/>
+<ellipse cx="193" cy="11" rx="9" ry="3.5" fill="#4a2f5a" stroke="#1b1026" stroke-width="1.5"/>
+</g>
+</g>
+</g>
+<g id="doorTop" transform="rotate(0 46 -102)">
+<rect x="32" y="-102" width="26" height="70" rx="7" fill="#4a2f5a" stroke="#c9a96a" stroke-width="2"/>
+<rect x="37" y="-96" width="16" height="58" rx="4" fill="none" stroke="#c9a96a" stroke-width="1.4" opacity="0.75"/>
+<circle cx="55" cy="-68" r="3" fill="#e2826f"/>
+</g>
+</g>
+</g>
+<g id="rover" transform="translate(852,492)">
+<g id="roverS" transform="scale(-1,1)">
+<ellipse cx="0" cy="2" rx="56" ry="7" fill="#1b1026" opacity="0.16"/>
+<line id="susp0" x1="26" y1="-18" x2="26" y2="-13" stroke="#3b2549" stroke-width="5" stroke-linecap="round"/>
+<line id="susp1" x1="0" y1="-18" x2="0" y2="-13" stroke="#3b2549" stroke-width="5" stroke-linecap="round"/>
+<line id="susp2" x1="-26" y1="-18" x2="-26" y2="-13" stroke="#3b2549" stroke-width="5" stroke-linecap="round"/>
+<g id="wh0" transform="translate(26,-13)">
+<circle r="13" fill="#2a1b3d" stroke="#1b1026" stroke-width="2.5"/>
+<circle r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.5"/>
+<line x1="-11" y1="0" x2="11" y2="0" stroke="#c9a96a" stroke-width="2"/>
+<line x1="0" y1="-11" x2="0" y2="11" stroke="#c9a96a" stroke-width="2"/>
+</g>
+<g id="wh1" transform="translate(0,-13)">
+<circle r="13" fill="#2a1b3d" stroke="#1b1026" stroke-width="2.5"/>
+<circle r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.5"/>
+<line x1="-11" y1="0" x2="11" y2="0" stroke="#c9a96a" stroke-width="2"/>
+<line x1="0" y1="-11" x2="0" y2="11" stroke="#c9a96a" stroke-width="2"/>
+</g>
+<g id="wh2" transform="translate(-26,-13)">
+<circle r="13" fill="#2a1b3d" stroke="#1b1026" stroke-width="2.5"/>
+<circle r="4.5" fill="#c9a96a" stroke="#1b1026" stroke-width="1.5"/>
+<line x1="-11" y1="0" x2="11" y2="0" stroke="#c9a96a" stroke-width="2"/>
+<line x1="0" y1="-11" x2="0" y2="11" stroke="#c9a96a" stroke-width="2"/>
+</g>
+<g id="roverBody">
+<rect x="-46" y="-20" width="82" height="20" rx="9" fill="#f7f3e8" stroke="#1b1026" stroke-width="2.6"/>
+<path d="M34,-20 Q56,-17 56,-10 Q56,-3 34,-2 Z" fill="#e2826f" stroke="#1b1026" stroke-width="2.6"/>
+<rect x="-46" y="-13" width="80" height="6" fill="#4a2f5a" opacity="0.95"/>
+<circle cx="52" cy="-8" r="3.2" fill="#f0d9a0" stroke="#1b1026" stroke-width="1.6"/>
+<g transform="translate(-6,-30) rotate(-14)">
+<rect x="-16" y="-6" width="32" height="12" rx="2.5" fill="#c9a96a" stroke="#1b1026" stroke-width="2"/>
+<line x1="-6" y1="-6" x2="-6" y2="6" stroke="#1b1026" stroke-width="1.2"/>
+<line x1="6" y1="-6" x2="6" y2="6" stroke="#1b1026" stroke-width="1.2"/>
+</g>
+<g id="antenna" transform="translate(-30,-20) rotate(24)">
+<line x1="0" y1="0" x2="-11" y2="-25" stroke="#f7f3e8" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="-11" cy="-25" r="4.2" fill="#e2826f" stroke="#1b1026" stroke-width="1.6"/>
+<circle id="antGlow" cx="-11" cy="-25" r="8" fill="#e2826f" opacity="0" filter="url(#glow)"/>
+</g>
+<circle cx="30" cy="-11" r="8" fill="#f0d9a0" stroke="#1b1026" stroke-width="2.6"/>
+<circle cx="32.5" cy="-11" r="2.8" fill="#1b1026"/>
+<ellipse id="eyeGlow" cx="30" cy="-11" rx="14" ry="14" fill="#f0d9a0" opacity="0" filter="url(#glow)"/>
+<g id="armBase" transform="translate(14,-20)">
+<circle r="6.5" fill="#c9a96a" stroke="#1b1026" stroke-width="2"/>
+<g id="armUp" transform="rotate(-60)">
+<rect x="-4" y="-4.5" width="38" height="9" rx="4.5" fill="#f7f3e8" stroke="#1b1026" stroke-width="2.2"/>
+<g id="armLo" transform="translate(30,0) rotate(30)">
+<rect x="-3" y="-4" width="25" height="8" rx="4" fill="#4a2f5a" stroke="#1b1026" stroke-width="1.8"/>
+<g id="armExt" transform="scale(0.6,1)">
+<rect x="19" y="-3" width="26" height="6" rx="3" fill="#e9dcbd" stroke="#1b1026" stroke-width="1.6"/>
+<g id="claw" transform="translate(44,0) scale(1.66,1)">
+<g id="clawA" transform="rotate(-16)"><path d="M-2,-4 Q8,-7 12,-1" fill="none" stroke="#1b1026" stroke-width="3.2" stroke-linecap="round"/></g>
+<g id="clawB" transform="rotate(16)"><path d="M-2,4 Q8,7 12,1" fill="none" stroke="#1b1026" stroke-width="3.2" stroke-linecap="round"/></g>
+<circle r="2.6" fill="#c9a96a" stroke="#1b1026" stroke-width="1.4"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<text id="zzz" x="-52" y="-34" font-family="Verdana,sans-serif" font-size="11" fill="#f7f3e8" opacity="0.9">z z z</text>
+</g>
+</g>
+</g>
+<g id="packageLayer">
+<g id="p0" class="pkg" opacity="0">
+<rect x="-21" y="-21" width="42" height="42" rx="5" fill="#e2826f" stroke="#1b1026" stroke-width="2.6"/>
+<rect x="-21" y="-4.5" width="42" height="9" fill="#f0d9a0" stroke="#1b1026" stroke-width="1.6"/>
+<rect x="-4.5" y="-21" width="9" height="42" fill="#f0d9a0" stroke="#1b1026" stroke-width="1.6"/>
+<rect x="-16" y="6" width="11" height="9" rx="1.5" fill="#f7f3e8" stroke="#1b1026" stroke-width="1.2" opacity="0.95"/>
+</g>
+<g id="p1" class="pkg" opacity="0">
+<path d="M-18,-20 L-18,17 Q-18,23 0,23 Q18,23 18,17 L18,-20 Z" fill="#e8c97a" stroke="#1b1026" stroke-width="2.6"/>
+<ellipse cx="0" cy="-20" rx="18" ry="6" fill="#f0d9a0" stroke="#1b1026" stroke-width="2"/>
+<rect x="-18" y="-9" width="36" height="8" fill="#e2826f" stroke="#1b1026" stroke-width="1.6"/>
+<rect x="-18" y="5" width="36" height="7" fill="#e2826f" stroke="#1b1026" stroke-width="1.6"/>
+</g>
+<g id="p2" class="pkg" opacity="0">
+<circle r="20" fill="#f7f3e8" stroke="#1b1026" stroke-width="2.6"/>
+<path d="M-14,-14 Q0,0 14,14 M14,-14 Q0,0 -14,14" fill="none" stroke="#4a2f5a" stroke-width="3"/>
+<circle r="4" fill="#e2826f" stroke="#1b1026" stroke-width="1.6"/>
+<path d="M-13,10 Q0,17 13,10" fill="none" stroke="#d8c69a" stroke-width="3"/>
+</g>
+<g id="p3" class="pkg" opacity="0">
+<rect x="-25" y="-8" width="50" height="16" rx="3" fill="#4a2f5a" stroke="#1b1026" stroke-width="2.6"/>
+<path d="M-25,-8 L0,4 L25,-8" fill="none" stroke="#c9a96a" stroke-width="2"/>
+<rect x="12" y="-5" width="9" height="8" rx="1" fill="#f0d9a0" stroke="#1b1026" stroke-width="1.2"/>
+<line x1="-18" y1="-1" x2="-2" y2="-1" stroke="#f7f3e8" stroke-width="2"/>
+<line x1="-18" y1="3" x2="-8" y2="3" stroke="#f7f3e8" stroke-width="2"/>
+</g>
+<circle id="scanRing" cx="906" cy="470" r="26" fill="none" stroke="#e2826f" stroke-width="2.5" opacity="0" pointer-events="none"/>
+<rect id="scanBeam" x="901" y="427" width="10" height="64" rx="5" fill="url(#beamG)" opacity="0" filter="url(#glow)" pointer-events="none"/>
+<g id="pkgMark" opacity="0" pointer-events="none">
+<g id="pkgMarkIn">
+<path d="M0,-26 L8,-13 L-8,-13 Z" fill="#f0d9a0" stroke="#1b1026" stroke-width="1.6"/>
+<circle cx="0" cy="-31" r="3.6" fill="#e2826f" stroke="#1b1026" stroke-width="1.3"/>
+</g>
+</g>
+<circle id="ping" r="10" fill="none" stroke="#f0d9a0" stroke-width="3" opacity="0" pointer-events="none"/>
+</g>
+<g id="motes" pointer-events="none">
+<circle class="m1" cx="180" cy="360" r="2.2" fill="#f7f3e8" opacity="0.3" style="animation-delay:-4s"/>
+<circle class="m2" cx="360" cy="520" r="2.6" fill="#f0d9a0" opacity="0.26" style="animation-delay:-9s"/>
+<circle class="m1" cx="540" cy="430" r="1.8" fill="#f7f3e8" opacity="0.32" style="animation-delay:-14s"/>
+<circle class="m3" cx="700" cy="560" r="2.4" fill="#f7f3e8" opacity="0.24" style="animation-delay:-6s"/>
+<circle class="m2" cx="860" cy="400" r="2" fill="#e8c97a" opacity="0.3" style="animation-delay:-12s"/>
+<circle class="m3" cx="1010" cy="540" r="2.8" fill="#f7f3e8" opacity="0.22" style="animation-delay:-2s"/>
+<circle class="m1" cx="1120" cy="330" r="1.8" fill="#f0d9a0" opacity="0.3" style="animation-delay:-17s"/>
+<circle class="m2" cx="90" cy="600" r="2.4" fill="#f7f3e8" opacity="0.22" style="animation-delay:-7s"/>
+<circle class="m3" cx="470" cy="640" r="2" fill="#f0d9a0" opacity="0.26" style="animation-delay:-19s"/>
+<circle class="m1" cx="940" cy="260" r="1.7" fill="#f7f3e8" opacity="0.3" style="animation-delay:-11s"/>
+</g>
+<ellipse id="ring0" fill="none" stroke="#f7f3e8" stroke-width="3" opacity="0" pointer-events="none"/>
+<ellipse id="ring1" fill="none" stroke="#f0d9a0" stroke-width="2.5" opacity="0" pointer-events="none"/>
+<g id="fx" pointer-events="none"></g>
+<rect x="0" y="0" width="1200" height="700" fill="url(#vigG)" pointer-events="none"/>
+<text x="24" y="678" font-family="Verdana,sans-serif" font-size="11.5" letter-spacing="2.4" fill="#f7f3e8" opacity="0.42" pointer-events="none">CLICK A PARCEL TO PRIORITIZE IT   -   THE DELIVERY CYCLE REPEATS</text>
+</g>
+
+</svg>
+
+  </section>
+
+  <p class="stage-hint"><b>Click any parcel</b> while it is on the ground to make the rover prioritize it. The full cycle repeats automatically: capsule approach and thruster puffs, leg extension, a dusty touchdown, unfolding cargo doors, a conveyor unloading four differently behaving parcels, the rover waking and collecting each one over uneven terrain, an airlock scan before every pickup, and finally equipment retraction and liftoff &mdash; with satellites, beacons and drifting dust keeping the sky alive.</p>
+
+  <section class="prompt-panel">
+    <h2 class="prompt-title">The prompt</h2>
+    <p class="prompt-text">Generate a richly animated SVG of a whimsical lunar parcel station, using midnight plum, pale gold, chalk white, and muted coral. A delivery capsule enters along a curved flight path, fires small corrective thrusters, extends its landing legs, and touches down in a spreading cloud of moon dust. Cargo doors unfold, a conveyor extends, and differently shaped packages roll out with distinct bouncing and sliding behavior. A small rover wakes up, swivels its antenna, drives over uneven terrain with articulated suspension, and collects the packages with a telescoping robotic arm. An airlock scans each package with a moving light before opening to receive it. Clicking a parcel makes the rover prioritize it. End with the capsule retracting its equipment and lifting off, while orbiting satellites, blinking beacons, and drifting dust keep the background active. Make the entire delivery cycle repeat smoothly.</p>
+    <div class="prompt-meta">
+      <span class="swatch"><i style="background:#2a1b3d"></i>midnight plum</span>
+      <span class="swatch"><i style="background:#e8c97a"></i>pale gold</span>
+      <span class="swatch"><i style="background:#f7f3e8"></i>chalk white</span>
+      <span class="swatch"><i style="background:#e2826f"></i>muted coral</span>
+    </div>
+  </section>
+
+  <p class="page-foot">Files: <code>index.html</code> hosts the animation inline; <code>lunar-parcel-station.svg</code> is the same animation as a standalone SVG (open it directly in a browser for a full-window view).</p>
+
+</div>
+<script>
+(function(){
+"use strict";
+var q=function(id){return document.getElementById(id);};
+var NS="http://www.w3.org/2000/svg";
+var DEG=180/Math.PI, RAD=Math.PI/180;
+var clamp=function(v,a,b){return v<a?a:(v>b?b:v);};
+var lerp=function(a,b,t){return a+(b-a)*t;};
+var easeInOut=function(t){return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;};
+var easeOut=function(t){return 1-Math.pow(1-t,3);};
+var easeIn=function(t){return t*t;};
+
+var TP=[[0,452],[60,446],[120,456],[180,476],[240,480],[300,480],[360,480],[420,482],[480,478],[540,490],[600,486],[660,481],[700,477],[740,489],[780,486],[840,492],[900,490],[960,486],[1020,488],[1080,492],[1140,486],[1200,490]];
+function ground(x){
+  if(x<0)x=0; if(x>1200)x=1200;
+  for(var i=0;i<TP.length-1;i++){
+    var a=TP[i],b=TP[i+1];
+    if(x<=b[0]){var t=(x-a[0])/(b[0]-a[0]);return a[1]+t*(b[1]-a[1]);}
+  }
+  return TP[TP.length-1][1];
+}
+function catmull(pts){
+  var d="M "+pts[0][0]+","+pts[0][1];
+  for(var i=0;i<pts.length-1;i++){
+    var p0=pts[Math.max(0,i-1)],p1=pts[i],p2=pts[i+1],p3=pts[Math.min(pts.length-1,i+2)];
+    var c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+    var c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+    d+=" C "+c1x.toFixed(1)+","+c1y.toFixed(1)+" "+c2x.toFixed(1)+","+c2y.toFixed(1)+" "+p2[0]+","+p2[1];
+  }
+  return d;
+}
+q("terrain").setAttribute("d",catmull(TP)+" L 1200,700 L 0,700 Z");
+
+var starsG=q("stars");
+for(var si=0;si<46;si++){
+  var sc=document.createElementNS(NS,"circle");
+  sc.setAttribute("class","st");
+  sc.setAttribute("cx",(Math.random()*1180+10).toFixed(0));
+  sc.setAttribute("cy",(Math.random()*420+16).toFixed(0));
+  sc.setAttribute("r",(0.6+Math.random()*1.2).toFixed(2));
+  sc.setAttribute("fill",Math.random()<0.7?"#fffdf5":"#f0d9a0");
+  sc.style.animationDelay=(-Math.random()*4).toFixed(2)+"s";
+  sc.style.animationDuration=(2.2+Math.random()*3).toFixed(2)+"s";
+  starsG.appendChild(sc);
+}
+
+var fxG=q("fx"), parts=[];
+for(var pi=0;pi<150;pi++){
+  var pc=document.createElementNS(NS,"circle");
+  pc.setAttribute("opacity","0");
+  fxG.appendChild(pc);
+  parts.push({c:pc,life:0});
+}
+function spawn(x,y,vx,vy,r,life,color,g,grow){
+  for(var i=0;i<parts.length;i++){
+    var p=parts[i];
+    if(p.life<=0){
+      p.life=life;p.max=life;p.x=x;p.y=y;p.vx=vx;p.vy=vy;p.r=r;p.g=g;p.grow=grow||0;
+      p.c.setAttribute("fill",color);p.c.setAttribute("r",r.toFixed(1));
+      p.c.setAttribute("cx",x.toFixed(1));p.c.setAttribute("cy",y.toFixed(1));
+      p.c.setAttribute("opacity","0");
+      return;
+    }
+  }
+}
+var DUST=["#fffdf5","#f0e6cf","#e8c97a"];
+function puff(x,y,pow){
+  var a=Math.random()*Math.PI*2, s=pow*(0.25+Math.random()*0.75);
+  spawn(x,y,Math.cos(a)*s,Math.sin(a)*s*0.45-pow*0.3,1.2+Math.random()*2.2,0.5+Math.random()*1.2,DUST[(Math.random()*3)|0],210,0);
+}
+function cloud(x,y,n,pow){
+  for(var i=0;i<n;i++){
+    var a=Math.random()*Math.PI*2, s=pow*(0.3+Math.random()*0.8);
+    spawn(x+(Math.random()-0.5)*16,y-Math.random()*8,Math.cos(a)*s,Math.sin(a)*s*0.4-9,5+Math.random()*7,1.1+Math.random()*1.3,DUST[(Math.random()*3)|0],30,13);
+  }
+}
+function updateFx(dt){
+  for(var i=0;i<parts.length;i++){
+    var p=parts[i];
+    if(p.life<=0) continue;
+    p.life-=dt;
+    if(p.life<=0){p.c.setAttribute("opacity","0");continue;}
+    p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=p.g*dt; p.vx*=(1-1.6*dt);
+    var gy=ground(p.x)-1;
+    if(p.y>gy){p.y=gy;p.vy=0;p.vx*=(1-2.5*dt);}
+    p.r+=p.grow*dt;
+    p.c.setAttribute("r",p.r.toFixed(1));
+    p.c.setAttribute("cx",p.x.toFixed(1));
+    p.c.setAttribute("cy",p.y.toFixed(1));
+    p.c.setAttribute("opacity",(Math.max(0,p.life/p.max)*0.75).toFixed(2));
+  }
+}
+var ring0=q("ring0"), ring1=q("ring1"), rings=[{el:ring0,t:9},{el:ring1,t:9}];
+function fireRings(x,y){
+  var k=0;
+  for(var i=0;i<rings.length;i++){
+    if(rings[i].t>=1){rings[i].t=-0.26*k; rings[i].x=x; rings[i].y=y; k++;}
+  }
+}
+function updateRings(dt){
+  for(var i=0;i<rings.length;i++){
+    var r=rings[i];
+    if(r.t>1) continue;
+    r.t+=dt/0.95;
+    if(r.t<0){r.el.setAttribute("opacity","0");continue;}
+    var s=0.3+r.t*2.3, o=(1-r.t)*0.7;
+    r.el.setAttribute("cx",r.x); r.el.setAttribute("cy",r.y);
+    r.el.setAttribute("rx",(44*s).toFixed(1)); r.el.setAttribute("ry",(9*s).toFixed(1));
+    r.el.setAttribute("opacity",Math.max(0,o).toFixed(2));
+  }
+}
+
+var capG=q("capsule"), capSquash=q("capSquash"), legL=q("legL"), legR=q("legR"), legB=q("legB");
+var doorTop=q("doorTop"), doorBot=q("doorBot"), bay=q("bay"), convScale=q("conveyorScale"), convG=q("conveyor");
+var rollerG=q("rollerG"), strutG=q("strut"), beltRun=q("beltRun"), engineGlow=q("engineGlow"), capShadow=q("capShadow");
+var roverG=q("rover"), roverS=q("roverS"), roverBody=q("roverBody");
+var susp=[q("susp0"),q("susp1"),q("susp2")];
+var whs=[q("wh0"),q("wh1"),q("wh2")];
+var antennaG=q("antenna"), eyeGlow=q("eyeGlow"), antGlow=q("antGlow");
+var armUp=q("armUp"), armLo=q("armLo"), armExt=q("armExt"), clawG=q("claw"), clawA=q("clawA"), clawB=q("clawB");
+var zzzT=q("zzz");
+var doorLG=q("doorL"), doorRG=q("doorR"), scanBeam=q("scanBeam"), scanRing=q("scanRing");
+var markG=q("pkgMark"), pingG=q("ping");
+
+var A0=[-160,150], A1=[560,40], A2=[300,340];
+function bez(t){var u=1-t;return [u*u*A0[0]+2*u*t*A1[0]+t*t*A2[0], u*u*A0[1]+2*u*t*A1[1]+t*t*A2[1]];}
+
+var FOLD=200;
+var cap={phase:"approach",t:0,x:A0[0],y:A0[1],rot:0,sx:1,sy:1,legs:FOLD,doorTop:0,doorBot:0,conv:0.03,engine:0,puff:0,spawned:0,beltOn:false,gpuff:0};
+function capLocal(lx,ly){
+  var c=Math.cos(cap.rot*RAD), s=Math.sin(cap.rot*RAD);
+  return {x:cap.x+lx*c-ly*s, y:cap.y+lx*s+ly*c};
+}
+function rcsPuff(){
+  var side=Math.random()<0.5?-1:1;
+  var p=capLocal(side*56,-96);
+  for(var i=0;i<5;i++){
+    spawn(p.x,p.y, -side*(55+Math.random()*75)+(Math.random()*20-10), (Math.random()-0.5)*45, 1+Math.random()*2, 0.32+Math.random()*0.4, DUST[(Math.random()*3)|0], 30, 4);
+  }
+}
+function enginePuff(){
+  for(var s=-1;s<=1;s+=2){
+    var p=capLocal(s*22,-6);
+    spawn(p.x,p.y,(Math.random()-0.5)*50, 80+Math.random()*90, 1.4+Math.random()*2.6, 0.28+Math.random()*0.3, DUST[(Math.random()*3)|0], 60, 6);
+  }
+}
+var BELT_C=Math.cos(10.3*RAD), BELT_S=Math.sin(10.3*RAD);
+function beltPoint(s,h){
+  var lx=46+BELT_C*s+BELT_S*h;
+  var ly=-30+BELT_S*s-BELT_C*h;
+  return capLocal(lx,ly);
+}
+
+var defs=[
+  {h:21,e:0.5,dec:320,vx:100,vy:24,roll:0},
+  {h:23,e:0.3,dec:92,vx:126,vy:18,roll:18},
+  {h:20,e:0.5,dec:150,vx:134,vy:14,roll:20},
+  {h:8,e:0.15,dec:300,vx:152,vy:8,roll:0}
+];
+var pkgs=[];
+for(var k=0;k<4;k++){
+  pkgs.push({i:k,def:defs[k],el:q("p"+k),state:"inCapsule",x:0,y:0,rot:0,vx:0,vy:0,s:0,spin:0,air:false,priority:false,wob:0,snap:0,tumble:0});
+}
+for(var ci=0;ci<pkgs.length;ci++){
+  (function(p){
+    p.el.addEventListener("click",function(ev){
+      ev.stopPropagation();
+      var blocked=["inCapsule","ride","carried","atPortal","entering","delivered"];
+      if(blocked.indexOf(p.state)>=0) return;
+      for(var i=0;i<pkgs.length;i++) pkgs[i].priority=false;
+      p.priority=true; p.wob=0.7;
+      pingT=0; pingX=p.x; pingY=p.y;
+      if(R.mode==="driveTo" && R.target && R.target!==p){ R.mode="idle"; R.t=0; }
+    });
+  })(pkgs[ci]);
+}
+var pingT=9, pingX=0, pingY=0, pingAnimT=9;
+
+function activatePkg(i){
+  var p=pkgs[i];
+  p.state="ride"; p.s=6; p.wob=0;
+  p.el.setAttribute("opacity","1");
+}
+var R={x:852,f:-1,mode:"sleep",t:0,target:null,carry:null,carryOff:-18,armT:{x:34,y:-52},e:0.6,th1:-1,th2:0.5,claw:16,spin:[0,0,0],ant:24,bob:0,bobT:0,pitch:0,dust:0,eye:0};
+var WXS=[26,0,-26];
+
+function w2b(wx,wy){
+  var y0=ground(R.x);
+  var lx=(wx-R.x)*R.f, ly=wy-y0;
+  var dy=ly-R.bob;
+  var ca=Math.cos(-R.pitch), sa=Math.sin(-R.pitch);
+  return {x:lx*ca-dy*sa, y:lx*sa+dy*ca};
+}
+function b2w(p){
+  var ca=Math.cos(R.pitch), sa=Math.sin(R.pitch);
+  var bx=p.x*ca-p.y*sa, by=p.x*sa+p.y*ca;
+  var ly=by+R.bob;
+  return {x:R.x+R.f*bx, y:ground(R.x)+ly};
+}
+function solveArm(){
+  var S={x:14,y:-20}, T=R.armT;
+  var dx=T.x-S.x, dy=T.y-S.y;
+  var d=Math.hypot(dx,dy);
+  var L1=30;
+  var L2=clamp(d-L1,28,52);
+  R.e=(L2-8)/44;
+  d=clamp(d,Math.abs(L1-L2)+2,L1+L2-0.5);
+  var phi=Math.atan2(dy,dx);
+  var ca=clamp((L1*L1+d*d-L2*L2)/(2*L1*d),-1,1);
+  R.th1=phi-Math.acos(ca);
+  var cb=clamp((L1*L1+L2*L2-d*d)/(2*L1*L2),-1,1);
+  R.th2=Math.PI-Math.acos(cb);
+  armUp.setAttribute("transform","rotate("+(R.th1*DEG).toFixed(2)+")");
+  armLo.setAttribute("transform","translate(30,0) rotate("+(R.th2*DEG).toFixed(2)+")");
+  armExt.setAttribute("transform","scale("+R.e.toFixed(3)+",1)");
+  clawG.setAttribute("transform","translate(44,0) scale("+(1/R.e).toFixed(3)+",1)");
+  clawA.setAttribute("transform","rotate("+(-R.claw).toFixed(1)+")");
+  clawB.setAttribute("transform","rotate("+R.claw.toFixed(1)+")");
+}
+function armTipBody(){
+  var a1=R.th1, a2=a1+R.th2, la=44*R.e+8;
+  var ex=14+30*Math.cos(a1), ey=-20+30*Math.sin(a1);
+  return {x:ex+la*Math.cos(a2), y:ey+la*Math.sin(a2)};
+}
+function drive(dt,tx,maxV){
+  var dx=tx-R.x, dist=Math.abs(dx);
+  if(dist<0.7){R.dxApplied=0;return true;}
+  var dir=dx>0?1:-1;
+  if(dir!==R.f && dist>26) R.f=dir;
+  var v=Math.min(maxV, Math.sqrt(2*300*Math.max(0,dist-1))+16);
+  var step=Math.min(dist,v*dt);
+  R.x+=dir*step; R.dxApplied=dir*step;
+  return dist<1.6;
+}
+function renderRover(){
+  var y0=ground(R.x);
+  R.pitch=Math.atan2(ground(R.x+R.f*34)-ground(R.x-R.f*34),68);
+  roverG.setAttribute("transform","translate("+R.x.toFixed(1)+","+y0.toFixed(1)+")");
+  roverS.setAttribute("transform","scale("+R.f+",1)");
+  roverBody.setAttribute("transform","translate(0,"+(-26+R.bob).toFixed(2)+") rotate("+(R.pitch*DEG).toFixed(2)+")");
+  antennaG.setAttribute("transform","translate(-30,-20) rotate("+R.ant.toFixed(1)+")");
+  for(var i=0;i<3;i++){
+    var wy=ground(R.x+R.f*WXS[i])-13-y0;
+    whs[i].setAttribute("transform","translate("+WXS[i]+","+wy.toFixed(1)+") rotate("+R.spin[i].toFixed(1)+")");
+    susp[i].setAttribute("x2",WXS[i]);
+    susp[i].setAttribute("y2",wy.toFixed(1));
+  }
+  eyeGlow.setAttribute("opacity",(R.mode==="sleep"?0:(0.4+0.18*Math.sin(T*2.6))).toFixed(2));
+  antGlow.setAttribute("opacity",(R.mode==="sleep"?0:0.55).toFixed(2));
+  zzzT.style.display=(R.mode==="sleep")?"":"none";
+  R.dxApplied=0;
+}
+function holdTargetWorld(){
+  var lift=10*Math.max(0,1-Math.abs(R.carryOff)/18);
+  return {x:R.x+R.carryOff, y:ground(R.x)-74-lift};
+}
+
+function updateRover(dt){
+  var mode=R.mode;
+  R.t+=dt;
+  var tgt={x:34,y:-52}, claw=16;
+  if(mode==="sleep"){
+    R.ant+=(24-R.ant)*Math.min(1,3*dt);
+  } else if(mode==="wake"){
+    R.ant=24*Math.exp(-2.2*R.t)*Math.cos(R.t*9);
+    if(R.t>1.5){R.mode="idle";R.t=0;}
+  } else {
+    R.ant+=(6*Math.sin(T*1.8)-R.ant)*Math.min(1,3*dt);
+  }
+  if(mode==="idle"){
+    var cand=[];
+    for(var i=0;i<pkgs.length;i++){var st=pkgs[i].state; if(st==="rest"||st==="free") cand.push(pkgs[i]);}
+    if(cand.length===0){ R.mode="park"; R.t=0; }
+    else {
+      var pick=null, best=1e9;
+      for(var j=0;j<cand.length;j++){
+        var c=cand[j];
+        var d=Math.abs(c.x-R.x)+(c.priority?-1e6:0);
+        if(d<best){best=d;pick=c;}
+      }
+      R.target=pick; R.mode="driveTo"; R.t=0;
+    }
+  } else if(mode==="driveTo"){
+    var p=R.target;
+    if(!p||["carried","delivered","atPortal","entering"].indexOf(p.state)>=0){R.mode="idle";R.t=0;}
+    else {
+      var prio=null;
+      for(var i2=0;i2<pkgs.length;i2++){var pp=pkgs[i2]; if(pp.priority&&pp!==p&&(pp.state==="rest"||pp.state==="free")) prio=pp;}
+      if(prio){R.target=prio;p=prio;}
+      var done=drive(dt,p.x+82,170);
+      if(done){ if(p.state==="rest"){R.mode="reach";R.t=0;} else {R.mode="waitPkg";R.t=0;} }
+    }
+  } else if(mode==="waitPkg"){
+    var p2=R.target;
+    if(!p2){R.mode="idle";R.t=0;}
+    else if(p2.state==="rest"){R.mode="reach";R.t=0;}
+    else if(p2.state!=="free"){R.mode="idle";R.t=0;}
+    else if(Math.abs(p2.x+82-R.x)>26){R.mode="driveTo";R.t=0;}
+  } else if(mode==="reach"){
+    var p3=R.target;
+    var tp=w2b(p3.x,p3.y-p3.def.h);
+    tgt=tp; claw=16;
+    if(R.t>0.9){R.mode="close";R.t=0;}
+  } else if(mode==="close"){
+    var p4=R.target;
+    tgt=w2b(p4.x,p4.y-p4.def.h); claw=2;
+    if(R.t>0.35){ p4.state="carried"; p4.el.setAttribute("opacity","1"); R.carry=p4; R.carryOff=-18; R.mode="lift"; R.t=0; }
+  } else if(mode==="lift"){
+    tgt=w2b(holdTargetWorld().x,holdTargetWorld().y); claw=2;
+    if(R.t>0.55){R.mode="carryTo";R.t=0;}
+  } else if(mode==="carryTo"){
+    var kk=clamp(R.t/0.9,0,1);
+    R.carryOff=-18+36*easeInOut(kk);
+    var hw=holdTargetWorld();
+    tgt=w2b(hw.x,hw.y); claw=2;
+    var d2=drive(dt,824,170);
+    if(d2&&kk>=1){R.mode="place";R.t=0;}
+  } else if(mode==="place"){
+    var hh=R.carry?R.carry.def.h:21;
+    tgt=w2b(908,ground(908)-2*hh); claw=2;
+    if(R.t>0.72){
+      var p5=R.carry;
+      if(p5){
+        p5.x=908; p5.y=ground(908)-p5.def.h; p5.rot=0; p5.state="atPortal";
+        p5.el.setAttribute("opacity","1");
+      }
+      R.carry=null; claw=16; R.mode="wait"; R.t=0;
+    }
+  } else if(mode==="wait"){
+    tgt={x:34,y:-52}; claw=16;
+    var t6=R.target;
+    if(t6&&t6.state==="delivered"){ R.target=null; R.mode="idle"; R.t=0; }
+  } else if(mode==="park"){
+    var d3=drive(dt,852,150);
+    if(d3){R.mode="parked";R.t=0;}
+  } else if(mode==="parked"){
+    for(var i7=0;i7<pkgs.length;i7++){
+      if(pkgs[i7].state==="rest"||pkgs[i7].state==="free"){ R.mode="idle"; R.t=0; break; }
+    }
+  }
+  R.claw+=(claw-R.claw)*Math.min(1,14*dt);
+  R.armT.x+=(tgt.x-R.armT.x)*Math.min(1,12*dt);
+  R.armT.y+=(tgt.y-R.armT.y)*Math.min(1,12*dt);
+  var dx=R.dxApplied;
+  for(var w=0;w<3;w++){ R.spin[w]+=(dx/13)*R.f*DEG; }
+  R.bobT=1.3*Math.sin(T*12)*Math.min(1,Math.abs(dx)/(dt*80+0.0001));
+  R.bob+=(R.bobT-R.bob)*Math.min(1,10*dt);
+  if(Math.abs(dx)>0.15&&Math.abs(dx)/dt>50){
+    R.dust-=dt;
+    if(R.dust<=0){ R.dust=0.09; puff(R.x-R.f*30,ground(R.x-R.f*30)-3,22); }
+  }
+  solveArm();
+  renderRover();
+}
+
+var air={phase:"idle",t:0,pkg:null,beam:0,beamX:906,door:0};
+function updateAirlock(dt){
+  if(air.phase==="idle"){
+    for(var i=0;i<pkgs.length;i++){
+      if(pkgs[i].state==="atPortal"){ air.phase="scan"; air.t=0; air.pkg=pkgs[i]; break; }
+    }
+  } else if(air.phase==="scan"){
+    air.t+=dt;
+    air.beam=1;
+    air.beamX=906+26*Math.sin(air.t*8.5);
+    scanRing.setAttribute("opacity",(0.35+0.45*Math.abs(Math.sin(air.t*7))).toFixed(2));
+    if(air.t>1.4){ air.phase="open"; air.t=0; air.beam=0; }
+  } else if(air.phase==="open"){
+    air.t+=dt;
+    air.door=clamp(air.t/0.7,0,1);
+    if(air.t>0.7){ air.phase="enter"; air.t=0; if(air.pkg) air.pkg.state="entering"; }
+  } else if(air.phase==="enter"){
+    air.t+=dt;
+    var k=clamp(air.t/0.9,0,1);
+    var p=air.pkg;
+    if(p){
+      p.x=908+26*k; p.y=ground(908)-p.def.h;
+      p.el.setAttribute("opacity",String(1-k*0.92));
+      if(k>=1){ p.state="delivered"; p.el.setAttribute("opacity","0"); p.priority=false; air.phase="close"; air.t=0; air.pkg=null; }
+    } else { air.phase="close"; air.t=0; }
+  } else if(air.phase==="close"){
+    air.t+=dt;
+    air.door=1-clamp(air.t/0.8,0,1);
+    if(air.t>0.8){ air.door=0; air.phase="idle"; }
+  }
+  doorLG.setAttribute("transform","translate("+(-27*air.door).toFixed(1)+",0)");
+  doorRG.setAttribute("transform","translate("+(27*air.door).toFixed(1)+",0)");
+  scanBeam.setAttribute("opacity",air.beam?"1":"0");
+  scanBeam.setAttribute("x",(air.beamX-5).toFixed(1));
+  if(air.phase!=="scan") scanRing.setAttribute("opacity","0");
+}
+
+function updatePackages(dt){
+  for(var i=0;i<pkgs.length;i++){
+    var p=pkgs[i], d=p.def;
+    if(p.wob>0)p.wob-=dt;
+    if(p.state==="ride"){
+      p.s+=130*dt;
+      if(p.s>=190){
+        p.state="free";
+        p.vx=d.vx+(Math.random()*8-4); p.vy=d.vy;
+        p.air=true;
+        p.snap=0;
+        if(i===0)p.tumble=(Math.random()<0.5?-1:1)*(130+Math.random()*150);
+      } else {
+        var bp=beltPoint(Math.min(p.s,190),d.h);
+        p.x=bp.x; p.y=bp.y; p.rot=10.3;
+      }
+    } else if(p.state==="free"){
+      p.vy+=950*dt;
+      p.x+=p.vx*dt; p.y+=p.vy*dt;
+      var gy=ground(p.x)-d.h;
+      if(p.y<gy-0.8)p.air=true;
+      if(d.roll){ p.rot+=(p.vx/d.roll)*DEG*dt; }
+      else if(p.i===0){ if(p.air) p.rot+=p.tumble*dt; }
+      else { if(p.air) p.rot=26*Math.sin(T*8+p.i*1.7); }
+      if(p.y>=gy){
+        p.y=gy; 
+        if(p.vy>45){
+          if(p.vy>110){ puff(p.x,gy+d.h,Math.min(70,p.vy*0.35)); }
+          p.air=false;
+          p.vy=-p.vy*d.e;
+          p.vx*=0.82;
+          if(p.i===0){ p.snap=Math.round(p.rot/90)*90; p.tumble=(Math.random()<0.5?-1:1)*(120+Math.random()*160); }
+        } else { p.vy=0; p.air=false; }
+        var dv=d.dec*dt;
+        if(Math.abs(p.vx)<=dv) p.vx=0; else p.vx-=Math.sign(p.vx)*dv;
+        if(p.vx===0&&p.vy===0) p.state="rest";
+      }
+    } else if(p.state==="rest"){
+      if(p.i===0){ p.rot+=(p.snap-p.rot)*Math.min(1,8*dt); }
+      else if(p.i===3){ p.rot+=(0-p.rot)*Math.min(1,8*dt); }
+    } else if(p.state==="carried"){
+      var tp=armTipBody(), w=b2w(tp);
+      p.x=w.x; p.y=w.y+d.h+2; p.rot=0;
+    }
+    var wob=p.wob>0?Math.sin(p.wob*34)*7*p.wob:0;
+    p.el.setAttribute("transform","translate("+p.x.toFixed(1)+","+p.y.toFixed(1)+") rotate("+(p.rot+wob).toFixed(1)+")");
+  }
+  var mk=null;
+  for(var m=0;m<pkgs.length;m++){ if(pkgs[m].priority&&(pkgs[m].state==="rest"||pkgs[m].state==="free")){mk=pkgs[m];break;} }
+  if(mk){ markG.setAttribute("opacity","1"); markG.setAttribute("transform","translate("+mk.x.toFixed(1)+","+(mk.y-mk.def.h-16).toFixed(1)+")"); }
+  else markG.setAttribute("opacity","0");
+}
+
+function updateCapsule(dt){
+  cap.t+=dt;
+  var t;
+  if(cap.phase==="approach"){
+    t=Math.min(1,cap.t/3.8);
+    var te=easeInOut(t);
+    var p=bez(te), p2=bez(Math.min(1,te+0.03));
+    cap.x=p[0]; cap.y=p[1];
+    var ang=Math.atan2(p2[1]-p[1],p2[0]-p[0])*DEG;
+    if(!isFinite(ang))ang=0;
+    cap.rot=clamp(ang*0.28,-14,14)*Math.min(1,(1-t)*2.2);
+    cap.legs=FOLD; cap.engine=0.12;
+    cap.puff-=dt;
+    if(cap.puff<=0){ cap.puff=0.15+Math.random()*0.15; rcsPuff(); }
+    if(t>=1){ cap.phase="descend"; cap.t=0; }
+  } else if(cap.phase==="descend"){
+    t=Math.min(1,cap.t/1.4);
+    cap.x=300; cap.y=340+(478-340)*(1-Math.pow(1-t,2));
+    cap.rot*=(1-Math.min(1,4*dt));
+    var lk=clamp((t-0.12)/0.66,0,1);
+    cap.legs=FOLD*(1-easeInOut(lk));
+    cap.engine=0.25+0.75*Math.min(1,t*1.6);
+    cap.puff-=dt;
+    if(cap.puff<=0){ cap.puff=0.08; enginePuff(); }
+    if(cap.y>430){
+      cap.gpuff-=dt;
+      if(cap.gpuff<=0){ cap.gpuff=0.05; var gx=300+(Math.random()*80-40); puff(gx,ground(gx)-2,40); }
+    }
+    if(t>=1){
+      cap.phase="touch"; cap.t=0;
+      fireRings(300,ground(300)+2);
+      for(var i=0;i<30;i++) puff(300+(Math.random()*70-35),ground(300)-3,90);
+      cloud(300,ground(300)-4,8,60);
+    }
+  } else if(cap.phase==="touch"){
+    var k=Math.min(1,cap.t/0.85);
+    var s=0.15*Math.exp(-4.5*k)*Math.cos(9*k);
+    cap.sy=1-s; cap.sx=1+0.45*s;
+    cap.engine=Math.max(0,0.9*(1-k*1.4));
+    cap.puff-=dt;
+    if(cap.puff<=0&&k<0.6){ cap.puff=0.09; puff(300+(Math.random()*60-30),ground(300)-2,26); }
+    if(k>=1){ cap.sy=1; cap.sx=1; cap.phase="deploy"; cap.t=0; }
+  } else if(cap.phase==="deploy"){
+    t=cap.t;
+    cap.doorTop=-105*easeOut(clamp(t/0.9,0,1));
+    cap.doorBot=80*easeOut(clamp((t-0.25)/0.7,0,1));
+    bay.setAttribute("opacity",(clamp(t/0.7,0,1)*0.9).toFixed(2));
+    var k3=clamp((t-0.8)/1.1,0,1);
+    cap.conv=0.03+0.97*easeInOut(k3);
+    convG.setAttribute("opacity",t>0.75?"1":"0");
+    rollerG.setAttribute("opacity",(clamp((k3-0.4)/0.6,0,1)*0.9).toFixed(2));
+    strutG.setAttribute("opacity",(clamp((k3-0.5)/0.5,0,1)*0.9).toFixed(2));
+    if(k3>0.95&&!cap.beltOn){ cap.beltOn=true; beltRun.classList.add("on"); }
+    if(t>=2.6){
+      cap.phase="unload"; cap.t=0;
+      if(R.mode==="sleep"){ R.mode="wake"; R.t=0; }
+    }
+  } else if(cap.phase==="unload"){
+    var times=[0.8,3.4,6.0,8.6];
+    while(cap.spawned<4&&cap.t>times[cap.spawned]){ activatePkg(cap.spawned); cap.spawned++; }
+    var allD=true;
+    for(var a2=0;a2<pkgs.length;a2++){ if(pkgs[a2].state!=="delivered"){allD=false;break;} }
+    if(allD&&R.mode==="parked"){
+      cap.phase="retract"; cap.t=0;
+      beltRun.classList.remove("on"); cap.beltOn=false;
+    }
+  } else if(cap.phase==="retract"){
+    t=cap.t;
+    var kr=clamp(t/1.0,0,1);
+    cap.conv=0.03+0.97*(1-easeInOut(kr));
+    convG.setAttribute("opacity",kr>=1?"0":"1");
+    rollerG.setAttribute("opacity",(0.9*(1-kr)).toFixed(2));
+    strutG.setAttribute("opacity",(0.9*(1-kr)).toFixed(2));
+    cap.doorBot=80*(1-clamp((t-0.9)/0.6,0,1));
+    cap.doorTop=-105*(1-clamp((t-1.1)/0.7,0,1));
+    bay.setAttribute("opacity",((1-clamp((t-1.0)/0.5,0,1))*0.9).toFixed(2));
+    cap.legs=FOLD*easeInOut(clamp((t-1.5)/1.0,0,1));
+    cap.engine=Math.min(0.6,Math.max(0,(t-2.1)/0.7));
+    if(t>2.2){
+      cap.puff-=dt;
+      if(cap.puff<=0){ cap.puff=0.06; puff(300+(Math.random()*70-35),ground(300)-2,50); }
+    }
+    if(t>=2.8){
+      cap.phase="liftoff"; cap.t=0;
+      fireRings(300,ground(300)+2);
+      for(var b2=0;b2<36;b2++) puff(300+(Math.random()*80-40),ground(300)-3,110);
+      cloud(300,ground(300)-4,10,80);
+    }
+  } else if(cap.phase==="liftoff"){
+    t=cap.t;
+    var kl=Math.min(1,t/3.6);
+    cap.y=478-480*Math.pow(kl,1.55);
+    cap.x=300+320*Math.pow(kl,1.3);
+    cap.rot=14*easeIn(kl)+Math.sin(kl*10)*3*(1-kl);
+    cap.engine=(1-kl)*0.9;
+    cap.puff-=dt;
+    if(cap.puff<=0){ cap.puff=0.07; enginePuff(); }
+    if(t>=3.6){ cap.phase="gone"; }
+  } else if(cap.phase==="gone"){
+    cap.y-=560*dt; cap.x+=260*dt;
+    cap.engine=Math.max(0,cap.engine-dt*0.8);
+    if(cap.y<-300) resetCycle();
+  }
+  var landed=(cap.phase==="deploy"||cap.phase==="unload"||cap.phase==="retract");
+  var breathe=landed?Math.sin(T*1.4)*1.1:0;
+  capG.setAttribute("transform","translate("+cap.x.toFixed(1)+","+(cap.y+breathe).toFixed(1)+") rotate("+cap.rot.toFixed(2)+")");
+  capSquash.setAttribute("transform","scale("+cap.sx.toFixed(3)+","+cap.sy.toFixed(3)+")");
+  legL.setAttribute("transform","rotate("+cap.legs.toFixed(1)+" -44 -30)");
+  legR.setAttribute("transform","rotate("+(-cap.legs).toFixed(1)+" 44 -30)");
+  legB.setAttribute("transform","rotate("+(cap.legs*0.94).toFixed(1)+" 0 -26)");
+  doorTop.setAttribute("transform","rotate("+cap.doorTop.toFixed(1)+" 46 -102)");
+  doorBot.setAttribute("transform","rotate("+cap.doorBot.toFixed(1)+" 46 -8)");
+  convScale.setAttribute("transform","translate(46,-30) scale("+cap.conv.toFixed(3)+",1) translate(-46,30)");
+  engineGlow.setAttribute("opacity",clamp(cap.engine,0,1).toFixed(2));
+  var alt=Math.max(0,478-cap.y);
+  capShadow.setAttribute("opacity",(clamp(1-alt/330,0,1)*0.25).toFixed(2));
+  capShadow.setAttribute("rx",(70+alt*0.22).toFixed(0));
+}
+
+function resetCycle(){
+  cap.phase="approach"; cap.t=0; cap.x=A0[0]; cap.y=A0[1]; cap.rot=0;
+  cap.sx=1; cap.sy=1; cap.legs=FOLD; cap.doorTop=0; cap.doorBot=0; cap.conv=0.03;
+  cap.engine=0; cap.spawned=0; cap.beltOn=false; cap.puff=0; cap.gpuff=0;
+  convG.setAttribute("opacity","0");
+  beltRun.classList.remove("on");
+  bay.setAttribute("opacity","0");
+  rollerG.setAttribute("opacity","0");
+  strutG.setAttribute("opacity","0");
+  for(var i=0;i<pkgs.length;i++){
+    var p=pkgs[i];
+    p.state="inCapsule"; p.x=-300; p.y=700; p.rot=0; p.vx=0; p.vy=0; p.s=0;
+    p.priority=false; p.wob=0; p.air=false; p.snap=0; p.tumble=0;
+    p.el.setAttribute("opacity","0");
+    p.el.setAttribute("transform","translate(-300,700)");
+  }
+  air.phase="idle"; air.pkg=null; air.beam=0; air.door=0; air.t=0;
+  R.x=852; R.f=-1; R.mode="sleep"; R.t=0; R.target=null; R.carry=null;
+  R.carryOff=-18; R.armT.x=34; R.armT.y=-52; R.claw=16; R.ant=24; R.bob=0; R.dust=0;
+  markG.setAttribute("opacity","0");
+  pingAnimT=9;
+  pingG.setAttribute("opacity","0");
+}
+
+function updatePing(dt){
+  if(pingAnimT<1){
+    pingAnimT+=dt/0.65;
+    var k=clamp(pingAnimT,0,1);
+    pingG.setAttribute("cx",pingX.toFixed(1));
+    pingG.setAttribute("cy",pingY.toFixed(1));
+    pingG.setAttribute("r",(10+k*62).toFixed(1));
+    pingG.setAttribute("opacity",((1-k)*0.85).toFixed(2));
+  } else if(pingG.getAttribute("opacity")!=="0"){
+    pingG.setAttribute("opacity","0");
+  }
+}
+
+var last=performance.now(), T=0;
+function frame(now){
+  var dt=(now-last)/1000; last=now;
+  if(!isFinite(dt)||dt<0)dt=0;
+  if(dt>0.05)dt=0.05;
+  T+=dt;
+  updateCapsule(dt);
+  updateRover(dt);
+  updateAirlock(dt);
+  updatePackages(dt);
+  updateFx(dt);
+  updateRings(dt);
+  updatePing(dt);
+  requestAnimationFrame(frame);
+}
+resetCycle();
+renderRover();
+solveArm();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
+
+
