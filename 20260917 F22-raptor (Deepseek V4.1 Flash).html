@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F-22 Raptor · 3D Model View</title>
+<style>
+  :root{
+    --ink:#d7dee6;
+    --dim:#7f8b98;
+    --accent:#9fc2e8;
+  }
+  html,body{margin:0;height:100%;background:#0b0e12;overflow:hidden;}
+  body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);}
+  #app{position:fixed;inset:0;opacity:0;transition:opacity 1.4s ease;}
+  #app.on{opacity:1;}
+  canvas{display:block;}
+  .hud{position:fixed;left:28px;top:24px;pointer-events:none;user-select:none;text-shadow:0 1px 14px rgba(0,0,0,.85);}
+  .hud h1{margin:0;font-size:15px;letter-spacing:.44em;font-weight:600;color:#eef3f8;}
+  .hud .sub{margin:7px 0 0;font-size:10px;letter-spacing:.26em;color:var(--dim);}
+  .rule{width:196px;height:1px;margin:13px 0 11px;
+        background:linear-gradient(90deg,rgba(159,194,232,.75),rgba(159,194,232,0));}
+  .specs{font-size:10px;line-height:2.0;letter-spacing:.13em;color:#98a5b2;}
+  .specs b{color:#d3dde7;font-weight:600;}
+  .hint{position:fixed;right:28px;bottom:24px;font-size:10px;letter-spacing:.2em;color:#6d7987;
+        pointer-events:none;user-select:none;}
+  .prompt{position:fixed;left:28px;bottom:24px;max-width:min(430px,44vw);pointer-events:none;user-select:none;
+        text-shadow:0 1px 14px rgba(0,0,0,.85);}
+  .prompt .tag{font-size:9px;letter-spacing:.34em;color:var(--accent);}
+  .prompt p{margin:8px 0 0;padding-left:13px;border-left:2px solid rgba(159,194,232,.55);
+        font-size:11px;line-height:1.75;letter-spacing:.05em;color:#c6d2de;}
+  @media (max-width:720px){
+    .hint{display:none;}
+    .prompt{max-width:70vw;}
+  }
+  .vignette{position:fixed;inset:0;pointer-events:none;
+        background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 42%,rgba(0,0,0,.62) 100%);}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="vignette"></div>
+<div class="hud">
+  <h1>F-22 RAPTOR</h1>
+  <p class="sub">LOCKHEED MARTIN · AIR DOMINANCE FIGHTER</p>
+  <div class="rule"></div>
+  <div class="specs">
+    LENGTH <b>18.9 M</b> · SPAN <b>13.6 M</b> · HEIGHT <b>5.1 M</b><br>
+    MAX SPEED <b>MACH 2.25</b> · CEILING <b>19,800 M</b><br>
+    POWERPLANT <b>2 × F119-PW-100</b><br>
+    THRUST <b>2 × 156 KN</b> · 2D THRUST VECTORING
+  </div>
+</div>
+<div class="hint">DRAG ORBIT · SCROLL ZOOM · SPACE AUTO-ROTATE</div>
+<div class="prompt">
+  <div class="tag">PROMPT</div>
+  <p>3D model view of Lockheed Martin F-22 Raptor. One-shot, three.js, single HTML file, no external assets.</p>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.164.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+/* ---------------- math helpers ---------------- */
+
+let _seed = 0x2f6e2b1;
+const rand = () => ((_seed = (_seed * 1664525 + 1013904223) >>> 0) >>> 8) / 0x1000000;
+const D2R = Math.PI / 180;
+
+/* ---------------- renderer / scene ---------------- */
+
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0e12);
+scene.fog = new THREE.Fog(0x0b0e12, 48, 115);
+
+const camera = new THREE.PerspectiveCamera(32, window.innerWidth / window.innerHeight, 0.1, 600);
+camera.position.set(19, 7.5, -22);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0.15, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.enablePan = false;
+controls.minDistance = 10;
+controls.maxDistance = 72;
+controls.maxPolarAngle = Math.PI * 0.495;
+controls.rotateSpeed = 0.55;
+controls.zoomSpeed = 0.85;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.4;
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 1.0;
+pmrem.dispose();
+
+const hemi = new THREE.HemisphereLight(0x9fb6d4, 0x1b1f24, 0.5);
+scene.add(hemi);
+
+const key = new THREE.DirectionalLight(0xfff1dd, 2.2);
+key.position.set(15, 23, -11);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.left = -26;
+key.shadow.camera.right = 26;
+key.shadow.camera.top = 26;
+key.shadow.camera.bottom = -26;
+key.shadow.camera.near = 1;
+key.shadow.camera.far = 90;
+key.shadow.bias = -0.0004;
+key.shadow.normalBias = 0.035;
+key.shadow.camera.updateProjectionMatrix();
+scene.add(key);
+
+const rim = new THREE.DirectionalLight(0x7f9dff, 0.85);
+rim.position.set(-17, 9, 19);
+scene.add(rim);
+
+const fill = new THREE.DirectionalLight(0xbfd0e0, 0.35);
+fill.position.set(-9, 5, -22);
+scene.add(fill);
+
+/* ---------------- procedural textures ---------------- */
+
+const maxAniso = renderer.capabilities.getMaxAnisotropy();
+
+function canvas2d(size) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  return [c, c.getContext('2d')];
+}
+
+function skinTexture() {
+  const [c, g] = canvas2d(1024);
+
+  g.fillStyle = '#98a0a8';
+  g.fillRect(0, 0, 1024, 1024);
+
+  for (let i = 0; i < 90; i++) {
+    const x = rand() * 1024, y = rand() * 1024, r = 45 + rand() * 180;
+    const dark = rand() < 0.6;
+    const col = dark ? '88,100,114' : '174,181,189';
+    const a = (0.2 + rand() * 0.3).toFixed(3);
+    for (const [ox, oy] of [[0, 0], [1024, 0], [-1024, 0], [0, 1024], [0, -1024]]) {
+      const grd = g.createRadialGradient(x + ox, y + oy, 0, x + ox, y + oy, r);
+      grd.addColorStop(0, `rgba(${col},${a})`);
+      grd.addColorStop(1, `rgba(${col},0)`);
+      g.fillStyle = grd;
+      g.beginPath();
+      g.arc(x + ox, y + oy, r, 0, Math.PI * 2);
+      g.fill();
+    }
+  }
+
+  for (let i = 0; i < 9000; i++) {
+    const v = rand() < 0.5 ? 30 : 210;
+    g.fillStyle = `rgba(${v},${v + 6},${v + 12},0.045)`;
+    g.fillRect(rand() * 1024, rand() * 1024, 1.6, 1.6);
+  }
+
+  g.lineWidth = 1.6;
+  const seg = 15;
+  for (let i = 0; i < seg; i++) {
+    const x = (i + 0.5) * (1024 / seg) + (rand() - 0.5) * 20;
+    let y = -40;
+    while (y < 1024) {
+      const len = 130 + rand() * 280;
+      g.strokeStyle = `rgba(28,34,42,${(0.24 + rand() * 0.3).toFixed(3)})`;
+      g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + len); g.stroke();
+      y += len + (rand() < 0.55 ? 22 + rand() * 70 : 0);
+    }
+  }
+  for (let i = 0; i < seg; i++) {
+    const y = (i + 0.5) * (1024 / seg) + (rand() - 0.5) * 20;
+    let x = -40;
+    while (x < 1024) {
+      const len = 130 + rand() * 280;
+      g.strokeStyle = `rgba(28,34,42,${(0.22 + rand() * 0.28).toFixed(3)})`;
+      g.beginPath(); g.moveTo(x, y); g.lineTo(x + len, y); g.stroke();
+      x += len + (rand() < 0.55 ? 22 + rand() * 70 : 0);
+    }
+  }
+
+  g.lineWidth = 1.3;
+  for (let i = 0; i < 30; i++) {
+    const w = 40 + rand() * 170, h = 30 + rand() * 120;
+    const x = rand() * 1024, y = rand() * 1024;
+    g.strokeStyle = 'rgba(28,34,42,0.32)';
+    g.strokeRect(x, y, w, h);
+    if (rand() < 0.45) {
+      g.fillStyle = 'rgba(120,130,142,0.09)';
+      g.fillRect(x, y, w, h);
+    }
+  }
+
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = maxAniso;
+  return t;
+}
+
+function floorTexture() {
+  const [c, g] = canvas2d(1024);
+  g.fillStyle = '#0d1115';
+  g.fillRect(0, 0, 1024, 1024);
+  for (let i = 0; i < 5200; i++) {
+    g.fillStyle = `rgba(150,175,205,${(rand() * 0.035).toFixed(3)})`;
+    g.fillRect(rand() * 1024, rand() * 1024, 2, 2);
+  }
+  for (let i = 0; i <= 16; i++) {
+    const p = i * 64;
+    g.lineWidth = i % 4 === 0 ? 2.2 : 1.1;
+    g.strokeStyle = i % 4 === 0 ? 'rgba(150,178,210,0.13)' : 'rgba(150,178,210,0.055)';
+    g.beginPath(); g.moveTo(p, 0); g.lineTo(p, 1024); g.stroke();
+    g.beginPath(); g.moveTo(0, p); g.lineTo(1024, p); g.stroke();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(4, 4);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = maxAniso;
+  return t;
+}
+
+function poolTexture() {
+  const [c, g] = canvas2d(512);
+  const grd = g.createRadialGradient(256, 256, 0, 256, 256, 256);
+  grd.addColorStop(0, 'rgba(152,180,212,0.32)');
+  grd.addColorStop(0.45, 'rgba(120,150,182,0.11)');
+  grd.addColorStop(1, 'rgba(90,120,150,0)');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, 512, 512);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+/* ---------------- materials ---------------- */
+
+const skinMap = skinTexture();
+
+const skinMat = new THREE.MeshStandardMaterial({
+  map: skinMap, metalness: 0.45, roughness: 0.42, envMapIntensity: 1.0
+});
+const metalMat = new THREE.MeshStandardMaterial({
+  color: 0x8b9096, metalness: 0.95, roughness: 0.34, envMapIntensity: 1.25
+});
+const cavityMat = new THREE.MeshStandardMaterial({
+  color: 0x0a0c0e, metalness: 0.45, roughness: 0.85
+});
+const glassMat = new THREE.MeshPhysicalMaterial({
+  color: 0x30342b, metalness: 0.5, roughness: 0.05,
+  clearcoat: 1.0, clearcoatRoughness: 0.06,
+  transparent: true, opacity: 0.55, depthWrite: false,
+  side: THREE.DoubleSide, envMapIntensity: 1.6
+});
+const cockpitMat = new THREE.MeshStandardMaterial({
+  color: 0x14171a, metalness: 0.25, roughness: 0.9, side: THREE.BackSide
+});
+const seatMat = new THREE.MeshStandardMaterial({
+  color: 0x1d2124, metalness: 0.15, roughness: 0.95
+});
+const glowMat = new THREE.MeshBasicMaterial({
+  color: 0xff6a1e, transparent: true, opacity: 0.55,
+  blending: THREE.AdditiveBlending, depthWrite: false
+});
+const navRedMat = new THREE.MeshBasicMaterial({ color: 0xff2020 });
+const navGreenMat = new THREE.MeshBasicMaterial({ color: 0x30ff50 });
+
+/* ---------------- geometry builders ---------------- */
+
+function weldSeamNormals(geo, stride, count) {
+  const n = geo.attributes.normal;
+  for (let a = 0; a + stride <= count; a += stride) {
+    const b = a + stride - 1;
+    const x = (n.getX(a) + n.getX(b)) * 0.5;
+    const y = (n.getY(a) + n.getY(b)) * 0.5;
+    const z = (n.getZ(a) + n.getZ(b)) * 0.5;
+    n.setXYZ(a, x, y, z);
+    n.setXYZ(b, x, y, z);
+  }
+  n.needsUpdate = true;
+}
+
+function buildLoft(rowsIn, radialSegs, opts = {}) {
+  const rows = rowsIn.length, cols = radialSegs, stride = cols + 1;
+  const pos = [], uv = [], idx = [];
+
+  for (let r = 0; r < rows; r++) {
+    const s = rowsIn[r], p = s.p ?? 0.62, y0 = s.y0 ?? 0;
+    for (let i = 0; i <= cols; i++) {
+      const t = (i / cols) * Math.PI * 2;
+      const ct = Math.cos(t), st = Math.sin(t);
+      const h = st >= 0 ? (s.hu ?? s.h) : (s.hl ?? s.h);
+      pos.push(
+        s.w * Math.sign(ct) * Math.pow(Math.abs(ct), p),
+        y0 + h * Math.sign(st) * Math.pow(Math.abs(st), p),
+        s.z
+      );
+      uv.push(i / cols, s.z / 9);
+    }
+  }
+
+  for (let r = 0; r < rows - 1; r++) {
+    for (let i = 0; i < cols; i++) {
+      const a = r * stride + i, b = a + 1, c = a + stride, d = c + 1;
+      idx.push(a, b, c, b, d, c);
+    }
+  }
+
+  if (opts.capStart) {
+    const s = rowsIn[0];
+    const cIdx = pos.length / 3;
+    pos.push(0, s.y0 ?? 0, s.z);
+    uv.push(0.5, s.z / 9);
+    for (let i = 0; i < cols; i++) idx.push(cIdx, i + 1, i);
+  }
+  if (opts.capTail) {
+    const s = rowsIn[rows - 1], base = (rows - 1) * stride;
+    const cIdx = pos.length / 3;
+    pos.push(0, s.y0 ?? 0, s.z);
+    uv.push(0.5, s.z / 9);
+    for (let i = 0; i < cols; i++) idx.push(cIdx, base + i, base + i + 1);
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  weldSeamNormals(g, stride, rows * stride);
+  return g;
+}
+
+function buildWing(rowsIn, spanSegs, capTip, thp = 0.72) {
+  const rows = rowsIn.length, cols = spanSegs, stride = cols + 1;
+  const pos = [], uv = [], idx = [];
+
+  for (let r = 0; r < rows; r++) {
+    const s = rowsIn[r], y0 = s.y ?? 0;
+    for (let i = 0; i <= cols; i++) {
+      const t = (i / cols) * Math.PI * 2, st = Math.sin(t);
+      const u = (1 - Math.cos(t)) * 0.5;
+      pos.push(
+        s.x,
+        y0 + (s.th * 0.5) * Math.sign(st) * Math.pow(Math.abs(st), thp),
+        s.z + u * s.chord
+      );
+      uv.push(u * s.chord / 9, s.x / 9);
+    }
+  }
+
+  for (let r = 0; r < rows - 1; r++) {
+    for (let i = 0; i < cols; i++) {
+      const a = r * stride + i, b = a + 1, c = a + stride, d = c + 1;
+      idx.push(a, b, c, b, d, c);
+    }
+  }
+
+  if (capTip) {
+    const s = rowsIn[rows - 1], base = (rows - 1) * stride;
+    const cIdx = pos.length / 3;
+    pos.push(s.x, s.y ?? 0, s.z + s.chord * 0.5);
+    uv.push(0.5, s.x / 9);
+    for (let i = 0; i < cols; i++) idx.push(cIdx, base + i, base + i + 1);
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  weldSeamNormals(g, stride, rows * stride);
+  return g;
+}
+
+function mirrorX(geo, stride, gridCount) {
+  geo.scale(-1, 1, 1);
+  const arr = geo.index.array;
+  for (let i = 0; i < arr.length; i += 3) {
+    const t = arr[i + 1]; arr[i + 1] = arr[i + 2]; arr[i + 2] = t;
+  }
+  geo.index.needsUpdate = true;
+  weldSeamNormals(geo, stride, gridCount);
+  return geo;
+}
+
+function scaleUV(geo, k) {
+  const uv = geo.attributes.uv;
+  for (let i = 0; i < uv.count; i++) {
+    uv.setXY(i, uv.getX(i) * k, uv.getY(i) * k);
+  }
+  uv.needsUpdate = true;
+  return geo;
+}
+
+function roundedRect(path, x, y, w, h, r) {
+  path.moveTo(x + r, y);
+  path.lineTo(x + w - r, y);
+  path.quadraticCurveTo(x + w, y, x + w, y + r);
+  path.lineTo(x + w, y + h - r);
+  path.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  path.lineTo(x + r, y + h);
+  path.quadraticCurveTo(x, y + h, x, y + h - r);
+  path.lineTo(x, y + r);
+  path.quadraticCurveTo(x, y, x + r, y);
+}
+
+/* ---------------- dimensions (1 unit = 1 metre) ---------------- */
+
+const FUSE = [
+  [-9.50, 0.04, 0.035, 0.045, 0.50],
+  [-9.00, 0.24, 0.170, 0.210, 0.50],
+  [-8.40, 0.46, 0.310, 0.390, 0.50],
+  [-7.80, 0.62, 0.420, 0.500, 0.50],
+  [-7.20, 0.76, 0.510, 0.590, 0.50],
+  [-6.60, 0.88, 0.590, 0.670, 0.52],
+  [-6.00, 0.98, 0.660, 0.730, 0.52],
+  [-5.40, 1.05, 0.720, 0.780, 0.55],
+  [-4.80, 1.11, 0.770, 0.820, 0.55],
+  [-4.20, 1.16, 0.810, 0.850, 0.58],
+  [-3.60, 1.21, 0.850, 0.880, 0.60],
+  [-3.00, 1.27, 0.880, 0.900, 0.60],
+  [-2.40, 1.34, 0.920, 0.930, 0.62],
+  [-1.80, 1.43, 0.950, 0.950, 0.62],
+  [-1.20, 1.52, 0.970, 0.970, 0.64],
+  [-0.40, 1.62, 0.990, 0.990, 0.65],
+  [ 0.60, 1.69, 1.000, 1.000, 0.66],
+  [ 1.80, 1.72, 0.990, 0.970, 0.66],
+  [ 3.00, 1.70, 0.960, 0.940, 0.66],
+  [ 4.20, 1.62, 0.900, 0.880, 0.66],
+  [ 5.40, 1.50, 0.820, 0.800, 0.66],
+  [ 6.40, 1.38, 0.740, 0.720, 0.66],
+  [ 7.30, 1.26, 0.660, 0.640, 0.68],
+  [ 8.00, 1.16, 0.600, 0.580, 0.70],
+  [ 8.60, 1.08, 0.550, 0.530, 0.70],
+];
+
+const WING = [
+  [0.70, -1.40, 6.60, 0.52, -0.10],
+  [2.00, -0.23, 5.83, 0.44, -0.14],
+  [3.40,  1.03, 5.00, 0.36, -0.18],
+  [4.80,  2.29, 4.16, 0.27, -0.22],
+  [6.00,  3.37, 3.45, 0.20, -0.26],
+  [6.80,  4.09, 2.98, 0.15, -0.30],
+];
+
+const STAB = [
+  [0.50, 5.00, 2.85, 0.30,  0.02],
+  [1.70, 6.08, 2.14, 0.24,  0.00],
+  [2.80, 7.07, 1.49, 0.17, -0.02],
+  [3.70, 7.88, 0.95, 0.12, -0.04],
+  [4.25, 8.38, 0.63, 0.08, -0.05],
+];
+
+const FIN = [
+  [-0.80, 2.20, 5.50, 0.50, 0],
+  [ 0.00, 2.20, 5.50, 0.50, 0],
+  [ 1.05, 3.15, 4.87, 0.42, 0],
+  [ 1.95, 3.96, 4.34, 0.34, 0],
+  [ 2.50, 4.45, 4.02, 0.27, 0],
+  [ 2.90, 4.81, 3.78, 0.20, 0],
+];
+
+const CANOPY = [
+  [-6.55, 0.30, 0.10, 0.08, 0.50],
+  [-6.25, 0.44, 0.20, 0.14, 0.56],
+  [-5.95, 0.54, 0.34, 0.22, 0.58],
+  [-5.50, 0.61, 0.48, 0.30, 0.60],
+  [-5.00, 0.645, 0.56, 0.36, 0.62],
+  [-4.50, 0.655, 0.58, 0.38, 0.63],
+  [-4.00, 0.645, 0.54, 0.34, 0.62],
+  [-3.60, 0.61, 0.44, 0.28, 0.60],
+  [-3.25, 0.55, 0.28, 0.20, 0.58],
+  [-3.00, 0.44, 0.12, 0.10, 0.56],
+];
+
+const fuseSections = FUSE.map(([z, w, hu, hl, p]) => ({ z, w, hu, hl, p }));
+const wingSections = WING.map(([x, z, chord, th, y]) => ({ x, z, chord, th, y }));
+const stabSections = STAB.map(([x, z, chord, th, y]) => ({ x, z, chord, th, y }));
+const finSections = FIN.map(([x, z, chord, th, y]) => ({ x, z, chord, th, y }));
+const canopySections = CANOPY.map(([z, w, hu, hl, y0]) => ({ z, w, hu, hl, p: 0.85, y0 }));
+
+/* ---------------- build airframe ---------------- */
+
+const jet = new THREE.Group();
+jet.position.set(0, 0, -0.1);
+scene.add(jet);
+
+function addPart(geo, mat, name) {
+  const m = new THREE.Mesh(geo, mat);
+  m.name = name;
+  jet.add(m);
+  return m;
+}
+
+addPart(buildLoft(fuseSections, 52, { capTail: true }), skinMat, 'fuselage');
+
+const canopyGeo = buildLoft(canopySections, 40, { capStart: true });
+addPart(canopyGeo, glassMat, 'canopy');
+
+const tubSections = canopySections.map(s => ({
+  ...s, w: s.w * 0.9, hu: s.hu * 0.9, hl: s.hl * 0.9, y0: (s.y0 ?? 0) * 0.98
+}));
+addPart(buildLoft(tubSections, 32, {}), cockpitMat, 'cockpit-shell');
+
+addPart(buildWing(wingSections, 34, true), skinMat, 'wing-r');
+addPart(mirrorX(buildWing(wingSections, 34, true), 35, 6 * 35), skinMat, 'wing-l');
+addPart(buildWing(stabSections, 26, true), skinMat, 'stab-r');
+addPart(mirrorX(buildWing(stabSections, 26, true), 27, 5 * 27), skinMat, 'stab-l');
+
+function finGeometry(sign) {
+  const g = buildWing(finSections, 26, true);
+  g.rotateZ(sign > 0 ? 62 * D2R : 118 * D2R);
+  g.translate(sign * 0.95, 0.75, 0);
+  return g;
+}
+addPart(finGeometry(1), skinMat, 'fin-r');
+addPart(finGeometry(-1), skinMat, 'fin-l');
+
+function intakeGeometry(sign) {
+  const plan = [
+    [1.20,  3.10],
+    [1.70,  3.10],
+    [1.85,  1.60],
+    [1.88, -1.35],
+    [1.20, -2.35],
+  ];
+  const shape = new THREE.Shape();
+  plan.forEach(([x, z], i) => i ? shape.lineTo(sign * x, -z) : shape.moveTo(sign * x, -z));
+  shape.closePath();
+  const g = new THREE.ExtrudeGeometry(shape, { depth: 1.0, bevelEnabled: false, curveSegments: 1 });
+  g.rotateX(-Math.PI / 2);
+  g.translate(0, -0.45, 0);
+  scaleUV(g, 3);
+  return g;
+}
+addPart(intakeGeometry(1), skinMat, 'intake-r');
+addPart(intakeGeometry(-1), skinMat, 'intake-l');
+
+function mouthGeometry(sign) {
+  const mid = [1.54 * sign, 0.05, -1.85];
+  const n = [0.827 * sign, 0, -0.562];
+  const g = new THREE.PlaneGeometry(1.15, 0.92);
+  g.rotateY(sign > 0 ? 2.168 : -2.168);
+  g.translate(mid[0] + n[0] * 0.02, mid[1], mid[2] + n[2] * 0.02);
+  return g;
+}
+addPart(mouthGeometry(1), cavityMat, 'inlet-r');
+addPart(mouthGeometry(-1), cavityMat, 'inlet-l');
+
+function nozzleGeometry(sign) {
+  const w = 0.88, h = 0.62, iw = 0.66, ih = 0.42;
+  const shell = new THREE.Shape();
+  roundedRect(shell, -w / 2, -h / 2, w, h, 0.07);
+  const hole = new THREE.Path();
+  roundedRect(hole, -iw / 2, -ih / 2, iw, ih, 0.05);
+  shell.holes.push(hole);
+  const g = new THREE.ExtrudeGeometry(shell, { depth: 1.25, bevelEnabled: false, curveSegments: 5 });
+  g.translate(sign * 0.60, 0.02, 8.45);
+  return g;
+}
+addPart(nozzleGeometry(1), metalMat, 'nozzle-r');
+addPart(nozzleGeometry(-1), metalMat, 'nozzle-l');
+
+for (const sign of [1, -1]) {
+  const plate = new THREE.PlaneGeometry(0.60, 0.36);
+  const p = addPart(plate, cavityMat, 'nozzle-plate');
+  p.position.set(sign * 0.60, 0.02, 9.58);
+  const glow = new THREE.PlaneGeometry(0.50, 0.28);
+  const gl = addPart(glow, glowMat, 'burner-glow');
+  gl.position.set(sign * 0.60, 0.02, 9.60);
+}
+
+const beaver = addPart(new THREE.BoxGeometry(0.42, 0.46, 1.2), skinMat, 'tail-boom');
+beaver.position.set(0, 0, 9.03);
+
+addPart(new THREE.BoxGeometry(0.42, 0.62, 0.10).rotateX(-14 * D2R), seatMat, 'seat-back')
+  .position.set(0, 0.82, -4.40);
+addPart(new THREE.BoxGeometry(0.42, 0.10, 0.52), seatMat, 'seat-pan')
+  .position.set(0, 0.60, -4.68);
+addPart(new THREE.BoxGeometry(0.46, 0.22, 0.14), seatMat, 'instrument-panel')
+  .position.set(0, 0.70, -5.48);
+addPart(new THREE.SphereGeometry(0.15, 24, 16), seatMat, 'helmet')
+  .position.set(0, 0.98, -4.66);
+addPart(new THREE.BoxGeometry(0.32, 0.34, 0.26).rotateX(-10 * D2R), seatMat, 'torso')
+  .position.set(0, 0.76, -4.72);
+
+const gun = addPart(new THREE.CircleGeometry(0.075, 20).rotateY(Math.PI / 2), cavityMat, 'gun-port');
+gun.position.set(1.545, 0.28, 0.35);
+
+for (const sign of [1, -1]) {
+  const g = new THREE.ConeGeometry(0.016, 0.30, 8);
+  g.rotateX(-Math.PI / 2);
+  g.rotateY(-sign * 28.8 * D2R);
+  const probe = addPart(g, metalMat, 'air-data-probe');
+  probe.position.set(sign * 0.40, 0.20, -8.15);
+}
+
+const navL = addPart(new THREE.SphereGeometry(0.045, 12, 8), navRedMat, 'nav-left');
+navL.position.set(-6.86, -0.30, 5.4);
+const navR = addPart(new THREE.SphereGeometry(0.045, 12, 8), navGreenMat, 'nav-right');
+navR.position.set(6.86, -0.30, 5.4);
+
+const noShadow = new Set(['canopy', 'cockpit-shell', 'inlet-r', 'inlet-l', 'nozzle-plate', 'burner-glow', 'seal', 'nav-left', 'nav-right', 'helmet', 'torso', 'seat-back', 'seat-pan', 'instrument-panel']);
+jet.traverse(o => {
+  if (!o.isMesh) return;
+  o.castShadow = !noShadow.has(o.name);
+  o.receiveShadow = !noShadow.has(o.name);
+});
+
+/* ---------------- environment ---------------- */
+
+const floor = new THREE.Mesh(
+  new THREE.CircleGeometry(130, 72).rotateX(-Math.PI / 2),
+  new THREE.MeshStandardMaterial({ map: floorTexture(), metalness: 0.1, roughness: 0.92 })
+);
+floor.position.y = -8;
+floor.receiveShadow = true;
+scene.add(floor);
+
+const pool = new THREE.Mesh(
+  new THREE.CircleGeometry(46, 64).rotateX(-Math.PI / 2),
+  new THREE.MeshBasicMaterial({ map: poolTexture(), transparent: true, depthWrite: false })
+);
+pool.position.y = -7.97;
+scene.add(pool);
+
+const contact = new THREE.Mesh(
+  new THREE.CircleGeometry(9, 48).rotateX(-Math.PI / 2),
+  new THREE.MeshBasicMaterial({ map: poolTexture(), transparent: true, opacity: 0.32, depthWrite: false, color: 0x000000 })
+);
+contact.scale.set(2.6, 1, 1.3);
+contact.position.y = -7.94;
+scene.add(contact);
+
+/* ---------------- loop ---------------- */
+
+addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    controls.autoRotate = !controls.autoRotate;
+    e.preventDefault();
+  }
+});
+
+const clock = new THREE.Clock();
+let first = true;
+
+function tick() {
+  clock.getDelta();
+  controls.update();
+  renderer.render(scene, camera);
+  if (first) {
+    first = false;
+    app.classList.add('on');
+  }
+  requestAnimationFrame(tick);
+}
+tick();
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F-22 Raptor — Airframe Study</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#0b1117;color:#dce6ec;font-family:Arial,Helvetica,sans-serif}canvas{display:block;touch-action:none}header{position:absolute;top:34px;left:38px;pointer-events:none}.eyebrow{font:10px monospace;letter-spacing:3px;color:#91abae;margin-bottom:17px}h1{font-size:46px;font-weight:400;letter-spacing:-2px;margin:0}h1 span{color:#82989f;font-weight:300}.subtitle{font:11px monospace;color:#79919c;margin-top:12px;letter-spacing:1px}.badge{position:absolute;right:36px;top:38px;font:10px monospace;letter-spacing:2px;color:#a6c0bc;border:1px solid #324747;padding:10px 13px}.badge:before{content:'';display:inline-block;width:5px;height:5px;background:#98d4b6;border-radius:50%;margin-right:10px}aside{position:absolute;left:38px;bottom:100px;pointer-events:none}.label{font:9px monospace;letter-spacing:2px;color:#708892;margin-bottom:17px}.spec{display:flex;gap:35px}.spec strong{font-size:22px;font-weight:400;display:block}.spec small{display:block;font:9px monospace;letter-spacing:1px;color:#718b97;margin-top:7px}footer{position:absolute;bottom:28px;left:38px;right:38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.controls{display:flex;gap:5px;flex-wrap:wrap}button{background:#111c25d9;border:1px solid #2b3b46;color:#94a9b4;padding:11px 15px;font:10px monospace;letter-spacing:1px;cursor:pointer;border-radius:2px}button:hover,button.active{color:#d5f3e4;background:#20352f;border-color:#638b77}button:focus-visible{outline:2px solid #a0e4c0;outline-offset:3px}.hint{font:10px monospace;color:#66808d;line-height:1.8;text-align:right}#status{position:absolute;top:50%;width:100%;text-align:center;color:#91b5ab;font:12px monospace;pointer-events:none}#viewLabel{position:absolute;right:38px;bottom:103px;font:10px monospace;letter-spacing:2px;color:#718c98}.scale{position:absolute;right:38px;top:100px;font:9px monospace;color:#617984;letter-spacing:2px}.scale b{display:block;margin-top:9px;width:80px;height:6px;border:1px solid #506670;border-top:0}@media(max-width:650px){header{left:22px;top:25px}h1{font-size:34px}.badge{right:20px;top:27px;font-size:8px;padding:8px}.subtitle{font-size:9px;max-width:240px;line-height:1.7}.eyebrow{font-size:8px}.scale{display:none}aside{left:22px;bottom:145px}.spec{gap:24px}.spec strong{font-size:18px}footer{left:22px;right:22px;bottom:22px;display:block}.hint{text-align:left;margin-top:12px;font-size:9px}button{padding:10px}#viewLabel{right:22px;bottom:145px;font-size:8px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">AIRFRAME ARCHIVE / 001</div><h1>F-22 <span>Raptor</span></h1><div class="subtitle">LOCKHEED MARTIN · AIR SUPERIORITY FIGHTER</div></header>
+<p style="position:absolute;top:155px;left:38px;right:24px;max-width:350px;color:#839ba7;font:11px/1.7 monospace;pointer-events:none"><span style="display:block;font-size:9px;letter-spacing:2px">ORIGINAL PROMPT</span>3D model view of Lockheed Martin F-22 Raptor. One-shot, three.js, single html file, no external assets.</p>
+<div class="badge">3D STUDY</div><div class="scale">PROCEDURAL MODEL<b></b></div>
+<aside><div class="label">AIRFRAME DIMENSIONS</div><div class="spec"><div><strong>18.9 <span style="font-size:12px;color:#78919b">m</span></strong><small>LENGTH</small></div><div><strong>13.6 <span style="font-size:12px;color:#78919b">m</span></strong><small>WINGSPAN</small></div><div><strong>02</strong><small>ENGINES</small></div></div></aside>
+<div id="viewLabel">01 / PERSPECTIVE</div><div id="status">INITIALIZING AIRFRAME…</div>
+<footer><div class="controls"><button data-view="perspective" class="active">PERSPECTIVE</button><button data-view="top">TOP</button><button data-view="side">SIDE</button><button id="rotate" aria-pressed="false">AUTO ↻</button><button id="wire" aria-pressed="false">MESH</button></div><div class="hint">DRAG TO ORBIT · SCROLL TO ZOOM<br>PROCEDURAL INTERPRETATION / NOT ENGINEERING CAD</div></footer>
+<!-- All airframe geometry is generated below. Three.js is the only network dependency. -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+<script>
+(()=>{'use strict';
+const status=document.getElementById('status');
+if(!window.THREE){status.textContent='Three.js could not load. Check your internet connection and reload.';return;}
+try{
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0b1117);scene.fog=new THREE.FogExp2(0x0b1117,.014);
+const camera=new THREE.PerspectiveCamera(36,innerWidth/innerHeight,.1,200);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x0b1117);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.35;document.body.prepend(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xbdd6e7,0x25303a,2));
+const key=new THREE.DirectionalLight(0xfff3dc,3.4);key.position.set(-12,22,-10);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-16,right:16,top:16,bottom:-16,near:1,far:65});key.shadow.bias=-.0004;key.shadow.normalBias=.025;scene.add(key);
+const rim=new THREE.DirectionalLight(0x92bdde,2.2);rim.position.set(10,8,10);scene.add(rim);
+const aircraft=new THREE.Group();aircraft.position.y=.2;scene.add(aircraft);
+const metal=new THREE.MeshStandardMaterial({color:0x75818a,metalness:.58,roughness:.55,flatShading:true,side:THREE.DoubleSide});
+const darkMetal=metal.clone();darkMetal.color.setHex(0x47535c);const lightMetal=metal.clone();lightMetal.color.setHex(0x929da4);const noseMat=metal.clone();noseMat.color.setHex(0x737d83);noseMat.roughness=.85;
+const black=new THREE.MeshStandardMaterial({color:0x080e14,metalness:.2,roughness:.9,side:THREE.DoubleSide});const exhaustMat=new THREE.MeshStandardMaterial({color:0x343a41,metalness:.85,roughness:.48,side:THREE.DoubleSide});
+const canopyMat=new THREE.MeshPhysicalMaterial({color:0x997537,metalness:.68,roughness:.16,clearcoat:1,clearcoatRoughness:.12});
+const meshes=[];
+function mesh(vertices,indices,material=metal){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices.flat(),3));g.setIndex(indices);g.computeVertexNormals();const m=new THREE.Mesh(g,material);m.castShadow=true;m.receiveShadow=true;aircraft.add(m);meshes.push(m);return m;}
+function lines(points,color=0x37464f,opacity=.6,closed=false){const pts=points.map(p=>new THREE.Vector3(...p));if(closed)pts.push(pts[0]);const g=new THREE.BufferGeometry().setFromPoints(pts);const l=new THREE.Line(g,new THREE.LineBasicMaterial({color,transparent:true,opacity}));aircraft.add(l);return l;}
+// Coordinates: X spans the wings, Y points up, and the nose faces negative Z.
+// Octagonal longitudinal sections preserve the Raptor's hard chines.
+const sections=[[-9.45,.035,.0,.01],[-8,.42,.21,-.19],[-6.4,.84,.46,-.37],[-4.7,1.16,.65,-.55],[-2.7,1.55,.72,-.64],[0,1.95,.65,-.68],[2.9,1.98,.55,-.6],[5.7,1.64,.36,-.48],[8,1.5,.15,-.39],[8.8,1.4,.06,-.27]];
+const bodyV=[];sections.forEach(([z,w,t,b])=>bodyV.push([0,t,z],[w*.66,t*.86,z],[w,.02,z],[w*.76,b,z],[0,b-.05,z],[-w*.76,b,z],[-w,.02,z],[-w*.66,t*.86,z]));
+for(let j=0;j<sections.length-1;j++){const idx=[];for(let k=0;k<8;k++){const a=j*8+k,b=j*8+(k+1)%8,c=(j+1)*8+k,d=(j+1)*8+(k+1)%8;idx.push(a,c,b,b,c,d);}mesh(bodyV,idx,j<2?noseMat:metal);}
+function plate(points,thickness=.1,material=metal){const n=points.length,v=points.concat(points.map(([x,y,z])=>[x,y-thickness,z]));const id=[];for(let i=1;i<n-1;i++){id.push(0,i,i+1,n,n+i+1,n+i);}for(let i=0;i<n;i++){const k=(i+1)%n;id.push(i,n+i,k,k,n+i,n+k);}const m=mesh(v,id,material);lines(points,0xc4d2d8,.15,true);return m;}
+for(const s of [-1,1]){
+const mirror=pts=>pts.map(([x,y,z])=>[s*x,y,z]);
+// Diamond planform wings and all-moving trapezoidal tailplanes.
+plate(mirror([[1.12,.11,-3.55],[6.8,-.02,2.05],[6.45,-.02,3.2],[2.1,.1,4.35],[1.55,.15,1.15]]),.16);
+plate(mirror([[1.52,.09,4.58],[4.1,-.02,7.4],[3.8,-.04,8.55],[1.33,.02,8.38]]),.13);
+plate(mirror([[.85,.03,-5.48],[1.62,-.02,-3.55],[2.04,.03,-.85],[1.22,.23,-2.6]]),.13,lightMetal);
+// Twin angular inlet mouths, framed with intake lips.
+const mouth=mirror([[.88,.12,-3.7],[1.67,.08,-3.42],[1.68,-.67,-3.05],[.88,-.64,-3.27]]);
+plate(mouth,.015,black);lines(mouth,0x9aaab4,.8,true);
+mesh(mirror([[.88,.12,-3.7],[1.67,.08,-3.42],[1.9,.28,.4],[.85,.55,.3],[1.68,-.67,-3.05],[1.92,-.55,.4]]),[0,1,2,0,2,3,1,4,5,1,5,2],darkMetal);
+// Broad, blended engine shoulders, with parallel exhaust channels.
+const cx=s*.92;const ev=[];const eSections=[[-1.8,.47,.69],[1,.65,.82],[4.8,.63,.7],[7.65,.55,.32]];
+for(const [z,w,h] of eSections){ev.push([cx-w,.2,z],[cx-w*.62,h*.82,z],[cx,h,z],[cx+w*.62,h*.82,z],[cx+w,.2,z]);}
+const ei=[];for(let r=0;r<3;r++)for(let k=0;k<4;k++){let a=r*5+k;ei.push(a,a+5,a+1,a+1,a+5,a+6);}mesh(ev,ei,metal);
+// Outward-canted vertical stabilizers.
+const fin=mirror([[1.33,.48,3.55],[2.05,3.22,5.53],[2.63,3.06,7.05],[1.8,.36,7.85]]);
+plate(fin,.095,darkMetal);lines(mirror([[1.62,.59,6.3],[2.36,2.86,6.62],[2.63,3.06,7.05]]),0xa6b4ba,.35);
+// Two-dimensional thrust-vectoring exhausts: upper and lower petals.
+for(const y of [-.27,.3]){plate([[cx-.55,y,7.5],[cx+.55,y,7.5],[cx+.57,y+(y>0?-.07:.07),9.35],[cx-.57,y+(y>0?-.07:.07),9.35]],.055,exhaustMat);for(let i=0;i<7;i++){let x=cx-.49+i*.16;lines([[x,y+.012,7.68],[x,y+(y>0?-.05:.09),9.23]],0xa0a29b,.38);}}
+mesh([[cx-.52,-.23,9.08],[cx+.52,-.23,9.08],[cx+.52,.2,9.08],[cx-.52,.2,9.08]],[0,1,2,0,2,3],black);
+plate([[cx-.59,-.25,7.5],[cx-.59,.3,7.5],[cx-.59,.22,9.28],[cx-.59,-.2,9.28]],.04,exhaustMat);
+plate([[cx+.59,-.25,7.5],[cx+.59,.3,7.5],[cx+.59,.22,9.28],[cx+.59,-.2,9.28]],.04,exhaustMat);
+// Control-surface boundaries and low-contrast surface panels.
+lines(mirror([[2.2,.125,3.76],[5.89,.005,2.83],[6.15,.005,2.24]]));
+lines(mirror([[2.75,.115,-1.88],[2.35,.12,.15],[5.65,.015,2.69]]));
+lines(mirror([[1.7,.13,5.45],[3.37,.025,7.7],[3.8,-.02,8.55]]));
+lines(mirror([[.2,.74,-2.5],[.49,.73,-1.3],[.49,.7,.8],[.2,.68,1.15]]),0x394a55,.5);
+lines(mirror([[.28,-.72,-2.5],[1.05,-.67,-1.6],[1.05,-.68,1.8],[.28,-.72,2.3]]),0x263640,.7,true);
+const nav=new THREE.Mesh(new THREE.SphereGeometry(.035,8,6),new THREE.MeshBasicMaterial({color:s<0?0xeb685c:0x88d4ad}));nav.position.set(s*6.7,.03,2.15);aircraft.add(nav);
+}
+// Amber bubble canopy, built from elliptical cross sections.
+const cv=[],ci=[];const cs=[[-6.45,.03,.51],[-6.0,.31,.9],[-5.3,.46,1.24],[-4.4,.47,1.33],[-3.65,.39,1.14],[-3.05,.1,.74]];
+for(const [z,w,h] of cs)for(let i=0;i<=12;i++){const a=Math.PI*i/12;cv.push([Math.cos(a)*w,.48+Math.sin(a)*(h-.48),z]);}
+for(let r=0;r<cs.length-1;r++)for(let i=0;i<12;i++){const a=r*13+i;ci.push(a,a+13,a+1,a+1,a+13,a+14);}mesh(cv,ci,canopyMat);
+for(const s of [-1,1])lines(cs.map(([z,w,h])=>[s*w,.495,z]),0x222e35,.95);
+lines(Array.from({length:13},(_,i)=>{const a=Math.PI*i/12;return[Math.cos(a)*.39,.48+Math.sin(a)*.66,-3.65]}),0x33424a,.9);
+// Radome seam follows a fuselage section.
+lines(bodyV.slice(16,24),0x39464d,.65,true);
+// Ground, technical grid and circular reference marks.
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(250,250),new THREE.MeshStandardMaterial({color:0x0c141d,roughness:.95,metalness:.15}));floor.rotation.x=-Math.PI/2;floor.position.y=-2;floor.receiveShadow=true;scene.add(floor);
+const grid=new THREE.GridHelper(100,100,0x273944,0x1b2a35);grid.position.y=-1.99;grid.material.transparent=true;grid.material.opacity=.3;scene.add(grid);
+for(const r of [11.8,12]){const pts=[];for(let i=0;i<=180;i++){const a=i/180*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,-1.975,Math.sin(a)*r));}scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x49616b,transparent:true,opacity:r===12?.35:.12})));}
+for(let i=0;i<60;i++){const a=i/60*Math.PI*2,r=i%5===0?12.35:12.13;const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(Math.cos(a)*12,-1.97,Math.sin(a)*12),new THREE.Vector3(Math.cos(a)*r,-1.97,Math.sin(a)*r)]);scene.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:0x3a525f})));}
+let theta=-.77,phi=.98,radius=32,targetTheta=theta,targetPhi=phi,targetRadius=radius,auto=false,dragging=false,lastX=0,lastY=0;const pointers=new Map();let pinch=0;
+const canvas=renderer.domElement;canvas.setAttribute('aria-label','Interactive procedural F-22 model. Drag to orbit and scroll to zoom. Arrow keys orbit; plus and minus zoom.');canvas.tabIndex=0;
+function customView(){document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));document.getElementById('viewLabel').textContent='04 / FREE ORBIT';}
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});dragging=true;lastX=e.clientX;lastY=e.clientY;pinch=0;});
+canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2){const p=[...pointers.values()],d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);if(pinch)targetRadius=Math.max(15,Math.min(65,targetRadius*pinch/d));pinch=d;}else{targetTheta-=(e.clientX-lastX)*.006;targetPhi=Math.max(.03,Math.min(Math.PI-.12,targetPhi+(e.clientY-lastY)*.006));customView();}lastX=e.clientX;lastY=e.clientY;});
+function release(e){pointers.delete(e.pointerId);dragging=pointers.size>0;pinch=0;if(dragging){const p=[...pointers.values()][0];lastX=p.x;lastY=p.y;}}canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);
+canvas.addEventListener('wheel',e=>{e.preventDefault();targetRadius=Math.max(15,Math.min(65,targetRadius*Math.exp(e.deltaY*.001)));},{passive:false});
+canvas.addEventListener('keydown',e=>{const actions={ArrowLeft:()=>targetTheta-=.12,ArrowRight:()=>targetTheta+=.12,ArrowUp:()=>targetPhi=Math.max(.03,targetPhi-.12),ArrowDown:()=>targetPhi=Math.min(Math.PI-.12,targetPhi+.12),'+':()=>targetRadius=Math.max(15,targetRadius-2),'=':()=>targetRadius=Math.max(15,targetRadius-2),'-':()=>targetRadius=Math.min(65,targetRadius+2)};if(actions[e.key]){e.preventDefault();actions[e.key]();customView();}});
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{auto=false;setToggle('rotate',false);document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el===b));const v=b.dataset.view;[targetTheta,targetPhi,targetRadius]=v==='top'?[0,.03,34]:v==='side'?[-Math.PI/2,Math.PI/2,33]:[-.77,.98,32];document.getElementById('viewLabel').textContent= v==='top'?'02 / PLAN VIEW':v==='side'?'03 / SIDE ELEVATION':'01 / PERSPECTIVE';});
+function setToggle(id,on){const b=document.getElementById(id);b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));}
+document.getElementById('rotate').onclick=()=>{auto=!auto;setToggle('rotate',auto);if(auto)customView();};let wire=false;document.getElementById('wire').onclick=()=>{wire=!wire;setToggle('wire',wire);meshes.forEach(m=>m.material.wireframe=wire);};
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));}window.addEventListener('resize',resize);
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();status.style.display='block';status.textContent='Graphics context lost. Reload to restart the viewer.';});
+status.style.display='none';let previous=performance.now();
+function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-previous)/1000,.05);previous=now;if(auto&&!dragging)targetTheta+=dt*.17;const t=1-Math.exp(-dt*9);theta+=(targetTheta-theta)*t;phi+=(targetPhi-phi)*t;radius+=(targetRadius-radius)*t;const effective=radius*Math.max(1,.85/camera.aspect);camera.position.set(Math.sin(theta)*Math.sin(phi)*effective,Math.cos(phi)*effective+.3,-Math.cos(theta)*Math.sin(phi)*effective);camera.lookAt(0,.3,0);floor.visible=grid.visible=phi<Math.PI/2+.05;renderer.render(scene,camera);}requestAnimationFrame(animate);
+}catch(e){status.style.display='block';status.textContent='Unable to start the 3D viewer. WebGL must be enabled.';console.error(e);}
+})();
+</script>
+</body></html>
