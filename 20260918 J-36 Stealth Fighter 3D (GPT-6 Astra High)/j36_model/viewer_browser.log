@@ -1,0 +1,12 @@
+[7628:13276:0918/214103.724:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[7628:13276:0918/214103.725:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[7628:13276:0918/214103.726:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[7628:13276:0918/214104.033:ERROR:google_apis\gcm\engine\mcs_client.cc:702]   Error code: 401  Error message: Authentication Failed: wrong_secret
+[7628:13276:0918/214104.034:ERROR:google_apis\gcm\engine\mcs_client.cc:704] Failed to log in to GCM, resetting connection.
+[7628:6888:0918/214118.163:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 2596: Access is denied. (0x5)
+[7628:10872:0918/214118.173:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 2596: Access is denied. (0x5)
+[7628:6888:0918/214120.917:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 5292: Access is denied. (0x5)
+[7628:10872:0918/214120.937:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 5292: Access is denied. (0x5)
+[7628:6888:0918/214123.837:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 4888: Access is denied. (0x5)
+[7628:10872:0918/214123.840:ERROR:chrome\updater\ipc\update_service_dialer_win.cc:75] Failed to open named pipe server process 4888: Access is denied. (0x5)
+734927 bytes written to file C:\MyProjects\TempProject (OpenAI)\j36_model\viewer_screenshot.png

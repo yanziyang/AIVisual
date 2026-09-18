@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>J-36 | Interactive Aircraft Study</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,Segoe UI,Arial,sans-serif;color:#edf2f5;background:#0b1118}*{box-sizing:border-box}body{margin:0}#app{position:relative;height:100vh;min-height:680px;overflow:hidden;background:radial-gradient(ellipse at 48% 40%,#253440,#0b1118 75%)}#viewport{position:absolute;inset:0}canvas{display:block;width:100%;height:100%;touch-action:none}header{position:absolute;top:32px;left:36px;pointer-events:none}.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#91a4b4}h1{font-size:46px;font-weight:500;letter-spacing:-2px;margin:8px 0}h1 span{color:#ff9b63}header p{color:#9eafbc;font-size:13px;margin:0}.panel{background:rgba(16,24,33,.9);border:1px solid #34424e;border-radius:14px;box-shadow:0 16px 45px #0003;backdrop-filter:blur(15px)}.reference{position:absolute;right:28px;top:28px;width:310px;margin:0;overflow:hidden}.panel-label{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;color:#b6c5d0;font-size:10px;letter-spacing:1.6px;text-transform:uppercase}.reference button{display:block;background:none;border:0;padding:0;cursor:zoom-in;width:100%}.reference img{width:100%;display:block}.reference figcaption{padding:11px 15px;font-size:11px;color:#8da0af}.prompt{position:absolute;left:28px;bottom:28px;width:445px;padding:20px 23px}.prompt h2{font-size:11px;color:#ffa574;letter-spacing:1.7px;text-transform:uppercase;margin:0 0 11px}.prompt p{font-size:13px;line-height:1.7;color:#c4d0d9;margin:0}.controls{position:absolute;right:28px;bottom:28px;padding:16px;max-width:390px}.buttons{display:flex;gap:7px;flex-wrap:wrap}button.control{color:#d4e1e9;background:#21303d;border:1px solid #425360;border-radius:7px;padding:9px 12px;font-size:12px;cursor:pointer}button.control:hover{background:#324658}button:focus-visible{outline:2px solid #ffac7c;outline-offset:3px}button[aria-pressed=true]{background:#6b422c;border-color:#f2a477;color:#fff}.hint{font-size:11px;color:#8fa3b3;margin:12px 0 0}.status{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 20px;border:1px solid #526473;border-radius:10px;background:#101821;max-width:85%;text-align:center;font-size:13px}.status[hidden]{display:none}.badge{position:absolute;left:36px;top:150px;font-size:10px;letter-spacing:1.2px;color:#7e94a5}dialog{padding:12px;background:#101821;border:1px solid #546575;border-radius:12px;max-width:94vw;max-height:94vh}dialog::backdrop{background:#000b}dialog img{display:block;max-width:88vw;max-height:77vh;object-fit:contain}dialog button{float:right;margin-bottom:10px}footer{font-size:10px;color:#7790a2;margin-top:10px}@media(max-width:850px){#app{height:auto;min-height:100vh;overflow:visible;padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}#viewport{position:relative;height:65vh;min-height:420px;margin:0 -16px}header{top:22px;left:22px}h1{font-size:36px}.badge{left:22px;top:130px}.reference,.prompt,.controls{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:100%;max-width:none}.controls{order:1}.reference{order:2}.prompt{order:3}.reference img{max-height:250px;object-fit:contain;background:#0c1118}.status{top:32vh}}
+</style>
+</head>
+<body>
+<main id="app">
+<div id="viewport" role="img" aria-label="Interactive 3D concept model of the China J-36 stealth fighter"></div>
+<header><div class="eyebrow">Aircraft study / 001</div><h1>Chengdu <span>J-36</span></h1><p>Reference-inspired stealth fighter concept</p></header>
+<div class="badge">THREE INTAKES &nbsp;/&nbsp; TAILLESS DELTA</div>
+<figure class="reference panel"><div class="panel-label"><span>Reference images</span><span>↗ Enlarge</span></div><button id="enlarge" aria-label="Enlarge original reference image"><img src="__REFERENCE__" alt="Hangar reference showing the arched dorsal intake and under-wing side intakes"></button><figcaption><div class="buttons"><button class="control ref-choice" data-ref="0">Hangar</button><button class="control ref-choice" data-ref="1">In flight</button><button class="control ref-choice" data-ref="2">Original</button></div><div style="margin-top:10px">User-supplied references · Credits retained in images</div></figcaption></figure>
+<section class="prompt panel" aria-labelledby="prompt-title"><h2 id="prompt-title">The Prompt:</h2><p>Using photo as reference, create blender model for China J-36 Stealth Fighter. Create a standalone html with three.js to host the model. Show the original image in one of the corner. Also display the prompt.</p></section>
+<section class="controls panel" aria-label="Viewer controls"><div class="buttons"><button class="control" id="reset">Reset view</button><button class="control" id="front">Front</button><button class="control" id="top">Top</button><button class="control" id="rotate" aria-pressed="false">Auto rotate</button><button class="control" id="wire" aria-pressed="false">Wireframe</button></div><p class="hint">Drag to orbit · Scroll to zoom · Right-drag to pan</p><footer>Visual concept · Geometry inferred from reference</footer></section>
+<div id="status" class="status" role="status">Loading embedded aircraft…</div>
+</main>
+<dialog id="reference-dialog"><button class="control" id="close-dialog">Close ✕</button><img id="large-reference" alt="Enlarged original aircraft reference"></dialog>
+<script>__THREE__</script>
+<script>__CONTROLS__</script>
+<script>__LOADER__</script>
+<script>
+'use strict';
+const statusEl=document.getElementById('status');
+const dialog=document.getElementById('reference-dialog');
+const referenceImages=['__REFERENCE__','__REFERENCE_FLIGHT__','__REFERENCE_ORIGINAL__'];
+const referenceLabels=['Hangar reference with arched dorsal inlet and intakes beneath the wings','In-flight reference showing blended fuselage and blue-gray camouflage','Original annotated Chengdu aircraft reference'];
+document.querySelectorAll('.ref-choice').forEach(button=>{button.onclick=()=>{const index=Number(button.dataset.ref);const img=document.querySelector('.reference img');img.src=referenceImages[index];img.alt=referenceLabels[index];document.querySelectorAll('.ref-choice').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));};});
+document.querySelector('.ref-choice').setAttribute('aria-pressed','true');
+document.getElementById('enlarge').onclick=()=>{document.getElementById('large-reference').src=document.querySelector('.reference img').src;dialog.showModal();};
+document.getElementById('close-dialog').onclick=()=>dialog.close();
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+try{
+const host=document.getElementById('viewport');
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;host.appendChild(renderer.domElement);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(38,1,.1,500);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.065;controls.minDistance=12;controls.maxDistance=85;controls.maxPolarAngle=Math.PI*.93;controls.autoRotateSpeed=.65;
+scene.add(new THREE.HemisphereLight(0xcce5ff,0x384354,1.25));
+function light(color,intensity,x,y,z){const l=new THREE.DirectionalLight(color,intensity);l.position.set(x,y,z);scene.add(l);}
+light(0xffddbd,2,8,18,12);light(0x9fbfff,1.1,-15,8,2);light(0xffaa69,1,4,10,-15);
+const grid=new THREE.GridHelper(100,50,0x405363,0x273642);grid.position.y=-1.68;grid.material.transparent=true;grid.material.opacity=.3;scene.add(grid);
+const center=new THREE.Vector3(0,0,0);let model;let meshes=[];
+function view(x,y,z){controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(x,y,z));camera.up.set(0,1,0);controls.update();}
+function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
+new ResizeObserver(resize).observe(host);resize();view(27,18,36);
+document.getElementById('reset').onclick=()=>view(27,18,36);
+document.getElementById('front').onclick=()=>view(0,0.4,46);
+document.getElementById('top').onclick=()=>view(0,48,.01);
+for(const [id,fn] of [['rotate',value=>controls.autoRotate=value],['wire',value=>meshes.forEach(m=>{for(const material of (Array.isArray(m.material)?m.material:[m.material]))material.wireframe=value;})]]){
+ const button=document.getElementById(id);button.onclick=()=>{const next=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(next));fn(next);};
+}
+const bytes=Uint8Array.from(atob('__MODEL__'),c=>c.charCodeAt(0));
+new THREE.GLTFLoader().parse(bytes.buffer,'',gltf=>{
+ model=gltf.scene;scene.add(model);model.traverse(o=>{if(o.isMesh)meshes.push(o);});
+ const bounds=new THREE.Box3().setFromObject(model);bounds.getCenter(center);view(27,18,36);statusEl.hidden=true;
+ window.viewerReady=true;window.viewerMeshCount=meshes.length;
+},error=>{statusEl.hidden=false;statusEl.textContent='Unable to load the embedded model: '+error.message;console.error(error);});
+renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();statusEl.hidden=false;statusEl.textContent='Graphics context lost. Reload this page to restore the viewer.';});
+function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}animate();
+}catch(error){statusEl.hidden=false;statusEl.textContent='This viewer needs a browser with WebGL enabled. '+error.message;console.error(error);}
+</script>
+</body></html>
