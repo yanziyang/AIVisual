@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A house, through the seasons</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f0e7;color:#474f47;font-family:Georgia,serif;min-height:100vh}main{max-width:1180px;margin:auto;padding:42px 32px 24px}header{display:flex;align-items:center;justify-content:space-between;gap:20px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:#858778}h1{font-weight:normal;font-size:clamp(28px,4vw,44px);margin:10px 0 8px}header p{font-style:italic;color:#8a897b;font-size:14px;margin:0}button{font:11px Arial,sans-serif;letter-spacing:1px;color:inherit;background:transparent;border:1px solid #d8d7c9;padding:12px 18px;cursor:pointer;border-radius:3px}button:hover{background:#e7e8dd}button:focus-visible,input:focus-visible{outline:2px solid #647f6b;outline-offset:4px}.painting{position:relative;margin:30px 0 22px;background:#faf8ef;box-shadow:0 16px 45px #6e705018;border:10px solid #fcfaf3;aspect-ratio:1.8;overflow:hidden}canvas{display:block;width:100%;height:100%}.caption{display:flex;justify-content:space-between;gap:15px;align-items:center}.season-title{font-size:23px;margin:0}.note{font-size:13px;font-style:italic;color:#8a897b;margin:6px 0 0}nav{display:flex;gap:5px}nav button{border:0;padding:13px 19px;color:#8a897b}nav button[aria-pressed=true]{background:#dfe5d8;color:#435d49}.foot{display:flex;align-items:center;justify-content:space-between;margin-top:30px;border-top:1px solid #dcdccf;padding-top:18px;font:10px Arial,sans-serif;letter-spacing:1.4px;color:#999b8b}.motion{display:flex;align-items:center;gap:8px;cursor:pointer}input{accent-color:#667d60}@media(max-width:650px){main{padding:25px 15px}header{align-items:flex-start}header button{padding:10px}.painting{aspect-ratio:1.15;margin-top:24px}.caption{display:block}nav{margin-top:15px;justify-content:space-between}nav button{padding:12px}.foot{letter-spacing:.5px}}
+</style>
+<main>
+<header><div><div class="eyebrow">A little study in passing time</div><h1>A house, through the seasons</h1><p>A house through the seasons, painted in watercolour with pure JavaScript.</p></div><button id="save" aria-label="Save the painting as a PNG">Save painting ↓</button></header>
+<div class="painting"><canvas id="art" aria-label="A watercolour painting of a cottage through the seasons" role="img"></canvas></div>
+<div class="caption"><div><p class="season-title" id="title">Spring / the world wakes</p><p class="note" id="note">Blossom on the branches, a little warmth at the door.</p></div><nav aria-label="Choose a season"><button data-season="0" aria-pressed="true">Spring</button><button data-season="1" aria-pressed="false">Summer</button><button data-season="2" aria-pressed="false">Autumn</button><button data-season="3" aria-pressed="false">Winter</button></nav></div>
+<div class="foot"><span>WATER, PIGMENT & A FEW LINES OF JAVASCRIPT</span><label class="motion"><input id="motion" type="checkbox" checked> Let the air move</label></div>
+</main>
+<script>
+'use strict';
+const canvas=document.getElementById('art'),ctx=canvas.getContext('2d');
+const W=1200,H=670;canvas.width=W;canvas.height=H;
+const base=document.createElement('canvas');base.width=W;base.height=H;const b=base.getContext('2d');
+const seasons=[
+ {title:'Spring / the world wakes',note:'Blossom on the branches, a little warmth at the door.',sky:'#bed7da',hill:'#a5b796',grass:'#809c6a',leaf:['#95ae75','#b1bf85','#dfa5b3','#edc3cc'],roof:'#7d7d80',ground:'#d0d7af'},
+ {title:'Summer / the long, soft days',note:'A garden full of green, and nowhere else to be.',sky:'#b4d3e1',hill:'#92ac85',grass:'#688b55',leaf:['#6d925e','#88a668','#afba76','#547c53'],roof:'#8a7770',ground:'#bdc894'},
+ {title:'Autumn / a quieter kind of gold',note:'Copper leaves take their time on the way down.',sky:'#c9cdcf',hill:'#b2a18b',grass:'#a19862',leaf:['#b47745','#c6954e','#d4ab68','#986347'],roof:'#796d6c',ground:'#d1bb91'},
+ {title:'Winter / the hush between things',note:'Snow on the roof. A warm light waiting inside.',sky:'#b9c8d1',hill:'#aebbc1',grass:'#b5bec0',leaf:['#afbdc2','#c2cbd0'],roof:'#707b87',ground:'#e5e6df'}
+];
+let selected=0,seed=72,particles=[],running=true;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;document.getElementById('motion').checked=!reduced;running=!reduced;
+function rand(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}function range(a,c){return a+rand()*(c-a)}
+// Repeated translucent washes give pigment ragged, pooled edges.
+function wash(points,color,alpha=.1,passes=10){for(let n=0;n<passes;n++){b.beginPath();points.forEach(([x,y],i)=>{const xx=x+range(-3,3),yy=y+range(-3,3);i?b.lineTo(xx,yy):b.moveTo(xx,yy)});b.closePath();b.globalAlpha=alpha;b.fillStyle=color;b.fill()}b.globalAlpha=1}
+function blob(x,y,rx,ry,color,alpha=.05,passes=8){for(let j=0;j<passes;j++){b.beginPath();for(let i=0;i<22;i++){const a=i/22*Math.PI*2,r=range(.82,1.13);const px=x+Math.cos(a)*rx*r,py=y+Math.sin(a)*ry*r;i?b.lineTo(px,py):b.moveTo(px,py)}b.closePath();b.fillStyle=color;b.globalAlpha=alpha;b.fill()}b.globalAlpha=1}
+function line(points,color,width=1,alpha=.4){b.beginPath();points.forEach(([x,y],i)=>i?b.lineTo(x,y):b.moveTo(x,y));b.strokeStyle=color;b.lineWidth=width;b.globalAlpha=alpha;b.lineCap='round';b.lineJoin='round';b.stroke();b.globalAlpha=1}
+function tree(x,y,size,s){const top=y-size;line([[x,y],[x-4,y-size*.4],[x+7,top]],'#6d6c60',5,.5);for(let i=0;i<15;i++){let a=range(-1.1,1.1),by=range(top+20,y-size*.25),bx=x+a*size*.32;line([[x,by+size*.15],[bx,by-20],[bx+a*14,by-50]],'#6c675c',range(1,3),.42)}if(selected!==3){for(let i=0;i<100;i++){const a=range(0,Math.PI*2),r=Math.sqrt(rand());blob(x+Math.cos(a)*r*size*.43,top+size*.27+Math.sin(a)*r*size*.34,range(12,32),range(12,27),s.leaf[Math.floor(rand()*s.leaf.length)],.055,5)}}else{for(let i=0;i<15;i++)blob(x+range(-55,55),top+range(10,90),20,4,'#fafaf3',.12,3)}}
+function windowAt(x,y,w,h){wash([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],selected===3?'#e2b671':'#778c8c',.16,7);line([[x,y+h],[x,y],[x+w,y],[x+w,y+h],[x,y+h]],'#6d726d',2,.55);line([[x+w/2,y],[x+w/2,y+h]],'#e6dfc6',3,.9);line([[x,y+h/2],[x+w,y+h/2]],'#e6dfc6',3,.9);line([[x-4,y+h+3],[x+w+4,y+h+3]],'#707568',3,.4)}
+function paint(){seed=728;b.clearRect(0,0,W,H);b.fillStyle='#f9f6eb';b.fillRect(0,0,W,H);const s=seasons[selected];
+ // Broad diluted sky and distant rolling hills.
+ for(let i=0;i<32;i++)blob(range(80,1120),range(100,320),range(85,210),range(35,95),s.sky,.026,5);
+ blob(881,155,53,50,selected===3?'#f0ede0':'#eadbaa',.06,6);
+ wash([[50,415],[165,350],[260,372],[405,320],[560,365],[718,320],[880,363],[1000,324],[1150,398],[1140,470],[50,470]],s.hill,.07,7);
+ for(let i=0;i<50;i++)blob(range(70,1140),range(420,564),range(35,140),range(10,38),s.ground,.06,5);
+ // Trees stand behind the cottage.
+ tree(299,464,255,s);tree(926,474,290,s);tree(1050,458,190,s);
+ // A pale path curves from the garden gate.
+ wash([[590,455],[633,457],[657,508],[709,540],[768,600],[684,602],[630,546],[587,515],[574,482]],'#dfd4b5',.11,6);
+ // Cottage side, front, gable and a slate roof.
+ wash([[477,323],[710,323],[710,463],[477,466]],'#d9c8a8',.15,8);
+ wash([[710,323],[795,291],[795,431],[710,463]],'#aea88e',.1,8);
+ wash([[468,326],[589,223],[719,326]],'#e2d6ba',.14,8);
+ wash([[589,223],[680,202],[807,292],[719,329]],s.roof,.13,9);
+ wash([[462,331],[589,218],[600,228],[477,339]],s.roof,.16,7);
+ wash([[724,222],[724,176],[747,169],[765,179],[765,243]],'#a39c90',.14,7);
+ line([[724,176],[746,183],[765,179]],'#787e77',2,.4);
+ line([[477,341],[477,465],[710,463],[795,431],[795,300]],'#847e6c',1,.35);
+ line([[463,331],[589,219],[719,329],[807,292],[680,202],[589,219]],'#6d7170',2,.4);
+ for(let i=0;i<12;i++){let y=240+i*7;line([[611+(y-240)*1.15,y],[701+(y-240)*1.15,y-21]],'#666c70',.7,.16)}
+ windowAt(510,353,44,53);windowAt(650,353,40,53);windowAt(570,278,35,34);
+ wash([[583,374],[622,374],[622,466],[583,466]],'#7b8a82',.14,8);line([[583,466],[583,374],[622,374],[622,466]],'#6c756c',2,.55);blob(615,423,2,2,'#d9bf7d',.3,4);
+ windowAt(742,337,29,45);line([[576,470],[630,470]],'#969486',4,.45);
+ if(selected===3){wash([[588,219],[680,202],[807,292],[790,294],[679,218],[599,235]],'#f7f7ed',.22,8);line([[462,331],[587,222]],'#f5f5ec',6,.9);line([[481,464],[706,461]],'#f6f7ee',6,.8)}
+ // Garden shrubs, flowers and soft grass marks.
+ for(let i=0;i<45;i++)blob(range(445,819),range(451,481),range(7,22),range(7,16),selected===3?'#cad3d0':s.grass,.07,5);
+ for(let i=0;i<380;i++){const x=range(100,1120),y=range(455,602);if(x>570&&x<770&&y>480)continue;line([[x,y],[x+range(-4,4),y-range(3,11)]],s.grass,.8,.22);if(selected<2&&rand()<.15)blob(x,y-8,range(2,4),range(2,4),selected===0?'#d8a4b6':'#d3b35c',.18,3)}
+ // An old fence and a few tiny birds.
+ for(let x=170;x<429;x+=33){line([[x,480],[x,443]],'#999481',3,.55)}line([[164,454],[428,454]],'#aaa18a',3,.6);line([[164,469],[428,469]],'#aaa18a',2,.5);
+ if(selected!==3)for(let i=0;i<3;i++){const x=range(420,510),y=range(166,206);line([[x-7,y+2],[x,y],[x+6,y+3]],'#777c78',1,.45)}
+ // Paper grain is part of the paint, without external images.
+ for(let i=0;i<45000;i++){b.globalAlpha=range(.015,.06);b.fillStyle=rand()>.5?'#736955':'#ffffff';b.fillRect(rand()*W,rand()*H,range(.4,1.4),range(.4,1.4))}b.globalAlpha=1;
+ const vignette=b.createRadialGradient(W/2,H/2,220,W/2,H/2,650);vignette.addColorStop(0,'#f9f6eb00');vignette.addColorStop(1,'#f9f6ebbb');b.fillStyle=vignette;b.fillRect(0,0,W,H);
+ particles=Array.from({length:selected===3?65:26},()=>({x:range(100,1100),y:range(30,600),r:range(1.5,4),v:range(10,25),phase:range(0,7)}));
+ document.getElementById('title').textContent=s.title;document.getElementById('note').textContent=s.note;canvas.setAttribute('aria-label',`Watercolour cottage in ${['spring','summer','autumn','winter'][selected]}`);
+ draw(0,0);
+}
+function draw(dt,t){ctx.clearRect(0,0,W,H);ctx.drawImage(base,0,0);if(!running)return;for(const p of particles){p.y+=dt*p.v;p.x+=dt*(Math.sin(t*.0005+p.phase)*10+6);if(p.y>610){p.y=65;p.x=100+Math.random()*1000}ctx.globalAlpha=selected===1?.25:.6;ctx.fillStyle=selected===3?'#fffdf7':selected===2?'#b78751':selected===0?'#e7bcc7':'#f1e6b0';ctx.beginPath();ctx.ellipse(p.x,p.y,p.r,selected===3?p.r:p.r*.5,t*.0005+p.phase,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1}
+let last=0;function tick(t){const dt=Math.min((t-last)/1000,.05);last=t;if(running)draw(dt,t);requestAnimationFrame(tick)}
+document.querySelectorAll('[data-season]').forEach(btn=>btn.addEventListener('click',()=>{selected=Number(btn.dataset.season);document.querySelectorAll('[data-season]').forEach(el=>el.setAttribute('aria-pressed',String(el===btn)));paint()}));
+document.getElementById('motion').addEventListener('change',e=>{running=e.target.checked;draw(0,0)});
+document.getElementById('save').addEventListener('click',()=>{const a=document.createElement('a');a.download=`house-in-${['spring','summer','autumn','winter'][selected]}.png`;a.href=canvas.toDataURL('image/png');a.click()});
+paint();requestAnimationFrame(tick);
+</script>
+</html>
