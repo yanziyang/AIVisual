@@ -1,0 +1,167 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\MyProjects\TempProject (OpenAI)\five-thousand-years-line-art-animation.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : 一卷穿越五千年
+    artist          : 原创线稿动画与器乐配乐
+    encoder         : Lavf61.7.100
+    comment         : 19幕中华文明快速回顾；中文字幕；128秒
+  Duration: 00:02:08.00, start: 0.000000, bitrate: 580 kb/s
+  Chapters:
+    Chapter #0:0: start 0.000000, end 6.000000
+      Metadata:
+        title           : 开卷！
+    Chapter #0:1: start 6.000000, end 13.000000
+      Metadata:
+        title           : 先把日子种出来
+    Chapter #0:2: start 13.000000, end 19.000000
+      Metadata:
+        title           : 治水，开启新篇
+    Chapter #0:3: start 19.000000, end 25.000000
+      Metadata:
+        title           : 文字开始留档
+    Chapter #0:4: start 25.000000, end 31.000000
+      Metadata:
+        title           : 天下，分工管理
+    Chapter #0:5: start 31.000000, end 38.000000
+      Metadata:
+        title           : 思想家，开麦！
+    Chapter #0:6: start 38.000000, end 45.000000
+      Metadata:
+        title           : 统一标准，出发
+    Chapter #0:7: start 45.000000, end 52.000000
+      Metadata:
+        title           : 向西，交个朋友
+    Chapter #0:8: start 52.000000, end 58.000000
+      Metadata:
+        title           : 分合之间，仍在生长
+    Chapter #0:9: start 58.000000, end 64.000000
+      Metadata:
+        title           : 南北，水路相连
+    Chapter #0:10: start 64.000000, end 72.000000
+      Metadata:
+        title           : 长安，热闹开场
+    Chapter #0:11: start 72.000000, end 80.000000
+      Metadata:
+        title           : 城市生活，升级
+    Chapter #0:12: start 80.000000, end 86.000000
+      Metadata:
+        title           : 道路越走越远
+    Chapter #0:13: start 86.000000, end 93.000000
+      Metadata:
+        title           : 乘风，也修长城
+    Chapter #0:14: start 93.000000, end 100.000000
+      Metadata:
+        title           : 盛景之后，迎来巨变
+    Chapter #0:15: start 100.000000, end 108.000000
+      Metadata:
+        title           : 风雨中，寻找新路
+    Chapter #0:16: start 108.000000, end 115.000000
+      Metadata:
+        title           : 建设与改革，向前
+    Chapter #0:17: start 115.000000, end 122.000000
+      Metadata:
+        title           : 把远方，变成日常
+    Chapter #0:18: start 122.000000, end 128.000000
+      Metadata:
+        title           : 下一笔，由你来写
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 372 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 201 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+  Stream #0:2[0x3](eng): Data: bin_data (text / 0x74786574), 0 kb/s
+      Metadata:
+        handler_name    : SubtitleHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : 一卷穿越五千年
+    artist          : 原创线稿动画与器乐配乐
+    comment         : 19幕中华文明快速回顾；中文字幕；128秒
+    encoder         : Lavf61.7.100
+  Chapters:
+    Chapter #0:0: start 0.000000, end 6.000000
+      Metadata:
+        title           : 开卷！
+    Chapter #0:1: start 6.000000, end 13.000000
+      Metadata:
+        title           : 先把日子种出来
+    Chapter #0:2: start 13.000000, end 19.000000
+      Metadata:
+        title           : 治水，开启新篇
+    Chapter #0:3: start 19.000000, end 25.000000
+      Metadata:
+        title           : 文字开始留档
+    Chapter #0:4: start 25.000000, end 31.000000
+      Metadata:
+        title           : 天下，分工管理
+    Chapter #0:5: start 31.000000, end 38.000000
+      Metadata:
+        title           : 思想家，开麦！
+    Chapter #0:6: start 38.000000, end 45.000000
+      Metadata:
+        title           : 统一标准，出发
+    Chapter #0:7: start 45.000000, end 52.000000
+      Metadata:
+        title           : 向西，交个朋友
+    Chapter #0:8: start 52.000000, end 58.000000
+      Metadata:
+        title           : 分合之间，仍在生长
+    Chapter #0:9: start 58.000000, end 64.000000
+      Metadata:
+        title           : 南北，水路相连
+    Chapter #0:10: start 64.000000, end 72.000000
+      Metadata:
+        title           : 长安，热闹开场
+    Chapter #0:11: start 72.000000, end 80.000000
+      Metadata:
+        title           : 城市生活，升级
+    Chapter #0:12: start 80.000000, end 86.000000
+      Metadata:
+        title           : 道路越走越远
+    Chapter #0:13: start 86.000000, end 93.000000
+      Metadata:
+        title           : 乘风，也修长城
+    Chapter #0:14: start 93.000000, end 100.000000
+      Metadata:
+        title           : 盛景之后，迎来巨变
+    Chapter #0:15: start 100.000000, end 108.000000
+      Metadata:
+        title           : 风雨中，寻找新路
+    Chapter #0:16: start 108.000000, end 115.000000
+      Metadata:
+        title           : 建设与改革，向前
+    Chapter #0:17: start 115.000000, end 122.000000
+      Metadata:
+        title           : 把远方，变成日常
+    Chapter #0:18: start 122.000000, end 128.000000
+      Metadata:
+        title           : 下一笔，由你来写
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(progressive), 1280x720, q=2-31, 200 kb/s, 24 fps, 24 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 wrapped_avframe
+  Stream #0:1(und): Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 pcm_s16le
+frame=  482 fps=0.0 q=-0.0 size=N/A time=00:00:20.01 bitrate=N/A speed=39.7x    
+frame= 1272 fps=1221 q=-0.0 size=N/A time=00:00:53.00 bitrate=N/A speed=50.9x    
+frame= 2045 fps=1313 q=-0.0 size=N/A time=00:01:25.20 bitrate=N/A speed=54.7x    
+frame= 2952 fps=1421 q=-0.0 size=N/A time=00:02:02.87 bitrate=N/A speed=59.2x    
+[out#0/null @ 00000261ffa3e7c0] video:1320KiB audio:22052KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 3072 fps=1436 q=-0.0 Lsize=N/A time=00:02:08.00 bitrate=N/A speed=59.8x    

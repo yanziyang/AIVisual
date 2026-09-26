@@ -1,0 +1,13 @@
+{
+  "duration_seconds": 128,
+  "resolution": [
+    1280,
+    720
+  ],
+  "fps": 24,
+  "chapters": 19,
+  "decoded_frames": 3072,
+  "audio": "AAC stereo",
+  "decode": "passed",
+  "file_bytes": 9293344
+}
