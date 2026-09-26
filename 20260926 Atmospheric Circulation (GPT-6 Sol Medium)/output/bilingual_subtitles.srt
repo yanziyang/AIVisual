@@ -1,0 +1,94 @@
+﻿1
+00:00:00,000 --> 00:00:08,996
+想象空气是一群快递员。它们每天绕着地球跑，送的不是包裹，而是热量和水汽！
+Air couriers travel around Earth, delivering heat and moisture.
+
+2
+00:00:08,996 --> 00:00:18,856
+为什么要跑？因为太阳加热不均。赤道接收的太阳辐射多，两极少，地球需要搬运热量。
+Uneven solar heating drives heat transport from low to high latitudes.
+
+3
+00:00:18,856 --> 00:00:28,332
+先把地球自转按下暂停键。在简化模型里，赤道空气受热上升，高空向两极流动。
+Without rotation, warm equatorial air rises and flows poleward aloft.
+
+4
+00:00:28,332 --> 00:00:37,616
+极地空气冷却下沉，近地面再流向赤道。空气流动的直接动力，是水平气压梯度力。
+Cold polar air sinks; surface air returns toward the equator. Pressure gradients drive wind.
+
+5
+00:00:37,616 --> 00:00:48,388
+现实中，地球在自转！运动的空气发生偏转：北半球向右，南半球向左。这叫地转偏向力。
+Rotation deflects moving air right in the north and left in the south.
+
+6
+00:00:48,388 --> 00:00:58,800
+于是，每个半球形成三圈环流：哈德莱环流、费雷尔环流和极地环流。下面看北半球示意。
+Each hemisphere has Hadley, Ferrel and Polar cells. Here is the northern hemisphere.
+
+7
+00:00:58,800 --> 00:01:09,068
+赤道空气上升，高空向较高纬度运动，在三十度附近下沉，近地面回到赤道。第一棒，完成！
+Hadley cell: air rises near 0°, sinks near 30°, and returns at the surface.
+
+8
+00:01:09,068 --> 00:01:19,288
+三十度附近的近地面空气也向六十度流动，在那里与极地冷空气相遇并上升。这是费雷尔环流。
+Ferrel cell: surface air moves from 30° toward 60°, where it converges and rises.
+
+9
+00:01:19,288 --> 00:01:29,916
+极地冷空气下沉，近地面流向六十度，在极锋附近上升。注意，费雷尔环流主要由涡旋活动维持。
+Polar cell: air sinks near 90° and rises near 60°. Eddies mainly sustain the Ferrel cell.
+
+10
+00:01:29,916 --> 00:01:41,696
+记住零、三十、六十、九十度。近地面气压依次是低、高、低、高。上升处辐合，下沉处辐散。
+Near-surface pressure at 0°, 30°, 60°, 90°: low, high, low, high.
+
+11
+00:01:41,696 --> 00:01:51,868
+南北半球对称排列，形成七个气压带和六个风带。赤道低压带只有一个，其余气压带各有两个。
+The idealized global pattern has seven pressure belts and six wind belts.
+
+12
+00:01:51,868 --> 00:02:02,136
+近地面空气从副热带高压流向赤道低压，偏转后，北半球是东北信风，南半球是东南信风。
+Trade winds blow toward the equator: northeasterly in the north, southeasterly in the south.
+
+13
+00:02:02,136 --> 00:02:12,332
+三十到六十度是盛行西风带；六十到九十度是极地东风带。风的名字，说的是它从哪里来！
+Westerlies dominate 30°–60°; polar easterlies dominate 60°–90°. Winds are named by origin.
+
+14
+00:02:12,332 --> 00:02:22,792
+赤道附近上升气流有利于云雨；三十度附近下沉气流不利于降水。雨林和沙漠，就有了重要线索！
+Rising air favors rain near the equator; sinking air favors dryness near 30°.
+
+15
+00:02:22,792 --> 00:02:32,436
+太阳直射点随季节移动，气压带和风带也大致跟着移动。北半球夏季北移，冬季南移。
+Belts generally shift north in Northern Hemisphere summer and south in winter.
+
+16
+00:02:32,436 --> 00:02:42,392
+真实世界还有海陆分布和地形。海陆热力差异，以及气压带风带的季节移动，都能影响季风。
+Land–sea thermal contrasts and seasonal belt shifts help shape monsoons.
+
+17
+00:02:42,392 --> 00:02:52,540
+快递员考考你：三十度附近，空气主要上升还是下沉？更容易多雨还是干燥？想三秒！
+Quick quiz: near 30°, does air rise or sink? Is rainfall favored or suppressed?
+
+18
+00:02:52,540 --> 00:03:02,760
+答案是下沉，偏干！这是副热带高压的典型影响，但具体降水还要看海陆位置、洋流和地形。
+Answer: sinking air and dry conditions. Local rainfall also depends on oceans and terrain.
+
+19
+00:03:02,760 --> 00:03:13,652
+记住：受热不均是起点，自转改变路线，三圈环流搬运热量；七个气压带、六个风带，随季节移动！
+Remember: uneven heating, rotation, three cells, seven pressure belts and six wind belts.
