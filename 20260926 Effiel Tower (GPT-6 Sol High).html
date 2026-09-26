@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#132c31">
+<title>Eiffel Tower — an interactive 3D postcard</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,Segoe UI,system-ui,sans-serif;color:#f5f2e8;background:#a9c5cd}
+*{box-sizing:border-box}body{margin:0;overflow:hidden}canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab;position:fixed;inset:0}canvas:active{cursor:grabbing}
+.panel{background:rgba(16,36,40,.87);border:1px solid #ffffff20;box-shadow:0 12px 40px #10282c25;backdrop-filter:blur(18px);border-radius:18px}
+header{position:absolute;top:24px;left:24px;padding:22px 25px;max-width:330px;pointer-events:none}.eyebrow{font-size:10px;letter-spacing:3px;color:#b5d5d0;font-weight:700;text-transform:uppercase}h1{font-family:Georgia,serif;font-weight:400;font-size:37px;line-height:1.15;margin:9px 0}header p{font-size:12px;color:#c2d1cf;line-height:1.6;margin:0}.tag{display:inline-block;margin-top:13px;color:#dfc58c;font-size:10px;letter-spacing:1px}
+nav{position:absolute;left:24px;bottom:26px;padding:15px;width:330px}.row{display:flex;gap:7px;align-items:center}.row+.row{margin-top:10px}
+button,select{font:inherit;font-size:12px;color:#e6eeeb;background:#ffffff09;border:1px solid #ffffff25;border-radius:9px;padding:10px 12px;cursor:pointer;transition:background .2s}button:hover,select:hover{background:#ffffff1f}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #e5c889;outline-offset:3px}button[aria-pressed=true]{background:#e5c889;color:#162d30;border-color:#e5c889}
+select{flex:1;width:0}select option{background:#183239}.round{width:40px;padding:10px 0;font-size:16px}.caption{font-size:10px;color:#a6c1bd;letter-spacing:1px;text-transform:uppercase;margin:0 0 8px}
+.light{position:absolute;top:24px;right:24px;padding:17px 20px;width:230px}.light .row{justify-content:space-between;font-size:11px;color:#bed1cd}input[type=range]{width:100%;accent-color:#e5c889;margin:15px 0 8px}
+.instructions{position:absolute;bottom:28px;right:26px;text-align:right;font-size:11px;line-height:1.9;color:#263e43;background:#eaf4edbc;padding:11px 16px;border-radius:12px;pointer-events:none}
+#labels{position:absolute;inset:0;pointer-events:none}.label{position:absolute;color:#203d40;background:#fff7e6e8;white-space:nowrap;font-size:10px;font-weight:600;padding:5px 9px;border-radius:20px;box-shadow:0 2px 7px #14323320;transform:translate(-50%,-50%)}.label:before{content:"";display:inline-block;width:4px;height:4px;background:#bb9151;border-radius:50%;margin-right:6px}
+#compass{position:absolute;right:30px;top:155px;width:54px;height:54px;border:1px solid #fff8;border-radius:50%;display:grid;place-items:center;color:#28434a;background:#edf5ec90;font-size:10px}#needle{position:absolute;height:32px;width:1px;background:#355259;transform-origin:center}#needle:before{content:"";position:absolute;top:-4px;left:-4px;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:8px solid #ad6849}#compass span{position:absolute;top:-15px}
+#fallback{position:absolute;inset:0;display:none;place-items:center;background:#132c31;padding:30px;text-align:center}#fallback div{max-width:450px}#fallback h2{font-family:Georgia,serif;font-size:30px}#fallback p{line-height:1.6}
+@media(max-width:650px){header{top:12px;left:12px;padding:14px 17px;max-width:220px}h1{font-size:29px}header p{font-size:11px}.tag{display:none}.light{top:12px;right:12px;width:125px;padding:12px}.light .caption{font-size:9px}.light .row{font-size:9px}nav{left:12px;bottom:12px;width:calc(100% - 24px);padding:12px}.instructions{display:none}#compass{right:20px;top:130px}.label{font-size:9px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+.creation-prompt{margin-top:14px;padding-top:12px;border-top:1px solid #ffffff25}.creation-prompt .caption{color:#dfc58c;margin-bottom:6px}.creation-prompt p{font-size:11px;line-height:1.6;color:#e6eeeb}
+</style>
+</head>
+<body>
+<canvas id="scene" aria-label="Interactive 3D Eiffel Tower and Paris. Drag to orbit, scroll or pinch to zoom. Use arrow keys to orbit." tabindex="0"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<header class="panel"><div class="eyebrow">A little escape · France</div><h1>Bonjour, Paris.</h1><p>Explore the iron lady and the city around her, from a new perspective.</p><span class="tag">INTERACTIVE 3D POSTCARD</span><div class="creation-prompt"><div class="caption">Creation prompt</div><p>create the Eiffel Tower and its surroundings in Paris in 3D interactive view, hosted in standalone html</p></div></header>
+<aside class="light panel" aria-label="Lighting controls"><div class="caption">The light of Paris</div><input id="light" aria-label="Day to night lighting" type="range" min="0" max="100" value="26"><div class="row"><span>Day</span><span id="lightName">Golden hour</span><span>Night</span></div></aside>
+<div id="compass" aria-hidden="true"><span>N</span><div id="needle"></div></div>
+<nav class="panel" aria-label="Scene controls"><div class="caption">Find your perspective</div><div class="row"><select id="view" aria-label="Camera viewpoint"><option value="postcard">The postcard</option><option value="tower">The Eiffel Tower</option><option value="garden">Champ de Mars</option><option value="river">Along the Seine</option><option value="aerial">Above Paris</option></select><button id="reset" title="Reset view (Home)" aria-label="Reset view">↺</button><button id="rotate" aria-pressed="false">Orbit</button></div><div class="row"><button class="round" id="out" aria-label="Zoom out">−</button><button class="round" id="in" aria-label="Zoom in">+</button><button id="labelToggle" aria-pressed="true">Landmarks</button><button id="full">Full screen</button></div></nav>
+<div class="instructions">Drag to explore · Scroll or pinch to zoom<br>Arrow keys to orbit · Home to reset<br><span style="opacity:.65">Stylized surroundings · approximate geography</span></div>
+<div id="fallback" role="alert"><div><h2>A browser with WebGL is needed.</h2><p>Open this file in a current browser with hardware acceleration enabled to explore the 3D scene.</p></div></div>
+<script>
+"use strict";
+(() => {
+const canvas=document.getElementById("scene");
+const gl=canvas.getContext("webgl",{antialias:true,alpha:false});
+if(!gl){document.getElementById("fallback").style.display="grid";return;}
+const $=id=>document.getElementById(id);
+const vs='attribute vec3 aPosition;attribute vec3 aNormal;attribute vec3 aColor;attribute float aGlow;uniform mat4 uVP;uniform vec3 uOffset;varying vec3 vNormal;varying vec3 vColor;varying vec3 vWorld;varying float vGlow;void main(){vWorld=aPosition+uOffset;vNormal=aNormal;vColor=aColor;vGlow=aGlow;gl_Position=uVP*vec4(vWorld,1.0);}';
+const fs='precision mediump float;varying vec3 vNormal;varying vec3 vColor;varying vec3 vWorld;varying float vGlow;uniform vec3 uEye;uniform vec3 uSky;uniform float uNight;void main(){vec3 sun=normalize(vec3(-.6,1.0,.5));float lit=max(dot(normalize(vNormal),sun),0.0);vec3 light=mix(vec3(.63)+vec3(.52,.43,.29)*lit,vec3(.22,.29,.43)+vec3(.18)*lit,uNight);vec3 color=vColor*light+vGlow*uNight*vec3(1.0,.65,.21);float fog=1.0-exp(-length(vWorld-uEye)*.00029);color=mix(color,uSky,fog);gl_FragColor=vec4(color,1.0);}';
+function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
+let program;
+try{program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vs));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));}
+catch(err){$("fallback").style.display="grid";console.error(err);return;}
+gl.useProgram(program);gl.enable(gl.DEPTH_TEST);
+const uniforms={};for(const n of ["VP","Offset","Eye","Sky","Night"])uniforms[n]=gl.getUniformLocation(program,"u"+n);
+const attributes=["aPosition","aNormal","aColor","aGlow"].map(n=>gl.getAttribLocation(program,n));
+const data=[];let active=data;
+const C={stone:[.76,.72,.61],roof:[.28,.36,.4],metal:[.37,.28,.18],green:[.36,.49,.28],darkgreen:[.21,.36,.22],path:[.77,.72,.57],water:[.23,.53,.61]};
+const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s);
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const norm=a=>mul(a,1/(Math.hypot(...a)||1));
+function tri(a,b,c,col,glow=0){const n=norm(cross(sub(b,a),sub(c,a)));for(const v of [a,b,c])active.push(...v,...n,...col,glow);}
+function quad(a,b,c,d,col,glow=0){tri(a,b,c,col,glow);tri(a,c,d,col,glow);}
+function box(x,y,z,w,h,d,col,glow=0){
+const a=[x-w/2,y,z-d/2],b=[x+w/2,y,z-d/2],c=[x+w/2,y,z+d/2],e=[x-w/2,y,z+d/2];
+const A=add(a,[0,h,0]),B=add(b,[0,h,0]),D=add(c,[0,h,0]),E=add(e,[0,h,0]);
+quad(a,A,B,b,col,glow);quad(b,B,D,c,col,glow);quad(c,D,E,e,col,glow);quad(e,E,A,a,col,glow);quad(A,E,D,B,col,glow);
+}
+function beam(a,b,r,col,glow=0,sides=6){
+const axis=norm(sub(b,a)),u=norm(cross(axis,Math.abs(axis[1])>.9?[1,0,0]:[0,1,0])),v=cross(axis,u);
+for(let i=0;i<sides;i++){const t=i/sides*Math.PI*2,t2=(i+1)/sides*Math.PI*2;
+const p=add(mul(u,r*Math.cos(t)),mul(v,r*Math.sin(t))),q=add(mul(u,r*Math.cos(t2)),mul(v,r*Math.sin(t2)));
+quad(add(a,p),add(a,q),add(b,q),add(b,p),col,glow);}
+}
+function pyramid(x,y,z,w,h,d,col){
+const a=[x-w/2,y,z-d/2],b=[x+w/2,y,z-d/2],c=[x+w/2,y,z+d/2],e=[x-w/2,y,z+d/2],top=[x,y+h,z];
+tri(a,top,b,col);tri(b,top,c,col);tri(c,top,e,col);tri(e,top,a,col);
+}
+let seed=93;function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
+function tree(x,z,s=1){beam([x,1,z],[x,12*s,z],1.4*s,[.33,.26,.18]);pyramid(x,8*s,z,14*s,15*s,14*s,C.darkgreen);pyramid(x,15*s,z,12*s,12*s,12*s,C.green);}
+function building(x,z,w,d,h){
+const col=[.73+rand()*.1,.69+rand()*.1,.61+rand()*.1];box(x,1,z,w,h,d,col);box(x,h+1,z,w+2,2,d+2,C.stone);
+const a=[x-w/2,h+3,z-d/2],b=[x+w/2,h+3,z-d/2],c=[x+w/2,h+3,z+d/2],e=[x-w/2,h+3,z+d/2],A=[x-w*.3,h+11,z-d*.3],B=[x+w*.3,h+11,z-d*.3],D=[x+w*.3,h+11,z+d*.3],E=[x-w*.3,h+11,z+d*.3];
+quad(a,A,B,b,C.roof);quad(b,B,D,c,C.roof);quad(c,D,E,e,C.roof);quad(e,E,A,a,C.roof);quad(A,E,D,B,C.roof);
+box(x+w*.21,h+10,z,3,7,4,[.6,.54,.45]);
+for(let yy=8;yy<h-2;yy+=7)for(let xx=-w/2+5;xx<w/2-3;xx+=7){
+const wc=rand()>.7?[.9,.68,.32]:[.24,.32,.34],g=wc[0]>.8?.85:0;
+quad([x+xx-1.2,yy,z+d/2+.1],[x+xx+1.2,yy,z+d/2+.1],[x+xx+1.2,yy+3.5,z+d/2+.1],[x+xx-1.2,yy+3.5,z+d/2+.1],wc,g);
+quad([x+xx-1.2,yy,z-d/2-.1],[x+xx-1.2,yy+3.5,z-d/2-.1],[x+xx+1.2,yy+3.5,z-d/2-.1],[x+xx+1.2,yy,z-d/2-.1],wc,g);
+}
+for(let yy=8;yy<h-2;yy+=7)for(let zz=-d/2+5;zz<d/2-3;zz+=7)for(const side of [-1,1]){
+const X=x+side*(w/2+.1);quad([X,yy,z+zz-1.2],[X,yy+3.5,z+zz-1.2],[X,yy+3.5,z+zz+1.2],[X,yy,z+zz+1.2],[.26,.33,.35]);}
+}
+// A compact diorama: the Seine to the northwest, gardens to the southeast.
+box(0,-14,30,1150,13,1120,[.36,.44,.35]);box(0,-1,30,1150,1,1120,[.53,.59,.42]);
+box(0,0,-225,1150,.7,100,C.water);
+for(const z of [-280,-170]){box(0,0,z,1150,3,12,C.path);box(0,3,z,1150,1,2,C.stone);}
+for(let i=0;i<120;i++){const x=rand()*1120-560,z=-269+rand()*87;box(x,1,z,8+rand()*14,.05,.55,[.42,.65,.69]);}
+// Boulevards and the Champ de Mars.
+for(const x of [-170,170]){box(x,0,30,23,.2,1100,[.43,.45,.41]);for(let z=-500;z<565;z+=24)box(x,.3,z,1,.1,9,[.81,.8,.68]);}
+box(0,0,270,290,.4,450,C.path);
+for(let z=155;z<480;z+=79)for(const x of [-60,60]){box(x,.5,z,100,.4,61,[.36,.52,.29]);for(const edge of [-1,1])box(x+edge*49,1,z,1.3,.6,60,C.darkgreen);}
+box(0,.5,320,14,.4,440,C.path);box(0,.5,94,165,.4,32,C.path);
+for(let z=100;z<530;z+=28)for(const x of [-136,136])tree(x,z,.8+rand()*.3);
+for(let x=-525;x<550;x+=30)for(const z of [-305,-140])if(Math.abs(x)>38)tree(x,z,.65+rand()*.3);
+// Pont d'Iéna and a second bridge.
+for(const x of [0,370]){box(x,4,-225,37,5,123,C.stone);box(x,9,-225,31,.3,123,C.path);for(const side of [-1,1]){box(x+side*18,9,-225,1,3,123,C.stone);for(let z=-270;z<-180;z+=24)box(x+side*18,12,z,2,2,2,[.68,.63,.5]);}for(const z of [-255,-225,-195])box(x,-3,z,28,7,7,C.stone);}
+// The Trocadéro terrace and long reflecting pools.
+box(0,0,-397,290,5,198,C.path);
+for(const x of [-53,53]){box(x,5,-375,73,.3,134,C.green);box(x,5.4,-375,22,.2,100,C.water);}
+box(0,5,-375,14,.4,150,C.path);
+for(const x of [-1,1]){building(x*128,-480,105,36,38);building(x*195,-440,28,78,35);}
+for(let x=-104;x<=104;x+=26)tree(x,-490,.8);
+// Dense Parisian blocks.
+for(const side of [-1,1])for(let x=225;x<535;x+=76)for(let z=-475;z<550;z+=90){
+if(z>-330&&z<-110)continue;building(side*x+(rand()-.5)*9,z+(rand()-.5)*8,45+rand()*12,49+rand()*12,24+rand()*21);
+if(rand()>.65)tree(side*(x+33),z+34,.7);
+}
+building(0,545,186,43,29); // École Militaire silhouette
+for(let x=-80;x<=80;x+=16)box(x,3,522,3,27,3,C.stone);
+pyramid(0,32,545,38,18,30,C.roof);
+// Tower: four independently braced, splayed piers.
+box(0,0,0,153,.3,153,C.path);
+const heights=[0,14,28,42,57,76,96,115],centres=[54,47,41,35,28,25,23,21],radii=[8,7,6,5,4.6,4,3.5,3.2];
+for(const sx of [-1,1])for(const sz of [-1,1]){
+box(sx*54,0,sz*54,22,3,22,[.65,.63,.55]);
+for(let j=0;j<heights.length-1;j++){
+const y=heights[j]+3,Y=heights[j+1]+3,c=centres[j],C2=centres[j+1],r=radii[j],R=radii[j+1];
+const p=[[-1,-1],[1,-1],[1,1],[-1,1]];
+const bottom=p.map(([a,b])=>[sx*c+a*r,y,sz*c+b*r]),top=p.map(([a,b])=>[sx*C2+a*R,Y,sz*C2+b*R]);
+for(let k=0;k<4;k++){const n=(k+1)%4;beam(bottom[k],top[k],.8,C.metal,.1);beam(bottom[k],bottom[n],.5,C.metal);beam(bottom[k],top[n],.38,C.metal);beam(bottom[n],top[k],.38,C.metal);}
+}
+}
+for(const sign of [-1,1])for(const swap of [false,true]){
+let last=null;for(let i=0;i<=24;i++){const t=-46+i*92/24,p=swap?[sign*47,5+38*(1-(t/46)**2),t]:[t,5+38*(1-(t/46)**2),sign*47];if(last)beam(last,p,1.3,C.metal);last=p;}
+}
+function deck(y,width){box(0,y,0,width,3.5,width,C.metal,.12);for(const s of [-1,1]){beam([-width/2,y+7,s*width/2],[width/2,y+7,s*width/2],.5,C.metal,.3);beam([s*width/2,y+7,-width/2],[s*width/2,y+7,width/2],.5,C.metal,.3);for(let i=-width/2;i<=width/2;i+=4){beam([i,y+3,s*width/2],[i,y+7,s*width/2],.2,C.metal);beam([s*width/2,y+3,i],[s*width/2,y+7,i],.2,C.metal);}}}
+deck(57,70);deck(115,50);
+const levels=[[118,21],[138,17],[160,13.5],[183,10.7],[207,8.2],[231,6.5],[253,5],[276,3.7]];
+for(let j=0;j<levels.length-1;j++){
+const [y,r]=levels[j],[Y,R]=levels[j+1],p=[[-1,-1],[1,-1],[1,1],[-1,1]],b=p.map(([a,c])=>[a*r,y,c*r]),t=p.map(([a,c])=>[a*R,Y,c*R]);
+for(let k=0;k<4;k++){const n=(k+1)%4;beam(b[k],t[k],.8,C.metal,.15);beam(b[k],b[n],.45,C.metal);beam(b[k],t[n],.38,C.metal);beam(b[n],t[k],.38,C.metal);const mid=b.map((v,i)=>mul(add(v,t[i]),.5));beam(mid[k],mid[n],.4,C.metal);}
+}
+deck(276,12);box(0,280,0,8,12,8,C.metal,.2);pyramid(0,292,0,8,12,8,C.metal);beam([0,302,0],[0,330,0],.65,C.metal,.3);
+for(let y=285;y<323;y+=7)beam([-1.8,y,0],[1.8,y,0],.2,C.metal);
+// Small street details: lamps, cars, garden benches.
+for(let z=-500;z<535;z+=45)for(const x of [-155,155]){beam([x,1,z],[x,9,z],.35,[.26,.32,.29]);box(x,9,z,2.4,2,2.4,[.9,.78,.47],1);}
+for(let i=0;i<34;i++){const x=(i%2?-1:1)*170,z=rand()*1040-500;if(z>-290&&z<-160)continue;box(x,1,z,4,2,8,[rand()*.6+.2,rand()*.45+.2,rand()*.4+.2]);box(x,3,z,3,1.5,4,C.roof);}
+for(let z=145;z<485;z+=55)for(const x of [-113,113]){box(x,1,z,3,2,9,[.42,.31,.21]);box(x,3,z,3,.6,9,[.53,.4,.26]);}
+const boat=[];active=boat;
+box(0,1,0,39,3,11,[.84,.82,.72]);box(0,4,0,28,3,9,[.92,.9,.79]);box(0,7,0,26,.4,8,C.roof);
+for(let x=-10;x<=10;x+=5)for(const z of [-4.55,4.55])box(x,4.6,z,3,1.6,.2,[.24,.43,.48]);
+active=data;
+function upload(vertices){const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);return {buffer,count:vertices.length/10};}
+const world=upload(data),boatMesh=upload(boat);
+function bind(mesh){gl.bindBuffer(gl.ARRAY_BUFFER,mesh.buffer);const sizes=[3,3,3,1],offsets=[0,12,24,36];attributes.forEach((loc,i)=>{gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,sizes[i],gl.FLOAT,false,40,offsets[i]);});}
+function perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),nf=1/(near-far);return [f/aspect,0,0,0,0,f,0,0,0,0,(far+near)*nf,-1,0,0,2*far*near*nf,0];}
+const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
+function lookAt(eye,target){const z=norm(sub(eye,target)),x=norm(cross([0,1,0],z)),y=cross(z,x);return [x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1];}
+function matmul(a,b){const out=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)out[c*4+r]+=a[k*4+r]*b[c*4+k];return out;}
+const presets={
+postcard:{yaw:-.55,pitch:.52,distance:950,target:[0,90,20]},
+tower:{yaw:-.45,pitch:.28,distance:550,target:[0,145,0]},
+garden:{yaw:2.9,pitch:.47,distance:880,target:[0,50,160]},
+river:{yaw:-1.12,pitch:.32,distance:940,target:[0,70,-180]},
+aerial:{yaw:-.4,pitch:1.07,distance:1150,target:[0,30,0]}
+};
+let camera={...presets.postcard,target:[...presets.postcard.target]},destination=null,rotating=false,labelOn=true,width=0,height=0,night=0,lastTime=0,boatTime=0;
+const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function selectView(key){const p=presets[key];destination={...p,target:[...p.target]};rotating=false;$("rotate").setAttribute("aria-pressed","false");if(reduced){camera=destination;destination=null;}}
+$("view").onchange=e=>selectView(e.target.value);
+$("reset").onclick=()=>{$("view").value="postcard";selectView("postcard");};
+$("rotate").onclick=()=>{rotating=!rotating;destination=null;$("rotate").setAttribute("aria-pressed",String(rotating));};
+$("in").onclick=()=>{destination=null;camera.distance=Math.max(360,camera.distance*.85);};
+$("out").onclick=()=>{destination=null;camera.distance=Math.min(2000,camera.distance/ .85);};
+$("labelToggle").onclick=()=>{labelOn=!labelOn;$("labels").style.display=labelOn?"block":"none";$("labelToggle").setAttribute("aria-pressed",String(labelOn));};
+$("full").onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch(e){$("full").textContent="Unavailable";}};
+document.addEventListener("fullscreenchange",()=>{$("full").textContent=document.fullscreenElement?"Exit full screen":"Full screen";});
+$("light").oninput=e=>{const value=+e.target.value;night=Math.max(0,(value-35)/65);$("lightName").textContent=value<17?"Daylight":value<40?"Golden hour":value<75?"Blue hour":"Paris by night";};
+let pointers=new Map(),pinch=0;
+canvas.onpointerdown=e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);destination=null;rotating=false;$("rotate").setAttribute("aria-pressed","false");if(pointers.size===2){const p=[...pointers.values()];pinch=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}};
+canvas.onpointermove=e=>{if(!pointers.has(e.pointerId))return;const old=pointers.get(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const p=[...pointers.values()],dist=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);if(pinch>0&&dist>0)camera.distance=Math.min(2000,Math.max(360,camera.distance*pinch/dist));pinch=dist;}else{camera.yaw-=(e.clientX-old[0])*.006;camera.pitch=Math.max(.12,Math.min(1.35,camera.pitch+(e.clientY-old[1])*.004));}};
+for(const ev of ["pointerup","pointercancel","lostpointercapture"])canvas.addEventListener(ev,e=>{pointers.delete(e.pointerId);pinch=0;});
+canvas.addEventListener("wheel",e=>{e.preventDefault();destination=null;camera.distance=Math.max(360,Math.min(2000,camera.distance*Math.exp(e.deltaY*.001)));},{passive:false});
+canvas.addEventListener("keydown",e=>{if(!["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","+","=","-","Home"," "].includes(e.key))return;e.preventDefault();destination=null;if(e.key==="ArrowLeft")camera.yaw+=.08;if(e.key==="ArrowRight")camera.yaw-=.08;if(e.key==="ArrowUp")camera.pitch=Math.min(1.35,camera.pitch+.05);if(e.key==="ArrowDown")camera.pitch=Math.max(.12,camera.pitch-.05);if(e.key==="+"||e.key==="=")$("in").click();if(e.key==="-")$("out").click();if(e.key==="Home")$("reset").click();if(e.key===" ")$("rotate").click();});
+const landmarks=[["Eiffel Tower",[0,337,0]],["Champ de Mars",[0,3,330]],["La Seine",[-200,2,-225]],["Trocadéro",[0,50,-480]],["Pont d’Iéna",[0,15,-225]],["École Militaire",[0,50,545]]].map(([name,pos])=>{const el=document.createElement("div");el.className="label";el.textContent=name;$("labels").append(el);return {el,pos};});
+function labelPosition(vp,eye){for(const {el,pos:p} of landmarks){const v=[...p,1],q=[0,0,0,0];for(let r=0;r<4;r++)for(let c=0;c<4;c++)q[r]+=vp[c*4+r]*v[c];const x=(q[0]/q[3]+1)*width/2,y=(1-q[1]/q[3])*height/2;el.style.display=q[3]>0&&x>30&&x<width-30&&y>10&&y<height-125?"block":"none";el.style.left=x+"px";el.style.top=y+"px";}}
+function resize(){width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.8);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);gl.viewport(0,0,canvas.width,canvas.height);}
+addEventListener("resize",resize);resize();
+function render(ms){
+const dt=Math.min((ms-lastTime)/1000,.05);lastTime=ms;
+if(destination){const k=1-Math.exp(-dt*5);camera.yaw+=(destination.yaw-camera.yaw)*k;camera.pitch+=(destination.pitch-camera.pitch)*k;camera.distance+=(destination.distance-camera.distance)*k;camera.target=camera.target.map((v,i)=>v+(destination.target[i]-v)*k);if(Math.abs(camera.distance-destination.distance)<.1&&Math.abs(camera.yaw-destination.yaw)<.001&&Math.abs(camera.pitch-destination.pitch)<.001&&Math.hypot(...sub(camera.target,destination.target))<.1){camera=destination;destination=null;}}
+if(rotating)camera.yaw+=dt*.12;if(!reduced)boatTime+=dt;
+const cp=Math.cos(camera.pitch),eye=add(camera.target,[Math.sin(camera.yaw)*cp*camera.distance,Math.sin(camera.pitch)*camera.distance,Math.cos(camera.yaw)*cp*camera.distance]);
+const vp=matmul(perspective(.75,width/height,1,4000),lookAt(eye,camera.target));
+const day=[.67,.79,.8],dark=[.035,.072,.13],sky=day.map((v,i)=>v*(1-night)+dark[i]*night);
+gl.clearColor(...sky,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniformMatrix4fv(uniforms.VP,false,vp);gl.uniform3fv(uniforms.Eye,eye);gl.uniform3fv(uniforms.Sky,sky);gl.uniform1f(uniforms.Night,night);gl.uniform3f(uniforms.Offset,0,0,0);
+bind(world);gl.drawArrays(gl.TRIANGLES,0,world.count);bind(boatMesh);
+for(let i=0;i<3;i++){const x=((boatTime*8+i*375)%1100)-550;gl.uniform3f(uniforms.Offset,x,0,-225+(i-1)*24);gl.drawArrays(gl.TRIANGLES,0,boatMesh.count);}
+if(labelOn)labelPosition(vp,eye);$("needle").style.transform="rotate("+(-camera.yaw*180/Math.PI)+"deg)";
+requestAnimationFrame(render);
+}
+canvas.addEventListener("webglcontextlost",e=>{e.preventDefault();$("fallback").style.display="grid";});
+canvas.addEventListener("webglcontextrestored",()=>location.reload());
+requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
