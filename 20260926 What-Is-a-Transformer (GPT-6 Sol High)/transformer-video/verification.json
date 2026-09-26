@@ -1,0 +1,28 @@
+{
+  "durationSeconds": 665.4831746031746,
+  "scenes": 26,
+  "math": {
+    "w": [
+      0.575975345215362,
+      0.14002924504337802,
+      0.28399540974126003
+    ],
+    "out": [
+      1.435946100171984,
+      0.564053899828016
+    ]
+  },
+  "quiz": {
+    "w": [
+      0.14002924504337802,
+      0.575975345215362,
+      0.28399540974126003
+    ],
+    "out": [
+      0.564053899828016,
+      1.435946100171984
+    ]
+  },
+  "maxCaptionLines": 3,
+  "encoding": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\What-Is-a-Transformer.mp4':\r\n  Metadata:\r\n    major_brand     : isom\r\n    minor_version   : 512\r\n    compatible_brands: isomiso2avc1mp41\r\n    title           : What Is a Transformer?\r\n    artist          : JavaScript Field Notes\r\n    encoder         : Lavf60.3.100\r\n  Duration: 00:11:05.50, start: 0.000000, bitrate: 186 kb/s\r\n  Chapters:\r\n    Chapter #0:0: start 0.000000, end 19.300000\r\n      Metadata:\r\n        title           : What Is a Transformer?\r\n    Chapter #0:1: start 19.300000, end 39.720000\r\n      Metadata:\r\n        title           : One word. Two worlds.\r\n    Chapter #0:2: start 39.720000, end 63.580000\r\n      Metadata:\r\n        title           : First, text becomes tokens\r\n    Chapter #0:3: start 63.580000, end 82.020000\r\n      Metadata:\r\n        title           : A vector is a numerical description\r\n    Chapter #0:4: start 82.020000, end 109.020000\r\n      Metadata:\r\n        title           : Order needs a signal\r\n    Chapter #0:5: start 109.020000, end 127.705000\r\n      Metadata:\r\n        title           : Let tokens exchange information\r\n    Chapter #0:6: start 127.705000, end 154.684000\r\n      Metadata:\r\n        title           : Three roles: Q, K, V\r\n    Chapter #0:7: start 154.684000, end 181.228000\r\n      Metadata:\r\n        title           : Learned matrices do the work\r\n    Chapter #0:8: start 181.228000, end 206.229000\r\n      Metadata:\r\n        title           : A tiny, complete experiment\r\n    Chapter #0:9: start 206.229000, end 230.199000\r\n      Metadata:\r\n        title           : 1. Compare with a dot product\r\n    Chapter #0:10: start 230.199000, end 259.033000\r\n      Metadata:\r\n        title           : 2. Scale the scores\r\n    Chapter #0:11: start 259.033000, end 283.873000\r\n      Metadata:\r\n        title           : 3. Softmax makes a recipe\r\n    Chapter #0:12: start 283.873000, end 312.508000\r\n      Metadata:\r\n        title           : 4. Blend the values\r\n    Chapter #0:13: start 312.508000, end 336.257000\r\n      Metadata:\r\n        title           : The whole mechanism in one line\r\n    Chapter #0:14: start 336.257000, end 360.522000\r\n      Metadata:\r\n        title           : Now scale up to a sequence\r\n    Chapter #0:15: start 360.522000, end 382.732000\r\n      Metadata:\r\n        title           : Multiple heads, different views\r\n    Chapter #0:16: start 382.732000, end 409.411000\r\n      Metadata:\r\n        title           : Attention is part of a block\r\n    Chapter #0:17: start 409.411000, end 437.709000\r\n      Metadata:\r\n        title           : Keep the old signal, add an update\r\n    Chapter #0:18: start 437.709000, end 465.858000\r\n      Metadata:\r\n        title           : A family of architectures\r\n    Chapter #0:19: start 465.858000, end 491.296000\r\n      Metadata:\r\n        title           : No peeking at future tokens\r\n    Chapter #0:20: start 491.296000, end 518.320000\r\n      Metadata:\r\n        title           : From a vector to a next token\r\n    Chapter #0:21: start 518.320000, end 549.698000\r\n      Metadata:\r\n        title           : How does it learn those weights?\r\n    Chapter #0:22: start 549.698000, end 579.416000\r\n      Metadata:\r\n        title           : Parallel training. Sequential writing.\r\n    Chapter #0:23: start 579.416000, end 608.855000\r\n      Metadata:\r\n        title           : Follow the signal from start to finish\r\n    Chapter #0:24: start 608.855000, end 641.764000\r\n      Metadata:\r\n        title           : Your turn: change the query\r\n    Chapter #0:25: start 641.764000, end 665.483000\r\n      Metadata:\r\n        title           : A Transformer builds context\r\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 103 kb/s, 24 fps, 24 tbr, 12288 tbn (default)\r\n    Metadata:\r\n      handler_name    : VideoHandler\r\n      vendor_id       : [0][0][0][0]\r\n      encoder         : Lavc60.3.100 libx264\r\n  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 22050 Hz, mono, fltp, 77 kb/s (default)\r\n    Metadata:\r\n      handler_name    : SoundHandler\r\n      vendor_id       : [0][0][0][0]\r\n  Stream #0:2[0x3](eng): Subtitle: mov_text (tx3g / 0x67337874), 0 kb/s (default)\r\n    Metadata:\r\n      handler_name    : SubtitleHandler\r\n  Stream #0:3[0x4](eng): Data: bin_data (text / 0x74786574), 0 kb/s\r\n    Metadata:\r\n      handler_name    : SubtitleHandler\r\nAt least one output file must be specified\r\n"
+}

@@ -1,0 +1,1 @@
+{"name":"what-is-a-transformer","version":"1.0.0","private":true,"scripts":{"render":"node render.js","narrate":"node prepare.js","verify":"node verify.js","start":"node serve.js"},"dependencies":{"@napi-rs/canvas":"0.1.80","ffmpeg-static":"5.2.0"}}

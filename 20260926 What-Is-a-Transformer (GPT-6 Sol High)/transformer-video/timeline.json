@@ -1,0 +1,761 @@
+{
+  "duration": 665.4831746031746,
+  "scenes": [
+    {
+      "chapter": "The big idea",
+      "title": "What Is a Transformer?",
+      "tag": "A SMALL MACHINE FOR BUILDING CONTEXT",
+      "type": "intro",
+      "lines": [
+        "A Transformer is a neural network architecture that turns a sequence into useful representations by letting its pieces exchange information.",
+        "Today, we will follow one tiny message through the machine, and calculate attention ourselves. You only need multiplication, addition, and a little curiosity."
+      ],
+      "start": 0,
+      "end": 19.299909297052153,
+      "index": 0
+    },
+    {
+      "chapter": "The big idea",
+      "title": "One word. Two worlds.",
+      "tag": "MEANING DEPENDS ON THE NEIGHBORS",
+      "type": "context",
+      "lines": [
+        "Consider the word bank. In the river bank, it means the land beside water. In the bank approved my loan, it means a financial institution.",
+        "The spelling stays the same. The surrounding words change the meaning. A Transformer builds a different representation of bank in each context."
+      ],
+      "start": 19.299909297052153,
+      "end": 39.720136054421765,
+      "index": 1
+    },
+    {
+      "chapter": "Tokens → vectors",
+      "title": "First, text becomes tokens",
+      "tag": "SMALL PIECES WITH NUMERICAL IDS",
+      "type": "tokens",
+      "lines": [
+        "A tokenizer splits text into pieces called tokens. A token can be a word, part of a word, or punctuation. The exact split depends on the tokenizer.",
+        "Each token gets an integer ID. That ID looks up a learned vector: a list of numbers called an embedding. Our drawings use a few numbers; real models use many more."
+      ],
+      "start": 39.720136054421765,
+      "end": 63.57977324263038,
+      "index": 2
+    },
+    {
+      "chapter": "Tokens → vectors",
+      "title": "A vector is a numerical description",
+      "tag": "EMBEDDINGS ARE LEARNED, NOT HAND LABELED",
+      "type": "embedding",
+      "lines": [
+        "Imagine an embedding as a location in a high dimensional space. Training adjusts these locations so the network can use them to make predictions.",
+        "Do not read one coordinate as a neat label like river or money. Useful information is usually spread across many coordinates and interactions."
+      ],
+      "start": 63.57977324263038,
+      "end": 82.0202267573696,
+      "index": 3
+    },
+    {
+      "chapter": "Tokens → vectors",
+      "title": "Order needs a signal",
+      "tag": "DOG BITES PERSON ≠ PERSON BITES DOG",
+      "type": "position",
+      "lines": [
+        "Self attention without position information treats a reordered input as the same collection, with its outputs reordered too. It needs a signal about sequence order.",
+        "The original Transformer adds positional vectors to embeddings, using sine and cosine waves at different frequencies. Other designs encode position differently. For our tour, token vector plus position vector gives the starting representation."
+      ],
+      "start": 82.0202267573696,
+      "end": 109.01959183673469,
+      "index": 4
+    },
+    {
+      "chapter": "Inside attention",
+      "title": "Let tokens exchange information",
+      "tag": "ATTENTION BUILDS A CONTEXTUAL REPRESENTATION",
+      "type": "network",
+      "lines": [
+        "In self attention, every position makes a request and compares it with information offered by other positions in the same sequence.",
+        "The result is a weighted blend of information. A token can gather useful context from a distant token directly, instead of passing everything along one neighbor at a time."
+      ],
+      "start": 109.01959183673469,
+      "end": 127.70489795918368,
+      "index": 5
+    },
+    {
+      "chapter": "Inside attention",
+      "title": "Three roles: Q, K, V",
+      "tag": "QUERY • KEY • VALUE",
+      "type": "qkv",
+      "lines": [
+        "Each input vector is transformed into three vectors. The query is what this position is looking for. A key is what another position can be matched by. A value is the information it can contribute.",
+        "These are helpful analogies, not literal questions written in English. The vectors come from learned matrix multiplications: Q equals X times W Q, and similarly for K and V."
+      ],
+      "start": 127.70489795918368,
+      "end": 154.68421768707483,
+      "index": 6
+    },
+    {
+      "chapter": "Inside attention",
+      "title": "Learned matrices do the work",
+      "tag": "THE SAME PROJECTION IS USED AT EVERY POSITION",
+      "type": "projection",
+      "lines": [
+        "A matrix multiplication forms new coordinates by weighted sums of the old ones. Here, the input one, two becomes the query one, zero with this example matrix.",
+        "Training learns the entries of those projection matrices. The input changes from sentence to sentence; the learned matrices stay fixed during ordinary generation. Different layers and attention heads have their own projections."
+      ],
+      "start": 154.68421768707483,
+      "end": 181.22807256235828,
+      "index": 7
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "A tiny, complete experiment",
+      "tag": "TOY NUMBERS • ONE QUERY • THREE CANDIDATES",
+      "type": "toy",
+      "lines": [
+        "Now forget the words for a moment and use three synthetic candidates, A, B, and C. Our query is one, zero. The keys are two, zero; zero, two; and one, one.",
+        "We also give each candidate a value vector. These invented numbers are chosen for easy arithmetic. They are not measurements from a trained language model."
+      ],
+      "start": 181.22807256235828,
+      "end": 206.22857142857146,
+      "index": 8
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "1. Compare with a dot product",
+      "tag": "MULTIPLY MATCHING COORDINATES, THEN ADD",
+      "type": "dots",
+      "lines": [
+        "For A, multiply one times two and zero times zero, then add. The score is two. For B, the score is zero. For C, it is one.",
+        "A larger query key dot product means greater compatibility in the learned representation. It is not automatically a probability, and it depends on vector lengths as well as direction."
+      ],
+      "start": 206.22857142857146,
+      "end": 230.19918367346943,
+      "index": 9
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "2. Scale the scores",
+      "tag": "DIVIDE BY THE SQUARE ROOT OF THE KEY DIMENSION",
+      "type": "scale",
+      "lines": [
+        "Our keys have two coordinates, so d k is two. Divide every score by the square root of two. We get approximately one point four one four, zero, and zero point seven zero seven.",
+        "Why scale? With many roughly independent, zero mean, unit variance coordinates, dot product variance grows with dimension. Scaling helps prevent softmax from becoming excessively sharp and making learning difficult."
+      ],
+      "start": 230.19918367346943,
+      "end": 259.0333786848073,
+      "index": 10
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "3. Softmax makes a recipe",
+      "tag": "POSITIVE WEIGHTS THAT ADD UP TO ONE",
+      "type": "softmax",
+      "lines": [
+        "Softmax exponentiates each score and divides by the sum of those exponentials. For A, e to the power one point four one four is about four point one one three.",
+        "The three exponentials total about seven point one four one. Our weights are roughly fifty seven point six percent, fourteen percent, and twenty eight point four percent. Every query gets its own recipe."
+      ],
+      "start": 259.0333786848073,
+      "end": 283.8731519274377,
+      "index": 11
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "4. Blend the values",
+      "tag": "KEYS CHOOSE THE WEIGHTS • VALUES SUPPLY THE CONTENT",
+      "type": "blend",
+      "lines": [
+        "Multiply each value vector by its attention weight, then add the results coordinate by coordinate. A contributes about one point one five two, zero. B contributes zero, zero point two eight zero.",
+        "C contributes zero point two eight four to each coordinate. The final output is approximately one point four three six, zero point five six four. It is a new vector, not a selected word."
+      ],
+      "start": 283.8731519274377,
+      "end": 312.50752834467124,
+      "index": 12
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "The whole mechanism in one line",
+      "tag": "THE FAMOUS FORMULA IS JUST OUR FOUR STEPS",
+      "type": "formula",
+      "lines": [
+        "Attention of Q, K, and V equals softmax of Q times K transpose, divided by the square root of d k, all multiplied by V.",
+        "Transpose turns keys into columns so matrix multiplication computes every query key comparison. Softmax runs separately across each row. Multiplying by V blends values for every query at once."
+      ],
+      "start": 312.50752834467124,
+      "end": 336.2572335600907,
+      "index": 13
+    },
+    {
+      "chapter": "Attention, by hand",
+      "title": "Now scale up to a sequence",
+      "tag": "EACH ROW IS ONE TOKEN’S RECIPE",
+      "type": "matrix",
+      "lines": [
+        "For n tokens, Q and K each have n rows and d k columns. Their product gives an n by n score grid. V has n rows and d v columns.",
+        "The final output has n rows and d v columns: one new vector per token. Attention weights describe information routing. They are not guaranteed explanations of why a model reached a conclusion."
+      ],
+      "start": 336.2572335600907,
+      "end": 360.52244897959184,
+      "index": 14
+    },
+    {
+      "chapter": "Building the Transformer",
+      "title": "Multiple heads, different views",
+      "tag": "PARALLEL RECIPES • LEARNED COMBINATION",
+      "type": "heads",
+      "lines": [
+        "One attention head can make only one blend per position. Multiple heads use different learned projections, so they can gather different kinds of information in parallel.",
+        "Their outputs are concatenated, then mixed by another learned matrix. Heads can discover different patterns, but we do not assign each one a fixed job like grammar or meaning."
+      ],
+      "start": 360.52244897959184,
+      "end": 382.7318820861678,
+      "index": 15
+    },
+    {
+      "chapter": "Building the Transformer",
+      "title": "Attention is part of a block",
+      "tag": "COMMUNICATE → TRANSFORM → REPEAT",
+      "type": "block",
+      "lines": [
+        "A Transformer block also contains a feed forward neural network. Attention mixes information across positions; this network transforms each position separately, using the same weights at every position.",
+        "A common form expands the vector, applies a nonlinear activation, then projects it back. Nonlinearity lets the network build more complex features than a single matrix multiplication can."
+      ],
+      "start": 382.7318820861678,
+      "end": 409.41070294784583,
+      "index": 16
+    },
+    {
+      "chapter": "Building the Transformer",
+      "title": "Keep the old signal, add an update",
+      "tag": "RESIDUAL CONNECTIONS + NORMALIZATION",
+      "type": "residual",
+      "lines": [
+        "Residual connections add a sublayer's update to its input. Instead of replacing the whole representation, each stage can refine it. This also helps gradients flow during training.",
+        "Layer normalization rescales a token's features and learns a scale and offset. The original Transformer normalizes after the residual addition; many variants normalize before the sublayer. Stack blocks to repeatedly refine context."
+      ],
+      "start": 409.41070294784583,
+      "end": 437.7091156462585,
+      "index": 17
+    },
+    {
+      "chapter": "Reading versus generating",
+      "title": "A family of architectures",
+      "tag": "ENCODER • DECODER • ENCODER–DECODER",
+      "type": "family",
+      "lines": [
+        "An encoder can let every input position see the full input. A decoder for next token generation uses a causal restriction. The original Transformer combines an encoder and a decoder for translation.",
+        "In that combination, cross attention uses decoder queries with encoder keys and values. Self attention uses one sequence for all three. The same basic attention machinery supports different information flows."
+      ],
+      "start": 437.7091156462585,
+      "end": 465.8575963718821,
+      "index": 18
+    },
+    {
+      "chapter": "Reading versus generating",
+      "title": "No peeking at future tokens",
+      "tag": "CAUSAL MASKING HAPPENS BEFORE SOFTMAX",
+      "type": "mask",
+      "lines": [
+        "To predict the next token after the cat, the decoder must not see that next token. A causal mask blocks attention to later input positions by setting their scores to negative infinity.",
+        "After softmax, blocked positions get zero weight. A position may still attend to itself and earlier positions. Training shifts the targets by one: each position predicts the following token."
+      ],
+      "start": 465.8575963718821,
+      "end": 491.29637188208613,
+      "index": 19
+    },
+    {
+      "chapter": "Learning to predict",
+      "title": "From a vector to a next token",
+      "tag": "VOCABULARY SCORES → PROBABILITIES → A CHOICE",
+      "type": "predict",
+      "lines": [
+        "The final representation at the last position is projected into one score, or logit, for every token in the vocabulary. Another softmax turns these scores into next token probabilities.",
+        "The system chooses a token, perhaps by sampling. It appends that token and repeats. These vocabulary probabilities are different from attention weights, which choose how to mix information inside the network."
+      ],
+      "start": 491.29637188208613,
+      "end": 518.3202267573696,
+      "index": 20
+    },
+    {
+      "chapter": "Learning to predict",
+      "title": "How does it learn those weights?",
+      "tag": "PREDICT • MEASURE ERROR • UPDATE",
+      "type": "train",
+      "lines": [
+        "During next token training, the model receives text and predicts the following tokens. Cross entropy penalizes giving low probability to the observed next token: loss equals negative log of its probability.",
+        "If the correct token gets probability zero point two, the loss is about one point six zero nine. At zero point eight, it is about zero point two two three. Backpropagation computes gradients; an optimizer updates learned weights to reduce average loss."
+      ],
+      "start": 518.3202267573696,
+      "end": 549.6983673469388,
+      "index": 21
+    },
+    {
+      "chapter": "Learning to predict",
+      "title": "Parallel training. Sequential writing.",
+      "tag": "A USEFUL ADVANTAGE WITH A REAL COST",
+      "type": "cost",
+      "lines": [
+        "During training, all the correct input tokens are already available, so many positions can be processed in parallel, while a mask prevents cheating. During generation, each new token depends on the previous choices.",
+        "Full attention compares every pair of positions. Double the sequence length, and the number of pairs quadruples. Efficient implementations reduce memory costs, but long context still requires substantial computation."
+      ],
+      "start": 549.6983673469388,
+      "end": 579.4163718820862,
+      "index": 22
+    },
+    {
+      "chapter": "Put it together",
+      "title": "Follow the signal from start to finish",
+      "tag": "TOKENS → CONTEXT → PREDICTION",
+      "type": "recap",
+      "lines": [
+        "Here is the journey: tokenize, look up embeddings, add position information, then pass through blocks of attention and feed forward computation with residual connections and normalization.",
+        "For attention, remember four verbs: compare, scale, normalize, blend. Learned weights make the recipes useful. For generation, project the final vector to vocabulary probabilities, choose a token, and repeat."
+      ],
+      "start": 579.4163718820862,
+      "end": 608.8554195011337,
+      "index": 23
+    },
+    {
+      "chapter": "Put it together",
+      "title": "Your turn: change the query",
+      "tag": "A NEW REQUEST PRODUCES A NEW RECIPE",
+      "type": "quiz",
+      "lines": [
+        "One final puzzle. Keep our three keys and values, but change the query to zero, one. Which candidate gets the greatest attention weight? Pause and work out the dot products.",
+        "B now wins: the scores are zero, two, and one. The output flips to approximately zero point five six four, one point four three six. Attention is a context dependent recipe, recalculated from the current vectors. Try it yourself in the companion playground."
+      ],
+      "start": 608.8554195011337,
+      "end": 641.7641723356008,
+      "index": 24
+    },
+    {
+      "chapter": "Put it together",
+      "title": "A Transformer builds context",
+      "tag": "MANY SMALL CALCULATIONS. POWERFUL LEARNED PATTERNS.",
+      "type": "end",
+      "lines": [
+        "You have now computed the heart of a Transformer. It is a network that learns how to route and transform information, building representations that help it predict or solve a task.",
+        "Fluent predictions are not a guarantee of truth. But the mechanism is something you can understand: vectors, comparisons, weighted sums, and learned transformations, repeated at scale."
+      ],
+      "start": 641.7641723356008,
+      "end": 665.4831746031746,
+      "index": 25
+    }
+  ],
+  "segments": [
+    {
+      "scene": 0,
+      "line": 0,
+      "start": 0,
+      "end": 8.497324263038548,
+      "text": "A Transformer is a neural network architecture that turns a sequence into useful representations by letting its pieces exchange information.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\0-0.wav"
+    },
+    {
+      "scene": 0,
+      "line": 1,
+      "start": 8.497324263038548,
+      "end": 19.299909297052153,
+      "text": "Today, we will follow one tiny message through the machine, and calculate attention ourselves. You only need multiplication, addition, and a little curiosity.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\0-1.wav"
+    },
+    {
+      "scene": 1,
+      "line": 0,
+      "start": 19.299909297052153,
+      "end": 29.792471655328796,
+      "text": "Consider the word bank. In the river bank, it means the land beside water. In the bank approved my loan, it means a financial institution.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\1-0.wav"
+    },
+    {
+      "scene": 1,
+      "line": 1,
+      "start": 29.792471655328796,
+      "end": 39.720136054421765,
+      "text": "The spelling stays the same. The surrounding words change the meaning. A Transformer builds a different representation of bank in each context.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\1-1.wav"
+    },
+    {
+      "scene": 2,
+      "line": 0,
+      "start": 39.720136054421765,
+      "end": 51.592517006802716,
+      "text": "A tokenizer splits text into pieces called tokens. A token can be a word, part of a word, or punctuation. The exact split depends on the tokenizer.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\2-0.wav"
+    },
+    {
+      "scene": 2,
+      "line": 1,
+      "start": 51.592517006802716,
+      "end": 63.57977324263038,
+      "text": "Each token gets an integer ID. That ID looks up a learned vector: a list of numbers called an embedding. Our drawings use a few numbers; real models use many more.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\2-1.wav"
+    },
+    {
+      "scene": 3,
+      "line": 0,
+      "start": 63.57977324263038,
+      "end": 72.61741496598638,
+      "text": "Imagine an embedding as a location in a high dimensional space. Training adjusts these locations so the network can use them to make predictions.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\3-0.wav"
+    },
+    {
+      "scene": 3,
+      "line": 1,
+      "start": 72.61741496598638,
+      "end": 82.0202267573696,
+      "text": "Do not read one coordinate as a neat label like river or money. Useful information is usually spread across many coordinates and interactions.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\3-1.wav"
+    },
+    {
+      "scene": 4,
+      "line": 0,
+      "start": 82.0202267573696,
+      "end": 92.53773242630385,
+      "text": "Self attention without position information treats a reordered input as the same collection, with its outputs reordered too. It needs a signal about sequence order.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\4-0.wav"
+    },
+    {
+      "scene": 4,
+      "line": 1,
+      "start": 92.53773242630385,
+      "end": 109.01959183673469,
+      "text": "The original Transformer adds positional vectors to embeddings, using sine and cosine waves at different frequencies. Other designs encode position differently. For our tour, token vector plus position vector gives the starting representation.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\4-1.wav"
+    },
+    {
+      "scene": 5,
+      "line": 0,
+      "start": 109.01959183673469,
+      "end": 117.02263038548753,
+      "text": "In self attention, every position makes a request and compares it with information offered by other positions in the same sequence.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\5-0.wav"
+    },
+    {
+      "scene": 5,
+      "line": 1,
+      "start": 117.02263038548753,
+      "end": 127.70489795918368,
+      "text": "The result is a weighted blend of information. A token can gather useful context from a distant token directly, instead of passing everything along one neighbor at a time.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\5-1.wav"
+    },
+    {
+      "scene": 6,
+      "line": 0,
+      "start": 127.70489795918368,
+      "end": 141.53197278911566,
+      "text": "Each input vector is transformed into three vectors. The query is what this position is looking for. A key is what another position can be matched by. A value is the information it can contribute.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\6-0.wav"
+    },
+    {
+      "scene": 6,
+      "line": 1,
+      "start": 141.53197278911566,
+      "end": 154.68421768707483,
+      "text": "These are helpful analogies, not literal questions written in English. The vectors come from learned matrix multiplications: Q equals X times W Q, and similarly for K and V.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\6-1.wav"
+    },
+    {
+      "scene": 7,
+      "line": 0,
+      "start": 154.68421768707483,
+      "end": 166.77156462585035,
+      "text": "A matrix multiplication forms new coordinates by weighted sums of the old ones. Here, the input one, two becomes the query one, zero with this example matrix.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\7-0.wav"
+    },
+    {
+      "scene": 7,
+      "line": 1,
+      "start": 166.77156462585035,
+      "end": 181.22807256235828,
+      "text": "Training learns the entries of those projection matrices. The input changes from sentence to sentence; the learned matrices stay fixed during ordinary generation. Different layers and attention heads have their own projections.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\7-1.wav"
+    },
+    {
+      "scene": 8,
+      "line": 0,
+      "start": 181.22807256235828,
+      "end": 195.77102040816328,
+      "text": "Now forget the words for a moment and use three synthetic candidates, A, B, and C. Our query is one, zero. The keys are two, zero; zero, two; and one, one.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\8-0.wav"
+    },
+    {
+      "scene": 8,
+      "line": 1,
+      "start": 195.77102040816328,
+      "end": 206.22857142857146,
+      "text": "We also give each candidate a value vector. These invented numbers are chosen for easy arithmetic. They are not measurements from a trained language model.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\8-1.wav"
+    },
+    {
+      "scene": 9,
+      "line": 0,
+      "start": 206.22857142857146,
+      "end": 218.53197278911568,
+      "text": "For A, multiply one times two and zero times zero, then add. The score is two. For B, the score is zero. For C, it is one.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\9-0.wav"
+    },
+    {
+      "scene": 9,
+      "line": 1,
+      "start": 218.53197278911568,
+      "end": 230.19918367346943,
+      "text": "A larger query key dot product means greater compatibility in the learned representation. It is not automatically a probability, and it depends on vector lengths as well as direction.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\9-1.wav"
+    },
+    {
+      "scene": 10,
+      "line": 0,
+      "start": 230.19918367346943,
+      "end": 243.57668934240368,
+      "text": "Our keys have two coordinates, so d k is two. Divide every score by the square root of two. We get approximately one point four one four, zero, and zero point seven zero seven.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\10-0.wav"
+    },
+    {
+      "scene": 10,
+      "line": 1,
+      "start": 243.57668934240368,
+      "end": 259.0333786848073,
+      "text": "Why scale? With many roughly independent, zero mean, unit variance coordinates, dot product variance grows with dimension. Scaling helps prevent softmax from becoming excessively sharp and making learning difficult.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\10-1.wav"
+    },
+    {
+      "scene": 11,
+      "line": 0,
+      "start": 259.0333786848073,
+      "end": 270.1359637188209,
+      "text": "Softmax exponentiates each score and divides by the sum of those exponentials. For A, e to the power one point four one four is about four point one one three.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\11-0.wav"
+    },
+    {
+      "scene": 11,
+      "line": 1,
+      "start": 270.1359637188209,
+      "end": 283.8731519274377,
+      "text": "The three exponentials total about seven point one four one. Our weights are roughly fifty seven point six percent, fourteen percent, and twenty eight point four percent. Every query gets its own recipe.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\11-1.wav"
+    },
+    {
+      "scene": 12,
+      "line": 0,
+      "start": 283.8731519274377,
+      "end": 298.585306122449,
+      "text": "Multiply each value vector by its attention weight, then add the results coordinate by coordinate. A contributes about one point one five two, zero. B contributes zero, zero point two eight zero.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\12-0.wav"
+    },
+    {
+      "scene": 12,
+      "line": 1,
+      "start": 298.585306122449,
+      "end": 312.50752834467124,
+      "text": "C contributes zero point two eight four to each coordinate. The final output is approximately one point four three six, zero point five six four. It is a new vector, not a selected word.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\12-1.wav"
+    },
+    {
+      "scene": 13,
+      "line": 0,
+      "start": 312.50752834467124,
+      "end": 322.10539682539684,
+      "text": "Attention of Q, K, and V equals softmax of Q times K transpose, divided by the square root of d k, all multiplied by V.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\13-0.wav"
+    },
+    {
+      "scene": 13,
+      "line": 1,
+      "start": 322.10539682539684,
+      "end": 336.2572335600907,
+      "text": "Transpose turns keys into columns so matrix multiplication computes every query key comparison. Softmax runs separately across each row. Multiplying by V blends values for every query at once.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\13-1.wav"
+    },
+    {
+      "scene": 14,
+      "line": 0,
+      "start": 336.2572335600907,
+      "end": 347.3001360544218,
+      "text": "For n tokens, Q and K each have n rows and d k columns. Their product gives an n by n score grid. V has n rows and d v columns.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\14-0.wav"
+    },
+    {
+      "scene": 14,
+      "line": 1,
+      "start": 347.3001360544218,
+      "end": 360.52244897959184,
+      "text": "The final output has n rows and d v columns: one new vector per token. Attention weights describe information routing. They are not guaranteed explanations of why a model reached a conclusion.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\14-1.wav"
+    },
+    {
+      "scene": 15,
+      "line": 0,
+      "start": 360.52244897959184,
+      "end": 371.1697505668934,
+      "text": "One attention head can make only one blend per position. Multiple heads use different learned projections, so they can gather different kinds of information in parallel.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\15-0.wav"
+    },
+    {
+      "scene": 15,
+      "line": 1,
+      "start": 371.1697505668934,
+      "end": 382.7318820861678,
+      "text": "Their outputs are concatenated, then mixed by another learned matrix. Heads can discover different patterns, but we do not assign each one a fixed job like grammar or meaning.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\15-1.wav"
+    },
+    {
+      "scene": 16,
+      "line": 0,
+      "start": 382.7318820861678,
+      "end": 396.4087528344671,
+      "text": "A Transformer block also contains a feed forward neural network. Attention mixes information across positions; this network transforms each position separately, using the same weights at every position.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\16-0.wav"
+    },
+    {
+      "scene": 16,
+      "line": 1,
+      "start": 396.4087528344671,
+      "end": 409.41070294784583,
+      "text": "A common form expands the vector, applies a nonlinear activation, then projects it back. Nonlinearity lets the network build more complex features than a single matrix multiplication can.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\16-1.wav"
+    },
+    {
+      "scene": 17,
+      "line": 0,
+      "start": 409.41070294784583,
+      "end": 421.94775510204084,
+      "text": "Residual connections add a sublayer's update to its input. Instead of replacing the whole representation, each stage can refine it. This also helps gradients flow during training.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\17-0.wav"
+    },
+    {
+      "scene": 17,
+      "line": 1,
+      "start": 421.94775510204084,
+      "end": 437.7091156462585,
+      "text": "Layer normalization rescales a token's features and learns a scale and offset. The original Transformer normalizes after the residual addition; many variants normalize before the sublayer. Stack blocks to repeatedly refine context.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\17-1.wav"
+    },
+    {
+      "scene": 18,
+      "line": 0,
+      "start": 437.7091156462585,
+      "end": 451.37591836734697,
+      "text": "An encoder can let every input position see the full input. A decoder for next token generation uses a causal restriction. The original Transformer combines an encoder and a decoder for translation.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\18-0.wav"
+    },
+    {
+      "scene": 18,
+      "line": 1,
+      "start": 451.37591836734697,
+      "end": 465.8575963718821,
+      "text": "In that combination, cross attention uses decoder queries with encoder keys and values. Self attention uses one sequence for all three. The same basic attention machinery supports different information flows.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\18-1.wav"
+    },
+    {
+      "scene": 19,
+      "line": 0,
+      "start": 465.8575963718821,
+      "end": 477.6445351473923,
+      "text": "To predict the next token after the cat, the decoder must not see that next token. A causal mask blocks attention to later input positions by setting their scores to negative infinity.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\19-0.wav"
+    },
+    {
+      "scene": 19,
+      "line": 1,
+      "start": 477.6445351473923,
+      "end": 491.29637188208613,
+      "text": "After softmax, blocked positions get zero weight. A position may still attend to itself and earlier positions. Training shifts the targets by one: each position predicts the following token.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\19-1.wav"
+    },
+    {
+      "scene": 20,
+      "line": 0,
+      "start": 491.29637188208613,
+      "end": 504.19333333333327,
+      "text": "The final representation at the last position is projected into one score, or logit, for every token in the vocabulary. Another softmax turns these scores into next token probabilities.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\20-0.wav"
+    },
+    {
+      "scene": 20,
+      "line": 1,
+      "start": 504.19333333333327,
+      "end": 518.3202267573696,
+      "text": "The system chooses a token, perhaps by sampling. It appends that token and repeats. These vocabulary probabilities are different from attention weights, which choose how to mix information inside the network.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\20-1.wav"
+    },
+    {
+      "scene": 21,
+      "line": 0,
+      "start": 518.3202267573696,
+      "end": 532.0468027210884,
+      "text": "During next token training, the model receives text and predicts the following tokens. Cross entropy penalizes giving low probability to the observed next token: loss equals negative log of its probability.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\21-0.wav"
+    },
+    {
+      "scene": 21,
+      "line": 1,
+      "start": 532.0468027210884,
+      "end": 549.6983673469388,
+      "text": "If the correct token gets probability zero point two, the loss is about one point six zero nine. At zero point eight, it is about zero point two two three. Backpropagation computes gradients; an optimizer updates learned weights to reduce average loss.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\21-1.wav"
+    },
+    {
+      "scene": 22,
+      "line": 0,
+      "start": 549.6983673469388,
+      "end": 564.2350113378685,
+      "text": "During training, all the correct input tokens are already available, so many positions can be processed in parallel, while a mask prevents cheating. During generation, each new token depends on the previous choices.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\22-0.wav"
+    },
+    {
+      "scene": 22,
+      "line": 1,
+      "start": 564.2350113378685,
+      "end": 579.4163718820862,
+      "text": "Full attention compares every pair of positions. Double the sequence length, and the number of pairs quadruples. Efficient implementations reduce memory costs, but long context still requires substantial computation.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\22-1.wav"
+    },
+    {
+      "scene": 23,
+      "line": 0,
+      "start": 579.4163718820862,
+      "end": 591.5336054421768,
+      "text": "Here is the journey: tokenize, look up embeddings, add position information, then pass through blocks of attention and feed forward computation with residual connections and normalization.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\23-0.wav"
+    },
+    {
+      "scene": 23,
+      "line": 1,
+      "start": 591.5336054421768,
+      "end": 608.8554195011337,
+      "text": "For attention, remember four verbs: compare, scale, normalize, blend. Learned weights make the recipes useful. For generation, project the final vector to vocabulary probabilities, choose a token, and repeat.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\23-1.wav"
+    },
+    {
+      "scene": 24,
+      "line": 0,
+      "start": 608.8554195011337,
+      "end": 622.282902494331,
+      "text": "One final puzzle. Keep our three keys and values, but change the query to zero, one. Which candidate gets the greatest attention weight? Pause and work out the dot products.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\24-0.wav"
+    },
+    {
+      "scene": 24,
+      "line": 1,
+      "start": 622.282902494331,
+      "end": 641.7641723356008,
+      "text": "B now wins: the scores are zero, two, and one. The output flips to approximately zero point five six four, one point four three six. Attention is a context dependent recipe, recalculated from the current vectors. Try it yourself in the companion playground.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\24-1.wav"
+    },
+    {
+      "scene": 25,
+      "line": 0,
+      "start": 641.7641723356008,
+      "end": 652.981179138322,
+      "text": "You have now computed the heart of a Transformer. It is a network that learns how to route and transform information, building representations that help it predict or solve a task.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\25-0.wav"
+    },
+    {
+      "scene": 25,
+      "line": 1,
+      "start": 652.981179138322,
+      "end": 665.4831746031746,
+      "text": "Fluent predictions are not a guarantee of truth. But the mechanism is something you can understand: vectors, comparisons, weighted sums, and learned transformations, repeated at scale.",
+      "file": "C:\\MyProjects\\TempProject (OpenAI)\\transformer-video\\audio\\25-1.wav"
+    }
+  ]
+}

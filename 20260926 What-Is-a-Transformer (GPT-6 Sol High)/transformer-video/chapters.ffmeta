@@ -1,0 +1,133 @@
+;FFMETADATA1
+title=What Is a Transformer?
+artist=JavaScript Field Notes
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=19300
+title=What Is a Transformer?
+[CHAPTER]
+TIMEBASE=1/1000
+START=19300
+END=39720
+title=One word. Two worlds.
+[CHAPTER]
+TIMEBASE=1/1000
+START=39720
+END=63580
+title=First, text becomes tokens
+[CHAPTER]
+TIMEBASE=1/1000
+START=63580
+END=82020
+title=A vector is a numerical description
+[CHAPTER]
+TIMEBASE=1/1000
+START=82020
+END=109020
+title=Order needs a signal
+[CHAPTER]
+TIMEBASE=1/1000
+START=109020
+END=127705
+title=Let tokens exchange information
+[CHAPTER]
+TIMEBASE=1/1000
+START=127705
+END=154684
+title=Three roles: Q, K, V
+[CHAPTER]
+TIMEBASE=1/1000
+START=154684
+END=181228
+title=Learned matrices do the work
+[CHAPTER]
+TIMEBASE=1/1000
+START=181228
+END=206229
+title=A tiny, complete experiment
+[CHAPTER]
+TIMEBASE=1/1000
+START=206229
+END=230199
+title=1. Compare with a dot product
+[CHAPTER]
+TIMEBASE=1/1000
+START=230199
+END=259033
+title=2. Scale the scores
+[CHAPTER]
+TIMEBASE=1/1000
+START=259033
+END=283873
+title=3. Softmax makes a recipe
+[CHAPTER]
+TIMEBASE=1/1000
+START=283873
+END=312508
+title=4. Blend the values
+[CHAPTER]
+TIMEBASE=1/1000
+START=312508
+END=336257
+title=The whole mechanism in one line
+[CHAPTER]
+TIMEBASE=1/1000
+START=336257
+END=360522
+title=Now scale up to a sequence
+[CHAPTER]
+TIMEBASE=1/1000
+START=360522
+END=382732
+title=Multiple heads, different views
+[CHAPTER]
+TIMEBASE=1/1000
+START=382732
+END=409411
+title=Attention is part of a block
+[CHAPTER]
+TIMEBASE=1/1000
+START=409411
+END=437709
+title=Keep the old signal, add an update
+[CHAPTER]
+TIMEBASE=1/1000
+START=437709
+END=465858
+title=A family of architectures
+[CHAPTER]
+TIMEBASE=1/1000
+START=465858
+END=491296
+title=No peeking at future tokens
+[CHAPTER]
+TIMEBASE=1/1000
+START=491296
+END=518320
+title=From a vector to a next token
+[CHAPTER]
+TIMEBASE=1/1000
+START=518320
+END=549698
+title=How does it learn those weights?
+[CHAPTER]
+TIMEBASE=1/1000
+START=549698
+END=579416
+title=Parallel training. Sequential writing.
+[CHAPTER]
+TIMEBASE=1/1000
+START=579416
+END=608855
+title=Follow the signal from start to finish
+[CHAPTER]
+TIMEBASE=1/1000
+START=608855
+END=641764
+title=Your turn: change the query
+[CHAPTER]
+TIMEBASE=1/1000
+START=641764
+END=665483
+title=A Transformer builds context

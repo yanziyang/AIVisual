@@ -1,0 +1,11 @@
+{
+  "duration": 665.5,
+  "width": 1280,
+  "height": 720,
+  "error": null,
+  "seekAndPlayback": true,
+  "chapters": 26,
+  "example": "output = [1.436, 0.564]",
+  "quiz": "output = [0.564, 1.436]",
+  "mobileOverflow": false
+}
