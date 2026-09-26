@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Into the Bacterium</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden;
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;color:#e8eef5}
+  canvas{display:block;width:100vw;height:100vh;cursor:pointer}
+  #hint{position:fixed;right:16px;bottom:64px;font-size:11px;letter-spacing:.06em;
+    color:rgba(220,232,245,.38);pointer-events:none;user-select:none}
+  @media (max-width:640px){#hint{display:none}}
+  #prompt{position:fixed;top:16px;right:16px;width:min(340px,calc(100vw - 32px));box-sizing:border-box;
+    padding:14px 16px 13px;border-radius:10px;background:rgba(8,14,26,.72);border:1px solid rgba(200,220,245,.16);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:12.5px;line-height:1.5;color:rgba(228,236,246,.9)}
+  #prompt h2{margin:0 0 8px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#ffd9a8}
+  #prompt p{margin:0 0 8px}
+  #prompt .src{margin:10px 0 0;padding-top:9px;border-top:1px solid rgba(200,220,245,.14);font-size:11.5px;color:rgba(200,215,235,.75);overflow-wrap:anywhere}
+  #prompt .src span{display:block;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,217,168,.8);margin-bottom:2px}
+  #prompt a{color:#9fd4ff;text-decoration:none}
+  #prompt a:hover{text-decoration:underline}
+  #prompt button{position:absolute;top:8px;right:8px;border:0;background:none;color:rgba(220,232,245,.6);font-size:16px;line-height:1;cursor:pointer;padding:4px 6px}
+  #prompt button:hover{color:#fff}
+  #prompt.collapsed{width:auto;padding:8px 36px 8px 14px}
+  #prompt.collapsed .body{display:none}
+  #prompt.collapsed h2{margin:0}
+  #bar{position:fixed;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;gap:6px;padding:0 14px;box-sizing:border-box;
+    background:linear-gradient(to top,rgba(2,5,12,.85),rgba(2,5,12,0));transition:opacity .4s;user-select:none;-webkit-user-select:none}
+  #bar.idle{opacity:.35}
+  #bar button{flex:none;width:34px;height:34px;border:0;border-radius:50%;background:none;color:#e8eef5;cursor:pointer;
+    display:grid;place-items:center;padding:0}
+  #bar button:hover{background:rgba(255,255,255,.1)}
+  #bar button:focus-visible,#track:focus-visible{outline:2px solid #ffd9a8;outline-offset:1px}
+  #bar svg{width:16px;height:16px;fill:currentColor}
+  #track{position:relative;flex:1;height:26px;margin:0 8px;cursor:pointer;touch-action:none;border-radius:4px}
+  #track .rail{position:absolute;left:0;right:0;top:11px;height:4px;border-radius:2px;background:rgba(255,255,255,.16);transition:height .15s,top .15s}
+  #track:hover .rail,#track.drag .rail{top:10px;height:6px}
+  #fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:inherit;background:linear-gradient(90deg,#8fc8ff,#ffd9a8)}
+  #knob{position:absolute;top:13px;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;pointer-events:none;
+    box-shadow:0 0 0 4px rgba(255,217,168,.25),0 0 12px rgba(255,217,168,.6);transform:scale(.8);transition:transform .15s}
+  #track:hover #knob,#track.drag #knob{transform:scale(1)}
+  .mark{position:absolute;top:10px;width:2px;height:6px;margin-left:-1px;background:rgba(10,16,28,.85);pointer-events:none}
+  #tip{position:absolute;bottom:26px;transform:translateX(-50%);white-space:nowrap;padding:5px 9px;border-radius:6px;
+    background:rgba(8,14,26,.92);border:1px solid rgba(200,220,245,.18);font-size:11.5px;color:#e8eef5;pointer-events:none;opacity:0;transition:opacity .15s}
+  #tip b{color:#ffd9a8;font-weight:600}
+  #track:hover #tip,#track.drag #tip{opacity:1}
+  #time{flex:none;min-width:84px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums;color:rgba(220,232,245,.8)}
+  @media (max-width:640px){#time{min-width:0;font-size:11px}#bar .skip{display:none}}
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="Animated zoom from a bacterial cell down to quantum fields"></canvas>
+<aside id="prompt">
+  <button id="promptToggle" aria-label="Collapse original prompt" title="Collapse (P)">−</button>
+  <h2>Original prompt</h2>
+  <div class="body">
+    <p>create a self contained aesthetically pleasing, breathtaking animation of a bacterial cell. it should start with cell and then zoom into it at multiple scales, going into DNA and then further into DNA as atoms and finally ending at quantum fields.</p>
+    <p>use javascript for it. be detailed and scientifically accurate. it should evoke awe.</p>
+    <p class="src"><span>Original URL</span><a href="https://x.com/paraschopra/status/2103099756167991347" target="_blank" rel="noopener noreferrer">https://x.com/paraschopra/status/2103099756167991347</a></p>
+  </div>
+</aside>
+<div id="hint">SPACE pause · ← → seek 5 s · [ ] previous / next scale · R restart · H hide text · P prompt</div>
+<div id="bar">
+  <button id="prevCh" class="skip" aria-label="Previous scale" title="Previous scale  [ "><svg viewBox="0 0 16 16"><path d="M3 2h2v12H3zM14 2v12L6 8z"/></svg></button>
+  <button id="pp" aria-label="Pause" title="Play / pause  (Space)"><svg viewBox="0 0 16 16"><path id="ppIcon" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg></button>
+  <button id="nextCh" class="skip" aria-label="Next scale" title="Next scale  ] "><svg viewBox="0 0 16 16"><path d="M11 2h2v12h-2zM2 2v12l8-6z"/></svg></button>
+  <div id="track" role="slider" tabindex="0" aria-label="Playback position" aria-valuemin="0" aria-valuemax="158" aria-valuenow="0">
+    <div class="rail"><div id="fill"></div></div>
+    <div id="knob"></div>
+    <div id="tip"></div>
+  </div>
+  <span id="time">0:00 / 2:38</span>
+</div>
+<script>
+'use strict';
+/* ============================================================
+   CORE: canvas, math, noise, sprites, scene registry
+   All lengths inside a scene are in that scene's natural unit;
+   ppm = screen pixels per metre, so k = ppm * unit.
+   ============================================================ */
+const TAU = Math.PI * 2;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1;
+function resize() {
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  W = innerWidth; H = innerHeight;
+  cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+}
+addEventListener('resize', resize); resize();
+
+const clamp = (x, a, b) => x < a ? a : x > b ? b : x;
+const lerp = (a, b, t) => a + (b - a) * t;
+function sstep(e0, e1, x) { x = clamp((x - e0) / (e1 - e0), 0, 1); return x * x * (3 - 2 * x); }
+function mulberry(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function gauss(r) { let u = 0; while (!u) u = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * r()); }
+
+/* ---- value noise ---- */
+const PERM = new Uint8Array(512);
+{ const r = mulberry(7), p = [...Array(256).keys()];
+  for (let i = 255; i > 0; i--) { const j = (r() * (i + 1)) | 0; [p[i], p[j]] = [p[j], p[i]]; }
+  for (let i = 0; i < 512; i++) PERM[i] = p[i & 255]; }
+function h3(x, y, z) { return PERM[(PERM[(PERM[x & 255] + y) & 255] + z) & 255] / 127.5 - 1; }
+function vnoise3(x, y, z) {
+  const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+  const xf = x - xi, yf = y - yi, zf = z - zi;
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf), w = zf * zf * (3 - 2 * zf);
+  const a = lerp(h3(xi, yi, zi), h3(xi + 1, yi, zi), u), b = lerp(h3(xi, yi + 1, zi), h3(xi + 1, yi + 1, zi), u);
+  const c = lerp(h3(xi, yi, zi + 1), h3(xi + 1, yi, zi + 1), u), d = lerp(h3(xi, yi + 1, zi + 1), h3(xi + 1, yi + 1, zi + 1), u);
+  return lerp(lerp(a, b, v), lerp(c, d, v), w);
+}
+function fbm3(x, y, z, oct = 3) {
+  let s = 0, a = 0.5, f = 1;
+  for (let i = 0; i < oct; i++) { s += a * vnoise3(x * f, y * f, z * f); f *= 2.03; a *= 0.5; }
+  return s;
+}
+
+/* ---- colour ---- */
+const col = (c, a = 1) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
+const mix = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+const WHITE = [255, 255, 255], BLACK = [0, 0, 0];
+const CPK = { C: [150, 158, 170], N: [72, 110, 245], O: [240, 64, 56], H: [235, 240, 245], P: [255, 150, 40] };
+
+/* ---- cached sprites ---- */
+const SPR = new Map();
+function mkCanvas(n) { const c = document.createElement('canvas'); c.width = c.height = n; return c; }
+function glow(c) {
+  const key = 'g' + c; let s = SPR.get(key); if (s) return s;
+  s = mkCanvas(128); const g = s.getContext('2d');
+  const r = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  r.addColorStop(0, col(c, 1)); r.addColorStop(.12, col(c, .6)); r.addColorStop(.35, col(c, .2));
+  r.addColorStop(.65, col(c, .05)); r.addColorStop(1, col(c, 0));
+  g.fillStyle = r; g.fillRect(0, 0, 128, 128); SPR.set(key, s); return s;
+}
+// shaded sphere; shade 0..1 darkens (depth cue)
+function ball(c, shade = 0) {
+  const key = 'b' + c + '|' + shade; let s = SPR.get(key); if (s) return s;
+  s = mkCanvas(128); const g = s.getContext('2d');
+  const base = mix(c, [4, 8, 16], shade);
+  const r = g.createRadialGradient(44, 40, 2, 60, 62, 66);
+  r.addColorStop(0, col(mix(base, WHITE, .8 - shade * .5)));
+  r.addColorStop(.22, col(mix(base, WHITE, .25 - shade * .2)));
+  r.addColorStop(.68, col(base));
+  r.addColorStop(1, col(mix(base, BLACK, .8)));
+  g.fillStyle = r; g.beginPath(); g.arc(64, 64, 62, 0, TAU); g.fill();
+  const rim = g.createRadialGradient(64, 64, 46, 64, 64, 62);
+  rim.addColorStop(0, 'rgba(160,210,255,0)'); rim.addColorStop(1, `rgba(160,210,255,${.22 * (1 - shade)})`);
+  g.fillStyle = rim; g.fill();
+  SPR.set(key, s); return s;
+}
+function dGlow(c, x, y, r) { ctx.drawImage(glow(c), x - r, y - r, 2 * r, 2 * r); }
+function dBall(c, x, y, r, shade = 0) { const R = r * 64 / 62; ctx.drawImage(ball(c, shade), x - R, y - R, 2 * R, 2 * R); }
+const onScreen = (x, y, r) => x + r > 0 && x - r < W && y + r > 0 && y - r < H;
+
+/* ---- scene registry ----
+   A scene is visible while L = log10(field of view in metres) lies in
+   [bot, top]; it fades in over `fi` decades and out over `fo` decades. */
+const SCENES = [];
+let SA = 1;                         // current scene alpha
+function ga(x) { ctx.globalAlpha = clamp(SA * x, 0, 1); }
+function scene(o) { SCENES.push(o); return o; }
+function sceneAlpha(s, L) { return sstep(s.top, s.top - s.fi, L) * sstep(s.bot, s.bot + s.fo, L); }
+/* ============================================================
+   SCENE 1 — E. coli cell  (units: micrometres)
+   Rod 2.0 µm × 0.9 µm; peritrichous flagella (20 nm thick, ~6 µm,
+   helical pitch 2.2 µm); fimbriae (7 nm); three-layer envelope;
+   ribosome-rich cytoplasm; nucleoid of tangled DNA fibres.
+   ============================================================ */
+(function () {
+  const r = mulberry(11);
+  const HL = 0.55, R = 0.45, ANG = -0.28, CX = 0.32, CY = 0.06;
+  const ca = Math.cos(ANG), sa = Math.sin(ANG);
+  // world origin (the zoom target) expressed in cell-local coordinates
+  const OLx = -CX * ca - CY * sa, OLy = CX * sa - CY * ca;
+
+  const inCap = (x, y, inset) => { const px = clamp(x, -HL, HL); return Math.hypot(x - px, y) < R - inset; };
+  const inNuc = (x, y) => { const a = (x - 0.02) / 0.66, b = y / 0.3; return a * a + b * b < 1 + 0.18 * Math.sin(x * 9 + y * 7); };
+  function bpt(u) {                       // point + outward normal on the capsule outline
+    const P = 4 * HL + TAU * R; let d = (u % 1) * P;
+    if (d < 2 * HL) return [-HL + d, -R, 0, -1]; d -= 2 * HL;
+    if (d < Math.PI * R) { const a = -Math.PI / 2 + d / R; return [HL + Math.cos(a) * R, Math.sin(a) * R, Math.cos(a), Math.sin(a)]; }
+    d -= Math.PI * R;
+    if (d < 2 * HL) return [HL - d, R, 0, 1]; d -= 2 * HL;
+    const a = Math.PI / 2 + d / R; return [-HL + Math.cos(a) * R, Math.sin(a) * R, Math.cos(a), Math.sin(a)];
+  }
+  function capPath(inset) {
+    const rr = R - inset; ctx.beginPath();
+    ctx.moveTo(-HL, -rr); ctx.lineTo(HL, -rr); ctx.arc(HL, 0, rr, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(-HL, rr); ctx.arc(-HL, 0, rr, Math.PI / 2, Math.PI * 1.5); ctx.closePath();
+  }
+
+  /* --- nucleoid: 4.6 Mbp (1.5 mm) of DNA compacted into fibres --- */
+  const fibers = [];
+  for (let f = 0; f < 120; f++) {
+    let x, y; do { x = (r() * 2 - 1) * 0.66; y = (r() * 2 - 1) * 0.3; } while (!inNuc(x, y));
+    let h = r() * TAU; const pts = [x, y];
+    for (let i = 0; i < 150; i++) {
+      h += gauss(r) * 0.5;
+      let nx = x + Math.cos(h) * 0.011, ny = y + Math.sin(h) * 0.011;
+      if (!inNuc(nx, ny)) { h = Math.atan2(-y, -x) + gauss(r) * 0.6; nx = x + Math.cos(h) * 0.011; ny = y + Math.sin(h) * 0.011; }
+      x = nx; y = ny; pts.push(x, y);
+    }
+    fibers.push(pts);
+  }
+  // the strand we will follow: passes through the origin, horizontal in world space
+  const main = [];
+  { const dx = Math.cos(-ANG), dy = Math.sin(-ANG);
+    for (let s = -0.4; s <= 0.4001; s += 0.004) {
+      const bend = 0.9 * s * s * Math.sign(s) * 0.4 + 0.5 * s * s;
+      main.push(OLx + dx * s - dy * bend, OLy + dy * s + dx * bend);
+    } }
+  // ribosomes (~20 nm) — mostly excluded from the nucleoid
+  const ribo = [];
+  while (ribo.length < 2800 * 3) {
+    const x = (r() * 2 - 1) * (HL + R), y = (r() * 2 - 1) * R;
+    if (!inCap(x, y, 0.045)) continue; if (inNuc(x, y) && r() < 0.85) continue;
+    ribo.push(x, y, r() * TAU);
+  }
+  const prot = [];
+  while (prot.length < 3500 * 3) {
+    const x = (r() * 2 - 1) * (HL + R), y = (r() * 2 - 1) * R;
+    if (!inCap(x, y, 0.04)) continue; prot.push(x, y, (r() * 5) | 0);
+  }
+  const RIB_DOT = (() => { const c = mkCanvas(16), g = c.getContext('2d'), gr = g.createRadialGradient(8, 8, 0, 8, 8, 8);
+    gr.addColorStop(0, 'rgba(225,150,235,1)'); gr.addColorStop(.55, 'rgba(190,100,210,.8)'); gr.addColorStop(1, 'rgba(190,100,210,0)'); g.fillStyle = gr; g.fillRect(0, 0, 16, 16); return c; })();
+  const PROT_COL = ['rgba(120,220,190,.55)', 'rgba(240,200,120,.5)', 'rgba(150,170,255,.5)', 'rgba(255,150,150,.45)', 'rgba(200,240,140,.5)'];
+  const plasmids = [[0.62, 0.18, 0.05], [-0.7, -0.12, 0.045]];
+  const flag = []; for (let i = 0; i < 7; i++) flag.push({ u: (i + 0.3 * r()) / 7, ph: r() * TAU, len: 5.5 + r() * 2, wob: r() * TAU });
+  const pili = []; for (let i = 0; i < 110; i++) pili.push({ u: r(), len: 0.12 + r() * 0.45, bend: gauss(r) * 0.3, ph: r() * TAU });
+  const motes = []; for (let i = 0; i < 160; i++) motes.push([gauss(r) * 9, gauss(r) * 6, 0.25 + r() * 0.75, r()]);
+
+  scene({
+    name: 'cell', top: 99, fi: 1, bot: -6.4, fo: 0.4,
+    draw(S) {
+      const k = S.ppm * 1e-6, t = S.t;
+      const ox = S.cx + CX * k, oy = S.cy + CY * k;
+      const toX = (x, y) => ox + (x * ca - y * sa) * k, toY = (x, y) => oy + (x * sa + y * ca) * k;
+
+      // water: soft caustic glow + drifting debris with parallax
+      ga(1);
+      const bg = ctx.createRadialGradient(S.cx, S.cy, 0, S.cx, S.cy, Math.max(W, H) * .8);
+      bg.addColorStop(0, 'rgba(18,58,82,.55)'); bg.addColorStop(1, 'rgba(2,8,18,0)');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const m of motes) {
+        const d = m[2], x = S.cx + (m[0] + Math.sin(t * .1 + m[3] * 9) * .3) * k * d, y = S.cy + (m[1] + t * .04 * d) * k * d;
+        if (!onScreen(x, y, 20)) continue;
+        ga(.12 * d); dGlow([120, 200, 230], x, y, 2 + 6 * d);
+      }
+      // two distant, out-of-focus neighbours
+      for (const [nx, ny, na] of [[-6.5, -3.6, .6], [6.2, 4.1, -.4]]) {
+        const x = S.cx + nx * k, y = S.cy + ny * k; if (!onScreen(x, y, 2 * k)) continue;
+        ctx.save(); ctx.translate(x, y); ctx.rotate(na); ctx.scale(k * 1.1, k); ga(.10);
+        ctx.fillStyle = 'rgb(90,170,190)'; ctx.beginPath(); ctx.ellipse(0, 0, 1.0, 0.45, 0, 0, TAU); ctx.fill();
+        ga(.05); ctx.beginPath(); ctx.ellipse(0, 0, 1.25, 0.65, 0, 0, TAU); ctx.fill(); ctx.restore();
+      }
+
+      // flagella — left-handed helices, rotation shown slowed ~60×
+      for (const f of flag) {
+        const [bx, by, nx, ny] = bpt(f.u);
+        const tgy = Math.sign(ny || 0.01) * 0.12 + Math.sin(f.wob + t * .3) * .05;
+        let x = bx, y = by; const pts = [];
+        for (let s = 0; s <= f.len; s += 0.035) {
+          const b = sstep(0, 1.8, s);
+          let dx = lerp(nx, -1, b), dy = lerp(ny, tgy, b); const dl = Math.hypot(dx, dy) || 1; dx /= dl; dy /= dl;
+          x += dx * .035; y += dy * .035;
+          const amp = 0.2 * sstep(0.05, 0.7, s), off = amp * Math.sin(TAU * s / 2.22 - t * 9.5 + f.ph);
+          const px = x - dy * off, py = y + dx * off;
+          pts.push(toX(px, py), toY(px, py));
+        }
+        const lw = Math.max(1, 0.02 * k);
+        ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+        for (const [w, a] of [[lw * 4, .07], [lw, .75]]) {
+          ga(a); ctx.lineWidth = w; ctx.strokeStyle = 'rgb(170,225,255)'; ctx.beginPath();
+          ctx.moveTo(pts[0], pts[1]); for (let i = 2; i < pts.length; i += 2) ctx.lineTo(pts[i], pts[i + 1]); ctx.stroke();
+        }
+        ga(.9); dGlow([200, 240, 255], pts[0], pts[1], Math.max(3, .05 * k));    // basal body / rotary motor
+      }
+      // fimbriae (type-1 pili)
+      ctx.strokeStyle = 'rgb(220,236,255)'; ctx.lineWidth = Math.max(.5, .007 * k); ga(.16); ctx.beginPath();
+      for (const p of pili) {
+        const [bx, by, nx, ny] = bpt(p.u), sw = p.bend + Math.sin(t * .7 + p.ph) * .06;
+        const ex = bx + (nx - ny * sw) * p.len, ey = by + (ny + nx * sw) * p.len;
+        const mx = bx + (nx - ny * sw * .3) * p.len * .5, my = by + (ny + nx * sw * .3) * p.len * .5;
+        ctx.moveTo(toX(bx, by), toY(bx, by)); ctx.quadraticCurveTo(toX(mx, my), toY(mx, my), toX(ex, ey), toY(ex, ey));
+      }
+      ctx.stroke();
+      ctx.globalCompositeOperation = 'source-over';
+
+      // ---------- the cell body (local, scaled coordinates) ----------
+      ctx.save(); ctx.translate(ox, oy); ctx.rotate(ANG); ctx.scale(k, k);
+      const px = 1 / k;
+      ga(.08); ctx.strokeStyle = 'rgb(140,220,255)'; ctx.lineWidth = 0.12; capPath(-0.05); ctx.stroke();  // capsule halo
+      // periplasm
+      capPath(0); const cg = ctx.createLinearGradient(0, -R, 0, R);
+      cg.addColorStop(0, 'rgba(60,120,140,.75)'); cg.addColorStop(.5, 'rgba(20,62,82,.85)'); cg.addColorStop(1, 'rgba(10,30,48,.9)');
+      ga(1); ctx.fillStyle = cg; ctx.fill();
+      ctx.save(); capPath(0.034); ctx.clip();
+      const cy2 = ctx.createRadialGradient(0.05, -0.12, 0.05, 0, 0, 1.1);
+      cy2.addColorStop(0, 'rgba(46,104,120,1)'); cy2.addColorStop(1, 'rgba(14,44,62,1)');
+      ctx.fillStyle = cy2; ctx.fillRect(-2, -1, 4, 2);
+      // nucleoid haze
+      ga(.35); const ng = ctx.createRadialGradient(0.02, 0, 0, 0.02, 0, 0.7);
+      ng.addColorStop(0, 'rgba(120,150,255,.5)'); ng.addColorStop(1, 'rgba(120,150,255,0)');
+      ctx.fillStyle = ng; ctx.fillRect(-1, -.5, 2, 1);
+      ctx.restore();
+      ctx.restore();
+
+      // interior contents in screen space, clipped to the inner membrane
+      ctx.save(); ctx.translate(ox, oy); ctx.rotate(ANG); ctx.scale(k, k); capPath(0.034); ctx.restore();
+      ctx.save(); ctx.clip();
+      // soluble proteins
+      const pr = Math.max(0.8, 0.004 * k);
+      for (let c = 0; c < 5; c++) {
+        ctx.fillStyle = PROT_COL[c]; ga(1);
+        for (let i = 0; i < prot.length; i += 3) {
+          if (prot[i + 2] !== c) continue;
+          const x = prot[i] + .003 * Math.sin(t * 5 + i), y = prot[i + 1] + .003 * Math.cos(t * 4.3 + i * 1.7);
+          const X = toX(x, y), Y = toY(x, y); if (!onScreen(X, Y, pr)) continue;
+          ctx.fillRect(X - pr, Y - pr, pr * 2, pr * 2);
+        }
+      }
+      // ribosomes
+      const rr = Math.max(0.8, 0.0105 * k);
+      ga(.7);
+      for (let i = 0; i < ribo.length; i += 3) {
+        const x = ribo[i] + .004 * Math.sin(t * 3 + ribo[i + 2] * 5), y = ribo[i + 1] + .004 * Math.cos(t * 2.6 + ribo[i + 2] * 7);
+        const X = toX(x, y), Y = toY(x, y); if (!onScreen(X, Y, rr)) continue;
+        if (rr < 2.5) ctx.drawImage(RIB_DOT, X - rr * 1.6, Y - rr * 1.6, rr * 3.2, rr * 3.2);
+        else dBall([185, 105, 200], X, Y, rr, .2);
+      }
+      // nucleoid DNA fibres (additive glow)
+      ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      const dnaW = Math.max(0.6, 0.002 * k);
+      ctx.beginPath();
+      for (const p of fibers) {
+        ctx.moveTo(toX(p[0], p[1]), toY(p[0], p[1]));
+        for (let i = 2; i < p.length - 2; i += 2) {
+          const mx = (p[i] + p[i + 2]) / 2, my = (p[i + 1] + p[i + 3]) / 2;
+          ctx.quadraticCurveTo(toX(p[i], p[i + 1]), toY(p[i], p[i + 1]), toX(mx, my), toY(mx, my));
+        }
+      }
+      ga(.08); ctx.strokeStyle = 'rgb(130,160,255)'; ctx.lineWidth = dnaW * 5; ctx.stroke();
+      ga(.45); ctx.strokeStyle = 'rgb(170,195,255)'; ctx.lineWidth = dnaW; ctx.stroke();
+      // plasmids — small circular DNA
+      for (const [x, y, rad] of plasmids) {
+        ga(.6); ctx.beginPath();
+        for (let a = 0; a <= TAU + .01; a += .2) {
+          const w = rad * (1 + .25 * Math.sin(a * 5 + t * .4)), X = toX(x + Math.cos(a) * w, y + Math.sin(a) * w * .6), Y = toY(x + Math.cos(a) * w, y + Math.sin(a) * w * .6);
+          a === 0 ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y);
+        }
+        ctx.stroke();
+      }
+      // the followed strand
+      ctx.beginPath(); ctx.moveTo(toX(main[0], main[1]), toY(main[0], main[1]));
+      for (let i = 2; i < main.length; i += 2) ctx.lineTo(toX(main[i], main[i + 1]), toY(main[i], main[i + 1]));
+      ga(.15); ctx.lineWidth = dnaW * 6; ctx.stroke(); ga(.85); ctx.lineWidth = dnaW; ctx.strokeStyle = 'rgb(200,220,255)'; ctx.stroke();
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.restore();
+
+      // ---------- envelope: outer membrane · peptidoglycan · inner membrane ----------
+      ctx.save(); ctx.translate(ox, oy); ctx.rotate(ANG); ctx.scale(k, k);
+      const mem = (inset) => {
+        const w = Math.max(0.0075, 1.3 * px); capPath(inset);
+        ga(.9); ctx.strokeStyle = 'rgb(255,196,118)'; ctx.lineWidth = w; ctx.stroke();
+        if (w * k > 5) { ga(.7); ctx.strokeStyle = 'rgb(120,70,30)'; ctx.lineWidth = w * .38; ctx.stroke(); }  // hydrophobic core
+      };
+      ga(.22); ctx.strokeStyle = 'rgb(255,225,160)'; ctx.lineWidth = Math.max(0.012, px); ctx.setLineDash([0.004, 0.003]); capPath(-0.009); ctx.stroke(); // LPS fringe
+      ctx.setLineDash([0.007, 0.004]); ga(.75); ctx.strokeStyle = 'rgb(150,235,150)'; ctx.lineWidth = Math.max(0.005, px); capPath(0.019); ctx.stroke(); // peptidoglycan
+      ctx.setLineDash([]);
+      mem(0.003); mem(0.033);
+      // 3-D sheen
+      capPath(0); const sh = ctx.createLinearGradient(0, -R, 0, R);
+      sh.addColorStop(0, 'rgba(255,255,255,.16)'); sh.addColorStop(.35, 'rgba(255,255,255,0)'); sh.addColorStop(.8, 'rgba(0,0,0,0)'); sh.addColorStop(1, 'rgba(0,0,0,.35)');
+      ga(1); ctx.fillStyle = sh; ctx.fill();
+      ctx.restore();
+    }
+  });
+})();
+/* ============================================================
+   SCENE 2 — Crowded cytoplasm at the nucleoid edge (units: nm)
+   ~300 g/L of macromolecules. Coupled transcription–translation:
+   RNA polymerase (~15 nm) on DNA, mRNA emerging, ribosomes (20 nm)
+   loading onto it before transcription is finished; nascent chains.
+   ============================================================ */
+(function () {
+  const r = mulberry(23);
+  const mainY = x => 0.0011 * x * x - 0.0000014 * x * x * x;
+  const mainDY = x => 0.0022 * x - 0.0000042 * x * x;
+
+  // Goodsell-style pastel palette
+  const PAL = [[236, 190, 130], [150, 214, 190], [245, 160, 120], [160, 180, 235], [210, 230, 150], [240, 210, 170], [130, 200, 220]];
+  const SHAPES = []; for (let s = 0; s < 6; s++) { const a = []; for (let i = 0; i < 12; i++) a.push(0.78 + r() * 0.22); SHAPES.push(a); }
+  function blobPath(g, cx, cy, rad, sh) {
+    const n = sh.length; g.beginPath();
+    const P = i => { const a = i / n * TAU, q = rad * sh[i % n]; return [cx + Math.cos(a) * q, cy + Math.sin(a) * q]; };
+    let [x0, y0] = P(0), [x1, y1] = P(1); g.moveTo((x0 + x1) / 2, (y0 + y1) / 2);
+    for (let i = 1; i <= n; i++) { const [xa, ya] = P(i), [xb, yb] = P(i + 1); g.quadraticCurveTo(xa, ya, (xa + xb) / 2, (ya + yb) / 2); }
+    g.closePath();
+  }
+  function blobSprite(c, s, depth) {
+    const key = 'm' + c + s + depth; let sp = SPR.get(key); if (sp) return sp;
+    sp = mkCanvas(96); const g = sp.getContext('2d'); const base = mix(c, [10, 20, 35], depth * .55);
+    const gr = g.createRadialGradient(40, 38, 4, 48, 48, 46);
+    gr.addColorStop(0, col(mix(base, WHITE, .35))); gr.addColorStop(.7, col(base)); gr.addColorStop(1, col(mix(base, BLACK, .35)));
+    blobPath(g, 48, 48, 44, SHAPES[s]); g.fillStyle = gr; g.fill();
+    g.lineWidth = 2.5; g.strokeStyle = col(mix(base, BLACK, .55)); g.stroke();
+    SPR.set(key, sp); return sp;
+  }
+
+  // soluble proteins
+  const mols = [];
+  for (let i = 0; i < 7600; i++) {
+    const rad = 2.2 + Math.pow(r(), 1.8) * 5.2;
+    mols.push({ x: (r() * 2 - 1) * 460, y: (r() * 2 - 1) * 300, rad, c: PAL[(r() * PAL.length) | 0], s: (r() * 6) | 0,
+      z: r(), rot: r() * TAU, f1: 1 + r() * 2, f2: 1 + r() * 2, p: r() * TAU });
+  }
+  // keep the foreground clear of the duplex we are about to follow
+  for (const m of mols) if (m.z >= .5 && Math.abs(m.y - mainY(m.x)) < m.rad + 3 && Math.abs(m.x) < 200) m.z = .2 + m.z * .5;
+  mols.sort((a, b) => a.z - b.z);
+  // secondary DNA segments (other loops of the nucleoid)
+  const strands = [];
+  for (let s = 0; s < 7; s++) {
+    let x = (r() * 2 - 1) * 450, y = (r() * 2 - 1) * 280, h = r() * TAU; const p = [x, y], hu = [];
+    for (let i = 0; i < 160; i++) { h += gauss(r) * 0.12; x += Math.cos(h) * 5; y += Math.sin(h) * 5; p.push(x, y); if (r() < 0.04) hu.push(p.length - 2); }
+    strands.push({ p, hu });
+  }
+  // polysomes: RNAP on the main DNA, mRNA with ribosomes queued along it
+  function mkPolysome(x0, dir, n, len) {
+    const y0 = mainY(x0), pts = []; let x = x0, y = y0, h = dir * Math.PI / 2 + 0.3;
+    for (let s = 0; s < len; s += 2) { h += Math.sin(s * 0.02 + x0) * 0.03; x += Math.cos(h) * 2; y += Math.sin(h) * 2; pts.push(x, y); }
+    const ribs = []; for (let i = 0; i < n; i++) ribs.push({ idx: Math.min(pts.length - 2, (40 + i * 36) & ~1), z: i });
+    return { x0, y0, pts, ribs, dir };
+  }
+  const polys = [mkPolysome(-160, -1, 7, 320), mkPolysome(230, 1, 5, 230)];
+  const freeRibo = []; for (let i = 0; i < 70; i++) freeRibo.push([(r() * 2 - 1) * 460, (r() * 2 - 1) * 300, r() * TAU]);
+  const tRNA = []; for (let i = 0; i < 220; i++) tRNA.push([(r() * 2 - 1) * 460, (r() * 2 - 1) * 300, r() * TAU]);
+
+  function ribosome(X, Y, k, rot, a) {             // 50S (large) + 30S (small) subunits
+    const big = 12.5 * k, sm = 9 * k;
+    const ux = Math.cos(rot), uy = Math.sin(rot);
+    ga(a); const s1 = blobSprite([196, 108, 205], 1, 0), s2 = blobSprite([240, 168, 232], 3, 0);
+    ctx.drawImage(s1, X - ux * 4 * k - big, Y - uy * 4 * k - big, big * 2, big * 2);
+    ctx.drawImage(s2, X + ux * 8 * k - sm, Y + uy * 8 * k - sm, sm * 2, sm * 2);
+  }
+
+  scene({
+    name: 'cyto', top: -5.9, fi: .35, bot: -7.6, fo: .35,
+    draw(S) {
+      const k = S.ppm * 1e-9, t = S.t, cx = S.cx, cy = S.cy;
+      const X = x => cx + x * k, Y = y => cy + y * k;
+      ga(1); ctx.fillStyle = '#0d2334'; ctx.fillRect(0, 0, W, H);
+      const vg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * .7);
+      vg.addColorStop(0, 'rgba(40,90,110,.5)'); vg.addColorStop(1, 'rgba(0,0,0,.4)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+
+      // deep (z<0.5) molecules first
+      const drawMols = (z0, z1) => {
+        for (const m of mols) {
+          if (m.z < z0 || m.z >= z1) continue;
+          const x = X(m.x + 1.4 * Math.sin(t * m.f1 + m.p)), y = Y(m.y + 1.4 * Math.cos(t * m.f2 + m.p * 1.3)), rad = m.rad * k;
+          if (!onScreen(x, y, rad)) continue;
+          ga(.35 + .65 * m.z);
+          if (rad < 1.5) { ctx.fillStyle = col(m.c); ctx.fillRect(x - rad, y - rad, rad * 2, rad * 2); continue; }
+          const sp = blobSprite(m.c, m.s, 1 - m.z > .5 ? 1 : 0);
+          const rot = m.rot + Math.sin(t * .5 + m.p) * .4, c = Math.cos(rot) * DPR, s = Math.sin(rot) * DPR;
+          ctx.setTransform(c, s, -s, c, x * DPR, y * DPR); ctx.drawImage(sp, -rad, -rad, rad * 2, rad * 2);
+        }
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      };
+      drawMols(0, .5);
+
+      // other DNA loops, with HU nucleoid proteins bound
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      for (const st of strands) {
+        const p = st.p; ctx.beginPath(); ctx.moveTo(X(p[0]), Y(p[1]));
+        for (let i = 2; i < p.length; i += 2) ctx.lineTo(X(p[i] + Math.sin(t * .6 + i * .05) * 1.5), Y(p[i + 1]));
+        ga(.8); ctx.strokeStyle = 'rgb(120,150,210)'; ctx.lineWidth = Math.max(1, 2 * k); ctx.stroke();
+        for (const i of st.hu) { const x = X(p[i]), y = Y(p[i + 1]); if (onScreen(x, y, 5 * k)) { ga(.9); dBall([140, 210, 120], x, y, Math.max(1.5, 3.2 * k)); } }
+      }
+      // tRNAs (L-shaped, ~7 nm)
+      ctx.strokeStyle = 'rgb(240,110,110)'; ctx.lineWidth = Math.max(1, 1.6 * k); ga(.7); ctx.beginPath();
+      for (const [x, y, a] of tRNA) {
+        const ax = x + Math.sin(t * 2 + a * 9) * 2, ay = y + Math.cos(t * 1.7 + a * 5) * 2, rot = a + Math.sin(t + a) * .5;
+        const ux = Math.cos(rot) * 4, uy = Math.sin(rot) * 4;
+        if (!onScreen(X(ax), Y(ay), 8 * k)) continue;
+        ctx.moveTo(X(ax - ux), Y(ay - uy)); ctx.lineTo(X(ax), Y(ay)); ctx.lineTo(X(ax - uy * .9), Y(ay + ux * .9));
+      }
+      ctx.stroke();
+      for (const [x, y, a] of freeRibo) { const px = X(x + Math.sin(t + a) * 1.5), py = Y(y + Math.cos(t * 1.2 + a) * 1.5); if (onScreen(px, py, 15 * k)) ribosome(px, py, k, a + Math.sin(t * .4 + a) * .3, .95); }
+
+      // ---- the followed DNA duplex (2 nm), through the origin ----
+      const half = W / 2 / k + 20, step = clamp(1.2 / k, 0.17, 4);
+      const x0 = -half, x1 = half;
+      const tube = () => { ctx.beginPath(); for (let x = x0; x <= x1; x += step) { const px = X(x), py = Y(mainY(x)); x === x0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); } };
+      ctx.globalCompositeOperation = 'lighter'; tube(); ga(.12); ctx.strokeStyle = 'rgb(120,170,255)'; ctx.lineWidth = Math.max(4, 7 * k); ctx.stroke();
+      ctx.globalCompositeOperation = 'source-over';
+      tube(); ga(1); ctx.strokeStyle = 'rgb(60,82,130)'; ctx.lineWidth = Math.max(1.5, 2 * k); ctx.stroke();
+      if (k > 2) {                                   // helical backbones become visible
+        const det = sstep(2, 6, k);
+        for (const [ph, c] of [[0, [255, 175, 95]], [2.6, [120, 200, 255]]]) {
+          ctx.beginPath();
+          for (let x = x0; x <= x1; x += step) {
+            const th = x / 3.4 * TAU + t * .35 + ph, d = mainDY(x), n = 1 / Math.hypot(1, d);
+            const o = Math.cos(th) * 0.95; const px = X(x - d * n * o), py = Y(mainY(x) + n * o);
+            x === x0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+          }
+          ga(det); ctx.strokeStyle = col(c); ctx.lineWidth = Math.max(1, .55 * k); ctx.stroke();
+        }
+      }
+      // RNA polymerase, mRNA, ribosomes, nascent polypeptides
+      for (const P of polys) {
+        const p = P.pts; ctx.beginPath(); ctx.moveTo(X(P.x0), Y(P.y0));
+        for (let i = 0; i < p.length; i += 2) ctx.lineTo(X(p[i] + Math.sin(t * .8 + i * .03) * 2), Y(p[i + 1] + Math.cos(t * .7 + i * .02) * 2));
+        ga(.9); ctx.strokeStyle = 'rgb(255,120,120)'; ctx.lineWidth = Math.max(1, 1.1 * k); ctx.stroke();
+        for (const rb of P.ribs) {
+          const i = rb.idx, x = p[i] + Math.sin(t * .8 + i * .03) * 2, y = p[i + 1] + Math.cos(t * .7 + i * .02) * 2;
+          const a = Math.atan2(p[i + 3] - p[i + 1], p[i + 2] - p[i]) + Math.PI / 2 * P.dir;
+          ribosome(X(x), Y(y), k, a, 1);
+          // nascent chain: longer on ribosomes further along the message
+          ctx.beginPath(); let qx = x - Math.cos(a) * 14, qy = y - Math.sin(a) * 14; ctx.moveTo(X(qx), Y(qy));
+          for (let s = 0; s < 6 + rb.z * 7; s++) { qx -= Math.cos(a + Math.sin(s + t) * .9) * 2; qy -= Math.sin(a + Math.sin(s * 1.3 + t) * .9) * 2; ctx.lineTo(X(qx), Y(qy)); }
+          ga(.9); ctx.strokeStyle = 'rgb(150,240,140)'; ctx.lineWidth = Math.max(1, .9 * k); ctx.stroke();
+        }
+        const rx = X(P.x0), ry = Y(P.y0);
+        if (onScreen(rx, ry, 20 * k)) { ga(1); ctx.drawImage(blobSprite([240, 150, 80], 4, 0), rx - 8 * k, ry - 8 * k, 16 * k, 16 * k); }
+      }
+      drawMols(.5, 1.01);
+    }
+  });
+})();
+/* ============================================================
+   SCENE 3 — B-DNA double helix (units: nm)
+   Diameter 2.0 nm, rise 0.338 nm/bp, 10.5 bp/turn (pitch 3.55 nm),
+   strands offset in azimuth → wide major and narrow minor grooves.
+   Space-filling-ish atoms, CPK colours, bases tinted A/T/G/C.
+   ============================================================ */
+(function () {
+  const r = mulberry(31);
+  const RISE = 0.338, TWIST = TAU / 10.5, OFF = 2.6, TILT = 0.28;
+  const SEQ = []; for (let i = 0; i < 600; i++) SEQ.push('ATGCGCAT'[(r() * 8) | 0]);
+  const BASECOL = { A: [90, 205, 120], T: [235, 95, 95], G: [245, 200, 70], C: [95, 150, 245] };
+  const PAIR = { A: 'T', T: 'A', G: 'C', C: 'G' };
+  // backbone template: [radius nm, Δazimuth rad, Δx nm, element, vdW-ish radius nm]
+  const BB = [[0.89, 0, 0, 'P', .19], [1.03, .1, .1, 'O', .15], [.99, -.08, -.13, 'O', .15], [.81, .17, .06, 'O', .15],
+    [.79, .3, .02, 'C', .16], [.72, .42, -.06, 'O', .15], [.68, .32, .13, 'C', .16], [.64, .2, -.12, 'C', .16]];
+  const ions = []; for (let i = 0; i < 40; i++) ions.push([(r() * 2 - 1) * 40, 1.5 + r() * 3, r() * TAU, r() * TAU]);
+  const pool = []; let np = 0;
+  function put(x, y, z, rad, c) {
+    let o = pool[np]; if (!o) o = pool[np] = { x: 0, y: 0, z: 0, r: 0, c: null };
+    // rotate about y for a slight oblique view
+    const ct = Math.cos(TILT), st = Math.sin(TILT);
+    o.x = x * ct - z * st; o.z = x * st + z * ct; o.y = y; o.r = rad; o.c = c; np++;
+  }
+
+  scene({
+    name: 'helix', top: -7.2, fi: .35, bot: -8.75, fo: .35,
+    draw(S) {
+      const k = S.ppm * 1e-9, t = S.t, cx = S.cx, cy = S.cy, rot = t * 0.3;
+      ga(1); const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * .75);
+      bg.addColorStop(0, '#0e1d33'); bg.addColorStop(1, '#03060d'); ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      // axial glow
+      ctx.globalCompositeOperation = 'lighter';
+      const ag = ctx.createLinearGradient(0, cy - 3 * k, 0, cy + 3 * k);
+      ag.addColorStop(0, 'rgba(60,120,255,0)'); ag.addColorStop(.5, 'rgba(90,150,255,.22)'); ag.addColorStop(1, 'rgba(60,120,255,0)');
+      ctx.fillStyle = ag; ctx.fillRect(0, cy - 3 * k, W, 6 * k);
+      ctx.globalCompositeOperation = 'source-over';
+
+      np = 0;
+      const n = Math.ceil((W / 2 / k + 2) / RISE / Math.cos(TILT));
+      for (let i = -n; i <= n; i++) {
+        const x = i * RISE, th = i * TWIST + rot, b1 = SEQ[(i + 300) % 600 | 0] || 'A', b2 = PAIR[b1];
+        for (let s = 0; s < 2; s++) {
+          const sg = s ? -1 : 1, base = s ? th + OFF : th;
+          for (const [rr, dp, dx, el, rad] of BB) { const a = base + sg * dp; put(x + sg * dx, rr * Math.cos(a), rr * Math.sin(a), rad, CPK[el]); }
+        }
+        // bases along the C1'–C1' chord (purine longer than pyrimidine)
+        const a1 = th + .35, a2 = th + OFF - .35;
+        const y1 = .62 * Math.cos(a1), z1 = .62 * Math.sin(a1), y2 = .62 * Math.cos(a2), z2 = .62 * Math.sin(a2);
+        const dy = y2 - y1, dz = z2 - z1, L = Math.hypot(dy, dz), py = -dz / L, pz = dy / L;
+        const split = (b1 === 'A' || b1 === 'G') ? .56 : .44;
+        const atoms = 8;
+        for (let j = 0; j < atoms; j++) {
+          const f = .1 + j / (atoms - 1) * .8, mine = f < split ? b1 : b2;
+          const off = (j % 2 ? .11 : -.11) * (1 - Math.abs(f - split) * .6);
+          const el = j % 3 === 1 ? 'N' : 'C';
+          put(x + (j % 2 ? .03 : -.03), y1 + dy * f + py * off, z1 + dz * f + pz * off, .15, mix(CPK[el], BASECOL[mine], .6));
+        }
+      }
+      const P = pool.slice(0, np).sort((a, b) => a.z - b.z);
+      ga(1);
+      for (const o of P) {
+        const X = cx + o.x * k, Y = cy + o.y * k, R = o.r * k; if (!onScreen(X, Y, R)) continue;
+        const shade = Math.round(clamp((0.9 - o.z) / 2.2, 0, .8) * 5) / 5;
+        dBall(o.c, X, Y, R, shade);
+      }
+      // counter-ions (Mg²⁺ / Na⁺) shielding the phosphates
+      ctx.globalCompositeOperation = 'lighter';
+      for (const [x, rr, a, p] of ions) {
+        const aa = a + t * .2, X = cx + (x + Math.sin(t * .7 + p) * .8) * k, Y = cy + rr * Math.cos(aa) * k;
+        if (!onScreen(X, Y, 10)) continue; ga(.55); dGlow([140, 255, 170], X, Y, Math.max(4, .5 * k));
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    }
+  });
+})();
+
+/* ============================================================
+   SCENE 4 — Guanine–cytosine Watson–Crick pair (units: Å)
+   Ring bonds 1.39 Å, C=O 1.23 Å, N–H 1.01 Å; N1···N3 2.9 Å;
+   three hydrogen bonds; C1'–C1' ≈ 10.5 Å. Hydration shell of water.
+   The zoom target (origin) is cytosine C5.
+   ============================================================ */
+(function () {
+  const r = mulberry(47);
+  const b = 1.39, D = Math.PI / 180, A = [], I = {};
+  const add = (n, el, x, y) => { I[n] = A.length; A.push({ n, el, x, y }); };
+  const at = n => A[I[n]];
+  const gx = -2.84, cxC = 2.84;
+  for (const [n, d] of [['N1', 0], ['C2', -60], ['N3', -120], ['C4', 180], ['C5', 120], ['C6', 60]]) add('G' + n, n[0], gx + b * Math.cos(d * D), b * Math.sin(d * D));
+  for (const [n, d] of [['N3', 180], ['C4', 120], ['C5', 60], ['C6', 0], ['N1', -60], ['C2', -120]]) add('C' + n, n[0], cxC + b * Math.cos(d * D), b * Math.sin(d * D));
+  // guanine imidazole ring fused on C4–C5
+  { const c4 = at('GC4'), c5 = at('GC5'), mx = (c4.x + c5.x) / 2, my = (c4.y + c5.y) / 2;
+    let nx = mx - gx, ny = my; const nl = Math.hypot(nx, ny); nx /= nl; ny /= nl;
+    const pcx = mx + nx * b * .6882, pcy = my + ny * b * .6882, Rp = b * .8507;
+    const a4 = Math.atan2(c4.y - pcy, c4.x - pcx), a5 = Math.atan2(c5.y - pcy, c5.x - pcx);
+    let st = a5 - a4; while (st > Math.PI) st -= TAU; while (st < -Math.PI) st += TAU; st = Math.sign(st) * 72 * D;
+    add('GN7', 'N', pcx + Rp * Math.cos(a5 + st), pcy + Rp * Math.sin(a5 + st));
+    add('GC8', 'C', pcx + Rp * Math.cos(a5 + 2 * st), pcy + Rp * Math.sin(a5 + 2 * st));
+    add('GN9', 'N', pcx + Rp * Math.cos(a5 + 3 * st), pcy + Rp * Math.sin(a5 + 3 * st));
+    A.pc = [pcx, pcy]; }
+  const radial = (name, el, from, cx0, cy0, len) => { const f = at(from); let dx = f.x - cx0, dy = f.y - cy0; const l = Math.hypot(dx, dy); add(name, el, f.x + dx / l * len, f.y + dy / l * len); };
+  radial('GO6', 'O', 'GC6', gx, 0, 1.23); radial('GN2', 'N', 'GC2', gx, 0, 1.34); radial('GH1', 'H', 'GN1', gx, 0, 1.01);
+  radial('GH8', 'H', 'GC8', A.pc[0], A.pc[1], 1.08); radial("GC1'", 'C', 'GN9', A.pc[0], A.pc[1], 1.47);
+  radial('CO2', 'O', 'CC2', cxC, 0, 1.24); radial('CN4', 'N', 'CC4', cxC, 0, 1.33); radial('CH5', 'H', 'CC5', cxC, 0, 1.08);
+  radial('CH6', 'H', 'CC6', cxC, 0, 1.08); radial("CC1'", 'C', 'CN1', cxC, 0, 1.47);
+  // amine hydrogens: ±60° off the C→N axis; the one nearer the partner acceptor is the H-bond donor
+  function amine(N, C, target, hA, hB) {
+    const n = at(N), c = at(C), ux = (n.x - c.x), uy = (n.y - c.y), l = Math.hypot(ux, uy), tg = at(target);
+    const hs = [60, -60].map(d => { const a = Math.atan2(uy, ux) + d * D; return [n.x + Math.cos(a) * 1.01, n.y + Math.sin(a) * 1.01]; });
+    hs.sort((p, q) => Math.hypot(p[0] - tg.x, p[1] - tg.y) - Math.hypot(q[0] - tg.x, q[1] - tg.y));
+    add(hA, 'H', hs[0][0], hs[0][1]); add(hB, 'H', hs[1][0], hs[1][1]);
+  }
+  amine('GN2', 'GC2', 'CO2', 'GH21', 'GH22'); amine('CN4', 'CC4', 'GO6', 'CH41', 'CH42');
+  const BONDS = [['GN1', 'GC2', 1], ['GC2', 'GN3', 2], ['GN3', 'GC4', 1], ['GC4', 'GC5', 2], ['GC5', 'GC6', 1], ['GC6', 'GN1', 1],
+    ['GC5', 'GN7', 1], ['GN7', 'GC8', 2], ['GC8', 'GN9', 1], ['GN9', 'GC4', 1], ['GC6', 'GO6', 2], ['GC2', 'GN2', 1], ['GN1', 'GH1', 1],
+    ['GN2', 'GH21', 1], ['GN2', 'GH22', 1], ['GC8', 'GH8', 1], ['GN9', "GC1'", 1],
+    ['CN1', 'CC2', 1], ['CC2', 'CN3', 1], ['CN3', 'CC4', 2], ['CC4', 'CC5', 1], ['CC5', 'CC6', 2], ['CC6', 'CN1', 1],
+    ['CC2', 'CO2', 2], ['CC4', 'CN4', 1], ['CN4', 'CH41', 1], ['CN4', 'CH42', 1], ['CC5', 'CH5', 1], ['CC6', 'CH6', 1], ['CN1', "CC1'", 1]]
+    .map(([a, c, o]) => [I[a], I[c], o]);
+  const HB = [['CH41', 'GO6'], ['GH1', 'CN3'], ['GH21', 'CO2']].map(([a, c]) => [I[a], I[c]]);
+  // origin → cytosine C5; flip y so the major-groove edge is on top
+  { const o = at('CC5'), ox = o.x, oy = o.y; for (const a of A) { a.x -= ox; a.y = -(a.y - oy); a.p = r() * TAU; a.f = 7 + r() * 5; } }
+  const RAD = { C: .38, N: .36, O: .36, H: .22 };
+  const PC = [A.reduce((s, a) => s + a.x, 0) / A.length, A.reduce((s, a) => s + a.y, 0) / A.length];
+  // hydration shell
+  const water = [];
+  for (let tries = 0; water.length < 80 && tries < 20000; tries++) {
+    const x = -3.5 + (r() * 2 - 1) * 22, y = 0.5 + (r() * 2 - 1) * 14;
+    if (A.some(a => Math.hypot(a.x - x, a.y - y) < 3.1) || water.some(w => Math.hypot(w[0] - x, w[1] - y) < 2.7)) continue;
+    water.push([x, y, r() * TAU, r() * TAU]);
+  }
+
+  scene({
+    name: 'basepair', top: -8.35, fi: .3, bot: -9.6, fo: .3,
+    draw(S) {
+      const k = S.ppm * 1e-10, t = S.t, cx = S.cx, cy = S.cy;
+      ga(1); const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * .8);
+      bg.addColorStop(0, '#0c1a2c'); bg.addColorStop(1, '#020409'); ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      // frame the whole pair first, then drift onto the target carbon as we dive
+      const pan = 1 - sstep(-8.85, -9.3, S.L), ox0 = PC[0] * pan, oy0 = PC[1] * pan;
+      const P = A.map(a => [cx + (a.x - ox0 + .035 * Math.sin(t * a.f + a.p)) * k, cy + (a.y - oy0 + .035 * Math.cos(t * a.f * 1.1 + a.p)) * k]);
+      const solid = 1 - sstep(140, 700, k);                  // balls dissolve into electron density as we dive in
+
+      // water molecules (O–H 0.96 Å, 104.5°)
+      for (const [x, y, a, p] of water) {
+        const X = cx + (x - ox0 + .3 * Math.sin(t * 1.3 + p)) * k, Y = cy + (y - oy0 + .3 * Math.cos(t * 1.1 + p)) * k, ro = a + Math.sin(t * .8 + p) * .8;
+        if (!onScreen(X, Y, 2 * k)) continue;
+        ga(.4 * solid); ctx.strokeStyle = 'rgba(200,210,225,1)'; ctx.lineWidth = .14 * k; ctx.beginPath();
+        const h1 = [X + Math.cos(ro) * .96 * k, Y + Math.sin(ro) * .96 * k], h2 = [X + Math.cos(ro + 1.824) * .96 * k, Y + Math.sin(ro + 1.824) * .96 * k];
+        ctx.moveTo(h1[0], h1[1]); ctx.lineTo(X, Y); ctx.lineTo(h2[0], h2[1]); ctx.stroke();
+        dBall(CPK.O, X, Y, .3 * k, .45); dBall(CPK.H, h1[0], h1[1], .18 * k, .45); dBall(CPK.H, h2[0], h2[1], .18 * k, .45);
+      }
+      // electron density
+      ctx.globalCompositeOperation = 'lighter';
+      A.forEach((a, i) => { ga(a.el === 'H' ? .07 : .13); dGlow(mix(CPK[a.el], [120, 170, 255], .5), P[i][0], P[i][1], (a.el === 'H' ? 1.2 : 1.8) * k); });
+      // hydrogen bonds
+      ctx.lineCap = 'round';
+      for (const [h, acc] of HB) {
+        const pulse = .55 + .35 * Math.sin(t * 2.4 + h);
+        ga(.25 * pulse); ctx.strokeStyle = 'rgb(120,220,255)'; ctx.lineWidth = .5 * k; ctx.setLineDash([]);
+        ctx.beginPath(); ctx.moveTo(P[h][0], P[h][1]); ctx.lineTo(P[acc][0], P[acc][1]); ctx.stroke();
+        ga(pulse); ctx.lineWidth = .08 * k; ctx.setLineDash([.16 * k, .14 * k]); ctx.stroke();
+      }
+      ctx.setLineDash([]); ctx.globalCompositeOperation = 'source-over';
+      // sugar–phosphate stubs leaving the C1' atoms
+      for (const [n, dx] of [["GC1'", -1], ["CC1'", 1]]) {
+        const p = P[I[n]], ex = p[0] + dx * 1.6 * k, ey = p[1] + 2.4 * k, g = ctx.createLinearGradient(p[0], p[1], ex, ey);
+        g.addColorStop(0, 'rgba(170,180,195,.9)'); g.addColorStop(1, 'rgba(170,180,195,0)');
+        ga(solid); ctx.strokeStyle = g; ctx.lineWidth = .22 * k; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(ex, ey); ctx.stroke();
+      }
+      // covalent bonds, each half in its atom's colour
+      for (const [i, j, o] of BONDS) {
+        const [x1, y1] = P[i], [x2, y2] = P[j], mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+        const l = Math.hypot(x2 - x1, y2 - y1), nx = -(y2 - y1) / l, ny = (x2 - x1) / l;
+        const offs = o === 2 ? [-.09, .09] : [0], w = (o === 2 ? .1 : .18) * k;
+        for (const of of offs) {
+          for (const [ax, ay, bx, by, el] of [[x1, y1, mx, my, A[i].el], [mx, my, x2, y2, A[j].el]]) {
+            ga(solid); ctx.strokeStyle = col(mix(CPK[el], [40, 50, 60], .15)); ctx.lineWidth = w; ctx.beginPath();
+            ctx.moveTo(ax + nx * of * k, ay + ny * of * k); ctx.lineTo(bx + nx * of * k, by + ny * of * k); ctx.stroke();
+          }
+        }
+      }
+      // atoms
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      A.forEach((a, i) => {
+        const R = RAD[a.el] * k, [X, Y] = P[i]; if (!onScreen(X, Y, R)) return;
+        ga(solid); dBall(CPK[a.el], X, Y, R);
+        if (R > 10) { ga(solid * .75); ctx.fillStyle = a.el === 'H' ? '#223' : '#fff'; ctx.font = `600 ${Math.min(40, R * .8)}px Segoe UI, system-ui, sans-serif`; ctx.fillText(a.el, X, Y + R * .04); }
+      });
+      // labels
+      const lab = sstep(35, 60, k) * (1 - sstep(180, 320, k));
+      if (lab > 0) {
+        ctx.font = `500 ${clamp(k * .28, 11, 18)}px Segoe UI, system-ui, sans-serif`; ctx.fillStyle = 'rgba(210,225,245,.85)';
+        ga(lab * .9); const gyc = cy + (5.4 - oy0) * k, bx = cx - ox0 * k;
+        ctx.fillText('GUANINE', bx + (-2.84 - 3.1) * k, gyc); ctx.fillText('CYTOSINE', bx + (-0.4) * k, gyc);
+        ctx.fillStyle = 'rgba(140,220,255,.9)'; ctx.fillText('hydrogen bonds · 2.8–3.0 Å', bx + (-2.8) * k, cy - (4.6 + oy0) * k);
+      }
+    }
+  });
+})();
+/* ============================================================
+   SCENE 5 — A carbon atom (units: pm)
+   Ground state 1s² 2s² 2p². Points are Monte-Carlo samples of the
+   hydrogen-like probability densities with Slater effective charges
+   (Z_eff 1s = 5.67, 2s/2p = 3.22); a₀ = 52.9 pm. The two 2p electrons
+   occupy different p orbitals (Hund's rule).
+   ============================================================ */
+(function () {
+  const r = mulberry(59), a0 = 52.9, Z1 = 5.67, Z2 = 3.22;
+  const iso = () => { let x, y, z, d; do { x = r() * 2 - 1; y = r() * 2 - 1; z = r() * 2 - 1; d = x * x + y * y + z * z; } while (d > 1 || d < 1e-4); d = Math.sqrt(d); return [x / d, y / d, z / d]; };
+  const gam = n => { let p = 1; for (let i = 0; i < n; i++) p *= 1 - r(); return -Math.log(p); };
+  function cloud(n, radius, dir) {
+    const a = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) { const d = dir(), q = radius(); a[i * 3] = d[0] * q; a[i * 3 + 1] = d[1] * q; a[i * 3 + 2] = d[2] * q; }
+    return a;
+  }
+  const f2s = p => p * p * (2 - p) * (2 - p) * Math.exp(-p);
+  let fmax = 0; for (let p = 0; p < 30; p += .01) fmax = Math.max(fmax, f2s(p));
+  const pDir = ax => () => { let v; do v = iso(); while (r() > v[ax] * v[ax]); return v; };
+  const ORB = [
+    { name: '1s²', c: [255, 214, 150], a: .55, pts: cloud(3500, () => gam(3) * a0 / (2 * Z1), iso) },
+    { name: '2s²', c: [120, 222, 255], a: .38, pts: cloud(5000, () => { let p; do p = r() * 25; while (r() * fmax > f2s(p)); return p * a0 / Z2; }, iso) },
+    { name: '2pₓ', c: [190, 140, 255], a: .42, pts: cloud(4500, () => gam(5) * a0 / Z2, pDir(0)) },
+    { name: '2p_y', c: [255, 130, 205], a: .42, pts: cloud(4500, () => gam(5) * a0 / Z2, pDir(1)) },
+  ];
+  ORB[3].name = '2pᵧ';
+  let frame = 0;
+
+  scene({
+    name: 'atom', top: -9.25, fi: .3, bot: -13.75, fo: .4,
+    draw(S) {
+      const k = S.ppm * 1e-12, t = S.t, cx = S.cx, cy = S.cy; frame++;
+      ga(1); ctx.fillStyle = '#030409'; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      // smooth total density (valence) + the dense 1s core, e^(−2Z r/a₀)
+      const g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 170 * k);
+      g1.addColorStop(0, 'rgba(150,120,255,.28)'); g1.addColorStop(.35, 'rgba(110,120,255,.12)'); g1.addColorStop(1, 'rgba(60,80,200,0)');
+      const deep = sstep(-10.3, -11.3, S.L);
+      ga(1 - deep * .85); ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
+      const g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 28 * k);
+      [[0, 1], [.18, .34], [.36, .12], [.7, .014], [1, 0]].forEach(([s, v]) => g2.addColorStop(s, `rgba(255,205,140,${v * .38})`));
+      ga(1 - deep * .6); ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
+
+      // probability clouds (flickering: each frame is a new set of possible outcomes)
+      const cloudA = 1 - sstep(-10.2, -10.9, S.L);
+      if (cloudA > 0) {
+        const ry = t * .16, rx = .45 + .12 * Math.sin(t * .11), cyv = Math.cos(ry), syv = Math.sin(ry), cxv = Math.cos(rx), sxv = Math.sin(rx);
+        const ps = clamp(k * .9, 1, 2.2);
+        for (const o of ORB) {
+          ctx.fillStyle = col(o.c); ga(o.a * cloudA);
+          const p = o.pts, n = p.length / 3;
+          for (let i = 0; i < n; i++) {
+            if (((Math.imul(i, 2654435761) ^ (frame * 40503)) >>> 7 & 3) === 0) continue;
+            const x = p[i * 3], y = p[i * 3 + 1], z = p[i * 3 + 2];
+            const x2 = x * cyv + z * syv, z2 = -x * syv + z * cyv, y2 = y * cxv - z2 * sxv;
+            const X = cx + x2 * k, Y = cy + y2 * k;
+            if (X < 0 || X > W || Y < 0 || Y > H) continue;
+            ctx.fillRect(X, Y, ps, ps);
+          }
+        }
+        // legend
+        const lg = sstep(-9.4, -9.6, S.L) * (1 - sstep(-9.95, -10.15, S.L));
+        if (lg > 0) {
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.font = '500 13px Segoe UI, system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+          const lx = Math.min(W - 150, cx + 150 * k), ly = cy - 60;
+          ORB.forEach((o, i) => { ga(lg); ctx.fillStyle = col(o.c); ctx.beginPath(); ctx.arc(lx, ly + i * 22, 4, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(225,232,245,.85)'; ctx.fillText(o.name + (i ? '' : '  (inner shell)'), lx + 12, ly + i * 22); });
+          ctx.globalCompositeOperation = 'lighter';
+        }
+      }
+      // the nucleus: a point of light, 25 000× smaller than the cloud
+      const pulse = 1 + .15 * Math.sin(t * 3);
+      const nr = Math.max(3.5, 2.7e-3 * k * 6) * pulse;
+      ga(.5 + .5 * sstep(-10.4, -12, S.L)); dGlow([255, 235, 215], cx, cy, nr * 3); dGlow([255, 150, 120], cx, cy, nr * 1.4);
+      ctx.globalCompositeOperation = 'source-over';
+      const mk = sstep(-10.6, -11.0, S.L) * (1 - sstep(-13.2, -13.5, S.L));
+      if (mk > 0) {
+        ga(mk * .6); ctx.strokeStyle = 'rgba(255,220,200,1)'; ctx.lineWidth = 1;
+        const rr = 28 + 4 * Math.sin(t * 2);
+        ctx.beginPath(); ctx.arc(cx, cy, rr, 0, TAU); ctx.stroke();
+        ctx.font = '500 11px Segoe UI, system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = 'rgba(255,225,205,.9)';
+        ctx.fillText('NUCLEUS', cx + rr + 10, cy - 3);
+        ctx.beginPath(); ctx.moveTo(cx + rr * .72, cy - rr * .72 * 0.1); ctx.lineTo(cx + rr + 6, cy - 3); ctx.stroke();
+      }
+    }
+  });
+})();
+
+/* ============================================================
+   SCENE 6 — Carbon-12 nucleus (units: fm)
+   6 protons + 6 neutrons (radius ≈ 0.84 fm) packed within ~2.5 fm
+   charge radius; Fermi motion; residual strong force by pion exchange
+   (range ≈ 1.4 fm).
+   ============================================================ */
+(function () {
+  const PC = [255, 88, 72], NC = [110, 160, 255];
+  const V = [[0, 0, 1], [0, 0, -1]], s5 = 1 / Math.sqrt(5);
+  for (let i = 0; i < 5; i++) { const a = i * TAU / 5; V.push([2 * s5 * Math.cos(a), 2 * s5 * Math.sin(a), s5]); }
+  for (let i = 0; i < 5; i++) { const a = i * TAU / 5 + TAU / 10; V.push([2 * s5 * Math.cos(a), 2 * s5 * Math.sin(a), -s5]); }
+  const TYPES = ['p', 'n', 'p', 'n', 'p', 'n', 'n', 'p', 'n', 'p', 'n', 'p'];
+  const N = V.map((v, i) => ({ v: v.map(c => c * 1.6), p: TYPES[i] === 'p', s: i * 7.13, x: 0, y: 0, z: 0 }));
+  const pions = [];
+
+  scene({
+    name: 'nucleus', top: -13.3, fi: .35, bot: -14.85, fo: .35,
+    draw(S) {
+      const k = S.ppm * 1e-15, t = S.t, cx = S.cx, cy = S.cy, ang = t * .12, c = Math.cos(ang), s = Math.sin(ang);
+      ga(1); ctx.fillStyle = '#050307'; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      ga(.35); ctx.fillStyle = 'rgba(255,200,140,.12)'; ctx.fillRect(0, 0, W, H);    // the 1s electron density is still here
+      for (const n of N) {
+        const j = n === N[0] ? .25 : 1, [x, y, z] = n.v;
+        n.x = x * c - y * s + .2 * j * vnoise3(n.s, t * .9, 0); n.y = x * s + y * c + .2 * j * vnoise3(n.s, t * .9, 5); n.z = z + .2 * j * vnoise3(n.s, t * .9, 9);
+      }
+      ga(.35); dGlow([255, 140, 110], cx, cy, 4.2 * k);                              // nuclear surface haze
+      // pion exchange flashes
+      if (Math.random() < S.dt * 9) {
+        const a = N[(Math.random() * 12) | 0], b = N.filter(q => q !== a && Math.hypot(q.v[0] - a.v[0], q.v[1] - a.v[1], q.v[2] - a.v[2]) < 1.9)[(Math.random() * 5) | 0];
+        if (b) pions.push({ a, b, t0: t });
+      }
+      for (let i = pions.length - 1; i >= 0; i--) {
+        const p = pions[i], u = (t - p.t0) / .4; if (u > 1 || u < 0) { pions.splice(i, 1); continue; }
+        const ax = cx + p.a.x * k, ay = cy + p.a.y * k, bx = cx + p.b.x * k, by = cy + p.b.y * k, e = Math.sin(u * Math.PI);
+        ga(.35 * e); ctx.strokeStyle = 'rgb(220,255,180)'; ctx.lineWidth = Math.max(1, .06 * k); ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+        ga(.8 * e); dGlow([200, 255, 170], lerp(ax, bx, u), lerp(ay, by, u), Math.max(5, .35 * k));
+      }
+      const sorted = N.slice().sort((a, b) => a.z - b.z), qa = sstep(60, 260, k);
+      for (const n of sorted) {
+        const X = cx + n.x * k, Y = cy + n.y * k, R = .84 * k, C = n.p ? PC : NC;
+        ctx.globalCompositeOperation = 'lighter'; ga(.35); dGlow(C, X, Y, R * 2.2);
+        ctx.globalCompositeOperation = 'source-over';
+        ga(1 - qa * .55); dBall(C, X, Y, R, Math.round(clamp((1.6 - n.z) / 3.6, 0, .8) * 5) / 5);
+        if (qa > 0) {                                                                // hint of three valence quarks inside
+          ctx.globalCompositeOperation = 'lighter';
+          for (let q = 0; q < 3; q++) { const a = t * 1.3 + q * TAU / 3 + n.s; ga(qa * .7); dGlow([[255, 80, 80], [80, 255, 120], [90, 140, 255]][q], X + Math.cos(a) * .35 * R, Y + Math.sin(a * 1.3) * .35 * R, .3 * R); }
+          ctx.globalCompositeOperation = 'source-over';
+        }
+        if (R > 16 && qa < .6) {
+          ga(.85 * (1 - qa)); ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.font = `600 ${Math.min(30, R * .45)}px Segoe UI, system-ui, sans-serif`;
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(n.p ? 'p⁺' : 'n', X, Y);
+        }
+      }
+    }
+  });
+})();
+/* ============================================================
+   SCENE 7 — A proton (units: fm)
+   Charge radius 0.84 fm. Valence quarks u u d (point-like, < 10⁻¹⁸ m),
+   colour charges always summing to "white"; gluon exchange swaps colour;
+   Y-shaped flux tubes; sea of virtual quark–antiquark pairs and gluons.
+   ============================================================ */
+(function () {
+  const QC = [[255, 70, 70], [70, 255, 120], [80, 140, 255]], ANTI = [[70, 255, 255], [255, 70, 255], [255, 235, 70]];
+  const Q = [{ f: 'u', ch: '+⅔ e' }, { f: 'u', ch: '+⅔ e' }, { f: 'd', ch: '−⅓ e' }];
+  const cur = [0, 1, 2], shown = QC.map(c => c.slice());
+  let gl = null, nextG = 1; const sea = [], springs = [];
+  const qpos = (i, t) => {
+    const a = i * TAU / 3 + t * .23 + .5 * vnoise3(i * 4.1, t * .35, 2), rr = .33 + .14 * vnoise3(i * 3.1, t * .5, 1);
+    return [Math.cos(a) * rr + .06 * vnoise3(i, t * 1.7, 7), Math.sin(a) * rr + .06 * vnoise3(i, t * 1.7, 9)];
+  };
+  function coil(ax, ay, bx, by, amp, turns, ph) {
+    const dx = bx - ax, dy = by - ay, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, n = Math.max(24, turns * 12);
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const s = i / n, a = s * turns * TAU + ph, al = s * L - amp * Math.sin(a), pe = amp * (Math.cos(a) - 1) * (s > 0 && s < 1 ? 1 : 0);
+      const x = ax + ux * al - uy * pe, y = ay + uy * al + ux * pe; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+  }
+
+  scene({
+    name: 'proton', top: -14.45, fi: .3, bot: -16.0, fo: .5,
+    draw(S) {
+      const k = S.ppm * 1e-15, t = S.t, cx = S.cx, cy = S.cy, dt = S.dt;
+      ga(1); ctx.fillStyle = '#060206'; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      const pg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 1.25 * k);
+      pg.addColorStop(0, 'rgba(255,170,120,.22)'); pg.addColorStop(.67, 'rgba(255,90,90,.1)'); pg.addColorStop(1, 'rgba(255,60,80,0)');
+      ctx.fillStyle = pg; ctx.fillRect(0, 0, W, H);
+      const P = [0, 1, 2].map(i => qpos(i, t)), X = p => cx + p[0] * k, Y = p => cy + p[1] * k;
+      // gluon exchange: q_i (colour a) → emits gluon (a, anti-b) and becomes b; q_j (b) absorbs it and becomes a
+      if (!gl && t > nextG) {
+        const i = (Math.random() * 3) | 0, j = (i + 1 + ((Math.random() * 2) | 0)) % 3;
+        gl = { i, j, t0: t, a: cur[i], b: cur[j] }; cur[i] = gl.b;
+      }
+      if (gl) {
+        const u = (t - gl.t0) / .55;
+        if (u >= 1 || u < 0) { cur[gl.j] = gl.a; gl = null; nextG = t + .35 + Math.random() * .8; }
+        else {
+          const a = P[gl.i], b = P[gl.j], ex = lerp(a[0], b[0], u), ey = lerp(a[1], b[1], u);
+          ga(.9 * Math.sin(Math.PI * Math.min(1, u * 1.3))); ctx.lineWidth = Math.max(1.2, .018 * k);
+          ctx.strokeStyle = col(mix(QC[gl.a], ANTI[gl.b], .5));
+          coil(X(a) + (X([ex, ey]) - X(a)) * .15, Y(a) + (Y([ex, ey]) - Y(a)) * .15, X([ex, ey]), Y([ex, ey]), .03 * k, 5, -t * 12); ctx.stroke();
+          dGlow(QC[gl.a], X([ex, ey]) - 3, Y([ex, ey]), .12 * k); dGlow(ANTI[gl.b], X([ex, ey]) + 3, Y([ex, ey]), .12 * k);
+        }
+      }
+      for (let i = 0; i < 3; i++) for (let c = 0; c < 3; c++) shown[i][c] = lerp(shown[i][c], QC[cur[i]][c], Math.min(1, dt * 8));
+      // Y-shaped flux tubes meeting at a junction
+      const jx = (P[0][0] + P[1][0] + P[2][0]) / 3, jy = (P[0][1] + P[1][1] + P[2][1]) / 3;
+      for (let i = 0; i < 3; i++) for (let s = 0; s < 4; s++) {
+        ctx.beginPath();
+        for (let m = 0; m <= 24; m++) {
+          const u = m / 24, env = Math.sin(Math.PI * u), n1 = vnoise3(i * 9 + s * 3, u * 3, t * 1.4) * .07 * env, n2 = vnoise3(i * 9 + s * 3 + 50, u * 3, t * 1.4) * .07 * env;
+          const x = X([lerp(P[i][0], jx, u) + n1, 0]), y = Y([0, lerp(P[i][1], jy, u) + n2]); m ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        }
+        ga(s ? .3 : .1); ctx.strokeStyle = col(s ? mix(shown[i], WHITE, .3) : shown[i]); ctx.lineWidth = s ? Math.max(1, .01 * k) : Math.max(3, .045 * k); ctx.stroke();
+      }
+      ga(.5); dGlow([255, 250, 240], X([jx, jy]), Y([jx, jy]), .15 * k);
+      // sea gluons (short-lived springs)
+      if (springs.length < 16 && Math.random() < dt * 30) {
+        const a = Math.random() * TAU, rr = Math.sqrt(Math.random()) * .8, l = .15 + Math.random() * .2, d = Math.random() * TAU;
+        springs.push({ x: Math.cos(a) * rr, y: Math.sin(a) * rr, dx: Math.cos(d) * l, dy: Math.sin(d) * l, t0: t, life: .3 + Math.random() * .5, c: (Math.random() * 3) | 0 });
+      }
+      for (let i = springs.length - 1; i >= 0; i--) {
+        const g = springs[i], u = (t - g.t0) / g.life; if (u > 1) { springs.splice(i, 1); continue; }
+        ga(.45 * Math.sin(Math.PI * u)); ctx.strokeStyle = col(mix(QC[g.c], WHITE, .5)); ctx.lineWidth = Math.max(1, .01 * k);
+        coil(X([g.x, 0]), Y([0, g.y]), X([g.x + g.dx, 0]), Y([0, g.y + g.dy]), .018 * k, 4, -t * 10); ctx.stroke();
+      }
+      // virtual quark–antiquark pairs: appear, separate, annihilate
+      if (sea.length < 14 && Math.random() < dt * 12) {
+        const a = Math.random() * TAU, rr = Math.sqrt(Math.random()) * .75, d = Math.random() * TAU;
+        sea.push({ x: Math.cos(a) * rr, y: Math.sin(a) * rr, d, t0: t, life: .5 + Math.random() * .7, c: (Math.random() * 3) | 0 });
+      }
+      for (let i = sea.length - 1; i >= 0; i--) {
+        const q = sea[i], u = (t - q.t0) / q.life; if (u > 1) { sea.splice(i, 1); continue; }
+        const sep = .12 * Math.sin(Math.PI * u), e = Math.sin(Math.PI * u);
+        const qx = q.x + Math.cos(q.d) * sep, qy = q.y + Math.sin(q.d) * sep, ax = q.x - Math.cos(q.d) * sep, ay = q.y - Math.sin(q.d) * sep;
+        ga(.75 * e); dGlow(QC[q.c], X([qx, 0]), Y([0, qy]), Math.max(4, .07 * k)); dGlow(ANTI[q.c], X([ax, 0]), Y([0, ay]), Math.max(4, .07 * k));
+        if (u > .88) { ga((u - .88) * 6); dGlow(WHITE, X([q.x, 0]), Y([0, q.y]), Math.max(6, .12 * k)); }
+      }
+      // valence quarks
+      for (let i = 0; i < 3; i++) {
+        const x = X(P[i]), y = Y(P[i]);
+        ga(.85); dGlow(shown[i], x, y, .3 * k); ga(1); dGlow(mix(shown[i], WHITE, .6), x, y, Math.max(6, .06 * k)); dGlow(WHITE, x, y, Math.max(3, .015 * k));
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      const lab = sstep(350, 700, k) * (1 - sstep(3500, 7000, k));
+      if (lab > 0) {
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        for (let i = 0; i < 3; i++) {
+          const x = X(P[i]) + Math.max(14, .05 * k), y = Y(P[i]) - Math.max(10, .035 * k);
+          ga(lab); ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.font = 'italic 600 20px Georgia, serif'; ctx.fillText(Q[i].f, x, y);
+          ctx.fillStyle = 'rgba(230,230,240,.7)'; ctx.font = '500 12px Segoe UI, system-ui, sans-serif'; ctx.fillText(Q[i].ch, x + 16, y + 2);
+        }
+      }
+    }
+  });
+})();
+
+/* ============================================================
+   SCENE 8 — Quantum fields (abstract; below ~10⁻¹⁶ m)
+   Every particle species is an excitation of a field that fills
+   all of space. The vacuum is never still; the fluctuations grow
+   more violent at shorter distances, and near the Planck length the
+   geometry of space itself is expected to become "foamy".
+   ============================================================ */
+(function () {
+  const FIELDS = [
+    { n: 'electron field', q: 'electron', c: [90, 180, 255] },
+    { n: 'quark fields', q: 'quark', c: [255, 110, 90] },
+    { n: 'gluon field', q: 'gluon', c: [255, 205, 90] },
+    { n: 'electromagnetic field', q: 'photon', c: [225, 235, 255] },
+    { n: 'Higgs field', q: 'Higgs boson', c: [190, 120, 255] },
+  ];
+  const NX = 64, NZ = 36, DZ = .8, XS = 36;
+  const hts = FIELDS.map(() => new Float32Array((NX + 1) * NZ));
+  let travel = 0, lastL = null, nextP = 0; const packets = [], bubbles = [];
+
+  scene({
+    name: 'fields', top: -15.5, fi: .5, bot: -99, fo: 1,
+    draw(S) {
+      const t = S.t, cx = S.cx, cy = S.cy, dt = S.dt;
+      const dL = lastL === null ? 0 : clamp(lastL - S.L, -1, 1); lastL = S.L;
+      travel += .7 * dt + Math.max(0, dL) * 2.2;
+      const depth = clamp((-S.L - 16) / 18.8, 0, 1);
+      const amp = .45 + depth * 1.0, fq = 1 + depth * 2.5, tempo = 1 + depth * 5;
+      const hor = cy - H * .12, f = H * .95, hc = 1.1;
+      ga(1); const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#02030a'); bg.addColorStop(.35, '#070b1c'); bg.addColorStop(1, '#010104'); ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      ga(.5); const hg = ctx.createRadialGradient(cx, hor, 0, cx, hor, W * .6);
+      hg.addColorStop(0, 'rgba(120,120,255,.35)'); hg.addColorStop(1, 'rgba(60,40,160,0)'); ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H);
+
+      if (t > nextP) {                                     // a particle: a localized, travelling ripple
+        const fi = (Math.random() * FIELDS.length) | 0;
+        packets.push({ fi, x: (Math.random() * 2 - 1) * 9, z: travel + 8 + Math.random() * 12, vx: (Math.random() * 2 - 1) * 3, vz: (Math.random() * 2 - 1) * 2, t0: t });
+        nextP = t + .9 + Math.random() * 1.2;
+      }
+      for (let i = packets.length - 1; i >= 0; i--) { const p = packets[i]; p.x += p.vx * dt; p.z += p.vz * dt; if (t - p.t0 > 5 || p.z < travel + 1) packets.splice(i, 1); }
+
+      const order = []; for (let iz = 0; iz < NZ; iz++) { let z = ((iz * DZ - travel) % (NZ * DZ) + NZ * DZ) % (NZ * DZ) + 1; order.push([z, iz]); }
+      order.sort((a, b) => a[0] - b[0]);
+      const gridA = 1 - sstep(.88, 1, depth) * .75;
+      FIELDS.forEach((F, fi) => {
+        const hA = hts[fi], y0 = (fi - 2) * .16;
+        for (const [z, iz] of order) {
+          const zw = z + travel;
+          for (let ix = 0; ix <= NX; ix++) {
+            const xw = (ix / NX - .5) * XS;
+            let h = amp * fbm3(xw * .28 * fq + fi * 17, zw * .28 * fq, t * .22 * tempo + fi * 3, 3);
+            for (const p of packets) if (p.fi === fi) {
+              const dx = xw - p.x, dz = zw - p.z, d2 = dx * dx + dz * dz, e = Math.sin(Math.min(1, (t - p.t0) / 5) * Math.PI);
+              if (d2 < 30) h += 1.1 * e * Math.exp(-d2 / 2.2) * Math.cos(Math.sqrt(d2) * 3.2 - t * 9);
+            }
+            hA[iz * (NX + 1) + ix] = h;
+          }
+        }
+        ctx.strokeStyle = col(F.c); ctx.lineWidth = 1;
+        for (const [z, iz] of order) {                    // rows (constant z)
+          const fog = Math.pow(1 - z / (NZ * DZ + 1), 1.4) * sstep(1, 2.2, z);
+          ga(.42 * fog * gridA); ctx.beginPath();
+          for (let ix = 0; ix <= NX; ix++) {
+            const xw = (ix / NX - .5) * XS, X = cx + xw / z * f, Y = hor + (hc - hA[iz * (NX + 1) + ix] - y0) / z * f;
+            ix ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
+          }
+          ctx.stroke();
+        }
+        for (let ix = 2; ix <= NX; ix += 4) {             // columns
+          ga(.16 * gridA); ctx.beginPath(); let first = true;
+          for (const [z, iz] of order) {
+            if (z < 1.6) continue;
+            const xw = (ix / NX - .5) * XS, X = cx + xw / z * f, Y = hor + (hc - hA[iz * (NX + 1) + ix] - y0) / z * f;
+            first ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y); first = false;
+          }
+          ctx.stroke();
+        }
+      });
+      // particle labels
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.font = '500 12px Segoe UI, system-ui, sans-serif'; ctx.textAlign = 'center';
+      for (const p of packets) {
+        const z = p.z - travel; if (z < 2) continue;
+        const e = Math.sin(Math.min(1, (t - p.t0) / 5) * Math.PI), X = cx + p.x / z * f, Y = hor + (hc - 1.2 - (p.fi - 2) * .16) / z * f - 16;
+        ga(e * .8 * (1 - depth)); ctx.fillStyle = col(mix(FIELDS[p.fi].c, WHITE, .4)); ctx.fillText(FIELDS[p.fi].q, X, Y);
+      }
+      // legend
+      const lg = 1 - sstep(.3, .5, depth);
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      FIELDS.forEach((F, i) => {
+        const y = 150 + i * 21; ga(lg * .9); ctx.fillStyle = col(F.c); ctx.fillRect(28, y - 1, 16, 2);
+        ctx.fillStyle = 'rgba(220,228,245,.8)'; ctx.fillText(F.n, 52, y);
+      });
+      // quantum foam near the Planck scale
+      const foam = sstep(.7, 1, depth);
+      if (foam > 0) {
+        ctx.globalCompositeOperation = 'lighter';
+        if (Math.random() < foam * .6 && bubbles.length < 60) bubbles.push({ x: Math.random() * W, y: Math.random() * H, t0: t, life: .8 + Math.random() * 1.6, r: 4 + Math.pow(Math.random(), 2) * 60 * foam, c: FIELDS[(Math.random() * 5) | 0].c });
+        for (let i = bubbles.length - 1; i >= 0; i--) {
+          const b = bubbles[i], u = (t - b.t0) / b.life; if (u > 1) { bubbles.splice(i, 1); continue; }
+          ga(.35 * Math.sin(Math.PI * u) * foam); ctx.strokeStyle = col(b.c); ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.arc(b.x, b.y, b.r * (.4 + u * .8), 0, TAU); ctx.stroke();
+          ga(.12 * Math.sin(Math.PI * u) * foam); dGlow(b.c, b.x, b.y, b.r * 1.5);
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    }
+  });
+})();
+/* ============================================================
+   TIMELINE, HUD, CAPTIONS, LOOP
+   ============================================================ */
+// [time s, log10(field of view / m)] — monotone cubic through the keys
+const KEYS = [[0, -5.05], [7, -5.35], [15, -6.3], [22, -6.6], [29, -7.65], [37, -8.0], [44, -8.7], [52, -9.0], [58, -9.6], [66, -9.9],
+  [80, -13.8], [88, -14.1], [94, -14.8], [102, -15.1], [110, -16.2], [120, -17.2], [134, -34.79], [150, -34.8]];
+const DURATION = 158;
+const Lof = (function (k) {
+  const n = k.length, d = [], m = [];
+  for (let i = 0; i < n - 1; i++) d.push((k[i + 1][1] - k[i][1]) / (k[i + 1][0] - k[i][0]));
+  m[0] = d[0]; m[n - 1] = d[n - 2];
+  for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : 2 / (1 / d[i - 1] + 1 / d[i]);   // harmonic mean (Fritsch–Butland)
+  return t => {
+    if (t <= k[0][0]) return k[0][1]; if (t >= k[n - 1][0]) return k[n - 1][1];
+    let i = 0; while (t > k[i + 1][0]) i++;
+    const h = k[i + 1][0] - k[i][0], s = (t - k[i][0]) / h, s2 = s * s, s3 = s2 * s;
+    return (2 * s3 - 3 * s2 + 1) * k[i][1] + (s3 - 2 * s2 + s) * h * m[i] + (-2 * s3 + 3 * s2) * k[i + 1][1] + (s3 - s2) * h * m[i + 1];
+  };
+})(KEYS);
+
+const CAPTIONS = [
+  [-4.9, -5.62, 'ESCHERICHIA COLI', 'A single bacterium, two micrometres long. Its flagella — protein filaments 20 nm thick — are spun by rotary motors at over 100 turns per second (shown slowed).'],
+  [-5.62, -6.2, 'THE NUCLEOID', 'Inside lies 1.5 millimetres of DNA — 4.6 million base pairs, 750 times longer than the cell — folded into a tangle less than a micrometre across.'],
+  [-6.2, -7.25, 'THE CYTOPLASM', 'Crowded with ~300 grams of protein per litre. In bacteria, ribosomes (purple, 20 nm) start translating messenger RNA before RNA polymerase has finished copying it from DNA.'],
+  [-7.3, -8.42, 'THE DOUBLE HELIX', 'Two sugar–phosphate backbones wound around each other: 2 nm wide, 10.5 base pairs per turn, 0.34 nm per step, with a wide major groove and a narrow minor groove.'],
+  [-8.42, -9.42, 'GUANINE ≡ CYTOSINE', 'One letter of the genetic code. Three hydrogen bonds, each under 0.3 nm, hold the pair together — carbon, nitrogen, oxygen and hydrogen, bathed in water.'],
+  [-9.42, -10.7, 'A CARBON ATOM', 'Six electrons, not orbiting but spread into clouds of probability: 1s² 2s² 2p². Each dot is one place an electron could be found if you looked.'],
+  [-10.7, -12.2, 'EMPTINESS', 'Falling through the electron cloud. Almost all of an atom’s volume is this: a thin haze of probability around a vanishingly small centre.'],
+  [-12.2, -13.4, 'THE NUCLEUS', 'If this atom were the size of a cathedral, its nucleus would be a fly — yet it holds 99.97% of the atom’s mass.'],
+  [-13.4, -14.42, 'CARBON-12', 'Six protons and six neutrons in a cluster 5 femtometres across, held together by the residual strong force — carried by fleeting pions.'],
+  [-14.42, -15.55, 'A PROTON', 'Two up quarks and a down quark whose colour charges always cancel, in a sea of gluons and short-lived quark–antiquark pairs. The quarks’ own mass is ~1% of the proton’s; the rest is field energy — E = mc².'],
+  [-15.55, -17.4, 'QUANTUM FIELDS', 'Beneath particles are fields that fill all of space. A particle is a ripple in its field — and even the empty vacuum is never perfectly still.'],
+  [-17.4, -30, 'BEYOND MEASUREMENT', 'No experiment has found any structure inside quarks or electrons down to about 10⁻¹⁹ m. Below that, we are only extrapolating.'],
+  [-30, -40, 'THE PLANCK LENGTH · 1.6 × 10⁻³⁵ m', 'Here gravity and quantum theory must merge. Space itself may lose its smoothness — this is the edge of what physics can describe.'],
+];
+const RULER = [[-5.7, 'bacterium'], [-7.7, 'ribosome'], [-8.7, 'DNA helix'], [-9.85, 'atom'], [-14.3, 'nucleus'], [-14.77, 'proton'], [-18, 'quark (limit)'], [-34.8, 'Planck length']];
+
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = n => String(n).split('').map(c => SUP[c] || c).join('');
+const UNITS = [[1, 'm'], [1e-3, 'mm'], [1e-6, 'µm'], [1e-9, 'nm'], [1e-12, 'pm'], [1e-15, 'fm'], [1e-18, 'am'], [1e-21, 'zm'], [1e-24, 'ym']];
+function fmtLen(m) {
+  if (m < 0.999e-24) { const e = Math.floor(Math.log10(m) + 1e-9); return `${(+(m / 10 ** e).toPrecision(2))} × 10${sup(e)} m`; }
+  for (const [f, u] of UNITS) if (m >= f * 0.999) return `${+(m / f).toPrecision(3)} ${u}`;
+}
+
+let T = 0, playing = true, showText = true, last = performance.now();
+const streaks = []; { const r = mulberry(99); for (let i = 0; i < 220; i++) streaks.push([r() * TAU, r() * 8, .4 + r() * .6]); }
+let prevL = Lof(0);
+
+function wrap(text, maxW) {
+  const words = text.split(' '), lines = []; let cur = '';
+  for (const w of words) { const s = cur ? cur + ' ' + w : w; if (ctx.measureText(s).width > maxW && cur) { lines.push(cur); cur = w; } else cur = s; }
+  if (cur) lines.push(cur); return lines;
+}
+function spaced(px) { if ('letterSpacing' in ctx) ctx.letterSpacing = px + 'px'; }
+
+function drawHUD(L, fov) {
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.globalCompositeOperation = 'source-over';
+  const narrow = W < 720, ui = sstep(5.5, 7.5, T);
+  // field of view + scale bar
+  ctx.globalAlpha = .9 * ui; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  spaced(2.5); ctx.font = '600 10px Segoe UI, system-ui, sans-serif'; ctx.fillStyle = 'rgba(160,200,235,.8)';
+  ctx.fillText('FIELD OF VIEW', 24, 34); spaced(0);
+  ctx.font = '300 26px Segoe UI, system-ui, sans-serif'; ctx.fillStyle = '#eef4fb'; ctx.fillText(fmtLen(fov), 24, 64);
+  ctx.font = '400 12px Segoe UI, system-ui, sans-serif'; ctx.fillStyle = 'rgba(200,215,235,.6)';
+  const e = Math.floor(L); ctx.fillText(`order of magnitude  10${sup(e)} m`, 24, 84);
+  const tgt = fov * .16, ex = Math.floor(Math.log10(tgt)), bb = tgt / 10 ** ex, nice = bb < 2 ? 1 : bb < 5 ? 2 : 5, len = nice * 10 ** ex, px = len * W / fov;
+  ctx.strokeStyle = 'rgba(235,242,250,.85)'; ctx.lineWidth = 1.5; ctx.beginPath();
+  ctx.moveTo(24, 104); ctx.lineTo(24, 112); ctx.lineTo(24 + px, 112); ctx.lineTo(24 + px, 104); ctx.stroke();
+  ctx.fillStyle = 'rgba(235,242,250,.85)'; ctx.fillText(fmtLen(len), 24 + px + 10, 114);
+  // logarithmic ruler
+  if (!narrow) {
+    const pb = promptEl.getBoundingClientRect(), x = W - 34, y0 = Math.max(70, pb.bottom + 36), y1 = Math.max(y0 + 160, H - 150), map = l => y0 + (-5 - l) / 30 * (y1 - y0);
+    ctx.globalAlpha = .55 * ui; ctx.strokeStyle = 'rgba(200,220,240,.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke();
+    ctx.textAlign = 'right'; ctx.font = '400 10px Segoe UI, system-ui, sans-serif';
+    for (let l = -5; l >= -35; l--) {
+      const y = map(l); ctx.beginPath(); ctx.moveTo(x - (l % 5 ? 3 : 6), y); ctx.lineTo(x, y); ctx.stroke();
+      if (l % 5 === 0) { ctx.fillStyle = 'rgba(200,220,240,.55)'; ctx.fillText(`10${sup(l)}`, x - 10, y + 3); }
+    }
+    for (const [l, name] of RULER) {
+      const y = map(l), near = 1 - sstep(.25, .9, Math.abs(L - l));
+      ctx.globalAlpha = (.35 + .6 * near) * ui; ctx.fillStyle = near > .5 ? '#ffe2b8' : 'rgba(210,225,240,.8)';
+      ctx.beginPath(); ctx.arc(x, y, 2, 0, TAU); ctx.fill(); ctx.fillText(name, x - 50, y + 3);
+    }
+    const y = map(clamp(L, -35, -5)); ctx.globalAlpha = ui;
+    ctx.globalCompositeOperation = 'lighter'; dGlow([255, 200, 140], x, y, 14); ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(x + 4, y); ctx.lineTo(x + 11, y - 5); ctx.lineTo(x + 11, y + 5); ctx.fill();
+  }
+  // captions
+  if (showText) for (const [a, b, title, body] of CAPTIONS) {
+    const v = sstep(a, a - .12, L) * sstep(b, b + .12, L); if (v <= 0) continue;
+    const maxW = Math.min(620, W - 48), x = 24; ctx.textAlign = 'left';
+    ctx.font = `300 ${narrow ? 16 : 19}px Segoe UI, system-ui, sans-serif`;
+    const lines = wrap(body, maxW), lh = narrow ? 22 : 27, yb = H - 96 - (lines.length - 1) * lh;
+    const g = ctx.createLinearGradient(0, yb - 90, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.55)');
+    ctx.globalAlpha = v; ctx.fillStyle = g; ctx.fillRect(0, yb - 90, Math.min(W, maxW + 120), H - yb + 90);
+    ctx.globalAlpha = v; spaced(3.5); ctx.font = '600 12px Segoe UI, system-ui, sans-serif'; ctx.fillStyle = '#ffd9a8';
+    ctx.fillText(title, x, yb - lh - 6); spaced(0);
+    ctx.font = `300 ${narrow ? 16 : 19}px Segoe UI, system-ui, sans-serif`; ctx.fillStyle = 'rgba(236,242,250,.94)';
+    lines.forEach((ln, i) => ctx.fillText(ln, x, yb + i * lh));
+  }
+  // intro & outro titles
+  const intro = sstep(.3, 1.8, T) * (1 - sstep(5, 7, T));
+  if (intro > 0) {
+    ctx.globalAlpha = intro; ctx.textAlign = 'center';
+    spaced(narrow ? 4 : 8); ctx.font = `200 ${narrow ? 24 : 44}px Segoe UI, system-ui, sans-serif`; ctx.fillStyle = '#f2f6fb'; ctx.fillText('INTO THE BACTERIUM', W / 2, H * .2);
+    spaced(narrow ? 1.5 : 3); ctx.font = `400 ${narrow ? 10 : 12}px Segoe UI, system-ui, sans-serif`; ctx.fillStyle = 'rgba(200,220,240,.75)';
+    ctx.fillText('THIRTY ORDERS OF MAGNITUDE', W / 2, H * .2 + 30); ctx.fillText('FROM A LIVING CELL TO THE FABRIC OF REALITY', W / 2, H * .2 + 50); spaced(0);
+  }
+  const outro = sstep(DURATION - 14, DURATION - 8, T);
+  if (outro > 0) {
+    ctx.globalAlpha = outro * .78; ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = outro; ctx.textAlign = 'center';
+    ctx.font = `200 ${narrow ? 20 : 32}px Segoe UI, system-ui, sans-serif`; ctx.fillStyle = '#f4f7fb';
+    ctx.fillText('Every living thing is built from this.', W / 2, H / 2 - 12);
+    ctx.font = '300 15px Segoe UI, system-ui, sans-serif'; ctx.fillStyle = 'rgba(210,222,240,.8)';
+    ctx.fillText('From a single cell to trembling fields — one universe, at every scale.', W / 2, H / 2 + 22);
+    ctx.globalAlpha = outro * (.45 + .25 * Math.sin(T * 3)); ctx.font = '500 11px Segoe UI, system-ui, sans-serif';
+    spaced(3); ctx.fillText('PRESS R OR CLICK TO REPLAY', W / 2, H / 2 + 70); spaced(0);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function frame(now) {
+  const rdt = Math.min(.1, (now - last) / 1000); last = now;
+  if (playing) T = Math.min(DURATION, T + rdt);
+  const L = Lof(T), fov = 10 ** L, dt = playing ? rdt : 0;
+  const S = { t: T, L, fov, ppm: W / fov, cx: W / 2, cy: H / 2, dt };
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+  for (const s of SCENES) {
+    const a = sceneAlpha(s, L); if (a <= 0.001) continue;
+    SA = a; ctx.save(); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.globalCompositeOperation = 'source-over';
+    ctx.lineCap = 'butt'; ctx.setLineDash([]);
+    s.draw(S); ctx.restore();
+  }
+  // motion streaks, proportional to zoom speed (decades per second)
+  const speed = dt > 0 ? (prevL - L) / dt : 0; prevL = L;
+  const sv = clamp((speed - .12) * 2.2, 0, 1);
+  if (sv > 0) {
+    ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
+    const Rm = Math.hypot(W, H) / 2;
+    for (const s of streaks) {
+      s[1] += dt * speed * 2.3 * s[2]; if (s[1] > 8) s[1] -= 8;
+      const r0 = Rm * Math.pow(s[1] / 8, 2.2), r1 = r0 * (1 + .12 * speed * s[2]);
+      ctx.globalAlpha = sv * .35 * s[2] * sstep(0, 40, r0);
+      ctx.strokeStyle = 'rgb(210,225,255)'; ctx.lineWidth = s[2] * 1.3;
+      ctx.beginPath(); ctx.moveTo(W / 2 + Math.cos(s[0]) * r0, H / 2 + Math.sin(s[0]) * r0); ctx.lineTo(W / 2 + Math.cos(s[0]) * r1, H / 2 + Math.sin(s[0]) * r1); ctx.stroke();
+    }
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+  }
+  // vignette
+  const vg = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .35, W / 2, H / 2, Math.hypot(W, H) * .62);
+  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.6)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+  drawHUD(L, fov);
+  updateBar();
+  requestAnimationFrame(frame);
+}
+
+const promptEl = document.getElementById('prompt'), promptBtn = document.getElementById('promptToggle');
+function togglePrompt() {
+  const c = promptEl.classList.toggle('collapsed');
+  promptBtn.textContent = c ? '+' : '−'; promptBtn.setAttribute('aria-label', (c ? 'Expand' : 'Collapse') + ' original prompt');
+}
+promptBtn.addEventListener('click', togglePrompt);
+if (innerWidth < 720) togglePrompt();                 // small screens: start collapsed so it does not cover the HUD
+/* ---- playback bar: play/pause, chapter skip, draggable scrubber ---- */
+// chapter starts: the moment the zoom crosses each scale (solved from the timeline)
+const CHAPTERS = [[99, 'Bacterium'], [-6.05, 'Cytoplasm'], [-7.35, 'DNA double helix'], [-8.5, 'Base pair'], [-9.45, 'Carbon atom'],
+  [-10.3, 'Into the void'], [-13.5, 'Nucleus'], [-14.6, 'Proton'], [-15.8, 'Quantum fields'], [-17.4, 'Beyond measurement'], [-34, 'Planck length']]
+  .map(([l, name]) => { let t = 0; while (t < DURATION && Lof(t) > l) t += .05; return [Math.round(t * 10) / 10, name]; });
+const barEl = document.getElementById('bar'), trackEl = document.getElementById('track'), fillEl = document.getElementById('fill'),
+  knobEl = document.getElementById('knob'), tipEl = document.getElementById('tip'), timeEl = document.getElementById('time'),
+  ppBtn = document.getElementById('pp'), ppIcon = document.getElementById('ppIcon');
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const chapterAt = t => { let c = CHAPTERS[0]; for (const ch of CHAPTERS) if (t >= ch[0]) c = ch; return c; };
+for (const [t] of CHAPTERS.slice(1)) { const m = document.createElement('div'); m.className = 'mark'; m.style.left = (t / DURATION * 100) + '%'; trackEl.appendChild(m); }
+function seekTo(t) { T = clamp(t, 0, DURATION); prevL = Lof(T); }
+function chapter(dir) {
+  const i = CHAPTERS.indexOf(chapterAt(T));
+  if (dir < 0 && T - CHAPTERS[i][0] > 2) return seekTo(CHAPTERS[i][0]);   // first press: back to the start of this scale
+  seekTo(CHAPTERS[clamp(i + dir, 0, CHAPTERS.length - 1)][0]);
+}
+let dragging = false, wasPlaying = true, lastPP = null;
+const tAtX = x => { const r = trackEl.getBoundingClientRect(); return clamp((x - r.left) / r.width, 0, 1) * DURATION; };
+function showTip(x) {
+  const r = trackEl.getBoundingClientRect(), t = tAtX(x);
+  tipEl.innerHTML = `${mmss(t)} · <b>${chapterAt(t)[1]}</b> · ${fmtLen(10 ** Lof(t))}`;
+  tipEl.style.left = clamp(x - r.left, 70, r.width - 70) + 'px';
+}
+trackEl.addEventListener('pointerdown', e => {
+  dragging = true; wasPlaying = playing; playing = false; trackEl.classList.add('drag');
+  trackEl.setPointerCapture(e.pointerId); seekTo(tAtX(e.clientX)); showTip(e.clientX);
+});
+trackEl.addEventListener('pointermove', e => { showTip(e.clientX); if (dragging) seekTo(tAtX(e.clientX)); });
+const endDrag = () => { if (!dragging) return; dragging = false; playing = wasPlaying; trackEl.classList.remove('drag'); };
+trackEl.addEventListener('pointerup', endDrag); trackEl.addEventListener('pointercancel', endDrag);
+trackEl.addEventListener('keydown', e => {
+  if (e.code === 'PageUp') { chapter(1); e.preventDefault(); } else if (e.code === 'PageDown') { chapter(-1); e.preventDefault(); }
+});
+ppBtn.addEventListener('click', () => { if (T >= DURATION) seekTo(0); playing = !playing; ppBtn.blur(); });
+document.getElementById('prevCh').addEventListener('click', e => { chapter(-1); e.currentTarget.blur(); });
+document.getElementById('nextCh').addEventListener('click', e => { chapter(1); e.currentTarget.blur(); });
+let idleTimer = 0;
+const wake = () => { barEl.classList.remove('idle'); clearTimeout(idleTimer); idleTimer = setTimeout(() => { if (!dragging && !barEl.matches(':hover')) barEl.classList.add('idle'); }, 2500); };
+addEventListener('pointermove', wake); addEventListener('keydown', wake); wake();
+function updateBar() {
+  const p = T / DURATION * 100 + '%'; fillEl.style.width = p; knobEl.style.left = p;
+  timeEl.textContent = `${mmss(T)} / ${mmss(DURATION)}`; trackEl.setAttribute('aria-valuenow', Math.round(T));
+  trackEl.setAttribute('aria-valuetext', `${mmss(T)}, ${chapterAt(T)[1]}`);
+  const isPlay = dragging ? wasPlaying : playing;
+  if (isPlay !== lastPP) {
+    lastPP = isPlay; ppIcon.setAttribute('d', isPlay ? 'M3 2h4v12H3zM9 2h4v12H9z' : 'M4 2l10 6-10 6z');
+    ppBtn.setAttribute('aria-label', isPlay ? 'Pause' : 'Play');
+  }
+}
+function seek(dt) { T = clamp(T + dt, 0, DURATION); prevL = Lof(T); }
+addEventListener('keydown', e => {
+  if (e.code === 'Space') { playing = !playing; e.preventDefault(); }
+  else if (e.code === 'ArrowRight') seek(5); else if (e.code === 'ArrowLeft') seek(-5);
+  else if (e.key === ']') chapter(1); else if (e.key === '[') chapter(-1);
+  else if (e.target === trackEl && (e.code === 'Home' || e.code === 'End')) { seekTo(e.code === 'Home' ? 0 : DURATION); e.preventDefault(); }
+  else if (e.key === 'r' || e.key === 'R') { T = 0; prevL = Lof(0); playing = true; }
+  else if (e.key === 'h' || e.key === 'H') showText = !showText;
+  else if (e.key === 'p' || e.key === 'P') togglePrompt();
+});
+cv.addEventListener('click', e => {
+  if (T >= DURATION - 1) { T = 0; prevL = Lof(0); playing = true; return; }
+  playing = !playing;
+});
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
