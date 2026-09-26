@@ -1,0 +1,139 @@
+﻿1
+00:00:00,350 --> 00:00:04,540
+一座木建筑的屋檐，为什么能伸出柱子之外？
+How can the eaves of a timber building extend beyond its columns?
+
+2
+00:00:04,540 --> 00:00:07,683
+答案，就藏在梁思成的这张图里。
+The answer lies in this drawing by Liang Sicheng.
+
+3
+00:00:08,683 --> 00:00:12,257
+这页题为，中国建筑之，ORDER。
+This page is titled The Chinese “Order”.
+
+4
+00:00:12,257 --> 00:00:15,200
+它把斗拱、柱、柱础连成一体，
+It brings brackets, columns and column bases into one system,
+
+5
+00:00:15,200 --> 00:00:17,933
+让我们从屋檐一路读到地面。
+guiding our eye from the eaves down to the ground.
+
+6
+00:00:18,933 --> 00:00:21,942
+先抓住一条线索：屋面的荷载，
+Start with one clue: the load from the roof
+
+7
+00:00:21,942 --> 00:00:25,166
+通过梁枋和斗拱等构件，传到柱，
+passes through beams, ties and brackets to the column,
+
+8
+00:00:25,166 --> 00:00:27,100
+再传向柱础与地基。
+then continues to the base and foundation.
+
+9
+00:00:28,100 --> 00:00:30,243
+看编号二十，栌斗。
+Look at number 20: the ludou, or principal block.
+
+10
+00:00:30,243 --> 00:00:35,481
+它坐在柱头上，是这组斗拱下部的重要承接节点。
+It sits on the column head and receives the bracket assembly.
+
+11
+00:00:35,481 --> 00:00:38,100
+往上看，木件纵横相交。
+Above it, timber members cross in different directions.
+
+12
+00:00:39,100 --> 00:00:40,905
+再看十九，华拱。
+Now look at number 19: the huagong.
+
+13
+00:00:40,905 --> 00:00:43,612
+它向柱外伸出，形成出跳。
+It extends beyond the column to create a projection.
+
+14
+00:00:43,612 --> 00:00:48,350
+屋檐的伸展，在这里开始有了清楚的结构层次。
+Here the reach of the eaves begins to take a clear structural form.
+
+15
+00:00:49,350 --> 00:00:53,779
+编号十七是昂。图上能看到它斜向延伸。
+Number 17 is the ang, shown as an inclined member.
+
+16
+00:00:53,779 --> 00:00:56,485
+注意，昂不是装饰花纹，
+The ang is more than a decorative pattern:
+
+17
+00:00:56,485 --> 00:00:59,683
+而是这组构件关系中的一员。
+it participates in the relationships within this assembly.
+
+18
+00:01:00,683 --> 00:01:04,183
+页旁直接写明：这幅示例出三跳，
+The note beside the drawing explicitly describes three projections,
+
+19
+00:01:04,183 --> 00:01:06,517
+由一华拱、两昂组成。
+formed by one huagong and two ang members.
+
+20
+00:01:06,517 --> 00:01:11,183
+跳，数的是向外挑出的层次，不是木块总数。
+“Projection” counts outward-reaching stages, rather than individual blocks.
+
+21
+00:01:12,183 --> 00:01:14,188
+另一把钥匙，是材。
+Another key is cai, the dimensional module.
+
+22
+00:01:14,188 --> 00:01:17,085
+页旁说，各部尺寸可以用材，
+The note explains that dimensions can be measured in cai,
+
+23
+00:01:17,085 --> 00:01:19,981
+以及它的倍数或分数来度量。
+and in its multiples or fractions.
+
+24
+00:01:19,981 --> 00:01:23,100
+这是一套相互协调的比例语言。
+This provides a coordinated language of proportion.
+
+25
+00:01:24,100 --> 00:01:27,377
+下次走到古建筑前，抬头看看屋檐：
+Next time you visit an old building, look up at its eaves.
+
+26
+00:01:27,377 --> 00:01:29,220
+找到柱，找到栌斗，
+Locate the column and the principal block,
+
+27
+00:01:29,220 --> 00:01:32,906
+再沿着拱和昂，追踪它向外伸出的层次。
+then follow the bracket arms and ang through their outward projections.
+
+28
+00:01:32,906 --> 00:01:36,183
+梁思成的一页图，就这样活了起来。
+In this way, a page by Liang Sicheng comes to life.

@@ -1,0 +1,64 @@
+﻿1
+00:00:00,000 --> 00:00:08,296
+屋檐，为什么能伸出去？
+How can an eave reach beyond its columns?
+
+2
+00:00:08,296 --> 00:00:18,560
+中国建筑之 ORDER
+The Chinese “Order”
+
+3
+00:00:18,560 --> 00:00:27,768
+先看路径：屋面 → 斗拱 → 柱 → 柱础
+Follow the load: roof → brackets → column → base
+
+4
+00:00:27,768 --> 00:00:37,744
+斗与拱，像托盘与伸出的手臂
+Blocks receive; arms reach outward
+
+5
+00:00:37,744 --> 00:00:48,704
+20 栌斗：柱头上的承接节点
+20 • Ludou: the receiving block above the column
+
+6
+00:00:48,704 --> 00:00:58,944
+19 华拱：向外出跳的构件
+19 • Huagong: an outward-reaching arm
+
+7
+00:00:58,944 --> 00:01:10,240
+17 昂：图中斜向延伸的构件
+17 • Ang: the inclined members in the drawing
+
+8
+00:01:10,240 --> 00:01:21,752
+这组斗拱：三跳 = 一华拱 + 两昂
+Three projections = one huagong + two ang
+
+9
+00:01:21,752 --> 00:01:33,672
+材：让构件尺寸互相协调的比例基准
+Cai: a modular reference for coordinated dimensions
+
+10
+00:01:33,672 --> 00:01:45,400
+上部：飞椽、檐椽与橑檐枋
+Above: flying rafters, eave rafters and eave purlin
+
+11
+00:01:45,400 --> 00:01:56,216
+下部：柱、柱础与地栿
+Below: column, base and ground-level tie
+
+12
+00:01:56,216 --> 00:02:09,072
+ORDER：读懂构件之间的秩序
+Order: reading the relationships between parts
+
+13
+00:02:09,072 --> 00:02:22,192
+下次抬头看屋檐，你会看到结构
+Next time you look up, you will see the structure
