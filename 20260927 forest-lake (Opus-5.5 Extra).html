@@ -48,6 +48,31 @@ kbd{font:600 10.5px Inter,sans-serif;background:#fff;border:1px solid var(--line
 #loading{position:fixed;inset:0;display:grid;place-items:center;background:#ebe6d8;z-index:10;transition:opacity .7s}
 #loading div{font:italic 500 24px "Cormorant Garamond",Georgia,serif;color:#6f6a5e;text-align:center}
 #loading small{display:block;font:500 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-top:8px;opacity:.7}
+.pq{margin:0;font:italic 500 15px/1.45 "Cormorant Garamond",Georgia,serif;color:#3d3a33;border-left:3px solid #8a6cc4;padding:2px 0 2px 11px}
+.btn.link{display:block;width:100%;margin-top:9px;text-align:left;background:transparent;border-style:dashed}
+.btn.link:hover{background:#fff}
+#about{position:fixed;inset:0;z-index:20;background:rgba(24,20,12,.5);display:none;align-items:center;justify-content:center;padding:16px}
+#about.show{display:flex}
+#about .sheet{position:relative;background:#fbf8f0;width:100%;max-width:1040px;max-height:100%;overflow:auto;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.35);padding:30px 32px 28px}
+#about .x{position:absolute;top:14px;right:14px;border:0;background:var(--chip);width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:18px;color:var(--ink)}
+#about h2{font:600 30px "Cormorant Garamond",Georgia,serif;margin:0 40px 4px 0;line-height:1.1}
+#about .lede{color:var(--muted);font-size:13px;margin:0 0 20px}
+#about h3{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+#about .bigq{margin:0 0 26px;font:italic 500 21px/1.45 "Cormorant Garamond",Georgia,serif;color:#2a2823;border-left:3px solid #8a6cc4;padding:4px 0 4px 16px;max-width:78ch}
+#about .grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:32px;align-items:start}
+#about .impl{display:flex;flex-direction:column;gap:14px}
+#about .impl div{font-size:13px;line-height:1.62;color:#3d3a33}
+#about .impl b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:2px}
+#about code{font:500 12px ui-monospace,"Cascadia Mono",Consolas,monospace;background:rgba(60,50,30,.07);border-radius:4px;padding:1px 4px;overflow-wrap:anywhere}
+#about .side{position:sticky;top:0;display:flex;flex-direction:column;gap:18px}
+#plan{width:100%;aspect-ratio:1;border-radius:12px;display:block;background:#3c5a2b}
+#about figcaption{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+#about .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#about .stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+#about .stat span{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+#about .stat strong{display:block;font:600 19px Inter,system-ui,sans-serif;margin-top:2px;font-variant-numeric:tabular-nums}
+#about .note{font-size:11.5px;color:var(--muted);line-height:1.5}
+@media (max-width:760px){#about .sheet{padding:22px 18px}#about .grid{grid-template-columns:1fr}#about .side{position:static}#about .bigq{font-size:18px}}
 @media (max-width:640px){#ui{right:16px;width:auto;max-height:52%;padding:14px}h1{font-size:26px}#card{left:16px;width:auto}}
 </style>
 </head>
@@ -59,6 +84,9 @@ kbd{font:600 10.5px Inter,sans-serif;background:#fff;border:1px solid var(--line
     <button id="toggle" title="Collapse panel">–</button>
   </header>
   <div class="body">
+    <div class="sec">Prompt</div>
+    <blockquote class="pq">“create landscape in 3D interactive view, hosted in standalone html: A forest with a lake in the center. In the middle of the lake, an abandoned house. Around the lake, a flower-filled French village. Paths connecting the important points.”</blockquote>
+    <button class="btn link" id="aboutBtn">Implementation details &amp; site plan →</button>
     <div class="sec">Places</div>
     <div class="places" id="places"></div>
     <div class="sec">Time of day</div>
@@ -71,6 +99,50 @@ kbd{font:600 10.5px Inter,sans-serif;background:#fff;border:1px solid var(--line
 </div>
 <div id="labels"></div>
 <div id="card"><button class="x" id="cardx" title="Close">×</button><h2 id="cname"></h2><div class="en" id="cen"></div><p id="cdesc"></p></div>
+<div id="about" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+  <div class="sheet">
+    <button class="x" id="aboutx" title="Close">×</button>
+    <h2 id="aboutTitle">How this landscape was made</h2>
+    <p class="lede">The request, and how the page turns it into a 3D world. Everything is generated in code when the page opens.</p>
+    <h3>The prompt</h3>
+    <blockquote class="bigq" id="promptBig">“create landscape in 3D interactive view, hosted in standalone html: A forest with a lake in the center. In the middle of the lake, an abandoned house. Around the lake, a flower-filled French village. Paths connecting the important points.”</blockquote>
+    <div class="grid">
+      <div>
+        <h3>Implementation</h3>
+        <div class="impl">
+          <div><b>One file, no assets</b>The page has no 3D models, image textures or data files. The only download is three.js r160 (with OrbitControls and BufferGeometryUtils) from the jsDelivr CDN, loaded through an import map. A seeded random generator (<code>mulberry32</code>, seed 1789) makes the world the same on every load.</div>
+          <div><b>Layout measured from the shoreline</b>The lake's outline is a sum of sines, <code>r(θ) = 70 + 6·sin(3θ+.7) + 3.5·sin(5θ+2.1) + 2·sin(8θ+.3)</code> metres. Everything else is placed by an angle and a distance from that shoreline: the promenade at +12 m, the Grande Rue at +32 m, rows of houses at +21 m and +44 m, forest that thickens between +46 m and +80 m, and the chapel at +118 m.</div>
+          <div><b>Terrain</b>A 1 km × 1 km grid with 400 × 400 segments (160,801 vertices). Height = a lake basin down to −8 m + a ramp up from the shore + gentle noise across the village + multi-octave value-noise hills that rise outward into a wooded bowl. Circular pads flatten the ground under the square, church, windmill and chapel. Colour is stored per vertex: lake bed, sand, grass, forest floor, path dirt and lavender soil.</div>
+          <div><b>Paths</b>Nine Catmull-Rom splines are draped over the terrain as ribbon meshes with slightly ragged edges. Their sample points go into an 8 m spatial hash, so any point can quickly find its distance to the nearest path. That keeps houses, trees and flowers off the paths and tints the grass beside them.</div>
+          <div><b>Buildings</b>A small kit places boxes, cylinders and a gable-roof prism in a building's local frame. Each house picks its own size, number of storeys, wall, roof and shutter colours, window boxes, balcony, climbing plants, hedge and garden tree, then goes wherever a free spot exists. All the buildings (village, church, windmill, chapel, abandoned house and boardwalk) are merged into one geometry per material, which makes five draw calls. The windmill sails and the rowboat stay separate so they can move. Windows, lamps and the haunted window each get their own material so they can glow at night.</div>
+          <div><b>Vegetation</b>Trees (pine, oak, poplar/cypress, blossom, willow), flowers, shrubs, lavender, sunflowers, reeds, lily pads and rocks are drawn as <code>InstancedMesh</code>es with a colour per instance. A patch to the vertex shader (<code>onBeforeCompile</code>) makes the trees sway.</div>
+          <div><b>Water</b><code>MeshPhysicalMaterial</code> with two tileable normal maps, generated in code and scrolling in different directions (a base layer and a clear-coat layer). The reflections come from a PMREM environment map rendered from the sky shader. It is re-rendered whenever the time of day changes.</div>
+          <div><b>Light and time of day</b>A gradient-sky shader draws the sun or moon disc. A hemisphere light fills the shadows, and a directional light casts soft shadows (4096² map, or 2048² on smaller GPUs) over a 430 m square, all with ACES filmic tone mapping. The three presets blend into each other over about 2 seconds. The amount of "night" controls the glowing windows and lamps, the pools of light under the lamps, the stars, 420 fireflies, the mist, and a flickering light inside the abandoned house.</div>
+          <div><b>Interaction</b>Orbit uses OrbitControls with damping and keeps the camera above the ground. Clicking a place flies the camera there along an eased arc, and the guided tour orbits slowly at each stop. The labels are HTML, positioned from 3D coordinates every frame. Walk mode is first-person at 1.7 m eye height and follows the ground. It starts on the path nearest to where you were looking, far enough back to see the buildings there whole, facing that spot, with a wider 68° field of view. It rides on the boardwalk deck, and stops you at the water, the fountain and each building's actual footprint.</div>
+        </div>
+      </div>
+      <div class="side">
+        <figure style="margin:0">
+          <h3>Site plan</h3>
+          <canvas id="plan" width="640" height="640"></canvas>
+          <figcaption>Drawn from the same data as the 3D scene: paths, buildings, fields and every tree within 210 m of the lake's centre. North is up.</figcaption>
+        </figure>
+        <div>
+          <h3>Live numbers</h3>
+          <div class="stats">
+            <div class="stat"><span>Village houses</span><strong id="st-houses">–</strong></div>
+            <div class="stat"><span>Trees</span><strong id="st-trees">–</strong></div>
+            <div class="stat"><span>Flowers &amp; plants</span><strong id="st-flowers">–</strong></div>
+            <div class="stat"><span>Generated in</span><strong id="st-build">–</strong></div>
+            <div class="stat"><span>Triangles / frame</span><strong id="st-tris">–</strong></div>
+            <div class="stat"><span>Draw calls / frame</span><strong id="st-calls">–</strong></div>
+          </div>
+          <p class="note">Per-frame counts include the shadow pass and change as you move. Frame rate right now: <strong id="st-fps">–</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="walkhud"></div>
 <button id="walkbtn">hold to<br>walk</button>
 
@@ -82,6 +154,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
+const T0 = performance.now();
 const V3 = THREE.Vector3, PI = Math.PI, TAU = PI * 2;
 const loadmsg = document.getElementById('loadmsg');
 const yieldFrame = (msg) => { if (msg) loadmsg.textContent = msg; return new Promise(r => requestAnimationFrame(() => setTimeout(r, 0))); };
@@ -498,7 +571,7 @@ function house(x, z, ry, o = {}){
     if (right > .5) k.box(right, 1.6, .75, 0x4d7434, L / 2 - right / 2, .1, d / 2 + 3);
   }
   if (rand() < .5){ const p = k.world(rr(-w / 3, w / 3), 0, -d / 2 - rr(3.5, 5)); if (pathDist(p.x, p.z) > 2.5) addTree('blossom', p.x, p.z, rr(.55, .8), new THREE.Color(pick([0xffc4d8, 0xfff0f4, 0xffd6e4, 0xf8f8ff]))); }
-  HOUSES.push({ x, z, r: Math.hypot(w, d) / 2 });
+  HOUSES.push({ x, z, r: Math.hypot(w, d) / 2, ry, hw: w / 2 + .45, z0: -d / 2 - .45, z1: d / 2 + .45 });
 }
 function placeRow(d, jitter, prob, opts = {}){
   let a = rand() * .1;
@@ -581,7 +654,7 @@ function church(){
   k.box(4.2, .3, 1.8, 0xbdb3a2, 0, .15, tz + 3.8);
   for (let i = 0; i < 110; i++){ const sx = rand() < .5 ? -1 : 1, p = k.world(sx * rr(5.9, 6.8), 0, rr(-10, 10)); flower(p.x, p.z, pick([FC.white, FC.rose, FC.lav, FC.pink]), 1.1); }
   for (const sx of [-1, 1]){ const p = k.world(sx * 4.6, 0, tz + 4.2); addTree('poplar', p.x, p.z, 1.15, new THREE.Color(.55, .75, .6)); }
-  HOUSES.push({ x: c.x, z: c.z, r: 12 });
+  HOUSES.push({ x: c.x, z: c.z, r: 12, ry, hw: 5.8, z0: -16, z1: tz + 3.2, big: true });
 }
 
 // ---------------------------------------------------------------- windmill
@@ -1107,11 +1180,53 @@ document.querySelectorAll('#tod button').forEach(b => b.onclick = () => setTOD(+
 const walk = { on: false, yaw: 0, pitch: -.06, pos: new V3(), keys: {}, drag: null, bob: 0, touchFwd: false };
 const onBoardwalk = (x, z) => Math.abs(x - BW.x) < BW.w / 2 + .15 && z > BW.z0 - .5 && z < BW.z1 + .5;
 const groundY = (x, z) => { const h = heightAt(x, z); return onBoardwalk(x, z) ? Math.max(h, BW.y + .06) : h; };
+// buildings (true footprints where known) plus the square's fountain block the walker
+const OBST = [...HOUSES, { x: P.square.x, z: P.square.z, r: 3.9, ht: 4.5 }].map(h => ({ ...h,
+  rad: h.hw ? Math.hypot(h.hw, Math.max(-h.z0, h.z1)) : h.r,
+  top: heightAt(h.x, h.z) + (h.ht ?? (h.big ? 31 : h.x === P.mill.x ? 17 : 10)) }));
+// While walking, is the line of sight from the eye to a label blocked by a building, a hill or dense forest?
+function sightBlocked(from, to){
+  const dx = to.x - from.x, dz = to.z - from.z, L2 = dx * dx + dz * dz, L = Math.sqrt(L2);
+  for (const h of OBST){
+    if (Math.hypot(h.x - to.x, h.z - to.z) < 7) continue; // a place's own building doesn't hide its label
+    const t = clamp(((h.x - from.x) * dx + (h.z - from.z) * dz) / L2, 0, 1);
+    if (t < .02 || Math.hypot(h.x - from.x - dx * t, h.z - from.z - dz * t) > h.rad) continue;
+    if (from.y + (to.y - from.y) * t < h.top) return true;
+  }
+  for (let s = 6; s < L - 6; s += 6){
+    const t = s / L, x = from.x + dx * t, z = from.z + dz * t, y = from.y + (to.y - from.y) * t;
+    if (y < heightAt(x, z) + (shoreDist(x, z) > 72 && Math.hypot(x - to.x, z - to.z) > 22 ? 8 : .5)) return true;
+  }
+  return false;
+}
+function insideObst(h, x, z, pad){
+  const dx = x - h.x, dz = z - h.z;
+  if (!h.hw) return Math.hypot(dx, dz) < h.r + pad;
+  const c = Math.cos(h.ry), s = Math.sin(h.ry), lx = dx * c - dz * s, lz = dx * s + dz * c;
+  return Math.abs(lx) < h.hw + pad && lz > h.z0 - pad && lz < h.z1 + pad;
+}
+const blockedByBuilding = (x, z, pad) => OBST.some(h => insideObst(h, x, z, pad));
 function walkable(x, z){
   if (onBoardwalk(x, z)) return true;
   if (heightAt(x, z) < .2 || Math.hypot(x, z) > 470) return false;
-  for (const h of HOUSES) if (Math.hypot(x - h.x, z - h.z) < h.r * .72) return false;
-  return true;
+  return !blockedByBuilding(x, z, .35);
+}
+// Drop the walker onto the path point nearest to what the orbit camera was looking at, far enough
+// from buildings to see them whole (5 m from houses, 10 m from landmarks, 14 m from the church),
+// facing that spot (or the camera's heading if the spot is underfoot).
+function walkStart(){
+  const tx = controls.target.x, tz = controls.target.z, cand = [];
+  for (const p of PATHS) cand.push(...p.pts);
+  for (let z = BW.z0 + 1; z < BW.z1; z += 1.5) cand.push(new V3(BW.x, 0, z));
+  let best = cand[0], bd = 1e9;
+  for (const q of cand){
+    const d = Math.hypot(q.x - tx, q.z - tz);
+    if (d < bd && walkable(q.x, q.z) && !OBST.some(h => insideObst(h, q.x, q.z, h.hw ? (h.big ? 14 : 5) : 10))){ bd = d; best = q; }
+  }
+  let hx = tx - best.x, hz = tz - best.z;
+  const far = Math.hypot(hx, hz) >= 5;
+  if (!far){ hx = tx - camera.position.x; hz = tz - camera.position.z; }
+  return { p: best, yaw: Math.atan2(-hx, -hz), pitch: far && bd < 40 ? .12 : -.04 };
 }
 const coarse = matchMedia('(pointer: coarse)').matches;
 const HINT = {
@@ -1122,13 +1237,14 @@ const HINT = {
 function setMode(m, quiet = false){
   if (m === 'walk' && !walk.on){
     stopTour(); fly = null; hideCard();
-    let best = null, bd = 1e9; // start on the path closest to where the camera is looking
-    for (const p of PATHS) for (const q of p.pts){ const d = Math.hypot(q.x - controls.target.x, q.z - controls.target.z); if (d < bd && walkable(q.x, q.z)){ bd = d; best = q; } }
+    const st = walkStart();
     walk.on = true; controls.enabled = false;
-    walk.pos.set(best.x, groundY(best.x, best.z) + 1.7, best.z);
-    walk.yaw = Math.atan2(best.x, best.z); walk.pitch = -.06;
+    walk.pos.set(st.p.x, groundY(st.p.x, st.p.z) + 1.7, st.p.z);
+    walk.yaw = st.yaw; walk.pitch = st.pitch;
+    camera.fov = 68; camera.updateProjectionMatrix();
   } else if (m === 'orbit' && walk.on){
     walk.on = false; controls.enabled = true;
+    camera.fov = 48; camera.updateProjectionMatrix();
     const f = new V3(-Math.sin(walk.yaw), 0, -Math.cos(walk.yaw));
     controls.target.copy(camera.position).addScaledVector(f, 20); controls.target.y = groundY(controls.target.x, controls.target.z) + 1;
     if (!quiet) flyTo(camera.position.clone().addScaledVector(f, -16).add(new V3(0, 14, 0)), controls.target);
@@ -1149,6 +1265,7 @@ cvs.addEventListener('pointermove', e => {
 cvs.addEventListener('pointerup', () => walk.drag = null);
 cvs.addEventListener('wheel', stopTour, { passive: true });
 addEventListener('keydown', e => {
+  if (aboutOpen){ if (e.code === 'Escape') closeAbout(); return; }
   walk.keys[e.code] = true;
   if (e.code === 'Escape' && walk.on) setMode('orbit');
   if (walk.on && e.code.startsWith('Arrow')) e.preventDefault();
@@ -1181,14 +1298,81 @@ function updateWalk(dt){
   if (t !== hudText){ hudText = t; $('walkhud').textContent = t; }
 }
 
+// ---------------------------------------------------------------- about sheet: prompt, site plan & live numbers
+const BUILD_MS = performance.now() - T0;
+const aboutEl = $('about');
+let aboutOpen = false, planDrawn = false, statT = 0, fps = 0;
+function drawPlan(){
+  const cv = $('plan'), g = cv.getContext('2d'), S = cv.width, R = 210, k = S / (2 * R), u = S / 400;
+  const X = x => (x + R) * k, Y = z => (z + R) * k;
+  const ring = d => { g.beginPath(); for (let i = 0; i <= 180; i++){ const a = i / 180 * TAU, r = lakeR(a) + d; i ? g.lineTo(X(Math.cos(a) * r), Y(Math.sin(a) * r)) : g.moveTo(X(Math.cos(a) * r), Y(Math.sin(a) * r)); } g.closePath(); };
+  const hex = c => '#' + c.toString(16).padStart(6, '0');
+  g.fillStyle = '#3c5a2b'; g.fillRect(0, 0, S, S);
+  g.fillStyle = '#6d9846'; ring(62); g.fill();
+  g.fillStyle = '#86a955'; ring(40); g.fill();
+  g.fillStyle = '#c9b78a'; ring(4); g.fill();
+  g.fillStyle = '#3d7282'; ring(0); g.fill();
+  g.fillStyle = '#6b7340'; g.beginPath(); g.arc(X(0), Y(0), 10.5 * k, 0, TAU); g.fill();
+  g.fillStyle = '#8a6cc4'; g.beginPath();
+  [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([a, b], i) => { const x = X(LAV.c.x + LAV.u.x * a * LAV.hu + LAV.v.x * b * LAV.hv), y = Y(LAV.c.z + LAV.u.z * a * LAV.hu + LAV.v.z * b * LAV.hv); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+  g.fill();
+  g.fillStyle = '#e8c23a'; g.beginPath(); g.arc(X(SUNF.c.x), Y(SUNF.c.z), SUNF.r * k, 0, TAU); g.fill();
+  g.fillStyle = '#c6b898'; g.beginPath(); g.arc(X(P.square.x), Y(P.square.z), 15.6 * k, 0, TAU); g.fill();
+  const treeCol = { pine: '#274826', oak: '#35602c', poplar: '#2f5a2c', blossom: '#f2c4d4', willow: '#8aa84e' };
+  for (const type in TREES){
+    g.fillStyle = treeCol[type];
+    for (const t of TREES[type]) if (Math.abs(t.x) < R && Math.abs(t.z) < R){ g.beginPath(); g.arc(X(t.x), Y(t.z), Math.max(1.3, 2.3 * t.s * k), 0, TAU); g.fill(); }
+  }
+  g.lineCap = g.lineJoin = 'round';
+  for (const p of PATHS){ g.strokeStyle = hex(p.col); g.lineWidth = Math.max(1.6, p.w * k); g.beginPath(); p.pts.forEach((q, i) => i ? g.lineTo(X(q.x), Y(q.z)) : g.moveTo(X(q.x), Y(q.z))); g.stroke(); }
+  g.strokeStyle = '#8b6a45'; g.lineWidth = BW.w * k; g.lineCap = 'butt'; g.beginPath(); g.moveTo(X(BW.x), Y(BW.z0)); g.lineTo(X(BW.x), Y(BW.z1)); g.stroke();
+  for (const h of HOUSES){
+    const special = h.x === 0 && h.z === 0 ? '#4a4038' : (h.x === P.church.x ? '#6a717b' : null);
+    g.save(); g.translate(X(h.x), Y(h.z)); g.rotate(Math.atan2(h.z, h.x));
+    g.fillStyle = special || '#b65a3c'; const w = h.r * k * 1.35, d = h.r * k * .95; g.fillRect(-d / 2, -w / 2, d, w); g.restore();
+  }
+  g.font = `600 ${13 * u}px Inter, system-ui, sans-serif`; g.textBaseline = 'middle';
+  for (const p of POIS){
+    const x = X(p.look.x), tw = g.measureText(p.short).width, below = p.id === 'house';
+    const y = Y(p.look.z), ly = below ? y + 20 * u : y;
+    const lx = below ? x - tw / 2 - u : (x + 15 * u + tw > S ? x - 15 * u - tw : x + 11 * u);
+    g.fillStyle = '#fffaf0'; g.beginPath(); g.arc(x, y, 6.5 * u, 0, TAU); g.fill();
+    g.fillStyle = p.col; g.beginPath(); g.arc(x, y, 4.2 * u, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(255,250,240,.93)'; g.beginPath(); g.roundRect(lx - 4 * u, ly - 10 * u, tw + 10 * u, 20 * u, 10 * u); g.fill();
+    g.fillStyle = '#2a2823'; g.fillText(p.short, lx + u, ly + u * .5);
+  }
+  const sb = 50 * k;
+  g.fillStyle = 'rgba(255,250,240,.93)'; g.beginPath(); g.roundRect(10 * u, S - 36 * u, sb + 58 * u, 26 * u, 7 * u); g.fill();
+  g.fillStyle = '#2a2823'; g.fillRect(18 * u, S - 24 * u, sb, 3 * u); g.fillText('50 m', 26 * u + sb, S - 22.5 * u);
+  g.fillStyle = 'rgba(255,250,240,.93)'; g.beginPath(); g.arc(S - 26 * u, 26 * u, 15 * u, 0, TAU); g.fill();
+  g.fillStyle = '#2a2823'; g.textAlign = 'center'; g.fillText('N', S - 26 * u, 27 * u); g.textAlign = 'left';
+}
+function fillStats(){
+  const n = x => x.toLocaleString('en-US');
+  $('st-houses').textContent = n(HOUSES.length - 4);
+  $('st-trees').textContent = n(Object.values(TREES).reduce((a, l) => a + l.length, 0));
+  $('st-flowers').textContent = n(FLW.length + LAVS.length + SUNS.length + BUSH.length);
+  $('st-build').textContent = (BUILD_MS / 1000).toFixed(1) + ' s';
+  $('st-tris').textContent = n(renderer.info.render.triangles);
+  $('st-calls').textContent = n(renderer.info.render.calls);
+  $('st-fps').textContent = fps.toFixed(0) + ' fps';
+}
+function openAbout(){ aboutEl.classList.add('show'); aboutOpen = true; walk.keys = {}; walk.touchFwd = false; if (!planDrawn){ drawPlan(); planDrawn = true; } fillStats(); }
+function closeAbout(){ aboutEl.classList.remove('show'); aboutOpen = false; }
+$('aboutBtn').onclick = openAbout; $('aboutx').onclick = closeAbout;
+aboutEl.addEventListener('click', e => { if (e.target === aboutEl) closeAbout(); });
+
 // ---------------------------------------------------------------- labels, resize, main loop
 const _pv = new V3();
+let labelTick = 0;
 function updateLabels(){
+  labelTick++;
   const w = innerWidth, h = innerHeight;
   for (const p of POIS){
     _pv.copy(p.at).project(camera);
     const dist = camera.position.distanceTo(p.at);
-    const vis = _pv.z < 1 && Math.abs(_pv.x) < 1.05 && Math.abs(_pv.y) < 1.05 && dist < (walk.on ? 160 : 900) && dist > (walk.on ? 5 : 14);
+    if (walk.on && labelTick % 8 === 0) p.hidden = sightBlocked(camera.position, p.at);
+    const vis = _pv.z < 1 && Math.abs(_pv.x) < 1.05 && Math.abs(_pv.y) < 1.05 && dist < (walk.on ? 220 : 900) && dist > (walk.on ? 5 : 14) && !(walk.on && p.hidden);
     p.el.style.opacity = vis ? 1 : 0; p.el.style.pointerEvents = vis ? 'auto' : 'none';
     if (vis) p.el.style.transform = `translate(${(_pv.x * .5 + .5) * w}px, ${(-_pv.y * .5 + .5) * h}px) translate(-50%, calc(-100% - 6px))`;
   }
@@ -1200,8 +1384,10 @@ const clock = new THREE.Clock(); let envTick = 0;
 function animate(){
   requestAnimationFrame(animate);
   const rdt = Math.min(clock.getDelta(), .5), dt = Math.min(rdt, .05), t = clock.elapsedTime; // rdt keeps transitions on time on slow GPUs
+  fps = fps ? lerp(fps, 1 / Math.max(rdt, 1e-3), .05) : 60;
+  if (aboutOpen && (statT += rdt) > .5){ statT = 0; fillStats(); }
   if (todT < 1){ todT = Math.min(1, todT + rdt / 2.2); state = mixState(todFrom, todTo, ease(todT)); applyState(state); if (++envTick % 6 === 0 || todT === 1) updateEnv(); }
-  if (walk.on) updateWalk(dt);
+  if (walk.on) updateWalk(Math.min(rdt, .15)); // steps stay well under a building's depth, so no tunnelling
   else {
     if (fly){
       fly.t += rdt; const k = ease(clamp(fly.t / fly.dur, 0, 1));
