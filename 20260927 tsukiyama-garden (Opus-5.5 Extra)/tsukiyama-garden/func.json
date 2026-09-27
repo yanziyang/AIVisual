@@ -1,0 +1,5 @@
+[["garden.setHour(15.5); garden.goView('koi',true)","f_koi.png",5],
+ ["(()=>{ const k=garden.koi[3]; garden.setFeed(true); for(let i=0;i<6;i++) garden.pellets.push({x:k.x+Math.sin(k.heading)*1.5+(Math.random()-0.5)*0.4, z:k.z+Math.cos(k.heading)*1.5+(Math.random()-0.5)*0.4, age:0}); window.__p0 = garden.pellets.length; })()","f_feed.png",8],
+ ["(()=>{ window.__p1 = garden.pellets.length; garden.goView('waterline',true); for (let i=0;i<5;i++) garden.addDrop(3.5+i*0.9, 2+i*0.4, 0.12, 0.06); })()","f_ripples.png",1.2],
+ ["document.getElementById('aboutBtn').click(); document.querySelector('[data-tab=garden]').click()","f_about.png",2],
+ ["document.title = 'pellets ' + window.__p0 + ' -> ' + window.__p1","f_end.png",0.5]]

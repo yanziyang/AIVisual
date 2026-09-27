@@ -1,0 +1,3 @@
+[["(()=>{ const c=garden.cam; c.mode='look'; c.follow=null; c.pos=[0,6,6]; c.yaw=0; c.pitch=-1.0; for (let i=0;i<4;i++) garden.addDrop(-1+i*0.8, 0.5, 0.12, 0.06); })()","r_ripples.png",0.8],
+ ["(()=>{ const k=garden.koi[3]; garden.setFeed(true); for(let i=0;i<6;i++) garden.pellets.push({x:k.x+Math.sin(k.heading)*1.2, z:k.z+Math.cos(k.heading)*1.2, age:0}); window.__p0=garden.pellets.length; window.__k={x:k.x,z:k.z}; })()","r_feed0.png",6],
+ ["(()=>{ const k=garden.koi[3]; window.__res = JSON.stringify({before: window.__p0, after: garden.pellets.length, moved: Math.hypot(k.x-window.__k.x, k.z-window.__k.z).toFixed(2), y: k.y.toFixed(2)}); console.log('FEED', window.__res); })()","r_feed1.png",0.5]]

@@ -1,0 +1,339 @@
+<!doctype html>
+<!--
+  Tsukiyama Garden — an interactive Japanese hill-and-pond garden in a single HTML file.
+  Water rendering is built on Clearwater by Aurélien / Lumaris (https://github.com/Aureliengmz/clearwater),
+  MIT License, Copyright (c) 2026 Lumaris. The full licence text is reproduced in the page (About → Credits & licence).
+  Everything else (terrain, rocks, pavilion, bridge, lanterns, plants, koi) is generated procedurally at load.
+  @@VERSION@@
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16201a">
+<title>Tsukiyama Garden</title>
+<style>
+  :root{
+    --glass: rgba(14,22,18,.46); --glass-2: rgba(255,255,255,.07); --ink: rgba(255,255,255,.9); --ink-2: rgba(255,255,255,.62);
+    --line: rgba(255,255,255,.12); --accent: #e0553a; --accent-2: #f3b35b; --ok: #9fd4a8;
+    --paper: #f5f1e8; --paper-ink: #22241f; --paper-ink-2: #5d5f57; --paper-line: #ddd5c4; --paper-card: #fffdf8; --code: #efe9dc;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#1b1f1b; --paper-ink:#ece8de; --paper-ink-2:#a9a699; --paper-line:#343a33; --paper-card:#222822; --code:#2a302a; } }
+  :root[data-theme="dark"]{ --paper:#1b1f1b; --paper-ink:#ece8de; --paper-ink-2:#a9a699; --paper-line:#343a33; --paper-card:#222822; --code:#2a302a; }
+  *{ box-sizing:border-box; }
+  html, body{ margin:0; height:100%; background:#16201a; overflow:hidden; font-family:var(--font); color:var(--ink); }
+  canvas#c{ position:fixed; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
+  canvas#c:active{ cursor:grabbing; }
+  .glass{ background:var(--glass); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2); border:1px solid var(--line); }
+  #brand{ position:fixed; left:calc(14px + env(safe-area-inset-left,0px)); top:calc(14px + env(safe-area-inset-top,0px)); z-index:5; display:flex; align-items:center; gap:10px;
+    padding:7px 14px 7px 8px; border-radius:999px; font-size:13px; letter-spacing:.01em; user-select:none; }
+  #brand .kanji{ font-family:var(--serif); font-size:17px; width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--accent); color:#fff; }
+  #brand b{ font-weight:600; } #brand span.v{ color:var(--ink-2); font-size:11px; }
+  #panel{ position:fixed; right:calc(12px + env(safe-area-inset-right,0px)); top:12px; bottom:12px; width:300px; z-index:6; border-radius:18px; padding:14px 14px 12px;
+    overflow-y:auto; overscroll-behavior:contain; transition:transform .35s ease, opacity .35s ease; scrollbar-width:thin; }
+  body.panel-closed #panel{ transform:translateX(calc(100% + 24px)); opacity:0; pointer-events:none; }
+  #panelToggle{ position:fixed; right:calc(324px + env(safe-area-inset-right,0px)); top:14px; z-index:7; transition:right .35s ease; }
+  body.panel-closed #panelToggle{ right:calc(14px + env(safe-area-inset-right,0px)); }
+  .sec{ padding:10px 2px 12px; border-bottom:1px solid var(--line); }
+  .sec:last-of-type{ border-bottom:0; }
+  label, .lbl{ display:block; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:8px; }
+  label small{ text-transform:none; letter-spacing:0; font-weight:400; }
+  .row{ display:flex; justify-content:space-between; align-items:baseline; }
+  .row output{ font-variant-numeric:tabular-nums; font-size:20px; font-weight:300; }
+  input[type=range]{ width:100%; accent-color:var(--accent); margin:4px 0 0; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  button{ font:inherit; color:var(--ink); background:var(--glass-2); border:1px solid var(--line); border-radius:10px; padding:7px 9px; cursor:pointer; font-size:12.5px;
+    transition:background .15s, border-color .15s, color .15s; }
+  button:hover{ background:rgba(255,255,255,.13); }
+  button:focus-visible{ outline:2px solid var(--accent-2); outline-offset:2px; }
+  button.on{ background:rgba(224,85,58,.28); border-color:rgba(243,140,110,.7); color:#fff; }
+  .seg{ display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+  .seg.two-up{ grid-template-columns:1fr 1fr; }
+  .seg button{ padding:7px 2px; display:flex; flex-direction:column; align-items:center; gap:1px; }
+  .seg button .jp{ font-family:var(--serif); font-size:16px; line-height:1.1; }
+  .seg button .en{ font-size:10.5px; color:var(--ink-2); }
+  .seg button.on .en{ color:#fff; }
+  .toggles{ display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+  .views{ display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  .views button{ text-align:left; display:flex; gap:7px; align-items:center; }
+  .views button kbd{ font:600 10px/1 ui-monospace, Menlo, monospace; color:var(--ink-2); border:1px solid var(--line); border-radius:4px; padding:2px 4px; }
+  #minimap{ width:100%; height:auto; border-radius:10px; display:block; cursor:crosshair; border:1px solid var(--line); image-rendering:auto; }
+  .wide{ width:100%; margin-top:12px; padding:10px; font-weight:600; background:rgba(224,85,58,.22); border-color:rgba(243,140,110,.55); }
+  #hint, #feedHint{ position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); z-index:4;
+    font-size:13.5px; padding:9px 16px; border-radius:999px; white-space:nowrap; transition:opacity 1.2s ease; pointer-events:none; max-width:calc(100vw - 32px); overflow:hidden; text-overflow:ellipsis; }
+  #feedHint{ bottom:calc(66px + env(safe-area-inset-bottom,0px)); background:rgba(224,85,58,.5); }
+  #hint.off{ opacity:0; }
+  #err{ position:fixed; inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px)) 12px; max-height:45%; overflow:auto; font:12px/1.45 ui-monospace, Menlo, monospace;
+    color:#ffd9d2; background:rgba(40,8,8,.92); border-radius:14px; padding:12px 14px; white-space:pre-wrap; z-index:40; }
+  #err[hidden], #dbg[hidden], [hidden]{ display:none !important; }
+  #dbg{ position:fixed; top:64px; left:14px; font:11px/1.4 ui-monospace, Menlo, monospace; color:#fff; background:rgba(0,0,0,.4); padding:6px 8px; border-radius:8px; z-index:8; pointer-events:none; }
+  #loading{ position:fixed; inset:0; z-index:30; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 60%, #2a3a2c 0%, #121a14 70%); transition:opacity .8s ease; }
+  #loading.off{ opacity:0; pointer-events:none; }
+  .ld-card{ text-align:center; color:var(--ink-2); font-size:14px; letter-spacing:.02em; }
+  .ld-title{ font-family:var(--serif); font-size:44px; color:#fff; margin-bottom:6px; letter-spacing:.1em; }
+  .ld-sub{ margin-top:14px; width:160px; height:2px; background:rgba(255,255,255,.12); border-radius:2px; overflow:hidden; margin-inline:auto; }
+  .ld-sub i{ display:block; height:100%; width:40%; background:var(--accent); animation:ld 1.3s ease-in-out infinite; }
+  @keyframes ld{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(260%);} }
+
+  /* About drawer */
+  #about{ position:fixed; inset:0; z-index:20; background:rgba(8,12,10,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; padding:16px; }
+  .about-card{ width:min(1040px, 100%); max-height:calc(100vh - 32px); background:var(--paper); color:var(--paper-ink); border-radius:18px; display:flex; flex-direction:column; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.45); }
+  .about-head{ flex-shrink:0; display:flex; align-items:center; gap:12px; padding:16px 20px 0; }
+  .about-head h1{ margin:0; font:600 19px/1.25 var(--font); letter-spacing:-.005em; flex:1; }
+  .about-head h1 .jp{ font-family:var(--serif); color:var(--accent); margin-right:6px; }
+  .about-head button{ color:var(--paper-ink); background:transparent; border-color:var(--paper-line); }
+  .tabs{ flex-shrink:0; display:flex; gap:2px; padding:12px 16px 0; border-bottom:1px solid var(--paper-line); overflow-x:auto; scrollbar-width:none; }
+  .tabs button{ color:var(--paper-ink-2); background:none; border:0; border-bottom:2px solid transparent; border-radius:0; padding:9px 12px; font-size:13.5px; white-space:nowrap; }
+  .tabs button.on{ color:var(--paper-ink); border-bottom-color:var(--accent); background:none; font-weight:600; }
+  .tabs button:hover{ background:none; color:var(--paper-ink); }
+  .tabpane{ overflow-y:auto; padding:22px 26px 30px; font-size:14.5px; line-height:1.62; }
+  .tabpane h2{ font-size:16px; margin:26px 0 8px; letter-spacing:-.005em; } .tabpane h2:first-child{ margin-top:0; }
+  .tabpane h3{ font-size:14.5px; margin:18px 0 6px; }
+  .tabpane p{ margin:0 0 12px; max-width:78ch; } .tabpane ul, .tabpane ol{ margin:0 0 14px; padding-left:22px; max-width:80ch; } .tabpane li{ margin:3px 0; }
+  .tabpane code, .tabpane kbd{ font:12.5px ui-monospace, Menlo, Consolas, monospace; background:var(--code); padding:1px 5px; border-radius:4px; }
+  .prompt{ margin:0 0 16px; padding:16px 18px; background:var(--paper-card); border:1px solid var(--paper-line); border-left:4px solid var(--accent); border-radius:10px; white-space:pre-wrap; font-size:14.5px; }
+  .prompt.small{ font-size:13.5px; border-left-color:var(--paper-line); }
+  .meta{ color:var(--paper-ink-2); font-size:12.5px; margin:-8px 0 16px; }
+  table.t{ border-collapse:collapse; width:100%; margin:6px 0 16px; font-size:13.5px; }
+  table.t th, table.t td{ text-align:left; vertical-align:top; padding:7px 10px; border-bottom:1px solid var(--paper-line); }
+  table.t thead th{ font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--paper-ink-2); font-weight:600; }
+  table.t td:first-child, table.t th:first-child{ white-space:nowrap; }
+  #stats th{ font-weight:500; color:var(--paper-ink-2); width:42%; white-space:pre; } #stats td{ font-variant-numeric:tabular-nums; }
+  .pipe{ counter-reset:p; list-style:none; padding:0; }
+  .pipe li{ counter-increment:p; position:relative; padding:9px 12px 9px 44px; border:1px solid var(--paper-line); border-radius:10px; margin:6px 0; background:var(--paper-card); }
+  .pipe li::before{ content:counter(p); position:absolute; left:12px; top:9px; width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff; font-size:12px; font-weight:700; display:grid; place-items:center; }
+  .pipe li b{ display:block; } .pipe li span{ color:var(--paper-ink-2); font-size:13.5px; }
+  .gloss{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:10px; margin:8px 0 16px; }
+  .gloss div{ background:var(--paper-card); border:1px solid var(--paper-line); border-radius:10px; padding:10px 12px; font-size:13.5px; line-height:1.5; }
+  .gloss b{ display:block; } .gloss .jp{ font-family:var(--serif); color:var(--accent); font-size:15px; margin-right:4px; }
+  .lic{ white-space:pre-wrap; font:12px/1.5 ui-monospace, Menlo, Consolas, monospace; background:var(--code); padding:14px; border-radius:10px; }
+  .note{ background:var(--paper-card); border:1px dashed var(--paper-line); border-radius:10px; padding:10px 14px; font-size:13.5px; color:var(--paper-ink-2); }
+
+  @media (max-width: 720px){
+    #panel{ top:auto; left:10px; right:10px; width:auto; bottom:calc(10px + env(safe-area-inset-bottom,0px)); max-height:56vh; }
+    body.panel-closed #panel{ transform:translateY(calc(100% + 24px)); }
+    #panelToggle, body.panel-closed #panelToggle{ right:14px; top:14px; }
+    #brand span.v{ display:none; }
+    #hint{ font-size:12px; white-space:normal; text-align:center; }
+    .tabpane{ padding:16px 16px 24px; }
+    .about-head{ padding:12px 14px 0; }
+  }
+  @media (prefers-reduced-motion: reduce){ #hint, #panel, #loading{ transition:none; } .ld-sub i{ animation:none; } }
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="Interactive 3D Japanese hill-and-pond garden"></canvas>
+<div id="loading"><div class="ld-card"><div class="ld-title">築山</div><div>Tsukiyama · growing the garden…</div><div class="ld-sub"><i></i></div></div></div>
+<div id="brand" class="glass"><span class="kanji">庭</span><b>Tsukiyama Garden</b><span class="v">hill-and-pond · Clearwater</span></div>
+<button id="panelToggle" class="glass" aria-label="Show or hide controls">☰ Controls</button>
+<aside id="panel" class="glass" aria-label="Garden controls">
+  <div class="sec">
+    <div class="row"><label for="time">Time of day</label><output id="timeLbl">16:18</output></div>
+    <input type="range" id="time" min="5.5" max="19" step="0.05" value="16.3">
+  </div>
+  <div class="sec">
+    <span class="lbl">Season</span>
+    <div class="seg">
+      <button data-season="spring"><span class="jp">春</span><span class="en">Spring</span></button>
+      <button data-season="summer"><span class="jp">夏</span><span class="en">Summer</span></button>
+      <button data-season="autumn"><span class="jp">秋</span><span class="en">Autumn</span></button>
+      <button data-season="winter"><span class="jp">冬</span><span class="en">Winter</span></button>
+    </div>
+  </div>
+  <div class="sec two">
+    <div><label for="wind">Breeze</label><input type="range" id="wind" min="0" max="1" step="0.01" value="0.35"></div>
+    <div><label for="clarity">Water clarity</label><input type="range" id="clarity" min="0" max="1" step="0.01" value="0.55"></div>
+  </div>
+  <div class="sec">
+    <div class="toggles"><button id="rain">Rain</button><button id="feed">Feed koi</button><button id="auto">Slow drift</button></div>
+  </div>
+  <div class="sec">
+    <span class="lbl">Viewpoints</span>
+    <div class="views">
+      <button data-view="overview"><kbd>1</kbd>Overview</button>
+      <button data-view="lantern"><kbd>2</kbd>Lantern shore</button>
+      <button data-view="pavilion"><kbd>3</kbd>Pavilion</button>
+      <button data-view="bridge"><kbd>4</kbd>Bridge</button>
+      <button data-view="waterline"><kbd>5</kbd>Waterline</button>
+      <button data-view="waterfall"><kbd>6</kbd>Waterfall</button>
+      <button data-view="koi"><kbd>7</kbd>Follow a koi</button>
+    </div>
+  </div>
+  <div class="sec">
+    <span class="lbl">Camera</span>
+    <div class="seg two-up"><button id="modeOrbit" class="on">Orbit</button><button id="modeWalk">Stroll</button></div>
+  </div>
+  <div class="sec">
+    <span class="lbl">Garden plan <small>· click to fly there</small></span>
+    <canvas id="minimap" width="360" height="264"></canvas>
+  </div>
+  <button id="aboutBtn" class="wide">Prompt &amp; implementation details</button>
+</aside>
+<div id="hint" class="glass">Drag to look around · right-drag to pan · scroll to zoom · tap the water</div>
+<div id="feedHint" class="glass" hidden>Feeding: tap the water to scatter koi food</div>
+<div id="dbg" hidden></div>
+<div id="err" hidden></div>
+
+<section id="about" hidden aria-label="About this build">
+  <div class="about-card">
+    <div class="about-head"><h1><span class="jp">築山庭園</span>Tsukiyama Garden: prompt and implementation</h1><button id="aboutClose" aria-label="Close">Close ✕</button></div>
+    <nav class="tabs">
+      <button data-tab="prompt" class="on">Prompt</button>
+      <button data-tab="impl">Implementation</button>
+      <button data-tab="garden">The garden</button>
+      <button data-tab="controls">Controls</button>
+      <button data-tab="credits">Credits &amp; licence</button>
+    </nav>
+    <div class="tabpane" id="tab-prompt">
+      <h2>The prompt</h2>
+      <div class="prompt">Next, build interactive Tsukiyama (hill and pond garden) in standalone HTML.
+
+A Japanese-style landscape that features a pavilion, fish pond, plants, and rocks is generally known as a Chisen-shoyū-teien (pond garden) or a Tsukiyama (hill and pond garden).
+
+Use open source Clearwater engine:
+https://github.com/Aureliengmz/clearwater
+
+Show the prompt and implementation details in the html web page.</div>
+      <p class="meta">Given on 27 September 2026. A follow-up in the same session asked for all working materials (sources, the Clearwater clone, the layout check) to be kept in the project folder.</p>
+      <h2>How it was read</h2>
+      <ul>
+        <li><b>Standalone HTML:</b> one file that runs from disk. No build tools, network requests, libraries, models or image downloads at run time. The only embedded asset is Clearwater's own pebble texture (base64). Everything else is generated when the page loads.</li>
+        <li><b>A real tsukiyama, not a generic park:</b> artificial hills (tsukiyama) behind a pond with islands, a waterfall arrangement, a pebble beach, stepping stones, stone lanterns, a pavilion over the water, an arched bridge, pruned pines, maples, cherries, clipped azaleas, irises, water lilies and koi. The <i>Garden</i> tab lists each element and where it sits.</li>
+        <li><b>Use Clearwater:</b> Clearwater renders open water, not scenes. So its water code (FFT spectrum, ripple simulation, caustics, glints, pebble bed, glare and tone mapping) is kept and rewired as the water layer of a rasterised garden. The <i>Implementation</i> tab lists exactly what was kept and what changed.</li>
+        <li><b>Interactive:</b> orbit, a stroll mode, preset viewpoints, time of day, the four seasons, breeze, water clarity, rain, and feeding the koi. Tapping the water raises ripples, which reflect off the banks.</li>
+      </ul>
+    </div>
+    <div class="tabpane" id="tab-impl" hidden>
+      <h2>Architecture</h2>
+      <p>Clearwater is a single-file WebGL2 program. Each pixel of one full-screen shader intersects an infinite water plane, refracts down to a pebble seabed, and adds caustics, Fresnel reflection of an analytic sky, and sun glints. It has no geometry, no depth buffer and no scene. This build adds a conventional rasteriser around it. The garden is drawn first, above and below the water, into an HDR target with a depth texture. Clearwater's water shader then runs as a compositing pass: wherever the water surface is nearer than the garden, it shades the surface using the garden image for refraction and a mirrored render for reflection.</p>
+      <h2>One frame</h2>
+      <ol class="pipe">
+        <li><b>Wave spectrum → FFT</b><span>Clearwater's Tessendorf-style spectrum evaluated for the current time. An amplitude uniform turns open-sea chop into a garden-pond breeze tied to the <i>Breeze</i> slider.</span></li>
+        <li><b>Ripple simulation</b><span>Clearwater's wave-equation grid, stretched from a 7 m window to the whole pond (1024×640 texels, about 4.7 cm each) and run at a fixed 60 Hz. A bank mask pins the height to zero on land, so rings bounce off the shore and islands. Up to 32 disturbances per step come from taps, koi wakes, feeding, raindrops, falling leaves and the waterfall.</span></li>
+        <li><b>Caustics</b><span>Clearwater's refracted-grid caustics, unchanged. Three wavelengths of refraction give the rainbow fringes.</span></li>
+        <li><b>Sun shadow map</b><span>A 4096² orthographic depth map of the terrain, buildings and alpha-tested leaves.</span></li>
+        <li><b>Reflection pass</b><span>The garden rendered through a mirror at y = 0 at half resolution, clipped at the waterline, with the sky and hazy distance.</span></li>
+        <li><b>Garden pass</b><span>Sky, terrain, rocks, pavilion, bridge, lanterns, branches, leaf cards, koi and particles. Anything below the water is lit by sunlight refracted at the surface, attenuated along its path, modulated by the caustics, and shadowed both by objects above the surface and by passing koi.</span></li>
+        <li><b>Water composite</b><span>Clearwater's water shader. It intersects the height field (FFT + ripples), reads refraction from the garden image displaced by the wave slope, and absorbs and scatters light along the underwater path. It adds Fresnel reflection from the mirror pass, sun glints and Clearwater's suspended specks, then applies aerial perspective to everything.</span></li>
+        <li><b>Waterfall</b><span>An animated, alpha-blended sheet and plunge foam, depth-tested against the garden.</span></li>
+        <li><b>Post</b><span>Clearwater's bloom, FFT lens-diffraction glare on sun glints, ACES tone curve and grain, plus a rain-streak overlay.</span></li>
+      </ol>
+      <h2>What was taken from Clearwater</h2>
+      <table class="t"><thead><tr><th>Clearwater section</th><th>Use here</th></tr></thead><tbody>
+        <tr><td>GL helpers</td><td>Kept (shader compile, render targets, full-screen triangle). Added depth textures, shader variants via <code>#define</code> and a mesh uploader.</td></tr>
+        <tr><td>Ocean spectrum (FFT)</td><td>Kept. Added an amplitude uniform; the default slope is about a third of Clearwater's.</td></tr>
+        <tr><td>Interactive ripples</td><td>Kept the scheme. The grid now covers the whole pond with a land mask, a fixed timestep and many drops per step.</td></tr>
+        <tr><td>Caustics</td><td>Kept verbatim; the caustic focus depth is tuned for a pond.</td></tr>
+        <tr><td>Pebbles</td><td>Kept, including the embedded texture. Used for the suhama beach and the shallow pond bed.</td></tr>
+        <tr><td>Main water shader</td><td>Kept the surface intersection, B-spline slope filtering, Fresnel, Beckmann/LEAN glints, the in-scattering model and the specks. Changed: reflection comes from the mirror pass instead of the analytic sky; refraction reads the rendered garden (displaced by the wave slope) instead of a ray-traced seabed; absorption is greener and set by the <i>Water clarity</i> slider.</td></tr>
+        <tr><td>Post and lens glare</td><td>Kept (bloom, FFT glare, ACES, vignette, grain). Exposure now follows the time of day, and rain streaks were added.</td></tr>
+        <tr><td>Camera and loop</td><td>Replaced by orbit, stroll and viewpoint cameras. Kept the adaptive-resolution controller.</td></tr>
+      </tbody></table>
+      <h2>What was written for the garden</h2>
+      <ul>
+        <li><b>Layout and terrain:</b> the pond outline is a Catmull-Rom curve. Heights come from a signed-distance field to the water's edge (rock-lined banks versus a gently shelving beach) plus Gaussian hills with noise, islands, a waterfall cliff and a levelled pad for the pavilion. It is meshed as a 0.25 m inner grid and a coarse outer ring.</li>
+        <li><b>Rocks:</b> icospheres cut by random planes (smooth-min) and roughened with noise. There are shore rocks along every bank, and named groups: the waterfall stones, the carp stone, a triad, crane and turtle rocks, and stepping stones.</li>
+        <li><b>Pavilion:</b> posts on stone footings, some standing in the pond; a floor frame, planks and tatami; shoji and plaster walls; railings. The hip-and-gable roof is built from a height function with a concave (sori) profile, lifted corners, tile relief, fascia, gable, barge boards and ridges.</li>
+        <li><b>Bridge and lanterns:</b> an arched taiko-bashi with lacquered railings and bronze finials; kasuga, yukimi and two-legged kotoji lanterns whose fire boxes light up at dusk.</li>
+        <li><b>Plants:</b> recursive branch tubes, plus leaf cards textured from a foliage atlas painted with Canvas 2D at load. The atlas channels hold shade, per-leaf variation and a flower flag, so a single texture yields spring, summer, autumn and winter colours, blossom and bare twigs. The pines are pruned into cloud pads with dark cores. Background cedars and evergreen oaks enclose the garden.</li>
+        <li><b>Koi:</b> a lofted body with forked tail, dorsal, pectoral and pelvic fins. Swimming is a travelling wave in the vertex shader. There are eight varieties (Kohaku, Sanke, Shōwa, Yamabuki Ogon, Chagoi, Tanchō, Asagi, Platinum), each a procedural pattern. The fish wander, avoid the banks and each other, rise to food, dart away from taps, and cast soft shadows on the bed.</li>
+        <li><b>Seasons, weather and time:</b> season weights blend smoothly. They switch foliage palettes, blossom, bare branches, flowering azaleas, irises and lilies, snow on up-facing surfaces, falling leaves, petals and snow. Sun colour uses an air-mass extinction model. Lanterns and shoji glow as the sun sets. Rain darkens and wets surfaces, overcasts the sky, and pocks the pond with rings.</li>
+      </ul>
+      <h2>This session's numbers</h2>
+      <table class="t" id="stats"></table>
+      <h2>Limits and assumptions</h2>
+      <ul>
+        <li>The garden is a composite of classic conventions, not a replica of a specific garden. No reference photographs were used. Proportions follow common practice (for example about 0.85 m floor height for the pavilion, 1.8 m bridge width, 1.9 m kasuga lantern).</li>
+        <li>Leaves are alpha-tested cards, so the canopies read well from a few metres away; close up they are flatter than real foliage. There is no grass-blade geometry.</li>
+        <li>Refraction is screen-space and only adds the bending caused by waves. The flat-water bending that makes a real pond look shallower is left out, because re-projecting it duplicated the koi. Things hidden behind the bank cannot appear through the water. The camera stays above the water, so there is no underwater view.</li>
+        <li>Reflections come from one mirror plane (the pond is flat), distorted by the surface slope. Glints and caustics come from the sun only.</li>
+        <li>The page needs WebGL2 with floating-point render targets. Resolution adapts to hold the frame rate; a discrete GPU is recommended for full resolution.</li>
+      </ul>
+      <p class="meta">@@VERSION@@</p>
+    </div>
+    <div class="tabpane" id="tab-garden" hidden>
+      <h2>Elements of the garden</h2>
+      <p>A <i>chisen-shoyū-teien</i> is a pond garden meant to be walked around, with views that open and close along the path. This one is laid out as the Edo-period stroll gardens were, with a Heian-style fishing pavilion. The gravel path circles the pond about 4.6 m back from the water.</p>
+      <div class="gloss">
+        <div><b><span class="jp">築山</span>Tsukiyama</b>Artificial hills. The main one rises about 7.5 m behind the pavilion, flanked by lower hills to the north-east and north-west.</div>
+        <div><b><span class="jp">池</span>Ike</b>The pond: about 45 × 26 m and up to about a metre deep, lined with rocks except at the beach and the iris margin.</div>
+        <div><b><span class="jp">中島</span>Nakajima</b>The main island, reached by the arched bridge, with a spreading black pine and a small yukimi lantern.</div>
+        <div><b><span class="jp">太鼓橋</span>Taiko-bashi</b>“Drum bridge”: a steeply arched bridge with vermilion railings and bronze <i>giboshi</i> finials.</div>
+        <div><b><span class="jp">釣殿</span>Tsuri-dono</b>A fishing pavilion half over the water, on posts, with an <i>irimoya</i> (hip-and-gable) tiled roof, shoji and a tatami room.</div>
+        <div><b><span class="jp">滝石組</span>Taki-ishigumi</b>The waterfall arrangement: a lip stone (<i>mizuochi-ishi</i>), two flanking stones (<i>waki-ishi</i>) and the carp stone (<i>rigyoseki</i>). The carp stone recalls the legend of the carp that became a dragon by climbing a waterfall.</div>
+        <div><b><span class="jp">亀島・鶴島</span>Kame-jima &amp; tsuru-jima</b>Turtle island and crane rocks, both symbols of longevity. The turtle's head stone points out into the pond; the crane's “wing” stone stands in the water.</div>
+        <div><b><span class="jp">州浜</span>Suhama</b>A pebble beach sloping gently into the water, using Clearwater's pebble texture.</div>
+        <div><b><span class="jp">沢渡り</span>Sawatari</b>Stepping stones across the western water to the turtle island.</div>
+        <div><b><span class="jp">徽軫灯籠</span>Kotoji-tōrō</b>A two-legged lantern with one leg in the water and one on a rock, after the famous lantern at Kenroku-en.</div>
+        <div><b><span class="jp">雪見・春日灯籠</span>Yukimi &amp; Kasuga-dōrō</b>Snow-viewing lanterns with a broad umbrella cap, and tall pedestal lanterns with hexagonal fire boxes.</div>
+        <div><b><span class="jp">三尊石</span>Sanzon-seki</b>A triad of standing stones on the main hill.</div>
+        <div><b><span class="jp">庭木・大刈込</span>Niwaki &amp; ō-karikomi</b>Black pines pruned into cloud pads, often leaning over the water, and azaleas clipped into rounded mounds that flower in spring.</div>
+        <div><b><span class="jp">紅葉・桜</span>Momiji &amp; sakura</b>Japanese maples, which turn crimson and orange in autumn and are bare in winter, and cherries, which blossom in spring.</div>
+        <div><b><span class="jp">杜若・睡蓮</span>Kakitsubata &amp; suiren</b>Irises at the shallow eastern margin and water lilies in the coves. Both flower in summer.</div>
+        <div><b><span class="jp">借景</span>Shakkei</b>“Borrowed scenery”: the blue ranges beyond the trees are part of the composition.</div>
+        <div><b><span class="jp">錦鯉</span>Nishikigoi</b>Fourteen koi in eight classic varieties.</div>
+      </div>
+      <h2>Real gardens versus invention</h2>
+      <p class="note">The elements, their names and their proportions follow real practice (Kenroku-en's kotoji lantern, Heian fishing pavilions, Edo stroll gardens such as Kōraku-en and Ritsurin). The layout itself, with the pond's shape and the positions of every tree, rock and lantern, is invented for this build. It was checked from a top-down plan before any 3D work.</p>
+    </div>
+    <div class="tabpane" id="tab-controls" hidden>
+      <h2>Mouse, touch and keys</h2>
+      <table class="t"><tbody>
+        <tr><td>Drag</td><td>Orbit around the garden. In viewpoints and stroll mode, look around.</td></tr>
+        <tr><td>Right-drag or Shift-drag</td><td>Pan the orbit centre.</td></tr>
+        <tr><td>Scroll or pinch</td><td>Zoom. In viewpoints, move forward and back.</td></tr>
+        <tr><td>Tap the water</td><td>Ripples; koi nearby dart away. With <i>Feed koi</i> on, food pellets land and the koi come to eat.</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>7</kbd></td><td>Viewpoints: overview, lantern shore, pavilion, bridge, waterline, waterfall, follow a koi.</td></tr>
+        <tr><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows</td><td>Walk in stroll mode; hold <kbd>Shift</kbd> to hurry. On touch, press and hold to walk.</td></tr>
+        <tr><td><kbd>F</kbd> / <kbd>R</kbd></td><td>Toggle feeding / rain.</td></tr>
+        <tr><td>Garden plan</td><td>Click anywhere on the plan to fly there. Koi appear as live dots.</td></tr>
+      </tbody></table>
+      <h2>URL options</h2>
+      <p><code>?hour=17.8</code> · <code>?season=spring|summer|autumn|winter</code> · <code>?view=pavilion</code> · <code>?rain</code> · <code>?feed</code> · <code>?wind=0.6</code> · <code>?q=0.6</code> (fixed resolution scale) · <code>?noglare</code> · <code>?debug</code> (frame rate)</p>
+    </div>
+    <div class="tabpane" id="tab-credits" hidden>
+      <h2>Clearwater</h2>
+      <p>The water is built on <b>Clearwater</b>, “real-time, photoreal shallow water in a single HTML file”, made by Aurélien at Lumaris: <code>https://github.com/Aureliengmz/clearwater</code>. Clearwater's own references are Jerry Tessendorf (<i>Simulating Ocean Water</i>, FFT waves), Evan Wallace (<i>WebGL Water</i>, refracted-grid caustics), Inigo Quilez (texture repetition, used for the seabed tiling) and Marc Olano &amp; Dan Baker (<i>LEAN Mapping</i>, distant highlights).</p>
+      <h3>Clearwater licence</h3>
+      <div class="lic">MIT License
+
+Copyright (c) 2026 Lumaris
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+      <h2>This build</h2>
+      <p>The garden generation, the rendering around Clearwater, the koi, the seasons and the interface were written for this page. Techniques used: surface-gradient bump mapping (Mikkelsen), a Kasten–Young air mass for sun colour, Henyey–Greenstein in-scattering (as in Clearwater), and planar reflections with slope distortion.</p>
+      <p class="meta">@@VERSION@@</p>
+    </div>
+  </div>
+</section>
+<script>
+"use strict";
+const $err = document.getElementById('err');
+function fail(msg){ $err.hidden = false; $err.textContent += (typeof msg === 'string' ? msg : (msg && msg.stack) || String(msg)) + '\n'; const l = document.getElementById('loading'); if (l) l.remove(); }
+window.addEventListener('error', e => fail(e.message + (e.filename ? `\n  @ ${e.filename.split('/').pop()}:${e.lineno}` : '')));
+</script>
+<script id="pebbles-texture" type="text/plain">
+@@PEBBLES@@
+</script>
+<script>
+"use strict";
+function main(){

@@ -1,0 +1,2 @@
+[["document.getElementById('modeWalk').click()","m_walk0.png",1],
+ ["(()=>{ const c=garden.cam; c.pos=[-12.5,1.9,12.6]; c.yaw=0.55; c.pitch=-0.12; })()","m_walk.png",3]]

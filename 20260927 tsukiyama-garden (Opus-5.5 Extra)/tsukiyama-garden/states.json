@@ -1,0 +1,7 @@
+[["garden.setSeason('spring'); garden.setHour(10.2); garden.goView('overview',true)","s_spring.png",5],
+ ["garden.setSeason('winter'); garden.setHour(12.5); garden.goView('lantern',true)","s_winter.png",5],
+ ["garden.setSeason('summer'); garden.setHour(18.55); garden.goView('waterline',true)","s_dusk.png",5],
+ ["garden.setHour(13); garden.setRain(true); garden.goView('pavilion',true)","s_rain.png",7],
+ ["garden.setRain(false); garden.S.rain=0; garden.setSeason('autumn'); garden.setHour(15.5); garden.goView('koi',true)","s_koi.png",5],
+ ["document.getElementById('aboutBtn').click()","s_about.png",2],
+ ["document.querySelector('[data-tab=impl]').click()","s_about2.png",2]]
