@@ -1,0 +1,367 @@
+<!doctype html>
+<!--
+  Shishi-odoshi in the Rain — an interactive Japanese courtyard garden in a single HTML file.
+  Water rendering is built on Clearwater by Aurélien / Lumaris (https://github.com/Aureliengmz/clearwater),
+  MIT License, Copyright (c) 2026 Lumaris. The full licence text is reproduced in the page (About → Credits & licence).
+  Everything else (moss, stones, bamboo fence, lantern, the shishi-odoshi and its physics, plants, rain, sound) is generated at load.
+  Reference: https://x.com/mizugame_22/status/2103822799580307674
+  @@VERSION@@
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b15">
+<title>Shishi-odoshi in the Rain</title>
+<style>
+  :root{
+    --glass: rgba(12,18,14,.5); --glass-2: rgba(255,255,255,.07); --ink: rgba(255,255,255,.92); --ink-2: rgba(255,255,255,.62);
+    --line: rgba(255,255,255,.12); --accent: #c9603c; --accent-2: #e8b45a; --water: #7fb2c4; --moss: #8fb35a;
+    --paper: #f4f1e8; --paper-ink: #22241f; --paper-ink-2: #5b5d55; --paper-line: #dcd5c3; --paper-card: #fffdf7; --code: #ede7da;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#1a1e1a; --paper-ink:#ebe7dc; --paper-ink-2:#a7a497; --paper-line:#333932; --paper-card:#212721; --code:#2a302a; } }
+  :root[data-theme="dark"]{ --paper:#1a1e1a; --paper-ink:#ebe7dc; --paper-ink-2:#a7a497; --paper-line:#333932; --paper-card:#212721; --code:#2a302a; }
+  *{ box-sizing:border-box; }
+  html, body{ margin:0; height:100%; background:#141b15; overflow:hidden; font-family:var(--font); color:var(--ink); }
+  canvas#c{ position:fixed; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
+  canvas#c:active{ cursor:grabbing; }
+  a{ color:inherit; }
+  .glass{ background:var(--glass); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2); border:1px solid var(--line); }
+  #brand{ position:fixed; left:calc(14px + env(safe-area-inset-left,0px)); top:calc(14px + env(safe-area-inset-top,0px)); z-index:5; display:flex; align-items:center; gap:10px;
+    padding:7px 14px 7px 8px; border-radius:999px; font-size:13px; letter-spacing:.01em; user-select:none; }
+  #brand .kanji{ font-family:var(--serif); font-size:15px; width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--accent); color:#fff; letter-spacing:-.05em; }
+  #brand b{ font-weight:600; } #brand span.v{ color:var(--ink-2); font-size:11px; }
+  #soundBtn{ position:fixed; left:calc(14px + env(safe-area-inset-left,0px)); top:calc(62px + env(safe-area-inset-top,0px)); z-index:5; border-radius:999px; padding:7px 13px; font-size:12.5px; }
+  #soundBtn .ico{ display:inline-block; width:16px; text-align:center; }
+  #soundBtn:not(.on){ animation:pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(232,180,90,0); } 50%{ box-shadow:0 0 0 5px rgba(232,180,90,.22); } }
+  #panel{ position:fixed; right:calc(12px + env(safe-area-inset-right,0px)); top:12px; bottom:12px; width:300px; z-index:6; border-radius:18px; padding:12px 14px 12px;
+    overflow-y:auto; overscroll-behavior:contain; transition:transform .35s ease, opacity .35s ease; scrollbar-width:thin; }
+  body.panel-closed #panel{ transform:translateX(calc(100% + 24px)); opacity:0; pointer-events:none; }
+  #panelToggle{ position:fixed; right:calc(324px + env(safe-area-inset-right,0px)); top:14px; z-index:7; transition:right .35s ease; }
+  body.panel-closed #panelToggle{ right:calc(14px + env(safe-area-inset-right,0px)); }
+  .sec{ padding:10px 2px 12px; border-bottom:1px solid var(--line); }
+  .sec:last-of-type{ border-bottom:0; }
+  label, .lbl{ display:block; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:6px; }
+  label small, .lbl small{ text-transform:none; letter-spacing:0; font-weight:400; }
+  .row{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .row output{ font-variant-numeric:tabular-nums; font-size:13px; color:var(--ink); white-space:nowrap; }
+  .row output.big{ font-size:20px; font-weight:300; }
+  input[type=range]{ width:100%; accent-color:var(--accent); margin:2px 0 0; }
+  button{ font:inherit; color:var(--ink); background:var(--glass-2); border:1px solid var(--line); border-radius:10px; padding:7px 9px; cursor:pointer; font-size:12.5px;
+    transition:background .15s, border-color .15s, color .15s; }
+  button:hover{ background:rgba(255,255,255,.13); }
+  button:focus-visible{ outline:2px solid var(--accent-2); outline-offset:2px; }
+  button.on{ background:rgba(201,96,60,.3); border-color:rgba(236,150,110,.7); color:#fff; }
+  .toggles{ display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  .views{ display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  .views button{ text-align:left; display:flex; gap:7px; align-items:center; }
+  .views button kbd{ font:600 10px/1 ui-monospace, Menlo, monospace; color:var(--ink-2); border:1px solid var(--line); border-radius:4px; padding:2px 4px; }
+  #gauge{ display:grid; grid-template-columns:auto 1fr auto; gap:6px 10px; align-items:center; }
+  #gauge .jp{ font-family:var(--serif); font-size:20px; line-height:1; }
+  #gauge .bar{ height:8px; border-radius:6px; background:rgba(255,255,255,.1); overflow:hidden; position:relative; }
+  #fillBar{ position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(90deg, #4f7f90, var(--water)); border-radius:6px; transition:width .2s linear; }
+  #gauge.pour #fillBar{ background:linear-gradient(90deg, var(--water), #d8eef5); }
+  #gauge .count{ font-variant-numeric:tabular-nums; font-size:13px; }
+  #gauge .sub{ grid-column:1 / -1; font-size:11.5px; color:var(--ink-2); display:flex; justify-content:space-between; }
+  .wide{ width:100%; margin-top:12px; padding:10px; font-weight:600; background:rgba(201,96,60,.24); border-color:rgba(236,150,110,.55); }
+  .src{ margin:10px 2px 0; font-size:11px; line-height:1.45; color:var(--ink-2); word-break:break-all; }
+  .src a{ color:var(--ink-2); }
+  #hint{ position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); z-index:4;
+    font-size:13.5px; padding:9px 16px; border-radius:999px; white-space:nowrap; transition:opacity 1.2s ease; pointer-events:none; max-width:calc(100vw - 32px); overflow:hidden; text-overflow:ellipsis; }
+  #hint.off{ opacity:0; }
+  #err{ position:fixed; inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px)) 12px; max-height:45%; overflow:auto; font:12px/1.45 ui-monospace, Menlo, monospace;
+    color:#ffd9d2; background:rgba(40,8,8,.92); border-radius:14px; padding:12px 14px; white-space:pre-wrap; z-index:40; }
+  #err[hidden], #dbg[hidden], [hidden]{ display:none !important; }
+  #dbg{ position:fixed; top:108px; left:14px; font:11px/1.4 ui-monospace, Menlo, monospace; color:#fff; background:rgba(0,0,0,.4); padding:6px 8px; border-radius:8px; z-index:8; pointer-events:none; }
+  #loading{ position:fixed; inset:0; z-index:30; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 60%, #26332a 0%, #111813 70%); transition:opacity .8s ease; }
+  #loading.off{ opacity:0; pointer-events:none; }
+  .ld-card{ text-align:center; color:var(--ink-2); font-size:14px; letter-spacing:.02em; }
+  .ld-title{ font-family:var(--serif); font-size:46px; color:#fff; margin-bottom:6px; letter-spacing:.12em; }
+  .ld-sub{ margin-top:14px; width:160px; height:2px; background:rgba(255,255,255,.12); border-radius:2px; overflow:hidden; margin-inline:auto; }
+  .ld-sub i{ display:block; height:100%; width:40%; background:var(--accent); animation:ld 1.3s ease-in-out infinite; }
+  @keyframes ld{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(260%);} }
+
+  /* About drawer */
+  #about{ position:fixed; inset:0; z-index:20; background:rgba(8,12,10,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; padding:16px; }
+  .about-card{ width:min(1040px, 100%); max-height:calc(100vh - 32px); background:var(--paper); color:var(--paper-ink); border-radius:18px; display:flex; flex-direction:column; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.45); }
+  .about-head{ flex-shrink:0; display:flex; align-items:center; gap:12px; padding:16px 20px 0; }
+  .about-head h1{ margin:0; font:600 19px/1.25 var(--font); letter-spacing:-.005em; flex:1; }
+  .about-head h1 .jp{ font-family:var(--serif); color:var(--accent); margin-right:6px; }
+  .about-head button{ color:var(--paper-ink); background:transparent; border-color:var(--paper-line); }
+  .tabs{ flex-shrink:0; display:flex; gap:2px; padding:12px 16px 0; border-bottom:1px solid var(--paper-line); overflow-x:auto; scrollbar-width:none; }
+  .tabs button{ color:var(--paper-ink-2); background:none; border:0; border-bottom:2px solid transparent; border-radius:0; padding:9px 12px; font-size:13.5px; white-space:nowrap; }
+  .tabs button.on{ color:var(--paper-ink); border-bottom-color:var(--accent); background:none; font-weight:600; }
+  .tabs button:hover{ background:none; color:var(--paper-ink); }
+  .tabpane{ overflow-y:auto; padding:22px 26px 30px; font-size:14.5px; line-height:1.62; }
+  .tabpane h2{ font-size:16px; margin:26px 0 8px; letter-spacing:-.005em; } .tabpane h2:first-child{ margin-top:0; }
+  .tabpane h3{ font-size:14.5px; margin:18px 0 6px; }
+  .tabpane p{ margin:0 0 12px; max-width:78ch; } .tabpane ul, .tabpane ol{ margin:0 0 14px; padding-left:22px; max-width:80ch; } .tabpane li{ margin:3px 0; }
+  .tabpane code, .tabpane kbd{ font:12.5px ui-monospace, Menlo, Consolas, monospace; background:var(--code); padding:1px 5px; border-radius:4px; }
+  .tabpane a{ color:var(--accent); text-underline-offset:2px; word-break:break-all; }
+  .prompt{ margin:0 0 16px; padding:16px 18px; background:var(--paper-card); border:1px solid var(--paper-line); border-left:4px solid var(--accent); border-radius:10px; white-space:pre-wrap; font-size:14.5px; }
+  .meta{ color:var(--paper-ink-2); font-size:12.5px; margin:-8px 0 16px; }
+  .srcbox{ display:flex; gap:12px; align-items:center; padding:12px 16px; background:var(--paper-card); border:1px solid var(--paper-line); border-radius:10px; margin:0 0 14px; }
+  .srcbox .tag{ font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--paper-ink-2); white-space:nowrap; }
+  table.t{ border-collapse:collapse; width:100%; margin:6px 0 16px; font-size:13.5px; }
+  table.t th, table.t td{ text-align:left; vertical-align:top; padding:7px 10px; border-bottom:1px solid var(--paper-line); }
+  table.t thead th{ font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--paper-ink-2); font-weight:600; }
+  table.t td:first-child, table.t th:first-child{ white-space:nowrap; }
+  #stats th{ font-weight:500; color:var(--paper-ink-2); width:42%; white-space:pre; } #stats td{ font-variant-numeric:tabular-nums; }
+  .pipe{ counter-reset:p; list-style:none; padding:0; }
+  .pipe li{ counter-increment:p; position:relative; padding:9px 12px 9px 44px; border:1px solid var(--paper-line); border-radius:10px; margin:6px 0; background:var(--paper-card); }
+  .pipe li::before{ content:counter(p); position:absolute; left:12px; top:9px; width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff; font-size:12px; font-weight:700; display:grid; place-items:center; }
+  .pipe li b{ display:block; } .pipe li span{ color:var(--paper-ink-2); font-size:13.5px; }
+  .gloss{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:10px; margin:8px 0 16px; }
+  .gloss div{ background:var(--paper-card); border:1px solid var(--paper-line); border-radius:10px; padding:10px 12px; font-size:13.5px; line-height:1.5; }
+  .gloss b{ display:block; } .gloss .jp{ font-family:var(--serif); color:var(--accent); font-size:15px; margin-right:4px; }
+  .eq{ font:13px/1.6 ui-monospace, Menlo, Consolas, monospace; background:var(--code); padding:10px 14px; border-radius:10px; margin:0 0 14px; white-space:pre-wrap; }
+  .lic{ white-space:pre-wrap; font:12px/1.5 ui-monospace, Menlo, Consolas, monospace; background:var(--code); padding:14px; border-radius:10px; }
+  .note{ background:var(--paper-card); border:1px dashed var(--paper-line); border-radius:10px; padding:10px 14px; font-size:13.5px; color:var(--paper-ink-2); }
+
+  @media (max-width: 720px){
+    #panel{ top:auto; left:10px; right:10px; width:auto; bottom:calc(10px + env(safe-area-inset-bottom,0px)); max-height:56vh; }
+    body.panel-closed #panel{ transform:translateY(calc(100% + 24px)); }
+    #panelToggle, body.panel-closed #panelToggle{ right:14px; top:14px; }
+    #brand span.v{ display:none; }
+    #hint{ font-size:12px; white-space:normal; text-align:center; }
+    .tabpane{ padding:16px 16px 24px; }
+    .about-head{ padding:12px 14px 0; }
+  }
+  @media (prefers-reduced-motion: reduce){ #hint, #panel, #loading{ transition:none; } .ld-sub i, #soundBtn:not(.on){ animation:none; } }
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="Interactive 3D Japanese garden in the rain with a shishi-odoshi"></canvas>
+<div id="loading"><div class="ld-card"><div class="ld-title">鹿威し</div><div>Shishi-odoshi · setting the stones in the rain…</div><div class="ld-sub"><i></i></div></div></div>
+<div id="brand" class="glass"><span class="kanji">鹿威</span><b>Shishi-odoshi in the Rain</b><span class="v">courtyard garden · Clearwater</span></div>
+<button id="soundBtn" class="glass" aria-label="Turn the sound on or off"><span class="ico">♪</span> Turn on sound</button>
+<button id="panelToggle" class="glass" aria-label="Show or hide controls">☰ Controls</button>
+<aside id="panel" class="glass" aria-label="Garden controls">
+  <div class="sec">
+    <span class="lbl">The shishi-odoshi <small>· tap the bamboo to tip it</small></span>
+    <div id="gauge">
+      <span class="jp" title="kon: the sound of the strike">コン</span>
+      <div class="bar" title="Water in the tube"><i id="fillBar"></i></div>
+      <span class="count">× <span id="clackCount">0</span></span>
+      <div class="sub"><span>water in the tube</span><span id="cycleLbl">filling…</span></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="row"><label for="rain">Rain</label><output id="rainLbl">steady rain</output></div>
+    <input type="range" id="rain" min="0" max="1" step="0.01" value="0.65">
+  </div>
+  <div class="sec">
+    <div class="row"><label for="flow">Kakei flow</label><output id="flowLbl">4.8 L/min</output></div>
+    <input type="range" id="flow" min="0" max="0.25" step="0.005" value="0.08">
+  </div>
+  <div class="sec">
+    <div class="row"><label for="time">Time of day</label><output id="timeLbl" class="big">10:30</output></div>
+    <input type="range" id="time" min="5" max="21" step="0.05" value="10.5">
+  </div>
+  <div class="sec">
+    <label for="wind">Wind</label>
+    <input type="range" id="wind" min="0" max="1" step="0.01" value="0.25">
+  </div>
+  <div class="sec">
+    <div class="toggles"><button id="tipBtn">Tip it now</button><button id="leafBtn">Drop leaves</button><button id="lanternBtn">Lantern: auto</button><button id="autoBtn">Slow drift</button></div>
+  </div>
+  <div class="sec">
+    <span class="lbl">Viewpoints</span>
+    <div class="views">
+      <button data-view="garden"><kbd>1</kbd>Garden</button>
+      <button data-view="shishi"><kbd>2</kbd>Shishi-odoshi</button>
+      <button data-view="spout"><kbd>3</kbd>Spout</button>
+      <button data-view="pond"><kbd>4</kbd>Water’s edge</button>
+      <button data-view="lantern"><kbd>5</kbd>Lantern</button>
+      <button data-view="above"><kbd>6</kbd>Overhead</button>
+    </div>
+  </div>
+  <button id="aboutBtn" class="wide">Prompt, source &amp; implementation</button>
+  <p class="src">Reference: <a href="https://x.com/mizugame_22/status/2103822799580307674" target="_blank" rel="noopener">x.com/mizugame_22/status/2103822799580307674</a><br>Water: <a href="https://github.com/Aureliengmz/clearwater" target="_blank" rel="noopener">Clearwater</a> (MIT)</p>
+</aside>
+<div id="hint" class="glass">Drag to look around · right-drag to pan · scroll to zoom · tap the bamboo or the pond</div>
+<div id="dbg" hidden></div>
+<div id="err" hidden></div>
+
+<section id="about" hidden aria-label="About this build">
+  <div class="about-card">
+    <div class="about-head"><h1><span class="jp">鹿威し</span>Shishi-odoshi in the Rain: prompt, source and implementation</h1><button id="aboutClose" aria-label="Close">Close ✕</button></div>
+    <nav class="tabs">
+      <button data-tab="prompt" class="on">Prompt &amp; source</button>
+      <button data-tab="impl">Implementation</button>
+      <button data-tab="garden">The garden</button>
+      <button data-tab="controls">Controls</button>
+      <button data-tab="credits">Credits &amp; licence</button>
+    </nav>
+    <div class="tabpane" id="tab-prompt">
+      <h2>The prompt</h2>
+      <div class="prompt">build interactive scene in standalone HTML: shishi-odoshi in a rainy Japanese garden. Use attached image as reference.
+
+Use open source Clearwater engine:
+https://github.com/Aureliengmz/clearwater
+
+Show the prompt, implementation details, source URL in the html web page.
+
+Source URL:
+https://x.com/mizugame_22/status/2103822799580307674</div>
+      <p class="meta">Given on 27 September 2026, with one attached image: a frame of the source video showing the whole garden.</p>
+      <h2>Source</h2>
+      <div class="srcbox"><span class="tag">Source URL</span><a href="https://x.com/mizugame_22/status/2103822799580307674" target="_blank" rel="noopener">https://x.com/mizugame_22/status/2103822799580307674</a></div>
+      <p>The source is a post by MizuGame (@mizugame_22) on X, dated 26 September 2026, with a 15-second video. The post says the scene was made by Opus 5.5 as a single HTML file with no image files: the stones, the water and the “kon” of the bamboo are all code. It also says the result was not one-shot; AI agents refined it by taking screenshots of their own output and looking at them. This page is an independent rebuild from the attached frame and the public video. It does not use any of the source's code.</p>
+      <h2>What was matched to the reference</h2>
+      <ul>
+        <li><b>Enclosure:</b> a small courtyard closed by a tall fence of close-set round bamboo culms, grey-brown with visible nodes, crossed by pale bamboo rails tied with black rope. The back fence meets a side fence at the far left.</li>
+        <li><b>The shishi-odoshi:</b> a green bamboo tube pivoting between two short posts, its open end raised under a thin spout from a tall green kakei post on the right, its other end resting over a dark stone. Water trickles from the spout into the tube.</li>
+        <li><b>Stones:</b> two large pale, speckled boulders at the back left; moss-capped rounded stones ringing the pond; flat, wet, dark stepping stones set in the moss on the left.</li>
+        <li><b>The lantern:</b> a tall weathered granite lantern at the back left, with a broad roof, fire box, middle platform and banded column, moss on its upper faces.</li>
+        <li><b>The pond:</b> a dark, still, sunken pond in the foreground, reflecting the stones, with red and pale leaves floating on it.</li>
+        <li><b>Planting:</b> a bright green moss carpet; large ferns behind the tube and at the right; clumps of tall, jointed tokusa (scouring rush) against the fence; sparse grass tufts.</li>
+        <li><b>Light:</b> overcast and rainy, soft and slightly misty, with wet highlights on stone and bamboo, and beads of rain on the green bamboo in close-up.</li>
+      </ul>
+      <h2>How it was read</h2>
+      <ul>
+        <li><b>Standalone HTML:</b> one file that runs from disk. No build tools, network requests, libraries, models, images or audio files are loaded at run time. The only embedded asset is Clearwater's own pebble texture (base64), used for the pond bed. Every mesh, the foliage texture and every sound is generated when the page loads.</li>
+        <li><b>Interactive:</b> the shishi-odoshi is a physical simulation, not an animation loop. It fills, tips, pours, swings back and strikes the stone with a synthesised “kon” and its echo. The flow, rain, wind and time of day are adjustable. You can tap the bamboo to tip it, tap the pond to raise ripples, and drop maple leaves onto the water.</li>
+        <li><b>Use Clearwater:</b> Clearwater draws open water, not scenes. Its water code (FFT spectrum, ripple simulation, caustics, glints, pebble bed, glare and tone mapping) is kept and rewired as the water layer of a rasterised garden. The <i>Implementation</i> tab lists what was kept and what changed.</li>
+      </ul>
+    </div>
+    <div class="tabpane" id="tab-impl" hidden>
+      <h2>Architecture</h2>
+      <p>Clearwater is a single-file WebGL2 program. Each pixel of one full-screen shader intersects an infinite water plane, refracts down to a pebble bed, and adds caustics, Fresnel reflection of an analytic sky, and sun glints. It has no geometry and no depth buffer. This build adds a rasteriser around it. The garden is drawn first into an HDR target with a depth texture, including the pond's walls and bed below the water line. Clearwater's water shader then runs as a compositing pass: wherever the pond surface is nearer than the garden, it shades that surface. Refraction comes from the garden image and reflection from a mirrored render. Transparent layers (water jets, droplets, splash crowns and rain) are drawn last against the garden's depth.</p>
+      <h2>One frame</h2>
+      <ol class="pipe">
+        <li><b>Shishi-odoshi physics</b><span>Fixed 240 Hz steps of the tube's rigid-body equation (below). The kakei jet is traced as a ballistic stream each frame; where it lands decides whether the tube fills.</span></li>
+        <li><b>Wave spectrum → FFT</b><span>Clearwater's Tessendorf-style spectrum on a shorter 3.2 m patch, scaled down to the faint wind ripple of a sheltered pond (tied to the <i>Wind</i> slider).</span></li>
+        <li><b>Ripple simulation</b><span>Clearwater's wave-equation grid, fitted to the pond (512 × 800 texels, about 5 mm each) and stepped at 120 Hz. A bank mask pins the height to zero on land and under stones, so rings reflect off the rim. Up to 48 disturbances per step come from raindrops, the kakei jet, the pour, falling leaves and taps.</span></li>
+        <li><b>Caustics and sun shadow</b><span>Clearwater's refracted-grid caustics and a 2048² shadow map. Both run only when the rain eases enough for the sun to break through.</span></li>
+        <li><b>Reflection pass</b><span>The garden rendered through a mirror at the water line at half resolution, clipped below it.</span></li>
+        <li><b>Garden pass</b><span>Sky, moss, stones, fence, lantern, the tube (with its own model matrix), ferns, tokusa, grass, the maple and the bamboo grove beyond the fence, and floating leaves bobbing on the ripple field.</span></li>
+        <li><b>Water composite</b><span>Clearwater's water shader: height-field intersection, B-spline-filtered slopes, Fresnel, absorption and in-scattering, LEAN-widened glints and the suspended specks. Added: procedural raindrop rings with splash specks on top of the simulated ones, and ground mist.</span></li>
+        <li><b>Transparent pass</b><span>The kakei trickle and the tube's pour as camera-facing ribbons shaded like round jets. Flying droplets, splash crowns on stone and moss, and up to 9,000 rain streaks, all generated in the vertex shader.</span></li>
+        <li><b>Post</b><span>Clearwater's bloom, FFT lens-diffraction glare (only with sun), ACES tone curve and grain. Added: depth of field for the close viewpoints.</span></li>
+      </ol>
+      <h2>The shishi-odoshi</h2>
+      <p>The tube is one rigid body with one degree of freedom, its angle θ about the axle (positive means mouth up). It is a 12 cm culm 1.2 m long. The empty tube's centre of mass sits 8.5 cm behind the axle, so it rests with its closed end on the stone at θ = 20°. The water collects against the chamber's node. Its lever arm grows as the tube tilts, because the water slides toward the mouth; that is what makes the tip run away once it starts.</p>
+      <div class="eq">I(V) θ̈ = m g c cos θ − ρV g a(V, θ) cos θ − k θ̇
+I(V) = I₀ + ρV a²,  m = 1.3 kg, c = 8.5 cm, I₀ = 0.085 kg m²
+a(V, θ) = node + ½ min(Lc, V/A + ½ r cot θ)          (water's lever arm)
+V_max(θ) = A · clamp(Lc − r cot θ, 0, Lc)             (water spills over the lowest point of the lip)
+strike at θ = 20°: θ̇ → −0.34 θ̇, a "kon" whose loudness follows the impact speed</div>
+      <p>At the default flow of 4.8 L/min the tube tips after about 0.8 L, roughly every 11 seconds. It dips to about −24°, pours in half a second and strikes the stone at about 1.65 m/s. A second, softer knock follows 0.24 s later as it bounces, the familiar “ko-kon”. More flow gives a shorter cycle and a deeper dip. The striking stone was generated first, then raised or lowered until its crown touches the tube's closed end at exactly the rest angle.</p>
+      <h2>Sound</h2>
+      <p>Everything is synthesised with Web Audio when you turn the sound on. The <b>kon</b> is modal synthesis: six damped sine modes of a hollow culm (strongest near 740 Hz, with overtones and a low air-column mode) plus a band-passed click for the stone. It goes through a short garden reverb and a 140 ms echo off the house. The <b>trickle</b> is a loop of tiny bubble sounds; its playback rate rises as the tube fills, like pouring water into a bottle, and it switches to a plashing sound when the jet falls into the pond instead. The <b>pour</b> is a denser, lower bubble loop. The <b>rain</b> is pink noise plus thousands of tiny drop clicks, with its level and brightness following the rain slider. Sounds are panned by where the shishi-odoshi sits relative to the camera.</p>
+      <h2>What was taken from Clearwater</h2>
+      <table class="t"><thead><tr><th>Clearwater section</th><th>Use here</th></tr></thead><tbody>
+        <tr><td>GL helpers</td><td>Kept (shader compile, render targets, full-screen triangle). Added depth textures, shader variants via <code>#define</code>, a mesh uploader and dynamic buffers.</td></tr>
+        <tr><td>Ocean spectrum (FFT)</td><td>Kept. Shorter patch, and an amplitude that follows the wind; a sheltered pond is mostly still.</td></tr>
+        <tr><td>Interactive ripples</td><td>Kept the scheme. The grid now covers the pond with a land-and-stone mask, a fixed 120 Hz step and many drops per step.</td></tr>
+        <tr><td>Caustics</td><td>Kept verbatim; the focus depth is set for a 40 cm pond. Used only when the sun breaks through.</td></tr>
+        <tr><td>Pebbles</td><td>Kept, including the embedded texture, for the pond bed near the rim.</td></tr>
+        <tr><td>Main water shader</td><td>Kept the surface intersection, slope filtering, Fresnel, glints, in-scattering and specks. Changed: the reflection comes from the mirror pass and the refraction from the rendered garden. Absorption is set for dark, tannin-stained pond water, and raindrop rings and ground mist were added.</td></tr>
+        <tr><td>Post and lens glare</td><td>Kept (bloom, FFT glare, ACES, vignette, grain). Exposure follows the sky light; depth of field was added.</td></tr>
+        <tr><td>Camera and loop</td><td>Replaced by an orbit camera with viewpoints that stays inside the fence. Kept the adaptive-resolution controller.</td></tr>
+      </tbody></table>
+      <h2>What was written for the garden</h2>
+      <ul>
+        <li><b>Layout:</b> positions come from the reference frames. The pond outline is a Catmull-Rom curve with a cached signed-distance field. The ground is a 5 cm grid of moss over gentle mounds, dished into a steep-sided pond 35–45 cm deep.</li>
+        <li><b>Sky occlusion under overcast light:</b> the yard is rendered once from straight above into a 1024² height field. The moss, ferns, tokusa and grass measure the horizon in eight directions from it, which gives the soft contact darkening you see around stones, posts and the fence foot. The rain uses the same map to stop at the first surface, so no rain falls under the lantern roof or through the pond. Splash crowns are placed on it too.</li>
+        <li><b>Moss:</b> a shader built from four noise scales for cushions, tufts and stems, with relief applied by surface-gradient bump mapping. It covers the ground, caps the rounded stones and fringes the stepping stones.</li>
+        <li><b>Stones:</b> icospheres cut by random planes, blended with smooth-min so river-worn stones stay rounded, and roughened with noise. The pale boulders carry mica specks, lichen crust and speckled moss.</li>
+        <li><b>Bamboo:</b> the fence is nearly 800 individual culms with random diameters and node spacing, backed by a second row so no light shows through, plus posts, four rails per side and rope ties. The shader draws nodes as ridges, a waxy bloom under each node on fresh bamboo, striations, weathering, lichen, a damp foot, and beads of rain on green bamboo seen close.</li>
+        <li><b>Plants:</b> fern fronds are folded ribbons textured with fronds painted in Canvas 2D at load (once- and twice-divided kinds). Tokusa stems are jointed tubes with black sheaths and pale rims. There are grass tufts, a maple in the front corner whose leaves fall into the pond and drift there, and a madake grove beyond the fence.</li>
+        <li><b>Rain:</b> streaks are built in the vertex shader from the vertex ID alone and wrapped in a box that follows the camera. The pond shows rings from both the ripple simulation and a procedural layer. Stone and bamboo get splash crowns, and surfaces darken and turn glossy with wetness, then dry slowly after the rain stops.</li>
+      </ul>
+      <h2>This session's numbers</h2>
+      <table class="t" id="stats"></table>
+      <h2>Limits and assumptions</h2>
+      <ul>
+        <li>The layout, proportions and materials follow the reference frames as closely as could be judged by eye. The garden camera was fitted numerically to landmark positions measured on the reference frame. Sizes that the frames do not show directly were set from typical practice: a 12 cm tube about 1.2 m long, a fence about 2.35 m tall and a lantern about 1.75 m tall.</li>
+        <li>The reference tube appears open at both ends in close-up; this one has the usual closed node at the striking end, since that end is what makes the sound.</li>
+        <li>Fern fronds and leaves are alpha-tested textures on folded ribbons and cards, so they are flatter than real foliage up close. Moss is a surface shader, not geometry.</li>
+        <li>Refraction is screen-space and only adds the bending caused by waves. Reflections come from a single mirror plane. The water inside the tube is simulated but not drawn.</li>
+        <li>The page needs WebGL2 with floating-point render targets. Resolution adapts to hold the frame rate. Sound starts only after you press <i>Turn on sound</i>, as browsers require.</li>
+      </ul>
+      <p class="meta">@@VERSION@@</p>
+    </div>
+    <div class="tabpane" id="tab-garden" hidden>
+      <h2>Elements of the garden</h2>
+      <p>A small enclosed courtyard garden (<i>tsubo-niwa</i> scale) of the kind seen from a veranda: moss, stones, a lantern, a pond, and the knock of the shishi-odoshi, with the fence shutting out the world.</p>
+      <div class="gloss">
+        <div><b><span class="jp">鹿威し</span>Shishi-odoshi</b>“Deer-scarer”. A pivoting bamboo tube that fills, tips and knocks against a stone. Farmers used it to startle animals from their fields; in gardens, the regular knock marks the passing of time in a quiet place.</div>
+        <div><b><span class="jp">筧</span>Kakei</b>The bamboo pipe that brings water. Here it is a tall culm with a thin spout let into its side.</div>
+        <div><b><span class="jp">添水</span>Sōzu</b>Another name for the device, used especially in Kyoto, as at Shisen-dō, where one has knocked since the 17th century.</div>
+        <div><b><span class="jp">竹垣</span>Takegaki</b>The bamboo fence: close-set round culms, pale rails (<i>oshibuchi</i>), posts, and black shuro-palm rope ties.</div>
+        <div><b><span class="jp">石灯籠</span>Ishi-dōrō</b>The stone lantern: base (<i>kiso</i>), column (<i>sao</i>), middle platform (<i>chūdai</i>), fire box (<i>hibukuro</i>), roof (<i>kasa</i>) and jewel (<i>hōju</i>). It lights at dusk, or when you tap it.</div>
+        <div><b><span class="jp">苔</span>Koke</b>Moss. It thrives in the humid shade of Kyoto gardens and is prized for its deep, soft green, never brighter than after rain.</div>
+        <div><b><span class="jp">飛石</span>Tobi-ishi</b>Stepping stones, set a stride apart so the walker's pace slows and the eye moves along the path.</div>
+        <div><b><span class="jp">木賊</span>Tokusa</b>Scouring rush (<i>Equisetum hyemale</i>), whose upright jointed stems are a classic fence-side planting.</div>
+        <div><b><span class="jp">羊歯</span>Shida</b>Ferns, soft against the hard stones and bamboo.</div>
+        <div><b><span class="jp">紅葉</span>Momiji</b>A Japanese maple in the front corner, just out of the garden view. Its leaves fall and drift on the pond.</div>
+        <div><b><span class="jp">池</span>Ike</b>The pond: sunken, stone-rimmed, dark with tannin from fallen leaves, so it works mostly as a mirror.</div>
+        <div><b><span class="jp">雨</span>Ame</b>Rain. The garden is meant to be seen wet: stones darken, moss glows, bamboo shines.</div>
+      </div>
+    </div>
+    <div class="tabpane" id="tab-controls" hidden>
+      <h2>Mouse, touch and keys</h2>
+      <table class="t"><tbody>
+        <tr><td>Drag</td><td>Orbit around the view's centre.</td></tr>
+        <tr><td>Right-drag or Shift-drag</td><td>Pan the centre around the yard.</td></tr>
+        <tr><td>Scroll or pinch</td><td>Zoom. The camera never leaves the fenced yard.</td></tr>
+        <tr><td>Tap the bamboo tube</td><td>Tip it now: it pours whatever it holds and knocks.</td></tr>
+        <tr><td>Tap the pond</td><td>Ripples; floating leaves drift away.</td></tr>
+        <tr><td>Tap the lantern</td><td>Cycle its light: automatic (lit at dusk), on, off.</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>6</kbd></td><td>Viewpoints: garden, shishi-odoshi, spout, water's edge, lantern, overhead.</td></tr>
+        <tr><td><kbd>T</kbd> / <kbd>L</kbd> / <kbd>M</kbd></td><td>Tip it / drop leaves / sound on or off.</td></tr>
+      </tbody></table>
+      <h2>URL options</h2>
+      <p><code>?view=shishi</code> · <code>?rain=0.9</code> · <code>?flow=0.1</code> (litres per second) · <code>?hour=19.5</code> · <code>?wind=0.6</code> · <code>?lantern=on</code> · <code>?q=0.6</code> (fixed resolution scale) · <code>?noglare</code> · <code>?debug</code> (frame rate and the tube's state)</p>
+    </div>
+    <div class="tabpane" id="tab-credits" hidden>
+      <h2>Clearwater</h2>
+      <p>The water is built on <b>Clearwater</b>, “real-time, photoreal shallow water in a single HTML file”, made by Aurélien at Lumaris: <a href="https://github.com/Aureliengmz/clearwater" target="_blank" rel="noopener">https://github.com/Aureliengmz/clearwater</a>. Clearwater's own references are Jerry Tessendorf (<i>Simulating Ocean Water</i>, FFT waves), Evan Wallace (<i>WebGL Water</i>, refracted-grid caustics), Inigo Quilez (texture repetition, used for the pebble tiling) and Marc Olano &amp; Dan Baker (<i>LEAN Mapping</i>, distant highlights).</p>
+      <h3>Clearwater licence</h3>
+      <div class="lic">MIT License
+
+Copyright (c) 2026 Lumaris
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+      <h2>Reference</h2>
+      <p>Scene reference: the video in <a href="https://x.com/mizugame_22/status/2103822799580307674" target="_blank" rel="noopener">https://x.com/mizugame_22/status/2103822799580307674</a> by MizuGame (@mizugame_22). No code, images or audio from it are included here.</p>
+      <h2>This build</h2>
+      <p>The garden generation, the rendering around Clearwater, the shishi-odoshi physics, the rain, the sound synthesis and the interface were written for this page. It reuses parts of an earlier Clearwater garden build from the same workspace (<i>Tsukiyama Garden</i>): the mesh helpers, the stone generator and the compositing approach. Techniques used: surface-gradient bump mapping (Mikkelsen), horizon-based sky occlusion from a height field, a Kasten–Young air mass for sun colour, Henyey–Greenstein in-scattering (as in Clearwater), planar reflections with slope distortion, and modal synthesis for the knock.</p>
+      <p class="meta">@@VERSION@@</p>
+    </div>
+  </div>
+</section>
+<script>
+"use strict";
+const $err = document.getElementById('err');
+function fail(msg){ $err.hidden = false; $err.textContent += (typeof msg === 'string' ? msg : (msg && msg.stack) || String(msg)) + '\n'; const l = document.getElementById('loading'); if (l) l.remove(); }
+window.addEventListener('error', e => fail(e.message + (e.filename ? `\n  @ ${e.filename.split('/').pop()}:${e.lineno}` : '')));
+</script>
+<script id="pebbles-texture" type="text/plain">
+@@PEBBLES@@
+</script>
+<script>
+"use strict";
+function main(){
