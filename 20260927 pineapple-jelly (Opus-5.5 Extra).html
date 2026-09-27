@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pineapple Jelly</title>
+<meta name="description" content="A thick, translucent gummy pineapple ring you can grab, stretch and let go — XPBD soft body, WebGPU and WGSL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ECE3D5;
+    --ink: #2A2017;
+    --ink-2: #5B4B3B;
+    --muted: #8A7964;
+    --rule: rgba(42, 32, 23, 0.13);
+    --card: rgba(252, 248, 241, 0.66);
+    --honey: #C98A1B;
+    --honey-deep: #9A6410;
+    --serif: "Instrument Serif", "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); overflow: hidden; }
+  body { font-family: var(--sans); -webkit-font-smoothing: antialiased; overscroll-behavior: none; }
+  #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; touch-action: none; outline: none; }
+  #gl.grab { cursor: grab; }
+  #gl.grabbing { cursor: grabbing; }
+
+  /* ---------- masthead (left) ---------- */
+  .masthead { position: fixed; left: clamp(22px, 4.6vw, 80px); top: clamp(26px, 8vh, 96px); width: min(36vw, 520px); pointer-events: none; z-index: 2; }
+  .kicker { font: 500 11px/1.4 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
+  .kicker b { font-weight: 600; color: var(--honey-deep); }
+  h1 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(64px, 8.6vw, 148px); line-height: 0.84; letter-spacing: -0.025em; margin: 0; color: var(--ink); }
+  h1 span { display: block; }
+  h1 span + span { padding-left: 0.42em; }
+  .deck { font-family: var(--serif); font-size: clamp(17px, 1.35vw, 21px); line-height: 1.42; color: var(--ink-2); margin: 26px 0 0; max-width: 29ch; }
+  .howto { margin: 22px 0 0; padding: 0; list-style: none; font: 400 12px/1.9 var(--sans); color: var(--muted); letter-spacing: 0.01em; }
+  .howto li::before { content: "—"; margin-right: 8px; color: var(--rule); color: rgba(42, 32, 23, 0.25); }
+  .howto kbd { font: 500 10.5px var(--sans); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; color: var(--ink-2); }
+
+  /* ---------- colophon (bottom left) ---------- */
+  .colophon { position: fixed; left: clamp(22px, 4.6vw, 80px); bottom: clamp(18px, 4vh, 40px); z-index: 2; font: 400 11.5px/1.5 var(--sans); color: var(--muted); display: flex; gap: 18px; align-items: baseline; }
+  .colophon em { font-family: var(--serif); font-size: 15px; color: var(--ink-2); }
+  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; cursor: pointer; }
+  .linkish:hover { text-decoration-color: var(--honey); color: var(--ink); }
+
+  /* ---------- the specimen panel (right) ---------- */
+  .panel { position: fixed; right: clamp(16px, 3.2vw, 56px); top: 50%; transform: translateY(-50%); width: 272px; z-index: 3;
+    background: var(--card); -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1);
+    border: 1px solid rgba(42, 32, 23, 0.09); border-radius: 16px; padding: 18px 18px 16px; box-shadow: 0 20px 60px -30px rgba(80, 55, 20, 0.35); }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin-bottom: 14px; }
+  .panel h2 { margin: 0; font: 600 10.5px/1 var(--sans); letter-spacing: 0.26em; color: var(--ink); }
+  .panel .no { font: italic 400 14px/1 var(--serif); color: var(--muted); }
+  .panel .toggle-sheet { display: none; }
+  .group { margin-bottom: 14px; }
+  .label { display: flex; justify-content: space-between; font: 500 10px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .label output { font: 500 11px/1 var(--sans); letter-spacing: 0; text-transform: none; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .tints { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .tint { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 4px 7px; border-radius: 10px; border: 1px solid transparent; background: none; cursor: pointer; font: 500 11.5px/1 var(--sans); color: var(--ink-2); transition: background .2s, border-color .2s; }
+  .tint:hover { background: rgba(255, 255, 255, 0.5); }
+  .tint[aria-pressed="true"] { border-color: rgba(42, 32, 23, 0.22); background: rgba(255, 255, 255, 0.62); color: var(--ink); }
+  .chip { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.12), inset 0 3px 5px rgba(255, 255, 255, 0.55), 0 1px 2px rgba(60, 40, 10, 0.2); }
+  .chip.golden { background: radial-gradient(circle at 35% 30%, #FFE9A6, #F2BC3B 55%, #CF8E12); }
+  .chip.amber { background: radial-gradient(circle at 35% 30%, #FFD28F, #DB8A2A 55%, #A85A10); }
+  .chip.rose { background: radial-gradient(circle at 35% 30%, #FFE0E0, #EDA2A6 55%, #C96A73); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; cursor: pointer; }
+  input[type=range]::-webkit-slider-runnable-track { height: 2px; background: linear-gradient(to right, var(--honey) var(--p, 50%), rgba(42, 32, 23, 0.16) var(--p, 50%)); border-radius: 2px; }
+  input[type=range]::-moz-range-track { height: 2px; background: rgba(42, 32, 23, 0.16); border-radius: 2px; }
+  input[type=range]::-moz-range-progress { height: 2px; background: var(--honey); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -7px; border-radius: 50%; background: #FFF9EE; border: 1px solid rgba(42, 32, 23, 0.35); box-shadow: 0 1px 3px rgba(60, 40, 10, 0.25); }
+  input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #FFF9EE; border: 1px solid rgba(42, 32, 23, 0.35); }
+  input[type=range]:focus-visible { outline: 2px solid var(--honey); outline-offset: 2px; border-radius: 4px; }
+  .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 16px 0 12px; }
+  .btn { font: 500 12px/1 var(--sans); color: var(--ink); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(42, 32, 23, 0.16); border-radius: 999px; padding: 10px 8px; cursor: pointer; transition: background .15s, border-color .15s, transform .1s; white-space: nowrap; }
+  .btn:hover { background: rgba(255, 255, 255, 0.85); border-color: rgba(42, 32, 23, 0.3); }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { grid-column: 1 / -1; background: var(--ink); color: #FBF4E7; border-color: var(--ink); }
+  .btn.primary:hover { background: #3C2E21; }
+  .btn[aria-pressed="true"] { background: var(--honey); border-color: var(--honey-deep); color: #FFF8EA; }
+  .btn:focus-visible, .tint:focus-visible, .linkish:focus-visible, .switch input:focus-visible + i { outline: 2px solid var(--honey); outline-offset: 2px; }
+  .switches { display: flex; justify-content: space-between; gap: 10px; padding: 10px 0 12px; border-top: 1px solid var(--rule); }
+  .switch { display: flex; align-items: center; gap: 8px; font: 500 12px/1 var(--sans); color: var(--ink-2); cursor: pointer; user-select: none; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch i { position: relative; width: 30px; height: 17px; border-radius: 999px; background: rgba(42, 32, 23, 0.18); transition: background .2s; flex: none; }
+  .switch i::after { content: ""; position: absolute; left: 2px; top: 2px; width: 13px; height: 13px; border-radius: 50%; background: #FFFBF3; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); transition: transform .2s; }
+  .switch input:checked + i { background: var(--honey); }
+  .switch input:checked + i::after { transform: translateX(13px); }
+  .readouts { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 8px; border-top: 1px solid var(--rule); padding-top: 12px; margin: 0; }
+  .readouts div { min-width: 0; }
+  .readouts dt { font: 500 9px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .readouts dd { margin: 0; font: 400 19px/1 var(--serif); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .readouts dd small { font: 500 10px var(--sans); color: var(--muted); margin-left: 2px; }
+  .panel.disabled .group, .panel.disabled .buttons, .panel.disabled .switches { opacity: 0.4; pointer-events: none; }
+
+  /* ---------- states ---------- */
+  #status { position: fixed; left: 50%; bottom: clamp(18px, 4vh, 40px); transform: translateX(-50%); z-index: 2; font: italic 400 16px var(--serif); color: var(--muted); transition: opacity .6s; pointer-events: none; }
+  #status.gone { opacity: 0; }
+  #fallback { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(440px, calc(100vw - 40px)); z-index: 4; background: rgba(252, 248, 241, 0.92); border: 1px solid var(--rule); border-radius: 18px; padding: 26px 28px; box-shadow: 0 30px 80px -40px rgba(80, 55, 20, 0.45); }
+  #fallback[hidden] { display: none; }
+  #fallback h3 { margin: 0 0 10px; font: italic 400 30px/1.05 var(--serif); }
+  #fallback p { margin: 0 0 10px; font: 400 14px/1.55 var(--sans); color: var(--ink-2); }
+  #fallback code { font-size: 12px; background: rgba(42, 32, 23, 0.06); padding: 1px 5px; border-radius: 4px; }
+  #fallback .why { font-size: 12px; color: var(--muted); }
+
+  /* ---------- notes drawer ---------- */
+  #notes { position: fixed; inset: 0; z-index: 6; display: grid; place-items: center; background: rgba(236, 227, 213, 0.72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  #notes[hidden] { display: none; }
+  #notes article { width: min(760px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); overflow: auto; background: #FBF7F0; border: 1px solid var(--rule); border-radius: 18px; padding: 30px 34px; box-shadow: 0 40px 100px -50px rgba(60, 40, 10, 0.5); }
+  #notes h3 { font: italic 400 34px/1 var(--serif); margin: 0 0 6px; }
+  #notes h4 { font: 600 10.5px/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
+  #notes p, #notes li { font: 400 14px/1.6 var(--sans); color: var(--ink-2); }
+  #notes ul { padding-left: 18px; margin: 0; }
+  #notes pre { white-space: pre-wrap; font: 400 12px/1.55 ui-monospace, "SF Mono", Consolas, monospace; color: var(--ink-2); background: rgba(42, 32, 23, 0.04); border-radius: 10px; padding: 14px 16px; margin: 0; }
+  #notes .close { float: right; }
+
+  /* ---------- small screens: heading on top, panel becomes a bottom sheet ---------- */
+  @media (max-width: 820px) {
+    .masthead { top: max(18px, env(safe-area-inset-top)); left: 20px; width: calc(100vw - 40px); }
+    .kicker { margin-bottom: 10px; font-size: 10px; }
+    h1 { font-size: clamp(48px, 13vw, 76px); }
+    h1 span { display: inline; }
+    h1 span + span { padding-left: 0; }
+    .deck { font-size: 15px; margin-top: 10px; max-width: 34ch; }
+    .howto, .colophon .fig { display: none; }
+    .colophon { top: max(22px, env(safe-area-inset-top)); bottom: auto; left: auto; right: 20px; }
+    .panel { top: auto; bottom: 0; right: 0; left: 0; width: auto; transform: none; border-radius: 18px 18px 0 0; padding: 12px 18px calc(12px + env(safe-area-inset-bottom)); max-height: 72dvh; overflow: auto; }
+    .panel-head { margin-bottom: 10px; padding-bottom: 8px; }
+    .panel .toggle-sheet { display: inline-block; }
+    .panel.collapsed .group, .panel.collapsed .switches { display: none; }
+    .panel.collapsed .buttons { margin: 4px 0 10px; grid-template-columns: repeat(4, 1fr); }
+    .panel.collapsed .btn.primary { grid-column: auto; }
+    .panel.collapsed .btn { font-size: 11px; padding: 9px 4px; }
+    .readouts dd { font-size: 17px; }
+    #status { bottom: auto; top: 46%; }
+  }
+  @media (max-width: 820px) and (max-height: 560px) { .deck { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .btn, .tint, .switch i, .switch i::after { transition: none; } }
+</style>
+</head>
+<body>
+<canvas id="gl" tabindex="0" aria-label="Interactive 3D gummy pineapple ring. Drag the jelly to stretch it; drag elsewhere to orbit."></canvas>
+
+<header class="masthead">
+  <p class="kicker"><b>Plate VII</b> &nbsp;·&nbsp; Studies in Confectionery</p>
+  <h1><span>Pineapple</span> <span>Jelly</span></h1>
+  <p class="deck">A thick, golden gummy cast as a slice of pineapple. Pinch its rim or the inner edge, pull it about, and let it go.</p>
+  <ul class="howto">
+    <li>Drag the jelly to stretch it</li>
+    <li>Drag the air to turn the view, scroll to zoom</li>
+    <li><kbd>N</kbd> nudge &nbsp;<kbd>F</kbd> turn over &nbsp;<kbd>R</kbd> reset &nbsp;<kbd>Space</kbd> pause</li>
+  </ul>
+</header>
+
+<aside class="panel" id="panel" aria-label="The specimen controls">
+  <div class="panel-head">
+    <h2>THE SPECIMEN</h2>
+    <span class="no">No. 07</span>
+    <button class="linkish toggle-sheet" id="sheetToggle" aria-expanded="true">Hide</button>
+  </div>
+  <div class="group">
+    <div class="label"><span>Tint</span></div>
+    <div class="tints" role="group" aria-label="Colour preset">
+      <button class="tint" data-tint="golden" aria-pressed="true"><span class="chip golden"></span>Golden</button>
+      <button class="tint" data-tint="amber" aria-pressed="false"><span class="chip amber"></span>Amber</button>
+      <button class="tint" data-tint="rose" aria-pressed="false"><span class="chip rose"></span>Rosé</button>
+    </div>
+  </div>
+  <div class="group">
+    <label class="label" for="firm"><span>Firmness</span><output id="firmOut">55</output></label>
+    <input type="range" id="firm" min="0" max="100" value="55">
+  </div>
+  <div class="group">
+    <label class="label" for="damp"><span>Internal damping</span><output id="dampOut">45</output></label>
+    <input type="range" id="damp" min="0" max="100" value="45">
+  </div>
+  <div class="buttons">
+    <button class="btn primary" id="bNudge">Give it a nudge</button>
+    <button class="btn" id="bReset">Reset</button>
+    <button class="btn" id="bFlip">Turn it over</button>
+    <button class="btn" id="bPause" aria-pressed="false">Pause</button>
+  </div>
+  <div class="switches">
+    <label class="switch"><input type="checkbox" id="tSlow"><i></i>¼ speed</label>
+    <label class="switch"><input type="checkbox" id="tMesh"><i></i>Show mesh</label>
+  </div>
+  <dl class="readouts" aria-live="off">
+    <div><dt>Mass</dt><dd id="rMass">—</dd></div>
+    <div><dt>Volume</dt><dd id="rVol">—</dd></div>
+    <div><dt>Kinetic</dt><dd id="rKE">—</dd></div>
+  </dl>
+</aside>
+
+<footer class="colophon">
+  <span class="fig"><em>Fig. 1</em> &nbsp;Ananas comosus, in gelatin &amp; cane sugar — shown at twice life size.</span>
+  <button class="linkish" id="bNotes">Notes</button>
+</footer>
+
+<div id="status">Setting the jelly…</div>
+
+<div id="fallback" hidden role="alert">
+  <h3>This specimen needs WebGPU</h3>
+  <p>Pineapple Jelly renders with WebGPU and WGSL shaders, and this browser or device can't provide them right now.</p>
+  <p>Try a current version of Chrome or Edge (113+) on desktop or Android, or Safari 26 on macOS / iOS. On Linux and some older GPUs WebGPU may still be behind a flag such as <code>chrome://flags/#enable-unsafe-webgpu</code>.</p>
+  <p class="why" id="fallbackWhy"></p>
+</div>
+
+<div id="notes" hidden>
+  <article role="dialog" aria-modal="true" aria-labelledby="notesTitle">
+    <button class="linkish close" id="bNotesClose">Close</button>
+    <h3 id="notesTitle">Notes on the specimen</h3>
+    <h4>How it works</h4>
+    <ul>
+      <li><b>Soft body.</b> A cylindrical lattice (40 × 4 × 3 = 480 nodes) is split into 1,440 tetrahedra with 2,320 elastic edges. Each frame runs small-step XPBD (about 840 substeps per simulated second, one constraint pass each): strain-stiffening edge constraints, signed tet-volume constraints, a soft Gaussian "pinch" for the cursor, node-sphere self-contact that keeps the hole open, and ground contact with friction. Damping removes only motion that deviates from the best-fit rigid motion, so wobbles die out while falls and tumbles do not.</li>
+      <li><b>Visual surface.</b> A separate, much denser ring (360 × 104 vertices, ~75k triangles) with scalloped outer edge and rounded section is embedded in the lattice with a periodic cubic B-spline (around) × cubic/quadratic Bézier (across). A WGSL compute shader re-evaluates the embedding every frame and also outputs the local deformation gradient F.</li>
+      <li><b>Flesh.</b> The jelly fragment shader refracts into the body and ray-marches it in material (rest) space through F⁻¹, so fibres, juice cells and bubbles stretch and bend with the flesh. Absorption follows Beer–Lambert along the real, deformed path — thinner, stretched regions let more light through. In-scattering uses a key-light thickness map, rays that meet the far side of the ring are followed through it, and total internal reflection bounces once.</li>
+      <li><b>Light.</b> Everything is analytic: a warm studio sweep, soft rectangular softboxes that only appear in reflections, Fresnel, a restrained GGX highlight and Khronos PBR Neutral tone mapping — no bloom. The contact shadow is coloured by the light that passes through the jelly and hardens where it touches the floor.</li>
+    </ul>
+    <h4>Original brief</h4>
+    <pre id="promptText"></pre>
+  </article>
+</div>
+<script type="text/plain" id="brief">Create an interactive 3D scene called “Pineapple Jelly” - a thick, translucent gummy pineapple ring that users can grab, stretch, bend, and release. Everything must run directly in the browser in one standalone HTML file using genuine WebGPU and WGSL shaders.
+The main priorities are convincing soft-body behavior, beautiful light refraction, and satisfying interaction.
+
+MODEL
+* A round pineapple slice with a genuine hole through its center.
+* Thick, juicy flesh, a slightly scalloped outer edge, and softly rounded corners.
+* Both cut faces must be equally detailed. The ring can be flipped and viewed from every angle.
+* Golden translucent flesh with delicate radial fibers, small bubbles, and elongated pale juice cells embedded inside.
+* No skin, leaves, or seeds. It should look like a pineapple ring made of gummy candy, not a doughnut.
+
+MATERIAL AND LIGHTING
+* Rich honey-yellow coloring, wet gloss, and soft subsurface-style light scattering.
+* Refraction, thickness-dependent transparency, controlled highlights, and Fresnel reflections around the edges.
+* Stretched, thinner areas should transmit more light.
+* A warm, light background, soft studio lighting, and a grounded contact shadow.
+* Avoid blown-out highlights, excessive bloom, and a hard-glass appearance.
+
+PHYSICS
+* Use a volumetric soft-body mesh with elastic connections and volume constraints, such as XPBD.
+* Allow users to grab either the outer or inner edge and pull it in any direction.
+* Deformation should spread naturally through neighboring regions: the hole stretches, the flesh bends, and the opposite side responds with a slight delay.
+* After release, the ring should spring back softly, wobble a few times, and gradually settle.
+* No instant snapping, endless oscillation, torn geometry, or collapsing central hole.
+* Implement gravity and ground collisions. The ring should squash slightly on impact and recover its shape.
+* Internal fibers, bubbles, and juice cells must deform with the flesh instead of remaining stationary.
+* Clicking through the empty center must not grab the object.
+
+INTERFACE
+* A minimal editorial layout with generous whitespace.
+* A large italic serif heading on the left: “Pineapple Jelly.”
+* A compact “THE SPECIMEN” control panel on the right.
+* Three color presets: Golden, Amber, and Rosé. Change the tint while preserving the material properties.
+* Sliders for Firmness and Internal damping.
+* Buttons: Give it a nudge, Reset, Turn it over, and Pause.
+* Toggles: ¼ speed and Show mesh.
+* Small live readouts for mass, volume relative to rest volume, and kinetic energy.
+* All interface text in English.
+* Support both mouse and touch interaction.
+
+TECHNICAL REQUIREMENTS
+* Use actual 3D geometry and WebGPU rendering, not a video or a Canvas 2D imitation.
+* Generate all geometry and materials in code, without external models or image assets.
+* Separate the simulation mesh from the smoother visual surface to maintain good performance.
+* Display a clear fallback message when WebGPU is unavailable.
+* Test strong stretching, inner-edge grabbing, flipping, resetting, and mobile interaction.
+
+Save the finished result as pineapple-jelly-webgpu.html. Deliver the complete working file, not a mockup or implementation plan.
+The final experience should feel like a soft, stretchy, appetizing gummy toy that is genuinely fun to squish.
+</script>
+<script type="module">
+"use strict";
+/* =====================================================================
+   1 · SHAPE + SOFT-BODY SIMULATION (XPBD, CPU)
+   The ring lives in "material space": centred on the origin, axis = +Y,
+   y ∈ [-H, H]. The simulation lattice is a cylindrical hex grid
+   (θ × radius × height) split into tetrahedra. Elastic edge constraints
+   plus signed tet-volume constraints are solved with small-step XPBD.
+   ===================================================================== */
+const RING = {
+  rIn: 0.30,          // hole radius
+  rOut: 1.0,          // mean outer radius
+  halfH: 0.20,        // half thickness
+  corner: 0.115,      // rounding radius of the four cross-section corners
+  scallops: 18,       // lobes on the outer edge
+  scAmp: 0.016,       // lobe depth
+};
+// Outer edge: soft scallops (rounded lobes meeting in shallow notches) and a
+// faint low-frequency irregularity so it reads as a real slice, not a lathe part.
+function ringOuterR(phi) {
+  const s = Math.abs(Math.sin(RING.scallops * phi * 0.5));
+  const e = 0.035;
+  const lobe = (Math.sqrt(s * s + e) - Math.sqrt(e)) / (Math.sqrt(1 + e) - Math.sqrt(e));
+  return RING.rOut + RING.scAmp * (lobe - 0.62) + 0.007 * Math.sin(3 * phi + 0.7) + 0.005 * Math.sin(5 * phi + 2.1);
+}
+function ringInnerR(phi) {
+  return RING.rIn + 0.006 * Math.sin(2 * phi + 0.3) + 0.004 * Math.sin(5 * phi + 1.3);
+}
+const SIM_R_IN = RING.rIn - 0.012;   // lattice encloses the visual surface
+const SIM_R_OUT = 1.028;
+const LAT = { NT: 40, NR: 4, NY: 3 }; // θ segments, radial node rings, height levels
+// lattice rest positions, node id = (i·NR + j)·NY + k
+const SIM_REST = (() => {
+  const { NT, NR, NY } = LAT, a = new Float64Array(NT * NR * NY * 3);
+  for (let i = 0; i < NT; i++) {
+    const phi = i / NT * Math.PI * 2;
+    for (let j = 0; j < NR; j++) {
+      const r = SIM_R_IN + (SIM_R_OUT - SIM_R_IN) * j / (NR - 1);
+      for (let k = 0; k < NY; k++) {
+        const id = ((i * NR + j) * NY + k) * 3;
+        a[id] = r * Math.cos(phi); a[id + 1] = -RING.halfH + 2 * RING.halfH * k / (NY - 1); a[id + 2] = r * Math.sin(phi);
+      }
+    }
+  }
+  return a;
+})();
+
+// ---- smooth embedding basis: periodic cubic B-spline in θ, cubic Bézier radially,
+//      quadratic Bézier vertically. Partition of unity, C2 in θ, polynomial in s,w.
+function latticeBasis(u, s, w, out) {
+  const NT = LAT.NT;
+  const fi = Math.floor(u), t = u - fi;
+  const t2 = t * t, t3 = t2 * t, it = 1 - t;
+  const bt = [it * it * it / 6, (3 * t3 - 6 * t2 + 4) / 6, (-3 * t3 + 3 * t2 + 3 * t + 1) / 6, t3 / 6];
+  const dbt = [-0.5 * it * it, 1.5 * t2 - 2 * t, -1.5 * t2 + t + 0.5, 0.5 * t2];
+  const is = 1 - s;
+  const bs = [is * is * is, 3 * s * is * is, 3 * s * s * is, s * s * s];
+  const dbs = [-3 * is * is, 3 * is * is - 6 * s * is, 6 * s * is - 3 * s * s, 3 * s * s];
+  const iw = 1 - w;
+  const bw = [iw * iw, 2 * w * iw, w * w];
+  const dbw = [-2 * iw, 2 - 4 * w, 2 * w];
+  let n = 0;
+  for (let a = 0; a < 4; a++) {
+    const ii = (((fi - 1 + a) % NT) + NT) % NT;
+    for (let j = 0; j < 4; j++) for (let k = 0; k < 3; k++) {
+      out.idx[n] = (ii * LAT.NR + j) * LAT.NY + k;
+      out.w[n] = bt[a] * bs[j] * bw[k];
+      out.du[n] = dbt[a] * bs[j] * bw[k];
+      out.ds[n] = bt[a] * dbs[j] * bw[k];
+      out.dw[n] = bt[a] * bs[j] * dbw[k];
+      n++;
+    }
+  }
+  return out;
+}
+function makeBasisScratch() {
+  return { idx: new Int32Array(48), w: new Float64Array(48), du: new Float64Array(48), ds: new Float64Array(48), dw: new Float64Array(48) };
+}
+// material point → lattice parameters
+function latticeParams(X, Y, Z) {
+  let phi = Math.atan2(Z, X); if (phi < 0) phi += Math.PI * 2;
+  const r = Math.hypot(X, Z);
+  return [phi / (Math.PI * 2) * LAT.NT, (r - SIM_R_IN) / (SIM_R_OUT - SIM_R_IN), (Y + RING.halfH) / (2 * RING.halfH)];
+}
+function inv3(m) { // m: column-major 9 → inverse (column-major)
+  const a = m[0], b = m[3], c = m[6], d = m[1], e = m[4], f = m[7], g = m[2], h = m[5], i = m[8];
+  const A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g;
+  const det = a * A + b * B + c * C;
+  const id = 1 / det;
+  return [A * id, B * id, C * id,
+    -(b * i - c * h) * id, (a * i - c * g) * id, -(a * h - b * g) * id,
+    (b * f - c * e) * id, -(a * f - c * d) * id, (a * e - b * d) * id];
+}
+
+class JellySim {
+  constructor() {
+    const { NT, NR, NY } = LAT;
+    const n = NT * NR * NY;
+    this.n = n;
+    this.rest = new Float64Array(n * 3);
+    this.x = new Float64Array(n * 3);
+    this.prev = new Float64Array(n * 3);
+    this.v = new Float64Array(n * 3);
+    this.mass = new Float64Array(n);
+    this.invMass = new Float64Array(n);
+    this.rest.set(SIM_REST);
+    // ---- tetrahedra: Freudenthal split of every hex cell (6 tets, consistent diagonals)
+    const node = (i, j, k) => (((i % NT) + NT) % NT * NR + j) * NY + k;
+    const perms = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+    const tets = [];
+    for (let i = 0; i < NT; i++) for (let j = 0; j < NR - 1; j++) for (let k = 0; k < NY - 1; k++) {
+      for (const p of perms) {
+        const c = [0, 0, 0]; const ids = [node(i, j, k)];
+        for (let q = 0; q < 2; q++) { c[p[q]] = 1; ids.push(node(i + c[0], j + c[1], k + c[2])); }
+        ids.push(node(i + 1, j + 1, k + 1));
+        tets.push(ids);
+      }
+    }
+    this.nTets = tets.length;
+    this.tets = new Int32Array(this.nTets * 4);
+    this.restVol = new Float64Array(this.nTets);
+    let volSum = 0;
+    tets.forEach((t, ti) => {
+      let v = this.tetVolume(this.rest, t[0], t[1], t[2], t[3]);
+      if (v < 0) { [t[2], t[3]] = [t[3], t[2]]; v = -v; }
+      this.tets.set(t, ti * 4);
+      this.restVol[ti] = v; volSum += v;
+      for (const id of t) this.mass[id] += v / 4;
+    });
+    this.restVolume = volSum;
+    this.totalMass = 0;
+    for (let i = 0; i < n; i++) { this.invMass[i] = 1 / this.mass[i]; this.totalMass += this.mass[i]; }
+    // ---- unique edges ("elastic connections")
+    const eset = new Map();
+    for (const t of tets) for (let a = 0; a < 4; a++) for (let b = a + 1; b < 4; b++) {
+      const i0 = Math.min(t[a], t[b]), i1 = Math.max(t[a], t[b]);
+      eset.set(i0 * 100000 + i1, [i0, i1]);
+    }
+    const edges = [...eset.values()];
+    this.nEdges = edges.length;
+    this.edges = new Int32Array(this.nEdges * 2);
+    this.edgeLen = new Float64Array(this.nEdges);
+    edges.forEach((e, ei) => {
+      this.edges[ei * 2] = e[0]; this.edges[ei * 2 + 1] = e[1];
+      this.edgeLen[ei] = Math.hypot(this.rest[e[0] * 3] - this.rest[e[1] * 3], this.rest[e[0] * 3 + 1] - this.rest[e[1] * 3 + 1], this.rest[e[0] * 3 + 2] - this.rest[e[1] * 3 + 2]);
+    });
+    // ---- self-contact: node spheres that ignore their near neighbours
+    this.contactR = 0.135;
+    this.subIndex = 0;
+    this.volGrad = new Float64Array(12);
+    this.hashSize = 4099;
+    this.hashStart = new Int32Array(this.hashSize + 1);
+    this.hashEntries = new Int32Array(n);
+    this.cellOf = new Int32Array(n);
+    // ---- parameters (set from the UI)
+    this.gravity = 22;
+    this.substeps = 14;
+    this.substepRate = 840;   // substeps per simulated second
+    this.edgeCompliance = 6.6e-3;
+    this.volCompliance = 1e-6;   // tiny but non-zero: a perfectly hard volume constraint injects energy
+    this.damping = 2.4;       // 1/s, acts on deformation only (rigid motion is untouched)
+    this.friction = { s: 0.55, k: 0.35 };
+    this.stage = 3.3;         // invisible stage wall radius
+    this.stiffening = 6;      // strain-hardening factor for large stretches
+    this.pinchRadius = 0.13;  // size of the region the cursor holds
+    // grab
+    this.grab = null;
+    this.reset(0.55, 0.0);
+  }
+  tetVolume(p, a, b, c, d) {
+    const ax = p[b * 3] - p[a * 3], ay = p[b * 3 + 1] - p[a * 3 + 1], az = p[b * 3 + 2] - p[a * 3 + 2];
+    const bx = p[c * 3] - p[a * 3], by = p[c * 3 + 1] - p[a * 3 + 1], bz = p[c * 3 + 2] - p[a * 3 + 2];
+    const cx = p[d * 3] - p[a * 3], cy = p[d * 3 + 1] - p[a * 3 + 1], cz = p[d * 3 + 2] - p[a * 3 + 2];
+    return ((ay * bz - az * by) * cx + (az * bx - ax * bz) * cy + (ax * by - ay * bx) * cz) / 6;
+  }
+  /** Place the ring at rest, lifted `drop` above the floor, tilted by `tilt` radians about X. */
+  reset(drop = 0.5, tilt = 0.0, flip = false) {
+    const c = Math.cos(tilt), s = Math.sin(tilt);
+    for (let i = 0; i < this.n; i++) {
+      let X = this.rest[i * 3], Y = this.rest[i * 3 + 1], Z = this.rest[i * 3 + 2];
+      if (flip) { Y = -Y; Z = -Z; }
+      const y = Y * c - Z * s, z = Y * s + Z * c;
+      this.x[i * 3] = X; this.x[i * 3 + 1] = y + RING.halfH + drop + Math.abs(s) * 1.0; this.x[i * 3 + 2] = z;
+    }
+    this.prev.set(this.x); this.v.fill(0);
+    this.grab = null;
+  }
+  // ------------------------------------------------------------------
+  // Small-step XPBD: a fixed substep length (≈1/840 s) whatever the frame rate or
+  // playback speed, one constraint pass per substep.
+  step(dt) {
+    const S = Math.max(1, Math.ceil(dt * this.substepRate - 1e-6)), h = dt / S;
+    this.substeps = S;
+    for (let s = 0; s < S; s++) {
+      this.selfContactDue = (this.subIndex++ % 7) === 0;
+      this.substep(h);
+    }
+  }
+  substep(h) {
+    const n = this.n, x = this.x, v = this.v, prev = this.prev, im = this.invMass;
+    const g = this.gravity;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3;
+      v[i3 + 1] -= g * h;
+      prev[i3] = x[i3]; prev[i3 + 1] = x[i3 + 1]; prev[i3 + 2] = x[i3 + 2];
+      x[i3] += v[i3] * h; x[i3 + 1] += v[i3 + 1] * h; x[i3 + 2] += v[i3 + 2] * h;
+    }
+    this.solveEdges(h);
+    this.solveVolumes(h);
+    if (this.grab) this.solveGrab(h);
+    if (this.selfContactDue) this.solveSelfContact();   // every 7th substep
+    this.solveGround();
+    const ih = 1 / h, vmax = 26;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3;
+      let vx = (x[i3] - prev[i3]) * ih, vy = (x[i3 + 1] - prev[i3 + 1]) * ih, vz = (x[i3 + 2] - prev[i3 + 2]) * ih;
+      const sp = vx * vx + vy * vy + vz * vz;
+      if (sp > vmax * vmax) { const k = vmax / Math.sqrt(sp); vx *= k; vy *= k; vz *= k; }
+      v[i3] = vx; v[i3 + 1] = vy; v[i3 + 2] = vz;
+    }
+    this.dampDeformation(h);
+  }
+  solveEdges(h) {
+    const x = this.x, im = this.invMass, E = this.edges, L = this.edgeLen;
+    const alpha = this.edgeCompliance / (h * h);
+    for (let e = 0, ne = this.nEdges; e < ne; e++) {
+      const a = E[e * 2], b = E[e * 2 + 1];
+      const wa = im[a], wb = im[b], w = wa + wb;
+      const a3 = a * 3, b3 = b * 3;
+      const dx = x[a3] - x[b3], dy = x[a3 + 1] - x[b3 + 1], dz = x[a3 + 2] - x[b3 + 2];
+      const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (len < 1e-9) continue;
+      // compliance scaled by rest length so short and long edges share one material stiffness;
+      // strain-stiffening (like gelatin/rubber) keeps a hard pull from drawing out a spike
+      const strain = len / L[e] - 1;
+      const al = alpha / (L[e] * (1 + this.stiffening * strain * strain));
+      const dl = -(len - L[e]) / (w + al) / len;
+      x[a3] += wa * dl * dx; x[a3 + 1] += wa * dl * dy; x[a3 + 2] += wa * dl * dz;
+      x[b3] -= wb * dl * dx; x[b3 + 1] -= wb * dl * dy; x[b3 + 2] -= wb * dl * dz;
+    }
+  }
+  solveVolumes(h) {
+    const x = this.x, im = this.invMass, T = this.tets, RV = this.restVol;
+    const alpha = this.volCompliance / (h * h);
+    const g = this.volGrad;
+    for (let t = 0, nt = this.nTets; t < nt; t++) {
+      const i0 = T[t * 4], i1 = T[t * 4 + 1], i2 = T[t * 4 + 2], i3 = T[t * 4 + 3];
+      const p0 = i0 * 3, p1 = i1 * 3, p2 = i2 * 3, p3 = i3 * 3;
+      const x0 = x[p0], y0 = x[p0 + 1], z0 = x[p0 + 2];
+      const x1 = x[p1], y1 = x[p1 + 1], z1 = x[p1 + 2];
+      const x2 = x[p2], y2 = x[p2 + 1], z2 = x[p2 + 2];
+      const x3 = x[p3], y3 = x[p3 + 1], z3 = x[p3 + 2];
+      // gradients (Müller): ∇_j V = (1/6) (x_b - x_a) × (x_c - x_a) for the ordered face opposite j
+      // j=0: [1,3,2]  j=1: [0,2,3]  j=2: [0,3,1]  j=3: [0,1,2]
+      let ax, ay, az, bx, by, bz;
+      ax = x3 - x1; ay = y3 - y1; az = z3 - z1; bx = x2 - x1; by = y2 - y1; bz = z2 - z1;
+      g[0] = (ay * bz - az * by) / 6; g[1] = (az * bx - ax * bz) / 6; g[2] = (ax * by - ay * bx) / 6;
+      ax = x2 - x0; ay = y2 - y0; az = z2 - z0; bx = x3 - x0; by = y3 - y0; bz = z3 - z0;
+      g[3] = (ay * bz - az * by) / 6; g[4] = (az * bx - ax * bz) / 6; g[5] = (ax * by - ay * bx) / 6;
+      ax = x3 - x0; ay = y3 - y0; az = z3 - z0; bx = x1 - x0; by = y1 - y0; bz = z1 - z0;
+      g[6] = (ay * bz - az * by) / 6; g[7] = (az * bx - ax * bz) / 6; g[8] = (ax * by - ay * bx) / 6;
+      ax = x1 - x0; ay = y1 - y0; az = z1 - z0; bx = x2 - x0; by = y2 - y0; bz = z2 - z0;
+      g[9] = (ay * bz - az * by) / 6; g[10] = (az * bx - ax * bz) / 6; g[11] = (ax * by - ay * bx) / 6;
+      const vol = g[9] * (x3 - x0) + g[10] * (y3 - y0) + g[11] * (z3 - z0);
+      const w0 = im[i0], w1 = im[i1], w2 = im[i2], w3 = im[i3];
+      const wsum = w0 * (g[0] * g[0] + g[1] * g[1] + g[2] * g[2]) + w1 * (g[3] * g[3] + g[4] * g[4] + g[5] * g[5])
+        + w2 * (g[6] * g[6] + g[7] * g[7] + g[8] * g[8]) + w3 * (g[9] * g[9] + g[10] * g[10] + g[11] * g[11]);
+      if (wsum < 1e-14) continue;
+      const dl = -(vol - RV[t]) / (wsum + alpha);
+      x[p0] += dl * w0 * g[0]; x[p0 + 1] += dl * w0 * g[1]; x[p0 + 2] += dl * w0 * g[2];
+      x[p1] += dl * w1 * g[3]; x[p1 + 1] += dl * w1 * g[4]; x[p1 + 2] += dl * w1 * g[5];
+      x[p2] += dl * w2 * g[6]; x[p2 + 1] += dl * w2 * g[7]; x[p2 + 2] += dl * w2 * g[8];
+      x[p3] += dl * w3 * g[9]; x[p3 + 1] += dl * w3 * g[10]; x[p3 + 2] += dl * w3 * g[11];
+    }
+  }
+  // ---- grabbing: a soft XPBD attachment between an embedded material point and the cursor
+  // The cursor holds a soft "pinch": lattice nodes weighted by a Gaussian around the
+  // grabbed material point, so the pull spreads through a chunk of flesh.
+  beginGrab(u, s, w, target) {
+    const phi = u / LAT.NT * Math.PI * 2, r = SIM_R_IN + s * (SIM_R_OUT - SIM_R_IN), y = -RING.halfH + w * 2 * RING.halfH;
+    const mx = r * Math.cos(phi), my = y, mz = r * Math.sin(phi);
+    const idx = [], wt = [];
+    let sum = 0;
+    const sig2 = 2 * this.pinchRadius * this.pinchRadius;
+    for (let i = 0; i < this.n; i++) {
+      const d2 = (this.rest[i * 3] - mx) ** 2 + (this.rest[i * 3 + 1] - my) ** 2 + (this.rest[i * 3 + 2] - mz) ** 2;
+      const g = Math.exp(-d2 / sig2);
+      if (g > 0.04) { idx.push(i); wt.push(g); sum += g; }
+    }
+    for (let q = 0; q < wt.length; q++) wt[q] /= sum;
+    let px = 0, py = 0, pz = 0;
+    idx.forEach((id, q) => { px += wt[q] * this.x[id * 3]; py += wt[q] * this.x[id * 3 + 1]; pz += wt[q] * this.x[id * 3 + 2]; });
+    this.grab = { idx: Int32Array.from(idx), w: Float64Array.from(wt), off: [target[0] - px, target[1] - py, target[2] - pz], target: target.slice(), compliance: 6e-6 };
+    return this.grab;
+  }
+  moveGrab(target) { if (this.grab) this.grab.target = target.slice(); }
+  endGrab() { this.grab = null; }
+  grabPoint() {
+    const G = this.grab; if (!G) return null;
+    let px = G.off[0], py = G.off[1], pz = G.off[2];
+    for (let q = 0; q < G.idx.length; q++) { const id = G.idx[q] * 3; px += G.w[q] * this.x[id]; py += G.w[q] * this.x[id + 1]; pz += G.w[q] * this.x[id + 2]; }
+    return [px, py, pz];
+  }
+  solveGrab(h) {
+    const G = this.grab, x = this.x, im = this.invMass;
+    const p = this.grabPoint();
+    const tx = G.target[0], ty = Math.max(G.target[1], 0.03), tz = G.target[2];
+    let dx = p[0] - tx, dy = p[1] - ty, dz = p[2] - tz;
+    const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+    if (len < 1e-7) return;
+    dx /= len; dy /= len; dz /= len;
+    let wsum = 0;
+    for (let q = 0; q < G.idx.length; q++) wsum += G.w[q] * G.w[q] * im[G.idx[q]];
+    const alpha = G.compliance / (h * h);
+    // limit the per-substep pull so a violent flick cannot tunnel the lattice
+    const C = Math.min(len, 0.06);
+    const dl = -C / (wsum + alpha);
+    for (let q = 0; q < G.idx.length; q++) {
+      const id = G.idx[q], k = dl * G.w[q] * im[id], i3 = id * 3;
+      x[i3] += k * dx; x[i3 + 1] += k * dy; x[i3 + 2] += k * dz;
+    }
+  }
+  solveGround() {
+    const n = this.n, x = this.x, prev = this.prev, fs = this.friction.s, fk = this.friction.k, R = this.stage;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3;
+      if (x[i3 + 1] < 0) {
+        const pen = -x[i3 + 1];
+        x[i3 + 1] = 0;
+        const dx = x[i3] - prev[i3], dz = x[i3 + 2] - prev[i3 + 2];
+        const d = Math.sqrt(dx * dx + dz * dz);
+        if (d < fs * pen) { x[i3] = prev[i3]; x[i3 + 2] = prev[i3 + 2]; }
+        else if (d > 0) { const k = Math.min(fk * pen / d, 1); x[i3] -= dx * k; x[i3 + 2] -= dz * k; }
+      }
+      if (x[i3 + 1] > 5) x[i3 + 1] = 5;
+      const r = Math.hypot(x[i3], x[i3 + 2]);
+      if (r > R) { x[i3] *= R / r; x[i3 + 2] *= R / r; }
+    }
+  }
+  // Node-sphere self contact. Keeps the far side of the ring from passing through
+  // itself and stops the hole from collapsing when it is squeezed shut.
+  solveSelfContact() {
+    const n = this.n, x = this.x, rest = this.rest, im = this.invMass;
+    const R = this.contactR, R2 = R * R, restMin2 = (R * 1.9) * (R * 1.9);
+    // cells twice the contact radius: each node only has to look at the 2×2×2 block around it
+    const ics = 1 / (2 * R), H = this.hashSize, start = this.hashStart, ent = this.hashEntries, cellOf = this.cellOf;
+    const hc = (ix, iy, iz) => (((ix * 92837111) ^ (iy * 689287499) ^ (iz * 283923481)) >>> 0) % H;
+    start.fill(0);
+    for (let i = 0; i < n; i++) {
+      const c = hc(Math.floor(x[i * 3] * ics), Math.floor(x[i * 3 + 1] * ics), Math.floor(x[i * 3 + 2] * ics));
+      cellOf[i] = c; start[c]++;
+    }
+    let acc = 0;
+    for (let c = 0; c < H; c++) { acc += start[c]; start[c] = acc; }
+    start[H] = acc;
+    for (let i = 0; i < n; i++) ent[--start[cellOf[i]]] = i;
+    for (let i = 0; i < n; i++) {
+      const fx = x[i * 3] * ics, fy = x[i * 3 + 1] * ics, fz = x[i * 3 + 2] * ics;
+      const cx = Math.floor(fx), cy = Math.floor(fy), cz = Math.floor(fz);
+      const bx = cx - (fx - cx < 0.5 ? 1 : 0), by = cy - (fy - cy < 0.5 ? 1 : 0), bz = cz - (fz - cz < 0.5 ? 1 : 0);
+      for (let ox = 0; ox < 2; ox++) for (let oy = 0; oy < 2; oy++) for (let oz = 0; oz < 2; oz++) {
+        const c = hc(bx + ox, by + oy, bz + oz);
+        for (let q = start[c]; q < start[c + 1]; q++) {
+          const j = ent[q];
+          if (j <= i) continue;
+          const dx = x[j * 3] - x[i * 3], dy = x[j * 3 + 1] - x[i * 3 + 1], dz = x[j * 3 + 2] - x[i * 3 + 2];
+          const d2 = dx * dx + dy * dy + dz * dz;
+          if (d2 >= R2 || d2 < 1e-12) continue;
+          const rx = rest[j * 3] - rest[i * 3], ry = rest[j * 3 + 1] - rest[i * 3 + 1], rz = rest[j * 3 + 2] - rest[i * 3 + 2];
+          const rr = rx * rx + ry * ry + rz * rz;
+          if (rr < restMin2) continue;          // lattice neighbours are handled by the elastic constraints
+          const d = Math.sqrt(d2), wi = im[i], wj = im[j];
+          const k = (R - d) / d / (wi + wj);
+          x[i * 3] -= dx * k * wi; x[i * 3 + 1] -= dy * k * wi; x[i * 3 + 2] -= dz * k * wi;
+          x[j * 3] += dx * k * wj; x[j * 3 + 1] += dy * k * wj; x[j * 3 + 2] += dz * k * wj;
+        }
+      }
+    }
+  }
+  // Damps velocity relative to the best-fit rigid motion (Müller et al. 2007),
+  // so wobbles die out while falling, sliding and tumbling stay untouched.
+  dampDeformation(h) {
+    const k = 1 - Math.exp(-this.damping * h);
+    if (k <= 0) return;
+    const n = this.n, x = this.x, v = this.v, m = this.mass;
+    let M = 0, cx = 0, cy = 0, cz = 0, vx = 0, vy = 0, vz = 0;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3, mi = m[i];
+      M += mi; cx += mi * x[i3]; cy += mi * x[i3 + 1]; cz += mi * x[i3 + 2];
+      vx += mi * v[i3]; vy += mi * v[i3 + 1]; vz += mi * v[i3 + 2];
+    }
+    cx /= M; cy /= M; cz /= M; vx /= M; vy /= M; vz /= M;
+    let Lx = 0, Ly = 0, Lz = 0, I00 = 0, I01 = 0, I02 = 0, I11 = 0, I12 = 0, I22 = 0;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3, mi = m[i];
+      const rx = x[i3] - cx, ry = x[i3 + 1] - cy, rz = x[i3 + 2] - cz;
+      const ux = v[i3], uy = v[i3 + 1], uz = v[i3 + 2];
+      Lx += mi * (ry * uz - rz * uy); Ly += mi * (rz * ux - rx * uz); Lz += mi * (rx * uy - ry * ux);
+      I00 += mi * (ry * ry + rz * rz); I11 += mi * (rx * rx + rz * rz); I22 += mi * (rx * rx + ry * ry);
+      I01 -= mi * rx * ry; I02 -= mi * rx * rz; I12 -= mi * ry * rz;
+    }
+    const Iinv = inv3([I00, I01, I02, I01, I11, I12, I02, I12, I22]);
+    const wx = Iinv[0] * Lx + Iinv[3] * Ly + Iinv[6] * Lz;
+    const wy = Iinv[1] * Lx + Iinv[4] * Ly + Iinv[7] * Lz;
+    const wz = Iinv[2] * Lx + Iinv[5] * Ly + Iinv[8] * Lz;
+    for (let i = 0; i < n; i++) {
+      const i3 = i * 3;
+      const rx = x[i3] - cx, ry = x[i3 + 1] - cy, rz = x[i3 + 2] - cz;
+      const tx = vx + wy * rz - wz * ry, ty = vy + wz * rx - wx * rz, tz = vz + wx * ry - wy * rx;
+      v[i3] += k * (tx - v[i3]); v[i3 + 1] += k * (ty - v[i3 + 1]); v[i3 + 2] += k * (tz - v[i3 + 2]);
+    }
+  }
+  // ---- whole-body helpers
+  centerOfMass() {
+    let cx = 0, cy = 0, cz = 0;
+    for (let i = 0; i < this.n; i++) { const m = this.mass[i]; cx += m * this.x[i * 3]; cy += m * this.x[i * 3 + 1]; cz += m * this.x[i * 3 + 2]; }
+    return [cx / this.totalMass, cy / this.totalMass, cz / this.totalMass];
+  }
+  volume() {
+    let V = 0;
+    for (let t = 0; t < this.nTets; t++) V += this.tetVolume(this.x, this.tets[t * 4], this.tets[t * 4 + 1], this.tets[t * 4 + 2], this.tets[t * 4 + 3]);
+    return V;
+  }
+  minTetRatio() {
+    let m = Infinity;
+    for (let t = 0; t < this.nTets; t++) m = Math.min(m, this.tetVolume(this.x, this.tets[t * 4], this.tets[t * 4 + 1], this.tets[t * 4 + 2], this.tets[t * 4 + 3]) / this.restVol[t]);
+    return m;
+  }
+  kinetic() {
+    let e = 0;
+    for (let i = 0; i < this.n; i++) { const i3 = i * 3; e += 0.5 * this.mass[i] * (this.v[i3] ** 2 + this.v[i3 + 1] ** 2 + this.v[i3 + 2] ** 2); }
+    return e;
+  }
+  /** Add a rigid velocity field: linear v0 plus spin ω about the centre of mass. */
+  addRigidVelocity(v0, w) {
+    const c = this.centerOfMass();
+    for (let i = 0; i < this.n; i++) {
+      const i3 = i * 3, rx = this.x[i3] - c[0], ry = this.x[i3 + 1] - c[1], rz = this.x[i3 + 2] - c[2];
+      this.v[i3] += v0[0] + w[1] * rz - w[2] * ry;
+      this.v[i3 + 1] += v0[1] + w[2] * rx - w[0] * rz;
+      this.v[i3 + 2] += v0[2] + w[0] * ry - w[1] * rx;
+    }
+  }
+  /** A flick from beneath one edge: that side hops up, the ring flops back down and wobbles. */
+  nudge(rand = Math.random) {
+    const c = this.centerOfMass();
+    const phi = rand() * Math.PI * 2, dx = Math.cos(phi), dz = Math.sin(phi);
+    const lift = 4.2 + rand() * 1.2;
+    for (let i = 0; i < this.n; i++) {
+      const i3 = i * 3;
+      const along = (this.x[i3] - c[0]) * dx + (this.x[i3 + 2] - c[2]) * dz;   // ≈ -1 … 1 across the ring
+      const t = Math.min(Math.max((along + 0.35) / 1.35, 0), 1);
+      const f = t * t * (3 - 2 * t);
+      this.v[i3 + 1] += lift * f + 0.6;
+      this.v[i3] -= dx * 0.5 * f; this.v[i3 + 2] -= dz * 0.5 * f;
+    }
+  }
+  /** +1 if the material +Y face points up, -1 if the ring lies upside down. */
+  upSign() {
+    const { NT, NR, NY } = LAT;
+    let top = 0, bot = 0;
+    for (let i = 0; i < NT; i++) for (let j = 0; j < NR; j++) {
+      top += this.x[((i * NR + j) * NY + NY - 1) * 3 + 1];
+      bot += this.x[((i * NR + j) * NY) * 3 + 1];
+    }
+    return top >= bot ? 1 : -1;
+  }
+  /** Toss the ring so it turns over about a horizontal axis. */
+  turnOver(axis) {
+    const len = Math.hypot(axis[0], axis[2]) || 1;
+    const ax = axis[0] / len, az = axis[2] / len;
+    const omega = 5.2;
+    const c = this.centerOfMass();
+    this.addRigidVelocity([0, 7.4 - this.v[1] * 0, 0], [ax * omega, 0, az * omega]);
+    return c;
+  }
+}
+
+/* =====================================================================
+   2 · VISUAL SURFACE
+   A smooth parametric ring (θ × cross-section profile) that is far denser
+   than the simulation lattice. Every surface vertex is embedded in the
+   lattice through the smooth basis above; the GPU re-evaluates that
+   embedding each frame (compute shader) to get position, normal and the
+   local deformation gradient F used by the volumetric shading.
+   ===================================================================== */
+// cross-section: 8 segments (top face, 4 rounded corners, 2 walls, bottom face)
+const PROFILE_HI = [26, 11, 7, 11, 26, 9, 5, 9];     // 104 samples around the section
+const PROFILE_LO = [8, 4, 3, 4, 8, 3, 2, 3];          // picking mesh
+function profilePoint(seg, f, ri, ro) {
+  const h = RING.halfH, rc = RING.corner;
+  const arc = (cr, cy, a0, a1) => { const a = a0 + (a1 - a0) * f; return [cr + rc * Math.cos(a), cy + rc * Math.sin(a), Math.cos(a), Math.sin(a)]; };
+  const P = Math.PI;
+  switch (seg) {
+    case 0: return [ri + rc + (ro - ri - 2 * rc) * f, h, 0, 1];
+    case 1: return arc(ro - rc, h - rc, P / 2, 0);
+    case 2: return [ro, h - rc - (2 * h - 2 * rc) * f, 1, 0];
+    case 3: return arc(ro - rc, -h + rc, 0, -P / 2);
+    case 4: return [ro - rc - (ro - ri - 2 * rc) * f, -h, 0, -1];
+    case 5: return arc(ri + rc, -h + rc, -P / 2, -P);
+    case 6: return [ri, -h + rc + (2 * h - 2 * rc) * f, -1, 0];
+    default: return arc(ri + rc, h - rc, P, P / 2);
+  }
+}
+function surfacePoint(phi, seg, f) {
+  const [r, y] = profilePoint(seg, f, ringInnerR(phi), ringOuterR(phi));
+  return [r * Math.cos(phi), y, r * Math.sin(phi)];
+}
+/** Build a closed (torus-topology) grid over the ring surface in material space. */
+function buildSurface(NA, prof) {
+  const NB = prof.reduce((a, b) => a + b, 0);
+  const nv = NA * NB;
+  const X = new Float64Array(nv * 3), N = new Float64Array(nv * 3);
+  const P = new Float64Array(nv * 3);   // lattice params u,s,w
+  let vi = 0;
+  for (let a = 0; a < NA; a++) {
+    const phi = a / NA * Math.PI * 2;
+    for (let seg = 0; seg < 8; seg++) for (let k = 0; k < prof[seg]; k++, vi++) {
+      const f = k / prof[seg];
+      const p = surfacePoint(phi, seg, f);
+      const [, , nr, ny] = profilePoint(seg, f, ringInnerR(phi), ringOuterR(phi));
+      // exact 3D normal from the two surface tangents (scallops tilt the outer wall)
+      const e = 1e-4;
+      const pa = surfacePoint(phi + e, seg, f), pb = surfacePoint(phi, seg, Math.min(f + e, 1)), pc = surfacePoint(phi, seg, Math.max(f - e, 0));
+      const ta = [pa[0] - p[0], pa[1] - p[1], pa[2] - p[2]], tb = [pb[0] - pc[0], pb[1] - pc[1], pb[2] - pc[2]];
+      let n = [ta[1] * tb[2] - ta[2] * tb[1], ta[2] * tb[0] - ta[0] * tb[2], ta[0] * tb[1] - ta[1] * tb[0]];
+      const guess = [nr * Math.cos(phi), ny, nr * Math.sin(phi)];
+      let l = Math.hypot(...n);
+      if (l < 1e-12) n = guess, l = 1;
+      if (n[0] * guess[0] + n[1] * guess[1] + n[2] * guess[2] < 0) l = -l;
+      X.set(p, vi * 3); N.set([n[0] / l, n[1] / l, n[2] / l], vi * 3);
+      P.set(latticeParams(p[0], p[1], p[2]), vi * 3);
+    }
+  }
+  // triangles; orientation fixed so faces wind counter-clockwise seen from outside
+  const idx = new Uint32Array(NA * NB * 6);
+  let q = 0;
+  for (let a = 0; a < NA; a++) for (let b = 0; b < NB; b++) {
+    const a1 = (a + 1) % NA, b1 = (b + 1) % NB;
+    const v00 = a * NB + b, v10 = a1 * NB + b, v01 = a * NB + b1, v11 = a1 * NB + b1;
+    idx.set([v00, v10, v11, v00, v11, v01], q); q += 6;
+  }
+  { // check the winding of one triangle on the top face against its normal
+    const t = 0, i0 = idx[t], i1 = idx[t + 1], i2 = idx[t + 2];
+    const e1 = [X[i1 * 3] - X[i0 * 3], X[i1 * 3 + 1] - X[i0 * 3 + 1], X[i1 * 3 + 2] - X[i0 * 3 + 2]];
+    const e2 = [X[i2 * 3] - X[i0 * 3], X[i2 * 3 + 1] - X[i0 * 3 + 1], X[i2 * 3 + 2] - X[i0 * 3 + 2]];
+    const c = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
+    if (c[0] * N[i0 * 3] + c[1] * N[i0 * 3 + 1] + c[2] * N[i0 * 3 + 2] < 0)
+      for (let t2 = 0; t2 < idx.length; t2 += 3) { const tmp = idx[t2 + 1]; idx[t2 + 1] = idx[t2 + 2]; idx[t2 + 2] = tmp; }
+  }
+  // embedding: offset d = X − Σ wᵢ Xᵢ and the inverse rest Jacobian of the lattice map
+  const D = new Float64Array(nv * 3), JI = new Float64Array(nv * 9);
+  const B = makeBasisScratch(), rest = SIM_REST;
+  for (let v = 0; v < nv; v++) {
+    latticeBasis(P[v * 3], P[v * 3 + 1], P[v * 3 + 2], B);
+    let px = 0, py = 0, pz = 0; const J = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let q2 = 0; q2 < 48; q2++) {
+      const id = B.idx[q2] * 3, x = rest[id], y = rest[id + 1], z = rest[id + 2];
+      px += B.w[q2] * x; py += B.w[q2] * y; pz += B.w[q2] * z;
+      J[0] += B.du[q2] * x; J[1] += B.du[q2] * y; J[2] += B.du[q2] * z;
+      J[3] += B.ds[q2] * x; J[4] += B.ds[q2] * y; J[5] += B.ds[q2] * z;
+      J[6] += B.dw[q2] * x; J[7] += B.dw[q2] * y; J[8] += B.dw[q2] * z;
+    }
+    D[v * 3] = X[v * 3] - px; D[v * 3 + 1] = X[v * 3 + 1] - py; D[v * 3 + 2] = X[v * 3 + 2] - pz;
+    JI.set(inv3(J), v * 9);
+  }
+  return { NA, NB, nv, X, N, P, D, JI, idx };
+}
+/** Pack the static per-vertex data for the GPU: 6 × vec4 per vertex. */
+function packStatic(S) {
+  const out = new Float32Array(S.nv * 24);
+  for (let v = 0; v < S.nv; v++) {
+    const o = v * 24;
+    out[o] = S.X[v * 3]; out[o + 1] = S.X[v * 3 + 1]; out[o + 2] = S.X[v * 3 + 2]; out[o + 3] = S.P[v * 3];
+    out[o + 4] = S.N[v * 3]; out[o + 5] = S.N[v * 3 + 1]; out[o + 6] = S.N[v * 3 + 2]; out[o + 7] = S.P[v * 3 + 1];
+    out[o + 8] = S.D[v * 3]; out[o + 9] = S.D[v * 3 + 1]; out[o + 10] = S.D[v * 3 + 2]; out[o + 11] = S.P[v * 3 + 2];
+    for (let c = 0; c < 3; c++) for (let r = 0; r < 3; r++) out[o + 12 + c * 4 + r] = S.JI[v * 9 + c * 3 + r];
+  }
+  return out;
+}
+/** CPU evaluation of the deformed surface (used for picking on a coarse copy). */
+function deformSurface(S, x, out) {
+  const B = makeBasisScratch();
+  for (let v = 0; v < S.nv; v++) {
+    latticeBasis(S.P[v * 3], S.P[v * 3 + 1], S.P[v * 3 + 2], B);
+    let px = 0, py = 0, pz = 0; const J = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let q = 0; q < 48; q++) {
+      const id = B.idx[q] * 3, X = x[id], Y = x[id + 1], Z = x[id + 2];
+      px += B.w[q] * X; py += B.w[q] * Y; pz += B.w[q] * Z;
+      J[0] += B.du[q] * X; J[1] += B.du[q] * Y; J[2] += B.du[q] * Z;
+      J[3] += B.ds[q] * X; J[4] += B.ds[q] * Y; J[5] += B.ds[q] * Z;
+      J[6] += B.dw[q] * X; J[7] += B.dw[q] * Y; J[8] += B.dw[q] * Z;
+    }
+    const I = S.JI.subarray(v * 9, v * 9 + 9), d = [S.D[v * 3], S.D[v * 3 + 1], S.D[v * 3 + 2]];
+    // F = J · Jrest⁻¹ ; pos = Σ wᵢxᵢ + F d
+    const F = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let c = 0; c < 3; c++) for (let r = 0; r < 3; r++) F[c * 3 + r] = J[r] * I[c * 3] + J[3 + r] * I[c * 3 + 1] + J[6 + r] * I[c * 3 + 2];
+    out[v * 3] = px + F[0] * d[0] + F[3] * d[1] + F[6] * d[2];
+    out[v * 3 + 1] = py + F[1] * d[0] + F[4] * d[1] + F[7] * d[2];
+    out[v * 3 + 2] = pz + F[2] * d[0] + F[5] * d[1] + F[8] * d[2];
+  }
+  return out;
+}
+/** Ray vs deformed coarse surface. Returns the nearest hit with its material-space point. */
+function pickSurface(S, pos, ro, rd) {
+  let best = null;
+  const idx = S.idx;
+  for (let t = 0; t < idx.length; t += 3) {
+    const a = idx[t] * 3, b = idx[t + 1] * 3, c = idx[t + 2] * 3;
+    const e1x = pos[b] - pos[a], e1y = pos[b + 1] - pos[a + 1], e1z = pos[b + 2] - pos[a + 2];
+    const e2x = pos[c] - pos[a], e2y = pos[c + 1] - pos[a + 1], e2z = pos[c + 2] - pos[a + 2];
+    const px = rd[1] * e2z - rd[2] * e2y, py = rd[2] * e2x - rd[0] * e2z, pz = rd[0] * e2y - rd[1] * e2x;
+    const det = e1x * px + e1y * py + e1z * pz;
+    if (Math.abs(det) < 1e-12) continue;
+    const inv = 1 / det;
+    const sx = ro[0] - pos[a], sy = ro[1] - pos[a + 1], sz = ro[2] - pos[a + 2];
+    const u = (sx * px + sy * py + sz * pz) * inv; if (u < 0 || u > 1) continue;
+    const qx = sy * e1z - sz * e1y, qy = sz * e1x - sx * e1z, qz = sx * e1y - sy * e1x;
+    const v = (rd[0] * qx + rd[1] * qy + rd[2] * qz) * inv; if (v < 0 || u + v > 1) continue;
+    const tt = (e2x * qx + e2y * qy + e2z * qz) * inv;
+    if (tt > 1e-4 && (!best || tt < best.t)) best = { t: tt, tri: t, u, v };
+  }
+  if (!best) return null;
+  const i0 = idx[best.tri], i1 = idx[best.tri + 1], i2 = idx[best.tri + 2], w0 = 1 - best.u - best.v;
+  const M = [0, 1, 2].map(k => w0 * S.X[i0 * 3 + k] + best.u * S.X[i1 * 3 + k] + best.v * S.X[i2 * 3 + k]);
+  return { t: best.t, point: [ro[0] + rd[0] * best.t, ro[1] + rd[1] * best.t, ro[2] + rd[2] * best.t], material: M };
+}
+
+/* =====================================================================
+   3 · WGSL
+   ===================================================================== */
+const WGSL_COMMON = /* wgsl */`
+struct Frame {
+  viewProj: mat4x4f,
+  invViewProj: mat4x4f,
+  camPos: vec4f,      // xyz, w = time (s)
+  lightDir: vec4f,    // xyz = direction toward the key light, w = light-map half extent
+  lightX: vec4f,      // light-space basis x, w = depth offset D0
+  lightY: vec4f,      // light-space basis y, w = 1 / light-map resolution
+  lightC: vec4f,      // light box centre, w = exposure
+  sigA: vec4f,        // absorption per unit length (rgb), w = scattering coefficient
+  albedo: vec4f,      // single-scattering albedo (rgb), w = juice-cell scattering boost
+  cellCol: vec4f,     // juice-cell tint, w = fibre strength
+  shadowSig: vec4f,   // shadow transmittance coefficients, w = frame counter
+  viewport: vec4f,    // width, height, 1/width, 1/height
+  params: vec4f,      // x = samples (first pass), y = samples (far side), z = mesh overlay, w = device pixel ratio
+  lightC2: vec4f,     // fill light direction, w = fill strength
+};
+@group(0) @binding(0) var<uniform> U: Frame;
+@group(0) @binding(1) var lightMM: texture_2d<f32>;
+@group(0) @binding(2) var lightTh: texture_2d<f32>;
+@group(0) @binding(3) var linSamp: sampler;
+
+const PI = 3.14159265;
+const HALF_H = ${RING.halfH.toFixed(4)};
+const R_IN = ${RING.rIn.toFixed(4)};
+const R_OUT = ${RING.rOut.toFixed(4)};
+const CORNER = ${RING.corner.toFixed(4)};
+const SCALLOPS = ${RING.scallops.toFixed(1)};
+const SC_AMP = ${RING.scAmp.toFixed(4)};
+const IOR = 1.42;
+
+// ---------- the rest shape (must match ringOuterR / ringInnerR in JS)
+fn outerR(phi: f32) -> f32 {
+  let s = abs(sin(SCALLOPS * phi * 0.5));
+  let e = 0.035;
+  let lobe = (sqrt(s * s + e) - sqrt(e)) / (sqrt(1.0 + e) - sqrt(e));
+  return R_OUT + SC_AMP * (lobe - 0.62) + 0.007 * sin(3.0 * phi + 0.7) + 0.005 * sin(5.0 * phi + 2.1);
+}
+fn innerR(phi: f32) -> f32 { return R_IN + 0.006 * sin(2.0 * phi + 0.3) + 0.004 * sin(5.0 * phi + 1.3); }
+// signed distance to the rest ring (material space), rounded-rectangle section
+fn sdfRing(X: vec3f) -> f32 {
+  let r = length(X.xz);
+  let phi = atan2(X.z, X.x);
+  let ro = outerR(phi);
+  let ri = innerR(phi);
+  let q = vec2f(abs(r - 0.5 * (ro + ri)) - (0.5 * (ro - ri) - CORNER), abs(X.y) - (HALF_H - CORNER));
+  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - CORNER;
+}
+fn sdfGrad(X: vec3f) -> vec3f {
+  let e = vec2f(0.0025, -0.0025);
+  return normalize(e.xyy * sdfRing(X + e.xyy) + e.yyx * sdfRing(X + e.yyx) + e.yxy * sdfRing(X + e.yxy) + e.xxx * sdfRing(X + e.xxx));
+}
+
+// ---------- hashing / noise
+fn pcg(v: u32) -> u32 {
+  let s = v * 747796405u + 2891336453u;
+  let w = ((s >> ((s >> 28u) + 4u)) ^ s) * 277803737u;
+  return (w >> 22u) ^ w;
+}
+fn hash3(c: vec3i) -> u32 { return pcg(bitcast<u32>(c.x) + pcg(bitcast<u32>(c.y) + pcg(bitcast<u32>(c.z) + 0x9e3779b9u))); }
+fn rnd(h: u32) -> f32 { return f32(h >> 8u) * (1.0 / 16777216.0); }
+fn vnoise(p: vec3f) -> f32 {
+  let i = vec3i(floor(p));
+  let f = fract(p);
+  let u = f * f * (3.0 - 2.0 * f);
+  let a = rnd(hash3(i));
+  let b = rnd(hash3(i + vec3i(1, 0, 0)));
+  let c = rnd(hash3(i + vec3i(0, 1, 0)));
+  let d = rnd(hash3(i + vec3i(1, 1, 0)));
+  let e = rnd(hash3(i + vec3i(0, 0, 1)));
+  let f2 = rnd(hash3(i + vec3i(1, 0, 1)));
+  let g = rnd(hash3(i + vec3i(0, 1, 1)));
+  let h = rnd(hash3(i + vec3i(1, 1, 1)));
+  return mix(mix(mix(a, b, u.x), mix(c, d, u.x), u.y), mix(mix(e, f2, u.x), mix(g, h, u.x), u.y), u.z);
+}
+fn ign(p: vec2f) -> f32 { return fract(52.9829189 * fract(dot(p, vec2f(0.06711056, 0.00583715)))); }
+
+// ---------- studio
+const BACKDROP = vec3f(0.835, 0.775, 0.690);
+const FLOOR_ALB = vec3f(0.93, 0.885, 0.815);
+const KEY_COL = vec3f(1.00, 0.955, 0.885);
+const SKY_COL = vec3f(0.80, 0.80, 0.80);
+
+fn lightUV(p: vec3f) -> vec3f {
+  let rel = p - U.lightC.xyz;
+  let E = U.lightDir.w;
+  let uv = vec2f(dot(rel, U.lightX.xyz), -dot(rel, U.lightY.xyz)) / E * 0.5 + 0.5;
+  return vec3f(uv, U.lightX.w - dot(rel, U.lightDir.xyz));
+}
+
+// soft rectangular light seen along direction rd
+fn softbox(rd: vec3f, c: vec3f, right: vec3f, hw: f32, hh: f32, soft: f32) -> f32 {
+  let d = dot(rd, c);
+  if (d <= 0.05) { return 0.0; }
+  let p = rd / d - c;
+  let up = normalize(cross(right, c));
+  let x = abs(dot(p, right));
+  let y = abs(dot(p, up));
+  return (1.0 - smoothstep(hw - soft, hw + soft, x)) * (1.0 - smoothstep(hh - soft, hh + soft, y));
+}
+fn studioLights(rd: vec3f) -> vec3f {
+  let L = U.lightDir.xyz;
+  let kr = normalize(cross(vec3f(0.0, 1.0, 0.0), L));
+  var c = KEY_COL * 2.3 * softbox(rd, L, kr, 0.62, 0.40, 0.16);
+  let F = U.lightC2.xyz;
+  let fr = normalize(cross(vec3f(0.0, 1.0, 0.0), F));
+  c += vec3f(1.0, 0.975, 0.95) * U.lightC2.w * softbox(rd, F, fr, 0.10, 0.70, 0.06);
+  // broad dim overhead scrim
+  c += vec3f(1.0, 0.98, 0.95) * 0.35 * smoothstep(0.55, 0.95, rd.y);
+  return c;
+}
+fn skyRadiance(rd: vec3f, withLights: bool) -> vec3f {
+  var c = mix(BACKDROP, vec3f(0.97, 0.94, 0.89), smoothstep(0.02, 0.8, rd.y));
+  if (withLights) { c += studioLights(rd); }
+  return c;
+}
+
+const POISSON = array<vec2f, 12>(
+  vec2f(-0.326, -0.406), vec2f(-0.840, -0.074), vec2f(-0.696, 0.457), vec2f(-0.203, 0.621),
+  vec2f(0.962, -0.195), vec2f(0.473, -0.480), vec2f(0.519, 0.767), vec2f(0.185, -0.893),
+  vec2f(0.507, 0.064), vec2f(0.896, 0.412), vec2f(-0.322, -0.933), vec2f(-0.792, -0.598));
+
+// Colored, contact-hardening shadow of the translucent ring + a soft contact occlusion.
+// rgb = key-light transmittance, a = ambient occlusion
+fn floorShadow(p: vec3f, px: vec2f) -> vec4f {
+  let l = lightUV(p);
+  if (any(l.xy < vec2f(0.0)) || any(l.xy > vec2f(1.0))) { return vec4f(1.0); }
+  let res = 1.0 / U.lightY.w;
+  let E = U.lightDir.w;
+  // blocker search: how far above the floor is the jelly here?
+  var gap = 0.0; var hits = 0.0;
+  for (var i = 0; i < 6; i++) {
+    let uv = l.xy + POISSON[i * 2] * (0.18 / (2.0 * E));
+    let t = textureLoad(lightMM, vec2i(clamp(uv, vec2f(0.0), vec2f(0.999)) * res), 0).xy;
+    if (t.x < 1000.0) { gap += max(l.z - (-t.y), 0.0); hits += 1.0; }
+  }
+  if (hits < 0.5) { return vec4f(1.0); }
+  gap /= hits;
+  let ang = ign(px) * 6.2831853;
+  let rot = mat2x2f(cos(ang), sin(ang), -sin(ang), cos(ang));
+  let rad = (0.012 + 0.16 * gap) / (2.0 * E);
+  var trans = vec3f(0.0);
+  var cover = 0.0;
+  let aoRad = (0.10 + 0.35 * gap) / (2.0 * E);
+  for (var i = 0; i < 12; i++) {
+    let o = rot * POISSON[i];
+    let th = textureSampleLevel(lightTh, linSamp, l.xy + o * rad, 0.0).x;
+    trans += exp(-U.shadowSig.xyz * max(th, 0.0));
+    let th2 = textureSampleLevel(lightTh, linSamp, l.xy + o * aoRad, 0.0).x;
+    cover += smoothstep(0.0, 0.08, th2);
+  }
+  trans /= 12.0;
+  cover /= 12.0;
+  let ao = 1.0 - 0.62 * cover * exp(-gap * 3.0);
+  return vec4f(trans, ao);
+}
+fn floorRadiance(p: vec3f, px: vec2f) -> vec3f {
+  let sh = floorShadow(p, px);
+  let L = U.lightDir.xyz;
+  let key = KEY_COL * max(L.y, 0.0) * 0.78 * sh.rgb;
+  let amb = SKY_COL * 0.36 * sh.a;
+  // a soft pool of light under the specimen, falling off into the sweep
+  let d = length(p.xz - U.lightC.xz * 0.3);
+  let pool = 1.0 + 0.10 * exp(-d * d * 0.08);
+  var c = FLOOR_ALB * (key + amb) * pool;
+  return mix(c, BACKDROP, smoothstep(3.5, 16.0, length(p.xz)));
+}
+fn envRadiance(ro: vec3f, rd: vec3f, px: vec2f, withLights: bool) -> vec3f {
+  if (rd.y < -1e-4) {
+    let t = -ro.y / rd.y;
+    let p = ro + rd * t;
+    let f = floorRadiance(p, px);
+    // the floor dissolves into the backdrop at grazing angles (a seamless cove)
+    return mix(skyRadiance(vec3f(rd.x, 0.0, rd.z), false), f, smoothstep(0.0, 0.12, -rd.y));
+  }
+  return skyRadiance(rd, withLights);
+}
+
+// ---------- display
+fn pbrNeutral(c0: vec3f) -> vec3f {
+  let startC = 0.8 - 0.04;
+  let desat = 0.15;
+  let x = min(c0.r, min(c0.g, c0.b));
+  let off = select(0.04, x - 6.25 * x * x, x < 0.08);
+  var c = c0 - off;
+  let peak = max(c.r, max(c.g, c.b));
+  if (peak < startC) { return c; }
+  let d = 1.0 - startC;
+  let np = 1.0 - d * d / (peak + d - startC);
+  c *= np / peak;
+  let g = 1.0 - 1.0 / (desat * (peak - np) + 1.0);
+  return mix(c, vec3f(np), g);
+}
+fn toDisplay(c: vec3f, px: vec2f) -> vec4f {
+  let m = pbrNeutral(max(c * U.lightC.w, vec3f(0.0)));
+  let s = select(1.055 * pow(m, vec3f(1.0 / 2.4)) - 0.055, m * 12.92, m <= vec3f(0.0031308));
+  return vec4f(s + (ign(px + 17.0) - 0.5) / 255.0, 1.0);
+}
+`;
+
+// (light-map textures are declared in WGSL_COMMON; each pipeline's auto layout keeps only what it uses)
+const WGSL_TEX = '';
+
+/* ---------------- compute: embed the visual surface in the lattice ---------------- */
+const WGSL_SKIN = /* wgsl */`
+struct SkinU { count: u32, NT: u32, NR: u32, NY: u32 };
+@group(0) @binding(0) var<uniform> su: SkinU;
+@group(0) @binding(1) var<storage, read> nodes: array<vec4f>;
+@group(0) @binding(2) var<storage, read> stat: array<vec4f>;
+@group(0) @binding(3) var<storage, read_write> outv: array<vec4f>;
+
+fn inverse3(m: mat3x3f) -> mat3x3f {
+  let a = m[0]; let b = m[1]; let c = m[2];
+  let r0 = cross(b, c); let r1 = cross(c, a); let r2 = cross(a, b);
+  let det = dot(a, r0);
+  let id = 1.0 / select(det, 1e-6, abs(det) < 1e-9);
+  return transpose(mat3x3f(r0, r1, r2)) * id;
+}
+
+@compute @workgroup_size(64)
+fn main(@builtin(global_invocation_id) gid: vec3u) {
+  let vi = gid.x;
+  if (vi >= su.count) { return; }
+  let s0 = stat[vi * 6u]; let s1 = stat[vi * 6u + 1u]; let s2 = stat[vi * 6u + 2u];
+  let u = s0.w; let s = s1.w; let w = s2.w;
+  let fi = floor(u); let t = u - fi; let i0 = i32(fi);
+  let t2 = t * t; let t3 = t2 * t; let it = 1.0 - t;
+  let bt = array<f32, 4>(it * it * it / 6.0, (3.0 * t3 - 6.0 * t2 + 4.0) / 6.0, (-3.0 * t3 + 3.0 * t2 + 3.0 * t + 1.0) / 6.0, t3 / 6.0);
+  let dbt = array<f32, 4>(-0.5 * it * it, 1.5 * t2 - 2.0 * t, -1.5 * t2 + t + 0.5, 0.5 * t2);
+  let is = 1.0 - s;
+  let bs = array<f32, 4>(is * is * is, 3.0 * s * is * is, 3.0 * s * s * is, s * s * s);
+  let dbs = array<f32, 4>(-3.0 * is * is, 3.0 * is * is - 6.0 * s * is, 6.0 * s * is - 3.0 * s * s, 3.0 * s * s);
+  let iw = 1.0 - w;
+  let bw = array<f32, 3>(iw * iw, 2.0 * w * iw, w * w);
+  let dbw = array<f32, 3>(-2.0 * iw, 2.0 - 4.0 * w, 2.0 * w);
+  var P = vec3f(0.0); var Du = vec3f(0.0); var Ds = vec3f(0.0); var Dw = vec3f(0.0);
+  let NT = i32(su.NT);
+  for (var a = 0; a < 4; a++) {
+    let ii = u32(((i0 - 1 + a) % NT + NT) % NT);
+    for (var j = 0u; j < 4u; j++) {
+      let wa = bt[a] * bs[j]; let wda = dbt[a] * bs[j]; let wds = bt[a] * dbs[j];
+      for (var k = 0u; k < 3u; k++) {
+        let x = nodes[(ii * su.NR + j) * su.NY + k].xyz;
+        P += wa * bw[k] * x;
+        Du += wda * bw[k] * x;
+        Ds += wds * bw[k] * x;
+        Dw += wa * dbw[k] * x;
+      }
+    }
+  }
+  let Jinv = mat3x3f(stat[vi * 6u + 3u].xyz, stat[vi * 6u + 4u].xyz, stat[vi * 6u + 5u].xyz);
+  let F = mat3x3f(Du, Ds, Dw) * Jinv;
+  let pos = P + F * s2.xyz;
+  let Fi = inverse3(F);
+  let n = normalize(transpose(Fi) * s1.xyz);
+  outv[vi * 5u] = vec4f(pos, determinant(F));
+  outv[vi * 5u + 1u] = vec4f(n, 0.0);
+  outv[vi * 5u + 2u] = vec4f(Fi[0], 0.0);
+  outv[vi * 5u + 3u] = vec4f(Fi[1], 0.0);
+  outv[vi * 5u + 4u] = vec4f(Fi[2], 0.0);
+}
+`;
+
+/* ---------------- light map: min/max depth + thickness along the key light ---------------- */
+const WGSL_LIGHTMAP = WGSL_COMMON + /* wgsl */`
+struct LOut { @builtin(position) pos: vec4f, @location(0) d: f32 };
+@vertex fn vs(@location(0) p: vec4f) -> LOut {
+  let rel = p.xyz - U.lightC.xyz;
+  let E = U.lightDir.w;
+  var o: LOut;
+  o.pos = vec4f(dot(rel, U.lightX.xyz) / E, dot(rel, U.lightY.xyz) / E, 0.5, 1.0);
+  o.d = U.lightX.w - dot(rel, U.lightDir.xyz);
+  return o;
+}
+struct LFrag { @location(0) mm: vec4f, @location(1) th: vec4f };
+@fragment fn fs(i: LOut, @builtin(front_facing) ff: bool) -> LFrag {
+  var o: LFrag;
+  o.mm = vec4f(i.d, -i.d, 0.0, 1.0);
+  o.th = vec4f(select(i.d, -i.d, ff), 0.0, 0.0, 1.0);
+  return o;
+}
+`;
+
+/* ---------------- environment (floor + sweep), fullscreen ---------------- */
+const WGSL_ENV = WGSL_COMMON + WGSL_TEX + /* wgsl */`
+struct EOut { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
+@vertex fn vs(@builtin(vertex_index) vi: u32) -> EOut {
+  let p = vec2f(f32((vi << 1u) & 2u), f32(vi & 2u)) * 2.0 - 1.0;
+  var o: EOut;
+  o.pos = vec4f(p, 1.0, 1.0);
+  o.ndc = p;
+  return o;
+}
+@fragment fn fs(i: EOut) -> @location(0) vec4f {
+  let a = U.invViewProj * vec4f(i.ndc, 0.0, 1.0);
+  let b = U.invViewProj * vec4f(i.ndc, 1.0, 1.0);
+  let ro = U.camPos.xyz;
+  let rd = normalize(b.xyz / b.w - a.xyz / a.w);
+  return toDisplay(envRadiance(ro, rd, i.pos.xy, false), i.pos.xy);
+}
+`;
+
+/* ---------------- the jelly ---------------- */
+const WGSL_JELLY = WGSL_COMMON + WGSL_TEX + /* wgsl */`
+struct JIn {
+  @location(0) p: vec4f,
+  @location(1) n: vec4f,
+  @location(2) f0: vec4f,
+  @location(3) f1: vec4f,
+  @location(4) f2: vec4f,
+  @location(5) rest: vec4f,
+};
+struct JOut {
+  @invariant @builtin(position) pos: vec4f,
+  @location(0) wpos: vec4f,
+  @location(1) nrm: vec3f,
+  @location(2) fi0: vec3f,
+  @location(3) fi1: vec3f,
+  @location(4) fi2: vec3f,
+  @location(5) rest: vec3f,
+};
+@vertex fn vs(v: JIn) -> JOut {
+  var o: JOut;
+  o.pos = U.viewProj * vec4f(v.p.xyz, 1.0);
+  o.wpos = v.p;
+  o.nrm = v.n.xyz;
+  o.fi0 = v.f0.xyz; o.fi1 = v.f1.xyz; o.fi2 = v.f2.xyz;
+  o.rest = v.rest.xyz;
+  return o;
+}
+@fragment fn fsDepth(i: JOut) -> @location(0) vec4f { return vec4f(0.0); }
+
+// ---- flesh structure, all evaluated in material (rest) coordinates so it deforms with the body
+// radial fibres: thin veils fanning out from the core, broken into strands
+fn fibres(X: vec3f, r: f32, phi: f32) -> f32 {
+  let cs = X.xz / max(r, 1e-4);
+  let wob = vnoise(vec3f(cs.x * 2.1 + 3.0, X.y * 3.0 + r * 1.7, cs.y * 2.1)) - 0.5;
+  let a = phi * 84.0 + wob * 4.0 + r * 2.5;
+  let line = pow(abs(cos(a * 0.5)), 26.0);
+  let a2 = phi * 211.0 + wob * 7.0 - r * 4.0;
+  let fine = pow(abs(cos(a2 * 0.5)), 40.0) * 0.45;
+  let strand = smoothstep(0.30, 0.75, vnoise(vec3f(cs.x * 9.0, X.y * 11.0 + r * 6.0, cs.y * 9.0)));
+  let band = smoothstep(R_IN + 0.02, R_IN + 0.10, r) * (1.0 - smoothstep(0.86, 1.0, r));
+  return (line + fine) * (0.35 + 0.65 * strand) * band;
+}
+// elongated juice vesicles, aligned radially, in two staggered cylindrical cell sets
+fn vesicleSet(r: f32, phi: f32, y: f32, off: f32, seed: u32) -> f32 {
+  let BW = 0.105;
+  let band = floor((r - R_IN - off) / BW);
+  let rb = R_IN + off + (band + 0.5) * BW;
+  let nA = max(round(2.0 * PI * rb / 0.062), 6.0);
+  let pn = phi / (2.0 * PI) + 0.5;
+  let ai = floor(pn * nA);
+  let LH = 0.075;
+  let li = floor((y + HALF_H) / LH);
+  let h = hash3(vec3i(i32(band), i32(ai) + i32(seed), i32(li) + i32(seed) * 7));
+  if (rnd(h) > 0.72) { return 0.0; }
+  let h2 = pcg(h); let h3 = pcg(h2); let h4 = pcg(h3); let h5 = pcg(h4);
+  let sc = mix(0.55, 1.0, rnd(h5));
+  let cr = rb + (rnd(h2) - 0.5) * 0.02;
+  let ca = (ai + 0.5 + (rnd(h3) - 0.5) * 0.4) / nA;
+  let cy = -HALF_H + (li + 0.5 + (rnd(h4) - 0.5) * 0.4) * LH;
+  var dphi = (pn - ca) * 2.0 * PI;
+  dphi = dphi - 2.0 * PI * round(dphi / (2.0 * PI));
+  let q = vec3f((r - cr) / (0.050 * sc), dphi * r / (0.0135 * sc), (y - cy) / (0.018 * sc));
+  return 1.0 - smoothstep(0.55, 1.0, length(q));
+}
+fn vesicles(r: f32, phi: f32, y: f32) -> f32 {
+  return max(vesicleSet(r, phi, y, 0.0, 0u), vesicleSet(r, phi + 0.051, y + 0.037, 0.052, 131u));
+}
+// air bubbles: sparse spheres, one candidate per cubic cell, fully inside the flesh
+const BUB_CELL = 0.13;
+fn bubbleIn(c: vec3i) -> vec4f {
+  let h = hash3(c + vec3i(71, 3, 19));
+  if (rnd(h) > 0.34) { return vec4f(0.0); }
+  let h2 = pcg(h); let h3 = pcg(h2); let h4 = pcg(h3); let h5 = pcg(h4);
+  let rad = mix(0.008, 0.026, pow(rnd(h5), 2.2));
+  let m = (rad + 0.004) / BUB_CELL;
+  let ctr = (vec3f(c) + vec3f(m) + vec3f(rnd(h2), rnd(h3), rnd(h4)) * (1.0 - 2.0 * m)) * BUB_CELL;
+  if (sdfRing(ctr) > -rad - 0.012) { return vec4f(0.0); }
+  return vec4f(ctr, rad);
+}
+
+struct Seg { col: vec3f, tr: vec3f };
+
+// Light arriving at a point inside the jelly: key light attenuated by the path length
+// through the flesh (from the light map) and a soft ambient that fades with depth.
+fn inLight(P: vec3f, depth: f32, cosT: f32) -> vec3f {
+  let l = lightUV(P);
+  var path = 0.0;
+  if (all(l.xy > vec2f(0.0)) && all(l.xy < vec2f(1.0))) {
+    let res = 1.0 / U.lightY.w;
+    let mm = textureLoad(lightMM, vec2i(l.xy * res), 0).x;
+    if (mm < 1000.0) { path = max(l.z - mm, 0.0); }
+  }
+  let sigL = U.sigA.xyz * 0.9 + vec3f(U.sigA.w * 0.22);
+  let g = 0.42;
+  let hg = (1.0 - g * g) / pow(1.0 + g * g - 2.0 * g * cosT, 1.5);
+  let key = KEY_COL * 1.35 * exp(-sigL * path) * (0.45 + 0.9 * hg);
+  let amb = vec3f(0.95, 0.93, 0.88) * 0.95 * exp(-3.2 * max(depth, 0.0));
+  return key + amb;
+}
+
+// March one straight run through the flesh (material ray X0 + Dm·t, world ray P0 + T·t).
+fn marchFlesh(P0: vec3f, T: vec3f, X0: vec3f, Dm: vec3f, tEnd: f32, N: i32, jit: f32, acc: ptr<function, Seg>) {
+  let ds = tEnd / f32(N);
+  let cosT = dot(T, U.lightDir.xyz);
+  var lastCell = vec3i(-9999);
+  for (var i = 0; i < N; i++) {
+    let t = (f32(i) + jit) * ds;
+    let X = X0 + Dm * t;
+    let P = P0 + T * t;
+    let r = length(X.xz);
+    let phi = atan2(X.z, X.x);
+    let depth = -sdfRing(X);
+    let fib = fibres(X, r, phi) * U.cellCol.w;
+    let ves = vesicles(r, phi, X.y);
+    var sigS = U.albedo.w * 0.0 + U.sigA.w * (1.0 + 2.2 * fib) + ves * 26.0;
+    var alb = mix(U.albedo.xyz, U.cellCol.xyz, clamp(ves * 1.4 + fib * 0.5, 0.0, 1.0));
+    let sigA = U.sigA.xyz * (1.0 - 0.55 * ves);
+    let sigT = sigA + vec3f(sigS);
+    let Li = inLight(P, depth, cosT);
+    let S = alb * sigS * Li;
+    let stepT = exp(-sigT * ds);
+    (*acc).col += (*acc).tr * S * (1.0 - stepT) / max(sigT, vec3f(1e-4));
+    (*acc).tr *= stepT;
+    // bubbles: analytic closest approach of the ray to the bubble in this cell
+    let cell = vec3i(floor(X / BUB_CELL));
+    if (any(cell != lastCell)) {
+      lastCell = cell;
+      let b = bubbleIn(cell);
+      if (b.w > 0.0) {
+        let tc = dot(b.xyz - X0, Dm) / dot(Dm, Dm);
+        let q = length(X0 + Dm * tc - b.xyz) / b.w;
+        if (q < 1.0 && tc > 0.0 && tc < tEnd) {
+          let rim = smoothstep(0.62, 0.93, q) * (1.0 - smoothstep(0.93, 1.0, q));
+          let core = 1.0 - smoothstep(0.0, 0.45, q);
+          let lit = inLight(P0 + T * tc, 0.05, cosT);
+          (*acc).col += (*acc).tr * (rim * 0.55 * lit + core * 0.10 * lit);
+          (*acc).tr *= 1.0 - 0.28 * smoothstep(0.8, 1.0, q);
+        }
+      }
+    }
+  }
+}
+// distance along the material ray until it leaves the flesh
+fn exitDist(X0: vec3f, Dm: vec3f, lenM: f32) -> f32 {
+  var t = 0.004;
+  var tp = 0.0;
+  for (var i = 0; i < 28; i++) {
+    let d = sdfRing(X0 + Dm * t);
+    if (d > 0.0) {
+      var a = tp; var b = t;
+      for (var k = 0; k < 4; k++) { let m = 0.5 * (a + b); if (sdfRing(X0 + Dm * m) > 0.0) { b = m; } else { a = m; } }
+      return 0.5 * (a + b);
+    }
+    tp = t;
+    t += max(-d / lenM, 0.01);
+    if (t > 3.0) { break; }
+  }
+  return min(t, 3.0);
+}
+// distance along a material ray in air until it enters the flesh again (-1: never)
+fn entryDist(X0: vec3f, Dm: vec3f, lenM: f32) -> f32 {
+  var t = 0.006;
+  for (var i = 0; i < 26; i++) {
+    let d = sdfRing(X0 + Dm * t);
+    if (d < 0.0015) { return t; }
+    t += max(d / lenM, 0.004);
+    if (t > 3.2) { break; }
+  }
+  return -1.0;
+}
+fn surfNormal(Xm: vec3f, Fi: mat3x3f) -> vec3f { return normalize(transpose(Fi) * sdfGrad(Xm)); }
+
+@fragment fn fs(i: JOut, @builtin(front_facing) ff: bool) -> @location(0) vec4f {
+  let px = i.pos.xy;
+  let P = i.wpos.xyz;
+  let Fi = mat3x3f(i.fi0, i.fi1, i.fi2);
+  let X0 = i.rest;
+  let V = normalize(U.camPos.xyz - P);
+  var N = normalize(i.nrm);
+  if (dot(N, V) < 0.0) { N = normalize(N - V * (dot(N, V) - 0.02)); }
+  // cut-face micro relief: radial fibre ridges (a bump field in material space → world via F⁻ᵀ)
+  {
+    let r = max(length(X0.xz), 1e-3);
+    let phi = atan2(X0.z, X0.x);
+    let face = smoothstep(HALF_H - 0.035, HALF_H - 0.004, abs(X0.y));
+    let a = phi * 84.0 + (vnoise(vec3f(X0.x * 2.1 + 3.0, X0.y * 3.0 + r * 1.7, X0.z * 2.1)) - 0.5) * 4.0 + r * 2.5;
+    let dh = -sin(a) * 42.0 * 0.00055 * face * U.cellCol.w;
+    let gm = vec3f(-sin(phi), 0.0, cos(phi)) * dh / r;
+    let gw = transpose(Fi) * gm;
+    N = normalize(N - (gw - N * dot(gw, N)));
+  }
+  let NdV = clamp(dot(N, V), 1e-3, 1.0);
+  let F0 = 0.03;
+  let fres = F0 + (1.0 - F0) * pow(1.0 - NdV, 5.0);
+
+  // ---- reflection: studio softboxes + floor, plus a restrained key highlight
+  let R = reflect(-V, N);
+  var refl = envRadiance(P + N * 0.002, R, px, true);
+  let H = normalize(U.lightDir.xyz + V);
+  let a2 = 0.16 * 0.16;
+  let NdH = max(dot(N, H), 0.0);
+  let dd = NdH * NdH * (a2 - 1.0) + 1.0;
+  let spec = min(a2 / (PI * dd * dd), 14.0) * 0.022 * max(dot(N, U.lightDir.xyz), 0.0);
+
+  // ---- refraction into the flesh and a volumetric march in material space
+  let T = refract(-V, N, 1.0 / IOR);
+  var acc: Seg;
+  acc.col = vec3f(0.0);
+  acc.tr = vec3f(1.0);
+  let jit = ign(px + fract(U.shadowSig.w * 0.61803) * 91.0);
+  var Dm = Fi * T;
+  var lenM = length(Dm);
+  let t1 = exitDist(X0, Dm, lenM);
+  marchFlesh(P, T, X0, Dm, t1, i32(U.params.x), jit, &acc);
+  var Pe = P + T * t1;
+  var Xe = X0 + Dm * t1;
+  var dir = T;
+  // leave the flesh (or reflect internally)
+  var nE = surfNormal(Xe, Fi);
+  var outDir = refract(dir, -nE, IOR);
+  var lit = vec3f(0.0);
+  if (dot(outDir, outDir) < 1e-4) {
+    // total internal reflection: bounce once more through the flesh
+    dir = reflect(dir, nE);
+    Dm = Fi * dir; lenM = length(Dm);
+    let t2 = exitDist(Xe, Dm, lenM);
+    marchFlesh(Pe, dir, Xe, Dm, t2, i32(U.params.y), jit, &acc);
+    Pe = Pe + dir * t2; Xe = Xe + Dm * t2;
+    nE = surfNormal(Xe, Fi);
+    outDir = refract(dir, -nE, IOR);
+    if (dot(outDir, outDir) < 1e-4) { outDir = reflect(dir, nE); }
+  } else {
+    // through the hole: does the ray meet the far side of the ring?
+    let Do = Fi * outDir;
+    let lo = length(Do);
+    let te = entryDist(Xe, Do, lo);
+    if (te > 0.0) {
+      let Pf = Pe + outDir * te;
+      let Xf = Xe + Do * te;
+      let nF = surfNormal(Xf, Fi);
+      let fr2 = F0 + (1.0 - F0) * pow(1.0 - clamp(dot(nF, -outDir), 0.0, 1.0), 5.0);
+      lit += acc.tr * fr2 * envRadiance(Pf, reflect(outDir, nF), px, true);
+      acc.tr *= 1.0 - fr2;
+      var d2 = refract(outDir, nF, 1.0 / IOR);
+      if (dot(d2, d2) < 1e-4) { d2 = outDir; }
+      let Dm2 = Fi * d2;
+      let t3 = exitDist(Xf, Dm2, length(Dm2));
+      marchFlesh(Pf, d2, Xf, Dm2, t3, i32(U.params.y), jit, &acc);
+      Pe = Pf + d2 * t3; Xe = Xf + Dm2 * t3;
+      let n3 = surfNormal(Xe, Fi);
+      outDir = refract(d2, -n3, IOR);
+      if (dot(outDir, outDir) < 1e-4) { outDir = reflect(d2, n3); }
+    }
+  }
+  let through = envRadiance(Pe + outDir * 0.002, outDir, px, false);
+  let vol = acc.col + acc.tr * through + lit;
+  let col = refl * fres + vol * (1.0 - fres) + KEY_COL * spec;
+  return toDisplay(col, px);
+}
+`;
+
+/* ---------------- lattice overlay ("Show mesh") ---------------- */
+const WGSL_MESH = WGSL_COMMON + /* wgsl */`
+@group(0) @binding(4) var<storage, read> nodes: array<vec4f>;
+@group(0) @binding(5) var<storage, read> edges: array<vec2u>;
+struct MOut { @builtin(position) pos: vec4f, @location(0) a: f32, @location(1) uv: vec2f };
+fn screenQuad(pa: vec4f, pb: vec4f, vi: u32, w: f32) -> vec4f {
+  let sa = pa.xy / pa.w; let sb = pb.xy / pb.w;
+  var d = (sb - sa) * U.viewport.xy;
+  d = select(normalize(d), vec2f(1.0, 0.0), length(d) < 1e-5);
+  let n = vec2f(-d.y, d.x) * w * U.viewport.zw * 2.0;
+  let corner = array<vec2f, 6>(vec2f(0.0, -1.0), vec2f(1.0, -1.0), vec2f(1.0, 1.0), vec2f(0.0, -1.0), vec2f(1.0, 1.0), vec2f(0.0, 1.0))[vi];
+  let p = mix(pa, pb, corner.x);
+  return vec4f(p.xy + n * corner.y * p.w, p.z, p.w);
+}
+@vertex fn vsEdge(@builtin(vertex_index) vi: u32, @builtin(instance_index) ei: u32) -> MOut {
+  let e = edges[ei];
+  let a = U.viewProj * vec4f(nodes[e.x].xyz, 1.0);
+  let b = U.viewProj * vec4f(nodes[e.y].xyz, 1.0);
+  var o: MOut;
+  o.pos = screenQuad(a, b, vi, 0.55 * U.params.w);
+  let dep = 0.5 * (a.w + b.w);
+  o.a = mix(0.62, 0.20, clamp((dep - U.viewport.w * 0.0 - (length(U.camPos.xyz - U.lightC.xyz) - 1.2)) / 2.4, 0.0, 1.0));
+  o.uv = vec2f(0.0);
+  return o;
+}
+@vertex fn vsNode(@builtin(vertex_index) vi: u32, @builtin(instance_index) ni: u32) -> MOut {
+  let c = U.viewProj * vec4f(nodes[ni].xyz, 1.0);
+  let q = array<vec2f, 6>(vec2f(-1.0, -1.0), vec2f(1.0, -1.0), vec2f(1.0, 1.0), vec2f(-1.0, -1.0), vec2f(1.0, 1.0), vec2f(-1.0, 1.0))[vi];
+  var o: MOut;
+  o.pos = vec4f(c.xy + q * 2.6 * U.params.w * U.viewport.zw * 2.0 * c.w, c.z, c.w);
+  o.a = mix(0.9, 0.35, clamp((c.w - (length(U.camPos.xyz - U.lightC.xyz) - 1.2)) / 2.4, 0.0, 1.0));
+  o.uv = q;
+  return o;
+}
+@fragment fn fsEdge(i: MOut) -> @location(0) vec4f {
+  return vec4f(vec3f(0.23, 0.16, 0.09) * i.a, i.a) * U.params.z;
+}
+@fragment fn fsNode(i: MOut) -> @location(0) vec4f {
+  let d = length(i.uv);
+  let a = (1.0 - smoothstep(0.7, 1.0, d)) * i.a * U.params.z;
+  let c = mix(vec3f(1.0, 0.98, 0.93), vec3f(0.23, 0.16, 0.09), smoothstep(0.35, 0.6, d));
+  return vec4f(c * a, a);
+}
+`;
+
+/* =====================================================================
+   4 · WEBGPU RENDERER
+   per frame:  compute (embed surface) → light map → MSAA main pass
+               [depth pre-pass · studio sweep · jelly · lattice overlay]
+   ===================================================================== */
+const TINTS = {
+  golden: { name: 'Golden', sigA: [0.30, 0.98, 3.7], albedo: [1.0, 0.92, 0.66], cell: [1.0, 0.965, 0.84], shadow: [0.22, 0.62, 2.1] },
+  amber:  { name: 'Amber',  sigA: [0.48, 1.95, 5.8], albedo: [1.0, 0.80, 0.50], cell: [1.0, 0.91, 0.74], shadow: [0.36, 1.25, 3.4] },
+  rose:   { name: 'Rosé',   sigA: [0.26, 2.15, 1.30], albedo: [1.0, 0.80, 0.84], cell: [1.0, 0.93, 0.94], shadow: [0.2, 1.35, 0.95] },
+};
+const SCATTER = 2.3;        // shared scattering coefficient — the "material", independent of tint
+const FIBRE = 1.0;
+
+// ---- small matrix helpers (column-major, WebGPU clip space z ∈ [0,1])
+const M4 = {
+  mul(a, b) { const o = new Float32Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; },
+  perspective(fovy, aspect, near, far, sx = 0, sy = 0) {
+    const f = 1 / Math.tan(fovy / 2), o = new Float32Array(16);
+    o[0] = f / aspect; o[5] = f; o[10] = far / (near - far); o[11] = -1; o[14] = near * far / (near - far);
+    o[8] = -sx; o[9] = -sy;
+    return o;
+  },
+  lookAt(eye, at, up) {
+    const z = norm3(sub3(eye, at)), x = norm3(cross3(up, z)), y = cross3(z, x);
+    return new Float32Array([x[0], y[0], z[0], 0, x[1], y[1], z[1], 0, x[2], y[2], z[2], 0, -dot3(x, eye), -dot3(y, eye), -dot3(z, eye), 1]);
+  },
+  invert(m) {
+    const o = new Float32Array(16), a = m;
+    const b00 = a[0] * a[5] - a[1] * a[4], b01 = a[0] * a[6] - a[2] * a[4], b02 = a[0] * a[7] - a[3] * a[4], b03 = a[1] * a[6] - a[2] * a[5];
+    const b04 = a[1] * a[7] - a[3] * a[5], b05 = a[2] * a[7] - a[3] * a[6], b06 = a[8] * a[13] - a[9] * a[12], b07 = a[8] * a[14] - a[10] * a[12];
+    const b08 = a[8] * a[15] - a[11] * a[12], b09 = a[9] * a[14] - a[10] * a[13], b10 = a[9] * a[15] - a[11] * a[13], b11 = a[10] * a[15] - a[11] * a[14];
+    const det = 1 / (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06);
+    o[0] = (a[5] * b11 - a[6] * b10 + a[7] * b09) * det; o[1] = (a[2] * b10 - a[1] * b11 - a[3] * b09) * det;
+    o[2] = (a[13] * b05 - a[14] * b04 + a[15] * b03) * det; o[3] = (a[10] * b04 - a[9] * b05 - a[11] * b03) * det;
+    o[4] = (a[6] * b08 - a[4] * b11 - a[7] * b07) * det; o[5] = (a[0] * b11 - a[2] * b08 + a[3] * b07) * det;
+    o[6] = (a[14] * b02 - a[12] * b05 - a[15] * b01) * det; o[7] = (a[8] * b05 - a[10] * b02 + a[11] * b01) * det;
+    o[8] = (a[4] * b10 - a[5] * b08 + a[7] * b06) * det; o[9] = (a[1] * b08 - a[0] * b10 - a[3] * b06) * det;
+    o[10] = (a[12] * b04 - a[13] * b02 + a[15] * b00) * det; o[11] = (a[9] * b02 - a[8] * b04 - a[11] * b00) * det;
+    o[12] = (a[5] * b07 - a[4] * b09 - a[6] * b06) * det; o[13] = (a[0] * b09 - a[1] * b07 + a[2] * b06) * det;
+    o[14] = (a[13] * b01 - a[12] * b03 - a[14] * b00) * det; o[15] = (a[8] * b03 - a[9] * b01 + a[10] * b00) * det;
+    return o;
+  },
+  xform(m, p) { const x = p[0], y = p[1], z = p[2], w = p[3] ?? 1; return [m[0] * x + m[4] * y + m[8] * z + m[12] * w, m[1] * x + m[5] * y + m[9] * z + m[13] * w, m[2] * x + m[6] * y + m[10] * z + m[14] * w, m[3] * x + m[7] * y + m[11] * z + m[15] * w]; },
+};
+function sub3(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+function dot3(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+function cross3(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+function norm3(a) { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; }
+
+// the page background is the tone-mapped backdrop colour, so canvas and page are seamless
+function backdropCss() {
+  const c = [0.835, 0.775, 0.690].map(v => v * 1.0);
+  const x = Math.min(...c), off = x < 0.08 ? x - 6.25 * x * x : 0.04;
+  let d = c.map(v => v - off); const peak = Math.max(...d), sc = 0.76;
+  if (peak >= sc) { const k = 1 - sc, np = 1 - k * k / (peak + k - sc); d = d.map(v => v * np / peak); const g = 1 - 1 / (0.15 * (peak - np) + 1); d = d.map(v => v + (np - v) * g); }
+  const s = d.map(v => v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055);
+  return `rgb(${s.map(v => Math.round(Math.min(1, v) * 255)).join(',')})`;
+}
+
+class JellyRenderer {
+  static async create(canvas, sim, surface) {
+    if (!navigator.gpu) throw Object.assign(new Error('This browser does not expose WebGPU (navigator.gpu is missing).'), { code: 'no-api' });
+    let adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
+    if (!adapter) throw Object.assign(new Error('WebGPU is present but no suitable GPU adapter was found.'), { code: 'no-adapter' });
+    const device = await adapter.requestDevice();
+    const r = new JellyRenderer(canvas, device, sim, surface);
+    await r.init();
+    return r;
+  }
+  constructor(canvas, device, sim, surface) {
+    this.canvas = canvas; this.device = device; this.sim = sim; this.surface = surface;
+    this.context = canvas.getContext('webgpu');
+    this.format = navigator.gpu.getPreferredCanvasFormat();
+    // ?capture=1 lets automated tests read frames back (headless browsers may not composite WebGPU canvases)
+    this.canCapture = new URLSearchParams(location.search).has('capture');
+    this.context.configure({ device, format: this.format, alphaMode: 'opaque', usage: GPUTextureUsage.RENDER_ATTACHMENT | (this.canCapture ? GPUTextureUsage.COPY_SRC : 0) });
+    this.sampleCount = 4;
+    this.lightRes = 512;
+    this.uniform = new Float32Array(80);
+    this.nodeData = new Float32Array(sim.n * 4);
+    this.frameNo = 0;
+    this.samples = [20, 10];
+    this.meshAlpha = 0;
+    this.debugSkip = +(new URLSearchParams(location.search).get('skip') || 0);   // test aid: 1 = jelly, 2 = sweep
+    this.inFlight = 0;
+    this.gpuFrames = 0;
+  }
+  async init() {
+    const d = this.device, S = this.surface, sim = this.sim;
+    const errors = [];
+    d.pushErrorScope('validation');
+    const mk = (size, usage, data) => {
+      const b = d.createBuffer({ size: Math.ceil(size / 4) * 4, usage, mappedAtCreation: !!data });
+      if (data) { new data.constructor(b.getMappedRange()).set(data); b.unmap(); }
+      return b;
+    };
+    const U = GPUBufferUsage;
+    this.frameBuf = mk(this.uniform.byteLength, U.UNIFORM | U.COPY_DST);
+    this.nodeBuf = mk(sim.n * 16, U.STORAGE | U.COPY_DST);
+    this.staticBuf = mk(S.nv * 96, U.STORAGE | U.VERTEX, packStatic(S));
+    this.vertBuf = mk(S.nv * 80, U.STORAGE | U.VERTEX);
+    this.indexBuf = mk(S.idx.byteLength, U.INDEX, S.idx);
+    this.indexCount = S.idx.length;
+    this.skinU = mk(16, U.UNIFORM, new Uint32Array([S.nv, LAT.NT, LAT.NR, LAT.NY]));
+    this.edgeBuf = mk(sim.nEdges * 8, U.STORAGE, Uint32Array.from(sim.edges));
+    // light map targets
+    const TU = GPUTextureUsage;
+    this.lightMM = d.createTexture({ size: [this.lightRes, this.lightRes], format: 'rg16float', usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
+    this.lightTh = d.createTexture({ size: [this.lightRes, this.lightRes], format: 'r16float', usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
+    this.linSamp = d.createSampler({ magFilter: 'linear', minFilter: 'linear', addressModeU: 'clamp-to-edge', addressModeV: 'clamp-to-edge' });
+
+    const module = async (code, label) => {
+      const m = d.createShaderModule({ code, label });
+      const info = await m.getCompilationInfo();
+      for (const msg of info.messages) if (msg.type === 'error') errors.push(`${label}:${msg.lineNum}:${msg.linePos} ${msg.message}`);
+      return m;
+    };
+    const [mSkin, mLight, mEnv, mJelly, mMesh] = await Promise.all([
+      module(WGSL_SKIN, 'skin'), module(WGSL_LIGHTMAP, 'lightmap'), module(WGSL_ENV, 'env'), module(WGSL_JELLY, 'jelly'), module(WGSL_MESH, 'mesh')]);
+    if (errors.length) throw Object.assign(new Error('Shader compilation failed:\n' + errors.join('\n')), { code: 'shader' });
+
+    const jellyVB = [
+      { arrayStride: 80, attributes: [0, 1, 2, 3, 4].map(i => ({ shaderLocation: i, offset: i * 16, format: 'float32x4' })) },
+      { arrayStride: 96, attributes: [{ shaderLocation: 5, offset: 0, format: 'float32x4' }] },
+    ];
+    const ms = { count: this.sampleCount };
+    const depthFmt = 'depth24plus';
+    const premul = { color: { srcFactor: 'one', dstFactor: 'one-minus-src-alpha' }, alpha: { srcFactor: 'one', dstFactor: 'one-minus-src-alpha' } };
+    const P = await Promise.all([
+      d.createComputePipelineAsync({ layout: 'auto', compute: { module: mSkin, entryPoint: 'main' } }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mLight, entryPoint: 'vs', buffers: [{ arrayStride: 80, attributes: [{ shaderLocation: 0, offset: 0, format: 'float32x4' }] }] },
+        fragment: { module: mLight, entryPoint: 'fs', targets: [
+          { format: 'rg16float', blend: { color: { operation: 'min', srcFactor: 'one', dstFactor: 'one' }, alpha: { operation: 'min', srcFactor: 'one', dstFactor: 'one' } } },
+          { format: 'r16float', blend: { color: { operation: 'add', srcFactor: 'one', dstFactor: 'one' }, alpha: { operation: 'add', srcFactor: 'one', dstFactor: 'one' } } }] },
+        primitive: { topology: 'triangle-list', cullMode: 'none' },
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mJelly, entryPoint: 'vs', buffers: jellyVB },
+        fragment: { module: mJelly, entryPoint: 'fsDepth', targets: [{ format: this.format, writeMask: 0 }] },
+        primitive: { topology: 'triangle-list', cullMode: 'back' },
+        depthStencil: { format: depthFmt, depthWriteEnabled: true, depthCompare: 'less' },
+        multisample: ms,
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mEnv, entryPoint: 'vs' },
+        fragment: { module: mEnv, entryPoint: 'fs', targets: [{ format: this.format }] },
+        depthStencil: { format: depthFmt, depthWriteEnabled: false, depthCompare: 'less-equal' },
+        multisample: ms,
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mJelly, entryPoint: 'vs', buffers: jellyVB },
+        fragment: { module: mJelly, entryPoint: 'fs', targets: [{ format: this.format }] },
+        primitive: { topology: 'triangle-list', cullMode: 'back' },
+        depthStencil: { format: depthFmt, depthWriteEnabled: false, depthCompare: 'equal' },
+        multisample: ms,
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mMesh, entryPoint: 'vsEdge' },
+        fragment: { module: mMesh, entryPoint: 'fsEdge', targets: [{ format: this.format, blend: premul }] },
+        depthStencil: { format: depthFmt, depthWriteEnabled: false, depthCompare: 'always' },
+        multisample: ms,
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mMesh, entryPoint: 'vsNode' },
+        fragment: { module: mMesh, entryPoint: 'fsNode', targets: [{ format: this.format, blend: premul }] },
+        depthStencil: { format: depthFmt, depthWriteEnabled: false, depthCompare: 'always' },
+        multisample: ms,
+      }),
+    ]);
+    [this.pSkin, this.pLight, this.pDepth, this.pEnv, this.pJelly, this.pEdge, this.pNode] = P;
+    const bg = (p, entries) => d.createBindGroup({ layout: p.getBindGroupLayout(0), entries: entries.map(([binding, resource]) => ({ binding, resource })) });
+    this.bgSkin = bg(this.pSkin, [[0, { buffer: this.skinU }], [1, { buffer: this.nodeBuf }], [2, { buffer: this.staticBuf }], [3, { buffer: this.vertBuf }]]);
+    this.bgLight = bg(this.pLight, [[0, { buffer: this.frameBuf }]]);
+    this.bgDepth = bg(this.pDepth, [[0, { buffer: this.frameBuf }]]);
+    const texEntries = [[0, { buffer: this.frameBuf }], [1, this.lightMM.createView()], [2, this.lightTh.createView()], [3, this.linSamp]];
+    this.bgEnv = bg(this.pEnv, texEntries);
+    this.bgJelly = bg(this.pJelly, texEntries);
+    this.bgEdge = bg(this.pEdge, [[0, { buffer: this.frameBuf }], [4, { buffer: this.nodeBuf }], [5, { buffer: this.edgeBuf }]]);
+    this.bgNode = bg(this.pNode, [[0, { buffer: this.frameBuf }], [4, { buffer: this.nodeBuf }]]);
+    const err = await d.popErrorScope();
+    if (err) throw Object.assign(new Error('WebGPU setup error: ' + err.message), { code: 'setup' });
+  }
+  resize(w, h) {
+    w = Math.max(2, Math.floor(w)); h = Math.max(2, Math.floor(h));
+    if (this.canvas.width === w && this.canvas.height === h && this.msaa) return;
+    this.canvas.width = w; this.canvas.height = h;
+    this.msaa?.destroy(); this.depth?.destroy();
+    const TU = GPUTextureUsage;
+    this.msaa = this.device.createTexture({ size: [w, h], format: this.format, sampleCount: this.sampleCount, usage: TU.RENDER_ATTACHMENT });
+    this.depth = this.device.createTexture({ size: [w, h], format: 'depth24plus', sampleCount: this.sampleCount, usage: TU.RENDER_ATTACHMENT });
+  }
+  /**
+   * view: { viewProj, invViewProj, eye, dpr }  light: { dir, x, y, center, extent }
+   * tint: { sigA, albedo, cell, shadow }  time (s)
+   */
+  render(view, light, tint, time) {
+    const d = this.device, u = this.uniform, sim = this.sim;
+    // never queue more than two frames: on a slow GPU the jelly would otherwise lag the cursor
+    if (this.inFlight >= 2) return false;
+    // nodes → GPU
+    for (let i = 0; i < sim.n; i++) { this.nodeData[i * 4] = sim.x[i * 3]; this.nodeData[i * 4 + 1] = sim.x[i * 3 + 1]; this.nodeData[i * 4 + 2] = sim.x[i * 3 + 2]; }
+    d.queue.writeBuffer(this.nodeBuf, 0, this.nodeData);
+    u.set(view.viewProj, 0); u.set(view.invViewProj, 16);
+    u.set([...view.eye, time], 32);
+    u.set([...light.dir, light.extent], 36);
+    u.set([...light.x, light.depth0], 40);
+    u.set([...light.y, 1 / this.lightRes], 44);
+    u.set([...light.center, view.exposure], 48);
+    u.set([...tint.sigA, SCATTER], 52);
+    u.set([...tint.albedo, 26], 56);
+    u.set([...tint.cell, FIBRE], 60);
+    u.set([...tint.shadow, this.frameNo++ % 64], 64);
+    u.set([this.canvas.width, this.canvas.height, 1 / this.canvas.width, 1 / this.canvas.height], 68);
+    u.set([this.samples[0], this.samples[1], this.meshAlpha, view.dpr], 72);
+    u.set([...light.fill, light.fillStrength], 76);
+    d.queue.writeBuffer(this.frameBuf, 0, u);
+
+    const enc = d.createCommandEncoder();
+    const target = this.context.getCurrentTexture();
+    { const p = enc.beginComputePass(); p.setPipeline(this.pSkin); p.setBindGroup(0, this.bgSkin); p.dispatchWorkgroups(Math.ceil(this.surface.nv / 64)); p.end(); }
+    {
+      const p = enc.beginRenderPass({ colorAttachments: [
+        { view: this.lightMM.createView(), clearValue: [60000, 60000, 0, 0], loadOp: 'clear', storeOp: 'store' },
+        { view: this.lightTh.createView(), clearValue: [0, 0, 0, 0], loadOp: 'clear', storeOp: 'store' }] });
+      p.setPipeline(this.pLight); p.setBindGroup(0, this.bgLight);
+      p.setVertexBuffer(0, this.vertBuf); p.setIndexBuffer(this.indexBuf, 'uint32');
+      p.drawIndexed(this.indexCount); p.end();
+    }
+    {
+      const p = enc.beginRenderPass({
+        colorAttachments: [{ view: this.msaa.createView(), resolveTarget: target.createView(), clearValue: [0.93, 0.9, 0.85, 1], loadOp: 'clear', storeOp: 'discard' }],
+        depthStencilAttachment: { view: this.depth.createView(), depthClearValue: 1, depthLoadOp: 'clear', depthStoreOp: 'discard' },
+      });
+      p.setVertexBuffer(0, this.vertBuf); p.setVertexBuffer(1, this.staticBuf); p.setIndexBuffer(this.indexBuf, 'uint32');
+      const dbg = this.debugSkip | 0;
+      if (!(dbg & 1)) { p.setPipeline(this.pDepth); p.setBindGroup(0, this.bgDepth); p.drawIndexed(this.indexCount); }
+      if (!(dbg & 2)) { p.setPipeline(this.pEnv); p.setBindGroup(0, this.bgEnv); p.draw(3); }
+      if (!(dbg & 1)) { p.setPipeline(this.pJelly); p.setBindGroup(0, this.bgJelly); p.drawIndexed(this.indexCount); }
+      if (this.meshAlpha > 0.005) {
+        p.setPipeline(this.pEdge); p.setBindGroup(0, this.bgEdge); p.draw(6, sim.nEdges);
+        p.setPipeline(this.pNode); p.setBindGroup(0, this.bgNode); p.draw(6, sim.n);
+      }
+      p.end();
+    }
+    let cap = null;
+    if (this.captureResolve && this.canCapture) {
+      const w = target.width, h = target.height, bpr = Math.ceil(w * 4 / 256) * 256;
+      cap = { w, h, bpr, buf: d.createBuffer({ size: bpr * h, usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ }), resolve: this.captureResolve };
+      this.captureResolve = null;
+      enc.copyTextureToBuffer({ texture: target }, { buffer: cap.buf, bytesPerRow: bpr }, [w, h]);
+    }
+    d.queue.submit([enc.finish()]);
+    this.inFlight++;
+    d.queue.onSubmittedWorkDone().then(() => { this.inFlight--; this.gpuFrames++; });
+    if (cap) this.finishCapture(cap);
+    return true;
+  }
+  async finishCapture({ w, h, bpr, buf, resolve }) {
+    await buf.mapAsync(GPUMapMode.READ);
+    const src = new Uint8Array(buf.getMappedRange()), img = new ImageData(w, h);
+    const bgra = this.format.startsWith('bgra');
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const s = y * bpr + x * 4, o = (y * w + x) * 4;
+      img.data[o] = src[s + (bgra ? 2 : 0)]; img.data[o + 1] = src[s + 1]; img.data[o + 2] = src[s + (bgra ? 0 : 2)]; img.data[o + 3] = 255;
+    }
+    buf.unmap(); buf.destroy();
+    const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').putImageData(img, 0, 0);
+    resolve(c.toDataURL('image/png'));
+  }
+  /** Test helper: read the next frame back and show it over the canvas (for headless screenshots). */
+  captureFrame() {
+    return new Promise(res => { this.captureResolve = res; }).then(url => {
+      let im = document.getElementById('capimg');
+      if (!im) { im = document.createElement('img'); im.id = 'capimg'; im.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;z-index:1;pointer-events:none'; document.body.appendChild(im); }
+      im.src = url;
+      return new Promise(r => { im.onload = () => r(url.length); });
+    });
+  }
+}
+
+/* =====================================================================
+   5 · APP: camera, interaction, controls, loop
+   ===================================================================== */
+const Q = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+const canvas = $('gl');
+document.documentElement.style.setProperty('--bg', backdropCss());
+
+const sim = new JellySim();
+const firmToCompliance = f => 0.04 * Math.pow(0.0015 / 0.04, f / 100);
+const dampToRate = d => 0.6 * Math.pow(14 / 0.6, d / 100);
+// 1 unit = 4 cm; gummy density 1.25 g/cm³ (mass is what the lattice carries)
+const UNIT_CM = 4, DENSITY = 1.25;
+const massGrams = sim.restVolume * UNIT_CM ** 3 * DENSITY;
+const keScale = (massGrams / 1000 / sim.totalMass) * (UNIT_CM / 100) ** 2 * 1000; // → millijoules
+
+// ---------- camera
+const cam = { az: 0.62, el: 0.60, dist: 5.9, target: [0, 0.2, 0], fov: 30 * Math.PI / 180 };
+const camDefault = { ...cam, target: [...cam.target] };
+const KEY_DIR = norm3([-0.534, 0.766, -0.36]);
+const FILL_DIR = norm3([0.866, 0.35, -0.25]);
+function camEye() {
+  const ce = Math.cos(cam.el);
+  return [cam.target[0] + cam.dist * ce * Math.sin(cam.az), cam.target[1] + cam.dist * Math.sin(cam.el), cam.target[2] + cam.dist * ce * Math.cos(cam.az)];
+}
+let view = null;
+function computeView(w, h, dpr) {
+  const aspect = w / h;
+  const narrow = innerWidth <= 820;
+  // keep the whole ring in frame on tall screens
+  let fov = cam.fov;
+  if (aspect < 1.05) fov = 2 * Math.atan(Math.tan(cam.fov / 2) * 1.05 / aspect);
+  // lens shift: on phones the heading sits on top and the panel below
+  const sy = narrow ? -0.04 : 0.0, sx = narrow ? 0 : -0.02;
+  const eye = camEye();
+  const V = M4.lookAt(eye, cam.target, [0, 1, 0]);
+  const P = M4.perspective(fov, aspect, 0.05, 60, sx, sy);
+  const VP = M4.mul(P, V);
+  view = { viewProj: VP, invViewProj: M4.invert(VP), eye, dpr, exposure: 1.0, fwd: norm3(sub3(cam.target, eye)) };
+  return view;
+}
+function screenRay(clientX, clientY) {
+  const r = canvas.getBoundingClientRect();
+  const nx = (clientX - r.left) / r.width * 2 - 1, ny = 1 - (clientY - r.top) / r.height * 2;
+  const a = M4.xform(view.invViewProj, [nx, ny, 0, 1]), b = M4.xform(view.invViewProj, [nx, ny, 1, 1]);
+  const pa = [a[0] / a[3], a[1] / a[3], a[2] / a[3]], pb = [b[0] / b[3], b[1] / b[3], b[2] / b[3]];
+  return { ro: view.eye, rd: norm3(sub3(pb, pa)) };
+}
+
+// ---------- picking on a coarse copy of the deformed surface
+const surfHi = buildSurface(360, PROFILE_HI);
+const surfLo = buildSurface(120, PROFILE_LO);
+const pickPos = new Float64Array(surfLo.nv * 3);
+function pick(clientX, clientY) {
+  if (!view) return null;
+  deformSurface(surfLo, sim.x, pickPos);
+  const { ro, rd } = screenRay(clientX, clientY);
+  return pickSurface(surfLo, pickPos, ro, rd);
+}
+
+// ---------- state
+const state = { paused: false, slow: false, mesh: false, tint: 'golden', grabbing: false, orbiting: false };
+const tintNow = JSON.parse(JSON.stringify(TINTS.golden));
+let renderer = null;
+const status = $('status');
+
+// ---------- interaction
+const pointers = new Map();
+let drag = null;      // { id, plane:{p,n}, depth }
+let orbit = null;     // { id, x, y }
+let pinch = null;     // { d0, dist0 }
+function planeHit(ro, rd, p, n) {
+  const den = dot3(rd, n); if (Math.abs(den) < 1e-5) return null;
+  const t = dot3(sub3(p, ro), n) / den; if (t < 0) return null;
+  return [ro[0] + rd[0] * t, ro[1] + rd[1] * t, ro[2] + rd[2] * t];
+}
+function startGrab(e, hit) {
+  const [u, s, w] = latticeParams(...hit.material);
+  sim.beginGrab(u, s, w, hit.point);
+  drag = { id: e.pointerId, p: hit.point.slice(), n: view.fwd.slice(), depth: 0 };
+  state.grabbing = true;
+  canvas.className = 'grabbing';
+}
+function moveGrab(clientX, clientY) {
+  const { ro, rd } = screenRay(clientX, clientY);
+  const p = [drag.p[0] + drag.n[0] * drag.depth, drag.p[1] + drag.n[1] * drag.depth, drag.p[2] + drag.n[2] * drag.depth];
+  const t = planeHit(ro, rd, p, drag.n);
+  if (t) sim.moveGrab(t);
+}
+function endGrab() {
+  if (!drag) return;
+  sim.endGrab(); drag = null; state.grabbing = false; canvas.className = '';
+}
+canvas.addEventListener('pointerdown', e => {
+  canvas.focus({ preventScroll: true });
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pointers.size === 2) {           // second finger: pinch-zoom (drops any grab)
+    endGrab(); orbit = null;
+    const [a, b] = [...pointers.values()];
+    pinch = { d0: Math.hypot(a.x - b.x, a.y - b.y), dist0: cam.dist, cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2, az0: cam.az, el0: cam.el };
+    return;
+  }
+  if (pointers.size > 2) return;
+  canvas.setPointerCapture(e.pointerId);
+  const hit = state.paused ? null : pick(e.clientX, e.clientY);
+  if (hit) startGrab(e, hit);
+  else { orbit = { id: e.pointerId, x: e.clientX, y: e.clientY }; canvas.className = 'grabbing'; }
+  e.preventDefault();
+});
+canvas.addEventListener('pointermove', e => {
+  const pt = pointers.get(e.pointerId);
+  if (pt) { pt.x = e.clientX; pt.y = e.clientY; }
+  if (pinch && pointers.size >= 2) {
+    const [a, b] = [...pointers.values()];
+    const d = Math.hypot(a.x - b.x, a.y - b.y);
+    cam.dist = Math.min(11, Math.max(3.0, pinch.dist0 * pinch.d0 / Math.max(d, 1)));
+    const cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2;
+    cam.az = pinch.az0 - (cx - pinch.cx) * 0.006;
+    cam.el = Math.min(1.45, Math.max(0.06, pinch.el0 + (cy - pinch.cy) * 0.005));
+    return;
+  }
+  if (drag && e.pointerId === drag.id) { moveGrab(e.clientX, e.clientY); return; }
+  if (orbit && e.pointerId === orbit.id) {
+    cam.az -= (e.clientX - orbit.x) * 0.006;
+    cam.el = Math.min(1.45, Math.max(0.06, cam.el + (e.clientY - orbit.y) * 0.005));
+    orbit.x = e.clientX; orbit.y = e.clientY;
+    return;
+  }
+  if (e.pointerType === 'mouse' && !e.buttons) hover(e.clientX, e.clientY);
+});
+let hoverT = 0;
+function hover(x, y) {
+  const now = performance.now(); if (now - hoverT < 70) return; hoverT = now;
+  canvas.className = !state.paused && pick(x, y) ? 'grab' : '';
+}
+const pointerUp = e => {
+  pointers.delete(e.pointerId);
+  if (pinch && pointers.size < 2) { pinch = null; return; }
+  if (drag && e.pointerId === drag.id) endGrab();
+  if (orbit && e.pointerId === orbit.id) { orbit = null; canvas.className = ''; }
+};
+canvas.addEventListener('pointerup', pointerUp);
+canvas.addEventListener('pointercancel', pointerUp);
+canvas.addEventListener('lostpointercapture', e => { if (drag && e.pointerId === drag.id) endGrab(); });
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  const k = e.deltaMode === 1 ? 16 : 1;
+  if (drag) { drag.depth = Math.max(-1.5, Math.min(1.5, drag.depth + e.deltaY * k * 0.0015)); return; }
+  cam.dist = Math.min(11, Math.max(3.0, cam.dist * Math.exp(e.deltaY * k * 0.0011)));
+}, { passive: false });
+canvas.addEventListener('dblclick', e => { if (!pick(e.clientX, e.clientY)) Object.assign(cam, { az: camDefault.az, el: camDefault.el, dist: camDefault.dist }); });
+
+// ---------- controls
+function setRangeFill(el) { el.style.setProperty('--p', el.value + '%'); }
+const firm = $('firm'), damp = $('damp');
+function applyFirm() { sim.edgeCompliance = firmToCompliance(+firm.value); $('firmOut').textContent = firm.value; setRangeFill(firm); }
+function applyDamp() { sim.damping = dampToRate(+damp.value); $('dampOut').textContent = damp.value; setRangeFill(damp); }
+firm.addEventListener('input', applyFirm); damp.addEventListener('input', applyDamp);
+applyFirm(); applyDamp();
+document.querySelectorAll('.tint').forEach(b => b.addEventListener('click', () => setTint(b.dataset.tint)));
+function setTint(name) {
+  state.tint = name;
+  document.querySelectorAll('.tint').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tint === name)));
+}
+function setPaused(p) {
+  state.paused = p;
+  $('bPause').setAttribute('aria-pressed', String(p));
+  $('bPause').textContent = p ? 'Resume' : 'Pause';
+  if (p) endGrab();
+}
+const actions = {
+  nudge() { endGrab(); setPaused(false); sim.nudge(); },
+  reset() { endGrab(); sim.reset(0.5, 0.22); cam.target = [...camDefault.target]; },
+  flip() {
+    endGrab(); setPaused(false);
+    const f = view ? view.fwd : [0, 0, -1];
+    sim.turnOver([f[2], 0, -f[0]]);   // spin about the camera's horizontal axis so the flip reads clearly
+  },
+  pause() { setPaused(!state.paused); },
+  slow(v) { state.slow = v ?? !state.slow; $('tSlow').checked = state.slow; },
+  mesh(v) { state.mesh = v ?? !state.mesh; $('tMesh').checked = state.mesh; },
+};
+$('bNudge').addEventListener('click', actions.nudge);
+$('bReset').addEventListener('click', actions.reset);
+$('bFlip').addEventListener('click', actions.flip);
+$('bPause').addEventListener('click', actions.pause);
+$('tSlow').addEventListener('change', e => actions.slow(e.target.checked));
+$('tMesh').addEventListener('change', e => actions.mesh(e.target.checked));
+addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' && e.target.type === 'range') return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); actions.pause(); }
+  else if (k === 'n') actions.nudge();
+  else if (k === 'f') actions.flip();
+  else if (k === 'r') actions.reset();
+  else if (k === 'm') actions.mesh();
+  else if (k === 's') actions.slow();
+  else if (k === 'escape') $('notes').hidden = true;
+});
+const panel = $('panel');
+$('sheetToggle').addEventListener('click', () => {
+  const c = panel.classList.toggle('collapsed');
+  $('sheetToggle').textContent = c ? 'More' : 'Hide';
+  $('sheetToggle').setAttribute('aria-expanded', String(!c));
+});
+if (innerWidth <= 820) { panel.classList.add('collapsed'); $('sheetToggle').textContent = 'More'; $('sheetToggle').setAttribute('aria-expanded', 'false'); }
+$('bNotes').addEventListener('click', () => { $('notes').hidden = false; });
+$('bNotesClose').addEventListener('click', () => { $('notes').hidden = true; });
+$('notes').addEventListener('click', e => { if (e.target.id === 'notes') $('notes').hidden = true; });
+$('promptText').textContent = $('brief')?.textContent.trim() ?? '';
+
+// ---------- readouts
+const rMass = $('rMass'), rVol = $('rVol'), rKE = $('rKE');
+rMass.innerHTML = `${massGrams.toFixed(1)}<small>g</small>`;
+let readT = 0;
+function readouts(now) {
+  if (now - readT < 160) return; readT = now;
+  rVol.innerHTML = `${(sim.volume() / sim.restVolume * 100).toFixed(1)}<small>%</small>`;
+  const ke = sim.kinetic() * keScale;
+  rKE.innerHTML = `${ke < 0.005 ? '0.00' : ke < 10 ? ke.toFixed(2) : ke.toFixed(1)}<small>mJ</small>`;
+}
+
+// ---------- loop
+let last = performance.now(), simTime = 0, frameMs = 16, qualityT = 0;
+let renderScale = Math.min(1, +(Q.get('scale') || 1));
+const maxDpr = +(Q.get('dpr') || 2);
+if (Q.get('samples')) { const s = +Q.get('samples'); }
+const lerp = (a, b, t) => a + (b - a) * t;
+function tick(now) {
+  requestAnimationFrame(tick);
+  const dtReal = Math.min((now - last) / 1000, 1 / 20); last = now;
+  frameMs = lerp(frameMs, dtReal * 1000, 0.05);
+  // physics
+  if (!state.paused) {
+    const dt = Math.min(dtReal, 1 / 30) * (state.slow ? 0.25 : 1);
+    if (dt > 0) { sim.step(dt); simTime += dt; }
+  }
+  // camera eases after the jelly when it wanders off, so it never leaves the frame
+  if (!drag) {
+    const c = sim.centerOfMass(), k = 1 - Math.exp(-dtReal * 1.2);
+    cam.target[0] = lerp(cam.target[0], c[0] * 0.75, k);
+    cam.target[2] = lerp(cam.target[2], c[2] * 0.75, k);
+    cam.target[1] = lerp(cam.target[1], Math.max(0.2, Math.min(c[1], 1.4) * 0.7), k);
+  }
+  // tint + mesh overlay ease
+  const kt = 1 - Math.exp(-dtReal * 7), goal = TINTS[state.tint];
+  for (const key of ['sigA', 'albedo', 'cell', 'shadow']) for (let i = 0; i < 3; i++) tintNow[key][i] = lerp(tintNow[key][i], goal[key][i], kt);
+  if (!renderer) return;
+  renderer.meshAlpha = lerp(renderer.meshAlpha, state.mesh ? 1 : 0, 1 - Math.exp(-dtReal * 10));
+  // adaptive resolution: keep interaction smooth on modest GPUs
+  if (!Q.get('scale') && now - qualityT > 1200) {
+    qualityT = now;
+    if (frameMs > 24 && renderScale > 0.5) renderScale = Math.max(0.5, renderScale - 0.1);
+    else if (frameMs < 14 && renderScale < 1) renderScale = Math.min(1, renderScale + 0.05);
+    renderer.samples = renderScale < 0.72 ? [14, 7] : [20, 10];
+  }
+  const dpr = Math.min(devicePixelRatio || 1, maxDpr) * renderScale;
+  renderer.resize(canvas.clientWidth * dpr, canvas.clientHeight * dpr);
+  computeView(canvas.width, canvas.height, dpr);
+  const c = sim.centerOfMass();
+  const lz = KEY_DIR, lx = norm3(cross3([0, 1, 0], lz)), ly = cross3(lz, lx);
+  renderer.render(view, { dir: lz, x: lx, y: ly, center: c, extent: 2.3, depth0: 3.0, fill: FILL_DIR, fillStrength: 1.1 }, tintNow, now / 1000);
+  readouts(now);
+}
+
+// ---------- start
+async function start() {
+  computeView(innerWidth, innerHeight, 1);
+  try {
+    renderer = await JellyRenderer.create(canvas, sim, surfHi);
+    if (Q.get('samples')) { const s = +Q.get('samples'); renderer.samples = [s, Math.max(4, s >> 1)]; }
+    renderer.device.lost.then(info => { if (info.reason !== 'destroyed') showFallback('The GPU device was lost (' + (info.message || info.reason) + '). Reload the page to try again.'); });
+    status.classList.add('gone');
+  } catch (err) {
+    console.error(err);
+    showFallback(err.message);
+  }
+  window.__jellyReady = true;
+}
+function showFallback(msg) {
+  renderer = null;
+  $('fallback').hidden = false;
+  $('fallbackWhy').textContent = msg ? 'Details: ' + msg : '';
+  status.classList.add('gone');
+  panel.classList.add('disabled');
+  window.__jellyError = msg;
+}
+// test hooks (used by the automated checks; harmless otherwise)
+window.jelly = {
+  sim, cam, actions, pick, setTint, get renderer() { return renderer; }, get view() { return view; },
+  grab(x, y) { const hit = pick(x, y); if (hit) startGrab({ pointerId: -1 }, hit); return !!hit; },
+  dragTo(x, y) { if (drag) moveGrab(x, y); }, release() { endGrab(); },
+  project(p) { const c = M4.xform(view.viewProj, [...p, 1]); const r = canvas.getBoundingClientRect(); return [r.left + (c[0] / c[3] * 0.5 + 0.5) * r.width, r.top + (0.5 - c[1] / c[3] * 0.5) * r.height]; },
+  get fps() { return 1000 / frameMs; }, get renderScale() { return renderScale; },
+};
+requestAnimationFrame(tick);
+start();
+
+</script>
+</body>
+</html>
