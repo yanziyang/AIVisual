@@ -3,7 +3,7 @@ const TAU=Math.PI*2;
 const pondState={tool:'ripple',paused:Q.has('paused')||matchMedia('(prefers-reduced-motion: reduce)').matches,wind:.35,light:'afternoon',count:8};
 const lights={morning:{el:48,az:-35,warm:.05,brightness:.94,label:'Morning light'},afternoon:{el:56,az:55,warm:.16,brightness:1.08,label:'Afternoon light'},golden:{el:24,az:36,warm:.9,brightness:.86,label:'Golden hour'}};
 let SUNV=[0,1,0],warm=.16,brightness=1.08;
-const cam={yaw:.04,pitch:-1.06,distance:8.5,zoom:1,vy:0,vp:0};
+const cam={yaw:.04,pitch:-1.19,distance:8.5,zoom:1,vy:0,vp:0};
 const VFOV=48*Math.PI/180;
 let drag=null,lastTap=null,pinch=null,currentBasis=null,simTime=0,toastTimer=0;
 const $hint=document.getElementById('hint');
@@ -18,7 +18,7 @@ const aboutDialog=document.getElementById('about-dialog');
 document.getElementById('ripple').onclick=()=>selectTool('ripple');
 document.getElementById('feed').onclick=()=>selectTool('feed');
 document.getElementById('pause').onclick=togglePause;
-document.getElementById('reset-view').onclick=()=>{Object.assign(cam,{yaw:.04,pitch:-1.06,zoom:1,vy:0,vp:0});notify('Back to the pond');};
+document.getElementById('reset-view').onclick=()=>{Object.assign(cam,{yaw:.04,pitch:-1.19,zoom:1,vy:0,vp:0});notify('Back to the pond');};
 const settings=document.getElementById('settings'),settingsButton=document.getElementById('settings-toggle');
 function showSettings(open){settings.hidden=!open;settingsButton.setAttribute('aria-expanded',String(open));if(open)document.getElementById('close-settings').focus();else settingsButton.focus();}
 settingsButton.onclick=()=>showSettings(settings.hidden);
@@ -50,9 +50,24 @@ const fishRandom=mulberry(818),foodRandom=mulberry(281);
 const fish=Array.from({length:10},(_,i)=>{const a=i*2.39996,r=.38+Math.sqrt(fishRandom())*1.40;return{x:Math.cos(a)*r,z:Math.sin(a)*r,heading:a+Math.PI/2,length:.47+fishRandom()*.22,depth:.18+fishRandom()*.20,pattern:[0,2,1,0,3,4,0,2,1,0][i],phase:fishRandom()*10,turn:0,target:[0,0],wander:0};});
 const food=[];
 const fishData=new Float32Array(40),fishInfo=new Float32Array(40),foodData=new Float32Array(96);
-const rockCenters=new Float32Array(84),rockSizes=new Float32Array(84),rockRandom=mulberry(73);
-for(let i=0;i<28;i++){const a=i*TAU/28,r=radiusAt(a)+.28;rockCenters.set([Math.cos(a)*r*1.12,.08+rockRandom()*.14,Math.sin(a)*r],i*3);rockSizes.set([.29+rockRandom()*.19,.24+rockRandom()*.20,.30+rockRandom()*.16],i*3);}
+const rockCenters=new Float32Array(54),rockSizes=new Float32Array(54),rockRandom=mulberry(73);
+for(let i=0;i<18;i++){
+ const a=i*TAU/18+(rockRandom()-.5)*.10,r=radiusAt(a)+.20+(rockRandom()-.5)*.16;
+ const variation=[1.08,.85,1.15,.76,1.22,.90,.73,1.16,.78,1.24,.92,.90,.80,1.26,.81,1.08,.95,.84][i];
+ const major=(.44+rockRandom()*.23)*variation,minor=(.40+rockRandom()*.22)*variation,height=(.25+rockRandom()*.29)*variation;
+ rockCenters.set([Math.cos(a)*r*1.12,.06+rockRandom()*.10,Math.sin(a)*r],i*3);
+ rockSizes.set([major,height,minor],i*3);
+}
 gl.useProgram(pMain.p);gl.uniform3fv(pMain.u.uRockCenter,rockCenters);gl.uniform3fv(pMain.u.uRockSize,rockSizes);
+const smallCenters=new Float32Array(270),smallSizes=new Float32Array(270);
+for(let group=0;group<18;group++)for(let j=0;j<5;j++){
+ const i=group*5+j,a=(group+(j<2?.48:0))*TAU/18+(rockRandom()-.5)*.24;
+ const radius=radiusAt(a)+(j<2?.30+rockRandom()*.25:.58+rockRandom()*.60);
+ const size=.075+rockRandom()*.14;
+ smallCenters.set([Math.cos(a)*radius*1.12,.023+size*.27,Math.sin(a)*radius],i*3);
+ smallSizes.set([size*(.78+rockRandom()*.57),size*(.45+rockRandom()*.40),size*(.72+rockRandom()*.6)],i*3);
+}
+gl.uniform3fv(pMain.u.uSmallCenter,smallCenters);gl.uniform3fv(pMain.u.uSmallSize,smallSizes);
 let feedings=0,eaten=0,rippleCount=0;
 function feedAt(x,z){if(pondState.paused){notify('Resume the pond to feed the koi');return;}if(food.length>15){notify('Let the koi finish these first');return;}for(let i=0;i<8;i++){const a=foodRandom()*TAU,r=.05+foodRandom()*.15,px=x+Math.cos(a)*r,pz=z+Math.sin(a)*r;if(insidePond(px,pz,.07))food.push({x:px,z:pz,age:0});}feedings++;makeRipple(x,z,.025,.013);notify('A few pellets. Here they come.');}
 function tapToDrop(sx,sy,B){const p=pointOnWater(sx,sy,B);if(!p||!insidePond(p[0],p[1],.06)){notify('Tap inside the water');return;}if(pondState.tool==='feed')feedAt(...p);else{if(pondState.paused){notify('Resume the pond to make ripples');return;}makeRipple(...p,.065,.021);rippleCount++;}}
@@ -111,9 +126,9 @@ function frame(now){
  gl.uniform3fv(u.uCam,B.pos);gl.uniform3fv(u.uR,B.r);gl.uniform3fv(u.uU,B.u);gl.uniform3fv(u.uF,B.f);gl.uniform3fv(u.uSun,SUNV);
  gl.uniform1f(u.uTanF,Math.tan(VFOV/2));gl.uniform1f(u.uAspect,W/H);gl.uniform1f(u.uL,L);gl.uniform1f(u.uDepth,DEPTH);gl.uniform1f(u.uTime,t);
  gl.uniform1f(u.uRipSize,RSIZE);gl.uniform2fv(u.uRipCenter,ripCenter);gl.uniform2fv(u.uCausShift,causShift);uploadPond();fullscreen();post(t);
- renderedFrames++;if(!ready){ready=true;document.getElementById('loader').classList.add('ready');setTimeout(()=>document.getElementById('loader').hidden=true,650);}
+ renderedFrames++;if(!ready){ready=true;canvas.classList.add('scene-ready');document.getElementById('loader').classList.add('ready');setTimeout(()=>document.getElementById('loader').hidden=true,650);}
  if(now-snapshotAt>500){canvas.dataset.pondState=JSON.stringify(window.pond.state);snapshotAt=now;}
- if(FIXED_T===null){ftAvg=ftAvg*.96+Math.min(100,elapsed*1000)*.04;frames++;if(frames>60){if(ftAvg>47&&quality>.40){quality=Math.max(.40,quality*.85);alloc();frames=0;}else if(ftAvg<38&&quality<.95){quality=Math.min(.95,quality*1.04);alloc();frames=0;}}if(DEBUG&&frames%15===0)$dbg.textContent=`${(1000/ftAvg).toFixed(0)} fps · ${W}×${H} · q ${quality.toFixed(2)}`;}
+ if(FIXED_T===null){ftAvg=ftAvg*.90+Math.min(500,elapsed*1000)*.10;frames++;if(frames>=12){if(ftAvg>58&&quality>.50){quality=Math.max(.50,quality*.80);alloc();frames=0;}else if(frames>=60&&ftAvg<38&&quality<1.0){quality=Math.min(1.0,quality*1.04);alloc();frames=0;}}if(DEBUG&&frames%15===0)$dbg.textContent=`${(1000/ftAvg).toFixed(0)} fps · ${W}×${H} · q ${quality.toFixed(2)}`;}
 }
 requestAnimationFrame(frame);
 

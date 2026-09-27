@@ -11,6 +11,7 @@ With the canvas focused, Enter acts at the center; arrow keys orbit; + / − zoo
 - `pond-shell.html`: interface and About content.
 - `pond-scene.glsl`: scenery and underwater koi shader.
 - `pond-behavior.js`: fish movement, feeding, controls, camera, and frame loop.
+- `render-pond.cjs`: real WebGL rendering and control checks using Playwright and installed Chrome; saves the current desktop, mobile, and golden-hour screenshots.
 - `clearwater-source/`: the upstream engine, MIT license, and the supplied visual reference.
 - `build_pond.py`: embeds all source and assets into `fish-pond.html`.
 
@@ -22,7 +23,17 @@ Browser rendering and shaders were checked at desktop and mobile widths. The inf
 
 Lighting regression checks exercise the preset buttons and actual frame loop. Afternoon uses a distinct sun direction. Changing presets while paused refreshes underwater caustics and shader uniforms without advancing waves, ripples, time, or fish; unchanged paused scenes retain the rendering cache.
 
-Header-picker regression checks cover opening and closing, focus, Escape, outside clicks, and synchronization with Settings. They select Morning and Afternoon through the header picker and verify the shader inputs and caustics. These checks use local DOM and graphics mocks; live visual verification of this change was blocked by the preview browser's restriction on local-file URLs.
+Header-picker regression checks cover opening and closing, focus, Escape, outside clicks, and synchronization with Settings. They select Morning and Afternoon through the header picker and verify the shader inputs and caustics. These simulation checks use local DOM and graphics mocks.
+
+The revised scene was also compiled and rendered in headless Chrome with actual WebGL2 at 1280 × 900 and 390 × 844. Browser checks exercised lighting changes while paused, About, mobile Settings, resume, ripples, and feeding. No shader or JavaScript errors were reported. Visual captures are `pond-improved-desktop.png`, `pond-improved-mobile.png`, and `pond-improved-golden.png`. The browser check can be repeated with `node build/render-pond.cjs` from the project root on this workstation.
+
+## Visual revision
+
+The shoreline now uses 18 varied boulders with displaced, rounded fracture surfaces and 90 smaller stones scattered in groups around a wider gravel bank. Stones have mineral variation, moss, wet edges, and contact shadows. The grass is shaded with individual procedural blades. A deeper green water column, dappled shade, and moving branch and foliage reflections replace the uniformly bright water. Koi use tapered, bending bodies, forked tails, and translucent fins, with less film grain and chromatic aberration.
+
+## Standalone startup
+
+An embedded `pond-poster.jpg` shows the actual pond before the first WebGL frame and remains visible if graphics or JavaScript are unavailable. The canvas appears only after its first completed frame; disabled JavaScript has a visible explanation. Interactive rendering starts at a moderate resolution and adapts down promptly on slower renderers. Fixed-time captures keep full resolution. Run `node build/verify-startup.cjs` to check the file URL with normal graphics, blocked WebGL, and disabled JavaScript. Regenerate the poster with `node build/verify-startup.cjs --poster` before rebuilding when the scene changes.
 
 ## Engine attribution
 
