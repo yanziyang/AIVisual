@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9e9ed">
+  <meta name="description" content="A cyclist in motion. An interactive Three.js scene with animated pedaling and a rolling countryside.">
+  <title>Velo — A ride in motion</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b343a'/%3E%3Cg fill='none' stroke='%23ff754b' stroke-width='2'%3E%3Ccircle cx='9' cy='21' r='5'/%3E%3Ccircle cx='24' cy='21' r='5'/%3E%3Cpath d='m9 21 6-10 5 10H9m11 0 3-13h-4M12 11h6'/%3E%3C/g%3E%3C/svg%3E">
+  <style>
+    *{box-sizing:border-box} :root{color-scheme:light;font-family:Inter,Arial,sans-serif;color:#1b343a} body{margin:0;overflow:hidden;background:#d9e9ed} button,input{font:inherit} button{cursor:pointer} #scene{position:fixed;inset:0;outline:none} canvas{display:block;width:100%;height:100%;touch-action:none} .top{position:absolute;top:35px;left:42px;right:42px;display:flex;align-items:flex-start;justify-content:space-between;pointer-events:none}.brand{display:flex;align-items:center;gap:13px}.mark{width:38px;height:38px;border-radius:50%;background:#1b343a;color:#f5f7ed;display:grid;place-items:center;font-size:22px;font-weight:700;font-style:italic}.wordmark{font-size:27px;font-weight:800;letter-spacing:-1.5px}.edition{font-size:12px;letter-spacing:2px;margin-top:7px;opacity:.65}.title{position:absolute;left:42px;top:132px;pointer-events:none} h1{font-size:clamp(32px,4vw,58px);line-height:1.06;letter-spacing:-2.7px;font-weight:500;margin:0 0 16px}.title p{font-size:14px;margin:0;color:#526a70}.top-right{font-size:12px;letter-spacing:1.7px;border-bottom:1px solid #869da2;padding:10px 0}.bottom{position:absolute;bottom:32px;left:42px;right:42px;display:flex;justify-content:space-between;align-items:flex-end;gap:22px}.instructions{font-size:13px;color:#526a70;line-height:1.8;max-width:190px}.controls{display:flex;gap:24px;align-items:center;padding:20px 24px;background:rgba(247,251,250,.83);border:1px solid rgba(255,255,255,.8);border-radius:18px;box-shadow:0 8px 35px #1b343a0b;backdrop-filter:blur(12px)}.speed{min-width:170px}.speed-top{display:flex;justify-content:space-between;gap:18px;align-items:baseline;margin-bottom:10px}.label{font-size:12px;letter-spacing:1.3px;color:#526a70} output{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums} output span{font-size:12px;font-weight:400;color:#526a70} input[type=range]{width:180px;height:5px;accent-color:#ed6b43;cursor:pointer;margin:0;display:block}.divider{height:44px;width:1px;background:#cedbdc} .buttons{display:flex;gap:8px} button{border:1px solid #b9ccce;background:transparent;color:#1b343a;border-radius:10px;min-height:42px;padding:0 15px;font-size:14px} button:hover{background:#dfeaec} button:focus-visible,input:focus-visible{outline:3px solid #ed6b43;outline-offset:5px} #pause{background:#1b343a;color:#fff;border-color:#1b343a;min-width:83px} #pause:hover{background:#304e55}.credit{position:absolute;right:42px;top:90px;font-size:12px;color:#526a70;letter-spacing:.2px} #loading{position:absolute;inset:0;display:grid;place-items:center;background:#d9e9ed;font-size:15px;z-index:5}#loading[hidden]{display:none} .error{max-width:360px;line-height:1.7;padding:24px} @media(max-width:650px){.top{top:24px;left:24px;right:24px}.top-right{display:none}.title{left:24px;top:105px}h1{letter-spacing:-1.7px}.credit{top:37px;right:24px}.bottom{left:18px;right:18px;bottom:22px;justify-content:center}.instructions{display:none}.controls{padding:16px;gap:16px;width:100%;justify-content:space-between}.speed{min-width:0;flex:1}input[type=range]{width:100%}.buttons{gap:6px}button{padding:0 11px}.divider{display:none}.edition{font-size:11px}}
+    .prompt-label{display:block;font-size:12px;letter-spacing:1.5px;margin-bottom:8px;color:#526a70}.title .original-prompt{max-width:350px;line-height:1.6}.title{max-width:calc(100vw - 48px)}
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <main id="scene" aria-label="Interactive 3D scene of a cyclist riding a bicycle"></main>
+  <header class="top"><div class="brand"><div class="mark" aria-hidden="true">v</div><div><div class="wordmark">velo.</div><div class="edition">STUDIES IN MOTION / 001</div></div></div><div class="top-right">THE EVERYDAY ESCAPE</div></header>
+  <div class="title"><h1>A ride in motion.</h1><span class="prompt-label">Prompt</span><p class="original-prompt">cyclist riding a bicycle, using three.js in standalone web page</p></div>
+  <div class="credit">Built with Three.js</div>
+  <footer class="bottom"><div class="instructions">Drag to look around<br>Scroll or pinch to get closer</div><div class="controls"><div class="speed"><div class="speed-top"><label class="label" for="speed">RIDE SPEED</label><output id="speedValue" for="speed">22 <span>km/h</span></output></div><input id="speed" type="range" min="5" max="40" value="22" aria-label="Ride speed in kilometers per hour"></div><div class="divider"></div><div class="buttons"><button id="pause" aria-pressed="false">Pause</button><button id="reset" aria-label="Reset camera view">Reset view</button></div></div></footer>
+  <div id="loading" role="status">Getting the wheels turning…</div>
+  <script type="module">
+    const loading = document.querySelector('#loading');
+    try {
+      const THREE = await import('three');
+      const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color('#d9e9ed');
+      scene.fog = new THREE.Fog('#d9e9ed', 22, 65);
+      const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, .1, 100);
+      const renderer = new THREE.WebGLRenderer({antialias:true});
+      renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(innerWidth,innerHeight);
+      renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
+      document.querySelector('#scene').appendChild(renderer.domElement);
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true; controls.enablePan = false; controls.minDistance = 4.5; controls.maxDistance = 17;
+      controls.maxPolarAngle = Math.PI * .48; controls.minPolarAngle = .25;
+      function resetCamera(){camera.position.set(innerWidth<650 ? 5.8 : 5.5,3.7,innerWidth<650 ? 9.4 : 7.3);controls.target.set(0,1.1,0);controls.update()}
+      resetCamera();
+      scene.add(new THREE.HemisphereLight('#fff6df','#647f65',2.4));
+      const sun = new THREE.DirectionalLight('#fff2d6',3.6); sun.position.set(-3,9,5);sun.castShadow=true;
+      sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-10;sun.shadow.camera.right=10;sun.shadow.camera.top=10;sun.shadow.camera.bottom=-10;sun.shadow.normalBias=.025;scene.add(sun);
+      const M = (color,roughness=.65,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
+      const mat={frame:M('#ef7147',.32,.35),rubber:M('#202d32'),rim:M('#d7e0df',.3,.65),dark:M('#263b41',.5,.25),skin:M('#d9a17b'),jersey:M('#1687b4'),shorts:M('#1e3540'),shoe:M('#f3f3e6'),helmet:M('#f4f0df'),grass:M('#9aaf7b'),road:M('#5c6b6c'),stripe:M('#e5e6cb'),trunk:M('#7d7461'),leaf:M('#69885f')};
+      const sphereGeo=new THREE.SphereGeometry(1,20,12); const tubeGeo=new THREE.CylinderGeometry(1,1,1,12);
+      const V=(x,y,z=0)=>new THREE.Vector3(x,y,z);
+      function mesh(geo,material,parent=scene){const o=new THREE.Mesh(geo,material);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
+      function ellipsoid(pos,scale,material,parent=scene){const o=mesh(sphereGeo,material,parent);o.position.copy(pos);o.scale.set(...scale);return o}
+      function rod(a,b,r,material,parent=scene){const o=mesh(tubeGeo,material,parent);setRod(o,a,b,r);return o}
+      function setRod(o,a,b,r){o.position.copy(a).add(b).multiplyScalar(.5);o.scale.set(r,a.distanceTo(b),r);o.quaternion.setFromUnitVectors(V(0,1,0),b.clone().sub(a).normalize())}
+      function box(pos,scale,material,parent=scene){const o=mesh(new THREE.BoxGeometry(...scale),material,parent);o.position.copy(pos);return o}
+      const ground=mesh(new THREE.PlaneGeometry(200,200),mat.grass);ground.rotation.x=-Math.PI/2;ground.position.y=-.03;
+      const road=mesh(new THREE.PlaneGeometry(200,3.5),mat.road);road.rotation.x=-Math.PI/2;road.position.y=.005;
+      for(const z of [-1.52,1.52]){const stripe=mesh(new THREE.PlaneGeometry(200,.045),mat.stripe);stripe.rotation.x=-Math.PI/2;stripe.position.set(0,.011,z)}
+      const markings=[];for(let i=0;i<24;i++){const o=box(V(i*3-36,.013,0),[1.4,.008,.055],mat.stripe);markings.push(o)}
+      const bike=new THREE.Group();scene.add(bike);bike.position.z=.35;
+      const wheels=[]; const R=.64, rear=V(-1.04,R),front=V(1.04,R),bb=V(-.12,.68),seat=V(-.48,1.65),headTop=V(.73,1.58),headBottom=V(.8,1.3);
+      for(const center of [rear,front]){const w=new THREE.Group();w.position.copy(center);bike.add(w);wheels.push(w);
+        mesh(new THREE.TorusGeometry(R,.042,12,64),mat.rubber,w);
+        mesh(new THREE.TorusGeometry(R-.06,.022,8,64),mat.rim,w);
+        for(let i=0;i<24;i++){let a=i*Math.PI/12;rod(V(0,0,i%2?.035:-.035),V(Math.cos(a)*(R-.065),Math.sin(a)*(R-.065),0),.005,mat.rim,w)}
+        const hub=mesh(new THREE.CylinderGeometry(.043,.043,.17,16),mat.dark,w);hub.rotation.x=Math.PI/2;
+      }
+      for(const [a,b] of [[bb,seat],[seat,headTop],[headBottom,bb],[headTop,headBottom]])rod(a,b,.036,mat.frame,bike);
+      for(const z of [-.08,.08]){rod(bb.clone().add(V(0,0,z)),rear.clone().add(V(0,0,z)),.021,mat.frame,bike);rod(seat,rear.clone().add(V(0,0,z)),.019,mat.frame,bike);rod(headBottom,front.clone().add(V(0,0,z)),.024,mat.frame,bike)}
+      rod(seat,V(-.52,1.82),.026,mat.rim,bike);ellipsoid(V(-.54,1.84),[.23,.055,.105],mat.dark,bike);
+      rod(headTop,V(.78,1.75),.025,mat.dark,bike);rod(V(.78,1.75),V(.96,1.77),.023,mat.dark,bike);rod(V(.96,1.77,-.26),V(.96,1.77,.26),.023,mat.dark,bike);
+      for(const z of [-.26,.26]){rod(V(.96,1.77,z),V(1.06,1.69,z),.028,mat.dark,bike);rod(V(1.06,1.69,z),V(.97,1.59,z),.028,mat.dark,bike)}
+      const crank=new THREE.Group();crank.position.copy(bb);bike.add(crank);
+      const chainring=mesh(new THREE.CylinderGeometry(.18,.18,.027,32),mat.dark,bike);chainring.rotation.x=Math.PI/2;chainring.position.copy(bb).add(V(0,0,.115));
+      mesh(new THREE.TorusGeometry(.165,.008,6,32),mat.rim,chainring).rotation.x=Math.PI/2;
+      rod(V(-1.04,.72,.115),V(-.12,.86,.115),.012,mat.dark,bike);rod(V(-1.04,.56,.115),V(-.12,.5,.115),.012,mat.dark,bike);
+      const bottle=rod(V(-.03,.99),V(.16,1.19),.052,mat.helmet,bike);rod(V(.16,1.19),V(.19,1.22),.03,mat.dark,bike);
+      const pedals=[];
+      for(const side of [-1,1]){const z=side*.19;rod(V(0,0,z),V(0,side*.19,z),.02,mat.rim,crank);const p=box(V(0,0,z),[.16,.028,.12],mat.dark,bike);pedals.push(p)}
+      const rider=new THREE.Group();bike.add(rider);
+      const hip=V(-.5,1.98),shoulder=V(.17,2.38);
+      const torso=rod(hip,shoulder,.19,mat.jersey,rider);torso.scale.x=.175;torso.scale.z=.235;
+      ellipsoid(hip,[.2,.15,.21],mat.shorts,rider);
+      rod(shoulder,V(.32,2.51),.075,mat.skin,rider);
+      const head=ellipsoid(V(.4,2.65),[.14,.18,.135],mat.skin,rider);head.rotation.z=-.2;
+      ellipsoid(V(.46,2.65),[.105,.055,.145],mat.dark,rider);
+      const helmet=ellipsoid(V(.37,2.77),[.175,.105,.16],mat.helmet,rider);helmet.rotation.z=-.18;
+      for(const z of [-.075,0,.075]){const vent=ellipsoid(V(.39,2.854,z),[.1,.013,.013],mat.dark,rider);vent.rotation.z=-.17}
+      rod(V(.33,2.6,.126),V(.42,2.5,.09),.009,mat.dark,rider);
+      for(const side of [-1,1]){const sh=V(.14,2.37,side*.2),elbow=V(.54,2.04,side*.23),hand=V(.96,1.78,side*.26);
+        rod(sh,sh.clone().lerp(elbow,.4),.082,mat.jersey,rider);rod(sh.clone().lerp(elbow,.35),elbow,.055,mat.skin,rider);ellipsoid(elbow,[.055,.055,.055],mat.skin,rider);rod(elbow,hand,.043,mat.skin,rider);ellipsoid(hand,[.06,.05,.045],mat.skin,rider)}
+      const legs=[];
+      for(const side of [-1,1]){const upper=rod(hip,hip.clone().add(V(0,-.5,0)),.082,mat.shorts,rider),lower=rod(hip,hip.clone().add(V(0,-.5,0)),.058,mat.skin,rider);const knee=ellipsoid(hip,[.066,.066,.066],mat.skin,rider),shoe=ellipsoid(hip,[.155,.065,.068],mat.shoe,rider);legs.push({side,upper,lower,knee,shoe})}
+      function moveLeg(leg,angle){const z=leg.side*.19,ankle=V(bb.x+Math.sin(angle)*.19-.055,bb.y+Math.cos(angle)*.19+.075,z),h=hip.clone();h.z=z;
+        const d=ankle.clone().sub(h),length=d.length(),a=.64,b=.66,along=(a*a-b*b+length*length)/(2*length),height=Math.sqrt(Math.max(0,a*a-along*along));
+        const knee=h.clone().addScaledVector(d,along/length).add(V(-d.y/length*height,d.x/length*height,0));
+        setRod(leg.upper,h,knee,.082);setRod(leg.lower,knee,ankle,.054);leg.knee.position.copy(knee);leg.shoe.position.copy(ankle).add(V(.07,-.025,0));leg.shoe.rotation.z=-.08+Math.sin(angle)*.15;
+        const p=pedals[leg.side===-1?0:1];p.position.set(bb.x+Math.sin(angle)*.19,bb.y+Math.cos(angle)*.19,z)}
+      // Seeded scenery is repeatable and wraps seamlessly behind the rider.
+      let seed=52;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+      const scenery=[];
+      for(let i=0;i<36;i++){const tree=new THREE.Group();const z=(i%2?1:-1)*(3+random()*8);tree.position.set(random()*70-35,0,z);const scale=.65+random()*.7;tree.scale.setScalar(scale);scene.add(tree);scenery.push(tree);
+        rod(V(0,0,0),V(0,1.6,0),.085,mat.trunk,tree);ellipsoid(V(0,1.8,0),[.58,.85,.55],mat.leaf,tree);ellipsoid(V(.3,1.55,.1),[.44,.57,.42],mat.leaf,tree)}
+      const hillsMat=M('#829c83');for(let i=0;i<16;i++){const hill=ellipsoid(V(i*7-50,-1.5,-18-random()*13),[5+random()*5,3+random()*3,5],hillsMat);hill.castShadow=false}
+      const clouds=new THREE.Group();scene.add(clouds);const cloudMat=M('#f3f6ef');for(let i=0;i<9;i++){const x=i*10-40,y=8+random()*4,z=-15-random()*15;for(let j=0;j<3;j++){const c=ellipsoid(V(x+j*1.1,y+Math.sin(j)*.3,z),[1.7,.45,.65],cloudMat,clouds);c.castShadow=false}}
+      const posts=[];for(let i=0;i<20;i++){const p=new THREE.Group();p.position.set(i*4-40,0,-2.15);scene.add(p);rod(V(0,0),V(0,.65),.03,mat.helmet,p);box(V(0,.54,.012),[.095,.11,.045],mat.frame,p);posts.push(p)}
+      let paused=matchMedia('(prefers-reduced-motion: reduce)').matches,phase=0,distance=0,last=performance.now(),speed=22;
+      const pauseButton=document.querySelector('#pause');function updatePause(){pauseButton.textContent=paused?'Ride':'Pause';pauseButton.setAttribute('aria-pressed',String(paused))}updatePause();
+      pauseButton.addEventListener('click',()=>{paused=!paused;updatePause()});document.querySelector('#reset').addEventListener('click',resetCamera);
+      document.querySelector('#speed').addEventListener('input',e=>{speed=Number(e.target.value);document.querySelector('#speedValue').innerHTML=`${speed} <span>km/h</span>`});
+      addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();paused=!paused;updatePause()}});
+      addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+      document.addEventListener('visibilitychange',()=>{last=performance.now()});
+      function animate(now){const dt=Math.min((now-last)/1000,.05);last=now;
+        if(!paused){const travel=speed/3.6*dt;distance+=travel;phase+=travel/R/2.8;for(const w of wheels)w.rotation.z=-distance/R;crank.rotation.z=-phase;bike.rotation.x=Math.sin(phase)*.008;for(const o of [...markings,...scenery,...posts]){o.position.x-=travel;if(o.position.x< -40)o.position.x+=80}}
+        for(const leg of legs)moveLeg(leg,phase+(leg.side===-1?Math.PI:0));
+        controls.update();renderer.render(scene,camera);requestAnimationFrame(animate)}
+      // The first frame renders immediately, including when reduced motion is enabled.
+      animate(performance.now());loading.hidden=true;
+      renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();loading.hidden=false;loading.textContent='The 3D view was interrupted. Reload this page to continue.'});
+    } catch(error){console.error(error);loading.innerHTML='<div class="error">The 3D scene could not load. Check your internet connection and make sure WebGL is enabled, then reload the page.</div>'}
+  </script>
+</body>
+</html>
