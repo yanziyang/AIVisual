@@ -47,6 +47,7 @@
   .linkish:hover { text-decoration-color: var(--honey); color: var(--ink); }
 
   /* ---------- the specimen panel (right) ---------- */
+  .panel, .masthead, .colophon, #toast { -webkit-user-select: none; user-select: none; }
   .panel { position: fixed; right: clamp(16px, 3.2vw, 56px); top: 50%; transform: translateY(-50%); width: 272px; z-index: 3;
     background: var(--card); -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1);
     border: 1px solid rgba(42, 32, 23, 0.09); border-radius: 16px; padding: 18px 18px 16px; box-shadow: 0 20px 60px -30px rgba(80, 55, 20, 0.35); }
@@ -72,7 +73,7 @@
   input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -7px; border-radius: 50%; background: #FFF9EE; border: 1px solid rgba(42, 32, 23, 0.35); box-shadow: 0 1px 3px rgba(60, 40, 10, 0.25); }
   input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #FFF9EE; border: 1px solid rgba(42, 32, 23, 0.35); }
   input[type=range]:focus-visible { outline: 2px solid var(--honey); outline-offset: 2px; border-radius: 4px; }
-  .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 16px 0 12px; }
+  .buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 16px 0 12px; }
   .btn { font: 500 12px/1 var(--sans); color: var(--ink); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(42, 32, 23, 0.16); border-radius: 999px; padding: 10px 8px; cursor: pointer; transition: background .15s, border-color .15s, transform .1s; white-space: nowrap; }
   .btn:hover { background: rgba(255, 255, 255, 0.85); border-color: rgba(42, 32, 23, 0.3); }
   .btn:active { transform: translateY(1px); }
@@ -103,6 +104,15 @@
   #fallback p { margin: 0 0 10px; font: 400 14px/1.55 var(--sans); color: var(--ink-2); }
   #fallback code { font-size: 12px; background: rgba(42, 32, 23, 0.06); padding: 1px 5px; border-radius: 4px; }
   #fallback .why { font-size: 12px; color: var(--muted); }
+  #fallback .btn { margin-top: 6px; padding: 9px 18px; }
+  #toast { position: fixed; left: 50%; bottom: clamp(18px, 4vh, 40px); transform: translateX(-50%); z-index: 5; max-width: min(560px, calc(100vw - 32px)); display: flex; gap: 12px; align-items: baseline;
+    background: rgba(252, 248, 241, 0.9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--rule); border-radius: 999px; padding: 10px 18px; font: 400 12.5px/1.45 var(--sans); color: var(--ink-2); box-shadow: 0 16px 40px -24px rgba(80, 55, 20, 0.4); transition: opacity .6s; }
+  #toast[hidden] { display: none; }
+  #toast.gone { opacity: 0; pointer-events: none; }
+  #toast .x { text-decoration: none; color: var(--muted); }
+  .engine { margin: 10px 0 0; font: 400 10.5px/1.3 var(--sans); color: var(--muted); display: flex; gap: 8px; }
+  .engine-k { font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; font-size: 9px; }
+  @media (max-width: 820px) { #toast { bottom: auto; top: 42%; border-radius: 14px; } .panel.collapsed .engine { display: none; } }
 
   /* ---------- notes drawer ---------- */
   #notes { position: fixed; inset: 0; z-index: 6; display: grid; place-items: center; background: rgba(236, 227, 213, 0.72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
@@ -112,8 +122,26 @@
   #notes h4 { font: 600 10.5px/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
   #notes p, #notes li { font: 400 14px/1.6 var(--sans); color: var(--ink-2); }
   #notes ul { padding-left: 18px; margin: 0; }
-  #notes pre { white-space: pre-wrap; font: 400 12px/1.55 ui-monospace, "SF Mono", Consolas, monospace; color: var(--ink-2); background: rgba(42, 32, 23, 0.04); border-radius: 10px; padding: 14px 16px; margin: 0; }
+  #notes pre { white-space: pre-wrap; font: 400 12px/1.6 ui-monospace, "SF Mono", Consolas, monospace; color: var(--ink-2); background: rgba(42, 32, 23, 0.04); border-radius: 10px; padding: 14px 16px; margin: 0; max-height: 46vh; overflow: auto; }
   #notes .close { float: right; }
+  #notes .kicker { margin-bottom: 8px; }
+  #notes a { color: var(--honey-deep); text-underline-offset: 3px; }
+  #notes .src-url { font: 500 14px/1.5 var(--sans); word-break: break-all; }
+  #notes .meta { font-size: 12.5px; color: var(--muted); }
+  #notes code { font-size: 12px; background: rgba(42, 32, 23, 0.06); padding: 1px 5px; border-radius: 4px; }
+  #notes section { scroll-margin-top: 16px; }
+  .notes-nav { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 4px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .notes-nav a { font: 500 11px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2) !important; text-decoration: none; }
+  .notes-nav a:hover { color: var(--honey-deep) !important; }
+  .spec { margin: 0; }
+  .spec div { display: grid; grid-template-columns: 128px 1fr; gap: 14px; padding: 10px 0; border-top: 1px solid var(--rule); }
+  .spec div:first-child { border-top: 0; padding-top: 2px; }
+  .spec dt { font: italic 400 17px/1.3 var(--serif); color: var(--ink); }
+  .spec dd { margin: 0; font: 400 13.5px/1.6 var(--sans); color: var(--ink-2); }
+  .colophon .src { color: var(--muted); }
+  .short { display: none; }
+  @media (max-width: 820px) { .long { display: none; } .short { display: inline; } }
+  @media (max-width: 620px) { .spec div { grid-template-columns: 1fr; gap: 4px; } #notes article { padding: 22px 20px; } }
 
   /* ---------- small screens: heading on top, panel becomes a bottom sheet ---------- */
   @media (max-width: 820px) {
@@ -129,7 +157,7 @@
     .panel-head { margin-bottom: 10px; padding-bottom: 8px; }
     .panel .toggle-sheet { display: inline-block; }
     .panel.collapsed .group, .panel.collapsed .switches { display: none; }
-    .panel.collapsed .buttons { margin: 4px 0 10px; grid-template-columns: repeat(4, 1fr); }
+    .panel.collapsed .buttons { margin: 4px 0 10px; grid-template-columns: 1.4fr 1fr 1.2fr 1fr; }
     .panel.collapsed .btn.primary { grid-column: auto; }
     .panel.collapsed .btn { font-size: 11px; padding: 9px 4px; }
     .readouts dd { font-size: 17px; }
@@ -143,7 +171,7 @@
 <canvas id="gl" tabindex="0" aria-label="Interactive 3D gummy pineapple ring. Drag the jelly to stretch it; drag elsewhere to orbit."></canvas>
 
 <header class="masthead">
-  <p class="kicker"><b>Plate VII</b> &nbsp;·&nbsp; Studies in Confectionery</p>
+  <p class="kicker"><b>Plate VII</b><span class="long"> &nbsp;·&nbsp; Studies in Confectionery</span></p>
   <h1><span>Pineapple</span> <span>Jelly</span></h1>
   <p class="deck">A thick, golden gummy cast as a slice of pineapple. Pinch its rim or the inner edge, pull it about, and let it go.</p>
   <ul class="howto">
@@ -190,35 +218,66 @@
     <div><dt>Volume</dt><dd id="rVol">—</dd></div>
     <div><dt>Kinetic</dt><dd id="rKE">—</dd></div>
   </dl>
+  <p class="engine"><span class="engine-k">Renderer</span> <span id="engine">detecting…</span></p>
 </aside>
 
 <footer class="colophon">
   <span class="fig"><em>Fig. 1</em> &nbsp;Ananas comosus, in gelatin &amp; cane sugar — shown at twice life size.</span>
-  <button class="linkish" id="bNotes">Notes</button>
+  <button class="linkish" id="bNotes" aria-haspopup="dialog"><span class="long">Prompt &amp; build notes</span><span class="short">Notes</span></button>
+  <a class="linkish src" href="https://x.com/vib3coded/status/2104103495020458415" target="_blank" rel="noopener noreferrer">Source ↗</a>
 </footer>
 
 <div id="status">Setting the jelly…</div>
 
-<div id="fallback" hidden role="alert">
-  <h3>This specimen needs WebGPU</h3>
-  <p>Pineapple Jelly renders with WebGPU and WGSL shaders, and this browser or device can't provide them right now.</p>
-  <p>Try a current version of Chrome or Edge (113+) on desktop or Android, or Safari 26 on macOS / iOS. On Linux and some older GPUs WebGPU may still be behind a flag such as <code>chrome://flags/#enable-unsafe-webgpu</code>.</p>
+<div id="toast" hidden role="status"><span id="toastText"></span> <button class="linkish" id="toastWhy">Why?</button><button class="linkish x" id="toastClose" aria-label="Dismiss">✕</button></div>
+<div id="fallback" hidden role="dialog" aria-labelledby="fbTitle">
+  <h3 id="fbTitle">Drawn on the CPU</h3>
+  <p>Pineapple Jelly is built for WebGPU and WGSL shaders, but this browser or device can't provide a usable WebGPU GPU adapter right now. So the page switched to its CPU renderer.</p>
+  <p>The CPU renderer runs the same soft-body physics, grabbing and controls. The image comes from a software rasteriser running in parallel worker threads. It keeps the refraction, colour that depends on thickness, fibres, juice cells, bubbles, gloss and coloured shadow, but at a lower resolution and with fewer interior samples.</p>
+  <p>For the full WebGPU version, use a current Chrome or Edge (113+) or Safari 26 on a machine with a supported GPU. On Linux and some older GPUs, WebGPU may still be behind <code>chrome://flags/#enable-unsafe-webgpu</code>.</p>
   <p class="why" id="fallbackWhy"></p>
+  <button class="btn" id="fbClose">Got it</button>
 </div>
 
 <div id="notes" hidden>
   <article role="dialog" aria-modal="true" aria-labelledby="notesTitle">
     <button class="linkish close" id="bNotesClose">Close</button>
-    <h3 id="notesTitle">Notes on the specimen</h3>
-    <h4>How it works</h4>
-    <ul>
-      <li><b>Soft body.</b> A cylindrical lattice (40 × 4 × 3 = 480 nodes) is split into 1,440 tetrahedra with 2,320 elastic edges. Each frame runs small-step XPBD (about 840 substeps per simulated second, one constraint pass each): strain-stiffening edge constraints, signed tet-volume constraints, a soft Gaussian "pinch" for the cursor, node-sphere self-contact that keeps the hole open, and ground contact with friction. Damping removes only motion that deviates from the best-fit rigid motion, so wobbles die out while falls and tumbles do not.</li>
-      <li><b>Visual surface.</b> A separate, much denser ring (360 × 104 vertices, ~75k triangles) with scalloped outer edge and rounded section is embedded in the lattice with a periodic cubic B-spline (around) × cubic/quadratic Bézier (across). A WGSL compute shader re-evaluates the embedding every frame and also outputs the local deformation gradient F.</li>
-      <li><b>Flesh.</b> The jelly fragment shader refracts into the body and ray-marches it in material (rest) space through F⁻¹, so fibres, juice cells and bubbles stretch and bend with the flesh. Absorption follows Beer–Lambert along the real, deformed path — thinner, stretched regions let more light through. In-scattering uses a key-light thickness map, rays that meet the far side of the ring are followed through it, and total internal reflection bounces once.</li>
-      <li><b>Light.</b> Everything is analytic: a warm studio sweep, soft rectangular softboxes that only appear in reflections, Fresnel, a restrained GGX highlight and Khronos PBR Neutral tone mapping — no bloom. The contact shadow is coloured by the light that passes through the jelly and hardens where it touches the floor.</li>
-    </ul>
-    <h4>Original brief</h4>
-    <pre id="promptText"></pre>
+    <p class="kicker">Colophon</p>
+    <h3 id="notesTitle">Prompt, build notes &amp; source</h3>
+    <nav class="notes-nav" aria-label="Sections">
+      <a href="#n-source">Source</a><a href="#n-prompt">Prompt</a><a href="#n-impl">Implementation</a><a href="#n-tests">Testing</a>
+    </nav>
+
+    <section id="n-source">
+      <h4>Source</h4>
+      <p>The brief was taken from this post:<br>
+        <a class="src-url" href="https://x.com/vib3coded/status/2104103495020458415" target="_blank" rel="noopener noreferrer">https://x.com/vib3coded/status/2104103495020458415</a></p>
+      <p class="meta">Built as a single standalone file, <code>pineapple-jelly-webgpu.html</code>: no libraries, models or images. Everything is generated in code, apart from two optional web fonts (Instrument Serif and Inter) that fall back to system fonts when offline.</p>
+    </section>
+
+    <section id="n-prompt">
+      <h4>Prompt</h4>
+      <pre id="promptText"></pre>
+    </section>
+
+    <section id="n-impl">
+      <h4>Implementation</h4>
+      <dl class="spec">
+        <div><dt>Soft body</dt><dd>A cylindrical lattice of 40 × 4 × 3 = 480 nodes, split into 1,440 tetrahedra with 2,320 elastic edges. Small-step XPBD runs on the CPU at a fixed ≈840 substeps per simulated second, with one constraint pass per substep. Edge constraints stiffen with strain, like gelatin, so a hard pull spreads out instead of drawing out a spike. Signed tet-volume constraints use a tiny non-zero compliance, because a perfectly hard one pumps energy in. The simulation runs at the same rate whatever the frame rate; ¼ speed simply feeds it a quarter of the time.</dd></div>
+        <div><dt>Grabbing</dt><dd>The cursor ray is tested against a coarse copy of the deformed surface, so a click through the empty hole hits nothing and orbits the camera instead. A hit becomes a soft XPBD "pinch": lattice nodes are weighted by a Gaussian around the grabbed material point and pulled toward a plane facing the camera. The scroll wheel pushes the grab deeper or pulls it closer. Pulling moves the nearby flesh first, and the far side follows a moment later.</dd></div>
+        <div><dt>Contacts &amp; damping</dt><dd>The floor has static and kinetic friction, and invisible stage walls keep the ring in view. Node-sphere self-contact, run every 7th substep, stops the ring from passing through itself and keeps the hole from being squeezed shut. Internal damping removes only the part of each node's velocity that differs from the best-fit rigid motion (Müller et al. 2007). Wobbles therefore die out, while falls, slides and flips carry on unchanged.</dd></div>
+        <div><dt>Visual surface</dt><dd>A separate, much finer ring of 360 × 104 = 37,440 vertices and 74,880 triangles, with 18 soft scallops on the outer edge and a rounded-rectangle cross-section. The same detail is on both cut faces. Each vertex is embedded in the lattice through a periodic cubic B-spline around the ring and cubic/quadratic Bézier bases across it. A WGSL compute shader re-evaluates this every frame and outputs the position, the normal (F⁻ᵀn) and the local deformation gradient's inverse F⁻¹.</dd></div>
+        <div><dt>Flesh</dt><dd>The fragment shader refracts the view ray (IOR 1.42) and marches it through the body in material space using F⁻¹. Radial fibres, elongated juice vesicles and air bubbles are defined in rest coordinates, so they stretch, bend and flip with the flesh. Absorption follows Beer–Lambert along the deformed path, so thinner, stretched areas let more light through. In-scattering uses a thickness map along the key light. A ray that leaves through the hole and meets the far side of the ring is followed through it, and total internal reflection gets one extra bounce.</dd></div>
+        <div><dt>WebGPU or CPU</dt><dd>On load the page detects what the browser can do. A hardware WebGPU adapter gets the full WGSL renderer. The page switches to its CPU renderer when WebGPU is missing, when only a software adapter is offered, when the device fails to start, when no frame finishes within 4 seconds, or when the GPU device is lost later. The CPU renderer is a software rasteriser running in parallel Web Workers, each taking an interleaved set of rows so the work stays balanced. It rasterises the nearest front and back faces of a 6,768-vertex copy of the ring and shades each pixel: thickness, Beer–Lambert colour, fibres, juice cells and bubbles along the entry→exit chord in material space, the refracted floor, Fresnel softbox reflections, and the coloured shadow. The floor away from the ring is cached while the camera is still, and the resolution adapts to frame time. The panel shows which renderer is running; <code>?renderer=cpu</code> forces the CPU path.</dd></div>
+        <div><dt>Light &amp; frame</dt><dd>The light is analytic: a warm studio sweep, soft rectangular softboxes that appear only in reflections, Schlick Fresnel, a clamped GGX highlight, and Khronos PBR Neutral tone mapping with no bloom. The floor shadow is tinted by the light that passes through the jelly and gets sharper where the ring touches the floor. A top-down occupancy map adds contact occlusion. Rendering uses 4× MSAA, a depth pre-pass, at most two frames in flight, and adaptive resolution when the frame rate drops. The tint presets change only the absorption and scattering colours; refraction, gloss and scattering strength stay the same.</dd></div>
+      </dl>
+    </section>
+
+    <section id="n-tests">
+      <h4>Testing</h4>
+      <p>The same simulation source runs headless in Node. Scripted checks drop, poke, nudge and flip the ring, pull the inner edge outward and across the hole, lift the outer edge, fling it, and set the sliders to their extremes. They look for NaNs, inverted tetrahedra, volume drift, the size of the hole and how long the ring takes to settle. A further 36 pull-and-release gestures (three grab points, six directions, slow and fast) all returned to the rest shape; the largest error after settling was 0.014 units.</p>
+      <p>The page itself was driven in headless Microsoft Edge with real mouse and touch events. The inner edge was stretched and released, the outer edge lifted, and the flip, reset, tints and mesh overlay were used. A click through the empty hole seen from above turns the view instead of grabbing. On a touch-emulated phone viewport, a one-finger drag grabs the jelly and a two-finger pinch zooms. The test machine has no hardware WebGPU, so the WebGPU renderer was checked on the SwiftShader software adapter by reading frames back from an offscreen texture. On that machine the page chooses the CPU renderer by itself.</p>
+    </section>
   </article>
 </div>
 <script type="text/plain" id="brief">Create an interactive 3D scene called “Pineapple Jelly” - a thick, translucent gummy pineapple ring that users can grab, stretch, bend, and release. Everything must run directly in the browser in one standalone HTML file using genuine WebGPU and WGSL shaders.
@@ -922,6 +981,7 @@ struct Frame {
 @group(0) @binding(1) var lightMM: texture_2d<f32>;
 @group(0) @binding(2) var lightTh: texture_2d<f32>;
 @group(0) @binding(3) var linSamp: sampler;
+@group(0) @binding(6) var topMap: texture_2d<f32>;
 
 const PI = 3.14159265;
 const HALF_H = ${RING.halfH.toFixed(4)};
@@ -1002,14 +1062,22 @@ fn softbox(rd: vec3f, c: vec3f, right: vec3f, hw: f32, hh: f32, soft: f32) -> f3
   return (1.0 - smoothstep(hw - soft, hw + soft, x)) * (1.0 - smoothstep(hh - soft, hh + soft, y));
 }
 fn studioLights(rd: vec3f) -> vec3f {
+  // Softboxes are only ever seen in reflections. They are placed so their edges fall
+  // across the flat cut faces: a wet highlight with a soft boundary, never a uniform sheen.
   let L = U.lightDir.xyz;
-  let kr = normalize(cross(vec3f(0.0, 1.0, 0.0), L));
-  var c = KEY_COL * 2.3 * softbox(rd, L, kr, 0.62, 0.40, 0.16);
+  let ka = normalize(vec3f(L.x, 0.0, L.z));
+  let kc = normalize(ka * 0.64 + vec3f(0.0, 0.77, 0.0));         // key box, 50° up
+  let kr = normalize(cross(vec3f(0.0, 1.0, 0.0), kc));
+  var c = KEY_COL * 2.5 * softbox(rd, kc, kr, 0.42, 0.19, 0.09);
   let F = U.lightC2.xyz;
   let fr = normalize(cross(vec3f(0.0, 1.0, 0.0), F));
-  c += vec3f(1.0, 0.975, 0.95) * U.lightC2.w * softbox(rd, F, fr, 0.10, 0.70, 0.06);
+  c += vec3f(1.0, 0.975, 0.95) * U.lightC2.w * softbox(rd, F, fr, 0.08, 0.62, 0.05);
+  // a low, wide strip behind the set: a bright wet line along the far rim
+  let bc = normalize(ka * 0.97 + vec3f(0.0, 0.24, 0.0));
+  let br = normalize(cross(vec3f(0.0, 1.0, 0.0), bc));
+  c += vec3f(1.0, 0.97, 0.92) * 2.6 * softbox(rd, bc, br, 1.1, 0.045, 0.03);
   // broad dim overhead scrim
-  c += vec3f(1.0, 0.98, 0.95) * 0.35 * smoothstep(0.55, 0.95, rd.y);
+  c += vec3f(1.0, 0.98, 0.95) * 0.7 * smoothstep(0.75, 0.99, rd.y);
   return c;
 }
 fn skyRadiance(rd: vec3f, withLights: bool) -> vec3f {
@@ -1023,49 +1091,60 @@ const POISSON = array<vec2f, 12>(
   vec2f(0.962, -0.195), vec2f(0.473, -0.480), vec2f(0.519, 0.767), vec2f(0.185, -0.893),
   vec2f(0.507, 0.064), vec2f(0.896, 0.412), vec2f(-0.322, -0.933), vec2f(-0.792, -0.598));
 
-// Colored, contact-hardening shadow of the translucent ring + a soft contact occlusion.
-// rgb = key-light transmittance, a = ambient occlusion
-fn floorShadow(p: vec3f, px: vec2f) -> vec4f {
+// Key-light shadow of the translucent ring: coloured by what passes through it and
+// sharper where the ring touches the floor (contact hardening). rgb = transmittance.
+fn keyShadow(p: vec3f, px: vec2f) -> vec3f {
   let l = lightUV(p);
-  if (any(l.xy < vec2f(0.0)) || any(l.xy > vec2f(1.0))) { return vec4f(1.0); }
+  if (any(l.xy < vec2f(0.0)) || any(l.xy > vec2f(1.0))) { return vec3f(1.0); }
   let res = 1.0 / U.lightY.w;
   let E = U.lightDir.w;
-  // blocker search: how far above the floor is the jelly here?
   var gap = 0.0; var hits = 0.0;
   for (var i = 0; i < 6; i++) {
     let uv = l.xy + POISSON[i * 2] * (0.18 / (2.0 * E));
     let t = textureLoad(lightMM, vec2i(clamp(uv, vec2f(0.0), vec2f(0.999)) * res), 0).xy;
     if (t.x < 1000.0) { gap += max(l.z - (-t.y), 0.0); hits += 1.0; }
   }
-  if (hits < 0.5) { return vec4f(1.0); }
+  if (hits < 0.5) { return vec3f(1.0); }
   gap /= hits;
   let ang = ign(px) * 6.2831853;
   let rot = mat2x2f(cos(ang), sin(ang), -sin(ang), cos(ang));
-  let rad = (0.012 + 0.16 * gap) / (2.0 * E);
+  let rad = (0.010 + 0.14 * gap) / (2.0 * E);
   var trans = vec3f(0.0);
-  var cover = 0.0;
-  let aoRad = (0.10 + 0.35 * gap) / (2.0 * E);
+  for (var i = 0; i < 12; i++) {
+    let th = textureSampleLevel(lightTh, linSamp, l.xy + rot * POISSON[i] * rad, 0.0).x;
+    trans += exp(-U.shadowSig.xyz * max(th, 0.0));
+  }
+  return trans / 12.0;
+}
+// Contact grounding from a top-down map of how close the jelly is to the floor.
+// x: darkening just outside the footprint (a soft contact line), y: how covered the floor is.
+fn contactAO(p: vec3f, px: vec2f) -> vec2f {
+  let E = U.lightDir.w;
+  let uv = (p.xz - U.lightC.xz) / E * 0.5 + 0.5;
+  if (any(uv < vec2f(0.0)) || any(uv > vec2f(1.0))) { return vec2f(1.0, 0.0); }
+  let ctr = textureSampleLevel(topMap, linSamp, uv, 0.0).x;
+  let ang = ign(px + 7.0) * 6.2831853;
+  let rot = mat2x2f(cos(ang), sin(ang), -sin(ang), cos(ang));
+  var a = 0.0; var b = 0.0;
   for (var i = 0; i < 12; i++) {
     let o = rot * POISSON[i];
-    let th = textureSampleLevel(lightTh, linSamp, l.xy + o * rad, 0.0).x;
-    trans += exp(-U.shadowSig.xyz * max(th, 0.0));
-    let th2 = textureSampleLevel(lightTh, linSamp, l.xy + o * aoRad, 0.0).x;
-    cover += smoothstep(0.0, 0.08, th2);
+    a += textureSampleLevel(topMap, linSamp, uv + o * (0.06 / (2.0 * E)), 0.0).x;
+    b += textureSampleLevel(topMap, linSamp, uv + o * (0.32 / (2.0 * E)), 0.0).y;
   }
-  trans /= 12.0;
-  cover /= 12.0;
-  let ao = 1.0 - 0.62 * cover * exp(-gap * 3.0);
-  return vec4f(trans, ao);
+  a /= 12.0; b /= 12.0;
+  return vec2f((1.0 - 0.62 * a * (1.0 - ctr)) * (1.0 - 0.25 * b * (1.0 - ctr)), ctr);
 }
 fn floorRadiance(p: vec3f, px: vec2f) -> vec3f {
-  let sh = floorShadow(p, px);
   let L = U.lightDir.xyz;
-  let key = KEY_COL * max(L.y, 0.0) * 0.78 * sh.rgb;
-  let amb = SKY_COL * 0.36 * sh.a;
+  let ca = contactAO(p, px);
+  // under the ring the sky light arrives through the jelly: golden, not black
+  let transAmb = mix(vec3f(1.0), exp(-U.shadowSig.xyz * 0.35), ca.y);
+  let key = KEY_COL * max(L.y, 0.0) * 0.78 * keyShadow(p, px);
+  let amb = SKY_COL * 0.36 * ca.x * transAmb;
   // a soft pool of light under the specimen, falling off into the sweep
   let d = length(p.xz - U.lightC.xz * 0.3);
   let pool = 1.0 + 0.10 * exp(-d * d * 0.08);
-  var c = FLOOR_ALB * (key + amb) * pool;
+  let c = FLOOR_ALB * (key + amb) * pool;
   return mix(c, BACKDROP, smoothstep(3.5, 16.0, length(p.xz)));
 }
 fn envRadiance(ro: vec3f, rd: vec3f, px: vec2f, withLights: bool) -> vec3f {
@@ -1176,6 +1255,15 @@ struct LOut { @builtin(position) pos: vec4f, @location(0) d: f32 };
   return o;
 }
 struct LFrag { @location(0) mm: vec4f, @location(1) th: vec4f };
+struct TOut { @builtin(position) pos: vec4f, @location(0) y: f32 };
+@vertex fn vsTop(@location(0) p: vec4f) -> TOut {
+  let E = U.lightDir.w;
+  var o: TOut;
+  o.pos = vec4f((p.x - U.lightC.x) / E, -(p.z - U.lightC.z) / E, 0.5, 1.0);
+  o.y = max(p.y, 0.0);
+  return o;
+}
+@fragment fn fsTop(i: TOut) -> @location(0) vec4f { return vec4f(exp(-i.y / 0.10), exp(-i.y / 0.55), 0.0, 1.0); }
 @fragment fn fs(i: LOut, @builtin(front_facing) ff: bool) -> LFrag {
   var o: LFrag;
   o.mm = vec4f(i.d, -i.d, 0.0, 1.0);
@@ -1239,7 +1327,7 @@ fn fibres(X: vec3f, r: f32, phi: f32) -> f32 {
   let cs = X.xz / max(r, 1e-4);
   let wob = vnoise(vec3f(cs.x * 2.1 + 3.0, X.y * 3.0 + r * 1.7, cs.y * 2.1)) - 0.5;
   let a = phi * 84.0 + wob * 4.0 + r * 2.5;
-  let line = pow(abs(cos(a * 0.5)), 26.0);
+  let line = pow(abs(cos(a * 0.5)), 36.0);
   let a2 = phi * 211.0 + wob * 7.0 - r * 4.0;
   let fine = pow(abs(cos(a2 * 0.5)), 40.0) * 0.45;
   let strand = smoothstep(0.30, 0.75, vnoise(vec3f(cs.x * 9.0, X.y * 11.0 + r * 6.0, cs.y * 9.0)));
@@ -1257,7 +1345,7 @@ fn vesicleSet(r: f32, phi: f32, y: f32, off: f32, seed: u32) -> f32 {
   let LH = 0.075;
   let li = floor((y + HALF_H) / LH);
   let h = hash3(vec3i(i32(band), i32(ai) + i32(seed), i32(li) + i32(seed) * 7));
-  if (rnd(h) > 0.72) { return 0.0; }
+  if (rnd(h) > 0.5) { return 0.0; }
   let h2 = pcg(h); let h3 = pcg(h2); let h4 = pcg(h3); let h5 = pcg(h4);
   let sc = mix(0.55, 1.0, rnd(h5));
   let cr = rb + (rnd(h2) - 0.5) * 0.02;
@@ -1299,8 +1387,8 @@ fn inLight(P: vec3f, depth: f32, cosT: f32) -> vec3f {
   let sigL = U.sigA.xyz * 0.9 + vec3f(U.sigA.w * 0.22);
   let g = 0.42;
   let hg = (1.0 - g * g) / pow(1.0 + g * g - 2.0 * g * cosT, 1.5);
-  let key = KEY_COL * 1.35 * exp(-sigL * path) * (0.45 + 0.9 * hg);
-  let amb = vec3f(0.95, 0.93, 0.88) * 0.95 * exp(-3.2 * max(depth, 0.0));
+  let key = KEY_COL * 1.08 * exp(-sigL * path) * (0.4 + 0.8 * hg);
+  let amb = vec3f(0.95, 0.93, 0.88) * 0.42 * exp(-5.0 * max(depth, 0.0));
   return key + amb;
 }
 
@@ -1318,8 +1406,8 @@ fn marchFlesh(P0: vec3f, T: vec3f, X0: vec3f, Dm: vec3f, tEnd: f32, N: i32, jit:
     let depth = -sdfRing(X);
     let fib = fibres(X, r, phi) * U.cellCol.w;
     let ves = vesicles(r, phi, X.y);
-    var sigS = U.albedo.w * 0.0 + U.sigA.w * (1.0 + 2.2 * fib) + ves * 26.0;
-    var alb = mix(U.albedo.xyz, U.cellCol.xyz, clamp(ves * 1.4 + fib * 0.5, 0.0, 1.0));
+    let sigS = U.sigA.w * (1.0 + 2.5 * fib) + ves * U.albedo.w;
+    let alb = mix(U.albedo.xyz, U.cellCol.xyz, clamp(ves * 0.9 + fib * 0.35, 0.0, 1.0));
     let sigA = U.sigA.xyz * (1.0 - 0.55 * ves);
     let sigT = sigA + vec3f(sigS);
     let Li = inLight(P, depth, cosT);
@@ -1390,7 +1478,7 @@ fn surfNormal(Xm: vec3f, Fi: mat3x3f) -> vec3f { return normalize(transpose(Fi) 
     let phi = atan2(X0.z, X0.x);
     let face = smoothstep(HALF_H - 0.035, HALF_H - 0.004, abs(X0.y));
     let a = phi * 84.0 + (vnoise(vec3f(X0.x * 2.1 + 3.0, X0.y * 3.0 + r * 1.7, X0.z * 2.1)) - 0.5) * 4.0 + r * 2.5;
-    let dh = -sin(a) * 42.0 * 0.00055 * face * U.cellCol.w;
+    let dh = -sin(a) * 42.0 * 0.00032 * face * U.cellCol.w;
     let gm = vec3f(-sin(phi), 0.0, cos(phi)) * dh / r;
     let gw = transpose(Fi) * gm;
     N = normalize(N - (gw - N * dot(gw, N)));
@@ -1516,12 +1604,13 @@ fn screenQuad(pa: vec4f, pb: vec4f, vi: u32, w: f32) -> vec4f {
                [depth pre-pass · studio sweep · jelly · lattice overlay]
    ===================================================================== */
 const TINTS = {
-  golden: { name: 'Golden', sigA: [0.30, 0.98, 3.7], albedo: [1.0, 0.92, 0.66], cell: [1.0, 0.965, 0.84], shadow: [0.22, 0.62, 2.1] },
-  amber:  { name: 'Amber',  sigA: [0.48, 1.95, 5.8], albedo: [1.0, 0.80, 0.50], cell: [1.0, 0.91, 0.74], shadow: [0.36, 1.25, 3.4] },
-  rose:   { name: 'Rosé',   sigA: [0.26, 2.15, 1.30], albedo: [1.0, 0.80, 0.84], cell: [1.0, 0.93, 0.94], shadow: [0.2, 1.35, 0.95] },
+  golden: { name: 'Golden', sigA: [0.28, 1.32, 5.4], albedo: [1.0, 0.83, 0.42], cell: [1.0, 0.94, 0.74], shadow: [0.22, 0.85, 3.0] },
+  amber:  { name: 'Amber',  sigA: [0.70, 2.60, 8.5], albedo: [1.0, 0.66, 0.30], cell: [1.0, 0.86, 0.62], shadow: [0.50, 1.80, 5.0] },
+  rose:   { name: 'Rosé',   sigA: [0.35, 2.60, 1.90], albedo: [1.0, 0.68, 0.74], cell: [1.0, 0.90, 0.92], shadow: [0.25, 1.60, 1.20] },
 };
-const SCATTER = 2.3;        // shared scattering coefficient — the "material", independent of tint
-const FIBRE = 1.0;
+const SCATTER = 1.15;   // shared scattering coefficient — the "material", independent of tint
+const FIBRE = 0.55;
+const VESICLE = 5.0;        // extra scattering inside juice cells
 
 // ---- small matrix helpers (column-major, WebGPU clip space z ∈ [0,1])
 const M4 = {
@@ -1570,12 +1659,17 @@ function backdropCss() {
 }
 
 class JellyRenderer {
-  static async create(canvas, sim, surface) {
+  static async create(canvas, sim, surface, opts = {}) {
     if (!navigator.gpu) throw Object.assign(new Error('This browser does not expose WebGPU (navigator.gpu is missing).'), { code: 'no-api' });
-    let adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
-    if (!adapter) throw Object.assign(new Error('WebGPU is present but no suitable GPU adapter was found.'), { code: 'no-adapter' });
+    const adapter = await navigator.gpu.requestAdapter();
+    if (!adapter) throw Object.assign(new Error('WebGPU is present, but no GPU adapter is available (the GPU or its driver may be blocklisted).'), { code: 'no-adapter' });
+    const info = adapter.info || {};
+    // a software (CPU) WebGPU adapter is slower than our own CPU path and often cannot present
+    if (info.isFallbackAdapter && !opts.allowSoftware) throw Object.assign(new Error('Only a software WebGPU adapter (' + (info.architecture || info.vendor || 'CPU') + ') is available.'), { code: 'software' });
     const device = await adapter.requestDevice();
+    canvas.dataset.gpu = '1';
     const r = new JellyRenderer(canvas, device, sim, surface);
+    r.adapterName = [info.vendor, info.architecture].filter(Boolean).join(' ') || 'GPU';
     await r.init();
     return r;
   }
@@ -1584,7 +1678,10 @@ class JellyRenderer {
     this.context = canvas.getContext('webgpu');
     this.format = navigator.gpu.getPreferredCanvasFormat();
     // ?capture=1 lets automated tests read frames back (headless browsers may not composite WebGPU canvases)
-    this.canCapture = new URLSearchParams(location.search).has('capture');
+    const qp = new URLSearchParams(location.search);
+    this.canCapture = qp.has('capture');
+    // ?offscreen=1 renders into a plain texture instead of the canvas (headless test browsers stall on canvas presentation)
+    this.offscreen = qp.has('offscreen');
     this.context.configure({ device, format: this.format, alphaMode: 'opaque', usage: GPUTextureUsage.RENDER_ATTACHMENT | (this.canCapture ? GPUTextureUsage.COPY_SRC : 0) });
     this.sampleCount = 4;
     this.lightRes = 512;
@@ -1596,6 +1693,7 @@ class JellyRenderer {
     this.debugSkip = +(new URLSearchParams(location.search).get('skip') || 0);   // test aid: 1 = jelly, 2 = sweep
     this.inFlight = 0;
     this.gpuFrames = 0;
+    this.lastSubmit = 0;
   }
   async init() {
     const d = this.device, S = this.surface, sim = this.sim;
@@ -1618,6 +1716,7 @@ class JellyRenderer {
     // light map targets
     const TU = GPUTextureUsage;
     this.lightMM = d.createTexture({ size: [this.lightRes, this.lightRes], format: 'rg16float', usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
+    this.topMap = d.createTexture({ size: [256, 256], format: 'rg16float', usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
     this.lightTh = d.createTexture({ size: [this.lightRes, this.lightRes], format: 'r16float', usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
     this.linSamp = d.createSampler({ magFilter: 'linear', minFilter: 'linear', addressModeU: 'clamp-to-edge', addressModeV: 'clamp-to-edge' });
 
@@ -1646,6 +1745,12 @@ class JellyRenderer {
         fragment: { module: mLight, entryPoint: 'fs', targets: [
           { format: 'rg16float', blend: { color: { operation: 'min', srcFactor: 'one', dstFactor: 'one' }, alpha: { operation: 'min', srcFactor: 'one', dstFactor: 'one' } } },
           { format: 'r16float', blend: { color: { operation: 'add', srcFactor: 'one', dstFactor: 'one' }, alpha: { operation: 'add', srcFactor: 'one', dstFactor: 'one' } } }] },
+        primitive: { topology: 'triangle-list', cullMode: 'none' },
+      }),
+      d.createRenderPipelineAsync({
+        layout: 'auto',
+        vertex: { module: mLight, entryPoint: 'vsTop', buffers: [{ arrayStride: 80, attributes: [{ shaderLocation: 0, offset: 0, format: 'float32x4' }] }] },
+        fragment: { module: mLight, entryPoint: 'fsTop', targets: [{ format: 'rg16float', blend: { color: { operation: 'max', srcFactor: 'one', dstFactor: 'one' }, alpha: { operation: 'max', srcFactor: 'one', dstFactor: 'one' } } }] },
         primitive: { topology: 'triangle-list', cullMode: 'none' },
       }),
       d.createRenderPipelineAsync({
@@ -1686,12 +1791,13 @@ class JellyRenderer {
         multisample: ms,
       }),
     ]);
-    [this.pSkin, this.pLight, this.pDepth, this.pEnv, this.pJelly, this.pEdge, this.pNode] = P;
+    [this.pSkin, this.pLight, this.pTop, this.pDepth, this.pEnv, this.pJelly, this.pEdge, this.pNode] = P;
     const bg = (p, entries) => d.createBindGroup({ layout: p.getBindGroupLayout(0), entries: entries.map(([binding, resource]) => ({ binding, resource })) });
     this.bgSkin = bg(this.pSkin, [[0, { buffer: this.skinU }], [1, { buffer: this.nodeBuf }], [2, { buffer: this.staticBuf }], [3, { buffer: this.vertBuf }]]);
     this.bgLight = bg(this.pLight, [[0, { buffer: this.frameBuf }]]);
+    this.bgTop = bg(this.pTop, [[0, { buffer: this.frameBuf }]]);
     this.bgDepth = bg(this.pDepth, [[0, { buffer: this.frameBuf }]]);
-    const texEntries = [[0, { buffer: this.frameBuf }], [1, this.lightMM.createView()], [2, this.lightTh.createView()], [3, this.linSamp]];
+    const texEntries = [[0, { buffer: this.frameBuf }], [1, this.lightMM.createView()], [2, this.lightTh.createView()], [3, this.linSamp], [6, this.topMap.createView()]];
     this.bgEnv = bg(this.pEnv, texEntries);
     this.bgJelly = bg(this.pJelly, texEntries);
     this.bgEdge = bg(this.pEdge, [[0, { buffer: this.frameBuf }], [4, { buffer: this.nodeBuf }], [5, { buffer: this.edgeBuf }]]);
@@ -1707,6 +1813,7 @@ class JellyRenderer {
     const TU = GPUTextureUsage;
     this.msaa = this.device.createTexture({ size: [w, h], format: this.format, sampleCount: this.sampleCount, usage: TU.RENDER_ATTACHMENT });
     this.depth = this.device.createTexture({ size: [w, h], format: 'depth24plus', sampleCount: this.sampleCount, usage: TU.RENDER_ATTACHMENT });
+    if (this.offscreen) { this.offTex?.destroy(); this.offTex = this.device.createTexture({ size: [w, h], format: this.format, usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC }); }
   }
   /**
    * view: { viewProj, invViewProj, eye, dpr }  light: { dir, x, y, center, extent }
@@ -1715,7 +1822,10 @@ class JellyRenderer {
   render(view, light, tint, time) {
     const d = this.device, u = this.uniform, sim = this.sim;
     // never queue more than two frames: on a slow GPU the jelly would otherwise lag the cursor
-    if (this.inFlight >= 2) return false;
+    // (if completion callbacks ever stall, carry on after 1.5 s rather than freezing)
+    const tNow = performance.now();
+    if (this.inFlight >= 2 && tNow - this.lastSubmit < 1500) return false;
+    if (this.inFlight >= 2) this.inFlight = 0;
     // nodes → GPU
     for (let i = 0; i < sim.n; i++) { this.nodeData[i * 4] = sim.x[i * 3]; this.nodeData[i * 4 + 1] = sim.x[i * 3 + 1]; this.nodeData[i * 4 + 2] = sim.x[i * 3 + 2]; }
     d.queue.writeBuffer(this.nodeBuf, 0, this.nodeData);
@@ -1726,7 +1836,7 @@ class JellyRenderer {
     u.set([...light.y, 1 / this.lightRes], 44);
     u.set([...light.center, view.exposure], 48);
     u.set([...tint.sigA, SCATTER], 52);
-    u.set([...tint.albedo, 26], 56);
+    u.set([...tint.albedo, VESICLE], 56);
     u.set([...tint.cell, FIBRE], 60);
     u.set([...tint.shadow, this.frameNo++ % 64], 64);
     u.set([this.canvas.width, this.canvas.height, 1 / this.canvas.width, 1 / this.canvas.height], 68);
@@ -1735,13 +1845,19 @@ class JellyRenderer {
     d.queue.writeBuffer(this.frameBuf, 0, u);
 
     const enc = d.createCommandEncoder();
-    const target = this.context.getCurrentTexture();
+    const target = this.offscreen ? this.offTex : this.context.getCurrentTexture();
     { const p = enc.beginComputePass(); p.setPipeline(this.pSkin); p.setBindGroup(0, this.bgSkin); p.dispatchWorkgroups(Math.ceil(this.surface.nv / 64)); p.end(); }
     {
       const p = enc.beginRenderPass({ colorAttachments: [
         { view: this.lightMM.createView(), clearValue: [60000, 60000, 0, 0], loadOp: 'clear', storeOp: 'store' },
         { view: this.lightTh.createView(), clearValue: [0, 0, 0, 0], loadOp: 'clear', storeOp: 'store' }] });
       p.setPipeline(this.pLight); p.setBindGroup(0, this.bgLight);
+      p.setVertexBuffer(0, this.vertBuf); p.setIndexBuffer(this.indexBuf, 'uint32');
+      p.drawIndexed(this.indexCount); p.end();
+    }
+    {
+      const p = enc.beginRenderPass({ colorAttachments: [{ view: this.topMap.createView(), clearValue: [0, 0, 0, 0], loadOp: 'clear', storeOp: 'store' }] });
+      p.setPipeline(this.pTop); p.setBindGroup(0, this.bgTop);
       p.setVertexBuffer(0, this.vertBuf); p.setIndexBuffer(this.indexBuf, 'uint32');
       p.drawIndexed(this.indexCount); p.end();
     }
@@ -1770,6 +1886,7 @@ class JellyRenderer {
     }
     d.queue.submit([enc.finish()]);
     this.inFlight++;
+    this.lastSubmit = tNow;
     d.queue.onSubmittedWorkDone().then(() => { this.inFlight--; this.gpuFrames++; });
     if (cap) this.finishCapture(cap);
     return true;
@@ -1798,11 +1915,564 @@ class JellyRenderer {
 }
 
 /* =====================================================================
+   4b · CPU RENDERER — used automatically when WebGPU is not available.
+   A small software rasteriser and shader: the deformed surface is
+   rasterised twice (nearest front face, nearest back face), so every
+   jelly pixel knows where the view ray enters and leaves the flesh, in
+   world and in material space. Thickness, Beer–Lambert colour, fibres,
+   juice cells, bubbles, refraction of the floor, Fresnel, softbox
+   reflections and the coloured contact shadow are then shaded per pixel.
+   The image is split into horizontal bands rendered by parallel Web Workers.
+   ===================================================================== */
+function cpuRendererFactory() {
+  'use strict';
+  let C = null, idx = null, rest = null, nv = 0, nTri = 0;
+  let sx, sy, sw;
+  let zF, tF, uF, vF, zB, tB, uB, vB;
+  let bandLen = 0;
+  let bgX, bgZ, bgC, bgOk, bgKey = '';   // background cache (valid while the camera is still)
+  const env = new Float64Array(3);
+  const srgbLut = new Uint8Array(4097);
+  for (let i = 0; i <= 4096; i++) { const v = i / 4096; srgbLut[i] = Math.round(255 * Math.min(1, v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055)); }
+  const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+  const smooth = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+
+  function init(cfg) {
+    C = cfg; idx = cfg.idx; rest = cfg.rest; nv = rest.length / 3; nTri = idx.length / 3;
+    sx = new Float32Array(nv); sy = new Float32Array(nv); sw = new Float32Array(nv);
+  }
+  // ---------------- shape (must match the JS/WGSL versions)
+  function outerR(phi) {
+    const s = Math.abs(Math.sin(C.scallops * phi * 0.5)), e = 0.035;
+    const lobe = (Math.sqrt(s * s + e) - Math.sqrt(e)) / (Math.sqrt(1 + e) - Math.sqrt(e));
+    return C.rOut + C.scAmp * (lobe - 0.62) + 0.007 * Math.sin(3 * phi + 0.7) + 0.005 * Math.sin(5 * phi + 2.1);
+  }
+  function innerR(phi) { return C.rIn + 0.006 * Math.sin(2 * phi + 0.3) + 0.004 * Math.sin(5 * phi + 1.3); }
+  function sdfRing(x, y, z) {
+    const r = Math.hypot(x, z), phi = Math.atan2(z, x), ro = outerR(phi), ri = innerR(phi);
+    const qx = Math.abs(r - 0.5 * (ro + ri)) - (0.5 * (ro - ri) - C.corner), qy = Math.abs(y) - (C.halfH - C.corner);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - C.corner;
+  }
+  // ---------------- hashing
+  function hash3(a, b, c) {
+    let h = Math.imul(a | 0, 0x27d4eb2d) ^ Math.imul(b | 0, 0x165667b1) ^ Math.imul(c | 0, 0x9e3779b1);
+    h = Math.imul(h ^ (h >>> 15), 0x85ebca6b); h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+    return (h ^ (h >>> 16)) >>> 0;
+  }
+  const rnd = h => (h >>> 8) / 16777216;
+  const next = h => { h = Math.imul(h ^ (h >>> 16), 0x7feb352d); h = Math.imul(h ^ (h >>> 15), 0x846ca68b); return (h ^ (h >>> 16)) >>> 0; };
+  // ---------------- flesh structure (material coordinates)
+  function fibres(r, phi, y) {
+    if (r < C.rIn + 0.02 || r > 1.0) return 0;
+    const wob = Math.sin(phi * 5 + y * 9 + r * 7) * 0.9 + Math.sin(phi * 3 - r * 5) * 0.6;
+    const c = Math.cos((phi * 84 + wob + r * 2.5) * 0.5);
+    let line = c * c; line *= line; line *= line; line *= line; line *= line;   // cos^32
+    const strand = 0.35 + 0.65 * smooth(-0.2, 0.7, Math.sin(r * 23 + phi * 13 + y * 31) * Math.sin(r * 11 - y * 17));
+    return line * strand * smooth(C.rIn + 0.02, C.rIn + 0.1, r) * (1 - smooth(0.86, 1.0, r));
+  }
+  function vesicleSet(r, phi, y, off, seed) {
+    const BW = 0.105, band = Math.floor((r - C.rIn - off) / BW);
+    const rb = C.rIn + off + (band + 0.5) * BW;
+    const nA = Math.max(Math.round(2 * Math.PI * rb / 0.062), 6);
+    const pn = phi / (2 * Math.PI) + 0.5, ai = Math.floor(pn * nA);
+    const LH = 0.075, li = Math.floor((y + C.halfH) / LH);
+    let h = hash3(band, ai + seed, li + seed * 7);
+    if (rnd(h) > 0.5) return 0;
+    const h2 = next(h), h3 = next(h2), h4 = next(h3), h5 = next(h4);
+    const sc = 0.55 + 0.45 * rnd(h5);
+    const cr = rb + (rnd(h2) - 0.5) * 0.02, ca = (ai + 0.5 + (rnd(h3) - 0.5) * 0.4) / nA, cy = -C.halfH + (li + 0.5 + (rnd(h4) - 0.5) * 0.4) * LH;
+    let dphi = (pn - ca) * 2 * Math.PI; dphi -= 2 * Math.PI * Math.round(dphi / (2 * Math.PI));
+    const a = (r - cr) / (0.05 * sc), b = dphi * r / (0.0135 * sc), c = (y - cy) / (0.018 * sc);
+    return 1 - smooth(0.55, 1.0, Math.sqrt(a * a + b * b + c * c));
+  }
+  const vesicles = (r, phi, y) => Math.max(vesicleSet(r, phi, y, 0, 0), vesicleSet(r, phi + 0.051, y + 0.037, 0.052, 131));
+  const BUB = 0.13;
+  // bubble in a cubic cell → closest approach of segment A→B; returns rim/core brightness
+  function bubbleHit(cx, cy, cz, ax, ay, az, dx, dy, dz, dd) {
+    const h = hash3(cx + 71, cy + 3, cz + 19);
+    if (rnd(h) > 0.34) return 0;
+    const h2 = next(h), h3 = next(h2), h4 = next(h3), h5 = next(h4);
+    const rad = 0.008 + 0.018 * Math.pow(rnd(h5), 2.2), m = (rad + 0.004) / BUB;
+    const bx = (cx + m + rnd(h2) * (1 - 2 * m)) * BUB, by = (cy + m + rnd(h3) * (1 - 2 * m)) * BUB, bz = (cz + m + rnd(h4) * (1 - 2 * m)) * BUB;
+    if (sdfRing(bx, by, bz) > -rad - 0.012) return 0;
+    let t = ((bx - ax) * dx + (by - ay) * dy + (bz - az) * dz) / dd;
+    if (t < 0 || t > 1) return 0;
+    const ex = ax + dx * t - bx, ey = ay + dy * t - by, ez = az + dz * t - bz;
+    const q = Math.sqrt(ex * ex + ey * ey + ez * ez) / rad;
+    if (q >= 1) return 0;
+    return smooth(0.62, 0.93, q) * (1 - smooth(0.93, 1, q)) * 0.55 + (1 - smooth(0, 0.45, q)) * 0.1;
+  }
+  // ---------------- studio
+  function softbox(rx, ry, rz, b) {
+    const d = rx * b[0] + ry * b[1] + rz * b[2];
+    if (d <= 0.05) return 0;
+    const px = rx / d - b[0], py = ry / d - b[1], pz = rz / d - b[2];
+    const x = Math.abs(px * b[3] + py * b[4] + pz * b[5]), y = Math.abs(px * b[6] + py * b[7] + pz * b[8]);
+    return (1 - smooth(b[9] - b[11], b[9] + b[11], x)) * (1 - smooth(b[10] - b[11], b[10] + b[11], y));
+  }
+  function sampleMap(map, N, u, v) {
+    u = u * N - 0.5; v = v * N - 0.5;
+    if (u < 0 || v < 0 || u >= N - 1 || v >= N - 1) return 0;
+    const i = u | 0, j = v | 0, fu = u - i, fv = v - j, k = j * N + i;
+    return (map[k] * (1 - fu) + map[k + 1] * fu) * (1 - fv) + (map[k + N] * (1 - fu) + map[k + N + 1] * fu) * fv;
+  }
+  // radiance seen along a ray → env[0..2]
+  function envRadiance(ox, oy, oz, rx, ry, rz, lights, fr) {
+    const BK = C.backdrop;
+    if (ry < -1e-4) {
+      const t = -oy / ry, px = ox + rx * t, pz = oz + rz * t;
+      const cx = px - fr.center[0], cz = pz - fr.center[2];
+      // key light: coloured by the jelly it passes through
+      const lx = cx * fr.lx[0] + (0 - fr.center[1]) * fr.lx[1] + cz * fr.lx[2], ly = cx * fr.ly[0] + (0 - fr.center[1]) * fr.ly[1] + cz * fr.ly[2];
+      const th = sampleMap(fr.keyMap, fr.mapN, lx / fr.extent * 0.5 + 0.5, -ly / fr.extent * 0.5 + 0.5);
+      const cov = 1 - Math.exp(-7 * sampleMap(fr.topMap, fr.mapN, cx / fr.extent * 0.5 + 0.5, cz / fr.extent * 0.5 + 0.5));
+      const con = sampleMap(fr.contactMap, fr.mapN, cx / fr.extent * 0.5 + 0.5, cz / fr.extent * 0.5 + 0.5);
+      const edgeAO = 1 - 0.6 * Math.min(con, 1) * (1 - cov);
+      const s = fr.shadowSig, KY = C.keyCol, Ly = fr.lightDir[1] * 0.78, amb = 0.36 * 0.8 * edgeAO;
+      const d = Math.hypot(px - fr.center[0] * 0.3, pz - fr.center[2] * 0.3), pool = 1 + 0.1 * Math.exp(-d * d * 0.08);
+      const fade = smooth(3.5, 16, Math.hypot(px, pz)), graze = smooth(0, 0.12, -ry);
+      for (let c = 0; c < 3; c++) {
+        const tr = th > 1e-4 ? Math.exp(-s[c] * th) : 1, trA = 1 + (fr.ambTrans[c] - 1) * cov;
+        let f = C.floor[c] * (KY[c] * Ly * tr + amb * trA) * pool;
+        f = f + (BK[c] - f) * fade;
+        env[c] = BK[c] + (f - BK[c]) * graze;
+      }
+      return env;
+    }
+    const k = smooth(0.02, 0.8, ry);
+    env[0] = BK[0] + (0.97 - BK[0]) * k; env[1] = BK[1] + (0.94 - BK[1]) * k; env[2] = BK[2] + (0.89 - BK[2]) * k;
+    if (lights) {
+      for (const b of C.boxes) { const m = softbox(rx, ry, rz, b); if (m > 0) { env[0] += b[12] * m; env[1] += b[13] * m; env[2] += b[14] * m; } }
+      const sc = 0.7 * smooth(0.75, 0.99, ry); env[0] += sc; env[1] += sc * 0.98; env[2] += sc * 0.95;
+    }
+    return env;
+  }
+  // Khronos PBR Neutral + sRGB, written straight into the output
+  function writePixel(out, o, r, g, b, exposure, dither) {
+    r *= exposure; g *= exposure; b *= exposure;
+    const x = Math.min(r, g, b), off = x < 0.08 ? x - 6.25 * x * x : 0.04;
+    r -= off; g -= off; b -= off;
+    const peak = Math.max(r, g, b);
+    if (peak >= 0.76) {
+      const dd = 0.24, np = 1 - dd * dd / (peak + dd - 0.76), k = np / peak;
+      r *= k; g *= k; b *= k;
+      const gg = 1 - 1 / (0.15 * (peak - np) + 1);
+      r += (np - r) * gg; g += (np - g) * gg; b += (np - b) * gg;
+    }
+    out[o] = srgbLut[(clamp01(r) * 4096) | 0] + dither;
+    out[o + 1] = srgbLut[(clamp01(g) * 4096) | 0] + dither;
+    out[o + 2] = srgbLut[(clamp01(b) * 4096) | 0] + dither;
+    out[o + 3] = 255;
+  }
+  // ---------------- rasterise this worker's rows: k, k+n, k+2n … (interleaved, so work is balanced)
+  function raster(fr, W, H, k, n) {
+    const m = fr.viewProj, pos = fr.pos;
+    for (let v = 0; v < nv; v++) {
+      const x = pos[v * 3], y = pos[v * 3 + 1], z = pos[v * 3 + 2];
+      const cx = m[0] * x + m[4] * y + m[8] * z + m[12], cy = m[1] * x + m[5] * y + m[9] * z + m[13], cw = m[3] * x + m[7] * y + m[11] * z + m[15];
+      sw[v] = cw; sx[v] = (cx / cw * 0.5 + 0.5) * W; sy[v] = (0.5 - cy / cw * 0.5) * H;
+    }
+    const len = Math.ceil((H - k) / n) * W;
+    zF.fill(1e9, 0, len); zB.fill(1e9, 0, len); tF.fill(-1, 0, len); tB.fill(-1, 0, len);
+    for (let t = 0; t < nTri; t++) {
+      const i0 = idx[t * 3], i1 = idx[t * 3 + 1], i2 = idx[t * 3 + 2];
+      const w0 = sw[i0], w1 = sw[i1], w2 = sw[i2];
+      if (w0 < 0.05 || w1 < 0.05 || w2 < 0.05) continue;
+      const x0 = sx[i0], y0v = sy[i0], x1 = sx[i1], y1v = sy[i1], x2 = sx[i2], y2v = sy[i2];
+      let minY = Math.max(0, Math.ceil(Math.min(y0v, y1v, y2v) - 0.5)), maxY = Math.min(H - 1, Math.floor(Math.max(y0v, y1v, y2v) - 0.5));
+      minY += ((k - minY) % n + n) % n;          // first row that belongs to this worker
+      if (minY > maxY) continue;
+      const minX = Math.max(0, Math.ceil(Math.min(x0, x1, x2) - 0.5)), maxX = Math.min(W - 1, Math.floor(Math.max(x0, x1, x2) - 0.5));
+      if (minX > maxX) continue;
+      const area = (x1 - x0) * (y2v - y0v) - (y1v - y0v) * (x2 - x0);
+      if (Math.abs(area) < 1e-9) continue;
+      const front = area < 0;
+      const Z = front ? zF : zB, T = front ? tF : tB, Uu = front ? uF : uB, Vv = front ? vF : vB;
+      const ia = 1 / area, iw0 = 1 / w0, iw1 = 1 / w1, iw2 = 1 / w2;
+      // edge functions E(a,b,p) = (bx-ax)(py-ay) - (by-ay)(px-ax), stepped across x
+      const a0x = -(y2v - y1v), a1x = -(y0v - y2v), a2x = -(y1v - y0v);
+      for (let py = minY; py <= maxY; py += n) {
+        const pyc = py + 0.5, pxs = minX + 0.5;
+        let e0 = (x2 - x1) * (pyc - y1v) - (y2v - y1v) * (pxs - x1);
+        let e1 = (x0 - x2) * (pyc - y2v) - (y0v - y2v) * (pxs - x2);
+        let e2 = (x1 - x0) * (pyc - y0v) - (y1v - y0v) * (pxs - x0);
+        let row = ((py - k) / n) * W + minX;
+        for (let px = minX; px <= maxX; px++, row++, e0 += a0x, e1 += a1x, e2 += a2x) {
+          const l0 = e0 * ia, l1 = e1 * ia, l2 = e2 * ia;
+          if (l0 < 0 || l1 < 0 || l2 < 0) continue;
+          const q0 = l0 * iw0, q1 = l1 * iw1, q2 = l2 * iw2, s = q0 + q1 + q2, w = 1 / s;
+          if (w < Z[row]) { Z[row] = w; T[row] = t; Uu[row] = q1 * w; Vv[row] = q2 * w; }
+        }
+      }
+    }
+  }
+  // ---------------- shade the band
+  function shade(fr, W, H, k, n, out) {
+    const pos = fr.pos, nrm = fr.nrm, eye = fr.eye, L = fr.lightDir;
+    const ex = eye[0], ey = eye[1], ez = eye[2];
+    const sigA = fr.sigA, alb = fr.albedo, cell = fr.cell, sigS = fr.scatter, VES = fr.vesicle, FIB = fr.fibre;
+    const K = fr.samples, keyI = C.keyCol, IOR = 1.42, F0 = 0.03;
+    const R0 = fr.rays, sb = fr.shadowBox;   // unnormalised ray directions at pixel (0,0), and per-pixel x / y steps
+    for (let py = k, lr = 0; py < H; py += n, lr++) {
+      for (let px = 0; px < W; px++) {
+        const i = lr * W + px, o = i * 4;
+        const t = tF[i];
+        if (t < 0) {
+          // studio background: reuse the cached pixel unless the ring's shadow can reach it
+          const bx = bgX[i], bz = bgZ[i];
+          const near = bx > sb[0] && bx < sb[2] && bz > sb[1] && bz < sb[3];
+          if (bgOk[i] && !near) { out[o] = bgC[o]; out[o + 1] = bgC[o + 1]; out[o + 2] = bgC[o + 2]; out[o + 3] = 255; continue; }
+          let rdx = R0[0] + R0[3] * (px + 0.5) + R0[6] * (py + 0.5), rdy = R0[1] + R0[4] * (px + 0.5) + R0[7] * (py + 0.5), rdz = R0[2] + R0[5] * (px + 0.5) + R0[8] * (py + 0.5);
+          const rl = 1 / Math.hypot(rdx, rdy, rdz); rdx *= rl; rdy *= rl; rdz *= rl;
+          envRadiance(ex, ey, ez, rdx, rdy, rdz, false, fr); writePixel(out, o, env[0], env[1], env[2], fr.exposure, ((hash3(px, py, 7) & 255) / 255 - 0.5));
+          if (!bgOk[i]) {
+            if (rdy < -1e-4) { const tt = -ey / rdy; bgX[i] = ex + rdx * tt; bgZ[i] = ez + rdz * tt; } else { bgX[i] = 1e9; bgZ[i] = 1e9; }
+            if (!(bgX[i] > sb[0] && bgX[i] < sb[2] && bgZ[i] > sb[1] && bgZ[i] < sb[3])) { bgC[o] = out[o]; bgC[o + 1] = out[o + 1]; bgC[o + 2] = out[o + 2]; bgOk[i] = 1; }
+            else bgOk[i] = 0;
+          }
+          continue;
+        }
+        // --- front surface
+        const dither = ((hash3(px, py, 7) & 255) / 255 - 0.5);
+        const a = idx[t * 3], b = idx[t * 3 + 1], c = idx[t * 3 + 2], bu = uF[i], bv = vF[i], bw = 1 - bu - bv;
+        const Px = pos[a * 3] * bw + pos[b * 3] * bu + pos[c * 3] * bv, Py = pos[a * 3 + 1] * bw + pos[b * 3 + 1] * bu + pos[c * 3 + 1] * bv, Pz = pos[a * 3 + 2] * bw + pos[b * 3 + 2] * bu + pos[c * 3 + 2] * bv;
+        let Nx = nrm[a * 3] * bw + nrm[b * 3] * bu + nrm[c * 3] * bv, Ny = nrm[a * 3 + 1] * bw + nrm[b * 3 + 1] * bu + nrm[c * 3 + 1] * bv, Nz = nrm[a * 3 + 2] * bw + nrm[b * 3 + 2] * bu + nrm[c * 3 + 2] * bv;
+        const nl = 1 / (Math.hypot(Nx, Ny, Nz) || 1); Nx *= nl; Ny *= nl; Nz *= nl;
+        const Xa = rest[a * 3] * bw + rest[b * 3] * bu + rest[c * 3] * bv, Ya = rest[a * 3 + 1] * bw + rest[b * 3 + 1] * bu + rest[c * 3 + 1] * bv, Za = rest[a * 3 + 2] * bw + rest[b * 3 + 2] * bu + rest[c * 3 + 2] * bv;
+        let Vx = ex - Px, Vy = ey - Py, Vz = ez - Pz; const vl = 1 / Math.hypot(Vx, Vy, Vz); Vx *= vl; Vy *= vl; Vz *= vl;
+        let NdV = Nx * Vx + Ny * Vy + Nz * Vz;
+        if (NdV < 0.02) { Nx += Vx * (0.02 - NdV); Ny += Vy * (0.02 - NdV); Nz += Vz * (0.02 - NdV); const k = 1 / Math.hypot(Nx, Ny, Nz); Nx *= k; Ny *= k; Nz *= k; NdV = Nx * Vx + Ny * Vy + Nz * Vz; }
+        // --- back surface: where the ray leaves the flesh (world + material)
+        let thick = 0.03, Xb = Xa, Yb = Ya, Zb = Za;
+        const tb = tB[i];
+        if (tb >= 0 && zB[i] > zF[i]) {
+          const a2 = idx[tb * 3], b2 = idx[tb * 3 + 1], c2 = idx[tb * 3 + 2], u2 = uB[i], v2 = vB[i], w2 = 1 - u2 - v2;
+          const Qx = pos[a2 * 3] * w2 + pos[b2 * 3] * u2 + pos[c2 * 3] * v2, Qy = pos[a2 * 3 + 1] * w2 + pos[b2 * 3 + 1] * u2 + pos[c2 * 3 + 1] * v2, Qz = pos[a2 * 3 + 2] * w2 + pos[b2 * 3 + 2] * u2 + pos[c2 * 3 + 2] * v2;
+          thick = Math.max(Math.hypot(Qx - Px, Qy - Py, Qz - Pz), 0.01);
+          Xb = rest[a2 * 3] * w2 + rest[b2 * 3] * u2 + rest[c2 * 3] * v2; Yb = rest[a2 * 3 + 1] * w2 + rest[b2 * 3 + 1] * u2 + rest[c2 * 3 + 1] * v2; Zb = rest[a2 * 3 + 2] * w2 + rest[b2 * 3 + 2] * u2 + rest[c2 * 3 + 2] * v2;
+        }
+        const fres = F0 + (1 - F0) * Math.pow(1 - NdV, 5);
+        // --- reflection
+        const Rx = 2 * NdV * Nx - Vx, Ry = 2 * NdV * Ny - Vy, Rz = 2 * NdV * Nz - Vz;
+        envRadiance(Px, Py + 0.002, Pz, Rx, Ry, Rz, true, fr);
+        const rr = env[0], rg = env[1], rb = env[2];
+        let Hx = L[0] + Vx, Hy = L[1] + Vy, Hz = L[2] + Vz; const hl = 1 / Math.hypot(Hx, Hy, Hz); Hx *= hl; Hy *= hl; Hz *= hl;
+        const NdH = Math.max(Nx * Hx + Ny * Hy + Nz * Hz, 0), a2g = 0.0256, dd = NdH * NdH * (a2g - 1) + 1;
+        const spec = Math.min(a2g / (Math.PI * dd * dd), 14) * 0.022 * Math.max(Nx * L[0] + Ny * L[1] + Nz * L[2], 0);
+        // --- refraction (Snell) and a gently bent exit ray for the floor seen through the jelly
+        const eta = 1 / IOR, cosi = NdV, k2 = 1 - eta * eta * (1 - cosi * cosi);
+        const cost = Math.sqrt(Math.max(k2, 0));
+        let Tx = -eta * Vx + (eta * cosi - cost) * Nx, Ty = -eta * Vy + (eta * cosi - cost) * Ny, Tz = -eta * Vz + (eta * cosi - cost) * Nz;
+        const path = thick / Math.max(cost, 0.3) * (0.75 + 0.25 * Math.min(cosi / Math.max(cost, 0.3), 1.5));
+        let Ox = -Vx * 0.45 + Tx * 0.55, Oy = -Vy * 0.45 + Ty * 0.55, Oz = -Vz * 0.45 + Tz * 0.55; const ol = 1 / Math.hypot(Ox, Oy, Oz); Ox *= ol; Oy *= ol; Oz *= ol;
+        envRadiance(Px + Tx * thick, Math.max(Py + Ty * thick, 0.001), Pz + Tz * thick, Ox, Oy, Oz, false, fr);
+        const thr = env[0], thg = env[1], thb = env[2];
+        // --- fibres, juice cells and bubbles along the material-space chord
+        let ves = 0, fib = 0, bub = 0;
+        const dX = Xb - Xa, dY = Yb - Ya, dZ = Zb - Za, dd2 = dX * dX + dY * dY + dZ * dZ + 1e-9;
+        // per-pixel jitter hides banding at full detail; on a coarse image it only makes salt noise
+        const jit = fr.detail > 0.8 ? (hash3(px, py, 3) & 1023) / 1024 : 0.5;
+        let lcx = 1e9, lcy = 0, lcz = 0;
+        for (let k = 0; k < K; k++) {
+          const f = (k + jit) / K, X = Xa + dX * f, Y = Ya + dY * f, Z = Za + dZ * f;
+          const r = Math.hypot(X, Z), phi = Math.atan2(Z, X);
+          ves += vesicles(r, phi, Y);
+          fib += fibres(r, phi, Y);
+          const cx = Math.floor(X / BUB), cy = Math.floor(Y / BUB), cz = Math.floor(Z / BUB);
+          if (cx !== lcx || cy !== lcy || cz !== lcz) { lcx = cx; lcy = cy; lcz = cz; bub += bubbleHit(cx, cy, cz, Xa, Ya, Za, dX, dY, dZ, dd2); }
+        }
+        ves = ves / K * (0.25 + 0.75 * fr.detail * fr.detail); fib = fib / K * FIB; bub *= fr.detail * fr.detail;
+        // --- light inside: key light attenuated by the flesh above (light-space thickness map)
+        const lcxw = Px - fr.center[0], lcyw = Py - fr.center[1], lczw = Pz - fr.center[2];
+        const lu = (lcxw * fr.lx[0] + lcyw * fr.lx[1] + lczw * fr.lx[2]) / fr.extent * 0.5 + 0.5, lv = -(lcxw * fr.ly[0] + lcyw * fr.ly[1] + lczw * fr.ly[2]) / fr.extent * 0.5 + 0.5;
+        const lpath = sampleMap(fr.keyMap, fr.mapN, lu, lv) * 0.45;
+        const cosT = Tx * L[0] + Ty * L[1] + Tz * L[2], g = 0.42, hg = (1 - g * g) / Math.pow(1 + g * g - 2 * g * cosT, 1.5);
+        const sS = sigS * (1 + 2.5 * fib) + ves * VES;
+        const mixc = clamp01(ves * 0.9 + fib * 0.35);
+        let cr = 0, cg = 0, cb = 0;
+        for (let ch = 0; ch < 3; ch++) {
+          const sA = sigA[ch] * (1 - 0.55 * ves), sT = sA + sS;
+          const trans = Math.exp(-sT * path);
+          const lin = keyI[ch] * 1.08 * Math.exp(-(sigA[ch] * 0.9 + sigS * 0.22) * lpath) * (0.4 + 0.8 * hg) + 0.42 * 0.93 * Math.exp(-5 * thick * 0.25);
+          const al = alb[ch] + (cell[ch] - alb[ch]) * mixc;
+          const scat = al * sS / sT * (1 - trans) * lin;
+          const th = ch === 0 ? thr : ch === 1 ? thg : thb, rf = ch === 0 ? rr : ch === 1 ? rg : rb;
+          const bubL = bub * lin * Math.sqrt(trans + 0.05);
+          const v = rf * fres + (scat + trans * th + bubL) * (1 - fres) + keyI[ch] * spec;
+          if (ch === 0) cr = v; else if (ch === 1) cg = v; else cb = v;
+        }
+        writePixel(out, o, cr, cg, cb, fr.exposure, dither);
+      }
+    }
+  }
+  function render(fr, W, H, k, n) {
+    const len = Math.ceil((H - k) / n) * W;
+    if (len > bandLen) {
+      bandLen = len;
+      zF = new Float32Array(len); zB = new Float32Array(len); uF = new Float32Array(len); vF = new Float32Array(len); uB = new Float32Array(len); vB = new Float32Array(len);
+      tF = new Int32Array(len); tB = new Int32Array(len);
+      bgX = new Float32Array(len); bgZ = new Float32Array(len); bgC = new Uint8ClampedArray(len * 4); bgOk = new Uint8Array(len); bgKey = '';
+    }
+    const key = W + ',' + H + ',' + k + ',' + n + ',' + fr.exposure + ',' + Array.prototype.join.call(fr.viewProj, ',');
+    if (key !== bgKey) { bgOk.fill(0); bgKey = key; }
+    const out = new Uint8ClampedArray(len * 4);
+    const t0 = performance.now();
+    raster(fr, W, H, k, n);
+    const t1 = performance.now();
+    shade(fr, W, H, k, n, out);
+    stats.raster = t1 - t0; stats.shade = performance.now() - t1;
+    return out;
+  }
+  const stats = {};
+  return { init, render, stats };
+}
+
+// worker body: the factory above + a tiny message loop
+const CPU_WORKER_SRC = `const R = (${cpuRendererFactory.toString()})();
+onmessage = e => {
+  const m = e.data;
+  if (m.type === 'init') { R.init(m.cfg); return; }
+  const t0 = performance.now();
+  const px = R.render(m.frame, m.W, m.H, m.k, m.n);
+  postMessage({ id: m.id, k: m.k, n: m.n, px, ms: performance.now() - t0, st: R.stats, recv: performance.timeOrigin + t0, done: performance.timeOrigin + performance.now() }, [px.buffer]);
+};`;
+
+class CpuJellyRenderer {
+  constructor(canvas, sim, reason) {
+    this.canvas = canvas; this.sim = sim; this.reason = reason;
+    this.ctx = canvas.getContext('2d', { alpha: false });
+    this.buf = document.createElement('canvas');
+    this.bctx = this.buf.getContext('2d', { alpha: false });
+    this.mode = 'cpu';
+    this.meshAlpha = 0;
+    this.samples = 3;
+    this.pixelBudget = +(new URLSearchParams(location.search).get('cpupx') || 110000);
+    this.fixedBudget = new URLSearchParams(location.search).has('cpupx');
+    this.frameId = 0; this.frames = new Map(); this.pool = []; this.shownId = 0; this.lastMs = 30; this.gpuFrames = 0;
+    // a coarser copy of the ring for the software path
+    const S = buildSurface(144, [11, 5, 4, 5, 11, 4, 3, 4]);
+    this.S = S;
+    this.nv = S.nv;
+    // sparse embedding weights (48 per vertex), evaluated once
+    this.wIdx = new Int32Array(S.nv * 48); this.wW = new Float32Array(S.nv * 48);
+    const B = makeBasisScratch();
+    for (let v = 0; v < S.nv; v++) {
+      latticeBasis(S.P[v * 3], S.P[v * 3 + 1], S.P[v * 3 + 2], B);
+      this.wIdx.set(B.idx, v * 48); this.wW.set(B.w, v * 48);
+    }
+    this.pos = new Float32Array(S.nv * 3); this.nrm = new Float32Array(S.nv * 3);
+    // orientation of the finite-difference normal relative to the true rest normal
+    this.nSign = new Float32Array(S.nv);
+    this.deform(SIM_REST_LIFTED());
+    for (let v = 0; v < S.nv; v++) this.nSign[v] = (this.nrm[v * 3] * S.N[v * 3] + this.nrm[v * 3 + 1] * S.N[v * 3 + 1] + this.nrm[v * 3 + 2] * S.N[v * 3 + 2]) < 0 ? -1 : 1;
+    this.mapN = 64;
+    this.keyMap = new Float32Array(64 * 64); this.topMap = new Float32Array(64 * 64); this.contactMap = new Float32Array(64 * 64); this.tmp = new Float32Array(64 * 64);
+    const L = [-0.534, 0.766, -0.36], lz = norm3(L);
+    const box = (c, hw, hh, soft, col) => { c = norm3(c); const r = norm3(cross3([0, 1, 0], c)); const u = norm3(cross3(r, c)); return [...c, ...r, ...u, hw, hh, soft, ...col]; };
+    const ka = norm3([lz[0], 0, lz[2]]);
+    this.cfg = {
+      idx: S.idx, rest: Float32Array.from(S.X),
+      rIn: RING.rIn, rOut: RING.rOut, halfH: RING.halfH, corner: RING.corner, scallops: RING.scallops, scAmp: RING.scAmp,
+      backdrop: [0.835, 0.775, 0.690], floor: [0.93, 0.885, 0.815], keyCol: [1.0, 0.955, 0.885],
+      boxes: [
+        box([ka[0] * 0.64, 0.77, ka[2] * 0.64], 0.42, 0.19, 0.09, [2.5, 2.39, 2.21]),
+        box([0.866, 0.35, -0.25], 0.08, 0.62, 0.05, [3.0, 2.93, 2.85]),
+        box([ka[0] * 0.97, 0.24, ka[2] * 0.97], 1.1, 0.045, 0.03, [2.6, 2.52, 2.39]),
+      ],
+    };
+    // workers (one band each); fall back to the main thread if they cannot start
+    this.workers = [];
+    const n = Math.max(1, Math.min(6, (navigator.hardwareConcurrency || 4) - 1));
+    try {
+      const url = URL.createObjectURL(new Blob([CPU_WORKER_SRC], { type: 'text/javascript' }));
+      for (let k = 0; k < n; k++) { const w = new Worker(url); w.postMessage({ type: 'init', cfg: this.cfg }); w.onmessage = e => this.onBand(e.data); w.onerror = () => this.dropWorkers(); this.workers.push(w); }
+    } catch (e) { this.workers = []; }
+    if (!this.workers.length) { this.local = cpuRendererFactory(); this.local.init(this.cfg); }
+  }
+  dropWorkers() {
+    if (!this.workers.length) return;
+    this.workers.forEach(w => w.terminate()); this.workers = [];
+    this.local = cpuRendererFactory(); this.local.init(this.cfg); this.frames.clear();
+  }
+  get threads() { return this.workers.length || 1; }
+  deform(x) {
+    const S = this.S, nv = S.nv, W = this.wW, I = this.wIdx, pos = this.pos, nrm = this.nrm;
+    for (let v = 0; v < nv; v++) {
+      let px = 0, py = 0, pz = 0;
+      for (let q = v * 48, e = q + 48; q < e; q++) { const id = I[q] * 3, w = W[q]; px += w * x[id]; py += w * x[id + 1]; pz += w * x[id + 2]; }
+      pos[v * 3] = px; pos[v * 3 + 1] = py; pos[v * 3 + 2] = pz;
+    }
+    // smooth normals from the surface grid (θ × profile), both directions periodic
+    const NA = S.NA, NB = S.NB, sg = this.nSign;
+    for (let a = 0; a < NA; a++) {
+      const ap = ((a + 1) % NA) * NB, am = ((a + NA - 1) % NA) * NB;
+      for (let b = 0; b < NB; b++) {
+        const v = a * NB + b, bp = a * NB + (b + 1) % NB, bm = a * NB + (b + NB - 1) % NB;
+        const ux = pos[(ap + b) * 3] - pos[(am + b) * 3], uy = pos[(ap + b) * 3 + 1] - pos[(am + b) * 3 + 1], uz = pos[(ap + b) * 3 + 2] - pos[(am + b) * 3 + 2];
+        const wx = pos[bp * 3] - pos[bm * 3], wy = pos[bp * 3 + 1] - pos[bm * 3 + 1], wz = pos[bp * 3 + 2] - pos[bm * 3 + 2];
+        let nx = uy * wz - uz * wy, ny = uz * wx - ux * wz, nz = ux * wy - uy * wx;
+        const l = (sg[v] || 1) / (Math.hypot(nx, ny, nz) || 1);
+        nrm[v * 3] = nx * l; nrm[v * 3 + 1] = ny * l; nrm[v * 3 + 2] = nz * l;
+      }
+    }
+  }
+  // shadow/contact maps straight from the tetrahedra and nodes
+  buildMaps(light) {
+    const sim = this.sim, N = this.mapN, E = light.extent, c = light.center, texA = (2 * E / N) ** 2;
+    const K = this.keyMap, T = this.topMap, CM = this.contactMap;
+    K.fill(0); T.fill(0); CM.fill(0);
+    const splat = (M, u, v, val) => {
+      u = u * N - 0.5; v = v * N - 0.5; const i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j;
+      if (i < 0 || j < 0 || i >= N - 1 || j >= N - 1) return;
+      const k = j * N + i; M[k] += val * (1 - fu) * (1 - fv); M[k + 1] += val * fu * (1 - fv); M[k + N] += val * (1 - fu) * fv; M[k + N + 1] += val * fu * fv;
+    };
+    const x = sim.x, tets = sim.tets;
+    for (let t = 0; t < sim.nTets; t++) {
+      let mx = 0, my = 0, mz = 0;
+      for (let q = 0; q < 4; q++) { const id = tets[t * 4 + q] * 3; mx += x[id]; my += x[id + 1]; mz += x[id + 2]; }
+      mx = mx / 4 - c[0]; my = my / 4 - c[1]; mz = mz / 4 - c[2];
+      const vol = Math.abs(sim.tetVolume(x, tets[t * 4], tets[t * 4 + 1], tets[t * 4 + 2], tets[t * 4 + 3])) / texA;
+      splat(K, (mx * light.x[0] + my * light.x[1] + mz * light.x[2]) / E * 0.5 + 0.5, -(mx * light.y[0] + my * light.y[1] + mz * light.y[2]) / E * 0.5 + 0.5, vol);
+      splat(T, mx / E * 0.5 + 0.5, mz / E * 0.5 + 0.5, vol);
+    }
+    for (let i = 0; i < sim.n; i++) {
+      const y = x[i * 3 + 1]; if (y > 0.5) continue;
+      splat(CM, (x[i * 3] - c[0]) / E * 0.5 + 0.5, (x[i * 3 + 2] - c[2]) / E * 0.5 + 0.5, Math.exp(-y / 0.09) * 0.55);
+    }
+    this.blur(K, 2); this.blur(T, 2); this.blur(CM, 3);
+  }
+  blur(M, passes) {
+    const N = this.mapN, t = this.tmp;
+    for (let p = 0; p < passes; p++) {
+      for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const k = j * N + i; t[k] = (M[k] * 2 + (i > 0 ? M[k - 1] : 0) + (i < N - 1 ? M[k + 1] : 0)) * 0.25; }
+      for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const k = j * N + i; M[k] = (t[k] * 2 + (j > 0 ? t[k - N] : 0) + (j < N - 1 ? t[k + N] : 0)) * 0.25; }
+    }
+  }
+  // floor region the ring's shadow and contact occlusion can touch (everything else is cached)
+  // floor region the ring's shadow and contact occlusion actually reach (everything else is cached):
+  // the non-zero texels of the maps, taken back to the floor plane
+  shadowBox(light) {
+    const N = this.mapN, E = light.extent, c = light.center, L = light.dir, eps = 2e-3;
+    let a = 1e9, b = 1e9, cc = -1e9, d = -1e9;
+    const add = (x, z) => { if (x < a) a = x; if (x > cc) cc = x; if (z < b) b = z; if (z > d) d = z; };
+    const bounds = M => { let i0 = N, j0 = N, i1 = -1, j1 = -1; for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) if (M[j * N + i] > eps) { if (i < i0) i0 = i; if (i > i1) i1 = i; if (j < j0) j0 = j; if (j > j1) j1 = j; } return i1 < 0 ? null : [i0 - 1, j0 - 1, i1 + 2, j1 + 2]; };
+    const t2w = t => (t / N * 2 - 1) * E;
+    for (const M of [this.topMap, this.contactMap]) { const bb = bounds(M); if (bb) { add(c[0] + t2w(bb[0]), c[2] + t2w(bb[1])); add(c[0] + t2w(bb[2]), c[2] + t2w(bb[3])); } }
+    const kb = bounds(this.keyMap);
+    if (kb) for (const [i, j] of [[kb[0], kb[1]], [kb[2], kb[1]], [kb[0], kb[3]], [kb[2], kb[3]]]) {
+      const u = t2w(i), v = -t2w(j);
+      const px = c[0] + light.x[0] * u + light.y[0] * v, py = c[1] + light.x[1] * u + light.y[1] * v, pz = c[2] + light.x[2] * u + light.y[2] * v;
+      const k = py / Math.max(L[1], 0.1); add(px - L[0] * k, pz - L[2] * k);
+    }
+    return a > cc ? [0, 0, 0, 0] : [a - 0.05, b - 0.05, cc + 0.05, d + 0.05];
+  }
+  resize() { }
+  render(view, light, tint, time) {
+    // two frames in flight: the workers never sit idle while a frame is being composed
+    if (this.frames.size >= 2) return false;
+    const cw = this.canvas.clientWidth, ch = this.canvas.clientHeight;
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    if (this.canvas.width !== Math.round(cw * dpr) || this.canvas.height !== Math.round(ch * dpr)) { this.canvas.width = Math.round(cw * dpr); this.canvas.height = Math.round(ch * dpr); }
+    const aspect = cw / ch;
+    const H = Math.max(90, Math.round(Math.sqrt(this.pixelBudget / aspect))), W = Math.max(120, Math.round(H * aspect));
+    const tA = performance.now();
+    this.deform(this.sim.x);
+    const tB = performance.now();
+    this.buildMaps(light);
+    this.prof = { deform: tB - tA, maps: performance.now() - tB };
+    // camera rays: direction(px, py) = R0 + px·dx + py·dy (affine on the far plane)
+    const far = (nx, ny) => { const p = M4.xform(view.invViewProj, [nx, ny, 1, 1]); return [p[0] / p[3] - view.eye[0], p[1] / p[3] - view.eye[1], p[2] / p[3] - view.eye[2]]; };
+    const a = far(-1, 1), bx = far(1, 1), by = far(-1, -1);
+    const rays = [a[0], a[1], a[2], (bx[0] - a[0]) / W, (bx[1] - a[1]) / W, (bx[2] - a[2]) / W, (by[0] - a[0]) / H, (by[1] - a[1]) / H, (by[2] - a[2]) / H];
+    const frame = {
+      viewProj: view.viewProj, eye: view.eye, pos: this.pos, nrm: this.nrm, rays,
+      lightDir: light.dir, lx: light.x, ly: light.y, center: light.center, extent: light.extent,
+      keyMap: this.keyMap, topMap: this.topMap, contactMap: this.contactMap, mapN: this.mapN,
+      sigA: tint.sigA, albedo: tint.albedo, cell: tint.cell, shadowSig: tint.shadow,
+      scatter: SCATTER, vesicle: VESICLE, fibre: FIBRE, samples: this.samples, exposure: view.exposure,
+      shadowBox: null, ambTrans: tint.shadow.map(v => Math.exp(-v * 0.35)),
+      detail: Math.min(1, W / 560),   // small features fade out when the image is coarse (no speckle)
+    };
+    frame.shadowBox = this.shadowBox(light);
+    const id = ++this.frameId;
+    this.pool = this.pool.filter(im => im.inUse || (im.width === W && im.height === H));
+    let img = this.pool.find(im => !im.inUse);
+    if (!img) { img = this.bctx.createImageData(W, H); this.pool.push(img); }
+    img.inUse = true;
+    const P = { id, W, H, img, left: 0, t0: performance.now(), maxMs: 0, nodes: Float32Array.from(this.sim.x), viewProj: view.viewProj };
+    this.frames.set(id, P);
+    if (this.workers.length) {
+      const n = this.workers.length;
+      P.left = n;
+      for (let k = 0; k < n; k++) {
+        this.workers[k].postMessage({ type: 'frame', id, frame, W, H, k, n });
+      }
+    } else {
+      const t0 = performance.now();
+      const px = this.local.render(frame, W, H, 0, 1);
+      P.left = 1;
+      this.onBand({ id, k: 0, n: 1, px, ms: performance.now() - t0 });
+    }
+    return true;
+  }
+  onBand(m) {
+    const P = this.frames.get(m.id); if (!P) return;
+    // scatter this worker's interleaved rows into the frame
+    const rowB = P.W * 4, D = P.img.data;
+    for (let py = m.k, lr = 0; py < P.H; py += m.n, lr++) D.set(m.px.subarray(lr * rowB, (lr + 1) * rowB), py * rowB);
+    P.maxMs = Math.max(P.maxMs, m.ms); this.workerMs = P.maxMs; this.workerStats = m.st;
+    if (m.recv) { const now = performance.timeOrigin + performance.now(), sub = performance.timeOrigin + P.t0; (this.lat ||= []).push([(m.recv - sub) | 0, (m.done - m.recv) | 0, (now - m.done) | 0]); if (this.lat.length > 9) this.lat.shift(); }
+    if (--P.left > 0) return;
+    this.frames.delete(P.id);
+    P.img.inUse = false;
+    if (P.id < this.shownId) return;          // a newer frame is already on screen
+    this.shownId = P.id;
+    const tC = performance.now();
+    if (this.buf.width !== P.W || this.buf.height !== P.H) { this.buf.width = P.W; this.buf.height = P.H; }
+    this.bctx.putImageData(P.img, 0, 0);
+    const ctx = this.ctx;
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(this.buf, 0, 0, this.canvas.width, this.canvas.height);
+    if (this.meshAlpha > 0.01) this.drawMesh(P);
+    this.composeMs = performance.now() - tC; this.submitToCompose = tC - P.t0;
+    this.gpuFrames++;
+    // keep the software path responsive: trade resolution for frame time
+    const ms = performance.now() - P.t0;
+    this.lastMs = ms;
+    // adapt on the workers' compute time (latency includes queueing, which pipelining hides)
+    if (!this.fixedBudget) {
+      if (P.maxMs > 42 && this.pixelBudget > 60000) this.pixelBudget *= 0.9;
+      else if (P.maxMs < 24 && this.pixelBudget < 300000) this.pixelBudget *= 1.07;
+    }
+  }
+  drawMesh(P) {
+    const ctx = this.ctx, sim = this.sim, m = P.viewProj, W = this.canvas.width, H = this.canvas.height, x = P.nodes;
+    const sp = new Float32Array(sim.n * 2);
+    for (let i = 0; i < sim.n; i++) {
+      const c = M4.xform(m, [x[i * 3], x[i * 3 + 1], x[i * 3 + 2], 1]);
+      sp[i * 2] = (c[0] / c[3] * 0.5 + 0.5) * W; sp[i * 2 + 1] = (0.5 - c[1] / c[3] * 0.5) * H;
+    }
+    ctx.save();
+    ctx.globalAlpha = 0.42 * this.meshAlpha; ctx.strokeStyle = '#3b2917'; ctx.lineWidth = Math.max(1, W / this.canvas.clientWidth * 0.8);
+    ctx.beginPath();
+    for (let e = 0; e < sim.nEdges; e++) { const a = sim.edges[e * 2], b = sim.edges[e * 2 + 1]; ctx.moveTo(sp[a * 2], sp[a * 2 + 1]); ctx.lineTo(sp[b * 2], sp[b * 2 + 1]); }
+    ctx.stroke();
+    ctx.globalAlpha = 0.85 * this.meshAlpha; ctx.fillStyle = '#fff8ea';
+    const r = Math.max(1.5, W / this.canvas.clientWidth * 2);
+    for (let i = 0; i < sim.n; i++) { ctx.beginPath(); ctx.arc(sp[i * 2], sp[i * 2 + 1], r, 0, Math.PI * 2); ctx.fill(); }
+    ctx.restore();
+  }
+  destroy() { this.workers.forEach(w => w.terminate()); this.workers = []; }
+}
+// lattice rest positions lifted onto the floor (used once to orient normals)
+function SIM_REST_LIFTED() { const a = Float64Array.from(SIM_REST); for (let i = 1; i < a.length; i += 3) a[i] += RING.halfH; return a; }
+
+/* =====================================================================
    5 · APP: camera, interaction, controls, loop
    ===================================================================== */
 const Q = new URLSearchParams(location.search);
 const $ = id => document.getElementById(id);
-const canvas = $('gl');
+let canvas = $('gl');
 document.documentElement.style.setProperty('--bg', backdropCss());
 
 const sim = new JellySim();
@@ -1814,7 +2484,7 @@ const massGrams = sim.restVolume * UNIT_CM ** 3 * DENSITY;
 const keScale = (massGrams / 1000 / sim.totalMass) * (UNIT_CM / 100) ** 2 * 1000; // → millijoules
 
 // ---------- camera
-const cam = { az: 0.62, el: 0.60, dist: 5.9, target: [0, 0.2, 0], fov: 30 * Math.PI / 180 };
+const cam = { az: 0.62, el: 0.60, dist: 6.2, target: [0, 0.2, 0], fov: 30 * Math.PI / 180 };
 const camDefault = { ...cam, target: [...cam.target] };
 const KEY_DIR = norm3([-0.534, 0.766, -0.36]);
 const FILL_DIR = norm3([0.866, 0.35, -0.25]);
@@ -1823,19 +2493,41 @@ function camEye() {
   return [cam.target[0] + cam.dist * ce * Math.sin(cam.az), cam.target[1] + cam.dist * Math.sin(cam.el), cam.target[2] + cam.dist * ce * Math.cos(cam.az)];
 }
 let view = null;
+// where is the free space? (between the text column and the panel, or between heading and sheet on phones)
+const layout = { shift: [0, 0], userZoomed: false };
+function measureLayout() {
+  const W = innerWidth, H = innerHeight, p = document.getElementById('panel').getBoundingClientRect();
+  if (W > 820) {
+    // the right edge of the actual text (block boxes are wider than their lines)
+    const textRight = Math.max(0, ...[...document.querySelectorAll('.deck, .howto li')].map(el => {
+      const r = document.createRange(); r.selectNodeContents(el); return r.getBoundingClientRect().right;
+    }));
+    const left = Math.min(textRight + 28, W * 0.4), right = p.left - 16;
+    layout.shift = [Math.max(-0.3, Math.min(0.3, ((left + right) / 2) / W * 2 - 1)), 0.02];
+    // pull the camera back if the free band is narrow (ring ≈ 3.8·H/dist pixels across)
+    if (!layout.userZoomed) cam.dist = Math.min(9, Math.max(6.2, 3.8 * H / (0.98 * (right - left))));
+  } else {
+    const m = document.querySelector('.masthead').getBoundingClientRect();
+    const top = m.bottom, bottom = Math.min(p.top, H);
+    layout.shift = [0, Math.max(-0.4, Math.min(0.4, 1 - ((top + bottom) / 2) / H * 2))];
+    // on tall screens the fov widens with the width, so a fixed distance fills ~65% of it
+    if (!layout.userZoomed) cam.dist = 5.4;
+  }
+}
+addEventListener('resize', measureLayout);
 function computeView(w, h, dpr) {
   const aspect = w / h;
   const narrow = innerWidth <= 820;
   // keep the whole ring in frame on tall screens
   let fov = cam.fov;
   if (aspect < 1.05) fov = 2 * Math.atan(Math.tan(cam.fov / 2) * 1.05 / aspect);
-  // lens shift: on phones the heading sits on top and the panel below
-  const sy = narrow ? -0.04 : 0.0, sx = narrow ? 0 : -0.02;
+  // lens shift: put the ring in the middle of the free space left by the text and the panel
+  const [sx, sy] = layout.shift;
   const eye = camEye();
   const V = M4.lookAt(eye, cam.target, [0, 1, 0]);
   const P = M4.perspective(fov, aspect, 0.05, 60, sx, sy);
   const VP = M4.mul(P, V);
-  view = { viewProj: VP, invViewProj: M4.invert(VP), eye, dpr, exposure: 1.0, fwd: norm3(sub3(cam.target, eye)) };
+  view = { viewProj: VP, invViewProj: M4.invert(VP), eye, dpr, exposure: 1.04, fwd: norm3(sub3(cam.target, eye)) };
   return view;
 }
 function screenRay(clientX, clientY) {
@@ -1890,6 +2582,9 @@ function endGrab() {
   if (!drag) return;
   sim.endGrab(); drag = null; state.grabbing = false; canvas.className = '';
 }
+function bindCanvas(canvas) {
+// no text selection or native drag when a drag starts on the canvas
+canvas.addEventListener('mousedown', e => e.preventDefault());
 canvas.addEventListener('pointerdown', e => {
   canvas.focus({ preventScroll: true });
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -1912,7 +2607,7 @@ canvas.addEventListener('pointermove', e => {
   if (pinch && pointers.size >= 2) {
     const [a, b] = [...pointers.values()];
     const d = Math.hypot(a.x - b.x, a.y - b.y);
-    cam.dist = Math.min(11, Math.max(3.0, pinch.dist0 * pinch.d0 / Math.max(d, 1)));
+    cam.dist = Math.min(11, Math.max(3.0, pinch.dist0 * pinch.d0 / Math.max(d, 1))); layout.userZoomed = true;
     const cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2;
     cam.az = pinch.az0 - (cx - pinch.cx) * 0.006;
     cam.el = Math.min(1.45, Math.max(0.06, pinch.el0 + (cy - pinch.cy) * 0.005));
@@ -1927,17 +2622,6 @@ canvas.addEventListener('pointermove', e => {
   }
   if (e.pointerType === 'mouse' && !e.buttons) hover(e.clientX, e.clientY);
 });
-let hoverT = 0;
-function hover(x, y) {
-  const now = performance.now(); if (now - hoverT < 70) return; hoverT = now;
-  canvas.className = !state.paused && pick(x, y) ? 'grab' : '';
-}
-const pointerUp = e => {
-  pointers.delete(e.pointerId);
-  if (pinch && pointers.size < 2) { pinch = null; return; }
-  if (drag && e.pointerId === drag.id) endGrab();
-  if (orbit && e.pointerId === orbit.id) { orbit = null; canvas.className = ''; }
-};
 canvas.addEventListener('pointerup', pointerUp);
 canvas.addEventListener('pointercancel', pointerUp);
 canvas.addEventListener('lostpointercapture', e => { if (drag && e.pointerId === drag.id) endGrab(); });
@@ -1945,9 +2629,30 @@ canvas.addEventListener('wheel', e => {
   e.preventDefault();
   const k = e.deltaMode === 1 ? 16 : 1;
   if (drag) { drag.depth = Math.max(-1.5, Math.min(1.5, drag.depth + e.deltaY * k * 0.0015)); return; }
-  cam.dist = Math.min(11, Math.max(3.0, cam.dist * Math.exp(e.deltaY * k * 0.0011)));
+  cam.dist = Math.min(11, Math.max(3.0, cam.dist * Math.exp(e.deltaY * k * 0.0011))); layout.userZoomed = true;
 }, { passive: false });
 canvas.addEventListener('dblclick', e => { if (!pick(e.clientX, e.clientY)) Object.assign(cam, { az: camDefault.az, el: camDefault.el, dist: camDefault.dist }); });
+}
+let hoverT = 0;
+function hover(x, y) {
+  const now = performance.now(); if (now - hoverT < 70) return; hoverT = now;
+  canvas.className = !state.paused && pick(x, y) ? 'grab' : '';
+}
+function pointerUp(e) {
+  pointers.delete(e.pointerId);
+  if (pinch && pointers.size < 2) { pinch = null; return; }
+  if (drag && e.pointerId === drag.id) endGrab();
+  if (orbit && e.pointerId === orbit.id) { orbit = null; canvas.className = ''; }
+}
+bindCanvas(canvas);
+// A canvas that has handed out a 'webgpu' context cannot give a '2d' one: swap in a fresh element.
+function freshCanvas() {
+  const c = canvas.cloneNode(false);
+  canvas.replaceWith(c);
+  canvas = c;
+  bindCanvas(c);
+  return c;
+}
 
 // ---------- controls
 function setRangeFill(el) { el.style.setProperty('--p', el.value + '%'); }
@@ -2045,46 +2750,91 @@ function tick(now) {
   // tint + mesh overlay ease
   const kt = 1 - Math.exp(-dtReal * 7), goal = TINTS[state.tint];
   for (const key of ['sigA', 'albedo', 'cell', 'shadow']) for (let i = 0; i < 3; i++) tintNow[key][i] = lerp(tintNow[key][i], goal[key][i], kt);
-  if (!renderer) return;
+  if (!renderer) { computeView(canvas.clientWidth || innerWidth, canvas.clientHeight || innerHeight, 1); return; }
   renderer.meshAlpha = lerp(renderer.meshAlpha, state.mesh ? 1 : 0, 1 - Math.exp(-dtReal * 10));
-  // adaptive resolution: keep interaction smooth on modest GPUs
-  if (!Q.get('scale') && now - qualityT > 1200) {
-    qualityT = now;
-    if (frameMs > 24 && renderScale > 0.5) renderScale = Math.max(0.5, renderScale - 0.1);
-    else if (frameMs < 14 && renderScale < 1) renderScale = Math.min(1, renderScale + 0.05);
-    renderer.samples = renderScale < 0.72 ? [14, 7] : [20, 10];
-  }
-  const dpr = Math.min(devicePixelRatio || 1, maxDpr) * renderScale;
-  renderer.resize(canvas.clientWidth * dpr, canvas.clientHeight * dpr);
-  computeView(canvas.width, canvas.height, dpr);
   const c = sim.centerOfMass();
   const lz = KEY_DIR, lx = norm3(cross3([0, 1, 0], lz)), ly = cross3(lz, lx);
-  renderer.render(view, { dir: lz, x: lx, y: ly, center: c, extent: 2.3, depth0: 3.0, fill: FILL_DIR, fillStrength: 1.1 }, tintNow, now / 1000);
+  const light = { dir: lz, x: lx, y: ly, center: c, extent: 2.3, depth0: 3.0, fill: FILL_DIR, fillStrength: 3.0 };
+  if (renderer.mode === 'gpu') {
+    // adaptive resolution: keep interaction smooth on modest GPUs
+    if (!Q.get('scale') && now - qualityT > 1200) {
+      qualityT = now;
+      if (frameMs > 24 && renderScale > 0.5) renderScale = Math.max(0.5, renderScale - 0.1);
+      else if (frameMs < 14 && renderScale < 1) renderScale = Math.min(1, renderScale + 0.05);
+      renderer.samples = renderScale < 0.72 ? [14, 7] : [20, 10];
+    }
+    const dpr = Math.min(devicePixelRatio || 1, maxDpr) * renderScale;
+    renderer.resize(canvas.clientWidth * dpr, canvas.clientHeight * dpr);
+    computeView(canvas.width, canvas.height, dpr);
+    renderer.render(view, light, tintNow, now / 1000);
+    gpuWatchdog(now);
+  } else {
+    computeView(canvas.clientWidth, canvas.clientHeight, 1);
+    renderer.render(view, light, tintNow, now / 1000);
+  }
   readouts(now);
+  engineLabel(now);
+}
+// If WebGPU starts but its frames never complete (some software adapters cannot present
+// to a canvas), give up on it after a few seconds and draw on the CPU instead.
+let gpuStart = 0;
+function gpuWatchdog(now) {
+  if (!gpuStart) gpuStart = now;
+  if (renderer.gpuFrames > 0 || Q.get('renderer') === 'gpu') return;
+  if (now - gpuStart > 4000) useCpu('WebGPU started, but no frame finished rendering within 4 seconds.');
+}
+let engineT = 0;
+function engineLabel(now) {
+  if (now - engineT < 500) return; engineT = now;
+  const el = $('engine');
+  if (renderer.mode === 'gpu') el.textContent = 'WebGPU · ' + (renderer.adapterName || 'GPU');
+  else el.textContent = `CPU · ${renderer.threads} thread${renderer.threads > 1 ? 's' : ''} · ${renderer.buf.width}×${renderer.buf.height}`;
 }
 
 // ---------- start
 async function start() {
+  measureLayout(); camDefault.dist = cam.dist;
+  document.fonts?.ready.then(() => { measureLayout(); if (!layout.userZoomed) camDefault.dist = cam.dist; });
   computeView(innerWidth, innerHeight, 1);
-  try {
-    renderer = await JellyRenderer.create(canvas, sim, surfHi);
-    if (Q.get('samples')) { const s = +Q.get('samples'); renderer.samples = [s, Math.max(4, s >> 1)]; }
-    renderer.device.lost.then(info => { if (info.reason !== 'destroyed') showFallback('The GPU device was lost (' + (info.message || info.reason) + '). Reload the page to try again.'); });
-    status.classList.add('gone');
-  } catch (err) {
-    console.error(err);
-    showFallback(err.message);
+  // Auto-detect: hardware WebGPU if there is one; otherwise the CPU renderer.
+  // ?renderer=cpu forces the CPU path, ?renderer=gpu accepts a software WebGPU adapter.
+  const want = Q.get('renderer');
+  if (want === 'cpu') useCpu('The CPU renderer was requested (?renderer=cpu).');
+  else {
+    try {
+      const r = await JellyRenderer.create(canvas, sim, surfHi, { allowSoftware: want === 'gpu' });
+      if (renderer) { r.device.destroy(); }   // (the CPU path already took over)
+      else {
+        renderer = r; renderer.mode = 'gpu';
+        if (Q.get('samples')) { const s = +Q.get('samples'); renderer.samples = [s, Math.max(4, s >> 1)]; }
+        renderer.device.lost.then(info => { if (info.reason !== 'destroyed' && renderer === r) useCpu('The GPU device was lost (' + (info.message || info.reason) + ').'); });
+      }
+    } catch (err) {
+      console.warn(err);
+      useCpu(err.message);
+    }
   }
+  status.classList.add('gone');
   window.__jellyReady = true;
 }
-function showFallback(msg) {
-  renderer = null;
-  $('fallback').hidden = false;
-  $('fallbackWhy').textContent = msg ? 'Details: ' + msg : '';
-  status.classList.add('gone');
-  panel.classList.add('disabled');
-  window.__jellyError = msg;
+function useCpu(reason) {
+  if (renderer && renderer.mode === 'cpu') return;
+  if (renderer && renderer.mode === 'gpu') { try { renderer.device.destroy(); } catch { } }
+  // a canvas that handed out a 'webgpu' context cannot give a '2d' one
+  if (renderer || canvas.dataset.gpu) freshCanvas();
+  renderer = new CpuJellyRenderer(canvas, sim, reason);
+  window.__jellyError = null;
+  window.__jellyMode = 'cpu';
+  $('fallbackWhy').textContent = reason ? 'Why: ' + reason : '';
+  const t = $('toast');
+  $('toastText').textContent = `WebGPU isn’t available here, so the jelly is drawn on the CPU (${renderer.threads} thread${renderer.threads > 1 ? 's' : ''}) at reduced detail.`;
+  t.hidden = false;
+  clearTimeout(useCpu.timer);
+  useCpu.timer = setTimeout(() => t.classList.add('gone'), 9000);
 }
+$('toastWhy').addEventListener('click', () => { $('fallback').hidden = false; });
+$('toastClose').addEventListener('click', () => $('toast').classList.add('gone'));
+$('fbClose').addEventListener('click', () => { $('fallback').hidden = true; });
 // test hooks (used by the automated checks; harmless otherwise)
 window.jelly = {
   sim, cam, actions, pick, setTint, get renderer() { return renderer; }, get view() { return view; },
@@ -2092,6 +2842,7 @@ window.jelly = {
   dragTo(x, y) { if (drag) moveGrab(x, y); }, release() { endGrab(); },
   project(p) { const c = M4.xform(view.viewProj, [...p, 1]); const r = canvas.getBoundingClientRect(); return [r.left + (c[0] / c[3] * 0.5 + 0.5) * r.width, r.top + (0.5 - c[1] / c[3] * 0.5) * r.height]; },
   get fps() { return 1000 / frameMs; }, get renderScale() { return renderScale; },
+  get mode() { return renderer ? renderer.mode : 'none'; },
 };
 requestAnimationFrame(tick);
 start();
