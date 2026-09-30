@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#244fe8">
+<meta name="description" content="A continuous countryside bicycle ride. An animated motion study with adjustable pace.">
+<title>The Daily Ride — Motion Study</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23244fe8'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23faffd9' stroke-width='5'/%3E%3Cpath d='M32 12v40M12 32h40' stroke='%23faffd9' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#244fe8;color:#faffdc}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{color:inherit}
+.ride{position:relative;min-height:650px;height:100svh;overflow:hidden;background:#244fe8}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+header{position:absolute;top:36px;left:4.3%;right:4.3%;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.wordmark{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.mark{width:23px;height:23px;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center}.mark:after{content:'';width:7px;height:7px;background:currentColor;border-radius:50%}
+.edition{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.title{position:absolute;top:105px;left:4.3%;pointer-events:none}h1{font-size:clamp(44px,6.8vw,100px);font-weight:700;line-height:.95;letter-spacing:-.065em;margin:0}h1 span{display:block;font-style:italic;font-weight:400}.caption{font-size:14px;letter-spacing:.09em;margin:21px 0 0;text-transform:uppercase;opacity:.8}
+.sun-note{position:absolute;right:4.3%;top:116px;font-size:14px;display:flex;align-items:center;gap:9px}.sun-note svg{width:20px;height:20px}
+.controls{position:absolute;bottom:30px;left:4.3%;right:4.3%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.transport{display:flex;align-items:center;gap:17px}.play{width:54px;height:54px;border:1px solid #faffdc80;border-radius:50%;background:#0b2f22b3;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}.play:hover{background:#faffdc22;transform:scale(1.05)}.play svg{width:19px;height:19px}.play:focus-visible,input:focus-visible{outline:3px solid #ffd075;outline-offset:5px}
+.status{font-size:14px;margin:0 0 5px;font-weight:700}.hint{font-size:12px;opacity:.65;letter-spacing:.035em}
+.pace{display:flex;align-items:center;gap:16px;border:1px solid #faffdc40;background:#0b2f2299;border-radius:40px;padding:16px 22px}.pace label{font-size:14px}.pace output{width:38px;text-align:right;font-size:14px;font-variant-numeric:tabular-nums}input[type=range]{width:130px;cursor:pointer;accent-color:#faffdc;height:14px}
+.corner{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+.prompt-toggle{display:flex;align-items:center;gap:9px;padding:10px 16px;border:1px solid #faffdc70;border-radius:30px;background:#244fe8;color:#faffdc;font-size:14px;cursor:pointer}.prompt-toggle:hover{background:#faffdc18}.prompt-toggle svg{width:16px;height:16px}.prompt-toggle:focus-visible,.prompt-close:focus-visible{outline:3px solid #ffd075;outline-offset:4px}
+.prompt-panel{width:min(480px,calc(100% - 40px));padding:36px;border:0;border-top:5px solid #ff6940;border-radius:18px;background:#faffdc;color:#102f3a;box-shadow:0 24px 90px #102f3a60}.prompt-panel::backdrop{background:#102f3a66;backdrop-filter:blur(5px)}.prompt-panel h2{margin:0 40px 22px 0;font-size:14px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:#476059}.prompt-panel p{margin:0;font-size:clamp(22px,4vw,28px);line-height:1.4;letter-spacing:-.025em}.prompt-close{position:absolute;top:18px;right:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid #102f3a30;border-radius:50%;background:transparent;color:#102f3a;font-size:25px;line-height:1;cursor:pointer}.prompt-close:hover{background:#102f3a0d}
+@media(max-width:700px){.ride{min-height:620px}header{top:25px}.edition{font-size:12px;letter-spacing:.04em}.wordmark{font-size:12px;letter-spacing:.1em}.title{top:94px}h1{font-size:60px}.caption{font-size:12px;margin-top:16px}.sun-note{top:245px;font-size:12px}.controls{bottom:24px;align-items:flex-end;gap:12px}.pace{padding:14px;gap:9px}input[type=range]{width:76px}.pace label{font-size:12px}.pace output{font-size:12px;width:30px}.corner,.hint{display:none}.transport{gap:11px}.status{font-size:12px;max-width:75px;line-height:1.4}.play{width:45px;height:45px}}
+@media(prefers-reduced-motion:reduce){.play{transition:none}}
+</style>
+</head>
+<body>
+<main class="ride" aria-label="Animated cyclist riding through a countryside landscape">
+<canvas id="scene" role="img" aria-label="A cyclist in an orange jersey pedals a cream bicycle past green hills beneath a blue sky."></canvas>
+<header><div class="wordmark"><span class="mark" aria-hidden="true"></span> The Daily Ride</div><button class="prompt-toggle" id="view-prompt" aria-haspopup="dialog" aria-controls="prompt-panel"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 5-4 5 4 5m8-10 4 5-4 5M11 3 9 17"/></svg>View prompt</button></header>
+<div class="title"><h1>Life in<span>motion.</span></h1><p class="caption">Two wheels. An open road.</p></div>
+<div class="sun-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg> A good day to ride</div>
+<div class="controls"><div class="transport"><button class="play" id="play" aria-label="Pause animation" aria-pressed="false"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button><div><p class="status" id="status">Enjoy the ride</p><div class="hint">Space to pause</div></div></div><div class="corner">Keep rolling, keep going</div><div class="pace"><label for="speed">Pace</label><input id="speed" type="range" min="0.5" max="2" step="0.1" value="1"><output id="pace" for="speed">1.0×</output></div></div>
+</main>
+<dialog class="prompt-panel" id="prompt-panel" aria-labelledby="prompt-heading"><form method="dialog"><button class="prompt-close" aria-label="Close prompt">×</button></form><h2 id="prompt-heading">Prompt:</h2><p>Motion graphics in standalone web page: cyclist riding a bicycle.</p></dialog>
+<script>
+(()=>{
+'use strict';
+const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d'),play=document.getElementById('play'),status=document.getElementById('status'),speed=document.getElementById('speed'),pace=document.getElementById('pace');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const promptDialog=document.getElementById('prompt-panel');
+document.getElementById('view-prompt').addEventListener('click',()=>promptDialog.showModal());
+let running=!reduced.matches,rate=1,last=0,time=0,width=0,height=0;
+const C={sky:'#244fe8',cloud:'#7897ff',cream:'#faffdc',navy:'#102f3a',skin:'#eeb08a',orange:'#ff6940',orangeDark:'#d84827',road:'#233f34'};
+function line(points,color,w){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle=color;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke()}
+function path(d,fill,stroke,w=1){const p=new Path2D(d);if(fill){ctx.fillStyle=fill;ctx.fill(p)}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=w;ctx.stroke(p)}}
+function circle(x,y,r,color){ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=color;ctx.fill()}
+function ellipse(x,y,rx,ry,color){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fillStyle=color;ctx.fill()}
+function cloud(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);path('M0 20 Q0 3 18 5 Q25 -17 47 -10 Q65 -10 67 5 Q87 0 92 20Z',C.cloud);ctx.restore()}
+function hills(base,amp,color,phase,period){ctx.beginPath();ctx.moveTo(-50,height);for(let x=-50;x<=width+50;x+=8){const y=base+Math.sin(x/period+phase)*amp+Math.sin(x/(period*.49)+phase*.8)*amp*.32;ctx.lineTo(x,y)}ctx.lineTo(width+50,height);ctx.closePath();ctx.fillStyle=color;ctx.fill()}
+function scenery(){
+ctx.fillStyle=C.sky;ctx.fillRect(0,0,width,height);
+const horizon=height*.62;
+circle(width*.79,height*.32,Math.min(width*.05,54),'#f6d979');
+for(let i=0;i<6;i++){const span=width+240;let x=((i*span/5-time*9)%span+span)%span-100;cloud(x,height*(.28+(i%3)*.065),.55+(i%2)*.3)}
+hills(horizon-38,52,'#7dba86',time*.07,155);hills(horizon+12,34,'#41906a',time*.15+2,110);hills(horizon+55,24,'#1e6447',time*.22,130);
+// Tiny distant trees repeat with the rolling terrain.
+for(let i=0;i<9;i++){const span=width+160;const x=((i*span/8-time*25)%span+span)%span-80;const y=horizon+42+Math.sin(x/130+time*.22)*24;line([[x,y],[x,y-25]],'#244f3d',3);ellipse(x,y-29,12,20,'#255d42')}
+const road=height*.79;ctx.fillStyle=C.road;ctx.fillRect(0,road,width,height-road);ctx.fillStyle='#cedc99';ctx.fillRect(0,road, width,4);
+ctx.fillStyle='#64806a';const step=175;const shift=(time*125)%step;for(let x=-step;x<width+step;x+=step){ctx.fillRect(x-shift,road+(height-road)*.55,75,3)}
+// Foreground grass drifts faster than the hills.
+for(let i=0;i<25;i++){const span=width+90;const x=((i*span/24-time*135)%span+span)%span-45;const y=road-8-(i%4)*3;line([[x-5,y+8],[x,y-3],[x+2,y+8],[x+8,y]],'#a4c777',1.5)}
+}
+function wheel(x,y,angle){
+circle(x,y,83,C.navy);circle(x,y,75,'#d8e2c4');circle(x,y,71,C.road);
+ctx.save();ctx.translate(x,y);ctx.rotate(angle);for(let i=0;i<16;i++){let a=i*Math.PI/8;line([[0,0],[Math.cos(a)*70,Math.sin(a)*70]],'#92afa0',1.25)}
+ctx.beginPath();ctx.arc(0,0,77,-.4,.4);ctx.lineWidth=2;ctx.strokeStyle=C.cream;ctx.stroke();circle(0,-64,3,'#ffd375');ctx.restore();circle(x,y,9,C.navy);circle(x,y,4,C.cream)
+}
+function knee(hip,foot,a,b){const dx=foot[0]-hip[0],dy=foot[1]-hip[1],d=Math.min(Math.hypot(dx,dy),a+b-.001),along=(a*a-b*b+d*d)/(2*d),h=Math.sqrt(Math.max(0,a*a-along*along)),ux=dx/d,uy=dy/d;return [hip[0]+ux*along+uy*h,hip[1]+uy*along-ux*h]}
+function leg(hip,foot,back){const k=knee(hip,foot,79,78);line([hip,k,foot],back?'#c78064':C.skin,19);line([hip,[hip[0]+(k[0]-hip[0])*.52,hip[1]+(k[1]-hip[1])*.52]],back?'#142f35':C.navy,27);line([[foot[0]-13,foot[1]-3],[foot[0]+16,foot[1]-3]],C.cream,13);line([[foot[0]-13,foot[1]+3],[foot[0]+18,foot[1]+3]],C.navy,3)}
+function cyclist(){
+const scale=Math.min(width/780,height/730,1.24),cx=width*(width<700?.5:.54),ground=height*.79;
+ctx.save();ctx.translate(cx,ground-83*scale);ctx.scale(scale,scale);
+ellipse(0,87,215,9,'#112d2780');const a=time*3.5;wheel(-155,0,a*.9);wheel(155,0,a*.9);
+const crank=[-24,4],hip=[-74,-137+Math.sin(a*2)*1.5],far=[crank[0]+30*Math.cos(a+Math.PI),crank[1]+30*Math.sin(a+Math.PI)],near=[crank[0]+30*Math.cos(a),crank[1]+30*Math.sin(a)];
+leg(hip,far,true);line([[far[0]-12,far[1]+7],[far[0]+12,far[1]+7]],'#a2b2a0',5);
+// Chain and frame share the same crank geometry.
+path('M-155 -9 L-24 -21 A25 25 0 0 1 -24 29 L-155 9Z',null,'#aac0a8',2);
+line([[-155,0],[-71,-114],[-24,4],[-155,0]],C.cream,8);line([[-71,-114],[101,-113],[-24,4]],C.cream,9);line([[101,-113],[155,0]],C.cream,8);line([[-71,-114],[-79,-138]],C.navy,7);
+line([[-99,-139],[-60,-139]],C.navy,10);line([[98,-116],[92,-144],[127,-151],[140,-143]],C.navy,6);line([[131,-148],[143,-147]],C.cream,8);
+circle(crank[0],crank[1],22,C.navy);circle(crank[0],crank[1],16,'#637b6b');circle(crank[0],crank[1],5,C.cream);line([far,crank,near],'#d2ddbd',5);
+const bob=Math.sin(a*2)*1.5;ctx.save();ctx.translate(0,bob);
+// Rear arm sits behind the jersey.
+line([[2,-215],[58,-177],[130,-149]],'#cd8b6d',14);
+path('M-83 -156 Q-76 -202 -31 -239 Q-18 -248 7 -230 L35 -208 L-27 -152 Q-52 -143 -83 -156Z',C.orange);
+path('M-83 -156 Q-69 -167 -43 -168 L-27 -152 Q-51 -137 -77 -139Z',C.navy);
+path('M-26 -237 Q-10 -245 7 -230 L31 -212 L11 -192 L-12 -207Z','#ff8252');
+line([[9,-211],[53,-170],[132,-150]],C.skin,15);circle(133,-149,9,C.skin);
+line([[14,-228],[27,-243]],C.skin,20);
+// Profile, nose, and a vented cycling helmet.
+path('M13 -266 Q14 -286 34 -286 Q52 -286 55 -266 L64 -254 L55 -250 Q57 -232 43 -233 L27 -241 L18 -247Z',C.skin);
+path('M10 -264 Q2 -292 28 -300 Q53 -306 66 -283 L57 -270 Q42 -280 10 -264Z',C.navy);
+line([[18,-284],[31,-293]],'#50666a',4);line([[34,-283],[46,-292]],'#50666a',4);line([[50,-279],[56,-285]],'#50666a',4);
+line([[16,-266],[29,-242],[48,-246]],C.navy,2);line([[44,-265],[59,-261]],C.navy,5);
+ctx.restore();leg(hip,near,false);line([[near[0]-12,near[1]+7],[near[0]+12,near[1]+7]],C.navy,5);
+// A small ribbon moves with the breeze.
+path(`M-67 -203 Q-104 ${-215+Math.sin(time*7)*6} -119 -199`,null,C.orange,4);
+ctx.restore();
+}
+function draw(){ctx.setTransform(canvas.width/width,0,0,canvas.height/height,0,0);scenery();cyclist()}
+function resize(){width=canvas.clientWidth;height=canvas.clientHeight;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);draw()}
+function sync(){play.setAttribute('aria-label',running?'Pause animation':'Play animation');play.setAttribute('aria-pressed',String(!running));play.innerHTML=running?'<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg>':'<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>';status.textContent=running?'Enjoy the ride':'Take a breath'}
+function toggle(){running=!running;sync()}
+play.addEventListener('click',toggle);speed.addEventListener('input',()=>{rate=Number(speed.value);pace.value=rate.toFixed(1)+'×'});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&!promptDialog.open&&!['INPUT','BUTTON','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){e.preventDefault();toggle()}});
+reduced.addEventListener('change',e=>{running=!e.matches;sync()});window.addEventListener('resize',resize);
+document.addEventListener('visibilitychange',()=>{last=0});
+function frame(now){const dt=last?Math.min((now-last)/1000,.05):0;last=now;if(running){time+=dt*rate;draw()}requestAnimationFrame(frame)}
+resize();sync();requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
