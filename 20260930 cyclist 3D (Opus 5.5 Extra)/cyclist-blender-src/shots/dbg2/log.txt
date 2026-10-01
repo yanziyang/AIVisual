@@ -1,0 +1,10 @@
+[console.warning] THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision
+(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(209,37-61): warning X4122: s
+ready after 6.7 s
+gl ANGLE (VMware, VMware SVGA 3D (0x00000405) Direct3D11 vs_5_0 ps_5_0, D3D11)
+eval (()=>{window.__d=[]; const o=scene.st; let lastDist=o.dist;  => 4.519721384033881
+eval window.__d.slice(0,12) => []
+eval scene.advance(2); scene.st.dist => 38.65825506202245
+eval window.__d.slice(-8) => [[769,10.67,7.7],[1008,12.59,7.59],[1257,14.46,7.5],[1509,16.36,7.43],[1760,18.09,7.39],[2009,20.06,7.36],[2289,21.95,7.35],[2506,23.66,7.34]]

@@ -1,0 +1,8 @@
+{ "page": "out/test.html", "query": "", "w": 1440, "h": 810, "out": "shots/p9", "timeout": 300, "settle": 2500,
+  "steps": [
+    { "wait": 4000, "shot": "live_a" },
+    { "eval": "scene.setCam('front'); 1", "wait": 3500, "shot": "live_front" },
+    { "eval": "scene.setCam('free'); 1", "wait": 2500, "shot": "live_free" },
+    { "eval": "scene.setMode('studio'); 1", "wait": 3000, "shot": "live_studio" },
+    { "eval": "[scene.st.dist.toFixed(1), scene.st.speed.toFixed(2), scene.cyclist.posture]" }
+  ] }

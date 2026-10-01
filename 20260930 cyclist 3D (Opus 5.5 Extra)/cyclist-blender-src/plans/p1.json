@@ -1,0 +1,9 @@
+{ "page": "out/test.html", "query": "?intro=0&paused=1&cam=chase", "w": 1280, "h": 720, "out": "shots/p1", "timeout": 200,
+  "steps": [
+    { "eval": "scene.st.ready && [scene.cyclist.stats.tris, scene.cyclist.stats.bones, Object.keys(scene.cyclist.actions)]" },
+    { "eval": "scene.advance(0.5); scene.render(); 1", "wait": 300, "shot": "chase" },
+    { "eval": "scene.setCam('side'); scene.advance(0.6); 1", "wait": 300, "shot": "side" },
+    { "eval": "scene.setCam('front'); scene.advance(0.6); 1", "wait": 300, "shot": "front" },
+    { "eval": "scene.setMode('studio'); scene.advance(0.4); 1", "wait": 300, "shot": "studio" },
+    { "eval": "(()=>{const t0=performance.now(); for(let i=0;i<20;i++) scene.advance(1/60); return ((performance.now()-t0)/20).toFixed(1)+' ms/frame'})()" }
+  ] }

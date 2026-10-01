@@ -1,0 +1,6 @@
+{ "page": "C:/Users/admin/AppData/Local/Temp/claude/C--MyProjects-TempProject--Claude-/7b3065fa-5673-4f58-83fe-a387c3a6306c/scratchpad/isolated/cyclist.html", "query": "", "w": 1280, "h": 720, "out": "shots/offline", "timeout": 240, "settle": 1500, "offline": true,
+  "steps": [
+    { "wait": 4000, "eval": "[scene.st.ready, scene.st.mode, +scene.st.dist.toFixed(1), Object.keys(scene.cyclist.actions), scene.cyclist.stats.bones, navigator.onLine, location.protocol]", "shot": "offline_ride" },
+    { "eval": "scene.setMode('studio'); 1", "wait": 2500, "shot": "offline_studio" },
+    { "eval": "performance.getEntriesByType('resource').map(e=>e.name.slice(0,80))" }
+  ] }

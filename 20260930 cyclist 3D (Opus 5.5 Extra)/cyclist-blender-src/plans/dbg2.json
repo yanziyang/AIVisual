@@ -1,0 +1,7 @@
+{ "page": "out/test.html", "query": "?intro=0", "w": 800, "h": 450, "out": "shots/dbg2", "timeout": 200, "settle": 300,
+  "steps": [
+    { "eval": "(()=>{window.__d=[]; const o=scene.st; let lastDist=o.dist; const orig=performance.now(); window.__iv=setInterval(()=>{window.__d.push([+(performance.now()-orig).toFixed(0), +o.dist.toFixed(2), +o.speed.toFixed(2)])},250); return o.dist})()" },
+    { "wait": 2500, "eval": "window.__d.slice(0,12)" },
+    { "eval": "scene.advance(2); scene.st.dist" },
+    { "wait": 1500, "eval": "window.__d.slice(-8)" }
+  ] }

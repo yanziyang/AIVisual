@@ -1,0 +1,10 @@
+[console.warning] THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision
+(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision
+(209,37-61): warning X4122: s
+ready after 4.7 s
+gl ANGLE (VMware, VMware SVGA 3D (0x00000405) Direct3D11 vs_5_0 ps_5_0, D3D11)
+eval scene.advance(0.3); 1 => 1
+eval (()=>{const c=scene.cyclist; const T=scene.three; const im=c => {"parent":"ChainPath","local":[0.033,0.166,0.043],"world":[2.18,14.59,11.73],"root":[2.17,14.43,11.68],"crank":[2.16,14.69,11.68],"crVisible":true,"pts":408,"len":"1.365","parentMat":[0.97,0.02,0.24,0,-0.02,1,-0.03,0,-0.24,0.03,0.97,0,2.17,14.43,11.68,1],"geoBB":[[-0.0042,-0.0032,-0.007],[0.0169,0.0032,0.007]]}
+eval (()=>{const c=scene.cyclist; const T=scene.three; const r=c. => 1
+shot drv

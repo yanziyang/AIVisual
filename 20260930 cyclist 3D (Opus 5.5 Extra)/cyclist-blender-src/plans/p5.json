@@ -1,0 +1,14 @@
+{ "page": "out/test.html", "query": "?intro=0", "w": 1280, "h": 720, "out": "shots/p5", "timeout": 300, "settle": 500,
+  "steps": [
+    { "eval": "scene.advance(3); 1", "wait": 100, "shot": "a03" },
+    { "eval": "scene.advance(6); 1", "wait": 100, "shot": "a09" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a17" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a25" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a33" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a41" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a49" },
+    { "eval": "scene.advance(8); 1", "wait": 100, "shot": "a57" },
+    { "eval": "[scene.st.dist.toFixed(0), scene.st.speed.toFixed(1), scene.cyclist.posture, scene.director.shot]" },
+    { "eval": "scene.advance(60); [scene.st.dist.toFixed(0), scene.st.xAbs.toFixed(0), scene.cyclist.posture, scene.director.shot]", "wait": 100, "shot": "a120" },
+    { "eval": "scene.advance(90); [scene.st.dist.toFixed(0), scene.st.xAbs.toFixed(0), scene.cyclist.posture, scene.director.shot, scene.st.speed.toFixed(1)]", "wait": 100, "shot": "a210" }
+  ] }

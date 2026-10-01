@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Form Follows Formula — The Reel &amp; The Prompt</title>
+  <style>
+    :root{color-scheme:dark;--ink:#0c101c;--paper:#f2f0e4;--lime:#dcff41;--muted:#98a3b9}
+    *{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:Arial,sans-serif}
+    main{max-width:1256px;margin:auto;padding:38px 32px 64px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #303749;padding-bottom:20px}
+    .eyebrow{font:12px/1.5 Consolas,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
+    header a{color:var(--paper);font-size:13px;text-decoration:none;border:1px solid #444d62;border-radius:30px;padding:10px 18px}header a:hover{border-color:var(--lime);color:var(--lime)}
+    h1{font-size:clamp(34px,5.5vw,74px);line-height:1.02;letter-spacing:-2.5px;margin:38px 0 16px;font-weight:900}
+    .description{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 28px}
+    video{display:block;width:100%;aspect-ratio:16/9;background:#000;border:1px solid #303749;border-radius:10px}
+    .brief{margin-top:32px;display:grid;grid-template-columns:190px 1fr;gap:28px;padding:28px 0;border-top:1px solid #303749}
+    h2{font:13px/1.5 Consolas,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin:3px 0}
+    blockquote{margin:0;font-size:clamp(18px,2.2vw,25px);line-height:1.6;max-width:940px}
+    footer{font:12px/1.6 Consolas,monospace;color:var(--muted);letter-spacing:1px;margin-top:28px}
+    @media(max-width:640px){main{padding:24px 20px 40px}header{align-items:flex-start}.brief{grid-template-columns:1fr;gap:12px}h1{letter-spacing:-1px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header><span class="eyebrow">Mathematics × Motion Design</span><a href="../FORM-FOLLOWS-FORMULA.mp4" download>Download the reel ↗</a></header>
+    <h1>FORM FOLLOWS FORMULA.</h1>
+    <p class="description">Seven mathematical scenes. Kinetic typography. An original electronic score. 20 seconds at 1080p / 60 fps.</p>
+    <video controls playsinline preload="metadata" poster="poster.png" aria-label="Form Follows Formula, a 20-second mathematics motion graphics reel">
+      <source src="../FORM-FOLLOWS-FORMULA.mp4" type="video/mp4">
+      <a href="../FORM-FOLLOWS-FORMULA.mp4">Watch the video</a>
+    </video>
+    <section class="brief" aria-labelledby="prompt-heading">
+      <h2 id="prompt-heading">Your original prompt</h2>
+      <blockquote>make a dynamic 20-second motion graphics video related to mathematics that shows what an incredible motion designer with mathematics skills you are, like it's your showreel for a résumé. go all out</blockquote>
+    </section>
+    <footer>FORM FOLLOWS FORMULA / 01</footer>
+  </main>
+</body>
+</html>

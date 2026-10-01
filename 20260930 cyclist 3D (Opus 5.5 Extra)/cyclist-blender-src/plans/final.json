@@ -1,0 +1,7 @@
+{ "page": "../Cyclist Blender v1.0.html", "query": "", "w": 1600, "h": 900, "out": "shots/final", "timeout": 300, "settle": 2000,
+  "steps": [
+    { "wait": 6000, "eval": "[scene.st.ready, scene.st.dist.toFixed(0), scene.director.shot]", "shot": "hero1" },
+    { "eval": "document.dispatchEvent(new PointerEvent('pointermove')); window.dispatchEvent(new PointerEvent('pointermove')); 1", "wait": 600, "shot": "hero_ui" },
+    { "eval": "scene.setCam('side'); 1", "wait": 4000, "shot": "hero_side" },
+    { "eval": "scene.setMode('studio'); window.dispatchEvent(new PointerEvent('pointermove')); 1", "wait": 3500, "shot": "hero_studio" }
+  ] }

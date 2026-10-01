@@ -1,0 +1,8 @@
+{ "page": "out/test.html", "query": "?intro=0", "w": 1280, "h": 720, "out": "shots/p7", "timeout": 300, "settle": 500,
+  "steps": [
+    { "eval": "scene.advance(2); scene.setCam('free'); scene.advance(2); 1", "wait": 300, "shot": "free" },
+    { "eval": "scene.setCam('auto'); scene.setTime('midday'); scene.setKit('crimson'); scene.advance(3); 1", "wait": 300, "shot": "crimson" },
+    { "eval": "scene.setKit('forest'); scene.setTime('morning'); scene.setCam('orbit'); scene.advance(3); 1", "wait": 300, "shot": "forest" },
+    { "eval": "scene.setKit('glacier'); scene.setTime('overcast'); scene.setCam('side'); scene.advance(3); 1", "wait": 300, "shot": "glacier" },
+    { "eval": "scene.setKit('signal'); scene.setTime('golden'); document.getElementById('bInfo').click(); 1", "wait": 800, "shot": "drawer" }
+  ] }

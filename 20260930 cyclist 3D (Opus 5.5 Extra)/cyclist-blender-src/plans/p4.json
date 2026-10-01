@@ -1,0 +1,80 @@
+{
+ "page": "out/test.html",
+ "query": "?intro=0&paused=1&mode=studio",
+ "w": 900,
+ "h": 620,
+ "out": "shots/p4",
+ "timeout": 240,
+ "steps": [
+  {
+   "eval": "scene.hold(true); scene.setPosture('Seated'); scene.advance(1.0); scene.view([0.1,1.0,3.3],[0.1,0.85,0],34); scene.render(); 1",
+   "wait": 150,
+   "shot": "t00"
+  },
+  {
+   "eval": "scene.setPosture('Standing'); scene.advance(0.150); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t01_Standing_0.15"
+  },
+  {
+   "eval": "scene.advance(0.150); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t02_Standing_0.30"
+  },
+  {
+   "eval": "scene.advance(0.150); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t03_Standing_0.45"
+  },
+  {
+   "eval": "scene.advance(0.150); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t04_Standing_0.60"
+  },
+  {
+   "eval": "scene.advance(0.400); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t05_Standing_1.00"
+  },
+  {
+   "eval": "scene.setPosture('Coast'); scene.advance(0.200); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t06_Coast_0.20"
+  },
+  {
+   "eval": "scene.advance(0.200); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t07_Coast_0.40"
+  },
+  {
+   "eval": "scene.advance(0.200); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t08_Coast_0.60"
+  },
+  {
+   "eval": "scene.advance(0.300); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t09_Coast_0.90"
+  },
+  {
+   "eval": "scene.advance(0.500); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t10_Coast_1.40"
+  },
+  {
+   "eval": "scene.setPosture('Seated'); scene.advance(0.200); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t11_Seated_0.20"
+  },
+  {
+   "eval": "scene.advance(0.300); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t12_Seated_0.50"
+  },
+  {
+   "eval": "scene.advance(0.400); scene.render(); [scene.cyclist.mode, Object.values(scene.cyclist.w).map(v=>+v.toFixed(2)), (scene.cyclist.tp%1).toFixed(3)]",
+   "wait": 120,
+   "shot": "t13_Seated_0.90"
+  }
+ ]
+}

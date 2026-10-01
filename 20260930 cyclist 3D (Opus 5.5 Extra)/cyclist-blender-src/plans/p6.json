@@ -1,0 +1,6 @@
+{ "page": "out/test.html", "query": "?intro=0", "w": 390, "h": 844, "dpr": 2, "mobile": true, "out": "shots/p6", "timeout": 300, "settle": 500,
+  "steps": [
+    { "eval": "scene.advance(4); 1", "wait": 200, "shot": "m_ride" },
+    { "eval": "document.getElementById('bInfo').click(); 1", "wait": 700, "shot": "m_drawer" },
+    { "eval": "document.getElementById('dClose').click(); scene.setMode('studio'); scene.advance(0.5); 1", "wait": 600, "shot": "m_studio" }
+  ] }

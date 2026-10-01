@@ -1,0 +1,9 @@
+{ "page": "out/test.html", "query": "?intro=0&paused=1&cam=drive&time=midday", "w": 1280, "h": 720, "out": "shots/p2", "timeout": 240,
+  "steps": [
+    { "eval": "scene.advance(1.0); 1", "wait": 200, "shot": "drive" },
+    { "eval": "scene.setCam('low'); scene.advance(0.5); 1", "wait": 200, "shot": "low_midday" },
+    { "eval": "scene.setTime('morning'); scene.setCam('chase'); scene.advance(0.5); 1", "wait": 200, "shot": "chase_morning" },
+    { "eval": "scene.setTime('overcast'); scene.setCam('drone'); scene.advance(0.5); 1", "wait": 200, "shot": "drone_overcast" },
+    { "eval": "scene.setTime('golden'); scene.setPosture('Standing'); scene.setCam('front'); scene.advance(1.6); 1", "wait": 200, "shot": "front_standing_golden" },
+    { "eval": "(()=>{const r=scene.three; const t0=performance.now(); for(let i=0;i<10;i++){scene.render();} const gl=document.querySelector('canvas').getContext('webgl2'); const px=new Uint8Array(4); gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,px); return ((performance.now()-t0)/10).toFixed(1)+' ms/render'})()" }
+  ] }

@@ -1,0 +1,6 @@
+{ "page": "out/test.html", "query": "?intro=0&paused=1&time=midday", "w": 1280, "h": 720, "out": "shots/dbg", "timeout": 200,
+  "steps": [
+    { "eval": "scene.advance(0.3); 1" },
+    { "eval": "(()=>{const c=scene.cyclist; const T=scene.three; const im=c.chainOuter; const m=new T.Matrix4(); im.getMatrixAt(0,m); const p=new T.Vector3().setFromMatrixPosition(m); const w=p.clone().applyMatrix4(im.matrixWorld); const pn=im.parent; const cr=c.node('Crankset'); const crw=new T.Vector3(); cr.getWorldPosition(crw); const root=new T.Vector3(); c.root.getWorldPosition(root); return {parent: pn.name, local:p.toArray().map(v=>+v.toFixed(3)), world:w.toArray().map(v=>+v.toFixed(2)), root: root.toArray().map(v=>+v.toFixed(2)), crank: crw.toArray().map(v=>+v.toFixed(2)), crVisible: cr.visible, pts: c.chainPts.length, len: c.chainLen.toFixed(3), parentMat: pn.matrixWorld.elements.map(v=>+v.toFixed(2)), geoBB: (im.geometry.computeBoundingBox(), [im.geometry.boundingBox.min.toArray().map(v=>+v.toFixed(4)), im.geometry.boundingBox.max.toArray().map(v=>+v.toFixed(4))])}})()" },
+    { "eval": "(()=>{const c=scene.cyclist; const T=scene.three; const r=c.root.position; scene.view([r.x+0.25, r.y+0.45, r.z+1.1],[r.x-0.1, r.y+0.33, r.z],40); scene.render(); return 1})()", "wait": 300, "shot": "drv" }
+  ] }

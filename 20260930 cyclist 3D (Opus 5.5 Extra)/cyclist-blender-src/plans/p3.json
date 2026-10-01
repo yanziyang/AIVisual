@@ -1,0 +1,10 @@
+{ "page": "out/test.html", "query": "?intro=0&paused=1&mode=studio", "w": 1280, "h": 720, "out": "shots/p3", "timeout": 240,
+  "steps": [
+    { "eval": "scene.hold(true); scene.advance(0.6); scene.view([1.25,1.55,0.95],[0.28,1.5,0.0],22); scene.render(); 1", "wait": 200, "shot": "face" },
+    { "eval": "scene.view([1.2,1.2,0.85],[0.56,0.95,0.15],30); scene.render(); 1", "wait": 200, "shot": "hands" },
+    { "eval": "scene.view([-1.8,1.5,1.6],[-0.05,1.05,0],32); scene.render(); 1", "wait": 200, "shot": "back34" },
+    { "eval": "scene.view([2.8,1.4,2.4],[0.05,0.85,0],35); scene.setView('clay'); scene.render(); 1", "wait": 200, "shot": "clay" },
+    { "eval": "scene.setView('wire'); scene.render(); 1", "wait": 200, "shot": "wire" },
+    { "eval": "scene.setView('bones'); scene.render(); 1", "wait": 200, "shot": "bones" },
+    { "eval": "scene.setView('shaded'); scene.view([0.2,0.75,-2.6],[0.05,0.75,0],34); scene.render(); 1", "wait": 200, "shot": "leftside" }
+  ] }

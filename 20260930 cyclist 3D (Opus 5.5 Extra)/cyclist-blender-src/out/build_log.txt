@@ -1,0 +1,113 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Info: Total files 0 | Changed 0 | Failed 0
+chain length 1.365 m, 108 links
+bike built in 1.4s
+  body metaball elements: 636 raw verts 93372
+rider built in 27.0s
+   pole Shin.L 3.9 deg, rest error 0.00000 m
+   pole Shin.R -4.4 deg, rest error 0.00021 m
+   pole Forearm.L -157.5 deg, rest error 0.00004 m
+   pole Forearm.R -22.5 deg, rest error 0.00004 m
+   baked Seated 120 frames
+   baked Standing 120 frames
+   baked Coast 240 frames
+rig built in 56.6s
+Info: Saved "cyclist_all.blend"
+saved C:\MyProjects\TempProject (Claude)\cyclist-blender-src\out\cyclist_all.blend 56.8s
+13:16:13 | INFO: Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 3.6\3.6\python\lib\site-packages\extern_draco.dll
+13:16:14 | INFO: Starting glTF 2.0 export
+13:16:14 | INFO: Extracting primitive: ChainLinkOuter
+13:16:14 | INFO: Primitives created: 1
+13:16:14 | INFO: Extracting primitive: ChainLinkInner
+13:16:14 | INFO: Primitives created: 1
+13:16:14 | INFO: Extracting primitive: Body
+13:16:14 | INFO: Primitives created: 10
+13:16:14 | INFO: Extracting primitive: Bottle_DT
+13:16:14 | INFO: Primitives created: 3
+13:16:14 | INFO: Extracting primitive: Bottle_ST
+13:16:14 | INFO: Primitives created: 3
+13:16:14 | INFO: Extracting primitive: BrakeCalipers
+13:16:14 | INFO: Primitives created: 1
+13:16:14 | INFO: Extracting primitive: Cassette
+13:16:14 | INFO: Primitives created: 2
+13:16:14 | INFO: Extracting primitive: Cockpit
+13:16:14 | INFO: Primitives created: 8
+13:16:14 | INFO: Extracting primitive: txt_CADENCE
+13:16:14 | INFO: Primitives created: 1
+13:16:14 | INFO: Extracting primitive: txt_CADENCE.001
+13:16:14 | INFO: Primitives created: 1
+13:16:14 | INFO: Extracting primitive: Fork
+13:16:14 | INFO: Primitives created: 2
+13:16:14 | INFO: Extracting primitive: Frame
+13:16:15 | INFO: Primitives created: 3
+13:16:15 | INFO: Extracting primitive: FrontDerailleur
+13:16:15 | INFO: Primitives created: 1
+13:16:15 | INFO: Extracting primitive: Jockey_L
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Jockey_U
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: RearDerailleur
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Saddle
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Seatpost
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Wheel_F
+13:16:15 | INFO: Primitives created: 8
+13:16:15 | INFO: Extracting primitive: Wheel_R
+13:16:15 | INFO: Primitives created: 8
+13:16:15 | INFO: Extracting primitive: Crankset
+13:16:15 | INFO: Primitives created: 3
+13:16:15 | INFO: Extracting primitive: Pedal_L
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Pedal_R
+13:16:15 | INFO: Primitives created: 2
+13:16:15 | INFO: Extracting primitive: Glasses.001
+13:16:15 | INFO: Primitives created: 1
+13:16:15 | INFO: Extracting primitive: GlassesFrame
+13:16:15 | INFO: Primitives created: 1
+13:16:15 | INFO: Extracting primitive: Helmet.001
+13:16:15 | INFO: Primitives created: 3
+13:16:15 | INFO: Extracting primitive: HelmetStraps
+13:16:15 | INFO: Primitives created: 1
+13:16:15 | INFO: Extracting primitive: Shoe.L
+13:16:15 | INFO: Primitives created: 3
+13:16:15 | INFO: Extracting primitive: Shoe.R
+13:16:15 | INFO: Primitives created: 3
+13:16:20 | INFO: Finished glTF 2.0 export in 6.446381092071533 s
+
+exported C:\MyProjects\TempProject (Claude)\cyclist-blender-src\out\cyclist.glb 4920 KB
+  Body                     62431 tris
+  Bottle_DT                 1320 tris
+  Bottle_ST                 1320 tris
+  BrakeCalipers               24 tris
+  Cassette                  9240 tris
+  Chain                    31968 tris
+  ChainLinkInner             304 tris
+  ChainLinkOuter             288 tris
+  Cockpit                  14088 tris
+  Crankset                  5184 tris
+  Decal_DT_L                 285 tris
+  Decal_DT_R                 285 tris
+  Fork                      7596 tris
+  Frame                    30354 tris
+  FrontDerailleur            200 tris
+  Glasses                   1040 tris
+  GlassesFrame               412 tris
+  Helmet                   16960 tris
+  HelmetStraps               360 tris
+  Jockey_L                   568 tris
+  Jockey_U                   568 tris
+  Pedal_L                    420 tris
+  Pedal_R                    420 tris
+  RearDerailleur             488 tris
+  Saddle                    1672 tris
+  Seatpost                   264 tris
+  Shoe.L                    1244 tris
+  Shoe.R                    1244 tris
+  Wheel_F                  12600 tris
+  Wheel_R                  12648 tris
+TOTAL TRIS 215795
+
+Blender quit
