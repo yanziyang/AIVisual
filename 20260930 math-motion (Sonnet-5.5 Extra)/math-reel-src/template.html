@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math in Motion - Showreel __VERSION__</title>
+<meta name="description" content="A 20-second mathematics motion-design showreel: Fourier epicycles, parametric surfaces, the Lorenz attractor, a perturbation-theory Mandelbrot zoom and Euler's identity. Procedural graphics and synthesised score, rendered live in WebGL2.">
+<style>
+:root{--ink:#05070d;--ink2:#0c1121;--paper:#f3efe5;--ember:#ff5b3a;--aqua:#3ee0ff;--gold:#ffc247;--mute:#8a93a8;--line:rgba(243,239,229,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--ink);color:var(--paper);font-family:"Inter Tight","Segoe UI",system-ui,sans-serif;overflow:hidden}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#wrap{position:relative;width:min(100vw,calc((100vh - 38px) * 16 / 9));aspect-ratio:16/9;background:#000;box-shadow:0 30px 120px rgba(0,0,0,.6);user-select:none}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+#veil{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2vmin;background:radial-gradient(ellipse at center,rgba(5,7,13,.30),rgba(5,7,13,.78));cursor:pointer;transition:opacity .5s}
+#veil.hide{opacity:0;pointer-events:none}
+#veil h1{font-weight:800;letter-spacing:.12em;font-size:clamp(14px,2.1vw,30px);text-transform:uppercase}
+#veil p{font:500 clamp(10px,1vw,14px)/1.5 "JetBrains Mono",Consolas,monospace;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+#playbtn{width:clamp(56px,6.4vw,92px);aspect-ratio:1;border-radius:50%;border:2px solid var(--paper);display:grid;place-items:center;transition:transform .25s,background .25s}
+#veil:hover #playbtn{transform:scale(1.08);background:rgba(243,239,229,.1)}
+#playbtn::after{content:"";margin-left:8%;border-style:solid;border-width:clamp(10px,1.2vw,17px) 0 clamp(10px,1.2vw,17px) clamp(16px,1.9vw,27px);border-color:transparent transparent transparent var(--paper)}
+#status{font:500 12px "JetBrains Mono",monospace;color:var(--aqua);letter-spacing:.12em}
+#dock{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;padding:12px 18px 14px;background:linear-gradient(transparent,rgba(5,7,13,.82));opacity:0;transition:opacity .35s;font:500 12px "JetBrains Mono",monospace;letter-spacing:.08em}
+#wrap.ui #dock,#wrap.paused #dock{opacity:1}
+#dock button,#dock a{all:unset;cursor:pointer;color:var(--paper);padding:4px 8px;border-radius:4px;font:inherit;text-transform:uppercase;letter-spacing:.1em;opacity:.85}
+#dock button:hover,#dock a:hover{opacity:1;background:rgba(243,239,229,.12)}
+#bar{flex:1;height:22px;position:relative;cursor:pointer}
+#bar i{position:absolute;left:0;right:0;top:10px;height:2px;background:var(--line)}
+#bar b{position:absolute;left:0;top:10px;height:2px;background:var(--paper);width:0}
+#bar s{position:absolute;top:6px;width:1px;height:10px;background:rgba(243,239,229,.35)}
+#bar em{position:absolute;top:5px;width:12px;height:12px;border-radius:50%;background:var(--paper);margin-left:-6px;left:0}
+#time{min-width:92px;text-align:right;color:var(--mute)}
+#foot{height:38px;width:min(100vw,calc((100vh - 38px) * 16 / 9));display:flex;align-items:center;justify-content:space-between;gap:12px;font:500 11px "JetBrains Mono",Consolas,monospace;color:var(--mute);letter-spacing:.05em;white-space:nowrap;overflow:hidden}
+#foot span{overflow:hidden;text-overflow:ellipsis}
+#foot b{color:var(--paper);font-weight:500}
+#foot button{all:unset;cursor:pointer;color:var(--aqua);text-transform:uppercase;letter-spacing:.12em;padding:3px 6px;border:1px solid rgba(62,224,255,.4);border-radius:3px;flex:none}
+#foot button:hover{background:rgba(62,224,255,.12)}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:rgba(8,11,21,.97);border-left:1px solid var(--line);transform:translateX(102%);transition:transform .45s cubic-bezier(.2,.8,.2,1);overflow:auto;padding:28px 28px 40px;z-index:9;backdrop-filter:blur(10px)}
+#drawer.open{transform:none}
+#drawer h2{font-weight:800;letter-spacing:.1em;font-size:15px;text-transform:uppercase;margin-bottom:4px}
+#drawer h3{font:700 11px "JetBrains Mono",monospace;letter-spacing:.18em;color:var(--aqua);text-transform:uppercase;margin:24px 0 8px}
+#drawer p,#drawer li,#drawer td{font-size:13.5px;line-height:1.55;color:#cdd2dd}
+#drawer ul{padding-left:18px}
+#drawer code,#drawer .m{font-family:"JetBrains Mono",Consolas,monospace;font-size:12px;color:var(--gold)}
+#drawer blockquote{border-left:2px solid var(--ember);padding:6px 0 6px 14px;color:var(--paper);font-size:14.5px;line-height:1.5}
+#drawer table{border-collapse:collapse;width:100%}
+#drawer td{padding:4px 8px 4px 0;vertical-align:top;border-bottom:1px solid var(--line)}
+#drawer td:first-child{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--mute);white-space:nowrap}
+#drawer .x{position:absolute;top:14px;right:16px;all:unset;cursor:pointer;font:500 12px "JetBrains Mono",monospace;color:var(--mute);letter-spacing:.1em;padding:4px 8px}
+#drawer a{color:var(--aqua)}
+#err{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:6%;text-align:center;font:500 13px/1.6 "JetBrains Mono",monospace;color:var(--ember);background:var(--ink)}
+@media (max-width:640px){#foot{font-size:9.5px}#dock{gap:6px;padding:8px 10px}}
+</style>
+</head>
+<body>
+<div id="wrap" class="paused">
+  <canvas id="stage"></canvas>
+  <div id="veil"><div id="playbtn"></div><h1>Math in Motion</h1><p>20-second mathematics showreel<br>click to play &middot; sound on</p><div id="status">loading&hellip;</div></div>
+  <div id="dock">
+    <button id="bPlay" title="Play / pause (space)">Play</button>
+    <div id="bar"><i></i><b></b><em></em></div>
+    <span id="time">0.00 / 20.00</span>
+    <button id="bMute" title="Sound (m)">Sound on</button>
+    <button id="bFull" title="Fullscreen (f)">Full</button>
+    <a id="aMp4" href="Math%20Motion%20Showreel%20__VERSION__.mp4" download title="The same 20 s as a 1080p60 H.264 MP4 (if next to this page)">MP4</a>
+  </div>
+  <div id="err"></div>
+</div>
+<div id="foot">
+  <span>Source URL: <b>none supplied - original prompt</b> &middot; prompt, method &amp; timeline in the colophon</span>
+  <button id="bInfo">Colophon</button>
+</div>
+<aside id="drawer" aria-label="Colophon">
+  <button class="x" id="bClose">close &#10005;</button>
+  <h2>Math in Motion &middot; Showreel __VERSION__</h2>
+  <p class="m">A 20 s mathematics motion-design reel &middot; 1920&times;1080 &middot; 60 fps &middot; 144 BPM</p>
+
+  <h3>Prompt</h3>
+  <blockquote>make a dynamic 20-second motion graphics video related to mathematics that shows what an incredible motion designer with mathematics skills you are, like it's your showreel for a r&eacute;sum&eacute;. go all out</blockquote>
+
+  <h3>Source URL</h3>
+  <p>None supplied. This is an original piece made from the prompt above; no reference video, image or post was used, and no stock footage, external images or licensed music are included.</p>
+
+  <h3>Timeline</h3>
+  <table>
+    <tr><td>0.0&ndash;1.7</td><td><b>Unit circle</b> &mdash; a point orbits, sin&nbsp;&theta; unrolls into a wave</td></tr>
+    <tr><td>1.7&ndash;5.0</td><td><b>Fourier series</b> &mdash; epicycles build a square wave (Gibbs overshoot), then a 221-term DFT chain redraws the glyph &pi;</td></tr>
+    <tr><td>5.0&ndash;7.5</td><td><b>Parametric surfaces</b> &mdash; a circle becomes the trefoil (2,3) and the cinquefoil (2,5) torus knot as one seamless tube; Frenet frame and normals evaluated in the vertex shader</td></tr>
+    <tr><td>7.5&ndash;10.0</td><td><b>Lorenz attractor</b> &mdash; RK4 ensemble; two orbits 10<sup>&minus;5</sup> apart diverge (butterfly effect)</td></tr>
+    <tr><td>10.0&ndash;13.3</td><td><b>Mandelbrot zoom</b> &mdash; perturbation theory + rebasing in fp32, to ~6&times;10<sup>5</sup> magnification</td></tr>
+    <tr><td>13.3&ndash;16.7</td><td><b>Montage</b> &mdash; modular times table, golden-angle phyllotaxis, Ulam prime spiral, Monte-Carlo &pi;</td></tr>
+    <tr><td>16.7&ndash;20.0</td><td><b>Euler's identity</b> e<sup>i&pi;</sup> + 1 = 0 and the title lock-up</td></tr>
+  </table>
+
+  <h3>How it's made</h3>
+  <ul>
+    <li>Every frame is a pure function of time <code>t</code>: the same code runs in this page (real time, WebGL2 + Canvas&nbsp;2D) and in a headless frame-exact renderer that wrote the MP4.</li>
+    <li>Pipeline: Canvas&nbsp;2D vector layer + WebGL2 scene layer &rarr; float16 compose &rarr; 6-level dual-filter bloom &rarr; chromatic aberration, grade, vignette &rarr; temporal accumulation (4&ndash;16 sub-frames per frame at a 180&deg; shutter = true motion blur and super-sampling) &rarr; film grain + dither.</li>
+    <li>Fourier: the outline of the glyph &pi; is traced (Moore-neighbour), resampled by arc length and transformed with a DFT (221 coefficients); circles are sorted by amplitude, the 96 largest are drawn.</li>
+    <li>Surfaces: the mesh is only a (u,v) grid. A space curve K(u) (blend of a circle and two torus knots, analytic K&prime; and K&Prime;) gets an exact Frenet frame in the vertex shader; the tube is S(u,v) = K + &rho;(cos v&nbsp;N + sin v&nbsp;B) and iso-lines are anti-aliased with <code>fwidth</code>. Reflections come from an analytic studio environment.</li>
+    <li>Lorenz: &sigma;=10, &rho;=28, &beta;=8/3 integrated with RK4; a 42,000-point ghost of the attractor, a 360-particle ensemble and two hero orbits started 10<sup>&minus;5</sup> apart; the scene clock is calibrated so they split 62&nbsp;% of the way in.</li>
+    <li>Mandelbrot: reference orbit in float64 on the CPU, per-pixel delta orbit in fp32 with Zhuoran rebasing, smooth iteration colouring.</li>
+    <li>Score: synthesised sample-by-sample in JavaScript at 144&nbsp;BPM &mdash; melody = digits of &pi; mapped onto an A-minor pentatonic scale, hi-hat rhythms from Euclidean (Bjorklund) patterns, chaos-section hats from the logistic map r=3.9, a Shepard tone under the infinite zoom, and the square-wave partials in the Fourier scene are the same harmonics you see being added.</li>
+    <li>Type: Inter Tight, JetBrains Mono and STIX Two Text (SIL OFL), embedded in this file.</li>
+  </ul>
+
+  <h3>Output</h3>
+  <p>The page is self-contained (no network). The master video <code>Math Motion Showreel __VERSION__.mp4</code> is 1920&times;1080, 60&nbsp;fps, H.264 + AAC. Shortcuts: <code>space</code> play/pause, <code>m</code> sound, <code>f</code> fullscreen, <code>&larr; &rarr;</code> &plusmn;1&nbsp;s.</p>
+</aside>
+<script>
+/*__CODE__*/
+</script>
+</body>
+</html>

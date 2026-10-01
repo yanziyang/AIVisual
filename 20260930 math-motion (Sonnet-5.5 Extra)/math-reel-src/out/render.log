@@ -1,0 +1,44 @@
+[page] lorenz: split tau=7.01 rate=6.46
+[page] mandel: reference orbit length 2601 (escaped=false)
+page requested cfg
+frame 29  30 done  1.24 fps  eta 15.7 min
+frame 59  60 done  1.94 fps  eta 9.8 min
+frame 89  90 done  2.29 fps  eta 8.1 min
+frame 119  120 done  2.19 fps  eta 8.2 min
+frame 149  150 done  2.04 fps  eta 8.6 min
+frame 179  180 done  1.96 fps  eta 8.7 min
+frame 209  210 done  1.78 fps  eta 9.3 min
+frame 239  240 done  1.84 fps  eta 8.7 min
+frame 269  270 done  1.87 fps  eta 8.3 min
+frame 299  300 done  1.80 fps  eta 8.3 min
+frame 329  330 done  1.84 fps  eta 7.9 min
+frame 359  360 done  1.89 fps  eta 7.4 min
+frame 389  390 done  1.94 fps  eta 7.0 min
+frame 419  420 done  1.99 fps  eta 6.5 min
+frame 449  450 done  2.03 fps  eta 6.1 min
+frame 479  480 done  1.95 fps  eta 6.2 min
+frame 509  510 done  1.96 fps  eta 5.9 min
+frame 539  540 done  1.97 fps  eta 5.6 min
+frame 569  570 done  1.99 fps  eta 5.3 min
+frame 599  600 done  2.01 fps  eta 5.0 min
+frame 629  630 done  2.05 fps  eta 4.6 min
+frame 659  660 done  2.07 fps  eta 4.4 min
+frame 689  690 done  2.04 fps  eta 4.2 min
+frame 719  720 done  2.05 fps  eta 3.9 min
+frame 749  750 done  2.07 fps  eta 3.6 min
+frame 779  780 done  2.05 fps  eta 3.4 min
+frame 809  810 done  2.04 fps  eta 3.2 min
+frame 839  840 done  2.02 fps  eta 3.0 min
+frame 869  870 done  2.01 fps  eta 2.7 min
+frame 899  900 done  2.01 fps  eta 2.5 min
+frame 929  930 done  2.03 fps  eta 2.2 min
+frame 959  960 done  2.03 fps  eta 2.0 min
+frame 989  990 done  2.02 fps  eta 1.7 min
+frame 1019  1020 done  2.04 fps  eta 1.5 min
+frame 1049  1050 done  2.07 fps  eta 1.2 min
+frame 1079  1080 done  2.08 fps  eta 1.0 min
+frame 1109  1110 done  2.10 fps  eta 0.7 min
+frame 1139  1140 done  2.12 fps  eta 0.5 min
+frame 1169  1170 done  2.14 fps  eta 0.2 min
+frame 1199  1200 done  2.14 fps  eta 0.0 min
+video written C:\MyProjects\TempProject (Claude)\math-reel-src\out\video-only.mp4 9.7 min
