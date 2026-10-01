@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1114">
+  <meta name="description" content="Meet ORBIT, a little robot with a lot of personality. Explore an original, animated robot built entirely in Three.js.">
+  <title>ORBIT — Robot Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='7' y='16' width='50' height='40' rx='14' fill='%23dbe6d9'/%3E%3Crect x='14' y='25' width='36' height='20' rx='7' fill='%230b1114'/%3E%3Cpath d='M25 31v7M39 31v7' stroke='%236ce7d2' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M32 16V7' stroke='%23dbe6d9' stroke-width='4'/%3E%3C/svg%3E">
+  <style>
+    :root{color-scheme:dark;--bg:#0b1114;--muted:#8e9ba1;--line:#ffffff15;--accent:#c5eea6;--text:#edf1ed}
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;font-size:14px}button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:5px}button:disabled{opacity:.4;cursor:wait}button{border:0}header{height:84px;position:absolute;inset:0 0 auto;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 42px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:700;letter-spacing:-.5px}.brand-mark{font-family:monospace;font-size:28px;color:var(--accent)}.brand span:last-child{font-weight:400;color:#9ca7a9}.top-meta{display:flex;gap:36px;align-items:center;font-size:11px;letter-spacing:1.5px}.status{display:flex;gap:8px;align-items:center}.dot{height:6px;width:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px #c5eea640}.edition{color:var(--muted)}main{position:absolute;inset:84px 0 54px}#viewport{position:absolute;inset:0;width:100%;height:100%;touch-action:none;outline:none}#viewport canvas{width:100%;height:100%;display:block}.intro{position:absolute;top:58px;left:42px;pointer-events:none;z-index:2;max-width:230px}.eyebrow{font-family:monospace;letter-spacing:2px;font-size:10px;color:var(--accent);margin:0 0 22px}.intro h1{font-size:68px;letter-spacing:-4px;line-height:.96;font-weight:500;margin:0}.intro h1 .number{font-size:16px;letter-spacing:-.5px;color:#7f8c91;vertical-align:top;display:inline-block;padding-top:5px;padding-left:7px}.intro .subtitle{margin-top:18px;color:#b0bbbd;line-height:1.65;font-size:13px;max-width:190px}.intro .small-rule{width:28px;height:1px;background:#5a696d;margin:28px 0 17px}.intro .model-meta{font:10px/2 monospace;color:#77868c;letter-spacing:1px}.annotation{position:absolute;left:42px;bottom:111px;font-size:11px;color:#89989d;line-height:1.7;pointer-events:none}.annotation strong{display:block;color:#c7d1cf;font-size:11px;letter-spacing:1.2px;margin-bottom:5px;font-weight:400}.panel{position:absolute;right:34px;top:38px;width:244px;border:1px solid var(--line);border-radius:16px;background:#10191de8;backdrop-filter:blur(14px);padding:23px;z-index:3}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.panel-head h2{font-size:13px;font-weight:500;margin:0}.panel-head span{font-family:monospace;font-size:10px;color:#738489}.section{border-top:1px solid var(--line);padding-top:21px;margin-top:21px}.label-line{display:flex;align-items:center;justify-content:space-between;margin:0 0 15px;font-size:11px;color:#b4c0c3}.label-line output{font-family:monospace;font-size:10px;color:#75868b}.swatches{display:flex;gap:10px}.swatch{width:34px;height:34px;border-radius:50%;background:var(--swatch);position:relative;outline:1px solid transparent;outline-offset:4px;transition:outline .2s}.swatch[aria-pressed="true"]{outline-color:#dbe7dc}.swatch[aria-pressed="true"]:after{content:'✓';color:#142222;font-size:15px}.swatch.dark[aria-pressed="true"]:after{color:white}.range{width:100%;height:3px;accent-color:var(--accent);cursor:pointer;margin:2px 0 10px}.range-note{display:flex;justify-content:space-between;color:#63767e;font:9px monospace}.toggle-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:19px;font-size:11px;color:#b4c0c3}.switch{width:31px;height:18px;border-radius:12px;background:#3a454b;padding:3px;transition:background .2s}.switch:before{content:'';display:block;width:12px;height:12px;border-radius:50%;background:#d9e5df;transition:transform .2s}.switch[aria-checked="true"]{background:#6d8f63}.switch[aria-checked="true"]:before{transform:translateX(13px);background:#e1f6d4}.reset{display:flex;justify-content:center;align-items:center;gap:9px;background:transparent;border:1px solid #ffffff20;border-radius:7px;padding:11px;width:100%;font-size:11px;color:#b6c2c3;transition:background .2s}.reset:hover{background:#ffffff09}.panel-foot{display:flex;gap:6px;align-items:center;color:#687b80;font:9px monospace;margin-top:18px}.dock{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);border:1px solid #ffffff1b;background:#121c20e8;backdrop-filter:blur(14px);border-radius:14px;padding:7px;display:flex;gap:5px;z-index:4;box-shadow:0 8px 35px #0004}.mode{display:flex;align-items:center;justify-content:center;gap:10px;min-width:96px;padding:12px 16px;border-radius:9px;background:transparent;color:#98a8ad;font-size:12px;transition:background .2s,color .2s}.mode[aria-pressed="true"]{background:var(--accent);color:#1c2b1c}.mode:hover:not([aria-pressed="true"]){background:#ffffff08;color:white}.icon{font-size:16px;line-height:1}.view-tools{position:absolute;left:50%;transform:translateX(-50%);bottom:102px;display:flex;align-items:center;gap:18px;font:10px monospace;color:#64777e;white-space:nowrap;pointer-events:none}.view-tools .sep{color:#3b4b50}footer{position:absolute;inset:auto 0 0;height:54px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 42px;color:#708189;font:10px monospace;letter-spacing:.6px}.footer-right{display:flex;gap:22px}.footer-right span:first-child{color:#a2b4b7}.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0b1114;z-index:5;text-align:center}.loading span{color:var(--accent);font:11px monospace;letter-spacing:2px}.loading p{font-size:12px;color:#87999e;line-height:1.8;max-width:300px}.hidden{display:none}.live-label{position:absolute;top:35px;left:50%;transform:translateX(-50%);font:9px monospace;color:#5f747a;letter-spacing:1.8px;pointer-events:none}.kbd{display:inline-block;border:1px solid #506167;border-radius:3px;padding:1px 4px;font-size:9px}#toast{position:absolute;left:50%;top:72px;transform:translateX(-50%);padding:10px 18px;border-radius:8px;background:#203333ee;border:1px solid #c5eea628;color:#c5eea6;font-size:11px;z-index:6;opacity:0;transition:opacity .2s;pointer-events:none}
+    @media(min-width:1600px){.intro{top:80px;left:60px}.panel{right:60px;top:60px}.intro h1{font-size:88px}}
+    @media(max-width:1000px){header{padding:0 24px}.intro{left:24px;top:38px;max-width:160px}.intro h1{font-size:49px;letter-spacing:-3px}.intro .subtitle{font-size:12px;max-width:140px}.panel{right:20px;width:202px;padding:18px}.annotation{left:24px;font-size:10px}.edition{display:none}footer{padding:0 24px}.mode{min-width:82px}}
+    @media(max-width:700px){header{height:64px;padding:0 19px}.brand{font-size:14px}.brand-mark{font-size:23px}.top-meta{font-size:9px;letter-spacing:1px}main{top:64px;bottom:38px}.intro{left:20px;top:27px}.intro h1{font-size:43px}.eyebrow{font-size:9px;margin-bottom:12px}.intro .subtitle{display:none}.intro .small-rule,.intro .model-meta,.annotation,.live-label{display:none}.panel{top:auto;bottom:102px;right:16px;width:calc(100% - 32px);border-radius:12px;padding:14px 17px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}.panel-head,.panel-foot{display:none}.section{border:0;padding:0;margin:0}.label-line{margin-bottom:11px;font-size:10px}.swatches{gap:11px}.swatch{width:24px;height:24px}.range-note{font-size:8px}.panel .view-section{grid-column:1/-1;display:flex;gap:18px;align-items:center;border-top:1px solid var(--line);padding-top:11px;margin-top:4px}.toggle-row{margin:0;gap:8px;font-size:10px}.switch{flex-shrink:0}.reset{width:auto;margin-left:auto;padding:7px 11px;font-size:10px}.reset-label{display:none}.dock{bottom:32px}.mode{min-width:88px;padding:10px 15px}.view-tools{bottom:10px;gap:10px;font-size:8px}footer{height:38px;padding:0 18px;font-size:8px}.footer-right span:last-child{display:none}.footer-right{gap:10px}#toast{top:30px;font-size:10px;white-space:nowrap}}
+    @media(max-width:380px){.mode{min-width:76px;padding:10px 12px}.view-section{gap:12px!important}.toggle-row{font-size:9px}}
+    .prompt{max-width:230px;pointer-events:auto;user-select:text}.prompt strong{color:var(--accent);font-size:10px;letter-spacing:1.6px;margin-bottom:10px}.prompt blockquote{margin:0;color:#aebcc0;font-size:12px;line-height:1.7}
+    @media(max-width:1000px){.prompt{max-width:190px}.prompt blockquote{font-size:11px}}
+    @media(min-width:701px) and (max-height:720px){.prompt{bottom:45px}.intro .model-meta{display:none}}
+    @media(max-width:700px){.prompt{display:block;left:auto;right:20px;top:27px;bottom:auto;width:40%;max-width:210px}.prompt strong{font-size:9px;letter-spacing:1px;margin-bottom:7px}.prompt blockquote{font-size:10px;line-height:1.55}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <header><div class="brand"><span class="brand-mark" aria-hidden="true">[·]</span> ORBIT <span>/ robot studio</span></div><div class="top-meta"><span class="edition">DESIGN EXPLORATION 001</span><span class="status"><i class="dot"></i><span id="system-status">INITIALIZING</span></span></div></header>
+  <main>
+    <div id="viewport" tabindex="0" role="img" aria-label="Interactive 3D ORBIT robot. Drag to orbit, scroll to zoom, or use arrow keys to rotate. Press plus or minus to zoom."></div>
+    <div class="intro"><p class="eyebrow">YOUR LITTLE EXPLORER</p><h1>ORBIT<span class="number">/ 01</span></h1><p class="subtitle">Built for curiosity.<br>Made to be your companion.</p><div class="small-rule"></div><div class="model-meta">SERIES / EXPLORER<br>PERSONALITY / CURIOUS<br>ASSEMBLY / 100% PROCEDURAL</div></div>
+    <span class="live-label">INTERACTIVE MODEL · REAL-TIME 3D</span>
+    <aside class="annotation prompt" aria-label="Original design prompt"><strong>YOUR PROMPT</strong><blockquote>design a robot for me in purely three.js, hosted in standalone html web page.</blockquote></aside>
+    <aside class="panel" aria-label="Robot customization"><div class="panel-head"><h2>Make it yours</h2><span>01 / CONFIG</span></div>
+      <div><div class="label-line"><label>Shell finish</label><output id="finish-name">Ivory</output></div><div class="swatches" role="group" aria-label="Shell finish"><button class="swatch" style="--swatch:#e4e5cf" data-color="#e4e5cf" data-name="Ivory" aria-label="Ivory shell" aria-pressed="true"></button><button class="swatch" style="--swatch:#a3b69e" data-color="#a3b69e" data-name="Sage" aria-label="Sage shell" aria-pressed="false"></button><button class="swatch" style="--swatch:#dfa172" data-color="#dfa172" data-name="Apricot" aria-label="Apricot shell" aria-pressed="false"></button><button class="swatch dark" style="--swatch:#4b5d6e" data-color="#4b5d6e" data-name="Slate" aria-label="Slate shell" aria-pressed="false"></button></div></div>
+      <div class="section"><div class="label-line"><label for="energy">Face brightness</label><output id="energy-value" for="energy">70%</output></div><input class="range" id="energy" type="range" min="10" max="100" value="70"><div class="range-note"><span>SOFT</span><span>RADIANT</span></div></div>
+      <div class="section view-section"><div class="toggle-row"><span id="rotate-label">Auto-rotate</span><button class="switch" id="rotate" role="switch" aria-labelledby="rotate-label" aria-checked="false"></button></div><div class="toggle-row"><span id="wire-label">Wireframe</span><button class="switch" id="wire" role="switch" aria-labelledby="wire-label" aria-checked="false"></button></div><button class="reset" id="reset" aria-label="Reset view"><span aria-hidden="true">↺</span><span class="reset-label">Reset view</span><span class="mobile-reset hidden">Reset</span></button></div>
+      <div class="panel-foot"><i class="dot"></i> ALL SYSTEMS CURIOUS</div>
+    </aside>
+    <div class="view-tools"><span>DRAG TO ORBIT</span><span class="sep">/</span><span>SCROLL TO ZOOM</span><span class="sep">/</span><span>TOUCH TO EXPLORE</span></div>
+    <nav class="dock" aria-label="Robot animation"><button class="mode" data-mode="idle" aria-pressed="true"><span class="icon" aria-hidden="true">◉</span>Idle</button><button class="mode" data-mode="wave" aria-pressed="false"><span class="icon" aria-hidden="true">✳</span>Wave</button><button class="mode" data-mode="walk" aria-pressed="false"><span class="icon" aria-hidden="true">⇢</span>Walk</button></nav>
+    <div class="loading" id="loading" role="status"><div><span>ASSEMBLING YOUR COMPANION</span><p id="load-message">One little robot. Coming to life.</p></div></div><div id="toast" role="status"></div>
+  </main>
+  <footer><span>ORBIT LAB / 2026</span><div class="footer-right"><span id="motion-label">IDLE SEQUENCE</span><span>BUILT WITH THREE.JS</span></div></footer>
+  <script>
+    window.robotFailed=function(message){document.getElementById('load-message').textContent=message;document.getElementById('loading').classList.remove('hidden');document.getElementById('system-status').textContent='OFFLINE';};
+    window.addEventListener('error',()=>{if(!window.robotReady)window.robotFailed('The 3D scene could not start. Check your connection and make sure WebGL is enabled, then reload.');});
+    window.addEventListener('unhandledrejection',()=>{if(!window.robotReady)window.robotFailed('The 3D library could not load. Check your internet connection, then reload.');});
+    setTimeout(()=>{if(!window.robotReady)window.robotFailed('Still loading the 3D library. Please check your internet connection.');},20000);
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+    import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+    import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+    const view=document.getElementById('viewport');
+    const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setClearColor(0x0b1114);
+    renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+    view.appendChild(renderer.domElement);
+    const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x0b1114,16,32);
+    const camera=new THREE.PerspectiveCamera(35,1,.1,80);
+    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.minDistance=7;controls.maxDistance=17;controls.minPolarAngle=.28;controls.maxPolarAngle=Math.PI/2+.08;controls.autoRotateSpeed=.75;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment();
+    const env=pmrem.fromScene(room,.04);scene.environment=env.texture;room.dispose();pmrem.dispose();
+    scene.add(new THREE.HemisphereLight(0xcfe5eb,0x172122,2));
+    const key=new THREE.DirectionalLight(0xffeed8,4.5);key.position.set(4,9,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-6,right:6,top:9,bottom:-4,near:.5,far:25});key.shadow.normalBias=.03;key.shadow.bias=-.0002;scene.add(key);
+    const rim=new THREE.DirectionalLight(0x6fdfd2,3);rim.position.set(-5,4,-4);scene.add(rim);
+    const fill=new THREE.DirectionalLight(0xcee4ff,1.4);fill.position.set(-5,3,6);scene.add(fill);
+
+    const shell=new THREE.MeshStandardMaterial({color:0xe4e5cf,metalness:.3,roughness:.32});
+    const dark=new THREE.MeshStandardMaterial({color:0x172428,metalness:.6,roughness:.33});
+    const metal=new THREE.MeshStandardMaterial({color:0x687e81,metalness:.82,roughness:.25});
+    const rubber=new THREE.MeshStandardMaterial({color:0x111b1f,roughness:.78});
+    const amber=new THREE.MeshStandardMaterial({color:0xe8a15b,metalness:.4,roughness:.35});
+    const glass=new THREE.MeshPhysicalMaterial({color:0x06171c,metalness:.35,roughness:.16,clearcoat:1,clearcoatRoughness:.12});
+    const glow=new THREE.MeshStandardMaterial({color:0x92ffeb,emissive:0x45e8d4,emissiveIntensity:2,roughness:.35});
+    const dimGlow=new THREE.MeshStandardMaterial({color:0x54c4b5,emissive:0x2f8c7a,emissiveIntensity:.65});
+    const robot=new THREE.Group();robot.position.y=.02;scene.add(robot);
+    const meshes=[];
+    function mesh(parent,geo,mat,x=0,y=0,z=0){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);meshes.push(m);return m;}
+    function box(p,w,h,d,r,mat,x=0,y=0,z=0){return mesh(p,new RoundedBoxGeometry(w,h,d,4,r),mat,x,y,z);}
+    function sphere(p,r,mat,x=0,y=0,z=0){return mesh(p,new THREE.SphereGeometry(r,32,24),mat,x,y,z);}
+    function cyl(p,rt,rb,h,mat,x=0,y=0,z=0){return mesh(p,new THREE.CylinderGeometry(rt,rb,h,48),mat,x,y,z);}
+    function ring(p,r,t,mat,x,y,z){return mesh(p,new THREE.TorusGeometry(r,t,12,64),mat,x,y,z);}
+    function group(p,x=0,y=0,z=0){const g=new THREE.Group();g.position.set(x,y,z);p.add(g);return g;}
+    function bolt(p,x,y,z){const b=cyl(p,.045,.045,.023,metal,x,y,z);b.rotation.x=Math.PI/2;box(p,.043,.008,.012,.002,dark,x,y,z+.016);}
+
+    // A compact torso, with a layered front panel and a small energy core.
+    const body=group(robot,0,2.66,0);
+    box(body,1.85,1.5,1.03,.24,shell);
+    box(body,1.51,.94,.13,.17,dark,0,.05,.525);
+    box(body,1.36,.79,.07,.12,shell,0,.055,.60);
+    ring(body,.23,.044,metal,-.32,.12,.663);
+    const core=cyl(body,.19,.19,.05,glass,-.32,.12,.661);core.rotation.x=Math.PI/2;
+    ring(body,.142,.018,glow,-.32,.12,.695);
+    cyl(body,.07,.07,.02,glow,-.32,.12,.70).rotation.x=Math.PI/2;
+    for(let i=0;i<4;i++)box(body,.28,.027,.025,.012,dark,.35,.23-i*.10,.663);
+    box(body,.13,.035,.032,.01,amber,.41,-.16,.666);
+    for(const x of [-.66,.66])for(const y of [-.28,.38])bolt(body,x,y,.65);
+    box(body,.7,.14,.13,.035,dark,0,-.62,.50);
+    for(let i=0;i<5;i++)box(body,.055,.068,.03,.012,metal,(i-2)*.10,-.62,.577);
+    box(body,1.20,1.13,.40,.15,dark,0,.05,-.68);
+    for(const x of [-.43,.43]){cyl(body,.17,.17,.75,metal,x,.03,-.94);ring(body,.17,.028,amber,x,.05,-.94).rotation.x=Math.PI/2;}
+    box(body,.4,.25,.06,.04,amber,0,.22,-.91);
+    for(let i=0;i<4;i++)box(body,.45,.032,.025,.01,metal,0,-.1-i*.1,-.893);
+
+    // A real joint under the oversized helmet, with facial parts made of geometry.
+    cyl(robot,.22,.25,.31,dark,0,3.51,0);ring(robot,.225,.025,metal,0,3.5,0).rotation.x=Math.PI/2;
+    const head=group(robot,0,4.19,0);
+    box(head,2.04,1.32,1.38,.34,shell);
+    box(head,1.82,.96,.23,.25,dark,0,-.045,.638);
+    box(head,1.63,.77,.13,.20,glass,0,-.05,.76);
+    const eyes=[];
+    for(const x of [-.39,.39]){const e=group(head,x,.01,.845);box(e,.145,.28,.025,.07,glow);eyes.push(e);}
+    const smilePath=new THREE.QuadraticBezierCurve3(new THREE.Vector3(-.17,-.195,.849),new THREE.Vector3(0,-.31,.86),new THREE.Vector3(.17,-.195,.849));
+    mesh(head,new THREE.TubeGeometry(smilePath,24,.018,8,false),glow);
+    for(const x of [-1.03,1.03]){const ear=cyl(head,.24,.24,.17,dark,x,.02,0);ear.rotation.z=Math.PI/2;const cap=cyl(head,.18,.18,.19,metal,x,.02,0);cap.rotation.z=Math.PI/2;const inner=cyl(head,.10,.10,.20,amber,x,.02,0);inner.rotation.z=Math.PI/2;}
+    cyl(head,.042,.042,.35,metal,.64,.8,-.12);sphere(head,.092,amber,.64,.997,-.12);
+    box(head,.34,.022,.32,.011,dark,-.48,.667,-.11);
+    for(let i=0;i<3;i++)box(head,.021,.015,.23,.005,metal,-.55+i*.07,.685,-.11);
+    for(const x of [-.68,.68])bolt(head,x,-.49,.568);
+    box(head,.30,.065,.032,.02,amber,0,-.55,.61);
+    box(head,.5,.44,.028,.04,dark,0,0,-.697);
+    for(let i=0;i<4;i++)box(head,.34,.022,.03,.008,metal,0,.12-i*.08,-.72);
+
+    // Hierarchical pivots keep each arm and leg fully articulated.
+    const arms=[],elbows=[],legs=[],knees=[];
+    for(const side of [-1,1]){
+      sphere(robot,.27,dark,side*1.015,3.04,0);
+      const shoulder=cyl(robot,.23,.23,.25,metal,side*1.05,3.04,0);shoulder.rotation.z=Math.PI/2;
+      const arm=group(robot,side*1.19,3.04,0);arms.push(arm);
+      sphere(arm,.23,shell);box(arm,.40,.64,.46,.15,shell,0,-.38,0);
+      box(arm,.24,.12,.03,.025,amber,0,-.30,.236);
+      sphere(arm,.19,dark,0,-.78,0);
+      const e=group(arm,0,-.78,0);elbows.push(e);
+      const pin=cyl(e,.10,.10,.44,metal);pin.rotation.z=Math.PI/2;
+      box(e,.38,.56,.42,.12,shell,0,-.33,.01);
+      box(e,.23,.24,.025,.035,dark,0,-.32,.227);
+      for(let i=0;i<3;i++)box(e,.14,.018,.025,.005,metal,0,-.25-i*.06,.246);
+      cyl(e,.125,.125,.17,metal,0,-.68,0);
+      const palm=group(e,0,-.82,.01);box(palm,.36,.23,.31,.06,dark);
+      for(let i=0;i<3;i++){box(palm,.078,.24,.12,.035,metal,(i-1)*.105,-.17,.05);box(palm,.078,.075,.12,.025,dark,(i-1)*.105,-.24,.057);}
+      const thumb=box(palm,.105,.22,.12,.04,metal,side*.23,-.02,.09);thumb.rotation.z=side*.5;
+
+      const leg=group(robot,side*.53,1.80,0);legs.push(leg);sphere(leg,.22,dark);
+      box(leg,.54,.60,.60,.15,shell,0,-.33,0);box(leg,.35,.13,.035,.035,dark,0,-.35,.306);
+      sphere(leg,.19,metal,0,-.70,.04);
+      const knee=group(leg,0,-.70,.04);knees.push(knee);box(knee,.46,.18,.12,.04,dark,0,0,.19);
+      box(knee,.55,.54,.59,.12,shell,0,-.34,0);box(knee,.13,.28,.026,.03,amber,side*.13,-.34,.301);
+      cyl(knee,.17,.17,.15,dark,0,-.64,0);
+      box(knee,.74,.30,.99,.11,shell,0,-.78,.16);
+      box(knee,.77,.10,1.02,.035,rubber,0,-.94,.16);
+      box(knee,.43,.057,.03,.016,dimGlow,0,-.79,.661);
+      for(const x of [-.23,.23])bolt(knee,x,-.76,.63);
+    }
+    const hips=group(robot,0,1.86,0);box(hips,1.42,.34,.77,.12,dark);box(hips,.55,.25,.085,.065,metal,0,.02,.40);
+
+    // Studio turntable and inset runway rings.
+    const stageMat=new THREE.MeshStandardMaterial({color:0x19292d,metalness:.45,roughness:.5});
+    const platform=cyl(scene,2.03,2.13,.18,stageMat,0,.02,0);platform.receiveShadow=true;
+    const edge=ring(scene,2.025,.016,dimGlow,0,.10,0);edge.rotation.x=Math.PI/2;
+    const innerRing=ring(scene,1.76,.008,metal,0,.118,0);innerRing.rotation.x=Math.PI/2;
+    for(let i=0;i<48;i++){const a=i*Math.PI/24;const tick=box(scene,.012,.008,i%4===0?.105:.05,.002,metal,Math.sin(a)*1.91,.118,Math.cos(a)*1.91);tick.rotation.y=a;}
+    const floor=new THREE.Mesh(new THREE.PlaneGeometry(100,100),new THREE.MeshStandardMaterial({color:0x0b1418,roughness:.95,metalness:.12}));floor.rotation.x=-Math.PI/2;floor.position.y=-.085;floor.receiveShadow=true;scene.add(floor);
+    const groundRing=new THREE.Mesh(new THREE.RingGeometry(2.7,2.708,128),new THREE.MeshBasicMaterial({color:0x294047,transparent:true,opacity:.5,side:THREE.DoubleSide}));groundRing.rotation.x=-Math.PI/2;groundRing.position.y=-.078;scene.add(groundRing);
+    const particlePositions=new Float32Array(60*3);for(let i=0;i<60;i++){particlePositions[i*3]=(Math.random()-.5)*17;particlePositions[i*3+1]=Math.random()*8;particlePositions[i*3+2]=(Math.random()-.5)*12-4;}
+    const particles=new THREE.BufferGeometry();particles.setAttribute('position',new THREE.BufferAttribute(particlePositions,3));scene.add(new THREE.Points(particles,new THREE.PointsMaterial({color:0x729f9e,size:.012,transparent:true,opacity:.35})));
+
+    let mode='idle',t=0,last=performance.now(),isVisible=true,toastTimer;
+    const damping=THREE.MathUtils.damp;
+    function home(){const mobile=innerWidth<=700;camera.position.set(mobile?7.8:7.2,mobile?5.4:5.1,mobile?13.4:10.5);controls.target.set(0,mobile?1.5:2.55,0);controls.update();}
+    function resize(){renderer.setSize(view.clientWidth,view.clientHeight);camera.aspect=view.clientWidth/view.clientHeight;camera.fov=innerWidth<=700?44:35;camera.updateProjectionMatrix();}
+    resize();home();window.addEventListener('resize',()=>{const wasMobile=camera.fov===44;resize();if(wasMobile!==(innerWidth<=700))home();});
+    function toast(text){const el=document.getElementById('toast');el.textContent=text;el.style.opacity=1;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.style.opacity=0,2200);}
+    document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));document.getElementById('motion-label').textContent=mode.toUpperCase()+' SEQUENCE';if(reduced&&mode!=='idle')toast('Animation enabled for this pose');}));
+    document.querySelectorAll('[data-color]').forEach(button=>button.addEventListener('click',()=>{shell.color.set(button.dataset.color);document.getElementById('finish-name').textContent=button.dataset.name;document.querySelectorAll('[data-color]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}));
+    document.getElementById('energy').addEventListener('input',event=>{glow.emissiveIntensity=Number(event.target.value)/35;document.getElementById('energy-value').value=event.target.value+'%';});
+    document.getElementById('rotate').addEventListener('click',event=>{const b=event.currentTarget;controls.autoRotate=!controls.autoRotate;b.setAttribute('aria-checked',String(controls.autoRotate));});
+    document.getElementById('wire').addEventListener('click',event=>{const b=event.currentTarget,on=b.getAttribute('aria-checked')!=='true';b.setAttribute('aria-checked',String(on));[shell,dark,metal,rubber,amber,glass,glow,dimGlow].forEach(m=>m.wireframe=on);});
+    document.getElementById('reset').addEventListener('click',()=>{controls.autoRotate=false;document.getElementById('rotate').setAttribute('aria-checked','false');home();toast('Back to the best angle');});
+    view.addEventListener('keydown',event=>{const keys=['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-'];if(!keys.includes(event.key))return;event.preventDefault();const offset=camera.position.clone().sub(controls.target),s=new THREE.Spherical().setFromVector3(offset);if(event.key==='ArrowLeft')s.theta-=.12;if(event.key==='ArrowRight')s.theta+=.12;if(event.key==='ArrowUp')s.phi=Math.max(controls.minPolarAngle,s.phi-.10);if(event.key==='ArrowDown')s.phi=Math.min(controls.maxPolarAngle,s.phi+.10);if(event.key==='+'||event.key==='=')s.radius=Math.max(controls.minDistance,s.radius-.5);if(event.key==='-')s.radius=Math.min(controls.maxDistance,s.radius+.5);camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(s));controls.update();});
+    document.addEventListener('visibilitychange',()=>{isVisible=!document.hidden;last=performance.now();});
+    function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.04);last=now;if(!isVisible)return;const moving=!reduced||mode!=='idle';if(moving)t+=dt;const walk=mode==='walk',wave=mode==='wave',cycle=Math.sin(t*4.5),idle=moving?Math.sin(t*1.7):0;
+      robot.position.y=damping(robot.position.y,.02+(walk?Math.abs(cycle)*.065:idle*.006),7,dt);
+      robot.rotation.y=damping(robot.rotation.y,walk?Math.sin(t*4.5)*.035:0,7,dt);
+      body.rotation.z=damping(body.rotation.z,walk?cycle*.035:idle*.012,7,dt);
+      head.rotation.y=damping(head.rotation.y,wave?-.10:Math.sin(t*.65)*.075,5,dt);head.rotation.z=damping(head.rotation.z,wave?-.08:idle*.025,5,dt);
+      for(let i=0;i<2;i++){const sign=i===0?-1:1;arms[i].rotation.x=damping(arms[i].rotation.x,walk?cycle*.46*sign:0,8,dt);arms[i].rotation.z=damping(arms[i].rotation.z,wave&&i===1?2.35+Math.sin(t*7)*.18:sign*(.105+idle*.015),7,dt);elbows[i].rotation.x=damping(elbows[i].rotation.x,wave&&i===1?-.25:-.06,7,dt);legs[i].rotation.x=damping(legs[i].rotation.x,walk?-cycle*.38*sign:0,8,dt);knees[i].rotation.x=damping(knees[i].rotation.x,walk?Math.max(0,cycle*sign)*.35:0,8,dt);}
+      const blink=moving?Math.pow(Math.max(0,Math.sin(t*1.17)),35):0;eyes.forEach(e=>e.scale.y=1-blink*.92);
+      controls.update(dt);renderer.render(scene,camera);
+    }
+    requestAnimationFrame(animate);window.robotReady=true;document.getElementById('loading').classList.add('hidden');document.getElementById('system-status').textContent='ROBOT ONLINE';
+    // A compact read-only diagnostic for verifying the standalone scene.
+    window.orbitRobot={get mode(){return mode;},get meshCount(){return meshes.length;},get shellColor(){return '#'+shell.color.getHexString();},get wireframe(){return shell.wireframe;},get autoRotate(){return controls.autoRotate;},get brightness(){return glow.emissiveIntensity;}};
+  </script>
+</body>
+</html>
