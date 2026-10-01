@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f7">
+  <meta name="description" content="An interactive cycling study. Explore an original Blender cyclist and road bike, brought to life with Three.js.">
+  <title>Cadence — Cycling in Motion</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23131924'/%3E%3Cg fill='none' stroke='%23fd603e' stroke-width='5'%3E%3Ccircle cx='18' cy='39' r='11'/%3E%3Ccircle cx='47' cy='39' r='11'/%3E%3Cpath d='M18 39l12-20 17 20H18l9-14h13'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/"}}</script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Cadence home"><svg viewBox="0 0 38 24" aria-hidden="true"><circle cx="9" cy="15" r="7"/><circle cx="29" cy="15" r="7"/><path d="m9 15 8-12 12 12H9l6-8h9"/></svg>cadence<span class="brand-period">.</span></a>
+    <span class="masthead-note">A STUDY IN MOTION</span>
+    <span class="edition">NO. 01 <span>/</span> THE RIDER</span>
+  </header>
+  <main>
+    <section class="studio" aria-label="Interactive 3D cyclist">
+      <div class="intro"><div class="eyebrow"><span></span> CYCLING STUDIO</div><h1>Cycling,<br>in motion.</h1><p>One rider. One continuous rhythm.</p></div>
+      <div class="backdrop-word" aria-hidden="true">RIDE</div>
+      <div id="stage" role="img" aria-label="Animated cyclist in an orange jersey riding a blue road bicycle. Drag to rotate the view and scroll to zoom."></div>
+      <div id="loading" class="loading" role="status"><span class="spinner"></span><span id="loading-text">Preparing the rider…</span></div>
+      <div id="error" class="error" role="alert" hidden><strong>The studio couldn’t load.</strong><p id="error-text"></p><button id="retry" type="button">Try again</button></div>
+      <div class="model-label"><span class="label-line"></span><div><strong>THE EVERYDAY RIDER</strong><span>Road bicycle / original 3D model</span></div></div>
+      <div class="view-bar" aria-label="Camera views"><button type="button" class="view selected" data-view="perspective" aria-pressed="true">Perspective</button><button type="button" class="view" data-view="side" aria-pressed="false">Side</button><button type="button" class="view" data-view="front" aria-pressed="false">Front</button><button type="button" id="reset" class="reset" aria-label="Reset camera" title="Reset camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1.5 7M4 4v6h6"/></svg></button></div>
+      <div class="orbit-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 10V6a3 3 0 0 1 6 0v4M7 10h10v7a5 5 0 0 1-10 0v-7Z"/><path d="M12 12v3"/></svg> Drag to orbit <span>·</span> Scroll to zoom</div>
+    </section>
+    <section class="controls" aria-label="Animation controls">
+      <button type="button" id="play" class="play" aria-label="Pause cycling" aria-pressed="false"><svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="m8 5 11 7-11 7Z"/></svg><span id="play-label">Pause</span></button>
+      <div class="cadence-control"><div class="control-heading"><label for="cadence">Pedal cadence</label><output id="rpm" for="cadence">80 <span>rpm</span></output></div><input id="cadence" type="range" min="30" max="120" value="80" step="1" aria-label="Pedal cadence in revolutions per minute"><div class="range-labels"><span>Easy spin</span><span>Full tempo</span></div></div>
+      <div class="speed-stat"><span>Riding speed</span><div><output id="speed">32.8</output> <span>km/h</span></div></div>
+      <button type="button" id="orbit" class="orbit" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2"/></svg><span>Auto orbit</span></button>
+    </section>
+    <aside class="prompt-note" aria-labelledby="prompt-heading">
+      <h2 id="prompt-heading">Original prompt</h2>
+      <p>cyclist riding a bicycle, using three.js with 3D model built with Blender, hosted in standalone web page.</p>
+    </aside>
+  </main>
+  <footer><span class="footer-note">BUILT IN BLENDER <span>·</span> POWERED BY THREE.JS</span><div class="asset-links"><a href="./assets/cyclist.blend" download>Blender source <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg></a><a href="./assets/cyclist.glb" download>GLB model</a></div></footer>
+  <script type="module" src="./app.js" id="app-script"></script>
+  <script>document.getElementById('app-script').addEventListener('error',()=>{document.getElementById('loading').hidden=true;document.getElementById('error').hidden=false;document.getElementById('error-text').textContent='The page files could not load. Check your connection and try again.';});document.getElementById('retry').addEventListener('click',()=>location.reload());</script>
+  <noscript><p class="noscript">Enable JavaScript to explore the 3D cycling studio.</p></noscript>
+</body>
+</html>
