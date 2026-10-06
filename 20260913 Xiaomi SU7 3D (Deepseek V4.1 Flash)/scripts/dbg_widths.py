@@ -1,5 +1,5 @@
 import numpy as np, os, json, bpy
-ROOT = r"C:\MyProjects\TempProject (OpenCode)"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REN = os.path.join(ROOT, "renders"); A = os.path.join(ROOT, "analysis")
 meta = json.load(open(os.path.join(REN, "cam_meta.json")))
 for view, mm_scale, gnd_ref in (("front", 3.1413, 491), ("rear", 3.2286, 517)):

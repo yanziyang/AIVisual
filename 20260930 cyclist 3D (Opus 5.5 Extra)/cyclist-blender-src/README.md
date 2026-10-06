@@ -2,9 +2,9 @@
 
 Prompt: "cyclist riding a bicycle, using three.js with 3D model built with Blender, hosted in standalone web page." No source URL was given.
 
-Deliverables (one folder up):
+Deliverables:
 - `Cyclist Blender v1.0.html`: a single self-contained page (about 2.6 MB, works offline).
-- `Cyclist Blender v1.0.blend`: the Blender file with the full IK rig and the three baked loops on NLA tracks.
+- `../_build/Cyclist Blender v1.0.blend`: the Blender file with the full IK rig and the three baked loops on NLA tracks.
 
 ## Pipeline
 

@@ -1,5 +1,5 @@
 import json, os
-p = r"C:\MyProjects\TempProject (OpenCode)\scripts\compare.py"
+p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "compare.py")
 s = open(p, encoding="utf-8").read()
 s = s.replace('cx=262.5, gnd=332.0, sx=4.8348, sy=4.774', 'cx=262.5, gnd=332.0, sx=4.8348, sy=4.869')
 s = s.replace('cx=554.0, gnd=491.0, sx=3.1413, sy=3.383', 'cx=554.0, gnd=491.0, sx=3.1413, sy=3.425')

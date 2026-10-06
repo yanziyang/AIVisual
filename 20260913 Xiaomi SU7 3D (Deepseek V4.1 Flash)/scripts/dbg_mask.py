@@ -1,5 +1,5 @@
 import bpy, numpy as np, os, sys, json
-ROOT = r"C:\MyProjects\TempProject (OpenCode)"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(ROOT, "analysis"); IMG = os.path.join(ROOT, "Xiaomi-su7-images"); REN = os.path.join(ROOT, "renders")
 def load(path):
     img = bpy.data.images.load(path); w,h = img.size

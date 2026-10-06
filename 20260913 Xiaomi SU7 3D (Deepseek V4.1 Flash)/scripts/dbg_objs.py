@@ -1,5 +1,6 @@
-import bpy, numpy as np
-bpy.ops.wm.open_mainfile(filepath=r"C:\MyProjects\TempProject (OpenCode)\su7_build.blend")
+import bpy, numpy as np, os
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+bpy.ops.wm.open_mainfile(filepath=os.path.join(ROOT, "_build", "su7_build.blend"))
 for ob in bpy.data.objects:
     if ob.type == "MESH":
         me = ob.data

@@ -5,7 +5,89 @@
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10292e;color:#edf1e7;font-family:Arial,Helvetica,sans-serif}canvas{display:block;touch-action:none}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #ffd19a;outline-offset:5px}.overlay{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,20,24,.36),transparent 34%,transparent 65%,rgba(4,18,21,.45))}.top{position:absolute;top:35px;left:42px;right:42px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:11px;letter-spacing:3px;font-weight:700;display:flex;align-items:center;gap:11px}.mark{width:18px;height:18px;border:1px solid #f6b47b;transform:rotate(45deg);position:relative}.mark:after{content:'';position:absolute;inset:5px;background:#f6b47b}.tag{font:10px monospace;letter-spacing:2px;opacity:.65}.intro{position:absolute;top:103px;left:42px}.eyebrow{font:10px monospace;letter-spacing:2px;color:#f7ba8b}.intro h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(42px,5.5vw,78px);letter-spacing:-3px;margin:12px 0}.intro p{font-size:12px;color:#b9cbc9;line-height:1.7;max-width:235px;margin:0}.live{position:absolute;right:42px;top:104px;font:10px monospace;letter-spacing:1.5px;display:flex;align-items:center;gap:8px}.dot{width:6px;height:6px;border-radius:50%;background:#ffab68;box-shadow:0 0 14px #ff9c55}.panel{position:absolute;left:42px;bottom:38px;width:285px;pointer-events:auto;background:rgba(9,30,34,.78);border:1px solid #93b8b52b;border-radius:13px;padding:22px;backdrop-filter:blur(18px)}.line{display:flex;justify-content:space-between;align-items:center;gap:12px}.label{font:10px monospace;letter-spacing:1.5px;color:#a3bab7}.value{font:11px monospace;color:#ffc48c}.range{width:100%;accent-color:#f4ae79;margin:16px 0 19px;height:4px;cursor:pointer}.erupt{width:100%;background:#efab79;color:#202d2a;border:0;border-radius:6px;height:44px;font-size:12px;letter-spacing:.3px;font-weight:700;display:flex;align-items:center;justify-content:space-between;padding:0 16px;transition:background .2s}.erupt:hover{background:#ffd0a1}.erupt:disabled{opacity:.65;cursor:default}.stats{display:flex;justify-content:space-between;border-top:1px solid #d4e8db20;margin-top:19px;padding-top:17px}.stats strong{font:20px Georgia,serif;display:block;margin-top:7px}.stats span{font:9px monospace;letter-spacing:1px;color:#91aaa8}.toolbar{position:absolute;bottom:40px;right:42px;pointer-events:auto;display:flex;gap:8px}.small{height:39px;border:1px solid #c4e1d335;border-radius:7px;background:#092128aa;color:#cee0d8;padding:0 14px;font-size:11px;backdrop-filter:blur(10px)}.small:hover{background:#25454b}.hint{position:absolute;bottom:51px;left:50%;transform:translateX(-50%);font:10px monospace;color:#b4cdc7;letter-spacing:.4px;white-space:nowrap}.compass{position:absolute;right:48px;top:160px;width:53px;height:53px;border:1px solid #d6ebe12c;border-radius:50%;display:grid;place-items:center;font:10px monospace;color:#c9dfd2}.compass:after{content:'';position:absolute;height:21px;width:1px;background:#f6b47b;transform:rotate(25deg)}.compass span{position:absolute;top:-15px}.notice{position:absolute;left:50%;top:35px;transform:translateX(-50%);font:10px monospace;letter-spacing:1px;color:#ffe0b1;opacity:0;transition:opacity .4s;background:#172b2cbb;padding:11px 18px;border-radius:20px}.notice.show{opacity:1}#error{display:none;position:absolute;inset:30%;background:#183538;padding:30px;line-height:1.6;z-index:5}
 @media(max-width:700px){.top{top:23px;left:23px;right:23px}.tag{display:none}.intro{top:77px;left:23px}.intro h1{letter-spacing:-2px;margin:8px 0}.intro p{max-width:185px;font-size:11px}.live{right:23px;top:84px;font-size:8px}.compass{display:none}.panel{left:18px;bottom:18px;width:230px;padding:17px}.toolbar{right:18px;bottom:18px;flex-direction:column}.small{height:35px;padding:0 9px}.hint{bottom:259px;font-size:9px}.notice{top:55px;width:max-content;font-size:9px}.stats{margin-top:14px;padding-top:12px}}
 .intro .source-prompt{margin-top:22px;padding-top:15px;border-top:1px solid #c4e1d335;max-width:245px;color:#d2ded5;font-size:11px;line-height:1.65;pointer-events:auto;user-select:text}.source-prompt span{display:block;margin-bottom:7px;font:9px monospace;letter-spacing:2px;color:#f7ba8b}@media(max-width:700px){.intro .source-prompt{margin-top:13px;padding-top:10px;max-width:195px;font-size:10px}}
-</style></head><body>
+</style><script id="ai-visual-webgl-render-mode">
+(function () {
+  'use strict';
+  var badgeId = 'ai-visual-render-mode';
+  var softwareHint = /swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i;
+  var hardwareHint = /nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i;
+  var seenContext = false;
+  var badge;
+
+  function ensureBadge() {
+    if (badge && badge.isConnected) return badge;
+    badge = document.getElementById(badgeId);
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.id = badgeId;
+      badge.setAttribute('role', 'status');
+      badge.setAttribute('aria-live', 'polite');
+      badge.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.18);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)';
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    return badge;
+  }
+
+  function setStatus(text, mode, detail) {
+    var target = ensureBadge();
+    target.dataset.mode = mode;
+    target.textContent = text;
+    target.title = detail || text;
+  }
+
+  function classify(gl, type) {
+    var renderer = '';
+    try {
+      var info = gl.getExtension('WEBGL_debug_renderer_info');
+      if (info) renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL) || '';
+    } catch (_) {}
+    if (!renderer) {
+      setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser did not expose the WebGL renderer identity.');
+    } else if (softwareHint.test(renderer)) {
+      setStatus('CPU only · software WebGL · ' + renderer, 'cpu', 'Software renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    } else if (hardwareHint.test(renderer)) {
+      setStatus('GPU active · ' + type.toUpperCase() + ' · ' + renderer, 'gpu', 'Hardware renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    } else {
+      setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser reported a renderer, but it did not identify a physical GPU: ' + renderer);
+    }
+  }
+
+  function install() {
+    var proto = window.HTMLCanvasElement && HTMLCanvasElement.prototype;
+    if (!proto || !proto.getContext || proto.getContext.__aiVisualModeWrapped) return;
+    var original = proto.getContext;
+    var wrapped = function (type, attributes) {
+      if (typeof type !== 'string' || !/^(webgl2?|experimental-webgl)$/i.test(type)) {
+        return original.apply(this, arguments);
+      }
+      var options = attributes && typeof attributes === 'object' ? Object.assign({}, attributes) : {};
+      if (!options.powerPreference) options.powerPreference = 'high-performance';
+      options.failIfMajorPerformanceCaveat = false;
+      var gl = original.call(this, type, options);
+      if (gl) {
+        seenContext = true;
+        var contextType = type.toLowerCase() === 'webgl2' ? 'WebGL2' : 'WebGL';
+        classify(gl, contextType);
+        this.addEventListener('webglcontextlost', function () {
+          setStatus('WebGL context lost · 3D output unavailable', 'unavailable', 'The active WebGL context was lost.');
+        }, { once: true });
+        this.addEventListener('webglcontextrestored', function () { classify(gl, contextType); });
+      }
+      return gl;
+    };
+    wrapped.__aiVisualModeWrapped = true;
+    try { proto.getContext = wrapped; } catch (_) {}
+  }
+
+  setStatus('checking WebGL renderer…', 'pending', 'Waiting for the page to create its 3D WebGL context.');
+  install();
+  document.addEventListener('DOMContentLoaded', function () {
+    window.setTimeout(function () {
+      if (!seenContext) setStatus('WebGL unavailable · no scene context was created', 'unavailable', 'This 3D page requires WebGL; no WebGL scene context was created.');
+    }, 3000);
+  }, { once: true });
+})();
+</script></head><body>
 <div id="error" role="alert"></div>
 <div class="overlay"><header class="top"><div class="brand"><i class="mark"></i> FIELDNOTES <span style="opacity:.35">/</span> EARTH</div><div class="tag">INTERACTIVE STUDY — 001</div></header>
 <section class="intro"><div class="eyebrow">A SMALL WORLD, ALIVE.</div><h1>Ember Isle</h1><p>Where the ocean meets the fire.<br>Stir the mountain. Watch life move.</p><p class="source-prompt"><span>THE PROMPT</span>Interactive volcanic island with flowing lava and boats that flee. One-shot, three.js, single html file, no external assets.</p></section>

@@ -1,7 +1,9 @@
 import math
+import os
 
-SPANS = r"C:\MyProjects\TempProject\eiffel\out\spans.tsv"
-REF_SIL = r"C:\MyProjects\TempProject\eiffel\refs\silhouette.tsv"
+PROJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SPANS = os.path.join(PROJ, "out", "spans.tsv")
+REF_SIL = os.path.join(PROJ, "refs", "silhouette.tsv")
 
 F = 3184.57
 D = 324.24

@@ -10,7 +10,7 @@ rows=[];pos=0
 for i,t in enumerate(timeline):
  idx=t['id'];rows.append(f'<tr><td>{i+1:02}</td><td>{pos:.1f}–{pos+t["seconds"]:.1f} 秒</td><td>{esc(scenes[idx][3])}</td><td>{esc(scenes[idx][2])}</td></tr>');pos+=t['seconds']
 prompt='解读梁思成先生的《图像中国建筑史》其中一页(图像中国建筑史.jpg),再以生动的视频形式展示出来. 添加合适的音乐，请务必做到引人入胜，如果需要用到旁白或对话，用TTS合成，字幕用中英双语.'
-preview=data(OUT/'3d_final_preview_00.jpg','image/jpeg');original=data(ROOT/'pictorial_history_of_chinese_architecture.jpg','image/jpeg')
+preview=data(OUT/'3d_final_preview_00.jpg','image/jpeg');original=data(ROOT/'_build'/'pictorial_history_of_chinese_architecture.jpg','image/jpeg')
 figures=''.join(f'<figure><img loading="lazy" src="{data(OUT/f"3d_final_preview_{n:02}.jpg","image/jpeg")}" alt="{esc(label)}"><figcaption>{esc(label)}</figcaption></figure>' for n,label in [(1,'三维分解：观察构件层次'),(3,'栌斗：柱头上的承接节点'),(5,'昂：观察斜向构件的空间位置')])
 codes=''.join(f'<details><summary>{esc(label)} · 展开源码</summary><pre><code>{esc((ROOT/'scripts'/name).read_text(encoding="utf-8"))}</code></pre></details>' for name,label in [('build_3d_scene.py','三维建模与动画'),('render_3d_animation.py','渲染与镜头修正'),('finish_3d_video.py','插帧、混音与完整双语字幕')])
 doc=f'''<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一页看懂斗拱｜三维视频制作报告</title><style>

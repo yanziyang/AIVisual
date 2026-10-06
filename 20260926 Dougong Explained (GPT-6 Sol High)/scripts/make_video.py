@@ -50,7 +50,7 @@ mix=voice*.88+music*fade*duck
 stereo=np.stack([mix,mix*.98],axis=1)
 with wave.open(str(OUT/'mix.wav'),'wb') as w:w.setnchannels(2);w.setsampwidth(2);w.setframerate(sr);w.writeframes((np.clip(stereo,-1,1)*32767).astype(np.int16).tobytes())
 W,H=1280,720;FPS=24
-src=Image.open(ROOT/'pictorial_history_of_chinese_architecture.jpg').convert('RGB')
+src=Image.open(ROOT/'_build'/'pictorial_history_of_chinese_architecture.jpg').convert('RGB')
 fontpath='C:/Windows/Fonts/msyh.ttc';bold='C:/Windows/Fonts/msyhbd.ttc'
 @lru_cache(maxsize=32)
 def font(size,b=False):return ImageFont.truetype(bold if b else fontpath,size)

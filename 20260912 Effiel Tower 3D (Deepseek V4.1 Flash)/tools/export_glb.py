@@ -8,8 +8,9 @@ import bpy
 import sys
 import os
 
-PROJ = r"C:\MyProjects\TempProject\eiffel"
-sys.path.insert(0, PROJ)
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+PROJ = os.path.dirname(TOOLS)
+sys.path.insert(0, TOOLS)
 
 import build_eiffel as be
 

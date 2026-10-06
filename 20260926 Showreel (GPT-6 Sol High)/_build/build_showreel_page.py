@@ -1,10 +1,11 @@
 from pathlib import Path
 import base64, html
 
-root = Path(__file__).resolve().parent
+build_dir = Path(__file__).resolve().parent
+root = build_dir.parent
 video = base64.b64encode((root / 'FORM_FLOW_Showreel.mp4').read_bytes()).decode('ascii')
 poster = base64.b64encode((root / 'FORM_FLOW/poster.jpg').read_bytes()).decode('ascii')
-source = html.escape((root / 'render_showreel.py').read_text(encoding='utf-8'))
+source = html.escape((build_dir / 'render_showreel.py').read_text(encoding='utf-8'))
 page = r'''<!doctype html>
 <html lang="en">
 <head>

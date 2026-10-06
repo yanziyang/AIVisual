@@ -2,7 +2,7 @@
 Procedural Eiffel Tower for Blender 3.6 LTS (headless).
 
 Usage:
-  blender -b --factory-startup --python build_eiffel.py -- --mode workbench --cam classic --out out/classic.png
+  blender -b --factory-startup --python tools/build_eiffel.py -- --mode workbench --cam classic --out out/classic.png
 
 Modes: none | workbench | cycles
 Cams:  classic | hero | top | leg | mid
@@ -34,7 +34,7 @@ def parse_args():
 
 
 ARGS = parse_args()
-PROJ = r"C:\MyProjects\TempProject\eiffel"
+PROJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ----------------------------------------------------------------------------
 # Profiles (meters, axis center)

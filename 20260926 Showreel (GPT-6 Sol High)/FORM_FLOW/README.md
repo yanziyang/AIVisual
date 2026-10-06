@@ -7,6 +7,6 @@ A 15-second motion design showreel made for this request.
 - Eight scenes: impulse, kinetic typography, flowing ribbons, dimensional sculpture, elastic shapes, visual systems, typographic crescendo, closing identity
 - Palette: ink, warm white, electric lime, periwinkle, coral
 
-The source is `../render_showreel.py`. All animation and music are generated procedurally; no stock video or music was used.
+The source is `../_build/render_showreel.py`. All animation and music are generated procedurally; no stock video or music was used.
 
 To rerender, run the source with Python and the Pillow, NumPy, and imageio-ffmpeg packages. The typography uses Windows Arial Black and Consolas.

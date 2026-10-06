@@ -14,7 +14,63 @@
 .notes-trigger{pointer-events:auto;display:inline-block;margin-top:12px;padding:0 0 3px;border:0;border-bottom:1px solid #bbbeb0;background:none;font:9px 'DM Mono',monospace;text-transform:uppercase;color:#656c5c}.notes-trigger:hover{color:var(--accent);border-color:var(--accent)}#notes{width:min(800px,calc(100vw - 32px));max-height:calc(100dvh - 48px);padding:0;border:1px solid #ced1c2;border-radius:4px;background:#f4f4ed;color:var(--ink);box-shadow:0 18px 90px #32352e30}#notes::backdrop{background:#eeede799;backdrop-filter:blur(5px)}.notes-header{display:flex;align-items:center;justify-content:space-between;padding:22px 28px 16px;gap:16px}.notes-header h2{margin:0;font:30px 'Libre Caslon Display',Georgia,serif}.notes-close{display:grid;place-items:center;width:32px;height:32px;border:0;background:none;flex-shrink:0}.notes-close svg{width:20px;height:20px;stroke-width:1.5}.notes-close:hover{color:var(--accent)}.notes-tabs{display:flex;border-bottom:1px solid #d4d7c8;padding:0 28px;gap:24px}.notes-tab{border:0;border-bottom:2px solid transparent;background:none;padding:12px 0;font:10px 'DM Mono',monospace;text-transform:uppercase}.notes-tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}.notes-pane{padding:24px 28px 32px;font-size:13px;line-height:1.75;overflow-wrap:anywhere}.notes-pane[hidden]{display:none}.notes-pane h3{font:19px 'Libre Caslon Display',Georgia,serif;margin:22px 0 7px}.notes-pane h3:first-child{margin-top:0}.notes-pane p{margin:0 0 14px}.notes-pane a{color:var(--accent);text-underline-offset:3px}.original-prompt{margin:0;font:inherit;white-space:pre-wrap;overflow-wrap:anywhere}.notes-pane code{font:11px 'DM Mono',monospace}.equation{display:block;overflow:auto;white-space:nowrap;padding:14px 0;color:#59624f}.code-source{font:10px/1.7 'DM Mono',monospace;white-space:pre;overflow:auto;max-height:420px;margin:14px 0 0;padding:15px;border:1px solid #d4d7c8;background:#eaece2}.source-detail{margin-top:24px}.source-detail summary{cursor:pointer;font:10px 'DM Mono',monospace;text-transform:uppercase;padding:12px 0}.source-download{display:inline-block;font:10px 'DM Mono',monospace;margin:5px 0 10px;text-transform:uppercase}@media(max-width:700px){.notes-trigger{margin-top:9px;font-size:8px}.notes-header{padding:18px 20px 10px}.notes-header h2{font-size:27px}.notes-tabs{padding:0 20px;gap:20px}.notes-tab{font-size:9px}.notes-pane{padding:20px;font-size:12px}}@media(max-height:540px){.notes-trigger{margin-top:6px;font-size:8px}#notes{max-height:calc(100dvh - 24px)}}
 #notes[open]{display:flex;flex-direction:column;overflow:hidden}.notes-header,.notes-tabs{flex-shrink:0}.notes-pane{overflow:auto;min-height:0}
 </style>
-</head>
+<script id="ai-visual-webgl-render-mode">
+(function () {
+  'use strict';
+  var badgeId = 'ai-visual-render-mode';
+  var softwareHint = /swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i;
+  var hardwareHint = /nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i;
+  var seenContext = false;
+  var badge;
+  function ensureBadge() {
+    if (badge && badge.isConnected) return badge;
+    badge = document.getElementById(badgeId);
+    if (!badge) {
+      badge = document.createElement('div'); badge.id = badgeId;
+      badge.setAttribute('role', 'status'); badge.setAttribute('aria-live', 'polite');
+      badge.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.18);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)';
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    return badge;
+  }
+  function setStatus(text, mode, detail) {
+    var target = ensureBadge(); target.dataset.mode = mode; target.textContent = text; target.title = detail || text;
+  }
+  function classify(gl, type) {
+    var renderer = '';
+    try { var info = gl.getExtension('WEBGL_debug_renderer_info'); if (info) renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL) || ''; } catch (_) {}
+    if (!renderer) setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser did not expose the WebGL renderer identity.');
+    else if (softwareHint.test(renderer)) setStatus('CPU only · software WebGL · ' + renderer, 'cpu', 'Software renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else if (hardwareHint.test(renderer)) setStatus('GPU active · ' + type.toUpperCase() + ' · ' + renderer, 'gpu', 'Hardware renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser reported a renderer, but it did not identify a physical GPU: ' + renderer);
+  }
+  function install() {
+    var proto = window.HTMLCanvasElement && HTMLCanvasElement.prototype;
+    if (!proto || !proto.getContext || proto.getContext.__aiVisualModeWrapped) return;
+    var original = proto.getContext;
+    var wrapped = function (type, attributes) {
+      if (typeof type !== 'string' || !/^(webgl2?|experimental-webgl)$/i.test(type)) return original.apply(this, arguments);
+      var options = attributes && typeof attributes === 'object' ? Object.assign({}, attributes) : {};
+      if (!options.powerPreference) options.powerPreference = 'high-performance';
+      options.failIfMajorPerformanceCaveat = false;
+      var gl = original.call(this, type, options);
+      if (gl) {
+        seenContext = true; var contextType = type.toLowerCase() === 'webgl2' ? 'WebGL2' : 'WebGL'; classify(gl, contextType);
+        this.addEventListener('webglcontextlost', function () { setStatus('WebGL context lost · 3D output unavailable', 'unavailable', 'The active WebGL context was lost.'); }, { once: true });
+        this.addEventListener('webglcontextrestored', function () { classify(gl, contextType); });
+      }
+      return gl;
+    };
+    wrapped.__aiVisualModeWrapped = true;
+    try { proto.getContext = wrapped; } catch (_) {}
+  }
+  setStatus('checking WebGL renderer…', 'pending', 'Waiting for the page to create its 3D WebGL context.');
+  install();
+  document.addEventListener('DOMContentLoaded', function () {
+    window.setTimeout(function () { if (!seenContext) setStatus('WebGL unavailable · no scene context was created', 'unavailable', 'This 3D page requires WebGL; no WebGL scene context was created.'); }, 3000);
+  }, { once: true });
+})();
+</script></head>
 <body>
 <div id="stage" aria-label="Interactive balloon, floor pump and pressure gauge"></div>
 <header class="masthead"><div class="eyebrow">An experiment in restraint</div><h1>The Balloon Test</h1><p class="subtitle">How much air can it take?</p><button class="notes-trigger" id="open-notes" aria-haspopup="dialog" aria-controls="notes">Prompt &amp; Notes</button></header>

@@ -58,7 +58,7 @@
 <details class="documentation-block" id="implementation-details" open>
 <summary>Implementation details <span>How the specimen works</span></summary>
 <dl class="implementation-details">
-<dt>Browser &amp; rendering</dt><dd>One standalone file contains both renderers. Automatic mode prefers genuine WebGPU with inline WGSL shaders and falls back to CPU software 3D when the API, adapter, shader initialization, or graphics device is unavailable. The Rendering selector also lets you choose either mode. Renderer changes preserve the simulation. No WebGL, external libraries, models, image assets, or server are required.</dd>
+<dt>Browser &amp; rendering</dt><dd>One standalone file contains both renderers. Automatic mode uses WebGPU only when adapter details identify a hardware GPU; known software adapters and hidden adapter identity use the CPU software 3D renderer. The Rendering selector also lets you choose CPU or explicitly try an unidentified WebGPU adapter, which remains labeled unknown. Renderer changes preserve the simulation. No WebGL, external libraries, models, image assets, or server are required.</dd>
 <dt>Volumetric soft body</dt><dd>The XPBD (Extended Position-Based Dynamics) simulation uses 384 nodes and 1,152 tetrahedra. Fixed 1/120-second steps run six iterations of elastic edges, bending connections, and signed tetrahedral volume constraints. A final volume barrier resists locally inverted cells. Gravity, ground contact, friction, air drag, and internal damping create impact squashing and a softly settling wobble.</dd>
 <dt>Separate visual surface</dt><dd>A smoother 5,184-vertex annular surface has broad cut faces, rounded corners, a slightly scalloped outer edge, and a real central opening. Cubic angular and linear radial/depth interpolation transfer displacement from the coarser simulation mesh. Surface normals are recalculated after deformation, and the mesh toggle draws the simulation connections.</dd>
 <dt>Flesh &amp; inclusions</dt><dd>Procedural radial fibers and cut-face patterns use interpolated rest-space coordinates, so they follow the deforming flesh on both sides. Another 330 embedded 3D ellipsoids form pale radial juice cells and small air bubbles. WebGPU skins and draws their complete meshes. CPU mode skins six axis endpoints to determine each ellipsoid’s projected shape and depth-tests its pixels inside the jelly.</dd>
@@ -290,7 +290,13 @@ function render(){if(cameraDirty)prepareCamera();updateSkin();rasterizeSurface()
 context=canvas.getContext("2d",{alpha:false});if(!context)throw new Error("Canvas 2D is unavailable in this browser.");resize();updateTint();
 return{name:"CPU",render(){if(lastTint!==tint)updateTint();render()},resize,tune(cost){averageFrame=mix(averageFrame,cost,.08);samples++;const now=performance.now();if(!paused&&now-lastAdapt>2200&&samples>20){lastAdapt=now;samples=0;const old=pixelBudget;if(averageFrame>34)pixelBudget=Math.max(100000,Math.round(pixelBudget*.83));else if(averageFrame<19)pixelBudget=Math.min(290000,Math.round(pixelBudget*1.08));if(pixelBudget!==old)resize()}},dispose(){},get resolution(){return{width,height}}};
 }
-async function createGpuRenderer(){
+function classifyGpuAdapter(adapter){
+const info=adapter?.info||{},name=[info.vendor,info.architecture,info.device,info.description].filter(Boolean).join(' ').trim();
+if(info.isFallbackAdapter===true||/swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i.test(name))return{kind:'software',name};
+if(/nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i.test(name))return{kind:'hardware',name};
+return{kind:'unknown',name};
+}
+async function createGpuRenderer(allowUnknown){
 let device,context,format,width=0,height=0,backgroundTexture,backTexture,backDepth,mainDepth,mainColor,bgBind,skinBind;
 const common=`
 struct Uniforms { vp: mat4x4f, inv: mat4x4f, eye: vec4f, absorption: vec4f, screen: vec4f, params: vec4f };
@@ -370,7 +376,7 @@ const meshWGSL=common+`
 `;
 try{
 if(!navigator.gpu)throw new Error('WebGPU is unavailable in this browser.');
-const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'}) || await navigator.gpu.requestAdapter({forceFallbackAdapter:true});if(!adapter)throw new Error('No WebGPU adapter is available.');device=await adapter.requestDevice();device.addEventListener('uncapturederror',e=>{gpuErrors.push(e.error.message);if(backend?.name==='WebGPU'&&!switching)switchRenderer('cpu','The graphics driver interrupted WebGPU.');});device.lost.then(info=>{if(info.reason!=='destroyed'&&backend?.name==='WebGPU'&&!switching)switchRenderer('cpu','The graphics device disconnected.');});
+const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'}) || await navigator.gpu.requestAdapter({forceFallbackAdapter:true});if(!adapter)throw new Error('No WebGPU adapter is available.');const adapterStatus=classifyGpuAdapter(adapter);if(adapterStatus.kind==='software')throw new Error('Only a software WebGPU adapter ('+(adapterStatus.name||'CPU')+') is available; switching to the Canvas 2D CPU renderer.');if(adapterStatus.kind==='unknown'&&!allowUnknown)throw new Error('WebGPU adapter identity is hidden; Automatic uses the CPU renderer rather than claiming GPU acceleration.');device=await adapter.requestDevice();device.addEventListener('uncapturederror',e=>{gpuErrors.push(e.error.message);if(backend?.name==='WebGPU'&&!switching)switchRenderer('cpu','The graphics driver interrupted WebGPU.');});device.lost.then(info=>{if(info.reason!=='destroyed'&&backend?.name==='WebGPU'&&!switching)switchRenderer('cpu','The graphics device disconnected.');});
 context=canvas.getContext('webgpu');format=navigator.gpu.getPreferredCanvasFormat();context.configure({device,format,alphaMode:'opaque'});
 const buffer=(data,usage)=>{const b=device.createBuffer({size:Math.ceil(data.byteLength/4)*4,usage:usage|GPUBufferUsage.COPY_DST});device.queue.writeBuffer(b,0,data);return b};
 const uniform=device.createBuffer({size:192,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
@@ -409,7 +415,7 @@ pass=encoder.beginRenderPass({colorAttachments:[{view:backTexture.createView(),c
 pass=encoder.beginRenderPass({colorAttachments:[{view:mainColor.createView(),resolveTarget:context.getCurrentTexture().createView(),clearValue:{r:.97,g:.95,b:.92,a:1},loadOp:'clear',storeOp:'store'}],depthStencilAttachment:{view:mainDepth.createView(),depthClearValue:1,depthLoadOp:'clear',depthStoreOp:'store'}});pass.setPipeline(blitPipeline);pass.setBindGroup(0,blitBind);pass.draw(3);pass.setPipeline(mainPipeline);pass.setBindGroup(0,skinBind);pass.setVertexBuffer(0,surfaceBuffer);pass.setIndexBuffer(surfaceIndex,'uint32');pass.drawIndexed(indices.length);if(showMesh){pass.setPipeline(wirePipeline);pass.setBindGroup(0,wireBind);pass.setVertexBuffer(0,meshBuffer);pass.setIndexBuffer(meshIndex,'uint32');pass.drawIndexed(edges.length*2)}pass.end();device.queue.submit([encoder.finish()]);
 cameraDirty=false;
 }
-return{name:"WebGPU",render,resize,dispose(){for(const tex of[backgroundTexture,backTexture,backDepth,mainDepth,mainColor])tex?.destroy();context?.unconfigure();device?.destroy()},get resolution(){return{width,height}}};
+return{name:"WebGPU",adapterKind:adapterStatus.kind,adapterName:adapterStatus.name,render,resize,dispose(){for(const tex of[backgroundTexture,backTexture,backDepth,mainDepth,mainColor])tex?.destroy();context?.unconfigure();device?.destroy()},get resolution(){return{width,height}}};
 }catch(error){device?.destroy();throw error}
 }
 
@@ -421,9 +427,9 @@ function fail(message){ready=false;$('loading').hidden=true;$('fallback').style.
 async function switchRenderer(choice,reason=''){
 if(switching)return;switching=true;ready=false;rendererChoice=choice;$('renderer-mode').disabled=true;$('loading').hidden=false;$('loading').style.opacity='1';$('fallback').style.display='none';backend?.dispose();backend=null;freshCanvas();fallbackReason=reason;
 try{
-if(choice!=='cpu'&&navigator.gpu){try{backend=await createGpuRenderer()}catch(error){rendererErrors.push(error.message);fallbackReason='WebGPU is unavailable on this device.';freshCanvas();backend=await createCpuRenderer()}}
+if(choice!=='cpu'&&navigator.gpu){try{backend=await createGpuRenderer(choice==='webgpu')}catch(error){rendererErrors.push(error.message);fallbackReason=error.message||'WebGPU is unavailable on this device.';freshCanvas();backend=await createCpuRenderer()}}
 else{if(choice!=='cpu')fallbackReason='WebGPU is unavailable on this device.';backend=await createCpuRenderer()}
-ready=true;cameraDirty=true;$('loading').hidden=true;$('renderer-note').textContent=backend.name==='WebGPU'?'WebGPU is active. GPU lighting and refraction.':fallbackReason?'CPU is active. '+fallbackReason:'CPU is active. No GPU required.';document.documentElement.dataset.renderer=backend.name;readouts();
+ready=true;cameraDirty=true;$('loading').hidden=true;if(backend.name==='WebGPU')$('renderer-note').textContent=backend.adapterKind==='hardware'?'GPU active · WebGPU · '+backend.adapterName+'. GPU lighting and refraction.':backend.adapterKind==='software'?'CPU only · software WebGPU · '+(backend.adapterName||'software adapter'):'renderer unknown · WebGPU active; the browser hides adapter identity.';else $('renderer-note').textContent=fallbackReason?'CPU only · '+fallbackReason:'CPU only · Canvas 2D software renderer.';document.documentElement.dataset.renderer=backend.name;readouts();
 }catch(error){rendererErrors.push(error.message);fail('Unable to render the jelly. '+error.message)}finally{switching=false;$('renderer-mode').disabled=false}
 }
 $('renderer-mode').onchange=()=>switchRenderer($('renderer-mode').value);

@@ -59,6 +59,22 @@
     badge.textContent = text;
   }
 
+  function classifyRenderer(gl) {
+    var renderer = '';
+    try {
+      var debugInfo = gl && gl.getExtension('WEBGL_debug_renderer_info');
+      if (debugInfo) renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || '';
+    } catch (_) {}
+    if (!renderer) return { kind: 'unknown', renderer: '' };
+    if (/swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i.test(renderer)) {
+      return { kind: 'software', renderer: renderer };
+    }
+    if (/nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i.test(renderer)) {
+      return { kind: 'hardware', renderer: renderer };
+    }
+    return { kind: 'unknown', renderer: renderer };
+  }
+
   function detectHardwareWebGL2() {
     var probe = document.createElement('canvas');
     var gl;
@@ -68,28 +84,20 @@
         antialias: false,
         depth: false,
         stencil: false,
-        failIfMajorPerformanceCaveat: true,
-        powerPreference: 'high-performance'
+        powerPreference: 'high-performance',
+        failIfMajorPerformanceCaveat: false
       });
     } catch (_) {
-      return false;
+      return { kind: 'unavailable', renderer: '' };
     }
-    if (!gl) return false;
-
-    var renderer = '';
-    try {
-      var debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-      if (debugInfo) renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || '';
-    } catch (_) {}
-
-    var isSoftware = hardwareHint.test(renderer);
+    if (!gl) return { kind: 'unavailable', renderer: '' };
+    var result = classifyRenderer(gl);
     try {
       var loseContext = gl.getExtension('WEBGL_lose_context');
       if (loseContext) loseContext.loseContext();
     } catch (_) {}
-    return !isSoftware;
+    return result;
   }
-
   function makeProgram(gl) {
     var vertexSource = '#version 300 es\n' +
       'in vec2 a_position;\n' +
@@ -156,6 +164,10 @@
       });
     } catch (_) {}
     if (!gl) {
+      overlay.remove();
+      return null;
+    }
+    if (classifyRenderer(gl).kind !== 'hardware') {
       overlay.remove();
       return null;
     }
@@ -274,7 +286,7 @@
       if (state.overlay) state.overlay.remove();
     });
     states = [];
-    setStatus('CPU Canvas 2D mode', 'cpu');
+    setStatus('CPU only · Canvas2D scene', 'cpu');
   }
 
   function frame() {
@@ -301,22 +313,29 @@
       try { return !!canvas.getContext('2d'); } catch (_) { return false; }
     });
     if (!sources.length) {
-      setStatus('CPU rendering mode', 'cpu');
+      setStatus('CPU only · Canvas2D scene', 'cpu');
       return;
     }
 
-    if (!detectHardwareWebGL2()) {
-      setStatus('CPU Canvas 2D mode · GPU WebGL2 unavailable', 'cpu');
+    var detection = detectHardwareWebGL2();
+    if (detection.kind !== 'hardware') {
+      if (detection.kind === 'software') {
+        setStatus('CPU only · Canvas2D scene · software WebGL (' + detection.renderer + ')', 'cpu');
+      } else if (detection.kind === 'unknown') {
+        setStatus('CPU only · Canvas2D scene · WebGL renderer identity unknown', 'cpu');
+      } else {
+        setStatus('CPU only · Canvas2D scene · WebGL2 unavailable', 'cpu');
+      }
       return;
     }
 
     states = sources.map(makePresenter).filter(Boolean);
     if (!states.length) {
-      setStatus('CPU Canvas 2D mode · GPU compositor unavailable', 'cpu');
+      setStatus('CPU only · Canvas2D scene · GPU compositor unavailable', 'cpu');
       return;
     }
     active = true;
-    setStatus('GPU WebGL2 compositor · Canvas 2D scene rendering', 'gpu');
+    setStatus('GPU active · Canvas2D scene (CPU) + WebGL2 compositor', 'gpu');
     animationFrame = window.requestAnimationFrame(frame);
   }
 

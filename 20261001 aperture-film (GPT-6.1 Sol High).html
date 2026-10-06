@@ -7,7 +7,63 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23212d2b'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23d9a477' stroke-width='2'/%3E%3Cpath d='M16 10l5 3v6l-5 3-5-3v-6z' fill='%23d9a477'/%3E%3C/svg%3E">
 <style>
 :root{--paper:#f4f5f0;--ink:#21312d;--muted:#65716a;--line:#d8ded5;--accent:#ad623c;--dark:#182521}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}button,input,a{touch-action:manipulation}button{font:inherit;color:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #ad623c;outline-offset:5px}header,main,footer{max-width:1440px;margin:auto;padding-left:5%;padding-right:5%}header{height:96px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:20px;letter-spacing:3px;font-weight:700}.brand svg{width:31px;height:31px}.edition{font:12px monospace;letter-spacing:1.5px;color:var(--muted)}.toplink{text-decoration:none;color:var(--ink);font-size:14px;border-bottom:1px solid var(--ink);padding-bottom:4px}.intro{padding:39px 0 28px;display:flex;align-items:end;justify-content:space-between;gap:30px}.eyebrow{font:12px monospace;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase}.intro h1{font:normal clamp(30px,3.4vw,49px)/1.05 Georgia,serif;letter-spacing:-1.7px;margin:12px 0 0}.intro p{color:var(--muted);line-height:1.65;font-size:15px;max-width:305px;margin:0 0 2px}.watch-grid{display:grid;grid-template-columns:minmax(0,1fr) 282px;gap:25px}.player{background:#101b17;overflow:hidden;border-radius:4px;color:#e9eee7;position:relative}.film{width:100%;aspect-ratio:16/9;display:block}.controls{display:flex;align-items:center;gap:14px;padding:15px 21px;border-top:1px solid #35403a}.iconbtn{background:transparent;border:0;color:#e9eee7;padding:4px;width:29px;height:30px;font-size:18px;display:grid;place-items:center}.play{width:34px}.time{font:12px monospace;white-space:nowrap;color:#cbd1cb}.seek{min-width:30px;flex:1;accent-color:#d5aa83;height:3px;cursor:pointer}.toggle{background:transparent;border:1px solid #45514b;color:#cbd1cb;font:12px monospace;padding:7px;border-radius:3px}.toggle[aria-pressed=true]{color:#edbc8f;border-color:#ad8668}.scene-panel{display:flex;flex-direction:column;padding:24px 0 0 7px}.scene-panel .eyebrow{color:var(--muted)}.scene-panel h2{font:normal 30px/1.1 Georgia,serif;letter-spacing:-.6px;margin:21px 0 13px}.scene-panel p{font-size:15px;line-height:1.65;color:var(--muted);margin:0}.divider{height:1px;background:var(--line);margin:25px 0}.setting-label{display:flex;justify-content:space-between;font:12px monospace;letter-spacing:1px}.setting-label output{color:var(--accent);font-weight:700}.aperture-slider{width:100%;margin:23px 0 13px;accent-color:var(--accent);cursor:pointer}.stops{display:flex;justify-content:space-between;font:12px monospace;color:var(--muted)}.hint{font-size:12px!important;margin-top:17px!important}.readout{display:flex;align-items:center;gap:13px;margin-top:22px}.readout strong{font:normal 34px Georgia,serif;color:var(--ink)}.readout span{font-size:12px;line-height:1.4;color:var(--muted);max-width:105px}.export{margin-top:auto;padding-top:26px}.export button{width:100%;background:var(--ink);color:#f4f5f0;border:0;border-radius:3px;padding:12px 8px;font-size:14px}.export small{display:block;margin-top:9px;color:var(--muted);font-size:12px;line-height:1.4}.chapters{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:25px 0 35px;border-bottom:1px solid var(--line)}.chapter{position:relative;text-align:left;border:0;background:transparent;padding:20px 14px 22px 0;border-top:2px solid var(--line)}.chapter.active{border-color:var(--accent)}.chapter .num{display:block;font:12px monospace;color:var(--muted);margin-bottom:11px}.chapter strong{font-size:14px;font-weight:500;display:block}.chapter .duration{font:12px monospace;color:var(--muted);margin-top:7px;display:block}.chapter.active .num{color:var(--accent)}.bottom{display:flex;justify-content:space-between;align-items:start;gap:40px;padding-bottom:33px}.bottom-title{font:normal 22px Georgia,serif;margin:0 0 7px}.bottom p{font-size:14px;color:var(--muted);line-height:1.6;margin:0;max-width:550px}.bottom a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:4px}.source-links{display:flex;gap:22px;white-space:nowrap;font-size:13px;margin-top:5px}footer{border-top:1px solid var(--line);padding-top:20px;padding-bottom:25px;display:flex;justify-content:space-between;font:12px monospace;color:var(--muted)}.status{font-size:12px;min-height:16px;margin-top:8px;color:var(--accent)}.error{position:absolute;inset:0 0 60px;background:#182521;padding:40px;display:none;align-items:center;justify-content:center;text-align:center;line-height:1.7}.player:fullscreen{display:flex;flex-direction:column;justify-content:center;background:#0d1613}.player:fullscreen .film{max-height:calc(100vh - 60px);object-fit:contain}.player:fullscreen .controls{width:100%}@media(min-width:1500px){main{padding-top:12px}}@media(max-width:1050px){.watch-grid{grid-template-columns:minmax(0,1fr) 240px;gap:20px}.controls{padding:12px 14px;gap:9px}.scene-panel h2{font-size:27px}.intro h1{font-size:38px}.export{padding-top:20px}.divider{margin:18px 0}.readout{margin-top:15px}}@media(max-width:780px){header{height:75px}.edition{display:none}.intro{padding-top:27px;align-items:start}.intro h1{font-size:34px}.intro p{display:none}.watch-grid{grid-template-columns:1fr}.scene-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;padding:9px 0}.scene-copy{grid-column:1}.scene-panel h2{margin-top:10px}.experiment{grid-column:2;grid-row:1}.divider{display:none}.export{grid-column:1/-1;max-width:340px;padding-top:18px}.readout{margin-top:14px}.chapters{margin-top:24px;gap:10px;overflow:auto}.chapter{min-width:118px}.bottom{display:block}.source-links{margin-top:20px}.controls{gap:9px}.bottom p{font-size:13px}.hint{font-size:12px}.scene-panel p{font-size:14px}}@media(max-width:420px){.controls{padding:10px;gap:7px}.time{font-size:11px}.toggle{font-size:11px;padding:6px}.iconbtn{width:24px}.scene-panel{gap:18px}.intro h1{font-size:31px}header,main,footer{padding-left:5%;padding-right:5%}.brand{font-size:17px}.scene-panel h2{font-size:25px}footer{font-size:11px;gap:20px}}
-.prompt-brief{border:1px solid var(--line);border-left:3px solid var(--accent);padding:22px 25px;margin:0 0 30px;background:#edf0e8}.prompt-brief p{font:16px/1.65 Arial,Helvetica,sans-serif;margin:10px 0 0;max-width:950px;color:var(--ink)}</style></head><body>
+.prompt-brief{border:1px solid var(--line);border-left:3px solid var(--accent);padding:22px 25px;margin:0 0 30px;background:#edf0e8}.prompt-brief p{font:16px/1.65 Arial,Helvetica,sans-serif;margin:10px 0 0;max-width:950px;color:var(--ink)}</style><script id="ai-visual-webgl-render-mode">
+(function () {
+  'use strict';
+  var badgeId = 'ai-visual-render-mode';
+  var softwareHint = /swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i;
+  var hardwareHint = /nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i;
+  var seenContext = false;
+  var badge;
+  function ensureBadge() {
+    if (badge && badge.isConnected) return badge;
+    badge = document.getElementById(badgeId);
+    if (!badge) {
+      badge = document.createElement('div'); badge.id = badgeId;
+      badge.setAttribute('role', 'status'); badge.setAttribute('aria-live', 'polite');
+      badge.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.18);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)';
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    return badge;
+  }
+  function setStatus(text, mode, detail) {
+    var target = ensureBadge(); target.dataset.mode = mode; target.textContent = text; target.title = detail || text;
+  }
+  function classify(gl, type) {
+    var renderer = '';
+    try { var info = gl.getExtension('WEBGL_debug_renderer_info'); if (info) renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL) || ''; } catch (_) {}
+    if (!renderer) setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser did not expose the WebGL renderer identity.');
+    else if (softwareHint.test(renderer)) setStatus('CPU only · software WebGL · ' + renderer, 'cpu', 'Software renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else if (hardwareHint.test(renderer)) setStatus('GPU active · ' + type.toUpperCase() + ' · ' + renderer, 'gpu', 'Hardware renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser reported a renderer, but it did not identify a physical GPU: ' + renderer);
+  }
+  function install() {
+    var proto = window.HTMLCanvasElement && HTMLCanvasElement.prototype;
+    if (!proto || !proto.getContext || proto.getContext.__aiVisualModeWrapped) return;
+    var original = proto.getContext;
+    var wrapped = function (type, attributes) {
+      if (typeof type !== 'string' || !/^(webgl2?|experimental-webgl)$/i.test(type)) return original.apply(this, arguments);
+      var options = attributes && typeof attributes === 'object' ? Object.assign({}, attributes) : {};
+      if (!options.powerPreference) options.powerPreference = 'high-performance';
+      options.failIfMajorPerformanceCaveat = false;
+      var gl = original.call(this, type, options);
+      if (gl) {
+        seenContext = true; var contextType = type.toLowerCase() === 'webgl2' ? 'WebGL2' : 'WebGL'; classify(gl, contextType);
+        this.addEventListener('webglcontextlost', function () { setStatus('WebGL context lost · 3D output unavailable', 'unavailable', 'The active WebGL context was lost.'); }, { once: true });
+        this.addEventListener('webglcontextrestored', function () { classify(gl, contextType); });
+      }
+      return gl;
+    };
+    wrapped.__aiVisualModeWrapped = true;
+    try { proto.getContext = wrapped; } catch (_) {}
+  }
+  setStatus('checking WebGL renderer…', 'pending', 'Waiting for the page to create its 3D WebGL context.');
+  install();
+  document.addEventListener('DOMContentLoaded', function () {
+    window.setTimeout(function () { if (!seenContext) setStatus('WebGL unavailable · no scene context was created', 'unavailable', 'This 3D page requires WebGL; no WebGL scene context was created.'); }, 3000);
+  }, { once: true });
+})();
+</script></head><body>
 <header><div class="brand"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M16 8l7 4v8l-7 4-7-4v-8zM16 8l8-3M23 12l7 5M23 20l-1 9M16 24l-8 3M9 20l-7-5M9 12l1-9" stroke="currentColor" stroke-width="1.5"/></svg>APERTURE</div><span class="edition">AN OPTICS FIELD GUIDE / FILM 001</span><a class="toplink" href="#about">About this film</a></header>
 <main><section class="intro"><div><div class="eyebrow">Inside the iPhone 18 Pro</div><h1>A small opening. A different picture.</h1></div><p>Six blades. Four settings. A closer look at the camera’s variable aperture.</p></section>
 <section class="watch-grid" aria-label="Educational film and aperture explorer"><div class="player" id="player"><canvas class="film" id="film" width="1280" height="720" aria-label="Animated 3D schematic of a six-blade camera aperture"></canvas><div class="error" id="error" role="alert"></div><div class="controls"><button class="iconbtn play" id="play" aria-label="Play film">▶</button><span class="time" id="time">0:00 / 1:30</span><input class="seek" id="seek" type="range" min="0" max="90" step="0.1" value="0" aria-label="Film position"><button class="toggle" id="voice" aria-pressed="false" title="Optional browser narration">Voice</button><button class="toggle" id="cc" aria-pressed="true" aria-label="Show captions">CC</button><button class="iconbtn" id="full" aria-label="Enter fullscreen">⛶</button></div></div>

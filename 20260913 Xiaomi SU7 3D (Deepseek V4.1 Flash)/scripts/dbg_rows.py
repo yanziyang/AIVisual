@@ -1,5 +1,5 @@
 import numpy as np, os
-ROOT = r"C:\MyProjects\TempProject (OpenCode)"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(ROOT, "analysis")
 for key, rows in (("front", (358, 402, 446)), ("rear", (369, 406, 440))):
     m = np.load(os.path.join(A, f"refmask_{key}.npy"))

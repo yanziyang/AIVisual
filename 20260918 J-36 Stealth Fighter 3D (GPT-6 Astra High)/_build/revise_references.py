@@ -1,5 +1,5 @@
 from pathlib import Path
-p=Path(r'C:\MyProjects\TempProject (OpenAI)\build_j36.py')
+p=Path(__file__).resolve().parent/'build_j36.py'
 s=p.read_text(encoding='utf-8-sig')
 s=s.replace(' def ring(xc,yy,lo,hi,lw,uw):\n',''' def ring(xc,yy,lo,hi,lw,uw):
   if dorsal:

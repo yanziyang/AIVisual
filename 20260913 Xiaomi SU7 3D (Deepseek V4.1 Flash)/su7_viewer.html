@@ -1,6 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script id="aiVisualRenderingBridge">
+(function () {
+  "use strict";
+
+  var originalGetContext = HTMLCanvasElement.prototype.getContext;
+  var badge = null;
+  var currentState = "checking";
+  var currentLabel = "Checking GPU/CPU renderer…";
+  var currentDetails = "The page requests high-performance WebGL and allows the browser software renderer when hardware acceleration is unavailable.";
+  var successfulContexts = 0;
+  var observedContexts = new WeakSet();
+  var failureTimer = 0;
+  var softwareRenderer = /swiftshader|llvmpipe|softpipe|software renderer|software rasterizer|basic render driver|warp/i;
+  var hardwareRenderer = /nvidia|geforce|quadro|radeon|amd|intel.*(graphics|arc|iris|uhd|hd graphics)|apple gpu|apple m[1-9]|adreno|mali|powervr|qualcomm/i;
+
+  function attachBadge() {
+    if (badge || !document.body) return;
+    badge = document.createElement("div");
+    badge.id = "aiVisualRenderingStatus";
+    badge.setAttribute("role", "status");
+    badge.setAttribute("aria-live", "polite");
+    badge.title = "Automatic browser-selected WebGL. This 3D page has no separate CPU scene renderer; known software WebGL is reported as CPU only.";
+    badge.style.cssText = [
+      "position:fixed", "right:10px", "bottom:10px", "z-index:2147483647",
+      "max-width:calc(100vw - 20px)", "padding:6px 9px", "border-radius:999px",
+      "font:11px/1.3 system-ui,sans-serif", "letter-spacing:.02em",
+      "color:#f7f8fa", "background:rgba(18,22,28,.82)",
+      "box-shadow:0 2px 10px rgba(0,0,0,.22)", "pointer-events:none",
+      "backdrop-filter:blur(8px)", "-webkit-backdrop-filter:blur(8px)"
+    ].join(";");
+    document.body.appendChild(badge);
+    badge.textContent = currentLabel;
+    badge.title = currentDetails || badge.title;
+    paintBadge();
+  }
+
+  function paintBadge() {
+    attachBadge();
+    if (!badge) return;
+    badge.dataset.renderingState = currentState;
+    if (currentState === "gpu") badge.style.background = "rgba(14,105,72,.9)";
+    else if (currentState === "cpu") badge.style.background = "rgba(143,83,13,.92)";
+    else if (currentState === "unavailable") badge.style.background = "rgba(145,39,39,.92)";
+    else badge.style.background = "rgba(18,22,28,.82)";
+  }
+
+  function setStatus(state, label, details) {
+    currentState = state;
+    currentLabel = label;
+    currentDetails = details || currentDetails;
+    attachBadge();
+    if (!badge) return;
+    badge.textContent = label;
+    if (details) badge.title = details;
+    paintBadge();
+  }
+
+  function getRendererName(gl) {
+    try {
+      var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+      if (!debugInfo) return "";
+      return String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "").trim();
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function classify(gl) {
+    var renderer = getRendererName(gl);
+    if (!renderer) {
+      setStatus("unknown", "GPU/CPU unknown · renderer identity masked",
+        "WebGL is active, but this browser does not expose renderer identity.");
+      return;
+    }
+    if (softwareRenderer.test(renderer)) {
+      var softwareName = renderer.length > 48 ? renderer.slice(0, 45) + "…" : renderer;
+      setStatus("cpu", "CPU only · software WebGL · " + softwareName,
+        "The WebGL renderer identifies itself as software rendering: " + renderer);
+      return;
+    }
+    if (hardwareRenderer.test(renderer)) {
+      var hardwareName = renderer.length > 54 ? renderer.slice(0, 51) + "…" : renderer;
+      setStatus("gpu", "GPU active · " + hardwareName,
+        "The WebGL renderer identifies GPU hardware: " + renderer + ". The webpage cannot independently verify which physical device executed each frame.");
+      return;
+    }
+    setStatus("unknown", "GPU/CPU unknown · renderer identity inconclusive",
+      "WebGL is active, but its renderer string does not identify known GPU hardware or a known software renderer: " + renderer);
+  }
+
+  function observeContext(gl, canvas) {
+    if (observedContexts.has(gl)) return;
+    observedContexts.add(gl);
+    successfulContexts += 1;
+    if (failureTimer) window.clearTimeout(failureTimer);
+    classify(gl);
+    canvas.addEventListener("webglcontextlost", function (event) {
+      event.preventDefault();
+      successfulContexts = Math.max(0, successfulContexts - 1);
+      if (!successfulContexts) {
+        setStatus("unavailable", "3D unavailable · WebGL context lost",
+          "The page has no active WebGL context after a context-loss event.");
+      }
+    }, false);
+    canvas.addEventListener("webglcontextrestored", function () {
+      successfulContexts += 1;
+      classify(gl);
+    }, false);
+  }
+
+  function isWebGLType(type) {
+    return /^(webgl2?|experimental-webgl)$/i.test(String(type || ""));
+  }
+
+  HTMLCanvasElement.prototype.getContext = function (type, attributes) {
+    if (!isWebGLType(type)) return originalGetContext.apply(this, arguments);
+
+    var args = Array.prototype.slice.call(arguments);
+    var options = {};
+    if (attributes && typeof attributes === "object") {
+      Object.keys(attributes).forEach(function (key) { options[key] = attributes[key]; });
+    }
+    options.powerPreference = "high-performance";
+    options.failIfMajorPerformanceCaveat = false;
+    args[1] = options;
+
+    var gl;
+    try {
+      gl = originalGetContext.apply(this, args);
+    } catch (error) {
+      if (!successfulContexts) {
+        setStatus("unavailable", "3D unavailable · WebGL initialization failed",
+          "The browser threw while creating a WebGL context: " + (error && error.message ? error.message : String(error)));
+      }
+      throw error;
+    }
+    if (gl) {
+      observeContext(gl, this);
+    } else if (!successfulContexts) {
+      setStatus("checking", "WebGL unavailable · browser fallback pending",
+        "The first WebGL context request failed; the page may try another supported WebGL version.");
+      if (failureTimer) window.clearTimeout(failureTimer);
+      failureTimer = window.setTimeout(function () {
+        if (!successfulContexts) {
+          setStatus("unavailable", "3D unavailable · WebGL context could not be created",
+            "Neither hardware-accelerated nor software WebGL is available to this page.");
+        }
+      }, 1800);
+    }
+    return gl;
+  };
+
+  setStatus("checking", "Checking GPU/CPU renderer…",
+    "The page requests high-performance WebGL and allows the browser's software renderer when hardware acceleration is unavailable.");
+  document.addEventListener("DOMContentLoaded", function () {
+    attachBadge();
+    window.setTimeout(function () {
+      if (currentState === "checking") {
+        setStatus("unavailable", "3D unavailable · renderer did not initialize",
+          "No WebGL context was created. The page may be unsupported or its 3D scripts may not have loaded.");
+      }
+    }, 12000);
+  }, { once: true });
+})();
+</script>
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Xiaomi SU7 · three.js viewer</title>
@@ -154,8 +320,8 @@ if (b64.length > 100) {
     fail('failed to decode embedded su7.glb', e);
   }
 } else {
-  loader.load('su7.glb', showCar, undefined,
-    (e) => fail('could not load su7.glb - keep it next to this file and serve the folder (python -m http.server)', e));
+  loader.load('_build/su7.glb', showCar, undefined,
+    (e) => fail('could not load _build/su7.glb - restore the model under the project build folder and serve the project (python -m http.server)', e));
 }
 
 addEventListener('resize', () => {

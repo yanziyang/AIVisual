@@ -1,7 +1,9 @@
 import math
+import os
 
-TSV = r"C:\MyProjects\TempProject\eiffel\refs\silhouette.tsv"
-OUT = r"C:\MyProjects\TempProject\eiffel\refs\profile_from_photo.tsv"
+PROJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TSV = os.path.join(PROJ, "refs", "silhouette.tsv")
+OUT = os.path.join(PROJ, "refs", "profile_from_photo.tsv")
 
 # Features identified in the photo (near-edge silhouette extremes):
 # (Z m, o m half-width of feature, observed row y px, observed half-width px)

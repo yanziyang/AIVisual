@@ -1,5 +1,6 @@
-import bpy
-bpy.ops.wm.open_mainfile(filepath=r"C:\MyProjects\TempProject (OpenCode)\su7_build.blend")
+import bpy, os
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+bpy.ops.wm.open_mainfile(filepath=os.path.join(ROOT, "_build", "su7_build.blend"))
 m = bpy.data.materials.get("interior")
 b = m.node_tree.nodes.get("Principled BSDF")
 for nm in ("Specular IOR Level", "Specular"):
@@ -11,6 +12,6 @@ sc = bpy.context.scene
 cam = bpy.data.objects.get("side")
 sc.camera = cam
 sc.render.resolution_x, sc.render.resolution_y = 1165, 404
-sc.render.filepath = r"C:\MyProjects\TempProject (OpenCode)\renders\test_cabin.png"
+sc.render.filepath = os.path.join(ROOT, "renders", "test_cabin.png")
 bpy.ops.render.render(write_still=True)
 print("TEST_DONE")

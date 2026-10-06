@@ -1,5 +1,6 @@
-import bpy
-bpy.ops.wm.open_mainfile(filepath=r"C:\MyProjects\TempProject (OpenCode)\su7_build.blend")
+import bpy, os
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+bpy.ops.wm.open_mainfile(filepath=os.path.join(ROOT, "_build", "su7_build.blend"))
 for nm in ("cabin", "seat_-0.38", "dash", "wall"):
     ob = bpy.data.objects.get(nm)
     if ob:

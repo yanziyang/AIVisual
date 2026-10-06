@@ -7,6 +7,8 @@ import numpy as np
 from mathutils import Vector, Matrix
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BUILD_DIR = os.path.join(ROOT, "_build")
+os.makedirs(BUILD_DIR, exist_ok=True)
 RENDERS = os.path.join(ROOT, "renders")
 
 L2 = 2498.5
@@ -1434,7 +1436,7 @@ def main():
 
     cams = setup_cameras()
     sc = bpy.context.scene
-    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(ROOT, "su7_build.blend"))
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(BUILD_DIR, "su7_build.blend"))
 
     # ---- export GLB (car only) ----
     try:
@@ -1444,7 +1446,7 @@ def main():
             if ob.type == 'MESH' and ob.name not in skip:
                 ob.select_set(True)
         bpy.ops.export_scene.gltf(
-            filepath=os.path.join(ROOT, "su7.glb"),
+            filepath=os.path.join(BUILD_DIR, "su7.glb"),
             export_format='GLB',
             use_selection=True,
             export_apply=True,

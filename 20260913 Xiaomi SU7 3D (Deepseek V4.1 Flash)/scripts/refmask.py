@@ -1,6 +1,6 @@
 import bpy, numpy as np, os, json
 
-ROOT = r"C:\MyProjects\TempProject (OpenCode)"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(ROOT, "analysis")
 
 

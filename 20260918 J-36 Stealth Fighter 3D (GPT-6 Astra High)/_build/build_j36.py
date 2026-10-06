@@ -1,6 +1,8 @@
 import bpy, math, os
+from pathlib import Path
 from mathutils import Vector
-OUT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'j36_model')
+PROJECT_DIR=Path(__file__).resolve().parent.parent
+OUT=str(PROJECT_DIR/'j36_model')
 os.makedirs(OUT,exist_ok=True)
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
 def mat(n,c,m=.4,r=.4):
