@@ -17,6 +17,10 @@ def replace(old, new):
     engine = engine.replace(old, new, 1)
 
 replace("function fail(msg){ $err.hidden=false;", "function fail(msg){ document.getElementById('loader').hidden=true; $err.hidden=false;")
+replace(
+    "const gl = canvas.getContext('webgl2', { antialias:false, alpha:false, depth:false, stencil:false, powerPreference:'high-performance', preserveDrawingBuffer: FIXED_T!==null });",
+    "const gl = canvas.getContext('webgl2', { antialias:false, alpha:false, depth:false, stencil:false, powerPreference:'high-performance', preserveDrawingBuffer: FIXED_T!==null });\nwindow.__pondGL = gl;\nwindow.dispatchEvent(new Event('pond-webgl-ready'));",
+)
 replace('throw 0;', "throw new Error('WebGL2 is required.');")
 replace('throw 0;', "throw new Error('Floating point render targets are required.');")
 replace('const DEPTH = 1.6;', 'const DEPTH = 0.85;')
