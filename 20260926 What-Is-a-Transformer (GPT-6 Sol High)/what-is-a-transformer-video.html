@@ -1,31 +1,127 @@
-<!doctype html><html lang="en"><head>
-  <base href="./transformer-video/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What Is a Transformer? — Field Notes</title><style>
-:root{color-scheme:dark;--bg:#091421;--panel:#122338;--mint:#78f3c7;--muted:#a4b5c6;--coral:#ff9b83;--purple:#b5a3ff}*{box-sizing:border-box}body{background:var(--bg);color:#f1f5ee;font:17px/1.6 system-ui;margin:0}main{max-width:1220px;margin:auto;padding:40px 28px 70px}.eyebrow{color:var(--mint);letter-spacing:.16em;font-size:12px}h1{font-size:clamp(36px,5vw,62px);line-height:1.08;margin:16px 0}h2{font-size:30px;line-height:1.2}p{color:var(--muted);max-width:800px}video{width:100%;border-radius:16px;background:#000;display:block;margin-top:28px}a{color:var(--mint)}.links{display:flex;flex-wrap:wrap;gap:22px;margin:20px 0}button{font:inherit;cursor:pointer;background:var(--panel);border:1px solid #294158;color:#f1f5ee;border-radius:10px;padding:10px 16px}button:hover,button:focus-visible{border-color:var(--mint)}.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}.chapters button{text-align:left;font-size:14px}.chapters span{color:var(--mint);font:13px monospace;margin-right:10px}.lab{margin-top:60px;padding:28px;border:1px solid #294158;border-radius:18px;background:var(--panel)}.grid{display:grid;grid-template-columns:1fr 1.4fr;gap:36px}.range{margin-bottom:22px}input[type=range]{width:100%;accent-color:var(--mint)}.equation{font-family:Consolas,monospace;padding:15px;background:#091421;border-radius:10px;color:var(--mint);overflow:auto}.bar{height:28px;background:#294158;border-radius:6px;overflow:hidden;flex:1}.bar div{height:100%;transition:width .15s}.row{display:flex;align-items:center;gap:14px;margin:20px 0}.row b{width:22px}.row output{width:70px;text-align:right}.result{font:26px Consolas,monospace;color:var(--mint)}label{display:block}details{margin-top:24px}summary{cursor:pointer;color:var(--mint)}.source{font-size:14px;margin-top:48px}.key{font:16px Consolas,monospace}.current{border-color:var(--mint);background:#183a39}@media(max-width:750px){.grid{grid-template-columns:1fr}main{padding:26px 16px}.lab{padding:20px}}
-.original-prompt{margin:24px 0;padding:20px 24px;border:1px solid #294158;border-radius:14px;background:var(--panel)}.original-prompt blockquote{margin:12px 0 0;color:#f1f5ee;font-size:16px;line-height:1.7}
-</style></head><body><main>
-<div class="eyebrow">FIELD NOTES / AI EXPLAINED</div><h1>What Is a Transformer?</h1><p>A narrated journey from text to prediction—with attention math you can do by hand. Built with JavaScript and original Canvas diagrams.</p>
-<section class="original-prompt" aria-labelledby="prompt-heading"><div id="prompt-heading" class="eyebrow">ORIGINAL PROMPT</div><blockquote>Help me create a video using JavaScript on the topic “What Is a Transformer?” Explain it clearly and accessibly, while still going into depth so that even high school students can understand it. Don’t just give a high-level overview—include the details, such as how the attention mechanism works, and even some of the math. You can use any tools or install whatever you need, and you can search the web. Surprise me!</blockquote></section>
-<video id="video" controls preload="metadata" poster="poster.png"><source src="../What-Is-a-Transformer.mp4" type="video/mp4"><track kind="captions" src="captions.vtt" srclang="en" label="English">Your browser does not support video. <a href="../What-Is-a-Transformer.mp4">Download the MP4</a>.</video>
-<div class="links"><a href="../What-Is-a-Transformer.mp4" download>Download video</a><a href="transcript.md">Read transcript</a><a href="captions.srt" download>Download captions</a><a href="../README.md">JavaScript source guide</a></div>
-<h2>Jump into the explanation</h2><div id="chapters" class="chapters"></div>
-<section class="lab"><div class="eyebrow">BONUS / MAKE THE MATH MOVE</div><h2>Attention playground</h2><p>Keep the keys and values fixed. Change the query and watch attention recalculate its recipe. These are synthetic vectors, with dₖ = 2.</p>
-<div class="grid"><div><div class="range"><label for="qx">Query coordinate 1: <output id="ox">1.0</output></label><input id="qx" type="range" min="-3" max="3" step="0.1" value="1"></div><div class="range"><label for="qy">Query coordinate 2: <output id="oy">0.0</output></label><input id="qy" type="range" min="-3" max="3" step="0.1" value="0"></div><div class="links"><button id="reset">Video example [1, 0]</button><button id="flip">Quiz answer [0, 1]</button></div><div class="key">A: key [2, 0] · value [2, 0]<br>B: key [0, 2] · value [0, 2]<br>C: key [1, 1] · value [1, 1]</div></div>
-<div><div class="equation" id="scores"></div><div id="bars" aria-live="polite"></div><div class="result" id="result" aria-live="polite"></div></div></div>
-<details><summary>See the actual JavaScript calculation</summary><pre class="equation">const scores = keys.map(k =&gt;
-  (q[0]*k[0] + q[1]*k[1]) / Math.sqrt(2));
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Watch the JavaScript-generated Transformer explainer video and explore its prompt, implementation, and attention math.">
+<title>What Is a Transformer? — Video &amp; Field Notes</title>
+<style>
+:root{color-scheme:dark;--bg:#091421;--panel:#122338;--line:#294158;--text:#f1f5ee;--muted:#a4b5c6;--mint:#78f3c7;--coral:#ff9b83;--purple:#b5a3ff;--yellow:#f3d78c}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:52px 28px 64px}a{color:var(--mint);text-underline-offset:4px}.eyebrow{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--mint)}h1{font-size:clamp(40px,7vw,76px);line-height:1.08;letter-spacing:-.035em;margin:20px 0}h2{font-size:30px;line-height:1.2;margin:0 0 18px}h3{font-size:20px;line-height:1.3;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:21px;max-width:770px;color:var(--muted)}nav{display:flex;flex-wrap:wrap;gap:22px;margin:30px 0 40px;font-size:14px}section{margin-top:48px;scroll-margin-top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}.prompt{border-left:4px solid var(--mint)}blockquote{margin:18px 0 0;font-size:clamp(18px,2.4vw,23px);line-height:1.7}blockquote p{margin:0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}.stat{padding:18px 20px;border:1px solid var(--line);border-radius:12px}.stat strong{display:block;font-size:27px;color:var(--mint)}.stat span{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.muted{color:var(--muted)}.pill{display:inline-block;margin-bottom:12px;color:var(--purple);font:12px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.07em}.steps{counter-reset:step;display:grid;gap:16px}.step{counter-increment:step;display:grid;grid-template-columns:44px 1fr;gap:16px}.step::before{content:counter(step,decimal-leading-zero);color:var(--mint);font:24px/1.3 ui-monospace,Consolas,monospace}.step p{margin:0;color:var(--muted)}code,pre{font-family:ui-monospace,Consolas,monospace}code{font-size:.91em;color:var(--mint)}pre{background:#07101c;border:1px solid var(--line);padding:20px;border-radius:12px;overflow:auto;font-size:14px;line-height:1.65;margin:20px 0}.formula{font:clamp(16px,2.4vw,27px)/1.5 ui-monospace,Consolas,monospace;text-align:center;color:var(--mint);padding:24px 12px;overflow-wrap:anywhere}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;text-align:left;font-size:15px}th,td{padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--panel);color:var(--muted);font-weight:500}tr:last-child td{border-bottom:0}.file{white-space:nowrap;font-family:ui-monospace,Consolas,monospace;color:var(--mint);font-size:13px}.small{font-size:14px}.links{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px}.button{display:inline-block;padding:10px 18px;border:1px solid var(--mint);border-radius:9px;text-decoration:none}.output{font:25px/1.5 ui-monospace,Consolas,monospace;color:var(--mint)}label{display:block;margin-bottom:8px}input[type=range]{width:100%;accent-color:var(--mint)}.sliders{display:grid;gap:22px}.bars{display:grid;gap:18px;margin:24px 0}.bar-row{display:grid;grid-template-columns:22px 1fr 70px;align-items:center;gap:12px}.bar{height:22px;background:var(--line);border-radius:5px;overflow:hidden}.fill{height:100%;transition:width .15s}.bar-row output{text-align:right;font-size:14px}footer{border-top:1px solid var(--line);padding-top:24px;margin-top:48px;font-size:13px;color:var(--muted)}:focus-visible{outline:2px solid var(--mint);outline-offset:5px}@media(max-width:700px){main{padding:32px 18px 48px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.card{padding:20px}th,td{padding:12px}.lead{font-size:18px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fill{transition:none}}
+video{display:block;width:100%;margin-top:22px;border-radius:16px;background:#000}.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:18px}.chapters button{font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;cursor:pointer;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 14px}.chapters button:hover,.chapters button:focus-visible,.chapters button.current{border-color:var(--mint);background:#183a39}.chapters span{color:var(--mint);font:13px ui-monospace,Consolas,monospace;margin-right:10px}
+.example-buttons{display:flex;flex-wrap:wrap;gap:10px}.example-buttons button{font:14px system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:8px 12px}.example-buttons button:hover,.example-buttons button:focus-visible{border-color:var(--mint)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Field notes / project documentation</div>
+<h1>What Is a<br><span style="color:var(--mint)">Transformer?</span></h1>
+<p class="lead">Watch an accessible, narrated video about transformers, then explore the original prompt, implementation, and attention math.</p>
+<div class="stats" aria-label="Video specifications"><div class="stat"><strong>11:05</strong><span>Approximate runtime</span></div><div class="stat"><strong>26</strong><span>Illustrated scenes</span></div><div class="stat"><strong>720p</strong><span>1280 × 720 pixels</span></div><div class="stat"><strong>24 fps</strong><span>JavaScript-rendered frames</span></div></div>
+<nav aria-label="Page sections"><a href="#watch">Watch</a><a href="#prompt">Original prompt</a><a href="#implementation">Implementation</a><a href="#attention">Attention math</a><a href="#files">Files &amp; reproduction</a><a href="#verification">Verification</a></nav>
+</header>
+
+<section id="watch" aria-labelledby="watch-title">
+<h2 id="watch-title">Watch the explanation</h2>
+<p class="muted">A narrated journey from text to prediction, with 26 illustrated scenes and attention math you can work through by hand.</p>
+<video id="video" controls preload="metadata" poster="transformer-video/poster.png"><source src="What-Is-a-Transformer.mp4" type="video/mp4"><track kind="captions" src="transformer-video/captions.vtt" srclang="en" label="English">Your browser does not support video. <a href="What-Is-a-Transformer.mp4">Download the MP4</a>.</video>
+<div class="links"><a class="button" href="What-Is-a-Transformer.mp4" download>Download video</a><a href="transformer-video/transcript.md">Read transcript</a><a href="transformer-video/captions.srt" download>Download captions</a></div>
+<h3>Jump to a chapter</h3><div id="chapters" class="chapters"></div>
+</section>
+
+<section id="prompt" class="card prompt" aria-labelledby="prompt-title">
+<div class="eyebrow">The starting point</div><h2 id="prompt-title" style="margin-top:14px">The prompt</h2>
+<blockquote><p>Help me create a video using JavaScript on the topic “What Is a Transformer?” Explain it clearly and accessibly, while still going into depth so that even high school students can understand it. Don’t just give a high-level overview—include the details, such as how the attention mechanism works, and even some of the math. You can use any tools or install whatever you need, and you can search the web. Surprise me!</p></blockquote>
+</section>
+
+<section id="implementation" aria-labelledby="implementation-title">
+<h2 id="implementation-title">How the video was built</h2>
+<p class="muted">The project uses JavaScript to draw original Canvas diagrams, generate a timed sequence of frames, and send those frames to FFmpeg. Narration is synthesized locally with Windows speech. The result is an MP4 with audio, visible captions, an embedded subtitle track, and chapter metadata.</p>
+<div class="grid">
+<article class="card"><span class="pill">VISUALS / JAVASCRIPT</span><h3>Deterministic Canvas animation</h3><p class="muted"><code>@napi-rs/canvas</code> creates the 1280 × 720 drawing surface in Node.js. The drawing function takes the scene, timestamp, and caption. Fades, traveling signals, network movement, and growing bars are calculated from time, making frames reproducible.</p><p class="small muted">The design uses a dark grid, mint signals, coral and lavender accents, and large diagrams with a dedicated caption area.</p></article>
+<article class="card"><span class="pill">AUDIO / LOCAL SPEECH</span><h3>Narration sets the timeline</h3><p class="muted"><code>prepare.js</code> calls Windows <code>System.Speech</code> with the installed Microsoft Zira Desktop voice. Each narration segment becomes a WAV file. Reading its audio duration determines the scene boundaries and keeps the visual sequence aligned with the speech.</p><p class="small muted">No remote speech service or API key is required. The speech preparation step requires Windows and the installed voice.</p></article>
+<article class="card"><span class="pill">ENCODING / FFMPEG</span><h3>Frames become a playable video</h3><p class="muted"><code>render.js</code> streams raw RGBA frames to <code>ffmpeg-static</code>. FFmpeg encodes H.264 video and AAC audio, adds a <code>mov_text</code> subtitle track and chapters, and uses fast-start metadata for browser playback.</p><p class="small muted">Encoding settings: 24 fps, YUV 4:2:0, CRF 20, and the veryfast H.264 preset.</p></article>
+<article class="card"><span class="pill">LEARNING / COMPANION PLAYER</span><h3>Pause, jump, and experiment</h3><p class="muted">The companion page includes the original prompt, 26 chapter buttons, download links, and a query-changing attention playground. The playground recalculates scaled scores, softmax weights, and a blended output vector immediately.</p><p class="small muted">Visible captions follow individually timed narration segments. The separate subtitle files estimate sentence boundaries within those segments.</p></article>
+</div>
+</section>
+
+<section aria-labelledby="pipeline-title"><h2 id="pipeline-title">The production pipeline</h2><div class="card steps">
+<div class="step"><div><h3>Write a structured lesson</h3><p><code>scenes.json</code> holds each scene’s title, diagram type, and narration. The lesson starts with context and tokens, walks through attention arithmetic, then covers multiple heads, feed forward networks, residual connections, normalization, masking, training, and generation.</p></div></div>
+<div class="step"><div><h3>Prepare speech and timing</h3><p><code>prepare.js</code> generates narration clips, measures their durations, and writes <code>timeline.json</code>, SRT and WebVTT captions, and the transcript.</p></div></div>
+<div class="step"><div><h3>Draw every frame</h3><p><code>visuals.js</code> draws the diagram for the active scene. At each frame, <code>render.js</code> looks up the active narration segment and renders the matching caption and progress indicator.</p></div></div>
+<div class="step"><div><h3>Encode and review</h3><p>FFmpeg combines picture, narration, subtitles, and chapters. The finished video is checked for readable layouts, numerical accuracy, correct media streams, browser playback, and seeking.</p></div></div>
+</div></section>
+
+<section id="attention" aria-labelledby="attention-title"><h2 id="attention-title">The attention math, made concrete</h2>
+<p class="muted">The lesson uses synthetic two-dimensional vectors so students can calculate the mechanism by hand. These numbers are illustrative, not measurements from a trained model. Keys and values happen to match in this example; in real attention they generally differ.</p>
+<div class="card"><div class="formula">Attention(Q, K, V) = softmax(QKᵀ / √d_k)V</div><p class="muted small">Q contains queries, K contains keys, and V contains values. Transposing K makes matrix multiplication compare each query with each key. Divide scores by √d_k, apply softmax independently across each row, then multiply by V to blend the values.</p>
+<div class="table-wrap"><table><thead><tr><th>Candidate</th><th>Key / value</th><th>Dot product with q = [1, 0]</th><th>Scaled score</th><th>Attention weight</th></tr></thead><tbody><tr><td style="color:var(--mint)">A</td><td>[2, 0]</td><td>2</td><td>1.414</td><td>57.6%</td></tr><tr><td style="color:var(--coral)">B</td><td>[0, 2]</td><td>0</td><td>0.000</td><td>14.0%</td></tr><tr><td style="color:var(--purple)">C</td><td>[1, 1]</td><td>1</td><td>0.707</td><td>28.4%</td></tr></tbody></table></div>
+<pre>softmax(s)_j = exp(s_j) / sum(exp(s))
+
+output ≈ 0.576 × [2, 0]
+       + 0.140 × [0, 2]
+       + 0.284 × [1, 1]
+       ≈ [1.436, 0.564]</pre>
+<p class="muted small">Here d_k = 2. The exponential function exp(s) is e raised to s, where e ≈ 2.718. Softmax gives positive weights that sum to one. The final attention output is a vector, not a selected word.</p></div>
+
+<div class="card" style="margin-top:20px"><div class="eyebrow">Try the implementation</div><h3 style="margin-top:12px">Change the query, change the recipe</h3><div class="grid"><div class="sliders"><div><label for="query-x">Query coordinate 1: <output id="value-x">1.0</output></label><input id="query-x" type="range" min="-3" max="3" value="1" step="0.1"></div><div><label for="query-y">Query coordinate 2: <output id="value-y">0.0</output></label><input id="query-y" type="range" min="-3" max="3" value="0" step="0.1"></div><div class="example-buttons"><button id="reset-query" type="button">Video example [1, 0]</button><button id="flip-query" type="button">Quiz answer [0, 1]</button></div><p class="muted small">Try [0, 1]: B receives the largest weight. Try [0, 0]: the weights are equal.</p></div><div><div class="bars" id="weights" aria-live="polite"></div><div class="output" id="blended-output" aria-live="polite"></div></div></div>
+<pre>const scores = keys.map(k =&gt;
+  (q[0] * k[0] + q[1] * k[1]) / Math.sqrt(2));
 const max = Math.max(...scores);
-const exp = scores.map(s =&gt; Math.exp(s - max));
-const sum = exp.reduce((a, b) =&gt; a + b, 0);
-const weights = exp.map(e =&gt; e / sum);
+const exponentials = scores.map(s =&gt; Math.exp(s - max));
+const total = exponentials.reduce((a, b) =&gt; a + b, 0);
+const weights = exponentials.map(e =&gt; e / total);
 const output = [0, 1].map(d =&gt;
-  values.reduce((s, v, i) =&gt; s + weights[i]*v[d], 0));</pre><p>Subtracting the maximum score makes softmax numerically safer without changing its result.</p></details></section>
-<div class="source"><h2>Keep exploring</h2><p>Based on <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> (Vaswani et al., 2017), <a href="https://d2l.ai/chapter_attention-mechanisms-and-transformers/attention-scoring-functions.html">Dive into Deep Learning’s attention chapter</a>, and <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">PyTorch’s attention documentation</a>. The transcript includes additional references.</p><p>Original diagrams. Local synthetic narration. MP4: 1280 × 720, 24 fps. Embedded text is always visible; optional subtitle files support other players.</p></div>
-</main><script src="player-data.js"></script><script>
-const video=document.getElementById('video'),list=document.getElementById('chapters');
-function clock(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
-PLAYER_DATA.scenes.forEach(s=>{let b=document.createElement('button');b.innerHTML=`<span>${clock(s.start)}</span>${s.title}`;b.onclick=()=>{video.currentTime=s.start;video.play().catch(()=>{});video.scrollIntoView({behavior:'smooth',block:'center'})};list.appendChild(b)});
-video.addEventListener('timeupdate',()=>{[...list.children].forEach((b,i)=>{const s=PLAYER_DATA.scenes[i];b.classList.toggle('current',video.currentTime>=s.start&&video.currentTime<s.end)})});
-const qx=document.getElementById('qx'),qy=document.getElementById('qy'),colors=['#78f3c7','#ff9b83','#b5a3ff'];
-function update(){const q=[+qx.value,+qy.value],keys=[[2,0],[0,2],[1,1]],values=keys;document.getElementById('ox').textContent=q[0].toFixed(1);document.getElementById('oy').textContent=q[1].toFixed(1);const scores=keys.map(k=>(q[0]*k[0]+q[1]*k[1])/Math.sqrt(2));const max=Math.max(...scores),e=scores.map(s=>Math.exp(s-max)),sum=e.reduce((a,b)=>a+b),w=e.map(a=>a/sum),out=[0,1].map(d=>values.reduce((a,v,i)=>a+w[i]*v[d],0));document.getElementById('scores').textContent='scaled scores = ['+scores.map(s=>s.toFixed(3)).join(', ')+']';document.getElementById('bars').innerHTML=w.map((a,i)=>`<div class="row"><b style="color:${colors[i]}">${'ABC'[i]}</b><div class="bar"><div style="width:${a*100}%;background:${colors[i]}"></div></div><output>${(a*100).toFixed(1)}%</output></div>`).join('');document.getElementById('result').textContent='output = ['+out.map(a=>a.toFixed(3)).join(', ')+']'}
-qx.oninput=qy.oninput=update;document.getElementById('reset').onclick=()=>{qx.value=1;qy.value=0;update()};document.getElementById('flip').onclick=()=>{qx.value=0;qy.value=1;update()};update();
-</script></body></html>
+  values.reduce((sum, v, i) =&gt; sum + weights[i] * v[d], 0));</pre>
+<p class="small muted">Subtracting the maximum score preserves the softmax result while reducing the risk of numerical overflow.</p></div>
+</section>
+
+<section id="files" aria-labelledby="files-title"><h2 id="files-title">File layout and reproduction</h2><p class="muted">The final video, this combined video and documentation page, and README.md are in the workspace root. Supporting files are kept in the <code>transformer-video</code> subfolder.</p>
+<pre>Workspace root/
+├── What-Is-a-Transformer.mp4
+├── what-is-a-transformer-video.html
+├── README.md
+└── transformer-video/
+    ├── index.html            ← video player and playground
+    ├── scenes.json
+    ├── prepare.js
+    ├── visuals.js
+    ├── render.js
+    ├── serve.js
+    ├── verify.js
+    ├── captions.srt / captions.vtt
+    ├── transcript.md
+    └── audio, previews, dependencies, and other support files</pre>
+<p class="muted">To reproduce the video, run these commands from the supporting-files folder. Node.js, Windows System.Speech, and Microsoft Zira Desktop are required. The renderer writes the finished MP4 into the parent folder.</p>
+<pre>npm install --no-audit --no-fund
+# If npm blocks the FFmpeg download script:
+node node_modules/ffmpeg-static/install.js
+
+node prepare.js
+node render.js
+node verify.js
+
+# Optional local companion player:
+node serve.js</pre>
+<div class="links"><a class="button" href="#watch">Watch the finished video</a><a href="transformer-video/transcript.md">Read the transcript</a></div>
+</section>
+
+<section id="verification" aria-labelledby="verification-title"><h2 id="verification-title">What was checked</h2><div class="grid"><div class="card"><h3>Content and media</h3><p class="muted">The attention example produces [1.436, 0.564]; swapping the query produces [0.564, 1.436]. All 26 scene layouts were rendered and reviewed. The narration check found no clipping. The final MP4 contains H.264 picture, AAC audio, and an embedded subtitle track.</p></div><div class="card"><h3>Browser behavior</h3><p class="muted">The companion player loaded the 1280 × 720 video with a duration of approximately 665.5 seconds. Seeking and playback worked, all 26 chapter buttons were present, and the mobile page had no horizontal overflow. Verification results are saved with the supporting files.</p></div></div></section>
+
+<section aria-labelledby="references-title"><h2 id="references-title">Technical references</h2><p class="muted">The lesson was checked against the original architecture and educational documentation:</p><ul><li><a href="https://arxiv.org/abs/1706.03762">Vaswani et al. — Attention Is All You Need (2017)</a></li><li><a href="https://d2l.ai/chapter_attention-mechanisms-and-transformers/attention-scoring-functions.html">Dive into Deep Learning — Attention Scoring Functions</a></li><li><a href="https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html">Dive into Deep Learning — The Transformer Architecture</a></li><li><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">PyTorch — Scaled Dot Product Attention</a></li></ul></section>
+<footer>The page works offline with local video, captions, chapter data, and embedded calculator code. Technical references are external links. All diagrams in the video are original; narration uses an installed synthetic voice.</footer>
+</main>
+<script>
+const x=document.getElementById('query-x'),y=document.getElementById('query-y');
+function calculate(){const q=[Number(x.value),Number(y.value)],keys=[[2,0],[0,2],[1,1]],values=keys;document.getElementById('value-x').textContent=q[0].toFixed(1);document.getElementById('value-y').textContent=q[1].toFixed(1);const scores=keys.map(k=>(q[0]*k[0]+q[1]*k[1])/Math.sqrt(2)),max=Math.max(...scores),e=scores.map(s=>Math.exp(s-max)),sum=e.reduce((a,b)=>a+b,0),weights=e.map(a=>a/sum),output=[0,1].map(d=>values.reduce((a,v,i)=>a+weights[i]*v[d],0)),colors=['#78f3c7','#ff9b83','#b5a3ff'];document.getElementById('weights').innerHTML=weights.map((w,i)=>`<div class="bar-row"><span style="color:${colors[i]}">${'ABC'[i]}</span><div class="bar"><div class="fill" style="width:${100*w}%;background:${colors[i]}"></div></div><output>${(100*w).toFixed(1)}%</output></div>`).join('');document.getElementById('blended-output').textContent='['+output.map(v=>v.toFixed(3)).join(', ')+']';}
+x.addEventListener('input',calculate);y.addEventListener('input',calculate);document.getElementById('reset-query').addEventListener('click',()=>{x.value=1;y.value=0;calculate()});document.getElementById('flip-query').addEventListener('click',()=>{x.value=0;y.value=1;calculate()});calculate();
+</script>
+<script src="transformer-video/player-data.js"></script>
+<script>
+const video=document.getElementById('video'),chapters=document.getElementById('chapters');
+function chapterTime(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+PLAYER_DATA.scenes.forEach(scene=>{const button=document.createElement('button');button.innerHTML=`<span>${chapterTime(scene.start)}</span>${scene.title}`;button.addEventListener('click',()=>{video.currentTime=scene.start;video.play().catch(()=>{});video.scrollIntoView({behavior:'smooth',block:'center'})});chapters.appendChild(button)});
+video.addEventListener('timeupdate',()=>{[...chapters.children].forEach((button,i)=>{const scene=PLAYER_DATA.scenes[i];button.classList.toggle('current',video.currentTime>=scene.start&&video.currentTime<scene.end)})});
+</script>
+</body>
+</html>

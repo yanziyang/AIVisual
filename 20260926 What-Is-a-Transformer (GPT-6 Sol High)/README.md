@@ -4,9 +4,9 @@ A complete narrated video generated with JavaScript, plus an offline video playe
 
 ## Watch
 
-Open `What-Is-a-Transformer.mp4` in a video player, or open `transformer-video/index.html` in a browser. Everything in the player works offline except external reference links. If a browser restricts local caption files, embedded captions remain visible.
+Open `what-is-a-transformer-video.html` in a browser for the video, chapters, original prompt, implementation notes, and attention playground. You can also open `What-Is-a-Transformer.mp4` in a video player. The page works offline except for external reference links. If a browser restricts local caption files, embedded captions remain visible.
 
-Supporting files listed below are in the `transformer-video` subfolder. The standalone documentation page is `Transformer-Prompt-and-Implementation.html` in the workspace root.
+Supporting files listed below are in the `transformer-video` subfolder. The combined video and documentation page is `what-is-a-transformer-video.html` in the workspace root.
 
 ## Files
 
