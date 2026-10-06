@@ -1,0 +1,9 @@
+{
+  "name": "uob-innovation-hub-viewer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {"build": "node package-viewer.mjs", "preview": "node serve.mjs"},
+  "dependencies": {"three": "0.169.0"},
+  "devDependencies": {"esbuild": "0.24.0"}
+}

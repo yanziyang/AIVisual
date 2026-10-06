@@ -1,0 +1,412 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+Blender 3.6.23 (hash e467db79ca8c built 2025-06-17 03:22:43)
+Read prefs: "C:\Users\admin\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "uob-innovation-hub.blend"
+05:34:51 | INFO: Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 3.6\3.6\python\lib\site-packages\extern_draco.dll
+05:34:52 | INFO: Starting glTF 2.0 export
+05:34:52 | INFO: Extracting primitive: T01 L01 glazing
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L01 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: Precast panel joint
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L01 rim
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L02 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L03 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L04 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L05 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 L06 ribbed shell
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 ground terrace
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 terrace rail
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: Roof terrace planting
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: Roof terrace planting.003
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: Roof terrace planting.006
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T01 roof planting bed
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T02 L01 glazing
+05:34:52 | INFO: Primitives created: 1
+05:34:52 | INFO: Extracting primitive: T02 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.048
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L06 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 L07 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.014
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.015
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.022
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T02 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.104
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 L06 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Angled concrete support.008
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.028
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.029
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.034
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T03 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.152
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Angled concrete support.012
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.042
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.043
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.044
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T04 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.192
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 L06 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.056
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.057
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.058
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T05 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.240
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L06 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 L07 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.070
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.071
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.075
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T06 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.296
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 L06 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.084
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.085
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.086
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T07 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.344
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 L05 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 ground terrace
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 terrace rail
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.098
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.100
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Roof terrace planting.102
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T08 roof planting bed
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L01 glazing
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L01 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: Precast panel joint.384
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L01 rim
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L02 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L03 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L04 ribbed shell
+05:34:53 | INFO: Primitives created: 1
+05:34:53 | INFO: Extracting primitive: T09 L05 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T09 L06 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T09 ground terrace
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T09 terrace rail
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.112
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.113
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.115
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T09 roof planting bed
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L01 glazing
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L01 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Precast panel joint.432
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L01 rim
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L02 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L03 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L04 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L05 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L06 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 L07 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 ground terrace
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 terrace rail
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.126
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.127
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.128
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T10 roof planting bed
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L01 glazing
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L01 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Precast panel joint.488
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L01 rim
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L02 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L03 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L04 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L05 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 L06 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 ground terrace
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 terrace rail
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.140
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.141
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.142
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T11 roof planting bed
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L01 glazing
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L01 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Precast panel joint.536
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L01 rim
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L02 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L03 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L04 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 L05 ribbed shell
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 ground terrace
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 terrace rail
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.154
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.155
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Roof terrace planting.156
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: T12 roof planting bed
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: L01 atrium gallery
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Atrium continuous handrail
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Atrium angled column
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Garden gallery
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Garden gallery.001
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Garden gallery.005
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Core 1 textured concrete
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Core bronze vertical fin
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Oval site plinth
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Paved forecourt
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Campus access road
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Road dash
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Landscape bed
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Tree trunk
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Tropical tree canopy
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Campus shrubs
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Tropical tree canopy.001
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Extracting primitive: Atrium seating
+05:34:54 | INFO: Primitives created: 1
+05:34:54 | INFO: Finished glTF 2.0 export in 2.1163480281829834 s
+
+MODEL_READY 203 objects
+
+Blender quit

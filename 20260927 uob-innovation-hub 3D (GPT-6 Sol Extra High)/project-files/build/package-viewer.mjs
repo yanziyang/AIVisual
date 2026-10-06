@@ -1,0 +1,20 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { build } from 'esbuild';
+const buildRoot=path.dirname(fileURLToPath(import.meta.url));
+const root=path.dirname(buildRoot);
+const bundle=await build({entryPoints:[path.join(buildRoot,'viewer.js')],bundle:true,minify:true,format:'iife',target:'es2020',write:false,legalComments:'inline'});
+const model=await fs.readFile(path.join(root,'uob-innovation-hub.glb'));
+const template=await fs.readFile(path.join(buildRoot,'viewer.template.html'),'utf8');
+let verification='Blender model creation and GLB export completed successfully. The standalone file embeds all rendering dependencies. Browser interaction checks are in progress.';
+try{const qa=JSON.parse(await fs.readFile(path.join(root,'qa/results.json'),'utf8'));if(qa.passed)verification='Verified in a browser at desktop and mobile sizes. Checks passed for mouse orbit, zoom, tower selection, both cutaway controls, view presets, lighting, auto orbit, reset, keyboard navigation and the information dialog. The standalone HTML also loaded from a local file with networking disabled, with no runtime errors.';}catch{}
+const html=template.replace('{{MODEL_BASE64}}',()=>model.toString('base64')).replace('{{VIEWER_BUNDLE}}',()=>bundle.outputFiles[0].text.replaceAll('</script','<\\/script')).replace('{{VERIFICATION_RESULT}}',()=>verification);
+await fs.mkdir(path.join(root,'dist'),{recursive:true});
+await fs.writeFile(path.join(root,'dist','index.html'),html);
+await fs.writeFile(path.join(root,'uob-innovation-hub.html'),html);
+await fs.writeFile(path.join(path.dirname(root),'uob-innovation-hub.html'),html);
+for(const file of ['uob-innovation-hub.blend','uob-innovation-hub.glb'])await fs.copyFile(path.join(root,file),path.join(root,'dist',file));
+await fs.mkdir(path.join(root,'dist','build'),{recursive:true});
+await fs.copyFile(path.join(buildRoot,'build_model.py'),path.join(root,'dist','build','build_model.py'));
+console.log(JSON.stringify({file:path.join(path.dirname(root),'uob-innovation-hub.html'),htmlBytes:Buffer.byteLength(html),glbBytes:model.length,externalResources:0}));

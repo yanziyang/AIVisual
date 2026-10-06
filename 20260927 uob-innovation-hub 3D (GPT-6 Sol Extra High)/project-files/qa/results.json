@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "towers": 12,
+  "renderStats": {
+    "calls": 201,
+    "triangles": 499694
+  },
+  "networkRequests": [],
+  "offlineFileLoad": true,
+  "controls": [
+    "orbit drag",
+    "wheel zoom",
+    "tower selection",
+    "atrium cutaway",
+    "height clipping",
+    "plan view",
+    "day/evening",
+    "auto orbit",
+    "reset",
+    "information dialog",
+    "keyboard navigation"
+  ],
+  "viewports": [
+    "1440x1000",
+    "390x844",
+    "320x720"
+  ],
+  "errors": []
+}
