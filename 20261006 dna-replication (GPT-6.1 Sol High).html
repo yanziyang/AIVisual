@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09121e">
+  <meta name="description" content="Explore in 3D how a DNA double helix unzips and each original strand guides a new complementary strand before cell division.">
+  <title>DNA replication · A 3D explainer</title>
+  <style>
+    :root{color-scheme:dark;--bg:#09121e;--panel:#111e2d;--panel2:#162638;--ink:#eef6fb;--muted:#adc0cf;--line:#2c4155;--cyan:#59d9ea;--amber:#ffd483;--mint:#75e5bc;--violet:#b9a4fa;--pink:#fb9db4}
+    *{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 50% 20%,#173149 0,#0d1b2b 45%,#09121e 90%)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,.viewport:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+    .page{max-width:1440px;margin:auto;padding:28px clamp(18px,3vw,48px) 30px}.top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}.eyebrow{color:var(--cyan);font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.top h1{font-size:clamp(1.8rem,3.5vw,3.2rem);line-height:1.12;letter-spacing:-.035em;margin:4px 0 0}.top p{margin:0;color:var(--muted);max-width:27rem}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,350px);gap:20px;align-items:stretch}.viewport{position:relative;min-height:min(68vh,680px);overflow:hidden;border:1px solid var(--line);border-radius:22px;background:radial-gradient(ellipse at center,#17344a 0%,#0b1a2a 55%,#08121e 100%);touch-action:none;cursor:grab}.viewport.dragging{cursor:grabbing}.viewport canvas{display:block;width:100%;height:100%}.viewtop{position:absolute;left:20px;top:18px;right:20px;display:flex;gap:12px;justify-content:space-between;align-items:flex-start;pointer-events:none}.viewchip{border:1px solid #466277;border-radius:999px;padding:5px 12px;background:#142638d9;color:#e4f3fa;font-size:.77rem;letter-spacing:.08em;text-transform:uppercase}.viewhint{color:#c1d4df;font-size:.78rem;text-align:right}.viewbottom{position:absolute;left:20px;right:20px;bottom:16px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;pointer-events:none}.key{display:flex;align-items:center;gap:7px;color:#d6e3ed;font-size:.82rem;background:#0b1828c9;padding:4px 9px;border-radius:20px}.dot{width:10px;height:10px;border-radius:50%;background:var(--cyan)}.dot.new{background:var(--amber)}
+    .viewmeta{display:grid;justify-items:end;gap:10px}.renderstatus{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid #466277;border-radius:999px;background:#142638e8;color:#e4f3fa;font-size:.77rem;white-space:nowrap}.renderstatus::before{content:"";width:7px;height:7px;flex:none;border-radius:50%;background:var(--cyan)}.renderstatus[data-mode="unavailable"]::before{background:var(--pink)}
+    .side{display:flex;flex-direction:column;gap:16px}.story,.controls,.basekey{border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#142638,#101d2c);padding:22px}.story{flex:1;display:flex;flex-direction:column}.stepnum{color:var(--cyan);font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.story h2{font-size:clamp(1.55rem,2.3vw,2.2rem);line-height:1.15;margin:12px 0 12px;letter-spacing:-.025em}.story p{margin:0;color:#d0dfeb}.fact{margin-top:auto;padding-top:24px;color:var(--muted);font-size:.9rem}.fact strong{color:var(--ink)}.stepnav{display:flex;gap:8px;margin-top:26px}.stepnav button{flex:1;min-height:44px;border-radius:11px;border:1px solid #425c70;color:var(--ink);background:#1b3348}.stepnav button:hover:not(:disabled){background:#28475e}.stepnav button:disabled{opacity:.38;cursor:default}
+    .controlhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.controlhead strong{font-size:.95rem}.time{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}.range{width:100%;accent-color:var(--cyan);cursor:pointer}.milestones{display:flex;justify-content:space-between;color:var(--muted);font-size:.72rem;gap:4px}.playrow{display:flex;gap:9px;margin-top:18px}.play{flex:1;min-height:44px;background:var(--cyan);border:0;border-radius:11px;color:#09212e;font-weight:700}.play:hover{background:#84e6f0}.secondary{min-height:44px;padding:0 13px;border:1px solid #425c70;border-radius:11px;background:#1b3348;color:var(--ink)}.secondary:hover{background:#28475e}.basekey h3{font-size:.9rem;margin:0 0 12px}.pairs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pair{display:flex;align-items:center;gap:8px;font-size:.85rem;color:#dce8f0}.swatch{width:12px;height:12px;border-radius:4px;display:inline-block}.a{background:var(--mint)}.t{background:var(--violet)}.g{background:var(--amber)}.c{background:var(--pink)}.note{font-size:.78rem;color:var(--muted);margin:15px 0 0}
+    .projectnotes{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.2fr 1.6fr .9fr;gap:18px 28px}.projectnotes h2{grid-column:1/-1;font-size:1.15rem;line-height:1.3;margin:0}.projectnotes h3{font-size:.83rem;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin:0 0 7px}.projectnotes p{margin:0;color:#d0dfeb}.projectnotes a{color:var(--cyan);text-underline-offset:3px}.footer{color:var(--muted);font-size:.83rem;margin:16px 1px 0}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.viewport{min-height:56vh}.side{display:grid;grid-template-columns:1fr 1fr}.story{grid-column:1/-1;min-height:230px}.fact{margin-top:12px;padding-top:12px}.stepnav{margin-top:18px}.projectnotes{grid-template-columns:1fr 1fr}.projectnotes .source{grid-column:1/-1}}
+    @media(max-width:560px){.page{padding:18px 14px 26px}.top{margin-bottom:15px}.top p{font-size:.9rem}.viewport{min-height:55vh;border-radius:16px}.side{display:flex}.story,.controls,.basekey{padding:18px;border-radius:16px}.viewtop{left:12px;right:12px;top:12px}.viewbottom{left:8px;right:8px;bottom:9px;gap:4px}.key{font-size:.7rem;padding:3px 6px}.viewhint{display:none}.renderstatus{font-size:.7rem;padding:5px 7px;white-space:normal;text-align:right}.milestones{font-size:.67rem}.projectnotes{grid-template-columns:1fr}.projectnotes .source{grid-column:auto}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <header class="top"><div><div class="eyebrow">Molecular biology · interactive model</div><h1>How DNA makes a copy</h1></div><p>One double helix opens. Each old strand becomes the template for a matching new strand.</p></header>
+  <div class="layout">
+    <section class="viewport" id="viewport" aria-label="Rotatable three-dimensional DNA replication model. Drag to rotate and scroll to zoom." tabindex="0">
+      <canvas id="scene" role="img" aria-label="Animated 3D DNA model showing an original double helix, strand separation, complementary base pairing, and two daughter helices.">Your browser needs canvas to show the 3D model.</canvas>
+      <div class="viewtop"><span class="viewchip" id="viewchip">Original DNA</span><div class="viewmeta"><span class="viewhint">Drag to rotate<br>Scroll to zoom</span><span class="renderstatus" id="renderstatus" role="status" aria-live="polite" aria-label="Rendering status: CPU computes the 3D scene; WebGL GPU rendering is not used">CPU 3D · GPU unused</span></div></div>
+      <div class="viewbottom"><span class="key"><i class="dot"></i> Original strands</span><span class="key"><i class="dot new"></i> New strands</span></div>
+    </section>
+    <div class="side">
+      <section class="story" aria-live="polite"><div class="stepnum" id="stepnum">01 / 04</div><h2 id="steptitle">A paired double helix</h2><p id="steptext">DNA begins as two complementary strands wound around each other. A pairs with T; G pairs with C.</p><div class="fact" id="stepfact"><strong>Look for:</strong> the colored base pairs bridging the two backbones.</div><div class="stepnav"><button id="prev" type="button" aria-label="Previous stage">Previous</button><button id="next" type="button" aria-label="Next stage">Next</button></div></section>
+      <section class="controls" aria-label="Animation controls"><div class="controlhead"><strong>Replication timeline</strong><span class="time" id="time">0%</span></div><label class="sr" for="timeline">Replication progress</label><input class="range" id="timeline" type="range" min="0" max="1000" value="0"><div class="milestones"><span>Paired</span><span>Unzip</span><span>Build</span><span>Two copies</span></div><div class="playrow"><button class="play" id="play" type="button">Play animation</button><button class="secondary" id="resetview" type="button">Reset view</button></div></section>
+      <section class="basekey" aria-label="Base pairing key"><h3>Complementary bases</h3><div class="pairs"><span class="pair"><i class="swatch a"></i> A pairs with <i class="swatch t"></i> T</span><span class="pair"><i class="swatch g"></i> G pairs with <i class="swatch c"></i> C</span></div><p class="note">Each finished DNA molecule has one original strand and one newly made strand.</p></section>
+    </div>
+  </div>
+  <section class="projectnotes" aria-labelledby="about-title">
+    <h2 id="about-title">About this visualization</h2>
+    <div><h3>Prompt</h3><p>Visualize in 3D how DNA unzips and gets copied before a cell divides, hosted in standalone HTML web page.</p></div>
+    <div><h3>Implementation details</h3><p>This self-contained page uses JavaScript to project a 3D DNA model onto Canvas 2D. Drag to rotate, scroll to zoom, or scrub the replication timeline. The CPU calculates the 3D scene; no WebGL GPU renderer is used.</p></div>
+    <div class="source"><h3>Source</h3><p><a href="https://x.com/AskPerplexity/status/2106391371435414006" target="_blank" rel="noopener noreferrer">AskPerplexity post on X</a></p></div>
+  </section>
+  <p class="footer">Simplified model of semiconservative DNA replication. Enzymes and the leading/lagging strand details are omitted to focus on the copying mechanism.</p>
+</main>
+<script>
+(()=>{
+  'use strict';
+  const canvas=document.getElementById('scene'),viewport=document.getElementById('viewport'),ctx=canvas.getContext('2d');
+  const renderStatus=document.getElementById('renderstatus');
+  if(!ctx){renderStatus.textContent='Canvas unavailable';renderStatus.dataset.mode='unavailable';renderStatus.setAttribute('aria-label','Rendering status: Canvas 2D is unavailable');return}
+  const timeline=document.getElementById('timeline'),play=document.getElementById('play'),prev=document.getElementById('prev'),next=document.getElementById('next'),reset=document.getElementById('resetview');
+  const chip=document.getElementById('viewchip'),stepnum=document.getElementById('stepnum'),title=document.getElementById('steptitle'),copy=document.getElementById('steptext'),fact=document.getElementById('stepfact'),time=document.getElementById('time');
+  const stages=[
+    {at:0,tag:'Original DNA',title:'A paired double helix',text:'DNA begins as two complementary strands wound around each other. A pairs with T; G pairs with C.',fact:'the colored base pairs bridging the two backbones.'},
+    {at:.30,tag:'Strands separate',title:'The helix unzips',text:'The bonds between paired bases release. The two original strands separate, exposing each base as a template.',fact:'the opening travels along the molecule.'},
+    {at:.62,tag:'Complementary bases',title:'New strands are assembled',text:'Free nucleotides pair with exposed bases: A with T, and G with C. A new backbone joins them into a strand.',fact:'gold backbones growing beside the blue originals.'},
+    {at:1,tag:'Two DNA molecules',title:'Two matching copies',text:'Replication leaves two double helices. Each contains one original strand and one newly built strand.',fact:'one blue and one gold backbone in each copy.'}
+  ];
+  const bases='ATGCCGTATCGATGACCTAGCGTACG';
+  const complement={A:'T',T:'A',G:'C',C:'G'};
+  const colors={A:'#75e5bc',T:'#b9a4fa',G:'#ffd483',C:'#fb9db4'};
+  const CYAN='#59d9ea',GOLD='#ffd483';
+  let progress=0,playing=false,az=-.34,tilt=.1,zoom=1,last=0,drag=null,w=1,h=1,dpr=1;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const smooth=(a,b,x)=>{let t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+  const mix=(a,b,t)=>a+(b-a)*t;
+  const lerp3=(a,b,t)=>({x:mix(a.x,b.x,t),y:mix(a.y,b.y,t),z:mix(a.z,b.z,t)});
+  function resize(){const r=viewport.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+  new ResizeObserver(resize).observe(viewport);resize();
+  function project(p){const ca=Math.cos(az),sa=Math.sin(az),ct=Math.cos(tilt),st=Math.sin(tilt);let x=p.x*ca-p.z*sa,z=p.x*sa+p.z*ca,y=p.y*ct-z*st;z=p.y*st+z*ct;const scale=Math.min(w/11.7,h/12.5)*zoom*6.8/(6.8+z*.12);return{x:w*.5+x*scale,y:h*.505-y*scale,z,scale}}
+  function strandPoint(i,which){
+    const f=i/(bases.length-1),y=(f-.5)*10.2,a=i*.68+.35,r=1.03;
+    const fork=smooth(0,1,clamp((progress-.12)/.55,0,1));
+    const finish=smooth(.70,.99,progress);
+    const open=Math.max(smooth(1-f-.055,1-f+.06,fork),finish);
+    const build=Math.max(smooth(.30,.76,progress)*smooth(1-f-.15,1-f+.08,fork),finish);
+    const c=Math.cos(a)*r,s=Math.sin(a)*r;
+    const A={x:c-1.55*open,y,z:s},B={x:-c+1.55*open,y,z:-s};
+    const aFinal={x:-2.25+c,y,z:s},bFinal={x:2.25-c,y,z:-s};
+    const oldA=lerp3(A,aFinal,finish),oldB=lerp3(B,bFinal,finish);
+    const newAStart={x:A.x+1.4,y,z:A.z},newBStart={x:B.x-1.4,y,z:B.z};
+    const newAFinal={x:-2.25-c,y,z:-s},newBFinal={x:2.25+c,y,z:s};
+    return{oldA,oldB,newA:lerp3(newAStart,newAFinal,finish),newB:lerp3(newBStart,newBFinal,finish),open,build,finish};
+  }
+  function line(a,b,color,width,alpha=1){if(!a||!b)return;let p=project(a),q=project(b);ctx.globalAlpha=alpha;ctx.strokeStyle='#061321';ctx.lineWidth=width+2.5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();ctx.globalAlpha=1}
+  function bead(v,color,size=3.5,alpha=1){let p=project(v),r=clamp(p.scale*.083*size,2,8);ctx.globalAlpha=alpha;let grad=ctx.createRadialGradient(p.x-r*.35,p.y-r*.4,0,p.x,p.y,r);grad.addColorStop(0,'#ffffff');grad.addColorStop(.18,color);grad.addColorStop(1,'#173044');ctx.fillStyle=grad;ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+  function draw(){ctx.clearRect(0,0,w,h);let pts=Array.from({length:bases.length},(_,i)=>strandPoint(i));let objects=[];
+    // Depth sorting makes the two helices readable while the viewer rotates them.
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i],base=bases[i],other=complement[base];
+      if(i<pts.length-1){const q=pts[i+1];for(const key of ['oldA','oldB'])objects.push({z:(project(p[key]).z+project(q[key]).z)/2,draw:()=>line(p[key],q[key],CYAN,5.2)});for(const key of ['newA','newB']){let alpha=Math.min(p.build,q.build);if(alpha>.02)objects.push({z:(project(p[key]).z+project(q[key]).z)/2,draw:()=>line(p[key],q[key],GOLD,5.2,alpha)})}}
+      const halfA=lerp3(p.oldA,p.oldB,.5),halfB=halfA;
+      const paired=1-p.open;
+      if(paired>.01){objects.push({z:project(halfA).z,draw:()=>{line(p.oldA,halfA,colors[base],3.6,paired);line(halfB,p.oldB,colors[other],3.6,paired)}})}
+      for(const [oldKey,newKey,base1,base2] of [['oldA','newA',base,other],['oldB','newB',other,base]]){
+        const alpha=p.build;if(alpha>.01){const mid=lerp3(p[oldKey],p[newKey],.5);objects.push({z:project(mid).z,draw:()=>{line(p[oldKey],mid,colors[base1],3.3,alpha);line(mid,p[newKey],colors[base2],3.3,alpha)}})}
+      }
+      for(const key of ['oldA','oldB'])objects.push({z:project(p[key]).z,draw:()=>bead(p[key],CYAN,3.3)});
+      for(const key of ['newA','newB'])if(p.build>.02)objects.push({z:project(p[key]).z,draw:()=>bead(p[key],GOLD,3.3,p.build)});
+    }
+    objects.sort((a,b)=>b.z-a.z);for(const o of objects)o.draw();
+    // Subtle guide lines make the 3D rotation easier to perceive.
+    ctx.globalAlpha=.16;ctx.strokeStyle='#8db8c9';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(w*.5-36,h*.91);ctx.lineTo(w*.5+36,h*.91);ctx.stroke();ctx.globalAlpha=1;
+  }
+  function updateUI(){let index=progress<.22?0:progress<.49?1:progress<.87?2:3,s=stages[index];chip.textContent=s.tag;stepnum.textContent=String(index+1).padStart(2,'0')+' / 04';title.textContent=s.title;copy.textContent=s.text;fact.innerHTML='<strong>Look for:</strong> '+s.fact;time.textContent=Math.round(progress*100)+'%';timeline.value=Math.round(progress*1000);prev.disabled=index===0;next.disabled=index===3;play.textContent=playing?'Pause animation':'Play animation'}
+  function setProgress(v){progress=clamp(v,0,1);updateUI();draw()}
+  timeline.addEventListener('input',()=>{playing=false;setProgress(Number(timeline.value)/1000)});
+  play.addEventListener('click',()=>{if(progress>=1)progress=0;playing=!playing;updateUI();last=performance.now();requestAnimationFrame(tick)});
+  prev.addEventListener('click',()=>{playing=false;let i=progress<.22?0:progress<.49?1:progress<.87?2:3;setProgress(stages[Math.max(0,i-1)].at)});
+  next.addEventListener('click',()=>{playing=false;let i=progress<.22?0:progress<.49?1:progress<.87?2:3;setProgress(stages[Math.min(3,i+1)].at)});
+  reset.addEventListener('click',()=>{az=-.34;tilt=.1;zoom=1;draw()});
+  function tick(now){if(!playing)return;let dt=Math.min((now-last)/1000,.05);last=now;setProgress(progress+dt/11);if(progress>=1){playing=false;updateUI()}else requestAnimationFrame(tick)}
+  viewport.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,az,tilt};viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging')});
+  viewport.addEventListener('pointermove',e=>{if(!drag)return;az=drag.az+(e.clientX-drag.x)*.007;tilt=clamp(drag.tilt+(e.clientY-drag.y)*.005,-.8,.8);draw()});
+  for(const ev of ['pointerup','pointercancel'])viewport.addEventListener(ev,()=>{drag=null;viewport.classList.remove('dragging')});
+  viewport.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom*Math.exp(-e.deltaY*.001),.65,1.7);draw()},{passive:false});
+  viewport.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){az+=e.key==='ArrowLeft'?0.12:-0.12;draw();e.preventDefault()}if(e.key==='ArrowUp'||e.key==='ArrowDown'){tilt=clamp(tilt+(e.key==='ArrowUp'?0.1:-0.1),-.8,.8);draw();e.preventDefault()}});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){play.textContent='Play animation'}
+  updateUI();draw();
+})();
+</script>
+</body>
+</html>

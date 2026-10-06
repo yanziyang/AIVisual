@@ -16,7 +16,7 @@
 .bottom{pointer-events:none}.toolbar,.panel{pointer-events:auto}.credit{z-index:7;pointer-events:auto}.credit button{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 10px;margin-left:5px;font-size:12px;touch-action:manipulation;border-radius:8px}.credit button:hover{background:#faf7e81c}.credit button:focus-visible{outline-offset:1px}@media(max-width:700px){.credit{bottom:4px}.credit button{min-height:36px;font-size:11px;padding:8px}.bottom{bottom:max(52px,env(safe-area-inset-bottom))}}
 /* The current light is also a directly accessible preset picker. */
 .pond-badge{position:relative;padding:5px 10px 5px 16px}.light-toggle{pointer-events:auto;display:flex;align-items:center;gap:8px;min-height:36px;padding:5px 8px;border:0;border-radius:18px;background:transparent;color:#e2e8d6;font-size:11px;letter-spacing:1px;text-transform:uppercase;touch-action:manipulation;transition:background .16s}.light-toggle:hover,.light-toggle[aria-expanded=true]{background:#faf7e824}.light-toggle svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .16s}.light-toggle[aria-expanded=true] svg{transform:rotate(180deg)}.light-picker{position:absolute;top:calc(100% + 12px);right:0;width:210px;padding:14px;background:#fbf8e9f7;color:#33432f;border:1px solid #ffffff88;border-radius:16px;box-shadow:0 12px 40px #081b1644;backdrop-filter:blur(20px);pointer-events:auto}.light-picker p{margin:2px 8px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#69755f}.light-picker button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:42px;padding:10px 12px;border:0;border-radius:9px;background:transparent;color:inherit;text-align:left;font-size:13px}.light-picker button:hover{background:#e8eadc}.light-picker button[aria-pressed=true]{background:#344732;color:#faf9eb}.light-picker button[aria-pressed=true]::after{content:'\2713';margin-left:12px}.light-options button[aria-pressed=true]{background:#344732;color:#faf9eb;border-color:#344732}@media(max-width:700px){.header{gap:12px}.header>div:first-child{min-width:0;flex:1}.pond-badge{flex-direction:column;gap:0;padding:5px 7px}.light-toggle{font-size:10px;letter-spacing:.4px;padding:5px;gap:5px}.light-picker{width:200px}}
-#pond-poster{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}#c{opacity:0}#c.scene-ready{opacity:1}.loader{background:linear-gradient(#10231855,#102318aa);backdrop-filter:blur(2px)}.javascript-notice{position:fixed;z-index:12;top:50%;left:50%;transform:translate(-50%,-50%);width:min(430px,calc(100% - 40px));margin:0;padding:20px 24px;border-radius:16px;background:#fbf8e9f5;color:#34432f;font:14px/1.6 Segoe UI,system-ui,sans-serif;box-shadow:0 12px 50px #081b1644}
+#c{opacity:0}#c.scene-ready{opacity:1}.javascript-notice{position:fixed;z-index:12;top:50%;left:50%;transform:translate(-50%,-50%);width:min(430px,calc(100% - 40px));margin:0;padding:20px 24px;border-radius:16px;background:#fbf8e9f5;color:#34432f;font:14px/1.6 Segoe UI,system-ui,sans-serif;box-shadow:0 12px 50px #081b1644}
 </style>
 <style id="renderer-status-styles">
 #ai-visual-render-mode{position:fixed;right:12px;bottom:64px;z-index:2147483647;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 24px);padding:9px 13px;border:1px solid #ffffff30;border-radius:999px;color:#f7f8fa;background:rgba(18,22,28,.94);box-shadow:0 3px 14px rgba(0,0,0,.35);font:600 12px/1.3 system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}#ai-visual-render-mode::before{content:"";width:8px;height:8px;flex:none;border-radius:50%;background:#d5d8dc}#ai-visual-render-mode[data-mode=gpu]::before{background:#55e0a4}#ai-visual-render-mode[data-mode=cpu]::before{background:#ffc15c}#ai-visual-render-mode[data-mode=unavailable]::before{background:#ff7777}
@@ -134,25 +134,16 @@ body:not([data-startup="ready"]) .credit,
 body:not([data-startup="ready"]) .toast,
 body:not([data-startup="ready"]) #dbg,
 body:not([data-startup="ready"]) #ai-visual-render-mode{visibility:hidden}
-#loader{align-items:flex-start;justify-content:center;padding:40px max(38px,calc((100vw - 1360px)/2));background:linear-gradient(90deg,rgba(13,31,22,.84),rgba(13,31,22,.62) 36%,rgba(13,31,22,.12) 100%);backdrop-filter:blur(1px)}
-.loader-content{position:absolute;left:max(38px,calc((100vw - 1360px)/2));top:50%;width:min(460px,calc(100% - 76px));transform:translateY(-50%)}
-.loader-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 20px;color:#c5d5a9;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
-.loader-eyebrow::before{content:"";width:30px;height:1px;background:#c5d5a9aa}
-.loader h1{font:400 clamp(58px,8vw,88px)/.94 Georgia,serif;letter-spacing:-.04em;margin:0;color:#fbf8e9}
-.loader .loader-description{max-width:370px;margin:18px 0 34px;color:#e2e8d6;font:15px/1.7 Segoe UI,system-ui,sans-serif}
-.loader-status{display:flex;align-items:center;gap:14px}
-.loader-status .water-ring{width:23px;height:23px;flex:none;border-color:#d5dec999;box-shadow:0 0 0 7px #d5dec91a,0 0 0 13px #d5dec90c}
-.loader-status-copy strong,.loader-status-copy small{display:block}
-.loader-status-copy strong{font-size:13px;font-weight:600;letter-spacing:.05em}
-.loader-status-copy small{margin-top:4px;color:#c5ceb8;font-size:12px;letter-spacing:.02em}
-.loader-footer{position:absolute;left:max(38px,calc((100vw - 1360px)/2));right:max(38px,calc((100vw - 1360px)/2));bottom:max(26px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:16px;color:#d6ddcebd;font-size:10px;letter-spacing:.17em;text-transform:uppercase}
-@media(max-width:700px){#loader{padding:28px 22px;background:linear-gradient(180deg,rgba(13,31,22,.35),rgba(13,31,22,.78))}.loader-content{left:22px;top:auto;bottom:23%;width:calc(100% - 44px);transform:none}.loader h1{font-size:58px}.loader .loader-description{font-size:14px;margin:14px 0 30px}.loader-footer{left:22px;right:22px;bottom:max(16px,env(safe-area-inset-bottom));font-size:9px;letter-spacing:.1em}}
-@media(max-width:370px){.loader-footer{flex-direction:column;gap:6px}}
+#loader{align-items:center;justify-content:center;gap:20px;padding:30px;background:#142a20;backdrop-filter:none;text-align:center}
+.loader .water-ring{width:36px;height:36px;border:1px solid #4a6751;border-top-color:#d1dfbb;box-shadow:none;animation:spin 1.2s linear infinite}
+.loader h1{margin:0;color:#fbf8e9;font:400 24px Georgia,serif}
+.loader .loader-description{max-width:500px;margin:0;color:#c5ceb8;font:14px/1.7 Segoe UI,system-ui,sans-serif}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body data-tool="ripple" data-startup="loading">
-<img id="pond-poster" src="{{POND_POSTER}}" alt="" aria-hidden="true">
-<noscript><style>#loader{display:none!important}</style><p id="javascript-notice" class="javascript-notice">The pond image is ready. Open this HTML file in Chrome, Edge, or Firefox with JavaScript enabled to animate the koi and use the pond controls.</p></noscript>
+<div id="loader" class="loader" role="status" aria-live="polite" aria-atomic="true"><div class="water-ring" aria-hidden="true"></div><h1>Stillwater</h1><p class="loader-description">Preparing your pond…</p></div>
+<noscript><style>#loader{display:none!important}</style><p id="javascript-notice" class="javascript-notice">JavaScript is required to animate the pond. Open this HTML file in Chrome, Edge, or Firefox with JavaScript enabled.</p></noscript>
 <div id="ai-visual-render-mode" class="renderer-status" role="status" aria-live="polite" data-mode="checking" title="Checking which renderer WebGL2 selected">Checking GPU/CPU renderer…</div>
 <canvas id="c" tabindex="0" aria-label="Interactive koi pond. Tap or press Enter to make ripples. Select Feed koi and tap or press Enter to feed. Drag to orbit, or use arrow keys. Scroll or use plus and minus to zoom.">Your browser needs WebGL2 to display the pond.</canvas>
 <div class="vignette" aria-hidden="true"></div>
@@ -215,7 +206,6 @@ https://github.com/Aureliengmz/clearwater</blockquote>
   <details><summary>Clearwater MIT license</summary><pre>{{CLEARWATER_LICENSE}}</pre></details>
  </div>
 </dialog>
-<div id="loader" class="loader" role="status" aria-live="polite" aria-atomic="true"><div class="loader-content"><p class="loader-eyebrow">A quiet corner / interactive pond</p><h1>Stillwater</h1><p class="loader-description">Stay a while. The koi are in no hurry.</p><div class="loader-status"><span class="water-ring" aria-hidden="true"></span><span class="loader-status-copy"><strong>Preparing the pond</strong><small>Bringing the water and koi to life…</small></span></div></div><div class="loader-footer"><span>Stillwater · interactive koi pond</span><span>A moment of stillness</span></div></div>
 <div id="err" role="alert" hidden></div><div id="dbg" hidden></div>
 <script id="pond-interface">
 // The prompt and implementation notes must remain usable even without WebGL.

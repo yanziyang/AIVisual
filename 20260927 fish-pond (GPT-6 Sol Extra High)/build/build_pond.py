@@ -79,8 +79,7 @@ for source_name in ('pond-shell.html', 'pond-scene.glsl', 'pond-behavior.js', 'b
     shell = shell.replace(f'<code>{source_name}</code>', f'<code>build/{source_name}</code>')
 reference_path = root / 'clearwater-source/reference.png'
 reference_uri = 'data:image/png;base64,' + base64.b64encode(reference_path.read_bytes()).decode('ascii')
-poster_uri = 'data:image/jpeg;base64,' + base64.b64encode((root / 'pond-poster.jpg').read_bytes()).decode('ascii')
-shell = shell.replace('{{REFERENCE_IMAGE}}', reference_uri).replace('{{CLEARWATER_LICENSE}}', html.escape(license_text)).replace('{{POND_POSTER}}', poster_uri)
+shell = shell.replace('{{REFERENCE_IMAGE}}', reference_uri).replace('{{CLEARWATER_LICENSE}}', html.escape(license_text))
 output = shell + '\n<script>\n' + engine + '\n</script>\n'
 output += '<script id="pebbles-texture" type="text/plain">' + texture + '</script>\n'
 output += '<!--\nClearwater upstream: https://github.com/Aureliengmz/clearwater\n' + license_text + '\n-->\n</body>\n</html>\n'

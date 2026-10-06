@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Inside a turbofan — interactive 3D cutaway</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#e8f1fb;background:#07111d}
+    *{box-sizing:border-box}body{margin:0;min-width:320px;background:radial-gradient(circle at 50% 42%,#112a3a 0,#091825 38%,#07111d 75%)}
+    button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #7ce8ec;outline-offset:3px}
+    .page{max-width:1250px;margin:auto;padding:28px clamp(16px,3vw,38px) 54px}
+    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#74dbdf;font-weight:700;margin-bottom:9px}
+    h1{font-size:clamp(29px,4vw,49px);line-height:1.06;letter-spacing:-.04em;margin:0;font-weight:700}
+    .sub{color:#a9c0cf;line-height:1.55;font-size:14px;margin:11px 0 0;max-width:650px}
+    .top-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-top:8px}
+    .pill,.control{border:1px solid #285064;background:#122b3c;color:#d6eaf5;border-radius:999px;padding:9px 13px;font-size:12px;line-height:1;white-space:nowrap}
+    .pill{color:#7ce8ec;background:#10313b;border-color:#28636b;font-weight:700;letter-spacing:.08em}
+    .render-mode{position:fixed;right:10px;bottom:10px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.18);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .control:hover{background:#1c3d4e}.control[aria-pressed="true"]{background:#265a61;border-color:#68cbd0;color:#f0ffff}
+    .viz{position:relative;height:min(56vw,600px);min-height:390px;max-height:600px;margin-top:20px;border:1px solid #244152;border-radius:22px;overflow:hidden;background:radial-gradient(ellipse at 52% 55%,#173447 0,#102534 40%,#0b1c2b 78%,#091723 100%);box-shadow:0 25px 65px #0005}
+    .viz:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#a5e3e309 1px,transparent 1px),linear-gradient(90deg,#a5e3e309 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,transparent,#000 23%,#000 80%,transparent);pointer-events:none}
+    canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}canvas.dragging{cursor:grabbing}
+    .corner{position:absolute;pointer-events:none;color:#8eaebb;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+    .corner.tl{top:17px;left:19px}.corner.tr{top:17px;right:19px;text-align:right}.corner.bl{bottom:15px;left:19px;letter-spacing:0;text-transform:none}.corner.br{bottom:15px;right:19px;letter-spacing:0;text-transform:none}
+    .corner b{color:#c9f5f0;font-weight:600}.swatch{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin-right:5px}.cold{background:#62d8e9}.hot{background:#ffad69}
+    .dashboard{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-top:18px}
+    .steps{display:flex;gap:7px;flex-wrap:wrap}.step{display:flex;gap:8px;align-items:center;border:1px solid #294458;background:#102638;color:#b5cbd8;border-radius:11px;padding:11px 13px;font-size:13px;text-align:left;transition:background .15s,border-color .15s,transform .15s}.step:hover{background:#18364a;transform:translateY(-1px)}.step[aria-pressed="true"]{background:#163d4a;color:#efffff;border-color:#68cbd0}.step small{font-size:10px;color:#72cbd2;font-weight:700}
+    .throttle{display:flex;gap:11px;align-items:center;white-space:nowrap;color:#b4cad6;font-size:12px}.throttle output{min-width:32px;text-align:right;color:#e6f7f8;font-weight:700;font-variant-numeric:tabular-nums}.throttle input{width:110px;accent-color:#69dce0}
+    .detail{margin-top:13px;border:1px solid #294559;background:linear-gradient(120deg,#122b3c,#0f2332);border-radius:14px;padding:16px 19px;min-height:79px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+    .detail .number{font-size:10px;color:#75d5d9;letter-spacing:.13em;text-transform:uppercase;font-weight:700}.detail h2{margin:3px 0 0;font-size:18px;line-height:1.1}.detail p{margin:0;color:#c4d7e2;font-size:13px;line-height:1.5}
+    .foot{display:flex;justify-content:space-between;gap:12px;color:#88a8b7;font-size:11px;line-height:1.4;margin-top:15px;flex-wrap:wrap}
+    .about{margin-top:26px;padding-top:19px;border-top:1px solid #294559;color:#b7cbd6;font-size:12px;line-height:1.55}.about h2{margin:0 0 12px;color:#e3eff6;font-size:15px}.about dl{display:grid;grid-template-columns:145px minmax(0,1fr);gap:10px 18px;margin:0}.about dt{color:#78cfd4;font-weight:700}.about dd{margin:0}.about a{color:#91e6eb;text-decoration:underline;text-underline-offset:3px}.about a:hover{color:#d8ffff}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:760px){.page{padding-top:20px}.viz{height:65vw;min-height:360px}.dashboard{grid-template-columns:1fr}.throttle{justify-content:flex-start}.detail{grid-template-columns:1fr;gap:8px}.corner.tr{display:none}}
+    @media(max-width:600px){.about dl{grid-template-columns:1fr;gap:3px}.about dd{margin-bottom:9px}}
+    @media(max-width:480px){.viz{min-height:320px}.corner.bl{max-width:190px}.corner.br{display:none}.step{padding:9px 10px;font-size:12px}.step small{display:none}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div><div class="eyebrow">Interactive engineering cutaway</div><h1>Inside a jet engine</h1><p class="sub">Follow air through a simplified high-bypass turbofan. Drag the model to orbit; choose a stage to see what it does.</p></div>
+      <div class="top-right"><span class="pill">3D CUTAWAY</span><button class="control" id="motion" type="button" aria-pressed="true">Pause motion</button><button class="control" id="home" type="button">Reset view</button></div>
+    </header>
+    <section class="viz" aria-label="Interactive three-dimensional cutaway of a turbofan engine">
+      <canvas id="engine" role="img" tabindex="0" aria-label="Rotatable turbofan cutaway showing fan, compressor, combustor, turbine and exhaust nozzle, with animated cool bypass air and hot core flow. Use arrow keys to rotate and plus or minus to zoom."></canvas>
+      <div class="corner tl">Forward <b>←</b> &nbsp; Airflow <b>→</b></div>
+      <div class="corner tr">Drag to orbit<br>Scroll to zoom</div>
+      <div class="corner bl"><span class="swatch cold"></span>Cool air &nbsp;&nbsp;<span class="swatch hot"></span>Hot gas</div>
+      <div class="corner br">The outer shell is opened to reveal the core</div>
+    </section>
+    <section class="dashboard" aria-label="Engine stages and controls">
+      <div class="steps" id="steps"></div>
+      <label class="throttle" for="throttle">Throttle <input id="throttle" type="range" min="25" max="100" value="65"><output id="throttleValue">65%</output></label>
+    </section>
+    <div class="detail" aria-live="polite"><div><div class="number" id="stageNumber">Stage 01 / 05</div><h2 id="stageTitle">Fan</h2></div><p id="stageText"></p></div>
+    <footer class="foot"><span>Air and fuel burn continuously; the turbine drives the fan and compressor through a shaft.</span></footer>
+    <section class="about" aria-labelledby="about-title">
+      <h2 id="about-title">About this visualization</h2>
+      <dl>
+        <dt>Prompt</dt><dd>Show me how a jet engine works in an inline 3D cutaway, hosted in standalone html.</dd>
+        <dt>Implementation details</dt><dd>Self-contained HTML, CSS, and JavaScript. Procedural 3D engine surfaces are projected onto Canvas 2D. Drag or use the arrow keys to orbit; scroll or use +/− to zoom. Animated blades and cool/hot airflow show the five stages, while the throttle changes airflow speed, density, and exhaust glow. The status badge reports CPU drawing and checks WebGL GPU availability separately.</dd>
+        <dt>Source</dt><dd><a href="https://x.com/AskPerplexity/status/2106391371435414006" target="_blank" rel="noopener noreferrer">AskPerplexity post on X</a> <span>(link provided with the prompt)</span></dd>
+      </dl>
+    </section>
+    <div class="render-mode" id="renderMode" role="status" aria-live="polite" data-mode="pending" title="The cutaway uses CPU Canvas 2D. Checking WebGL GPU availability.">CPU active · checking GPU…</div>
+  </main>
+  <script>
+  (()=>{
+    'use strict';
+    const canvas=document.getElementById('engine'),ctx=canvas.getContext('2d');
+    const viz=canvas.parentElement;
+    const renderMode=document.getElementById('renderMode');
+    function gpuState(state,label,details){renderMode.dataset.mode=state;renderMode.textContent=label;renderMode.title=details}
+    function probeGpu(){
+      const probe=document.createElement('canvas');let gl=null;
+      try{gl=probe.getContext('webgl2',{powerPreference:'high-performance',failIfMajorPerformanceCaveat:false})||probe.getContext('webgl',{powerPreference:'high-performance',failIfMajorPerformanceCaveat:false})}
+      catch(error){gpuState('unavailable','CPU active · GPU unavailable','WebGL could not initialize: '+String(error));return}
+      if(!gl){gpuState('unavailable','CPU active · GPU unavailable','No WebGL context is available to this page. The CPU cutaway remains usable.');return}
+      let renderer='';try{const debug=gl.getExtension('WEBGL_debug_renderer_info');if(debug)renderer=String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)||'').trim()}catch(_){}
+      const software=/swiftshader|llvmpipe|softpipe|software renderer|software rasterizer|basic render driver|warp/i;
+      const hardware=/nvidia|geforce|quadro|radeon|amd|intel.*(graphics|arc|iris|uhd|hd graphics)|apple gpu|apple m[1-9]|adreno|mali|powervr|qualcomm/i;
+      if(software.test(renderer))gpuState('cpu','CPU active · software WebGL','WebGL reports a software renderer ('+renderer+'). The engine cutaway uses CPU Canvas 2D.');
+      else if(hardware.test(renderer))gpuState('gpu','CPU active · GPU ready (idle)','WebGL identifies GPU hardware ('+renderer+'), but this cutaway uses CPU Canvas 2D.');
+      else gpuState('unknown','CPU active · GPU unknown',renderer?'WebGL is available, but its renderer is inconclusive: '+renderer:'WebGL is available, but the browser masks its renderer identity. The cutaway uses CPU Canvas 2D.');
+      try{gl.getExtension('WEBGL_lose_context')?.loseContext()}catch(_){}
+    }
+    probeGpu();
+    if(!ctx){renderMode.dataset.mode='unavailable';renderMode.textContent='3D unavailable · Canvas 2D failed';renderMode.title='Canvas 2D is unavailable, so this cutaway cannot draw.';return}
+    const steps=[
+      {name:'Fan',x:-3.15,body:'The large fan pulls air in. Most air bypasses the hot core and produces much of a modern turbofan’s thrust.'},
+      {name:'Compressor',x:-1.65,body:'Rows of rotating blades squeeze the core air. Higher pressure makes the next stage more effective.'},
+      {name:'Combustor',x:.15,body:'Fuel is injected into the compressed air and burns steadily, greatly raising the gas temperature and energy.'},
+      {name:'Turbine',x:1.72,body:'Expanding hot gas spins the turbine. Its shaft powers the fan and compressor up front.'},
+      {name:'Nozzle',x:3.17,body:'The remaining hot gas accelerates out the nozzle. Its rearward momentum creates forward thrust.'}
+    ];
+    const elSteps=document.getElementById('steps');
+    steps.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='step';b.innerHTML='<small>'+String(i+1).padStart(2,'0')+'</small>'+s.name;b.setAttribute('aria-pressed',i===0?'true':'false');b.addEventListener('click',()=>select(i));elSteps.appendChild(b)});
+    let selected=0,az=.42,elev=.26,zoom=1,playing=true,throttle=.65,phase=0,last=0,drag=null,autoDrift=0;
+    const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced){playing=false;document.getElementById('motion').textContent='Play motion';document.getElementById('motion').setAttribute('aria-pressed','false')}
+    function select(i){selected=i;[...elSteps.children].forEach((b,j)=>b.setAttribute('aria-pressed',i===j?'true':'false'));document.getElementById('stageNumber').textContent='Stage '+String(i+1).padStart(2,'0')+' / 05';document.getElementById('stageTitle').textContent=steps[i].name;document.getElementById('stageText').textContent=steps[i].body;draw()}
+    document.getElementById('motion').addEventListener('click',e=>{playing=!playing;e.currentTarget.textContent=playing?'Pause motion':'Play motion';e.currentTarget.setAttribute('aria-pressed',String(playing));if(playing)requestAnimationFrame(tick)});
+    document.getElementById('home').addEventListener('click',()=>{az=.42;elev=.26;zoom=1;autoDrift=0;draw()});
+    document.getElementById('throttle').addEventListener('input',e=>{throttle=Number(e.target.value)/100;document.getElementById('throttleValue').textContent=e.target.value+'%';draw()});
+    canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,az,elev};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging')});
+    canvas.addEventListener('pointermove',e=>{if(!drag)return;az=Math.max(-1.15,Math.min(1.15,drag.az+(e.clientX-drag.x)*.006));elev=Math.max(-.55,Math.min(.75,drag.elev-(e.clientY-drag.y)*.006));draw()});
+    const stopDrag=()=>{drag=null;canvas.classList.remove('dragging')};canvas.addEventListener('pointerup',stopDrag);canvas.addEventListener('pointercancel',stopDrag);
+    canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.7,Math.min(1.5,zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
+    canvas.addEventListener('keydown',e=>{let changed=true;if(e.key==='ArrowLeft')az=Math.max(-1.15,az-.09);else if(e.key==='ArrowRight')az=Math.min(1.15,az+.09);else if(e.key==='ArrowUp')elev=Math.min(.75,elev+.09);else if(e.key==='ArrowDown')elev=Math.max(-.55,elev-.09);else if(e.key==='+'||e.key==='=')zoom=Math.min(1.5,zoom*1.08);else if(e.key==='-')zoom=Math.max(.7,zoom/1.08);else changed=false;if(changed){e.preventDefault();draw()}});
+    const ro=new ResizeObserver(resize);
+    function resize(){const dpr=Math.min(devicePixelRatio||1,2),r=viz.getBoundingClientRect();canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+    function size(){return {w:viz.clientWidth,h:viz.clientHeight,s:Math.min(viz.clientWidth/8.9,viz.clientHeight/3.6)*zoom}}
+    function project(p){const {w,h,s}=size(),ca=Math.cos(az),sa=Math.sin(az),ce=Math.cos(elev),se=Math.sin(elev);const right=p.x*ca-p.z*sa,up=-p.x*sa*se+p.y*ce-p.z*ca*se,depth=p.x*sa*ce+p.y*se+p.z*ca*ce;const persp=12/(12-depth);return {x:w*.51+right*s*persp,y:h*.515-up*s*persp,d:depth,k:persp}}
+    function pt(x,r,t){return{x,y:r*Math.sin(t),z:r*Math.cos(t)}}
+    function polygon(points,fill,stroke,width=1,glow=0){const q=points.map(project);ctx.beginPath();ctx.moveTo(q[0].x,q[0].y);for(let i=1;i<q.length;i++)ctx.lineTo(q[i].x,q[i].y);ctx.closePath();if(glow){ctx.shadowColor=fill;ctx.shadowBlur=glow}ctx.fillStyle=fill;ctx.fill();ctx.shadowBlur=0;if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke()}}
+    function line(points,color,width=1,dash){const q=points.map(project);ctx.beginPath();ctx.moveTo(q[0].x,q[0].y);for(let i=1;i<q.length;i++)ctx.lineTo(q[i].x,q[i].y);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash||[]);ctx.stroke();ctx.setLineDash([])}
+    function arc(x,r,a,b,color,width=1){const points=[];for(let i=0;i<=40;i++)points.push(pt(x,r,a+(b-a)*i/40));line(points,color,width)}
+    const surfaces=[];function add(points,fill,stroke,width=1,glow=0){let d=0;for(const p of points)d+=project(p).d;surfaces.push({points,fill,stroke,width,glow,d:d/points.length})}
+    function shell(x1,x2,r1,r2,start,end,fill,stroke,segments=30){for(let i=0;i<segments;i++){const a=start+(end-start)*i/segments,b=start+(end-start)*(i+1)/segments;add([pt(x1,r1,a),pt(x2,r2,a),pt(x2,r2,b),pt(x1,r1,b)],fill,stroke,.45)}}
+    function cylinder(x1,x2,r,fill,segments=24){shell(x1,x2,r,r,0,Math.PI*2,fill,null,segments)}
+    function blades(x,r0,r1,n,color,angle=0,width=.20,twist=.17){for(let i=0;i<n;i++){const a=i*2*Math.PI/n+angle,b=a+width;add([pt(x-.06,r0,a),pt(x+twist,r1,a+.10),pt(x+twist*.55,r1,b+.18),pt(x+.05,r0,b)],color,'#b9f1f333',.6)}}
+    function createGeometry(){surfaces.length=0;
+      // Soft, open nacelle; its near-facing sector is removed.
+      shell(-3.5,-2.72,1.14,1.18,1.05,5.32,'#54748731','#a6c9d025');
+      shell(-2.72,2.85,1.18,.85,1.05,5.32,'#4b71862b','#8fc4cf20');
+      // Core casing: a long cutaway window exposes the machinery.
+      shell(-2.38,-.55,.69,.64,1.08,5.35,'#78919e31','#b2ced239');
+      shell(-.55,1.25,.66,.72,1.08,5.35,'#a8886e30','#ddb69335');
+      shell(1.25,2.75,.72,.50,1.08,5.35,'#826f6931','#dbb6a13d');
+      // Fan, shafts and hubs.
+      cylinder(-3.3,2.75,.13,'#4b7282');
+      cylinder(-3.44,-3.13,.22,'#527b8e');
+      blades(-3.17,.23,1.04,20,'#a6e6e9b8',phase*1.8,.17,.14);
+      blades(-3.05,.24,.87,20,'#4b9fb0a0',phase*1.8+.2,.14,.12);
+      // Compressor rows, gradually narrowing toward the burner.
+      const xs=[-2.21,-1.9,-1.58,-1.25,-.92,-.61];
+      xs.forEach((x,i)=>{const r=.62-i*.015;blades(x,.17,r,13,'#8dc9d5ab',phase*2.35+i*.27,.22,.08);shell(x-.05,x+.07,.18,.18,0,Math.PI*2,'#668fa2',null,14)});
+      // Combustion chamber is an annular, glowing interior.
+      shell(-.30,1.19,.56,.61,1.15,5.23,'#e6935459','#ffce8450',30);
+      shell(-.28,1.12,.39,.40,1.1,5.32,'#ff9b415c',null,24);
+      for(let i=0;i<7;i++){const x=-.10+i*.18;for(let j=0;j<10;j++){const a=j*2*Math.PI/10+.16;add([pt(x,.41,a),pt(x+.12,.51,a+.08),pt(x+.10,.51,a+.25),pt(x,.41,a+.19)],i%2?'#ffbd6652':'#ff713b5e',null,1,3)}}
+      // Turbine stages extract work from the gas.
+      [1.38,1.75,2.14].forEach((x,i)=>{blades(x,.18,.64-i*.04,14,'#e4ad7ab8',-phase*1.55+i*.14,.20,-.08);shell(x-.07,x+.08,.20,.20,0,Math.PI*2,'#b58267',null,14)});
+      // Exhaust cone and nozzle.
+      shell(2.64,3.56,.54,.32,0,Math.PI*2,'#62727d95','#b6c6cc45',32);
+      shell(2.75,3.39,.28,.10,0,Math.PI*2,'#a9a19d',null,24);
+      shell(3.49,3.60,.34,.33,0,Math.PI*2,'#aac4cd7d','#d7e6e16e',32);
+      surfaces.sort((a,b)=>a.d-b.d);
+    }
+    function drawGridAndGlow(){const {w,h}=size();const grd=ctx.createRadialGradient(w*.5,h*.55,10,w*.5,h*.55,w*.42);grd.addColorStop(0,'#246b7451');grd.addColorStop(1,'#07162200');ctx.fillStyle=grd;ctx.fillRect(0,0,w,h)}
+    function drawGeometry(){createGeometry();for(const s of surfaces)polygon(s.points,s.fill,s.stroke,s.width,s.glow);
+      // Sharp ribs and cutaway edges make the opening legible.
+      [-3.5,-2.72,-2.38,-.55,1.25,2.85].forEach((x,i)=>{const r=i<2?1.16:i<4?.67:i===4?.72:.85;arc(x,r,1.05,5.32,'#b8e3e355',i<2?1.6:1.1)});
+      for(const [a,b,r1,r2] of [[-3.5,2.85,1.14,.85],[-2.38,-.55,.69,.64],[-.55,1.25,.66,.72],[1.25,2.75,.72,.5]]){line([pt(a,r1,1.05),pt(b,r2,1.05)],'#afdae077',1.2);line([pt(a,r1,5.32),pt(b,r2,5.32)],'#afdae077',1.2)}
+      arc(-3.5,1.14,0,Math.PI*2,'#afe7e8aa',2.2);arc(3.6,.33,0,Math.PI*2,'#ead7c7c0',2);
+    }
+    function drawParticles(){const count=Math.round(26+throttle*38),speed=.11+throttle*.20;ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<count;i++){
+        const bypass=i%3!==0,offset=((i*.61803398875)%1),u=(phase*speed+offset)%1;
+        let x=-4.25+u*8.5,r,a;
+        if(bypass){r=.84+((i*7)%13)/100;a=(i*2.39996)%(Math.PI*2)}
+        else{r=x<-.25?.31+((i*5)%16)/100:x<1.25?.42:Math.max(.19,.40-(x-1.25)*.07);a=(i*2.39996)%(Math.PI*2)}
+        if(bypass&&x>3.25)continue;
+        if(!bypass&&x>4.0)continue;
+        const p=project(pt(x,r,a)),p2=project(pt(x+.11+throttle*.05,r,a));
+        const hot=!bypass&&x>-.30;const alpha=(x< -3.8?(x+4.25)/.45:x>3.1?(4.25-x)/1.15:1)*.72;
+        ctx.strokeStyle=hot?`rgba(255,163,91,${Math.max(0,alpha)})`:`rgba(103,226,235,${Math.max(0,alpha)})`;
+        ctx.lineWidth=hot?2.5:1.8;ctx.lineCap='round';ctx.shadowColor=hot?'#ff8a43':'#68e6e9';ctx.shadowBlur=hot?10:7;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
+      }ctx.restore()}
+    function drawPlume(){const {w,h,s}=size(),a=project({x:3.55,y:0,z:0}),b=project({x:4.7,y:0,z:0});const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'#ffb6765c');g.addColorStop(.48,'#ff8c442a');g.addColorStop(1,'#ff8c4400');ctx.save();ctx.globalCompositeOperation='screen';ctx.beginPath();ctx.moveTo(a.x,a.y-s*.24);ctx.quadraticCurveTo((a.x+b.x)/2,a.y-s*.32,b.x,b.y);ctx.quadraticCurveTo((a.x+b.x)/2,a.y+s*.32,a.x,a.y+s*.24);ctx.closePath();ctx.fillStyle=g;ctx.shadowColor='#fd874a';ctx.shadowBlur=25*throttle;ctx.globalAlpha=throttle;ctx.fill();ctx.restore()}
+    function drawLabels(){const {w,h}=size();ctx.save();ctx.font='600 12px Inter,system-ui,sans-serif';ctx.textBaseline='middle';for(let i=0;i<steps.length;i++){
+       const anchor=project({x:steps[i].x,y:i===0?1.16:i===2?.68:.75,z:0});
+       const top=i%2===0,ly=top?Math.max(64,h*.16):Math.min(h-62,h*.82),px=anchor.x,py=anchor.y;
+       const label=steps[i].name.toUpperCase(),active=i===selected,color=active?'#a6ffff':'#b9d3df';const tw=ctx.measureText(label).width;
+       let lx=Math.max(12,Math.min(w-tw-12,px-tw/2));
+       ctx.strokeStyle=active?'#7ce7ea':'#6798a9';ctx.lineWidth=active?1.4:.8;ctx.globalAlpha=active?1:.76;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px,top?ly+18:ly-17);ctx.lineTo(lx+tw/2,top?ly+18:ly-17);ctx.stroke();ctx.beginPath();ctx.arc(px,py,active?3.4:2.3,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+       ctx.fillStyle=color;ctx.fillText(label,lx,ly);ctx.globalAlpha=1;
+      }ctx.restore()}
+    function draw(){if(!canvas.width)return;const {w,h}=size();ctx.clearRect(0,0,w,h);drawGridAndGlow();drawPlume();drawGeometry();drawParticles();drawLabels()}
+    function tick(t){if(!playing)return;const dt=last?Math.min((t-last)/1000,.05):0;last=t;phase+=dt;draw();requestAnimationFrame(tick)}
+    select(0);
+    ro.observe(viz);
+    if(playing)requestAnimationFrame(tick);
+  })();
+  </script>
+</body>
+</html>

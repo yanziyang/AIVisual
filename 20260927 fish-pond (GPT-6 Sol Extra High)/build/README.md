@@ -33,7 +33,7 @@ The shoreline now uses 18 varied boulders with displaced, rounded fracture surfa
 
 ## Standalone startup
 
-An embedded `pond-poster.jpg` backs a title-led loading screen inspired by the UOB viewer. The main controls stay hidden until the canvas completes its first WebGL frame. The poster remains visible if graphics or JavaScript are unavailable, with an explanation for each case. Interactive rendering starts at a moderate resolution and adapts down promptly on slower renderers. Fixed-time captures keep full resolution. Run `node build/verify-startup.cjs` to check the file URL with normal graphics, blocked WebGL, and disabled JavaScript. Regenerate the poster with `node build/verify-startup.cjs --poster` before rebuilding when the scene changes.
+A solid loading screen follows the UOB viewer's centered spinner, title, and status pattern. It appears before the embedded assets are parsed; the pond and controls appear after the first completed WebGL frame. Unsupported graphics or disabled JavaScript show an explanation on a solid background. Interactive rendering starts at a moderate resolution and adapts down promptly on slower renderers. Fixed-time captures keep full resolution. Run `node build/verify-startup.cjs` to check the file URL with normal graphics, blocked WebGL, and disabled JavaScript. The check saves `pond-loading.png`, `pond-no-webgl.png`, and `pond-no-javascript.png` here.
 
 ## Engine attribution
 
