@@ -18,7 +18,10 @@
 .pond-badge{position:relative;padding:5px 10px 5px 16px}.light-toggle{pointer-events:auto;display:flex;align-items:center;gap:8px;min-height:36px;padding:5px 8px;border:0;border-radius:18px;background:transparent;color:#e2e8d6;font-size:11px;letter-spacing:1px;text-transform:uppercase;touch-action:manipulation;transition:background .16s}.light-toggle:hover,.light-toggle[aria-expanded=true]{background:#faf7e824}.light-toggle svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .16s}.light-toggle[aria-expanded=true] svg{transform:rotate(180deg)}.light-picker{position:absolute;top:calc(100% + 12px);right:0;width:210px;padding:14px;background:#fbf8e9f7;color:#33432f;border:1px solid #ffffff88;border-radius:16px;box-shadow:0 12px 40px #081b1644;backdrop-filter:blur(20px);pointer-events:auto}.light-picker p{margin:2px 8px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#69755f}.light-picker button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:42px;padding:10px 12px;border:0;border-radius:9px;background:transparent;color:inherit;text-align:left;font-size:13px}.light-picker button:hover{background:#e8eadc}.light-picker button[aria-pressed=true]{background:#344732;color:#faf9eb}.light-picker button[aria-pressed=true]::after{content:'\2713';margin-left:12px}.light-options button[aria-pressed=true]{background:#344732;color:#faf9eb;border-color:#344732}@media(max-width:700px){.header{gap:12px}.header>div:first-child{min-width:0;flex:1}.pond-badge{flex-direction:column;gap:0;padding:5px 7px}.light-toggle{font-size:10px;letter-spacing:.4px;padding:5px;gap:5px}.light-picker{width:200px}}
 #pond-poster{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}#c{opacity:0}#c.scene-ready{opacity:1}.loader{background:linear-gradient(#10231855,#102318aa);backdrop-filter:blur(2px)}.javascript-notice{position:fixed;z-index:12;top:50%;left:50%;transform:translate(-50%,-50%);width:min(430px,calc(100% - 40px));margin:0;padding:20px 24px;border-radius:16px;background:#fbf8e9f5;color:#34432f;font:14px/1.6 Segoe UI,system-ui,sans-serif;box-shadow:0 12px 50px #081b1644}
 </style>
-<script id="ai-visual-render-mode">
+<style id="renderer-status-styles">
+#ai-visual-render-mode{position:fixed;right:12px;bottom:64px;z-index:2147483647;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 24px);padding:9px 13px;border:1px solid #ffffff30;border-radius:999px;color:#f7f8fa;background:rgba(18,22,28,.94);box-shadow:0 3px 14px rgba(0,0,0,.35);font:600 12px/1.3 system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}#ai-visual-render-mode::before{content:"";width:8px;height:8px;flex:none;border-radius:50%;background:#d5d8dc}#ai-visual-render-mode[data-mode=gpu]::before{background:#55e0a4}#ai-visual-render-mode[data-mode=cpu]::before{background:#ffc15c}#ai-visual-render-mode[data-mode=unavailable]::before{background:#ff7777}
+</style>
+<script id="aiVisualRenderingBridge">
 (function () {
   'use strict';
   var badgeId = 'ai-visual-render-mode';
@@ -31,16 +34,8 @@
   var hardwareRenderer = /nvidia|geforce|quadro|tesla|rtx|gtx|radeon|advanced micro devices|\bamd\b|intel|iris|uhd graphics|hd graphics|arc graphics|apple gpu|apple m[1-9]|adreno|mali|powervr|qualcomm/i;
 
   function attachBadge() {
-    if (badge || !document.body) return;
-    badge = document.createElement('div');
-    badge.id = badgeId;
-    badge.setAttribute('role', 'status');
-    badge.setAttribute('aria-live', 'polite');
-    badge.style.cssText = 'position:fixed;right:10px;bottom:64px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.22);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)';
-    document.body.appendChild(badge);
-    badge.textContent = currentLabel;
-    badge.title = currentDetails;
-    paintBadge();
+    if (badge) return;
+    badge = document.getElementById(badgeId);
   }
 
   function paintBadge() {
@@ -115,6 +110,7 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       attachBadge();
+      show(currentLabel, currentState, currentDetails);
       inspectPondContext();
     }, { once: true });
   }
@@ -129,12 +125,12 @@
     }
   }, 20000);
 })();
-})();
 </script>
 </head>
 <body data-tool="ripple">
 <img id="pond-poster" src="{{POND_POSTER}}" alt="" aria-hidden="true">
 <noscript><style>#loader{display:none!important}</style><p id="javascript-notice" class="javascript-notice">The pond image is ready. Open this HTML file in Chrome, Edge, or Firefox with JavaScript enabled to animate the koi and use the pond controls.</p></noscript>
+<div id="ai-visual-render-mode" class="renderer-status" role="status" aria-live="polite" data-mode="checking" title="Checking which renderer WebGL2 selected">Checking GPU/CPU renderer…</div>
 <canvas id="c" tabindex="0" aria-label="Interactive koi pond. Tap or press Enter to make ripples. Select Feed koi and tap or press Enter to feed. Drag to orbit, or use arrow keys. Scroll or use plus and minus to zoom.">Your browser needs WebGL2 to display the pond.</canvas>
 <div class="vignette" aria-hidden="true"></div>
 <header class="header">
