@@ -16,7 +16,7 @@ def replace(old, new):
     assert old in engine, f'Missing upstream anchor: {old[:100]}'
     engine = engine.replace(old, new, 1)
 
-replace("function fail(msg){ $err.hidden=false;", "function fail(msg){ document.getElementById('loader').hidden=true; $err.hidden=false;")
+replace("function fail(msg){ $err.hidden=false;", "function fail(msg){ document.getElementById('loader').hidden=true; document.body.dataset.startup='error'; document.body.setAttribute('aria-busy','false'); $err.hidden=false;")
 replace(
     "const gl = canvas.getContext('webgl2', { antialias:false, alpha:false, depth:false, stencil:false, powerPreference:'high-performance', preserveDrawingBuffer: FIXED_T!==null });",
     "const gl = canvas.getContext('webgl2', { antialias:false, alpha:false, depth:false, stencil:false, powerPreference:'high-performance', preserveDrawingBuffer: FIXED_T!==null });\nwindow.__pondGL = gl;\nwindow.dispatchEvent(new Event('pond-webgl-ready'));",

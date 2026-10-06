@@ -126,7 +126,7 @@ function frame(now){
  gl.uniform3fv(u.uCam,B.pos);gl.uniform3fv(u.uR,B.r);gl.uniform3fv(u.uU,B.u);gl.uniform3fv(u.uF,B.f);gl.uniform3fv(u.uSun,SUNV);
  gl.uniform1f(u.uTanF,Math.tan(VFOV/2));gl.uniform1f(u.uAspect,W/H);gl.uniform1f(u.uL,L);gl.uniform1f(u.uDepth,DEPTH);gl.uniform1f(u.uTime,t);
  gl.uniform1f(u.uRipSize,RSIZE);gl.uniform2fv(u.uRipCenter,ripCenter);gl.uniform2fv(u.uCausShift,causShift);uploadPond();fullscreen();post(t);
- renderedFrames++;if(!ready){ready=true;canvas.classList.add('scene-ready');document.getElementById('loader').classList.add('ready');setTimeout(()=>document.getElementById('loader').hidden=true,650);}
+ renderedFrames++;if(!ready){ready=true;canvas.classList.add('scene-ready');const loader=document.getElementById('loader');loader.classList.add('ready');setTimeout(()=>{loader.hidden=true;document.body.dataset.startup='ready';document.body.setAttribute('aria-busy','false');},650);}
  if(now-snapshotAt>500){canvas.dataset.pondState=JSON.stringify(window.pond.state);snapshotAt=now;}
  if(FIXED_T===null){ftAvg=ftAvg*.90+Math.min(500,elapsed*1000)*.10;frames++;if(frames>=12){if(ftAvg>58&&quality>.50){quality=Math.max(.50,quality*.80);alloc();frames=0;}else if(frames>=60&&ftAvg<38&&quality<1.0){quality=Math.min(1.0,quality*1.04);alloc();frames=0;}}if(DEBUG&&frames%15===0)$dbg.textContent=`${(1000/ftAvg).toFixed(0)} fps · ${W}×${H} · q ${quality.toFixed(2)}`;}
 }

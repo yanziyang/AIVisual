@@ -126,8 +126,18 @@
   }, 20000);
 })();
 </script>
+<style id="startup-cover-styles">
+.header,.bottom,.credit{transition:opacity .35s ease}
+body:not([data-startup="ready"]) .vignette,
+body:not([data-startup="ready"]) .header,
+body:not([data-startup="ready"]) .bottom,
+body:not([data-startup="ready"]) .credit,
+body:not([data-startup="ready"]) .toast,
+body:not([data-startup="ready"]) #dbg,
+body:not([data-startup="ready"]) #ai-visual-render-mode{visibility:hidden;opacity:0}
+</style>
 </head>
-<body data-tool="ripple">
+<body data-tool="ripple" data-startup="loading">
 <img id="pond-poster" src="{{POND_POSTER}}" alt="" aria-hidden="true">
 <noscript><style>#loader{display:none!important}</style><p id="javascript-notice" class="javascript-notice">The pond image is ready. Open this HTML file in Chrome, Edge, or Firefox with JavaScript enabled to animate the koi and use the pond controls.</p></noscript>
 <div id="ai-visual-render-mode" class="renderer-status" role="status" aria-live="polite" data-mode="checking" title="Checking which renderer WebGL2 selected">Checking GPU/CPU renderer…</div>
@@ -192,11 +202,12 @@ https://github.com/Aureliengmz/clearwater</blockquote>
   <details><summary>Clearwater MIT license</summary><pre>{{CLEARWATER_LICENSE}}</pre></details>
  </div>
 </dialog>
-<div id="loader" class="loader"><div class="water-ring" aria-hidden="true"></div><p>A moment of stillness</p><span>Preparing your pond…</span></div>
+<div id="loader" class="loader" role="status" aria-live="polite" aria-atomic="true"><div class="water-ring" aria-hidden="true"></div><p>A moment of stillness</p><span>Preparing your pond…</span></div>
 <div id="err" role="alert" hidden></div><div id="dbg" hidden></div>
 <script id="pond-interface">
 // The prompt and implementation notes must remain usable even without WebGL.
 (() => {
+ document.body.setAttribute('aria-busy','true');
  const dialog=document.getElementById('about-dialog');
  const opener=document.getElementById('about-open');
  const closer=document.getElementById('about-close');
