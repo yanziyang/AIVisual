@@ -134,11 +134,13 @@
   <section id="run">
     <h2>Run</h2>
     <div class="run-grid">
-      <pre>cd velaris\configurator
-start.bat            (or: python -m http.server 8123)
-→ http://127.0.0.1:8123/index.html</pre>
+      <pre>Open velaris-configurator.html directly in Chrome.
+The page embeds its scripts, styles, and 3D model; no local server is needed.
+
+After editing the source files, rebuild it with:
+node configurator\build_standalone.mjs</pre>
     </div>
-    <p class="hint">A local static server is required only because browsers block ES&#8209;module and GLB loading over <code>file://</code>. There is no backend.</p>
+    <p class="hint">Node.js is only needed to rebuild the standalone file. The finished HTML contains the Three.js modules, app code, CSS, favicon, and compressed car model.</p>
   </section>
 
   <section id="demo">

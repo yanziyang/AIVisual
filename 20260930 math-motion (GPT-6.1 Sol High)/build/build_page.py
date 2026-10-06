@@ -71,7 +71,7 @@ for token,value in {'POSTER':poster,'VIDEO':video,'PROMPT':html.escape(PROMPT),'
     document=document.replace('@@'+token+'@@',value)
 assert '@@' not in document
 assert not re.search(r'(?:src|href)="https?://',document)
-target=HERE.parent/'index.html'; target.write_text(document,encoding='utf-8')
+target=HERE.parent/'form-follows-formula.html'; target.write_text(document,encoding='utf-8')
 # Verify the packaged payload is exactly the finished MP4, without printing it.
 payload=re.search(r'<script id="embedded-video" type="application/octet-stream">([^<]+)</script>',document).group(1)
 assert hashlib.sha256(base64.b64decode(payload)).digest()==hashlib.sha256(MASTER.read_bytes()).digest()

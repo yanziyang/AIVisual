@@ -224,28 +224,36 @@ function applyHinges() {
 const loader = new GLTFLoader();
 const loadFill = document.getElementById("loadFill");
 const loadStatus = document.getElementById("loadStatus");
-loader.load(
-  "assets/models/velaris_supercar.glb",
-  (gltf) => {
-    car.add(gltf.scene);
-    collectModel(gltf.scene);
-    buildExtras();
-    window.__velaris_ready = true;
-    document.title = "VELARIS READY";
-    playIntro();
-    applyQueryState();
-  },
-  (ev) => {
+const onModelLoaded = (gltf) => {
+  window.__VELARIS_MODEL_BUFFER__ = null;
+  car.add(gltf.scene);
+  collectModel(gltf.scene);
+  buildExtras();
+  window.__velaris_ready = true;
+  document.title = "VELARIS READY";
+  loadFill.style.width = "100%";
+  playIntro();
+  applyQueryState();
+};
+const onModelProgress = (ev) => {
     const frac = ev.total ? ev.loaded / ev.total : Math.min(0.95, ev.loaded / 15400000);
     loadFill.style.width = (4 + frac * 92).toFixed(1) + "%";
     if (frac > 0.55) loadStatus.textContent = "Polishing surfaces…";
     if (frac > 0.92) loadStatus.textContent = "Lighting the podium…";
-  },
-  (err) => {
-    diagErr("GLB load failed: " + err);
-    loadStatus.textContent = "Failed to load model";
-  }
-);
+};
+const onModelError = (err) => {
+  window.__VELARIS_MODEL_BUFFER__ = null;
+  diagErr("GLB load failed: " + err);
+  loadStatus.textContent = "Failed to load model";
+};
+const embeddedModel = window.__VELARIS_MODEL_BUFFER__;
+if (embeddedModel instanceof ArrayBuffer) {
+  loadFill.style.width = "92%";
+  loadStatus.textContent = "Loading standalone model…";
+  loader.parse(embeddedModel, "", onModelLoaded, onModelError);
+} else {
+  loader.load("assets/models/velaris_supercar.glb", onModelLoaded, onModelProgress, onModelError);
+}
 
 function collectModel(root) {
   root.traverse((o) => {

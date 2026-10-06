@@ -22,4 +22,4 @@ Install Python dependencies `numpy` and `Pillow`, set `FFMPEG` in `render.py` to
 
 The master MP4 is in the parent folder. This `build` folder contains the web preview, poster, score, contact sheets, source, and validation report. `quality-check.json` records validation of the finished master.
 
-`index.html` in the parent folder is a self-contained, approximately 47 MB web page with the full video embedded. It includes the original prompt, implementation details, renderer source, and validation report. Copy it anywhere and open it in a browser without a server. `build_page.py` regenerates it in that same root folder from the master and supporting files.
+`form-follows-formula.html` in the parent folder is a self-contained, approximately 47 MB web page with the full video embedded. It includes the original prompt, implementation details, renderer source, and validation report. Copy it anywhere and open it in a browser without a server. `build_page.py` regenerates it in that same root folder from the master and supporting files.

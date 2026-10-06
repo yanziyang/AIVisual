@@ -42,7 +42,7 @@
     if (!badge) return;
     badge.dataset.renderingState = currentState;
     if (currentState === "gpu") badge.style.background = "rgba(14,105,72,.9)";
-    else if (currentState === "cpu") badge.style.background = "rgba(143,83,13,.92)";
+    else if (currentState === "cpu" || currentState === "source-only") badge.style.background = "rgba(143,83,13,.92)";
     else if (currentState === "unavailable") badge.style.background = "rgba(145,39,39,.92)";
     else badge.style.background = "rgba(18,22,28,.82)";
   }
@@ -57,15 +57,17 @@
     if (details) badge.title = details;
     paintBadge();
   }
+  window.__aiVisualSetRenderingStatus = setStatus;
 
   function getRendererName(gl) {
+    var renderer = "";
     try {
       var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-      if (!debugInfo) return "";
-      return String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "").trim();
-    } catch (_) {
-      return "";
-    }
+      if (debugInfo) renderer = String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "").trim();
+    } catch (_) {}
+    if (renderer) return renderer;
+    try { return String(gl.getParameter(gl.RENDERER) || "").trim(); }
+    catch (_) { return ""; }
   }
 
   function classify(gl) {
@@ -113,6 +115,13 @@
 
   function isWebGLType(type) {
     return /^(webgl2?|experimental-webgl)$/i.test(String(type || ""));
+  }
+
+  if (window.location.protocol === "file:") {
+    setStatus("source-only", "Open the standalone Velaris HTML in the project root",
+      "This configurator/index.html is the editable source page. Open the project-root velaris-configurator.html for the offline standalone version.");
+    document.addEventListener("DOMContentLoaded", attachBadge, { once: true });
+    return;
   }
 
   HTMLCanvasElement.prototype.getContext = function (type, attributes) {

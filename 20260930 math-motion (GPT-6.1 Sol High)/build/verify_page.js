@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const html = fs.readFileSync(path.join(__dirname, '..', 'form-follows-formula.html'), 'utf8');
 const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
 if (scripts.length !== 1) throw new Error('Expected one inline playback script');
 new Function(scripts[0][1]);
