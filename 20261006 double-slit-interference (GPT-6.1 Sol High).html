@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Double-slit interference · An interactive animation</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; min-height: 100vh; color: #eaf4ff; background: radial-gradient(circle at 52% -12%, #173350 0, #0b1d30 33%, #07111f 70%); }
+    .page { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0 50px; }
+    .eyebrow { color: #78d2e2; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 11px 0 9px; font-size: clamp(31px, 4.8vw, 56px); line-height: 1.05; letter-spacing: -.045em; font-weight: 680; }
+    .intro { max-width: 740px; margin: 0 0 28px; color: #adc3d6; font-size: clamp(15px, 1.8vw, 18px); line-height: 1.55; }
+    .stage { overflow: hidden; border: 1px solid #25445d; border-radius: 18px; background: #081725; box-shadow: 0 24px 80px #0208117a; }
+    .stage-top { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 15px 20px; border-bottom: 1px solid #203b50; color: #b9d2df; font-size: 13px; }
+    .stage-top strong { color: #f0f7fa; font-weight: 650; }
+    .legend { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .legend span { white-space: nowrap; }
+    .legend i { display: inline-block; width: 14px; height: 3px; margin-right: 7px; vertical-align: 4px; border-radius: 4px; background: #72dff0; }
+    .legend .gold { background: #ffd08a; }
+    canvas { display: block; width: 100%; height: auto; touch-action: none; cursor: crosshair; }
+    .stage-bottom { display: flex; justify-content: space-between; gap: 12px; padding: 10px 20px 14px; color: #83a1b8; font-size: 12px; line-height: 1.4; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr auto; gap: 28px; align-items: end; padding: 24px 2px 18px; }
+    .control label { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; color: #eff6fc; font-size: 14px; font-weight: 650; }
+    .control label span { color: #86a9bd; font-size: 13px; font-weight: 450; }
+    input[type=range] { width: 100%; margin: 0; accent-color: #7fdfed; cursor: pointer; }
+    .range-ends { display: flex; justify-content: space-between; margin-top: 7px; color: #819eb2; font-size: 12px; }
+    button { min-width: 100px; min-height: 42px; padding: 9px 15px; border: 1px solid #47677b; border-radius: 9px; color: #eaf8fc; background: #183247; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #23465d; }
+    button:focus-visible, input:focus-visible { outline: 2px solid #a7eafa; outline-offset: 3px; }
+    .readout { display: flex; gap: 16px; align-items: center; min-height: 68px; padding: 14px 19px; border: 1px solid #32536b; border-radius: 12px; background: #102a3d; }
+    .readout .badge { flex: none; width: 12px; height: 12px; border-radius: 50%; background: #f7c47a; box-shadow: 0 0 20px #f7c47a; }
+    .readout[data-kind=dark] .badge { background: #518ca6; box-shadow: 0 0 13px #518ca6; }
+    .readout[data-kind=mixed] .badge { background: #a9cfca; box-shadow: 0 0 13px #a9cfca; }
+    .readout strong { display: block; font-size: 16px; line-height: 1.35; }
+    .readout p { margin: 3px 0 0; color: #aec4d3; font-size: 13px; line-height: 1.45; }
+    .note { max-width: 850px; margin: 17px 2px 0; color: #a0b9ca; font-size: 14px; line-height: 1.55; }
+    .note b { color: #e2f3fb; font-weight: 650; }
+    .details { margin-top: 34px; padding-top: 22px; border-top: 1px solid #29475b; }
+    .details h2 { margin: 0 0 13px; font-size: 20px; font-weight: 650; letter-spacing: -.02em; }
+    .details dl { margin: 0; }
+    .details-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 22px; padding: 15px 0; border-top: 1px solid #1d394c; }
+    .details dt { color: #7fbed0; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .details dd { margin: 0; max-width: 850px; color: #c2d7e3; font-size: 14px; line-height: 1.6; }
+    .details ul { margin: 0; padding-left: 19px; }
+    .details li + li { margin-top: 5px; }
+    .details a { color: #8be0ed; overflow-wrap: anywhere; text-underline-offset: 3px; }
+    .details a:hover { color: #c2f4fa; }
+    @media (max-width: 690px) {
+      .page { width: min(100% - 24px, 1180px); padding-top: 25px; }
+      .stage-top, .stage-bottom { padding-left: 12px; padding-right: 12px; }
+      .stage-top { align-items: flex-start; flex-direction: column; }
+      .controls { grid-template-columns: 1fr; gap: 19px; }
+      .controls button { justify-self: start; }
+      .stage-bottom { flex-direction: column; gap: 2px; }
+      .details-row { grid-template-columns: 1fr; gap: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">The double-slit experiment</div>
+    <h1>When waves meet</h1>
+    <p class="intro">Light emerging from each slit spreads out. Where the two waves arrive in step, they make a bright stripe; where they arrive out of step, they make a dark one.</p>
+
+    <section class="stage" aria-label="Animated double-slit diagram">
+      <div class="stage-top"><strong>From two openings to many stripes</strong><div class="legend"><span><i></i>Wavefronts</span><span><i class="gold"></i>Brightness on screen</span></div></div>
+      <canvas id="experiment" width="1000" height="530" tabindex="0" role="img" aria-label="Animated coherent light passes through two slits. The overlapping waves create bright and dark bands on a screen at the right. Select a position on the screen to inspect its interference."></canvas>
+      <div class="stage-bottom"><span>Drag or tap the screen at right to inspect a stripe.</span><span>Use ↑ and ↓ when the diagram is focused.</span></div>
+    </section>
+
+    <div class="controls">
+      <div class="control"><label for="wavelength">Wavelength <span id="wavelength-value">Medium</span></label><input id="wavelength" type="range" min="23" max="43" value="32" aria-label="Wavelength"><div class="range-ends"><span>Shorter</span><span>Longer</span></div></div>
+      <div class="control"><label for="spacing">Slit separation <span id="spacing-value">Medium</span></label><input id="spacing" type="range" min="100" max="190" value="145" aria-label="Slit separation"><div class="range-ends"><span>Closer</span><span>Farther apart</span></div></div>
+      <button id="toggle" type="button" aria-label="Pause animation">Pause</button>
+    </div>
+
+    <div class="readout" id="readout" data-kind="dark" aria-live="polite"><span class="badge" aria-hidden="true"></span><div><strong id="result">Dark stripe · waves cancel</strong><p id="detail">The two paths differ by about half a wavelength.</p></div></div>
+    <p class="note"><b>Watch the pattern:</b> increasing wavelength spreads the stripes apart; moving the slits farther apart brings them closer together. The animation shows a simplified, coherent light source.</p>
+
+    <section class="details" aria-labelledby="details-title">
+      <h2 id="details-title">About this visualization</h2>
+      <dl>
+        <div class="details-row">
+          <dt>Prompt</dt>
+          <dd>Visualize how light passing through two slits creates bright and dark stripes, host the animation in a standalone HTML.</dd>
+        </div>
+        <div class="details-row">
+          <dt>Implementation details</dt>
+          <dd><ul>
+            <li>Canvas draws incoming light, wavefronts spreading from both slits, and the brightness pattern on the screen.</li>
+            <li>Screen brightness follows the waves’ path difference using an interference term, cos²(πΔr/λ), with a broad single-slit envelope.</li>
+            <li>Wavelength and slit separation are adjustable. Select a point on the screen to see whether the waves reinforce or cancel. All code and styling are contained in this HTML file.</li>
+          </ul></dd>
+        </div>
+        <div class="details-row">
+          <dt>Source</dt>
+          <dd><a href="https://x.com/AskPerplexity/status/2106391439014002776" target="_blank" rel="noopener noreferrer">https://x.com/AskPerplexity/status/2106391439014002776</a></dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+  <script>
+  (() => {
+    'use strict';
+    const canvas = document.getElementById('experiment');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const waveInput = document.getElementById('wavelength');
+    const spacingInput = document.getElementById('spacing');
+    const waveValue = document.getElementById('wavelength-value');
+    const spacingValue = document.getElementById('spacing-value');
+    const toggle = document.getElementById('toggle');
+    const readout = document.getElementById('readout');
+    const result = document.getElementById('result');
+    const detail = document.getElementById('detail');
+    const W = 1000, H = 530, MID = 266, WALL = 320, SCREEN = 866;
+    const fieldCanvas = document.createElement('canvas');
+    fieldCanvas.width = 274;
+    fieldCanvas.height = H;
+    const fieldCtx = fieldCanvas.getContext('2d');
+    let wavelength = Number(waveInput.value);
+    let spacing = Number(spacingInput.value);
+    let probeY = MID + 58;
+    let playing = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let phase = 0;
+    let lastTime = 0;
+    let dragging = false;
+
+    function paths(y, x = SCREEN) {
+      const top = MID - spacing / 2, bottom = MID + spacing / 2;
+      return [Math.hypot(x - WALL, y - top), Math.hypot(x - WALL, y - bottom)];
+    }
+    function intensity(y, x = SCREEN) {
+      const [a, b] = paths(y, x);
+      const interference = Math.cos(Math.PI * (a - b) / wavelength) ** 2;
+      // A broad single-slit envelope makes distant bands gradually fade.
+      const angle = Math.atan2(y - MID, x - WALL);
+      const z = Math.PI * 12 * Math.sin(angle) / wavelength;
+      const envelope = Math.abs(z) < 0.001 ? 1 : (Math.sin(z) / z) ** 2;
+      return Math.max(0, Math.min(1, interference * envelope));
+    }
+    function rebuildField() {
+      const image = fieldCtx.createImageData(fieldCanvas.width, H);
+      for (let x = 0; x < fieldCanvas.width; x++) {
+        const worldX = WALL + 2 + x * (SCREEN - WALL - 2) / (fieldCanvas.width - 1);
+        const fade = Math.min(1, (worldX - WALL) / 115);
+        for (let y = 0; y < H; y++) {
+          const energy = intensity(y, worldX);
+          const glow = Math.pow(energy, 1.35) * fade;
+          const idx = (y * fieldCanvas.width + x) * 4;
+          image.data[idx] = 9 + 20 * glow;
+          image.data[idx + 1] = 27 + 61 * glow;
+          image.data[idx + 2] = 43 + 90 * glow;
+          image.data[idx + 3] = 255;
+        }
+      }
+      fieldCtx.putImageData(image, 0, 0);
+    }
+    function updateReadout() {
+      const [a, b] = paths(probeY);
+      const cycles = Math.abs(a - b) / wavelength;
+      const fraction = cycles % 1;
+      const distanceToWhole = Math.min(fraction, 1 - fraction);
+      const distanceToHalf = Math.abs(fraction - 0.5);
+      let kind, title, description;
+      if (distanceToWhole < 0.16) {
+        kind = 'bright'; title = 'Bright stripe · waves reinforce';
+        description = `Path difference ≈ ${cycles.toFixed(2)} wavelengths. The crests arrive together.`;
+      } else if (distanceToHalf < 0.16) {
+        kind = 'dark'; title = 'Dark stripe · waves cancel';
+        description = `Path difference ≈ ${cycles.toFixed(2)} wavelengths. A crest meets a trough.`;
+      } else {
+        kind = 'mixed'; title = 'Between stripes · partial overlap';
+        description = `Path difference ≈ ${cycles.toFixed(2)} wavelengths. The waves partly reinforce.`;
+      }
+      readout.dataset.kind = kind;
+      result.textContent = title;
+      detail.textContent = description;
+    }
+    function drawBackground() {
+      ctx.fillStyle = '#091b2a';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0d2336';
+      ctx.fillRect(0, 0, WALL, H);
+      ctx.drawImage(fieldCanvas, WALL + 2, 0, SCREEN - WALL - 2, H);
+      const fade = ctx.createLinearGradient(0, 0, WALL, 0);
+      fade.addColorStop(0, '#0d2336'); fade.addColorStop(1, '#102a40');
+      ctx.fillStyle = fade; ctx.fillRect(0, 0, WALL, H);
+      ctx.strokeStyle = 'rgba(133,192,217,.10)'; ctx.lineWidth = 1;
+      for (let y = 66; y < H; y += 66) { ctx.beginPath(); ctx.moveTo(0, y + .5); ctx.lineTo(SCREEN, y + .5); ctx.stroke(); }
+    }
+    function drawIncidentWaves() {
+      ctx.save();
+      ctx.beginPath(); ctx.rect(0, 0, WALL - 7, H); ctx.clip();
+      const shift = (phase * wavelength / (2 * Math.PI)) % wavelength;
+      for (let x = -wavelength + shift; x < WALL; x += wavelength) {
+        const alpha = 0.17 + 0.22 * Math.max(0, x / WALL);
+        ctx.strokeStyle = `rgba(126,223,239,${alpha})`;
+        ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, 42); ctx.lineTo(x, H - 26); ctx.stroke();
+      }
+      ctx.restore();
+      ctx.fillStyle = 'rgba(138,229,242,.82)';
+      ctx.beginPath(); ctx.moveTo(38, MID - 6); ctx.lineTo(57, MID); ctx.lineTo(38, MID + 6); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(138,229,242,.48)'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(12, MID); ctx.lineTo(54, MID); ctx.stroke();
+    }
+    function drawOutgoingWaves() {
+      ctx.save();
+      ctx.beginPath(); ctx.rect(WALL + 1, 0, SCREEN - WALL - 1, H); ctx.clip();
+      const maxRadius = Math.hypot(SCREEN - WALL, H);
+      const shift = (phase * wavelength / (2 * Math.PI)) % wavelength;
+      for (const y of [MID - spacing / 2, MID + spacing / 2]) {
+        for (let radius = shift; radius < maxRadius; radius += wavelength) {
+          if (radius < 3) continue;
+          ctx.beginPath(); ctx.arc(WALL, y, radius, -Math.PI / 2, Math.PI / 2);
+          ctx.strokeStyle = `rgba(149,231,241,${Math.max(0.08, 0.33 - radius / 2200)})`;
+          ctx.lineWidth = 1.4; ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+    function drawBarrier() {
+      const y1 = MID - spacing / 2, y2 = MID + spacing / 2, gap = 10;
+      ctx.fillStyle = '#55748a';
+      ctx.fillRect(WALL - 7, 0, 14, y1 - gap);
+      ctx.fillRect(WALL - 7, y1 + gap, 14, y2 - y1 - 2 * gap);
+      ctx.fillRect(WALL - 7, y2 + gap, 14, H - y2 - gap);
+      ctx.fillStyle = '#d3f9f9';
+      ctx.shadowColor = '#67e8f6'; ctx.shadowBlur = 18;
+      for (const y of [y1, y2]) { ctx.beginPath(); ctx.arc(WALL, y, 4, 0, Math.PI * 2); ctx.fill(); }
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#c9e2ee'; ctx.font = '500 14px system-ui';
+      ctx.fillText('A', WALL + 15, y1 - 11); ctx.fillText('B', WALL + 15, y2 + 23);
+    }
+    function drawScreen() {
+      ctx.fillStyle = '#102235'; ctx.fillRect(SCREEN, 0, W - SCREEN, H);
+      ctx.fillStyle = '#b8d9df'; ctx.fillRect(SCREEN - 2, 24, 5, H - 48);
+      ctx.save(); ctx.shadowColor = '#ffc779'; ctx.shadowBlur = 19;
+      for (let y = 25; y < H - 25; y += 2) {
+        const I = intensity(y);
+        const alpha = 0.06 + 0.9 * I;
+        ctx.fillStyle = `rgba(255,207,133,${alpha})`;
+        ctx.fillRect(SCREEN + 7, y, 76 * Math.pow(I, .75) + 3, 2.2);
+      }
+      ctx.restore();
+      const wash = ctx.createLinearGradient(SCREEN + 3, 0, W, 0);
+      wash.addColorStop(0, 'rgba(255,207,133,.08)'); wash.addColorStop(1, 'rgba(255,207,133,0)');
+      ctx.fillStyle = wash; ctx.fillRect(SCREEN + 3, 24, W - SCREEN - 3, H - 48);
+    }
+    function drawProbe() {
+      const y1 = MID - spacing / 2, y2 = MID + spacing / 2;
+      ctx.save(); ctx.setLineDash([5, 7]); ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(225,246,250,.47)';
+      for (const y of [y1, y2]) { ctx.beginPath(); ctx.moveTo(WALL + 7, y); ctx.lineTo(SCREEN, probeY); ctx.stroke(); }
+      ctx.restore();
+      ctx.fillStyle = '#fff2d7'; ctx.shadowColor = '#ffc678'; ctx.shadowBlur = 20;
+      ctx.beginPath(); ctx.arc(SCREEN, probeY, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = '#fff2d7'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(SCREEN + 12, probeY); ctx.lineTo(SCREEN + 93, probeY); ctx.stroke();
+    }
+    function drawLabels() {
+      ctx.font = '600 15px system-ui'; ctx.fillStyle = '#dbeef6';
+      ctx.fillText('Incoming light', 28, 30);
+      ctx.fillText('Two slits', WALL - 33, 30);
+      ctx.fillText('Screen', SCREEN + 15, 30);
+      ctx.font = '500 13px system-ui'; ctx.fillStyle = '#9cb8c9';
+      ctx.fillText('in step → bright', 440, H - 18);
+      ctx.fillText('out of step → dark', 614, H - 18);
+    }
+    function render(time = 0) {
+      if (playing && lastTime) phase += Math.min(50, time - lastTime) * 0.0025;
+      lastTime = time;
+      drawBackground(); drawIncidentWaves(); drawOutgoingWaves(); drawBarrier(); drawScreen(); drawProbe(); drawLabels();
+      requestAnimationFrame(render);
+    }
+    function updateControls() {
+      wavelength = Number(waveInput.value); spacing = Number(spacingInput.value);
+      waveValue.textContent = wavelength < 29 ? 'Short' : wavelength > 37 ? 'Long' : 'Medium';
+      spacingValue.textContent = spacing < 126 ? 'Close' : spacing > 164 ? 'Far' : 'Medium';
+      rebuildField(); updateReadout();
+    }
+    function canvasPosition(event) {
+      const rect = canvas.getBoundingClientRect();
+      return { x: (event.clientX - rect.left) * W / rect.width, y: (event.clientY - rect.top) * H / rect.height };
+    }
+    function moveProbe(event, initial = false) {
+      const point = canvasPosition(event);
+      if (initial && point.x < SCREEN - 38) return false;
+      probeY = Math.max(28, Math.min(H - 28, point.y));
+      updateReadout(); return true;
+    }
+    canvas.addEventListener('pointerdown', event => {
+      if (moveProbe(event, true)) { dragging = true; canvas.setPointerCapture(event.pointerId); }
+    });
+    canvas.addEventListener('pointermove', event => { if (dragging) moveProbe(event); });
+    canvas.addEventListener('pointerup', () => { dragging = false; });
+    canvas.addEventListener('pointercancel', () => { dragging = false; });
+    canvas.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      probeY = Math.max(28, Math.min(H - 28, probeY + (event.key === 'ArrowUp' ? -6 : 6)));
+      updateReadout();
+    });
+    toggle.addEventListener('click', () => {
+      playing = !playing; toggle.textContent = playing ? 'Pause' : 'Play';
+      toggle.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+    });
+    waveInput.addEventListener('input', updateControls);
+    spacingInput.addEventListener('input', updateControls);
+    if (!playing) { toggle.textContent = 'Play'; toggle.setAttribute('aria-label', 'Play animation'); }
+    updateControls(); requestAnimationFrame(render);
+  })();
+  </script>
+</body>
+</html>
