@@ -1,6 +1,315 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script>
+/*
+ * AIVisual Canvas 2D + GPU presentation bridge.
+ *
+ * The pages keep their existing Canvas 2D drawing code as the CPU path. When a
+ * GPU-capable WebGL2 context is available, this module presents those canvas
+ * frames through a WebGL2 texture/compositor. Browsers that expose only a
+ * known software WebGL renderer, or no WebGL2 at all, keep the original
+ * Canvas 2D output visible. Browser APIs cannot reliably identify every
+ * physical GPU, so an unreported renderer is treated as GPU-capable.
+ */
+(function () {
+  'use strict';
+
+  var statusId = 'ai-visual-render-mode';
+  var states = [];
+  var active = false;
+  var animationFrame = 0;
+  var hardwareHint = /swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp/i;
+
+  function setStatus(text, mode) {
+    var badge = document.getElementById(statusId);
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.id = statusId;
+      badge.setAttribute('role', 'status');
+      badge.setAttribute('aria-live', 'polite');
+      badge.style.cssText = [
+        'position:fixed', 'right:10px', 'bottom:10px', 'z-index:2147483647',
+        'max-width:calc(100vw - 20px)', 'padding:6px 9px', 'border-radius:999px',
+        'font:11px/1.3 system-ui,sans-serif', 'letter-spacing:.02em',
+        'color:#f7f8fa', 'background:rgba(18,22,28,.78)',
+        'box-shadow:0 2px 10px rgba(0,0,0,.18)', 'pointer-events:none',
+        'backdrop-filter:blur(8px)', '-webkit-backdrop-filter:blur(8px)'
+      ].join(';');
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    badge.dataset.mode = mode;
+    badge.textContent = text;
+  }
+
+  function detectHardwareWebGL2() {
+    var probe = document.createElement('canvas');
+    var gl;
+    try {
+      gl = probe.getContext('webgl2', {
+        alpha: true,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        failIfMajorPerformanceCaveat: true,
+        powerPreference: 'high-performance'
+      });
+    } catch (_) {
+      return false;
+    }
+    if (!gl) return false;
+
+    var renderer = '';
+    try {
+      var debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (debugInfo) renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || '';
+    } catch (_) {}
+
+    var isSoftware = hardwareHint.test(renderer);
+    try {
+      var loseContext = gl.getExtension('WEBGL_lose_context');
+      if (loseContext) loseContext.loseContext();
+    } catch (_) {}
+    return !isSoftware;
+  }
+
+  function makeProgram(gl) {
+    var vertexSource = '#version 300 es\n' +
+      'in vec2 a_position;\n' +
+      'out vec2 v_uv;\n' +
+      'void main(){ v_uv=a_position*0.5+0.5; gl_Position=vec4(a_position,0.0,1.0); }';
+    var fragmentSource = '#version 300 es\n' +
+      'precision mediump float;\n' +
+      'uniform sampler2D u_scene;\n' +
+      'in vec2 v_uv;\n' +
+      'out vec4 outColor;\n' +
+      'void main(){ outColor=texture(u_scene,vec2(v_uv.x,1.0-v_uv.y)); }';
+
+    function compile(type, source) {
+      var shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        var message = gl.getShaderInfoLog(shader) || 'WebGL2 shader compilation failed';
+        gl.deleteShader(shader);
+        throw new Error(message);
+      }
+      return shader;
+    }
+
+    var vertex = compile(gl.VERTEX_SHADER, vertexSource);
+    var fragment = compile(gl.FRAGMENT_SHADER, fragmentSource);
+    var program = gl.createProgram();
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
+    gl.deleteShader(vertex);
+    gl.deleteShader(fragment);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      var message = gl.getProgramInfoLog(program) || 'WebGL2 program link failed';
+      gl.deleteProgram(program);
+      throw new Error(message);
+    }
+    return program;
+  }
+
+  function makePresenter(source) {
+    var overlay = document.createElement('canvas');
+    var parent = source.parentElement;
+    if (!parent) return null;
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.tabIndex = -1;
+    overlay.style.cssText = [
+      'position:absolute', 'left:0', 'top:0', 'display:block', 'margin:0',
+      'padding:0', 'border:0', 'pointer-events:none', 'z-index:2147483646'
+    ].join(';');
+    source.insertAdjacentElement('afterend', overlay);
+
+    var gl;
+    try {
+      gl = overlay.getContext('webgl2', {
+        alpha: true,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        premultipliedAlpha: true,
+        preserveDrawingBuffer: false,
+        powerPreference: 'high-performance',
+        failIfMajorPerformanceCaveat: true
+      });
+    } catch (_) {}
+    if (!gl) {
+      overlay.remove();
+      return null;
+    }
+
+    try {
+      var painted = false;
+      var program = makeProgram(gl);
+      var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+      var maxViewport = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+      var buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1, 1, -1, -1, 1, 1, 1
+      ]), gl.STATIC_DRAW);
+
+      var position = gl.getAttribLocation(program, 'a_position');
+      var sampler = gl.getUniformLocation(program, 'u_scene');
+      var texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+
+      var computed = window.getComputedStyle(source);
+      var originalOpacity = computed.opacity;
+      overlay.style.opacity = originalOpacity;
+      overlay.style.zIndex = computed.zIndex;
+      overlay.style.filter = computed.filter;
+      overlay.style.mixBlendMode = computed.mixBlendMode;
+      overlay.style.borderRadius = computed.borderRadius;
+
+      return {
+        source: source,
+        overlay: overlay,
+        gl: gl,
+        program: program,
+        buffer: buffer,
+        texture: texture,
+        position: position,
+        sampler: sampler,
+        originalOpacity: source.style.opacity,
+        present: function () {
+          if (!source.isConnected) {
+            overlay.remove();
+            return false;
+          }
+          var rect = source.getBoundingClientRect();
+          var style = window.getComputedStyle(source);
+          if (style.display === 'none' || style.visibility === 'hidden' || rect.width < 1 || rect.height < 1) {
+            overlay.style.display = 'none';
+            return true;
+          }
+
+          var dpr = Math.max(1, window.devicePixelRatio || 1);
+          var containingBlock = overlay.offsetParent || document.documentElement;
+          var parentRect = containingBlock.getBoundingClientRect();
+          var scaleX = containingBlock.offsetWidth > 0 ? parentRect.width / containingBlock.offsetWidth : 1;
+          var scaleY = containingBlock.offsetHeight > 0 ? parentRect.height / containingBlock.offsetHeight : 1;
+          if (!scaleX || !isFinite(scaleX)) scaleX = 1;
+          if (!scaleY || !isFinite(scaleY)) scaleY = 1;
+          var cssLeft = (rect.left - parentRect.left) / scaleX - containingBlock.clientLeft + containingBlock.scrollLeft;
+          var cssTop = (rect.top - parentRect.top) / scaleY - containingBlock.clientTop + containingBlock.scrollTop;
+          var cssWidth = rect.width / scaleX;
+          var cssHeight = rect.height / scaleY;
+          var width = Math.max(1, Math.round(rect.width * dpr));
+          var height = Math.max(1, Math.round(rect.height * dpr));
+          if (!source.width || !source.height || source.width > maxTextureSize || source.height > maxTextureSize ||
+              width > maxViewport[0] || height > maxViewport[1]) {
+            throw new Error('Canvas exceeds WebGL2 texture or viewport limits');
+          }
+          overlay.style.display = 'block';
+          overlay.style.left = cssLeft + 'px';
+          overlay.style.top = cssTop + 'px';
+          overlay.style.width = cssWidth + 'px';
+          overlay.style.height = cssHeight + 'px';
+          if (overlay.width !== width || overlay.height !== height) {
+            overlay.width = width;
+            overlay.height = height;
+          }
+
+          gl.viewport(0, 0, width, height);
+          gl.clearColor(0, 0, 0, 0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          gl.useProgram(program);
+          gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+          gl.enableVertexAttribArray(position);
+          gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, texture);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+          gl.uniform1i(sampler, 0);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+          if (!painted) {
+            source.style.opacity = '0';
+            painted = true;
+          }
+          if (gl.isContextLost()) throw new Error('WebGL2 context lost');
+          return true;
+        }
+      };
+    } catch (_) {
+      overlay.remove();
+      return null;
+    }
+  }
+
+  function restoreCpu() {
+    active = false;
+    if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    states.forEach(function (state) {
+      if (state.source && state.source.isConnected) state.source.style.opacity = state.originalOpacity;
+      if (state.overlay) state.overlay.remove();
+    });
+    states = [];
+    setStatus('CPU Canvas 2D mode', 'cpu');
+  }
+
+  function frame() {
+    if (!active) return;
+    for (var i = states.length - 1; i >= 0; i--) {
+      try {
+        if (!states[i].present()) throw new Error('GPU canvas presenter removed');
+      } catch (_) {
+        restoreCpu();
+        return;
+      }
+    }
+    if (!states.length) {
+      restoreCpu();
+      return;
+    }
+    animationFrame = window.requestAnimationFrame(frame);
+  }
+
+  function start() {
+    var canvases = Array.prototype.slice.call(document.querySelectorAll('canvas'));
+    var sources = canvases.filter(function (canvas) {
+      if (!canvas.isConnected || !canvas.getClientRects().length) return false;
+      try { return !!canvas.getContext('2d'); } catch (_) { return false; }
+    });
+    if (!sources.length) {
+      setStatus('CPU rendering mode', 'cpu');
+      return;
+    }
+
+    if (!detectHardwareWebGL2()) {
+      setStatus('CPU Canvas 2D mode · GPU WebGL2 unavailable', 'cpu');
+      return;
+    }
+
+    states = sources.map(makePresenter).filter(Boolean);
+    if (!states.length) {
+      setStatus('CPU Canvas 2D mode · GPU compositor unavailable', 'cpu');
+      return;
+    }
+    active = true;
+    setStatus('GPU WebGL2 compositor · Canvas 2D scene rendering', 'gpu');
+    animationFrame = window.requestAnimationFrame(frame);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Cadence — Cyclist Motion Graphics v1.0</title>
