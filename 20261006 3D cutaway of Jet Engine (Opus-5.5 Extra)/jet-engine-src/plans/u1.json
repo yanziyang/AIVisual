@@ -1,0 +1,5 @@
+{ "w": 1440, "h": 900, "boot": 8, "query": "autoplay=0&fixedpr=1",
+  "steps": [
+    { "js": "jet.step(120); 'ok'", "wait": 2.5, "out": "u1_overview.png" },
+    { "js": "jet.ui.goStep(4); 'ok'", "wait": 3.2, "out": "u1_burn.png" }
+  ] }

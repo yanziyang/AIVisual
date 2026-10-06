@@ -1,0 +1,5 @@
+{ "w": 1440, "h": 810, "boot": 6, "query": "autoplay=0&fixedpr=1&paused=1",
+  "steps": [
+    { "js": "jet.engine.throttle=1; jet.step(400); jet.ui.goStep(1); 'ok'", "wait": 9, "out": "fan_to.png" },
+    { "js": "JSON.stringify(jet.THREE && Object.keys(jet.engine.mods).length) + ' blur ' + (()=>{const m=jet.engine.mods.fan; return ''})()", "wait": 0.1 }
+  ] }

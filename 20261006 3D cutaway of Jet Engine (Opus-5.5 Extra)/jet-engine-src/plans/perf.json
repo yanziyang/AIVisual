@@ -1,0 +1,4 @@
+{ "w": 1440, "h": 900, "boot": 6, "query": "autoplay=0&fixedpr=1&paused=1",
+  "steps": [
+    { "js": "const out={}; let total=0; for (const m of Object.values(jet.engine.mods)) { let t=0, inst=0; for (const me of m.meshes) { const g=me.geometry; const n=(g.index?g.index.count:g.attributes.position.count)/3; const c=me.isInstancedMesh?me.count:1; t+=n*c; if(me.isInstancedMesh) inst+=c; } out[m.id]=Math.round(t/1000)+'k tris, '+inst+' inst'; total+=t; } out.total=Math.round(total/1000)+'k'; JSON.stringify(out)", "wait": 0.2 }
+  ] }

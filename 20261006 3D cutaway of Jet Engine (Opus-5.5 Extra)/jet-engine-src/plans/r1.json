@@ -1,0 +1,2 @@
+{ "w": 1920, "h": 1080, "boot": 5, "query": "autoplay=0&fixedpr=1",
+  "steps": [ { "js": "jet.ui.goStep(0); 'ok'", "wait": 4, "out": "r1_1080.png" } ] }

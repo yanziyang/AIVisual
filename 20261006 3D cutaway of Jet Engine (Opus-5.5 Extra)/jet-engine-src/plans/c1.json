@@ -1,0 +1,8 @@
+{ "w": 1440, "h": 810, "boot": 6, "query": "autoplay=0&fixedpr=1&paused=1",
+  "steps": [
+    { "js": "document.getElementById('dock').style.display='none'; document.getElementById('top').style.display='none'; jet.engine.setFocus([]); jet.ui.stopPlay(); jet.stage.setFree({x:0,y:0,w:1440,h:810},1440,810); jet.engine.flow.visible=false; jet.engine.flow.mesh.visible=false; jet.cam({yaw:-1.45,pitch:0.1,dist:6.5,tx:1.0,ty:0,tz:0}); 'ok'", "wait": 2.5, "out": "c_front.png" },
+    { "js": "jet.cam({yaw:0.9,pitch:0.35,dist:5.2,tx:5.2,ty:0,tz:0}); 'ok'", "wait": 2.5, "out": "c_rear.png" },
+    { "js": "jet.cam({yaw:-0.5,pitch:0.45,dist:3.0,tx:1.7,ty:0.3,tz:0}); 'ok'", "wait": 2.5, "out": "c_boost.png" },
+    { "js": "jet.engine.setCut(true, 4.5, 1.1); jet.cam({yaw:-0.6,pitch:0.2,dist:11,tx:3.2,ty:0,tz:0}); 'ok'", "wait": 2.5, "out": "c_back.png" },
+    { "js": "jet.engine.setCut(true, 0.0, 1.0); jet.cam({yaw:0.0,pitch:1.2,dist:9,tx:3.2,ty:0,tz:0}); 'ok'", "wait": 2.5, "out": "c_top.png" }
+  ] }

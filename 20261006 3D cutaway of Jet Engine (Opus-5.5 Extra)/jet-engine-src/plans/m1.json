@@ -1,0 +1,7 @@
+{ "w": 390, "h": 844, "dpr": 2, "mobile": true, "boot": 6, "query": "autoplay=0&fixedpr=1&pr=0.6",
+  "steps": [
+    { "js": "jet.step(60); 'ok'", "wait": 4, "out": "m1_overview.png" },
+    { "js": "jet.ui.goStep(4); 'ok'", "wait": 7, "out": "m1_burn.png" },
+    { "js": "document.querySelector('[data-tab=cardPower]').click(); 'ok'", "wait": 3, "out": "m1_power.png" },
+    { "js": "document.querySelector('[data-tab=cardView]').click(); 'ok'", "wait": 3, "out": "m1_view.png" }
+  ] }

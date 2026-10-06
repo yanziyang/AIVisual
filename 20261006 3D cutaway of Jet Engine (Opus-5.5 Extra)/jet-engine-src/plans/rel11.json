@@ -1,0 +1,4 @@
+{ "w": 1440, "h": 900, "boot": 8, "page": "../Jet Engine Cutaway v1.1.html", "query": "autoplay=0",
+  "steps": [
+    { "js": "const b=document.getElementById('ai-visual-render-mode'); document.title + ' | ' + b.textContent + ' | cur ' + jet.ui.state.cur", "wait": 3, "out": "rel11.png" }
+  ] }

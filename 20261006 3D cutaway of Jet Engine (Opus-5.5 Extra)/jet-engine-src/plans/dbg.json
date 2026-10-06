@@ -1,0 +1,6 @@
+{ "w": 1280, "h": 720, "boot": 5, "query": "autoplay=0&fixedpr=1",
+  "steps": [
+    { "js": "const h=document.getElementById('hint'); JSON.stringify({cls:h.className, top:h.style.top, rect:h.getBoundingClientRect(), op:getComputedStyle(h).opacity, txt:h.textContent})", "wait": 0.2 },
+    { "js": "const c=document.getElementById('gl'); const x0=600,y0=300; const ev=(t,x,y)=>c.dispatchEvent(new PointerEvent(t,{pointerId:1,clientX:x,clientY:y,button:0,buttons:1,bubbles:true})); const before=JSON.stringify(jet.orbit.g); ev('pointerdown',x0,y0); ev('pointermove',x0+80,y0+30); ev('pointerup',x0+80,y0+30); const after=JSON.stringify(jet.orbit.g); document.getElementById('tSound').click(); setTimeout(()=>document.getElementById('tSound').click(),500); before+' => '+after+' playing '+jet.ui.state.playing", "wait": 1.5 },
+    { "js": "window.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight'})); window.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowUp'})); 'cur '+jet.ui.state.cur+' thr '+document.getElementById('throttle').value", "wait": 0.3 }
+  ] }

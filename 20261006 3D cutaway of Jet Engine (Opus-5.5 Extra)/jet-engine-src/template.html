@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Interactive 3D cutaway of a high-bypass turbofan jet engine: follow the air from intake to nozzle, change the thrust lever, open it up.">
+<title>Jet Engine Cutaway</title>
+<style>
+:root {
+  --bg: #090d12;
+  --panel: rgba(13, 18, 25, .76);
+  --panel-solid: #0f151d;
+  --line: rgba(255, 255, 255, .08);
+  --line2: rgba(255, 255, 255, .14);
+  --ink: #e9eef4;
+  --ink2: #b3c0cf;
+  --muted: #8393a6;
+  --cold: #5cc8ff;
+  --hot: #ff8a3d;
+  --temp: #e0702a;
+  --pres: #3d9be3;
+  --n1: #6fa8dc;
+  --n2: #d9a24f;
+  --cut: #e0562c;
+  --radius: 16px;
+  --gap: 12px;
+  --statusH: 46px;
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: var(--font); overflow: hidden; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+#app { position: fixed; inset: 0; }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; outline: none; }
+#gl:active { cursor: grabbing; }
+#vignette { position: absolute; inset: 0; pointer-events: none; background:
+  radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(4, 7, 10, .55) 100%),
+  linear-gradient(to bottom, rgba(9, 13, 18, .55), transparent 18%, transparent 70%, rgba(9, 13, 18, .6)); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+#boot { position: absolute; inset: 0; z-index: 40; display: grid; place-content: center; justify-items: center; gap: 16px; background: var(--bg); color: var(--ink2); font-size: 13px; letter-spacing: .04em; transition: opacity .6s; }
+#boot.done { opacity: 0; pointer-events: none; }
+#boot .spin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .1); border-top-color: var(--hot); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+/* ------------------------------------------------ top bar */
+#top { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: flex-start; gap: 18px; padding: 14px 16px 0; pointer-events: none; }
+#top > * { pointer-events: auto; }
+.brand { flex: 0 0 auto; min-width: 0; padding-top: 2px; }
+.kicker { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { margin: 2px 0 0; font-size: 21px; line-height: 1.15; font-weight: 650; letter-spacing: -.01em; }
+#rail { flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 4px 2px; }
+#rail::-webkit-scrollbar { display: none; }
+.chip { position: relative; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 13px 0 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(14px); color: var(--ink2); font-size: 12.5px; font-weight: 550; cursor: pointer; overflow: hidden; white-space: nowrap; transition: background .2s, border-color .2s, color .2s; }
+.chip:hover { border-color: var(--line2); color: var(--ink); }
+.chip .n { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; color: #0b1017; background: var(--h, #9fb3c8); }
+.chip[aria-current="step"] { color: var(--ink); border-color: var(--h); background: rgba(22, 30, 40, .9); }
+.chip i { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--h); }
+.chip.playing i { animation: prog linear forwards; animation-duration: var(--dur, 13s); }
+@keyframes prog { to { width: 100%; } }
+.top-actions { flex: 0 0 auto; display: flex; gap: 8px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 34px; min-width: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(14px); color: var(--ink2); font-size: 12.5px; font-weight: 550; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+.btn:hover { border-color: var(--line2); color: var(--ink); }
+.btn svg { width: 15px; height: 15px; flex: none; }
+:focus-visible { outline: 2px solid var(--cold); outline-offset: 2px; }
+
+/* ------------------------------------------------ labels */
+#leaders { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+#leaders line { stroke: rgba(210, 225, 240, .55); stroke-width: 1; }
+#leaders circle { fill: #0b1017; stroke: rgba(235, 244, 252, .9); stroke-width: 1.5; }
+#labels { position: absolute; inset: 0; pointer-events: none; }
+.lab { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 4px 9px; font-size: 11.5px; font-weight: 600; letter-spacing: .01em; color: var(--ink); background: rgba(12, 17, 24, .82); border: 1px solid var(--line2); border-radius: 7px; backdrop-filter: blur(8px); pointer-events: auto; cursor: pointer; opacity: 0; transition: opacity .25s, border-color .2s; will-change: transform; }
+.lab.on { opacity: 1; }
+.lab:hover, .lab.hot { border-color: var(--hot); }
+.lab::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin-right: 7px; background: var(--c, #9fb3c8); vertical-align: 0; }
+
+/* ------------------------------------------------ dock */
+#dock { position: absolute; left: 0; right: 0; bottom: var(--statusH); display: grid; grid-template-columns: minmax(270px, 330px) minmax(0, 1fr) minmax(250px, 310px); gap: var(--gap); padding: 0 var(--gap); align-items: stretch; pointer-events: none; }
+.card { pointer-events: auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(18px) saturate(1.2); padding: 13px 15px 14px; min-width: 0; box-shadow: 0 10px 40px rgba(0, 0, 0, .35); }
+@media (min-width: 981px) { #dock .card { min-height: 252px; } }
+.card h2 { margin: 0 0 9px; font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 650; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card h2 em { font-style: normal; color: var(--ink2); letter-spacing: .04em; text-transform: none; font-weight: 550; font-size: 11.5px; }
+
+/* power card */
+.lever { position: relative; padding: 2px 0 0; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; cursor: pointer; }
+input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 4px; background: var(--track, linear-gradient(90deg, #2c3d51, #3a5169)); }
+input[type=range]::-moz-range-track { height: 6px; border-radius: 4px; background: var(--track, linear-gradient(90deg, #2c3d51, #3a5169)); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -6px; border-radius: 50%; background: #f1f5f9; border: 3px solid #0b1017; box-shadow: 0 0 0 1px rgba(255, 255, 255, .25), 0 2px 8px rgba(0, 0, 0, .5); }
+input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #f1f5f9; border: 3px solid #0b1017; box-shadow: 0 0 0 1px rgba(255, 255, 255, .25); }
+#throttle { --track: linear-gradient(90deg, #3d9be3, #7cc4ff 30%, #ffb35c 65%, #ff6a3d); }
+.ticks { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin: 1px 2px 0; letter-spacing: .03em; }
+.gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 11px; }
+.tile { padding: 8px 10px 9px; border-radius: 11px; background: rgba(255, 255, 255, .035); border: 1px solid var(--line); min-width: 0; }
+.tile .k { font-size: 10.5px; color: var(--muted); letter-spacing: .04em; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tile .k::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--c); flex: none; }
+.tile .v { margin-top: 2px; font-family: var(--mono); font-variant-numeric: tabular-nums; display: flex; align-items: baseline; gap: 4px; }
+.tile .v b { font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+.tile .v small { font-size: 11px; color: var(--muted); }
+.tile .bar { height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .08); margin-top: 6px; overflow: hidden; }
+.tile .bar i { display: block; height: 100%; width: 0; background: var(--c); border-radius: 2px; }
+.mini { margin-top: 9px; font-size: 11.5px; color: var(--ink2); line-height: 1.45; font-variant-numeric: tabular-nums; }
+.mini b { color: var(--ink); font-weight: 600; }
+
+/* story card */
+.story { display: flex; flex-direction: column; }
+.story-head { display: flex; align-items: center; gap: 11px; }
+.badge { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-weight: 700; font-size: 14px; color: #0b1017; background: var(--h, #9fb3c8); transition: background .3s; }
+.story-head .tt { min-width: 0; flex: 1; }
+.tag { font-size: 10px; letter-spacing: .18em; font-weight: 700; color: var(--h, #9fb3c8); }
+.story-head h3 { margin: 1px 0 0; font-size: 17px; font-weight: 650; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ctrls { display: flex; gap: 6px; flex: none; }
+.ibtn { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line2); background: rgba(255, 255, 255, .04); color: var(--ink); cursor: pointer; transition: background .2s; }
+.ibtn:hover { background: rgba(255, 255, 255, .1); }
+.ibtn.primary { background: var(--hot); border-color: var(--hot); color: #1a0d04; }
+.ibtn.primary:hover { background: #ff9d5c; }
+.ibtn svg { width: 15px; height: 15px; }
+.story-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 18px; margin-top: 9px; min-height: 0; }
+.story-text { transition: opacity .25s; }
+.story-text.swap { opacity: 0; }
+.story-text p { margin: 0; font-size: 13.2px; line-height: 1.52; color: var(--ink2); }
+.story-text p b { color: var(--ink); font-weight: 600; }
+.facts { list-style: none; margin: 9px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.facts li { padding: 4px 9px; border-radius: 8px; background: rgba(255, 255, 255, .05); border: 1px solid var(--line); font-size: 11px; color: var(--muted); white-space: nowrap; }
+.facts li b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; margin-left: 5px; }
+.chart { position: relative; min-width: 0; display: none; }
+.chart svg { display: block; overflow: visible; touch-action: none; }
+.chart text { font-family: var(--font); fill: var(--muted); font-size: 10.5px; }
+.chart .band { fill: rgba(255, 255, 255, .028); }
+.chart .band.alt { fill: rgba(255, 255, 255, .06); }
+.chart .band.on { fill: rgba(255, 255, 255, .13); }
+.chart .grid { stroke: rgba(255, 255, 255, .08); stroke-width: 1; }
+.chart .ttl { fill: var(--ink2); font-size: 11px; font-weight: 600; }
+.chart .val { fill: var(--ink); font-size: 11px; font-weight: 600; font-family: var(--mono); }
+.chart .cursor { stroke: rgba(255, 255, 255, .55); stroke-width: 1; stroke-dasharray: 2 3; }
+.chart .readout { fill: var(--ink); font-size: 11px; font-weight: 600; }
+.chart .bname { font-size: 10px; letter-spacing: .02em; }
+.chart .bname.on { fill: var(--ink); font-weight: 650; }
+
+/* view card */
+.row { display: grid; grid-template-columns: 74px 1fr 38px; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+.row + .row { margin-top: 1px; }
+.row output { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.toggles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tgl { display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 11px 0 9px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, .03); color: var(--muted); font-size: 11.5px; font-weight: 550; cursor: pointer; transition: all .2s; }
+.tgl::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid currentColor; }
+.tgl[aria-pressed="true"] { color: var(--ink); border-color: var(--line2); background: rgba(255, 255, 255, .08); }
+.tgl[aria-pressed="true"]::before { background: var(--cold); border-color: var(--cold); }
+select.sel { height: 28px; border-radius: 8px; border: 1px solid var(--line2); background: rgba(255, 255, 255, .05); color: var(--ink); font-size: 11.5px; padding: 0 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 9px; font-size: 10.5px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; background: var(--c); vertical-align: -0.5px; }
+
+/* ------------------------------------------------ hint + about */
+#hint { position: absolute; left: 16px; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; pointer-events: none; white-space: nowrap; transition: opacity .6s; }
+#hint.gone { opacity: 0; }
+#tabs { display: none; }
+#drawer { position: absolute; top: 0; right: 0; bottom: 0; width: min(460px, 94vw); transform: translateX(105%); transition: transform .35s cubic-bezier(.2, .8, .2, 1); background: rgba(10, 14, 20, .95); backdrop-filter: blur(22px); border-left: 1px solid var(--line2); overflow-y: auto; z-index: 20; padding: 20px 22px 40px; }
+#drawer.open { transform: none; }
+#drawer h2 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; text-transform: none; color: var(--ink); }
+#drawer h4 { margin: 22px 0 6px; font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+#drawer p, #drawer li { font-size: 13px; line-height: 1.55; color: var(--ink2); }
+#drawer blockquote { margin: 6px 0 0; padding: 10px 13px; border-left: 3px solid var(--hot); background: rgba(255, 255, 255, .04); border-radius: 0 9px 9px 0; font-size: 14px; color: var(--ink); line-height: 1.5; }
+#drawer dl { margin: 0; }
+#drawer dt { margin-top: 12px; font-size: 12.5px; font-weight: 650; color: var(--ink); }
+#drawer dd { margin: 2px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--ink2); }
+#drawer .keys { display: grid; grid-template-columns: auto 1fr; gap: 5px 14px; font-size: 12.5px; color: var(--ink2); }
+#drawer kbd { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 6px; background: rgba(255, 255, 255, .08); border: 1px solid var(--line2); color: var(--ink); }
+#drawer .x { position: absolute; top: 14px; right: 14px; }
+#scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 15; }
+#scrim.on { opacity: 1; pointer-events: auto; }
+#drawer .ver { margin-top: 26px; font-size: 11px; color: var(--muted); }
+
+/* ------------------------------------------------ responsive */
+@media (min-width: 1180px) { .story-body.wide { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); } .chart { display: block; } }
+@media (min-width: 981px) and (max-height: 840px) {
+  #dock { grid-template-columns: minmax(250px, 300px) minmax(0, 1fr) minmax(240px, 280px); }
+  #dock .card { min-height: 0; padding: 10px 13px 11px; }
+  .card h2 { margin-bottom: 6px; }
+  .gauges { grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 7px; }
+  .tile { padding: 6px 7px 7px; }
+  .tile .k { font-size: 9.5px; gap: 4px; overflow: hidden; }
+  .tile .v b { font-size: 16px; }
+  .tile .v small { font-size: 10px; }
+  .mini { display: none; }
+  .facts { display: none; }
+  .story-text p { font-size: 12.6px; line-height: 1.44; }
+  .story-body { margin-top: 6px; }
+  .legend { display: none; }
+  .toggles { margin-top: 6px; }
+  .tgl { height: 26px; }
+  .row { font-size: 11.5px; }
+}
+@media (max-width: 1179px) and (min-height: 900px) { .chart { display: block; } }
+@media (max-width: 1100px) {
+  #top { flex-wrap: wrap; gap: 8px 12px; }
+  #rail { order: 3; flex: 1 0 100%; justify-content: flex-start; }
+  .top-actions { margin-left: auto; }
+  h1 { font-size: 18px; }
+}
+@media (max-width: 980px) {
+  #dock { display: block; position: static; padding: 0 var(--gap); }
+  #dock .card { display: none; }
+  #dock .card.show { display: block; }
+  #tabs { display: flex; gap: 6px; padding: 0 12px 8px; pointer-events: auto; }
+  #tabs button { flex: 1; height: 32px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(14px); color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer; }
+  #tabs button[aria-selected="true"] { color: var(--ink); border-color: var(--line2); background: rgba(30, 40, 52, .95); }
+  #dockwrap { position: absolute; left: 0; right: 0; bottom: var(--statusH); pointer-events: none; }
+  .gauges { grid-template-columns: repeat(4, 1fr); }
+  .tile .v b { font-size: 17px; }
+  .story-body { margin-top: 7px; }
+  .chart { display: none !important; }
+}
+@media (max-width: 560px) {
+  .kicker { display: none; }
+  h1 { font-size: 16px; }
+  .btn span { display: none; }
+  .btn { padding: 0; }
+  .gauges { grid-template-columns: 1fr 1fr; }
+  .chip { height: 30px; font-size: 12px; }
+  .story-head h3 { font-size: 15px; }
+  .story-text p { font-size: 12.5px; }
+  .facts { display: none; }
+}
+@media (max-height: 640px) { .story-text p { font-size: 12.5px; line-height: 1.45; } .facts { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+/* ------------------------------------------------ renderer status pill (script in <head>) */
+#ai-visual-render-mode { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; --m: #8393a6; border: 1px solid rgba(255, 255, 255, .09); }
+#ai-visual-render-mode::before { content: ""; display: inline-block; margin-right: 7px; vertical-align: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--m); box-shadow: 0 0 0 3px color-mix(in srgb, var(--m) 22%, transparent); }
+#ai-visual-render-mode[data-mode="gpu"] { --m: #4ade80; }
+#ai-visual-render-mode[data-mode="cpu"] { --m: #fbbf24; }
+#ai-visual-render-mode[data-mode="unavailable"] { --m: #f87171; }
+#ai-visual-render-mode[data-mode="pending"] { --m: #8393a6; }
+</style>
+<script id="ai-visual-webgl-render-mode">
+(function () {
+  'use strict';
+  var badgeId = 'ai-visual-render-mode';
+  var softwareHint = /swiftshader|llvmpipe|softpipe|software renderer|basic render driver|warp|lavapipe|mesa offscreen/i;
+  var hardwareHint = /nvidia|geforce|quadro|amd|radeon|intel|apple\s*(?:m[1-9]\w*|gpu)|adreno|mali|powervr|\barc\s?\d|iris|uhd graphics|hd graphics|qualcomm|vivante/i;
+  var seenContext = false;
+  var badge;
+  function ensureBadge() {
+    if (badge && badge.isConnected) return badge;
+    badge = document.getElementById(badgeId);
+    if (!badge) {
+      badge = document.createElement('div'); badge.id = badgeId;
+      badge.setAttribute('role', 'status'); badge.setAttribute('aria-live', 'polite');
+      badge.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;max-width:calc(100vw - 20px);padding:6px 9px;border-radius:999px;font:11px/1.3 system-ui,sans-serif;letter-spacing:.02em;color:#f7f8fa;background:rgba(18,22,28,.82);box-shadow:0 2px 10px rgba(0,0,0,.18);pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)';
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    return badge;
+  }
+  function setStatus(text, mode, detail) {
+    var target = ensureBadge(); target.dataset.mode = mode; target.textContent = text; target.title = detail || text;
+  }
+  function classify(gl, type) {
+    var renderer = '';
+    try { var info = gl.getExtension('WEBGL_debug_renderer_info'); if (info) renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL) || ''; } catch (_) {}
+    if (!renderer) setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser did not expose the WebGL renderer identity.');
+    else if (softwareHint.test(renderer)) setStatus('CPU only · software WebGL · ' + renderer, 'cpu', 'Software renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else if (hardwareHint.test(renderer)) setStatus('GPU active · ' + type.toUpperCase() + ' · ' + renderer, 'gpu', 'Hardware renderer reported by WEBGL_debug_renderer_info: ' + renderer);
+    else setStatus('renderer unknown · ' + type.toUpperCase() + ' active', 'unknown', 'The browser reported a renderer, but it did not identify a physical GPU: ' + renderer);
+  }
+  function install() {
+    var proto = window.HTMLCanvasElement && HTMLCanvasElement.prototype;
+    if (!proto || !proto.getContext || proto.getContext.__aiVisualModeWrapped) return;
+    var original = proto.getContext;
+    var wrapped = function (type, attributes) {
+      if (typeof type !== 'string' || !/^(webgl2?|experimental-webgl)$/i.test(type)) return original.apply(this, arguments);
+      var options = attributes && typeof attributes === 'object' ? Object.assign({}, attributes) : {};
+      if (!options.powerPreference) options.powerPreference = 'high-performance';
+      options.failIfMajorPerformanceCaveat = false;
+      var gl = original.call(this, type, options);
+      if (gl) {
+        seenContext = true; var contextType = type.toLowerCase() === 'webgl2' ? 'WebGL2' : 'WebGL'; classify(gl, contextType);
+        this.addEventListener('webglcontextlost', function () { setStatus('WebGL context lost · 3D output unavailable', 'unavailable', 'The active WebGL context was lost.'); }, { once: true });
+        this.addEventListener('webglcontextrestored', function () { classify(gl, contextType); });
+      }
+      return gl;
+    };
+    wrapped.__aiVisualModeWrapped = true;
+    try { proto.getContext = wrapped; } catch (_) {}
+  }
+  setStatus('checking WebGL renderer…', 'pending', 'Waiting for the page to create its 3D WebGL context.');
+  install();
+  document.addEventListener('DOMContentLoaded', function () {
+    window.setTimeout(function () { if (!seenContext) setStatus('WebGL unavailable · no scene context was created', 'unavailable', 'This 3D page requires WebGL; no WebGL scene context was created.'); }, 3000);
+  }, { once: true });
+})();
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="boot"><div class="spin"></div><div>Assembling the engine…</div></div>
+  <canvas id="gl" tabindex="0" aria-label="3D cutaway of a turbofan jet engine. Drag to orbit, scroll to zoom."></canvas>
+  <div id="vignette"></div>
+  <svg id="leaders" aria-hidden="true"></svg>
+  <div id="labels"></div>
+
+  <header id="top">
+    <div class="brand">
+      <div class="kicker">Turbofan · 3D cutaway</div>
+      <h1>How a jet engine works</h1>
+    </div>
+    <nav id="rail" aria-label="Follow the air through the engine"></nav>
+    <div class="top-actions">
+      <button class="btn" id="btnAbout" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4"/><circle cx="8" cy="4.8" r=".5" fill="currentColor"/></svg><span>Prompt &amp; notes</span></button>
+      <button class="btn" id="btnFull" aria-label="Toggle full screen"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg></button>
+    </div>
+  </header>
+
+  <div id="hint">Drag to orbit · scroll to zoom · shift-drag to pan</div>
+
+  <div id="dockwrap">
+    <div id="tabs" role="tablist" aria-label="Panels">
+      <button role="tab" data-tab="cardStory" aria-selected="true">Story</button>
+      <button role="tab" data-tab="cardPower" aria-selected="false">Thrust</button>
+      <button role="tab" data-tab="cardView" aria-selected="false">View</button>
+    </div>
+    <main id="dock">
+      <section class="card" id="cardPower" aria-label="Engine controls and readouts">
+        <h2>Thrust lever <em id="leverName">Cruise</em></h2>
+        <div class="lever">
+          <input type="range" id="throttle" min="0" max="100" value="55" aria-label="Thrust lever">
+          <div class="ticks"><span>Idle</span><span>Cruise</span><span>Take-off</span></div>
+        </div>
+        <div class="gauges">
+          <div class="tile" style="--c: var(--n1)"><div class="k">N1 · fan</div><div class="v"><b id="gN1">0</b><small>%</small></div><div class="bar"><i id="bN1"></i></div></div>
+          <div class="tile" style="--c: var(--n2)"><div class="k">N2 · core</div><div class="v"><b id="gN2">0</b><small>%</small></div><div class="bar"><i id="bN2"></i></div></div>
+          <div class="tile" style="--c: var(--hot)"><div class="k">Exhaust</div><div class="v"><b id="gEGT">0</b><small>°C</small></div><div class="bar"><i id="bEGT"></i></div></div>
+          <div class="tile" style="--c: var(--cold)"><div class="k">Thrust</div><div class="v"><b id="gTh">0</b><small>kN</small></div><div class="bar"><i id="bTh"></i></div></div>
+        </div>
+        <div class="mini" id="miniRead"></div>
+      </section>
+
+      <section class="card story" id="cardStory" aria-live="polite" aria-label="Guided tour">
+        <div class="story-head">
+          <span class="badge" id="stN">0</span>
+          <div class="tt"><div class="tag" id="stTag"></div><h3 id="stTitle"></h3></div>
+          <div class="ctrls">
+            <button class="ibtn" id="prev" aria-label="Previous stage"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg></button>
+            <button class="ibtn primary" id="play" aria-label="Play the guided tour"><svg id="icoPlay" viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2.8v10.4a.5.5 0 0 0 .77.42l8-5.2a.5.5 0 0 0 0-.84l-8-5.2a.5.5 0 0 0-.77.42Z"/></svg><svg id="icoPause" viewBox="0 0 16 16" fill="currentColor" style="display:none"><rect x="3.5" y="2.5" width="3.2" height="11" rx="1"/><rect x="9.3" y="2.5" width="3.2" height="11" rx="1"/></svg></button>
+            <button class="ibtn" id="next" aria-label="Next stage"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 5 5-5 5"/></svg></button>
+          </div>
+        </div>
+        <div class="story-body wide" id="storyBody">
+          <div class="story-text" id="stText"><p id="stP"></p><ul class="facts" id="stFacts"></ul></div>
+          <div class="chart" id="chart" role="img" aria-label="Gas temperature and pressure along the engine"></div>
+        </div>
+      </section>
+
+      <section class="card" id="cardView" aria-label="View controls">
+        <h2>Cutaway &amp; view</h2>
+        <div class="row"><label for="cutW">Opening</label><input type="range" id="cutW" min="0" max="300" value="138"><output id="cutWo">138°</output></div>
+        <div class="row"><label for="cutR">Rotate cut</label><input type="range" id="cutR" min="-180" max="180" value="86"><output id="cutRo">86°</output></div>
+        <div class="row"><label for="expl">Explode</label><input type="range" id="expl" min="0" max="100" value="0"><output id="explo">0%</output></div>
+        <div class="row"><label for="slow">Slow-mo</label><select class="sel" id="slow" style="grid-column: 2 / 4"><option value="20">1 / 20 real speed</option><option value="70" selected>1 / 70 real speed</option><option value="200">1 / 200 real speed</option><option value="600">1 / 600 · study the blades</option></select></div>
+        <div class="toggles" role="group" aria-label="Display options">
+          <button class="tgl" id="tCut" aria-pressed="true">Cutaway</button>
+          <button class="tgl" id="tFlow" aria-pressed="true">Airflow</button>
+          <button class="tgl" id="tLab" aria-pressed="true">Labels</button>
+          <button class="tgl" id="tSound" aria-pressed="false">Sound</button>
+        </div>
+        <div class="legend"><span style="--c: var(--n1)">LP spool (N1)</span><span style="--c: var(--n2)">HP spool (N2)</span><span style="--c: var(--cut)">Cut faces</span><span style="--c: var(--cold)">Cold air</span><span style="--c: var(--hot)">Hot gas</span></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="scrim"></div>
+  <aside id="drawer" role="dialog" aria-modal="false" aria-labelledby="abT" aria-hidden="true">
+    <button class="btn x" id="btnClose" aria-label="Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="m3.5 3.5 9 9m0-9-9 9"/></svg></button>
+    <h2 id="abT">Prompt, notes and source</h2>
+    <div id="abBody"></div>
+    <div class="ver">Jet Engine Cutaway v__JET_VERSION__ · single self-contained HTML file, no network needed.</div>
+  </aside>
+</div>
+<script>__APP_JS__</script>
+</body>
+</html>

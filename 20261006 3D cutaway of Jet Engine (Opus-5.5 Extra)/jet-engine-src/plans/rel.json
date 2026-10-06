@@ -1,0 +1,5 @@
+{ "w": 1440, "h": 900, "boot": 8, "page": "../Jet Engine Cutaway v1.0.html", "query": "autoplay=0",
+  "steps": [
+    { "js": "jet.ui.goStep(4); 'ok'", "wait": 8, "out": "rel_final.png" },
+    { "js": "performance.getEntriesByType('resource').length + ' resources; errs checked'", "wait": 0.1 }
+  ] }

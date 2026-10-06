@@ -1,0 +1,5 @@
+{ "w": 1600, "h": 800, "boot": 6, "query": "paused=1",
+  "steps": [
+    { "js": "jet.engine.throttle=1; jet.step(240); jet.cam({yaw:-0.3,pitch:0.2,dist:4.2,tx:3.4,ty:0,tz:0}); 'ok'", "wait": 2, "out": "p2_comb.png" },
+    { "js": "jet.cam({yaw:-0.3,pitch:0.2,dist:9,tx:3.0,ty:0,tz:0}); 'ok'", "wait": 2, "out": "p2_all.png" }
+  ] }

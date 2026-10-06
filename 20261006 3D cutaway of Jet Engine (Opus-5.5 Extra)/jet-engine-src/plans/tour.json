@@ -1,0 +1,6 @@
+{ "w": 1280, "h": 720, "boot": 5, "query": "fixedpr=1",
+  "steps": [
+    { "js": "'start ' + jet.ui.state.playing + ' cur ' + jet.ui.state.cur", "wait": 6, "out": "t0.png" },
+    { "js": "'cur ' + jet.ui.state.cur + ' playing ' + jet.ui.state.playing", "wait": 20, "out": "t1.png" },
+    { "js": "'cur ' + jet.ui.state.cur + ' playing ' + jet.ui.state.playing", "wait": 1 }
+  ] }

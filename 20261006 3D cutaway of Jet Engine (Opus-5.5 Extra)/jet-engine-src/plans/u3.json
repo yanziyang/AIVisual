@@ -1,0 +1,6 @@
+{ "w": 1440, "h": 900, "boot": 6, "query": "autoplay=0&fixedpr=1",
+  "steps": [
+    { "js": "jet.step(100); const e=document.getElementById('expl'); e.value=100; e.dispatchEvent(new Event('input')); 'ok'", "wait": 7, "out": "x1_explode.png" },
+    { "js": "e.value=0; e.dispatchEvent(new Event('input')); document.getElementById('tCut').click(); document.getElementById('tLab').click(); 'ok'", "wait": 6, "out": "x2_nocut.png" },
+    { "js": "document.getElementById('tCut').click(); document.getElementById('btnAbout').click(); 'ok'", "wait": 3, "out": "x3_about.png" }
+  ] }

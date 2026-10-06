@@ -1,0 +1,8 @@
+{ "w": 1440, "h": 900, "boot": 6, "query": "autoplay=0&fixedpr=1",
+  "steps": [
+    { "js": "jet.step(120); jet.ui.goStep(1); 'ok'", "wait": 3.6, "out": "s1.png" },
+    { "js": "jet.ui.goStep(2); 'ok'", "wait": 3.6, "out": "s2.png" },
+    { "js": "jet.ui.goStep(3); 'ok'", "wait": 3.6, "out": "s3.png" },
+    { "js": "jet.ui.goStep(5); 'ok'", "wait": 3.6, "out": "s5.png" },
+    { "js": "jet.ui.goStep(6); 'ok'", "wait": 3.6, "out": "s6.png" }
+  ] }

@@ -1,0 +1,4 @@
+{ "w": 390, "h": 844, "dpr": 2, "mobile": true, "boot": 8, "query": "autoplay=0&fixedpr=1&pr=0.6",
+  "steps": [
+    { "js": "const b=document.getElementById('ai-visual-render-mode'); JSON.stringify({text:b.textContent, rect:b.getBoundingClientRect()})", "wait": 4, "out": "g2_mobile.png" }
+  ] }

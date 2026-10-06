@@ -1,0 +1,6 @@
+{ "w": 1600, "h": 800, "boot": 6, "query": "paused=1",
+  "steps": [
+    { "js": "jet.cam({yaw:0.0,pitch:0.12,dist:13,tx:3.2,ty:0,tz:0}); 'ok'", "wait": 2, "out": "p1_full.png" },
+    { "js": "jet.cam({yaw:-0.35,pitch:0.2,dist:5.5,tx:2.4,ty:0,tz:0}); 'ok'", "wait": 2, "out": "p1_comp.png" },
+    { "js": "jet.cam({yaw:-0.35,pitch:0.2,dist:5.5,tx:4.4,ty:0,tz:0}); 'ok'", "wait": 2, "out": "p1_turb.png" }
+  ] }
