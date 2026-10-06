@@ -127,14 +127,27 @@
 })();
 </script>
 <style id="startup-cover-styles">
-.header,.bottom,.credit{transition:opacity .35s ease}
 body:not([data-startup="ready"]) .vignette,
 body:not([data-startup="ready"]) .header,
 body:not([data-startup="ready"]) .bottom,
 body:not([data-startup="ready"]) .credit,
 body:not([data-startup="ready"]) .toast,
 body:not([data-startup="ready"]) #dbg,
-body:not([data-startup="ready"]) #ai-visual-render-mode{visibility:hidden;opacity:0}
+body:not([data-startup="ready"]) #ai-visual-render-mode{visibility:hidden}
+#loader{align-items:flex-start;justify-content:center;padding:40px max(38px,calc((100vw - 1360px)/2));background:linear-gradient(90deg,rgba(13,31,22,.84),rgba(13,31,22,.62) 36%,rgba(13,31,22,.12) 100%);backdrop-filter:blur(1px)}
+.loader-content{position:absolute;left:max(38px,calc((100vw - 1360px)/2));top:50%;width:min(460px,calc(100% - 76px));transform:translateY(-50%)}
+.loader-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 20px;color:#c5d5a9;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.loader-eyebrow::before{content:"";width:30px;height:1px;background:#c5d5a9aa}
+.loader h1{font:400 clamp(58px,8vw,88px)/.94 Georgia,serif;letter-spacing:-.04em;margin:0;color:#fbf8e9}
+.loader .loader-description{max-width:370px;margin:18px 0 34px;color:#e2e8d6;font:15px/1.7 Segoe UI,system-ui,sans-serif}
+.loader-status{display:flex;align-items:center;gap:14px}
+.loader-status .water-ring{width:23px;height:23px;flex:none;border-color:#d5dec999;box-shadow:0 0 0 7px #d5dec91a,0 0 0 13px #d5dec90c}
+.loader-status-copy strong,.loader-status-copy small{display:block}
+.loader-status-copy strong{font-size:13px;font-weight:600;letter-spacing:.05em}
+.loader-status-copy small{margin-top:4px;color:#c5ceb8;font-size:12px;letter-spacing:.02em}
+.loader-footer{position:absolute;left:max(38px,calc((100vw - 1360px)/2));right:max(38px,calc((100vw - 1360px)/2));bottom:max(26px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:16px;color:#d6ddcebd;font-size:10px;letter-spacing:.17em;text-transform:uppercase}
+@media(max-width:700px){#loader{padding:28px 22px;background:linear-gradient(180deg,rgba(13,31,22,.35),rgba(13,31,22,.78))}.loader-content{left:22px;top:auto;bottom:23%;width:calc(100% - 44px);transform:none}.loader h1{font-size:58px}.loader .loader-description{font-size:14px;margin:14px 0 30px}.loader-footer{left:22px;right:22px;bottom:max(16px,env(safe-area-inset-bottom));font-size:9px;letter-spacing:.1em}}
+@media(max-width:370px){.loader-footer{flex-direction:column;gap:6px}}
 </style>
 </head>
 <body data-tool="ripple" data-startup="loading">
@@ -202,7 +215,7 @@ https://github.com/Aureliengmz/clearwater</blockquote>
   <details><summary>Clearwater MIT license</summary><pre>{{CLEARWATER_LICENSE}}</pre></details>
  </div>
 </dialog>
-<div id="loader" class="loader" role="status" aria-live="polite" aria-atomic="true"><div class="water-ring" aria-hidden="true"></div><p>A moment of stillness</p><span>Preparing your pond…</span></div>
+<div id="loader" class="loader" role="status" aria-live="polite" aria-atomic="true"><div class="loader-content"><p class="loader-eyebrow">A quiet corner / interactive pond</p><h1>Stillwater</h1><p class="loader-description">Stay a while. The koi are in no hurry.</p><div class="loader-status"><span class="water-ring" aria-hidden="true"></span><span class="loader-status-copy"><strong>Preparing the pond</strong><small>Bringing the water and koi to life…</small></span></div></div><div class="loader-footer"><span>Stillwater · interactive koi pond</span><span>A moment of stillness</span></div></div>
 <div id="err" role="alert" hidden></div><div id="dbg" hidden></div>
 <script id="pond-interface">
 // The prompt and implementation notes must remain usable even without WebGL.
